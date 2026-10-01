@@ -132,7 +132,13 @@ msgstr ""
 msgid "About"
 msgstr ""
 
+msgid "Accept all"
+msgstr ""
+
 msgid "Access, rectification, erasure, restriction, objection, portability, and the right to lodge a complaint with the Italian Data Protection Authority (Garante), by writing to info@meteoraevents.com."
+msgstr ""
+
+msgid "Advertising campaign measurement (e.g. Meta Pixel)."
 msgstr ""
 
 msgid "Alcohol level: 2/5"
@@ -177,7 +183,13 @@ msgstr ""
 msgid "An integral part of the cocktail."
 msgstr ""
 
+msgid "Analytics"
+msgstr ""
+
 msgid "Analytics and marketing cookies (consent only)"
+msgstr ""
+
+msgid "Anonymous, aggregated statistics about how the site is used (e.g. Google Analytics)."
 msgstr ""
 
 msgid "Aperitivo"
@@ -372,6 +384,9 @@ msgstr ""
 msgid "Clear 5×5 cm ice cube held in a hand"
 msgstr ""
 
+msgid "Close"
+msgstr ""
+
 msgid "Close by"
 msgstr ""
 
@@ -498,6 +513,9 @@ msgid "Customisation"
 msgstr ""
 
 msgid "Customisations are agreed during the event-planning phase."
+msgstr ""
+
+msgid "Customise"
 msgstr ""
 
 msgid "Cut-crystal tumblers lined up on the bar"
@@ -1033,6 +1051,9 @@ msgstr ""
 msgid "Margarita / Tommy’s"
 msgstr ""
 
+msgid "Marketing"
+msgstr ""
+
 msgid "Marrying in Italy from abroad?"
 msgstr ""
 
@@ -1049,6 +1070,9 @@ msgid "Medieval hamlets and country estates around Siena and the Val d’Orcia."
 msgstr ""
 
 msgid "Menu"
+msgstr ""
+
+msgid "Message us on WhatsApp"
 msgstr ""
 
 msgid "Meteora Events is the partner specialised in managing beverage services for high-level events. We grew out of more than 14 years of operational experience in events."
@@ -1153,6 +1177,12 @@ msgstr ""
 msgid "Natural freshness."
 msgstr ""
 
+msgid "Necessary"
+msgstr ""
+
+msgid "Necessary only"
+msgstr ""
+
 msgid "Negroni"
 msgstr ""
 
@@ -1199,6 +1229,9 @@ msgid "Open Bar — Essential Experience"
 msgstr ""
 
 msgid "Open Bar — Premium Experience"
+msgstr ""
+
+msgid "Open WhatsApp"
 msgstr ""
 
 msgid "Open bar"
@@ -1414,6 +1447,9 @@ msgstr ""
 msgid "Request received"
 msgstr ""
 
+msgid "Required for the site to work and to remember your choices. Always active."
+msgstr ""
+
 msgid "Respect for venues"
 msgstr ""
 
@@ -1424,6 +1460,9 @@ msgid "Retention"
 msgstr ""
 
 msgid "Rossini"
+msgstr ""
+
+msgid "Save preferences"
 msgstr ""
 
 msgid "Scenic impact, strong character."
@@ -1783,6 +1822,9 @@ msgstr ""
 msgid "We travel throughout Italy and also deliver services outside the region and abroad."
 msgstr ""
 
+msgid "We use technical cookies that the site needs to work. With your consent we will also use analytics cookies to understand how to improve it. No non-essential cookie is set until you choose."
+msgstr ""
+
 msgid "We will reply as soon as possible with a tailored proposal."
 msgstr ""
 
@@ -1885,6 +1927,9 @@ msgstr ""
 msgid "You can change your choices at any time from the “Cookie preferences” link in the footer."
 msgstr ""
 
+msgid "You can edit the message before sending it."
+msgstr ""
+
 msgid "You don’t hire us to serve drinks. <em>You hire us because the bar becomes part of the event.</em>"
 msgstr ""
 
@@ -1895,6 +1940,9 @@ msgid "Your brand, <em>served with style.</em>"
 msgstr ""
 
 msgid "Your logo on the bar front, custom napkins, your logo pressed into ice."
+msgstr ""
+
+msgid "Your privacy"
 msgstr ""
 
 msgid "Your rights"

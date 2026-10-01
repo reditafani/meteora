@@ -132,8 +132,14 @@ msgstr "Servizio visivamente pulito, nessuna cassa a vista"
 msgid "About"
 msgstr "Chi siamo"
 
+msgid "Accept all"
+msgstr "Accetta tutti"
+
 msgid "Access, rectification, erasure, restriction, objection, portability, and the right to lodge a complaint with the Italian Data Protection Authority (Garante), by writing to info@meteoraevents.com."
 msgstr "Accesso, rettifica, cancellazione, limitazione, opposizione, portabilità e reclamo al Garante per la protezione dei dati personali, scrivendo a info@meteoraevents.com."
+
+msgid "Advertising campaign measurement (e.g. Meta Pixel)."
+msgstr "Misurazione delle campagne pubblicitarie (es. Meta Pixel)."
 
 msgid "Alcohol level: 2/5"
 msgstr "Grado alcolico: 2/5"
@@ -177,8 +183,14 @@ msgstr "Americano Sbagliato"
 msgid "An integral part of the cocktail."
 msgstr "Parte integrante del cocktail."
 
+msgid "Analytics"
+msgstr "Analisi"
+
 msgid "Analytics and marketing cookies (consent only)"
 msgstr "Cookie di analisi e marketing (solo con consenso)"
+
+msgid "Anonymous, aggregated statistics about how the site is used (e.g. Google Analytics)."
+msgstr "Statistiche anonime e aggregate sull’uso del sito (es. Google Analytics)."
 
 msgid "Aperitivo"
 msgstr "Aperitivo"
@@ -372,6 +384,9 @@ msgstr "Classici eseguiti con metodo, signature su misura."
 msgid "Clear 5×5 cm ice cube held in a hand"
 msgstr "Cubo di ghiaccio trasparente 5×5 cm in mano"
 
+msgid "Close"
+msgstr "Chiudi"
+
 msgid "Close by"
 msgstr "Vicinanza"
 
@@ -499,6 +514,9 @@ msgstr "Personalizzazioni"
 
 msgid "Customisations are agreed during the event-planning phase."
 msgstr "Le personalizzazioni vanno concordate in fase di ideazione dell’evento."
+
+msgid "Customise"
+msgstr "Personalizza"
 
 msgid "Cut-crystal tumblers lined up on the bar"
 msgstr "Bicchieri in cristallo lavorato allineati sul banco"
@@ -1033,6 +1051,9 @@ msgstr "Molte location toscane sono dimore storiche: pietra antica, pavimenti de
 msgid "Margarita / Tommy’s"
 msgstr "Margarita / Tommy’s"
 
+msgid "Marketing"
+msgstr "Marketing"
+
 msgid "Marrying in Italy from abroad?"
 msgstr "Vi sposate in Italia dall’estero?"
 
@@ -1050,6 +1071,9 @@ msgstr "Borghi medievali e dimore di campagna in Val d’Orcia e dintorni."
 
 msgid "Menu"
 msgstr "Menu"
+
+msgid "Message us on WhatsApp"
+msgstr "Scrivici su WhatsApp"
 
 msgid "Meteora Events is the partner specialised in managing beverage services for high-level events. We grew out of more than 14 years of operational experience in events."
 msgstr "Meteora Events è il partner specializzato nella gestione del servizio beverage per eventi di alto livello. Nasciamo da oltre 14 anni di esperienza operativa negli eventi."
@@ -1153,6 +1177,12 @@ msgstr "Tovaglioli e frontale banco con i vostri nomi, iniziali impresse sul ghi
 msgid "Natural freshness."
 msgstr "Freschezza naturale."
 
+msgid "Necessary"
+msgstr "Necessari"
+
+msgid "Necessary only"
+msgstr "Solo necessari"
+
 msgid "Negroni"
 msgstr "Negroni"
 
@@ -1200,6 +1230,9 @@ msgstr "Open Bar — Essential Experience"
 
 msgid "Open Bar — Premium Experience"
 msgstr "Open Bar — Premium Experience"
+
+msgid "Open WhatsApp"
+msgstr "Apri WhatsApp"
 
 msgid "Open bar"
 msgstr "Open bar"
@@ -1414,6 +1447,9 @@ msgstr "Richiedi listino partner"
 msgid "Request received"
 msgstr "Richiesta ricevuta"
 
+msgid "Required for the site to work and to remember your choices. Always active."
+msgstr "Indispensabili per il funzionamento del sito e per ricordare le tue preferenze. Sempre attivi."
+
 msgid "Respect for venues"
 msgstr "Rispetto delle location"
 
@@ -1425,6 +1461,9 @@ msgstr "Conservazione"
 
 msgid "Rossini"
 msgstr "Rossini"
+
+msgid "Save preferences"
+msgstr "Salva preferenze"
 
 msgid "Scenic impact, strong character."
 msgstr "Impatto scenico, carattere deciso."
@@ -1783,6 +1822,9 @@ msgstr "Ci occupiamo dell’intera gestione del servizio bar: progettiamo la dri
 msgid "We travel throughout Italy and also deliver services outside the region and abroad."
 msgstr "Ci spostiamo in tutta Italia e realizziamo servizi anche fuori regione e all’estero."
 
+msgid "We use technical cookies that the site needs to work. With your consent we will also use analytics cookies to understand how to improve it. No non-essential cookie is set until you choose."
+msgstr "Usiamo cookie tecnici necessari al funzionamento del sito. Con il tuo consenso useremo anche cookie di analisi per capire come migliorare il sito. Nessun cookie non necessario viene attivato senza la tua scelta."
+
 msgid "We will reply as soon as possible with a tailored proposal."
 msgstr "Vi risponderemo al più presto con una proposta su misura."
 
@@ -1885,6 +1927,9 @@ msgstr "Sì. Siamo disponibili per richieste di altre etichette, ed è possibile
 msgid "You can change your choices at any time from the “Cookie preferences” link in the footer."
 msgstr "Puoi modificare le tue scelte in qualsiasi momento dal link “Preferenze cookie” nel footer."
 
+msgid "You can edit the message before sending it."
+msgstr "Puoi modificare il messaggio prima di inviarlo."
+
 msgid "You don’t hire us to serve drinks. <em>You hire us because the bar becomes part of the event.</em>"
 msgstr "Non vi affidate a noi per servire drink. <em>Vi affidate a noi perché il bar diventi parte dell’evento.</em>"
 
@@ -1896,6 +1941,9 @@ msgstr "Il vostro brand, <em>servito con stile.</em>"
 
 msgid "Your logo on the bar front, custom napkins, your logo pressed into ice."
 msgstr "Frontale banco con il vostro logo, tovaglioli personalizzati, logo impresso sul ghiaccio."
+
+msgid "Your privacy"
+msgstr "La tua privacy"
 
 msgid "Your rights"
 msgstr "Diritti dell’interessato"

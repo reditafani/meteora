@@ -29,6 +29,22 @@ MANUAL = {
     'The Bar Collection': 'I banchi bar', 'The bar becomes <em>part of the event.</em>': 'Il bar diventa <em>parte dell’evento.</em>',
     'The page you are looking for does not exist or has moved.': 'La pagina che cercate non esiste o è stata spostata.', 'Tuscany · Italy': 'Toscana · Italia',
     'Weddings': 'Matrimoni', 'Why Meteora': 'Perché Meteora', 'Write to us': 'Scriveteci', 'More events': 'Altri eventi',
+    'Message us on WhatsApp': 'Scrivici su WhatsApp',
+    'Close': 'Chiudi',
+    'You can edit the message before sending it.': 'Puoi modificare il messaggio prima di inviarlo.',
+    'Open WhatsApp': 'Apri WhatsApp',
+    'Your privacy': 'La tua privacy',
+    'We use technical cookies that the site needs to work. With your consent we will also use analytics cookies to understand how to improve it. No non-essential cookie is set until you choose.': 'Usiamo cookie tecnici necessari al funzionamento del sito. Con il tuo consenso useremo anche cookie di analisi per capire come migliorare il sito. Nessun cookie non necessario viene attivato senza la tua scelta.',
+    'Necessary': 'Necessari',
+    'Required for the site to work and to remember your choices. Always active.': 'Indispensabili per il funzionamento del sito e per ricordare le tue preferenze. Sempre attivi.',
+    'Analytics': 'Analisi',
+    'Anonymous, aggregated statistics about how the site is used (e.g. Google Analytics).': 'Statistiche anonime e aggregate sull’uso del sito (es. Google Analytics).',
+    'Marketing': 'Marketing',
+    'Advertising campaign measurement (e.g. Meta Pixel).': 'Misurazione delle campagne pubblicitarie (es. Meta Pixel).',
+    'Necessary only': 'Solo necessari',
+    'Customise': 'Personalizza',
+    'Save preferences': 'Salva preferenze',
+    'Accept all': 'Accetta tutti',
 }
 
 
