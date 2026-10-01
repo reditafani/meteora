@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/wp/7.1/theme.json",
+	"version": 3,
+	"title": "Display",
+	"slug": "display",
+	"blockTypes": [
+		"core/heading",
+		"core/paragraph"
+	],
+	"styles": {
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--display)",
+			"fontSize": "var(--wp--preset--font-size--display)",
+			"fontWeight": "300",
+			"lineHeight": "0.9",
+			"letterSpacing": "-0.02em"
+		}
+	}
+}

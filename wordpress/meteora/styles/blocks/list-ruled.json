@@ -1,0 +1,16 @@
+{
+	"$schema": "https://schemas.wp.org/wp/7.1/theme.json",
+	"version": 3,
+	"title": "Ruled list",
+	"slug": "list-ruled",
+	"blockTypes": [
+		"core/list"
+	],
+	"styles": {
+		"spacing": {
+			"padding": {
+				"left": "0"
+			}
+		}
+	}
+}

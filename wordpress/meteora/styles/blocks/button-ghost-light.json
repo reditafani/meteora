@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schemas.wp.org/wp/7.1/theme.json",
+	"version": 3,
+	"title": "Ghost on dark",
+	"slug": "button-ghost-light",
+	"blockTypes": [
+		"core/button"
+	],
+	"styles": {
+		"color": {
+			"background": "transparent",
+			"text": "var(--wp--preset--color--on-dark)"
+		},
+		"border": {
+			"color": "color-mix(in srgb, #f4ece0 55%, transparent)"
+		},
+		":hover": {
+			"color": {
+				"background": "var(--wp--preset--color--on-dark)",
+				"text": "var(--wp--preset--color--dark)"
+			},
+			"border": {
+				"color": "var(--wp--preset--color--on-dark)"
+			}
+		}
+	}
+}

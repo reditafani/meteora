@@ -1,0 +1,20 @@
+{
+	"$schema": "https://schemas.wp.org/wp/7.1/theme.json",
+	"version": 3,
+	"title": "Micro label",
+	"slug": "micro",
+	"blockTypes": [
+		"core/paragraph",
+		"core/heading"
+	],
+	"styles": {
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--sans)",
+			"fontSize": "var(--wp--preset--font-size--micro)",
+			"fontWeight": "500",
+			"letterSpacing": "var(--wp--custom--tracking--micro)",
+			"textTransform": "uppercase",
+			"lineHeight": "1.4"
+		}
+	}
+}
