@@ -121,6 +121,8 @@ $meteora_links   = array(
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
-<!-- wp:meteora/language-switcher /--></div>
+<!-- wp:paragraph {"className":"meteora-lang-switcher"} -->
+<p class="meteora-lang-switcher">EN / IT</p>
+<!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->

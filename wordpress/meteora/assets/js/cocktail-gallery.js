@@ -14,6 +14,10 @@
 		status.setAttribute( 'aria-live', 'polite' );
 		root.insertBefore( status, list.nextSibling );
 		list.setAttribute( 'role', 'group' );
+		// A list with role="group" can no longer hold listitems.
+		list.querySelectorAll( ':scope > li' ).forEach( function ( li ) {
+			li.setAttribute( 'role', 'none' );
+		} );
 		list.setAttribute( 'aria-label', root.dataset.filterLabel || list.getAttribute( 'aria-label' ) || 'Filter' );
 
 		var buttons = [];

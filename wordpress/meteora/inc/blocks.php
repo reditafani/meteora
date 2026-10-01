@@ -1,6 +1,6 @@
 <?php
 /**
- * Theme blocks (PHP-only, auto-registered in the editor) and core block tweaks.
+ * Core block tweaks: language switcher and Site Logo fallback.
  *
  * @package Meteora
  */
@@ -8,28 +8,29 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Register the language switcher block. It renders Polylang or WPML languages
- * and outputs nothing when no multilingual plugin is active.
+ * Language switcher: a Paragraph block with the class `meteora-lang-switcher`
+ * (it reads "EN / IT" in the editor) is rendered as the Polylang or WPML
+ * language list, and outputs nothing when no multilingual plugin is active.
+ *
+ * @param string              $content Rendered block.
+ * @param array<string,mixed> $block   Parsed block.
  */
-function meteora_register_blocks(): void {
-	register_block_type(
-		'meteora/language-switcher',
-		array(
-			'api_version'     => 3,
-			'title'           => __( 'Language switcher (IT / EN)', 'meteora' ),
-			'category'        => 'theme',
-			'icon'            => 'translation',
-			'description'     => __( 'Compact IT / EN switcher. Requires Polylang or WPML.', 'meteora' ),
-			'supports'        => array(
-				'autoRegister' => true,
-				'html'         => false,
-				'color'        => array( 'text' => true ),
-			),
-			'render_callback' => 'meteora_render_language_switcher',
-		)
-	);
+function meteora_language_switcher_block( string $content, array $block ): string {
+	$class = isset( $block['attrs']['className'] ) ? (string) $block['attrs']['className'] : '';
+	if ( ! preg_match( '/(^|\s)meteora-lang-switcher(\s|$)/', $class ) ) {
+		return $content;
+	}
+	$classes = '';
+	$style   = '';
+	$tags    = new WP_HTML_Tag_Processor( $content );
+	if ( $tags->next_tag( 'p' ) ) {
+		$classes = (string) $tags->get_attribute( 'class' );
+		$style   = (string) $tags->get_attribute( 'style' );
+	}
+	$classes = trim( preg_replace( '/(^|\s)(meteora-lang-switcher|wp-block-paragraph)(?=\s|$)/', ' ', $classes ) );
+	return meteora_render_language_switcher( $classes, $style );
 }
-add_action( 'init', 'meteora_register_blocks' );
+add_filter( 'render_block_core/paragraph', 'meteora_language_switcher_block', 10, 2 );
 
 /**
  * Collect languages from Polylang or WPML.
@@ -72,17 +73,14 @@ function meteora_get_languages(): array {
 }
 
 /**
- * Render callback for meteora/language-switcher.
+ * Render the language list.
  *
- * @param array<string,mixed> $attributes Block attributes.
+ * @param string $classes Extra classes (from the block).
+ * @param string $style   Inline style (from the block).
  */
-function meteora_render_language_switcher( array $attributes = array() ): string {
+function meteora_render_language_switcher( string $classes = '', string $style = '' ): string {
 	$langs = meteora_get_languages();
 	if ( ! $langs ) {
-		// Helpful placeholder in the editor only (server-side render runs in a REST request).
-		if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
-			return '<p class="meteora-lang-placeholder">' . esc_html__( 'IT / EN — activate Polylang or WPML', 'meteora' ) . '</p>';
-		}
 		return '';
 	}
 	$items = '';
@@ -101,13 +99,13 @@ function meteora_render_language_switcher( array $attributes = array() ): string
 			);
 		}
 	}
-	$wrapper = get_block_wrapper_attributes(
-		array(
-			'class'      => 'meteora-lang',
-			'aria-label' => esc_attr__( 'Language', 'meteora' ),
-		)
+	return sprintf(
+		'<ul class="%1$s"%2$s aria-label="%3$s">%4$s</ul>',
+		esc_attr( trim( 'meteora-lang ' . $classes ) ),
+		'' !== $style ? ' style="' . esc_attr( $style ) . '"' : '',
+		esc_attr__( 'Language', 'meteora' ),
+		$items
 	);
-	return sprintf( '<ul %1$s>%2$s</ul>', $wrapper, $items );
 }
 
 /**
@@ -133,3 +131,26 @@ function meteora_site_logo_fallback( string $content, array $block ): string {
 	);
 }
 add_filter( 'render_block_core/site-logo', 'meteora_site_logo_fallback', 10, 2 );
+
+/**
+ * Horizontally scrolling rails must be reachable by keyboard (WCAG 2.1.1):
+ * make them focusable, labelled regions.
+ *
+ * @param string              $content Rendered block.
+ * @param array<string,mixed> $block   Parsed block.
+ */
+function meteora_scroll_rail_a11y( string $content, array $block ): string {
+	$class = isset( $block['attrs']['className'] ) ? (string) $block['attrs']['className'] : '';
+	if ( ! preg_match( '/(^|\s)mt-ice__rail(\s|$)/', $class ) ) {
+		return $content;
+	}
+	$tags = new WP_HTML_Tag_Processor( $content );
+	if ( $tags->next_tag() ) {
+		$tags->set_attribute( 'tabindex', '0' );
+		$tags->set_attribute( 'role', 'region' );
+		$tags->set_attribute( 'aria-label', __( 'Ice formats', 'meteora' ) );
+		return $tags->get_updated_html();
+	}
+	return $content;
+}
+add_filter( 'render_block_core/group', 'meteora_scroll_rail_a11y', 10, 2 );

@@ -145,7 +145,10 @@ def _context(s: str, pos: int) -> str:
         return 'json'
     last_lt = s.rfind('<', 0, pos)
     last_gt = s.rfind('>', 0, pos)
-    return 'attr' if last_lt > last_gt else 'text'
+    if last_lt > last_gt:
+        return 'attr'
+    # Shortcode attribute, e.g. [contact-form-7 title="…"].
+    return 'attr' if s.rfind('[', 0, pos) > max(s.rfind(']', 0, pos), last_gt) else 'text'
 
 
 def php_str(s: str) -> str:

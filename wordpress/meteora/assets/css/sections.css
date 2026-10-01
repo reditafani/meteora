@@ -50,7 +50,6 @@ body :is(.mt-sh, .mt-bar, .mt-cf__list, .mt-mosaic, .mt-ed, .mt-split, .mt-dest,
 }
 .wp-block-breadcrumbs a {
 	text-decoration: none;
-	opacity: 0.75;
 }
 .wp-block-breadcrumbs a:hover {
 	opacity: 1;
@@ -718,7 +717,7 @@ body .mt-cf__row > * {
 	border-color: var(--wp--preset--color--text);
 }
 .mt-cg__filters .mt-count {
-	opacity: 0.55;
+	opacity: 0.8; /* keeps 4.5:1 on both button states */
 	margin-left: 0.3rem;
 }
 .mt-cg__grid {
@@ -937,7 +936,7 @@ body .mt-gl__item > * {
 	.mt-gl__grid { grid-template-columns: repeat(3, 1fr); }
 }
 @media (min-width: 1100px) {
-	.mt-gl__top { grid-template-columns: 1fr auto; }
+	.mt-gl__top { grid-template-columns: minmax(0, 1fr) 22rem; }
 	.mt-gl__grid { grid-template-columns: repeat(6, 1fr); gap: var(--wp--preset--spacing--m); }
 }
 
@@ -1440,7 +1439,8 @@ body .mt-num__item > * {
 }
 @media (min-width: 900px) {
 	.mt-quote {
-		grid-template-columns: auto 1fr;
+		/* Fixed image track: an auto track would grow to the image's intrinsic width. */
+		grid-template-columns: 18rem minmax(0, 1fr);
 		gap: var(--wp--preset--spacing--xl);
 	}
 }
@@ -1608,14 +1608,23 @@ form.mt-form {
 }
 .mt-form label,
 .mt-form .mt-label {
-	display: grid;
-	gap: 0.4rem;
+	display: block;
 	font-size: var(--wp--preset--font-size--micro);
 	font-weight: 500;
 	letter-spacing: 0.16em;
 	text-transform: uppercase;
 }
+.mt-form label > .wpcf7-form-control-wrap,
+.mt-form .mt-label + .wpcf7-form-control-wrap {
+	display: block;
+	margin-top: 0.4rem;
+}
+.mt-form .req {
+	margin-left: 0.25em;
+	color: var(--wp--preset--color--accent-ink);
+}
 .mt-form .mt-opt {
+	margin-left: 0.5em;
 	color: var(--wp--preset--color--text-muted);
 	font-weight: 400;
 	letter-spacing: 0.08em;
@@ -1629,6 +1638,7 @@ form.mt-form {
 .mt-form input[type="url"],
 .mt-form select,
 .mt-form textarea {
+	box-sizing: border-box;
 	width: 100%;
 	min-height: 3.1rem;
 	padding: 0.75rem 0;
@@ -1653,6 +1663,7 @@ form.mt-form {
 	padding-right: 1.5rem;
 }
 .mt-form textarea {
+	height: 7.9rem; /* CF7 renders rows="10"; the original shows 4 rows. */
 	min-height: 7rem;
 	resize: vertical;
 	line-height: 1.5;
@@ -2021,7 +2032,7 @@ body .mt-ps__facts > div > * {
 	transition: color 0.4s var(--mt-ease), transform 0.6s var(--mt-ease-out);
 }
 .mt-bc.is-enhanced .mt-bar:not(.is-active) .mt-bar__name {
-	color: color-mix(in srgb, var(--wp--preset--color--text) 45%, transparent);
+	color: color-mix(in srgb, var(--wp--preset--color--text) 52%, transparent); /* ≥ 3:1 (WCAG AA, large text) */
 }
 .mt-bc.is-enhanced .mt-bar.is-active .mt-bar__name {
 	transform: translateX(0.5rem);

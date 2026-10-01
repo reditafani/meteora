@@ -411,9 +411,6 @@ msgstr ""
 msgid "Coming soon"
 msgstr ""
 
-msgid "Compact IT / EN switcher. Requires Polylang or WPML."
-msgstr ""
-
 msgid "Compact cube with a clean look; balance and a constant temperature."
 msgstr ""
 
@@ -910,9 +907,6 @@ msgstr ""
 msgid "Hygienically impeccable. <em>Visually refined.</em>"
 msgstr ""
 
-msgid "IT / EN — activate Polylang or WPML"
-msgstr ""
-
 msgid "Ice"
 msgstr ""
 
@@ -926,6 +920,9 @@ msgid "Ice does not only chill: it brings the drink to the right temperature and
 msgstr ""
 
 msgid "Ice engraving"
+msgstr ""
+
+msgid "Ice formats"
 msgstr ""
 
 msgid "Ice is <em>part of the cocktail.</em>"
@@ -977,9 +974,6 @@ msgid "Lacquered black, pure and sophisticated."
 msgstr ""
 
 msgid "Language"
-msgstr ""
-
-msgid "Language switcher (IT / EN)"
 msgstr ""
 
 msgid "Let’s talk about <em>your event.</em>"

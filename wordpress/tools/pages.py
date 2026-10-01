@@ -67,7 +67,7 @@ def home(c: Ctx):
             cta_row(c, [btn_primary(c, c.T('All events', 'Tutti gli eventi'), c.L('events')), quote_link(c, 'portfolio_quote')], cls='mt-section-cta'),
         ], cls='mt-portfolio', alt=True, name='Portfolio'),
         partner_cta(c),
-        instagram_strip(c),
+        instagram_strip(c, pad_top=False),  # follows a light section: collapsed like the original
         cta_band(c, 'bars/golden-marble-night.webp', c.T('Golden bar lit up at night', 'Banco dorato illuminato di sera'), track='home_band'),
     ]
     meta = {'en': ('Meteora Events | Luxury Open Bar Catering in Tuscany & Italy', 'Luxury open bar catering for weddings, destination weddings, corporate and private events. Scenographic bars, cocktails, premium ice and professional glassware. Based in Tuscany, serving all of Italy.'),
@@ -94,7 +94,7 @@ def weddings(c: Ctx):
             sh(c, c.T('Through the day', 'Durante la giornata'), c.H('Every moment <em>has its drink.</em>', 'Ogni momento <em>ha il suo drink.</em>'),
                c.T('We fit into the wedding timeline, in step with your planner, venue and caterer.', 'Ci integriamo nel programma del matrimonio, coordinandoci con planner, location e catering.'), align='split'),
             numbered_grid(c, [(c.T(*t), c.T(*d)) for t, d in day], cols=5),
-        ], pad_top=False, name='Through the day'),
+        ], name='Through the day'),
         section(c, [editorial(c, 'bars/pure-white-villa.webp', c.T('Pure White bar at a villa', 'Banco Pure White in villa'), [
             eyebrow(c, c.T('Our method', 'Il nostro metodo')),
             h(c, 2, c.H('One less thing <em>to worry about.</em>', 'Un pensiero <em>in meno.</em>'), cls='animate-fade-up'),
@@ -179,7 +179,7 @@ def tuscany(c: Ctx):
     blocks = [
         page_hero(c, c.T('Based in Tuscany · Throughout Italy', 'Base in Toscana · In tutta Italia'), LT(c, L['h1']), None, 'bars/pure-white-villa.webp',
                   c.T('Pure White bar at a villa at sunset', 'Banco Pure White in villa al tramonto'), ctas=[quote_btn(c, 'landing_tuscany_quote', url=c.L('contact') + '?type=wedding')], lead_extra=intro),
-        section(c, [group(c, prose, cls='mt-prose', layout={'type': 'constrained', 'contentSize': '62rem'})], pad_top=False, name='Tuscany'),
+        section(c, [group(c, prose, cls='mt-prose', layout={'type': 'constrained', 'contentSize': '62rem'})], name='Tuscany'),
         section(c, [sh(c, c.T('The Bar Collection', 'I nostri banchi'), c.H('The bar <em>for your venue.</em>', 'Il banco <em>per la vostra location.</em>')), bar_collection(c)], alt=True, name='Bars'),
         faq(c, 'destination'),
         cta_band(c, 'bars/golden-mirror-sunset.webp', c.T('Golden Mirror bar at sunset', 'Banco Golden Mirror al tramonto'), track='landing_tuscany_band'),
@@ -202,7 +202,7 @@ def bars(c: Ctx):
             bar_collection(c, cards_grid=True),
             p(c, c.T('Every bar comes in Slim (1.5 m), Medium (3.5 m) and Large (5.5 m), and can run in continuous extension. Extra bar modules on request.',
                      'Ogni banco è disponibile in versione Slim (1,5 m), Medium (3,5 m) e Large (5,5 m), anche in estensione continua. Moduli bar aggiuntivi su richiesta.'), cls='is-muted mt-bars__note'),
-        ], pad_top=False, name='Collection'),
+        ], name='Collection'),
         cta_band(c, 'bars/golden-marble-night.webp', c.T('Golden bar at night', 'Banco dorato di sera'), title=c.H('Which bar <em>for your event?</em>', 'Quale banco <em>per il vostro evento?</em>'),
                  lead=c.T('We recommend the model and size for your venue, style and guest count.', 'Vi consigliamo modello e misura in base a location, stile e numero di ospiti.'), track='bars_band'),
     ]
@@ -256,7 +256,7 @@ def cocktails(c: Ctx):
                c.T('Aromatic profile and alcohol level (1 to 5) for every drink. Presentation, ice and garnish may vary depending on the chosen offer.',
                    'Profilo aromatico e grado alcolico (da 1 a 5) di ogni drink. Estetica, ghiaccio e garnish possono variare in base all’offerta scelta.'), align='split'),
             cocktail_gallery(c),
-        ], anchor='list', pad_top=False, name='Cocktail list'),
+        ], anchor='list', name='Cocktail list'),
         section(c, [editorial(c, 'details/ice-stamp.webp', c.T('Ice cube pressed with initials', 'Cubo di ghiaccio con iniziali impresse'), [
             eyebrow(c, LT(c, sig['label'])),
             h(c, 2, c.H('A cocktail <em>with your name on it.</em>', 'Un cocktail <em>con il vostro nome.</em>'), cls='animate-fade-up'),
@@ -367,7 +367,7 @@ def partners(c: Ctx):
                       'Lavoriamo al fianco di wedding planner, location, catering e professionisti degli eventi. Il vostro evento resta vostro: noi ci occupiamo del bar, in silenzio e con precisione.'),
                   'venues/fresco-hall.webp', c.T('Long table in a frescoed hall', 'Tavolo imperiale in un salone affrescato'), ctas=[btn_primary(c, c.T(*PP), '#partner-form', 'partner_hero')]),
         section(c, [sh(c, c.T('Who we work with', 'Con chi lavoriamo'), c.H('One goal: <em>a flawless event.</em>', 'Un solo obiettivo: <em>la buona riuscita dell’evento.</em>')),
-                    numbered_grid(c, [(c.T(*t), c.T(*d)) for t, d in audiences], cols=4)], pad_top=False, name='Who we work with'),
+                    numbered_grid(c, [(c.T(*t), c.T(*d)) for t, d in audiences], cols=4)], name='Who we work with'),
         section(c, [group(c, [
             group(c, [eyebrow(c, c.T('Why partners choose us', 'Perché i partner ci scelgono')), h(c, 2, c.H('One less thing <em>to worry about.</em>', 'Un pensiero <em>in meno.</em>'), cls='animate-fade-up'),
                       img(c, 'details/champagne-bowl.webp', c.T('Champagne bowl on the bar', 'Champagne bowl sul banco'), cls='mt-ben__img animate-image-reveal')], cls='mt-split__intro'),
@@ -391,8 +391,8 @@ def events(c: Ctx):
     blocks = [
         page_hero(c, c.T('Events', 'Eventi'), c.H('What we create <em>stays in the images.</em>', 'Ciò che realizziamo <em>resta nelle immagini.</em>'),
                   c.T('Every event is unique and unrepeatable. A selection of setups, places and moments.', 'Ogni evento è unico e irripetibile. Una selezione di allestimenti, luoghi e momenti.')),
-        section(c, [portfolio_query(c, 12)], cls='mt-portfolio', pad_top=False, name='Portfolio'),
-        instagram_strip(c),
+        section(c, [portfolio_query(c, 12)], cls='mt-portfolio', name='Portfolio'),
+        instagram_strip(c, pad_top=False),  # follows a light section: collapsed like the original
         cta_band(c, 'towers/couple-pour.webp', c.T('Couple pouring sparkling wine over the tower', 'Sposi che versano bollicine sulla tower'), title=c.H('The next one <em>could be yours.</em>', 'Il prossimo <em>potrebbe essere il vostro.</em>'), track='events_band'),
     ]
     meta = {'en': ('Events & Portfolio: Weddings, Galas and Parties | Meteora Events', 'A selection of Meteora Events setups and moments: scenographic bars at villas, on panoramic terraces and in grand halls, Signature Towers and open bars.'),
@@ -420,7 +420,7 @@ def about(c: Ctx):
                      'Ogni evento è unico e irripetibile, e ciò che viene realizzato resta impresso nelle immagini e nei ricordi. Per questo puntiamo all’eccellenza, nel servizio e nell’impatto visivo.'), cls='is-style-lead animate-fade-up'),
             p(c, c.T('We create bar services and cocktail experiences for private clients, companies and event professionals, from our base in Montecatini Terme, Tuscany.',
                      'Realizziamo servizi bar e cocktail experience per privati, aziende e professionisti del settore, dalla nostra sede di Montecatini Terme, in Toscana.'), cls='is-muted animate-fade-up'),
-        ], second='details/mint-coupes.webp', second_alt=c.T('Coupes with mint and red berries', 'Coppe con menta e frutti rossi'))], pad_top=False, name='Our story'),
+        ], second='details/mint-coupes.webp', second_alt=c.T('Coupes with mint and red berries', 'Coppe con menta e frutti rossi'))], name='Our story'),
         section(c, [sh(c, c.T('How we work', 'Come lavoriamo'), c.H('Four words, <em>every time.</em>', 'Quattro parole, <em>ogni volta.</em>')),
                     numbered_grid(c, [(c.T(*t), c.T(*d)) for t, d in values], cols=4, cls='mt-values')], alt=True, name='How we work'),
         section(c, [sh(c, c.T('Why Meteora', 'Perché Meteora'), c.H('The details <em>that set us apart.</em>', 'I dettagli <em>che ci distinguono.</em>')),
@@ -438,7 +438,7 @@ def why(c: Ctx):
         page_hero(c, c.T('Why Meteora', 'Perché Meteora'), c.H('You don’t hire us to serve drinks. <em>You hire us because the bar becomes part of the event.</em>',
                                                                'Non vi affidate a noi per servire drink. <em>Vi affidate a noi perché il bar diventi parte dell’evento.</em>'),
                   None, 'bars/golden-marble-night.webp', c.T('Golden bar on a chevron floor', 'Banco dorato su pavimento chevron')),
-        section(c, [why_grid(c)], pad_top=False, name='The reasons'),
+        section(c, [why_grid(c)], name='The reasons'),
         section(c, [editorial(c, 'bars/pure-white-villa.webp', c.T('Pure White bar in a garden, nothing out of place', 'Banco Pure White in giardino, senza nulla a vista'), [
             eyebrow(c, c.T('A clean service', 'Pulizia di servizio')),
             h(c, 2, c.H('Hygienically impeccable. <em>Visually refined.</em>', 'Igienicamente impeccabile. <em>Visivamente raffinato.</em>'), cls='animate-fade-up'),
@@ -520,7 +520,7 @@ def legal(c: Ctx, kind):
     prose = [p(c, c.T('Draft — final legal text to be supplied by the client', 'Bozza — testo legale definitivo da inserire a cura del cliente'), cls='is-style-micro mt-legal__draft')]
     for (hen, hit), (ben, bit) in body:
         prose += [h(c, 2, c.T(hen, hit)), p(c, c.T(ben, bit))]
-    blocks = [section(c, [B('core/breadcrumbs', {'className': 'mt-crumbs'}), h(c, 1, c.T(*title), cls='mt-legal__title'), group(c, prose, cls='mt-prose')], width='62rem', cls='mt-legal', pad_top='xl', name=title[0])]
+    blocks = [section(c, [B('core/breadcrumbs', {'className': 'mt-crumbs'}), h(c, 1, c.T(*title), cls='mt-legal__title'), group(c, prose, cls='mt-prose')], width='62rem', cls='mt-legal', name=title[0])]
     meta = {'en': (f'{title[0]} | Meteora Events', title[0]), 'it': (f'{title[1]} | Meteora Events', title[1])}
     return blocks, meta
 

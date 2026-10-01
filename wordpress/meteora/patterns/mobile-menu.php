@@ -53,7 +53,9 @@ $meteora_contact = meteora_contact();
 <!-- /wp:buttons -->
 
 <!-- wp:group {"className":"mm__meta","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
-<div class="wp-block-group mm__meta"><!-- wp:meteora/language-switcher /-->
+<div class="wp-block-group mm__meta"><!-- wp:paragraph {"className":"meteora-lang-switcher"} -->
+<p class="meteora-lang-switcher">EN / IT</p>
+<!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
 <p><a href="mailto:<?php echo esc_attr( $meteora_contact['email'] ); ?>"><?php echo esc_html( $meteora_contact['email'] ); ?></a></p>

@@ -21,7 +21,7 @@ await page.fill('#user_pass', 'admin');
 await page.click('#wp-submit');
 await page.waitForURL(/wp-admin/);
 await page.goto(base + '/wp-admin/post-new.php?post_type=page', { waitUntil: 'domcontentloaded' });
-await page.waitForFunction(() => window.wp && wp.blocks && wp.blocks.getBlockType('core/accordion') && wp.blocks.getBlockType('meteora/language-switcher'), null, { timeout: 90000 });
+await page.waitForFunction(() => window.wp && wp.blocks && wp.blocks.getBlockType('core/accordion'), null, { timeout: 90000 });
 
 const result = await page.evaluate((all) => {
 	const out = {};

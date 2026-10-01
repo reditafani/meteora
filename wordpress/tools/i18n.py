@@ -11,15 +11,15 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 LANG = os.path.join(ROOT, '..', 'meteora', 'languages')
 
 MANUAL = {
+    'Ice formats': 'Formati del ghiaccio',
     'About': 'Chi siamo', 'All rights reserved.': 'Tutti i diritti riservati.', 'Back to home': 'Torna alla home', 'Bars': 'Banchi bar',
     'Based in Tuscany, serving events throughout Italy and abroad.': 'Base in Toscana, operativi in tutta Italia e all’estero.',
-    'Cocktail Experience': 'Cocktail Experience', 'Compact IT / EN switcher. Requires Polylang or WPML.': 'Selettore IT / EN compatto. Richiede Polylang o WPML.',
+    'Cocktail Experience': 'Cocktail Experience',
     'Complete page layouts with real content.': 'Layout di pagina completi con contenuti reali.', 'Contact': 'Contatti', 'Cookie Policy': 'Cookie Policy',
     'Cookie preferences': 'Preferenze cookie', 'Corporate': 'Aziende', 'Corporate & Private': 'Aziende & privati', 'Destination Weddings': 'Destination Weddings',
     'Editorial sections of the Meteora Events site.': 'Sezioni editoriali del sito Meteora Events.', 'Events': 'Eventi', 'Experience': 'Esperienza', 'Explore': 'Esplora',
     'Hello Meteora Events, I would like to request information about a bar catering service for my event.': 'Buongiorno Meteora Events, vorrei ricevere informazioni su un servizio di bar catering per il mio evento.',
-    'Home': 'Home', 'IT / EN — activate Polylang or WPML': 'IT / EN — attiva Polylang o WPML', 'Language': 'Lingua', 'Language switcher (IT / EN)': 'Selettore lingua (IT / EN)',
-    'Luxury Open Bar Catering & Hospitality Services': 'Luxury Open Bar Catering & Hospitality Services', 'Main navigation': 'Navigazione principale', 'Menu': 'Menu',
+    'Home': 'Home', 'Language': 'Lingua',     'Luxury Open Bar Catering & Hospitality Services': 'Luxury Open Bar Catering & Hospitality Services', 'Main navigation': 'Navigazione principale', 'Menu': 'Menu',
     'Meteora — Forms': 'Meteora — Moduli', 'Meteora — Full pages': 'Meteora — Pagine complete', 'Meteora — Sections': 'Meteora — Sezioni', 'More': 'Altro',
     'Nothing here yet. New event stories are on their way.': 'Ancora niente qui. Nuove storie di eventi sono in arrivo.',
     'Page not found. <em>Let’s get you back to the bar.</em>': 'Pagina non trovata. <em>Torniamo al bar.</em>', 'Partner area': 'Area partner', 'Partners': 'Partner',
@@ -56,7 +56,13 @@ def main():
     entries = {}
     for ctx, en, it in json.load(open(os.path.join(ROOT, 'strings-patterns.json'))):
         entries[(ctx, en)] = it
+    php = ''
+    for base, _, files in os.walk(os.path.join(ROOT, '..', 'meteora')):
+        php += ''.join(open(os.path.join(base, f)).read() for f in files if f.endswith('.php'))
     for en, it in MANUAL.items():
+        if "'" + en.replace('\\', '\\\\').replace("'", "\\'") + "'" not in php:
+            print('unused manual string skipped:', en)
+            continue
         entries.setdefault((None, en), it)
     os.makedirs(LANG, exist_ok=True)
     head = ('msgid ""\nmsgstr ""\n"Project-Id-Version: Meteora 1.0.0\\n"\n"Language: {lang}\\n"\n"MIME-Version: 1.0\\n"\n'

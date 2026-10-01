@@ -377,6 +377,7 @@ def build_wxr(content_path: str, out_path: str):
                  'rank_math_title': p['seo_title'], 'rank_math_description': p['seo_description']}
         parts.append(item(p['id'], p['title'], p['slug'], 'page', p['content'], p['seo_description'], p['parent'], p['menu_order'], metas=metas))
 
+    en_post_slugs = {p['slug'] for p in d['posts'] if p['lang'] == 'en'}
     for p in d['posts']:
         group = p['translation_of'] or p['id']
         terms = ''
@@ -387,7 +388,9 @@ def build_wxr(content_path: str, out_path: str):
             terms += f'\t\t<category domain="post_tag" nicename="{xesc(tag_slug[(p["lang"], t)])}">{cdata(t)}</category>\n'
         metas = {'_meteora_lang': p['lang'], '_meteora_group': group, '_thumbnail_id': p['thumbnail']}
         date = p['date'][:-2] + ('01' if p['lang'] == 'it' else '00')
-        parts.append(item(p['id'], p['title'], p['slug'], 'post', p['content'], p['excerpt'], date=date, metas=metas, terms=terms))
+        # Polylang (free) cannot share a slug between languages: avoid WordPress's "-2".
+        slug = p['slug'] + ('-it' if p['lang'] == 'it' and p['slug'] in en_post_slugs else '')
+        parts.append(item(p['id'], p['title'], slug, 'post', p['content'], p['excerpt'], date=date, metas=metas, terms=terms))
 
     fid = 501
     for kind in ('quote', 'partner'):

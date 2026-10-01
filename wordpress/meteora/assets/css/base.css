@@ -267,6 +267,11 @@ a:hover .hover-zoom img {
 		color 0.5s var(--mt-ease),
 		border-color 0.5s var(--mt-ease);
 }
+/* The header is fixed: no root block gap between header, main and footer. */
+.wp-site-blocks > .site-main,
+.wp-site-blocks > .site-footer {
+	margin-block-start: 0;
+}
 body:not(.has-overlay-header) .wp-site-blocks > main,
 body:not(.has-overlay-header) .wp-site-blocks > .site-main {
 	padding-top: var(--mt-header-h);
@@ -397,7 +402,7 @@ body:not(.has-overlay-header) .wp-site-blocks > .site-main {
 	}
 }
 
-/* Language switcher (meteora/language-switcher) */
+/* Language switcher (Paragraph with class meteora-lang-switcher, see inc/blocks.php) */
 .meteora-lang {
 	display: flex;
 	align-items: center;

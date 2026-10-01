@@ -34,8 +34,8 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","metadata":{"name":"The reasons"},"align":"full","className":"mt-section","style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|section"}}},"layout":{"type":"constrained","contentSize":"1440px"}} -->
-<section class="wp-block-group alignfull mt-section" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--section)"><!-- wp:group {"className":"mt-num mt-num\u002d\u002d4 mt-why","layout":{"type":"default"}} -->
+<!-- wp:group {"tagName":"section","metadata":{"name":"The reasons"},"align":"full","className":"mt-section","style":{"spacing":{"padding":{"top":"var:preset|spacing|section","bottom":"var:preset|spacing|section"}}},"layout":{"type":"constrained","contentSize":"1440px"}} -->
+<section class="wp-block-group alignfull mt-section" style="padding-top:var(--wp--preset--spacing--section);padding-bottom:var(--wp--preset--spacing--section)"><!-- wp:group {"className":"mt-num mt-num\u002d\u002d4 mt-why","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-num mt-num--4 mt-why"><!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-1","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-num__item animate-fade-up animate-delay-1"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
 <p class="is-style-micro mt-num__n">01</p>

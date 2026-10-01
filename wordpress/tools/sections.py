@@ -471,7 +471,7 @@ def faq(c: Ctx, topic='general', limit=None, eye='FAQ', title=None, alt=False, p
 
 
 # ---------------------------------------------------------------- instagram
-def instagram_strip(c: Ctx):
+def instagram_strip(c: Ctx, pad_top=True):
     imgs = [('towers/espresso-martini-tower.webp', 'Espresso Martini Tower'), ('bars/golden-mirror.webp', 'Golden Mirror'),
             ('details/mint-coupes.webp', 'Mint & berries'), ('bars/night-lounge.webp', 'Night bar'),
             ('towers/coupe-tower-sunset.webp', 'Coupe tower'), ('details/champagne-bowl.webp', 'Champagne bowl')]
@@ -486,7 +486,7 @@ def instagram_strip(c: Ctx):
             buttons(c, [btn_link(c, '@meteoraevents', 'https://www.instagram.com/meteoraevents/', 'instagram_strip')]),
         ], cls='mt-ig__head'),
         group(c, tiles, cls='mt-ig__grid'),
-    ], cls='mt-ig', name='Instagram')
+    ], cls='mt-ig', pad_top=pad_top, name='Instagram')
 
 
 # ---------------------------------------------------------------- CTA band

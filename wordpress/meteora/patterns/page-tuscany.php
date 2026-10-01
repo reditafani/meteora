@@ -48,8 +48,8 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","metadata":{"name":"Tuscany"},"align":"full","className":"mt-section","style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|section"}}},"layout":{"type":"constrained","contentSize":"1440px"}} -->
-<section class="wp-block-group alignfull mt-section" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--section)"><!-- wp:group {"className":"mt-prose","layout":{"type":"constrained","contentSize":"62rem"}} -->
+<!-- wp:group {"tagName":"section","metadata":{"name":"Tuscany"},"align":"full","className":"mt-section","style":{"spacing":{"padding":{"top":"var:preset|spacing|section","bottom":"var:preset|spacing|section"}}},"layout":{"type":"constrained","contentSize":"1440px"}} -->
+<section class="wp-block-group alignfull mt-section" style="padding-top:var(--wp--preset--spacing--section);padding-bottom:var(--wp--preset--spacing--section)"><!-- wp:group {"className":"mt-prose","layout":{"type":"constrained","contentSize":"62rem"}} -->
 <div class="wp-block-group mt-prose"><!-- wp:heading -->
 <h2 class="wp-block-heading"><?php echo esc_html__( 'Villas, farmhouses and gardens', 'meteora' ); ?></h2>
 <!-- /wp:heading -->

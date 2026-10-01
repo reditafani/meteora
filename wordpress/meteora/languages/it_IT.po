@@ -411,9 +411,6 @@ msgstr "Collezione"
 msgid "Coming soon"
 msgstr "In arrivo"
 
-msgid "Compact IT / EN switcher. Requires Polylang or WPML."
-msgstr "Selettore IT / EN compatto. Richiede Polylang o WPML."
-
 msgid "Compact cube with a clean look; balance and a constant temperature."
 msgstr "Cubo compatto dalla resa estetica pulita; equilibrio e temperatura costante."
 
@@ -910,9 +907,6 @@ msgstr "Come lavoriamo con i partner"
 msgid "Hygienically impeccable. <em>Visually refined.</em>"
 msgstr "Igienicamente impeccabile. <em>Visivamente raffinato.</em>"
 
-msgid "IT / EN — activate Polylang or WPML"
-msgstr "IT / EN — attiva Polylang o WPML"
-
 msgid "Ice"
 msgstr "Ghiaccio"
 
@@ -927,6 +921,9 @@ msgstr "Il ghiaccio non serve solo a raffreddare: porta il drink alla temperatur
 
 msgid "Ice engraving"
 msgstr "Incisione su ghiaccio"
+
+msgid "Ice formats"
+msgstr "Formati del ghiaccio"
 
 msgid "Ice is <em>part of the cocktail.</em>"
 msgstr "Il ghiaccio è <em>parte del cocktail.</em>"
@@ -978,9 +975,6 @@ msgstr "Nero laccato, puro e sofisticato."
 
 msgid "Language"
 msgstr "Lingua"
-
-msgid "Language switcher (IT / EN)"
-msgstr "Selettore lingua (IT / EN)"
 
 msgid "Let’s talk about <em>your event.</em>"
 msgstr "Parliamo <em>del vostro evento.</em>"

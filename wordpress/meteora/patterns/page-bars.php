@@ -70,8 +70,8 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","metadata":{"name":"Collection"},"align":"full","className":"mt-section","style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|section"}}},"layout":{"type":"constrained","contentSize":"1440px"}} -->
-<section class="wp-block-group alignfull mt-section" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--section)"><!-- wp:group {"className":"mt-sh mt-sh\u002d\u002dleft","layout":{"type":"default"}} -->
+<!-- wp:group {"tagName":"section","metadata":{"name":"Collection"},"align":"full","className":"mt-section","style":{"spacing":{"padding":{"top":"var:preset|spacing|section","bottom":"var:preset|spacing|section"}}},"layout":{"type":"constrained","contentSize":"1440px"}} -->
+<section class="wp-block-group alignfull mt-section" style="padding-top:var(--wp--preset--spacing--section);padding-bottom:var(--wp--preset--spacing--section)"><!-- wp:group {"className":"mt-sh mt-sh\u002d\u002dleft","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-sh mt-sh--left"><!-- wp:group {"className":"mt-sh__head","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-sh__head"><!-- wp:paragraph {"className":"is-style-eyebrow animate-fade-up"} -->
 <p class="is-style-eyebrow animate-fade-up"><?php echo esc_html__( 'Collection', 'meteora' ); ?></p>

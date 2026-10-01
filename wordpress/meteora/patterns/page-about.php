@@ -38,8 +38,8 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","metadata":{"name":"Our story"},"align":"full","className":"mt-section","style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|section"}}},"layout":{"type":"constrained","contentSize":"1440px"}} -->
-<section class="wp-block-group alignfull mt-section" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--section)"><!-- wp:group {"className":"mt-ed mt-ed\u002d\u002dlandscape mt-ed\u002d\u002dpair","layout":{"type":"default"}} -->
+<!-- wp:group {"tagName":"section","metadata":{"name":"Our story"},"align":"full","className":"mt-section","style":{"spacing":{"padding":{"top":"var:preset|spacing|section","bottom":"var:preset|spacing|section"}}},"layout":{"type":"constrained","contentSize":"1440px"}} -->
+<section class="wp-block-group alignfull mt-section" style="padding-top:var(--wp--preset--spacing--section);padding-bottom:var(--wp--preset--spacing--section)"><!-- wp:group {"className":"mt-ed mt-ed\u002d\u002dlandscape mt-ed\u002d\u002dpair","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-ed mt-ed--landscape mt-ed--pair"><!-- wp:group {"className":"mt-ed__figure","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-ed__figure"><!-- wp:image {"sizeSlug":"large","linkDestination":"none","className":"mt-ed__main animate-image-reveal animate-drift"} -->
 <figure class="wp-block-image size-large mt-ed__main animate-image-reveal animate-drift"><img src="<?php echo esc_url( meteora_asset( 'assets/images/bars/terrace-panorama.webp' ) ); ?>" alt="<?php echo esc_attr__( 'Bar in front of a panoramic window', 'meteora' ); ?>"/></figure>

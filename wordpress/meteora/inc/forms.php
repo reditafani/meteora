@@ -20,42 +20,73 @@ function meteora_cf7_conditional_assets(): void {
 	}
 	add_filter( 'wpcf7_load_js', '__return_false' );
 	add_filter( 'wpcf7_load_css', '__return_false' );
+	// Block themes render the content before `wp_enqueue_scripts`: note the form, enqueue after CF7 registers.
 	add_filter(
 		'do_shortcode_tag',
 		static function ( $output, $tag ) {
 			if ( 'contact-form-7' === $tag ) {
-				if ( function_exists( 'wpcf7_enqueue_scripts' ) ) {
-					wpcf7_enqueue_scripts();
-				}
-				if ( function_exists( 'wpcf7_enqueue_styles' ) ) {
-					wpcf7_enqueue_styles();
-				}
+				$GLOBALS['meteora_has_cf7_form'] = true;
 			}
 			return $output;
 		},
 		10,
 		2
 	);
+	add_action(
+		'wp_enqueue_scripts',
+		static function () {
+			if ( empty( $GLOBALS['meteora_has_cf7_form'] ) ) {
+				return;
+			}
+			if ( function_exists( 'wpcf7_enqueue_scripts' ) ) {
+				wpcf7_enqueue_scripts();
+			}
+			if ( function_exists( 'wpcf7_enqueue_styles' ) ) {
+				wpcf7_enqueue_styles();
+			}
+		},
+		20
+	);
+	add_filter( 'wpcf7_autop_or_not', 'meteora_cf7_autop', 10, 2 );
 }
-add_action( 'plugins_loaded', 'meteora_cf7_conditional_assets', 20 );
+add_action( 'after_setup_theme', 'meteora_cf7_conditional_assets' );
 
 /**
- * Fallback for the form patterns when Contact Form 7 is not active.
+ * The theme's forms (markup with `mt-row` grids) are laid out by CSS: CF7's
+ * automatic <p>/<br> would break the grid. Other forms keep CF7's default.
+ *
+ * @param bool         $autop   Whether CF7 adds paragraphs.
+ * @param array|string $options Context passed by CF7.
  */
-function meteora_register_form_fallback(): void {
-	if ( shortcode_exists( 'contact-form-7' ) ) {
-		return;
+function meteora_cf7_autop( $autop, $options = array() ): bool {
+	if ( is_array( $options ) && isset( $options['for'] ) && 'form' !== $options['for'] ) {
+		return (bool) $autop;
 	}
-	add_shortcode( 'contact-form-7', 'meteora_form_fallback' );
+	$form = class_exists( 'WPCF7_ContactForm' ) ? WPCF7_ContactForm::get_current() : null;
+	if ( $form && false !== strpos( (string) $form->prop( 'form' ), 'class="mt-row"' ) ) {
+		return false;
+	}
+	return (bool) $autop;
 }
-add_action( 'init', 'meteora_register_form_fallback', 20 );
+
+/**
+ * Fallback for the form patterns when Contact Form 7 is not active: the
+ * Shortcode block that holds `[contact-form-7 …]` shows email and WhatsApp instead.
+ *
+ * @param string $content Block content (shortcodes are expanded later by the_content).
+ */
+function meteora_form_block_fallback( string $content ): string {
+	if ( shortcode_exists( 'contact-form-7' ) || false === strpos( $content, '[contact-form-7' ) ) {
+		return $content;
+	}
+	return meteora_form_fallback();
+}
+add_filter( 'render_block_core/shortcode', 'meteora_form_block_fallback' );
 
 /**
  * Render the fallback block.
- *
- * @param array<string,string>|string $atts Shortcode attributes.
  */
-function meteora_form_fallback( $atts = array() ): string {
+function meteora_form_fallback(): string {
 	$contact = meteora_contact();
 	$message = __( 'Hello Meteora Events, I would like to request information about a bar catering service for my event.', 'meteora' );
 	ob_start();

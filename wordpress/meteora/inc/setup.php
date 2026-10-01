@@ -69,3 +69,14 @@ function meteora_body_class( array $classes ): array {
 	return $classes;
 }
 add_filter( 'body_class', 'meteora_body_class' );
+
+/**
+ * The site uses no emoji: skip WordPress's emoji detection script and styles (≈ 22 KB).
+ */
+function meteora_disable_emoji(): void {
+	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+	remove_action( 'wp_print_styles', 'print_emoji_styles' );
+	remove_action( 'wp_enqueue_scripts', 'wp_enqueue_emoji_styles' );
+	add_filter( 'emoji_svg_url', '__return_false' );
+}
+add_action( 'init', 'meteora_disable_emoji' );

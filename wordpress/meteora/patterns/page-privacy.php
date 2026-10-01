@@ -14,8 +14,8 @@
  */
 
 ?>
-<!-- wp:group {"tagName":"section","metadata":{"name":"Privacy Policy"},"align":"full","className":"mt-section mt-legal","style":{"spacing":{"padding":{"top":"var:preset|spacing|xl","bottom":"var:preset|spacing|section"}}},"layout":{"type":"constrained","contentSize":"62rem"}} -->
-<section class="wp-block-group alignfull mt-section mt-legal" style="padding-top:var(--wp--preset--spacing--xl);padding-bottom:var(--wp--preset--spacing--section)"><!-- wp:breadcrumbs {"className":"mt-crumbs"} /-->
+<!-- wp:group {"tagName":"section","metadata":{"name":"Privacy Policy"},"align":"full","className":"mt-section mt-legal","style":{"spacing":{"padding":{"top":"var:preset|spacing|section","bottom":"var:preset|spacing|section"}}},"layout":{"type":"constrained","contentSize":"62rem"}} -->
+<section class="wp-block-group alignfull mt-section mt-legal" style="padding-top:var(--wp--preset--spacing--section);padding-bottom:var(--wp--preset--spacing--section)"><!-- wp:breadcrumbs {"className":"mt-crumbs"} /-->
 
 <!-- wp:heading {"level":1,"className":"mt-legal__title"} -->
 <h1 class="wp-block-heading mt-legal__title"><?php echo esc_html__( 'Privacy Policy', 'meteora' ); ?></h1>

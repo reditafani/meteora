@@ -1172,8 +1172,8 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","metadata":{"name":"Instagram"},"align":"full","className":"mt-section mt-ig","style":{"spacing":{"padding":{"top":"var:preset|spacing|section","bottom":"var:preset|spacing|section"}}},"layout":{"type":"constrained","contentSize":"1440px"}} -->
-<section class="wp-block-group alignfull mt-section mt-ig" style="padding-top:var(--wp--preset--spacing--section);padding-bottom:var(--wp--preset--spacing--section)"><!-- wp:group {"className":"mt-ig__head","layout":{"type":"default"}} -->
+<!-- wp:group {"tagName":"section","metadata":{"name":"Instagram"},"align":"full","className":"mt-section mt-ig","style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|section"}}},"layout":{"type":"constrained","contentSize":"1440px"}} -->
+<section class="wp-block-group alignfull mt-section mt-ig" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--section)"><!-- wp:group {"className":"mt-ig__head","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-ig__head"><!-- wp:group {"layout":{"type":"default"}} -->
 <div class="wp-block-group"><!-- wp:paragraph {"className":"is-style-eyebrow animate-fade-up"} -->
 <p class="is-style-eyebrow animate-fade-up">Instagram</p>

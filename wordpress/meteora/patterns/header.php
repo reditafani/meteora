@@ -31,7 +31,9 @@
 <p class="site-header__partner"><a href="<?php echo esc_url( meteora_page_url( 'partners' ) ); ?>"><?php echo esc_html__( 'Partner area', 'meteora' ); ?></a></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:meteora/language-switcher {"className":"site-header__lang"} /-->
+<!-- wp:paragraph {"className":"meteora-lang-switcher site-header__lang"} -->
+<p class="meteora-lang-switcher site-header__lang">EN / IT</p>
+<!-- /wp:paragraph -->
 
 <!-- wp:buttons {"className":"site-header__cta"} -->
 <div class="wp-block-buttons site-header__cta"><!-- wp:button {"className":"meteora-track-header_quote"} -->
