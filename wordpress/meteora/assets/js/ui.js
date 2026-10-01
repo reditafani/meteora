@@ -245,4 +245,21 @@
 		var partner = form && ( form.classList.contains( 'mt-form--partner' ) || form.closest( '.mt-form--partner' ) );
 		track( partner ? 'partner_pricing_request' : 'quote_request', { page_path: location.pathname } );
 	} );
+
+	// Pre-select the quote form from links such as /contact/?type=wedding&service=open-bar.
+	// Matched by option position (labels are translated); +1 skips the "Select" placeholder.
+	var presets = {
+		type: [ 'wedding', 'destination-wedding', 'corporate', 'private', 'other' ],
+		service: [ 'open-bar', 'aperitivo-open-bar', 'cocktail-experience', 'signature-tower', 'bartender-service', 'custom', 'not-sure' ]
+	};
+	var params = new URLSearchParams( location.search );
+	Object.keys( presets ).forEach( function ( key ) {
+		var index = presets[ key ].indexOf( params.get( key ) || '' );
+		var select = document.querySelector( '.wpcf7 select[name="' + key + '"]' );
+		if ( -1 === index || ! select || ! select.options[ index + 1 ] ) {
+			return;
+		}
+		select.selectedIndex = index + 1;
+		select.dispatchEvent( new Event( 'change', { bubbles: true } ) );
+	} );
 }() );

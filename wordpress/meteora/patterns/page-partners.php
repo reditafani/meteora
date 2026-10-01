@@ -186,7 +186,7 @@
 
 <!-- wp:group {"className":"mt-form-wrap","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-form-wrap"><!-- wp:shortcode -->
-[contact-form-7 title="Meteora — Partner pricing" html_class="mt-form mt-form--partner"]
+[contact-form-7 title="<?php echo esc_html__( 'Meteora — Partner pricing', 'meteora' ); ?>" html_class="mt-form mt-form--partner"]
 <!-- /wp:shortcode --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></section>

@@ -19,3 +19,5 @@ require METEORA_DIR . '/inc/patterns.php';
 require METEORA_DIR . '/inc/i18n.php';
 require METEORA_DIR . '/inc/forms.php';
 require METEORA_DIR . '/inc/ui.php';
+require METEORA_DIR . '/inc/seo.php';
+require METEORA_DIR . '/inc/import.php';

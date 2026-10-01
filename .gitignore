@@ -8,3 +8,4 @@ dist/
 .DS_Store
 meteora-events-dist.zip
 public/api/config.php
+__pycache__/

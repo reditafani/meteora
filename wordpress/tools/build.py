@@ -271,3 +271,135 @@ def ip_path(src):
 
 if __name__ == '__main__' and sys.argv[1] == 'content':
     build_content(sys.argv[2], sys.argv[3])
+
+
+# ============================================================ WXR export
+import cf7 as CF7  # noqa: E402
+from xml.sax.saxutils import escape as xesc  # noqa: E402
+
+
+def cdata(s: str) -> str:
+    return '<![CDATA[' + (s or '').replace(']]>', ']]]]><![CDATA[>') + ']]>'
+
+
+def build_wxr(content_path: str, out_path: str):
+    d = json.load(open(content_path))
+    site = d['site']
+    now = '2026-06-01 09:00:00'
+    cats = {('en', 'events'): ('events', 'Events'), ('en', 'placeholder'): ('placeholder', 'Placeholder story'),
+            ('it', 'events'): ('eventi', 'Eventi'), ('it', 'placeholder'): ('placeholder-it', 'Storia segnaposto')}
+    tags = sorted({(p['lang'], t) for p in d['posts'] for t in p['tags']})
+    def slugify(s):
+        import re
+        import unicodedata
+        s = unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode().lower()
+        return re.sub(r'[^a-z0-9]+', '-', s).strip('-')
+
+    # Polylang needs one term per language: IT tags whose slug equals an EN tag get a suffix.
+    en_slugs = {slugify(t) for lang, t in tags if lang == 'en'}
+    tag_slug = {(lang, t): slugify(t) + ('-it' if lang == 'it' and slugify(t) in en_slugs else '') for lang, t in tags}
+    by_id = {p['id']: p for p in d['posts']}
+    tag_group = {}
+    for p in d['posts']:
+        src = by_id[p['translation_of']] if p['translation_of'] else p
+        for j, t in enumerate(p['tags']):
+            tag_group[(p['lang'], t)] = 'post_tag:' + slugify(src['tags'][j])
+
+
+    def meta(k, v):
+        return f'\t\t<wp:postmeta>\n\t\t\t<wp:meta_key>{cdata(k)}</wp:meta_key>\n\t\t\t<wp:meta_value>{cdata(str(v))}</wp:meta_value>\n\t\t</wp:postmeta>\n'
+
+    import datetime as _dt
+
+    def item(pid, title, slug, ptype, content='', excerpt='', parent=0, order=0, date=None, metas=None, terms='', status='publish', extra='', link=''):
+        # Distinct date per item: the WordPress Importer skips items whose title AND date already exist.
+        if date is None:
+            date = (_dt.datetime(2026, 6, 1, 8, 0, 0) + _dt.timedelta(minutes=pid)).strftime('%Y-%m-%d %H:%M:%S')
+        out = ['\t<item>\n', f'\t\t<title>{cdata(title)}</title>\n', f'\t\t<link>{xesc(link or site + "/?p=" + str(pid))}</link>\n',
+               '\t\t<dc:creator><![CDATA[admin]]></dc:creator>\n', f'\t\t<guid isPermaLink="false">{xesc(site)}/?p={pid}</guid>\n',
+               '\t\t<description></description>\n', f'\t\t<content:encoded>{cdata(content)}</content:encoded>\n',
+               f'\t\t<excerpt:encoded>{cdata(excerpt)}</excerpt:encoded>\n', f'\t\t<wp:post_id>{pid}</wp:post_id>\n',
+               f'\t\t<wp:post_date>{cdata(date)}</wp:post_date>\n', f'\t\t<wp:post_date_gmt>{cdata(date)}</wp:post_date_gmt>\n',
+               f'\t\t<wp:post_modified>{cdata(date)}</wp:post_modified>\n', f'\t\t<wp:post_modified_gmt>{cdata(date)}</wp:post_modified_gmt>\n',
+               '\t\t<wp:comment_status><![CDATA[closed]]></wp:comment_status>\n', '\t\t<wp:ping_status><![CDATA[closed]]></wp:ping_status>\n',
+               f'\t\t<wp:post_name>{cdata(slug)}</wp:post_name>\n', f'\t\t<wp:status>{cdata(status)}</wp:status>\n',
+               f'\t\t<wp:post_parent>{parent}</wp:post_parent>\n', f'\t\t<wp:menu_order>{order}</wp:menu_order>\n',
+               f'\t\t<wp:post_type>{cdata(ptype)}</wp:post_type>\n', '\t\t<wp:post_password><![CDATA[]]></wp:post_password>\n',
+               '\t\t<wp:is_sticky>0</wp:is_sticky>\n', extra, terms]
+        for k, v in (metas or {}).items():
+            out.append(meta(k, v))
+        out.append('\t</item>\n')
+        return ''.join(out)
+
+    parts = []
+    head = f'''<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Meteora Events — content export for the Meteora theme (WordPress eXtended RSS).
+     Import with Tools → Import → WordPress after activating the theme
+     (and, optionally, Polylang + Contact Form 7). Images are downloaded from the
+     theme folder on {site}. -->
+<rss version="2.0"
+	xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:wp="http://wordpress.org/export/1.2/">
+<channel>
+	<title>Meteora Events</title>
+	<link>{xesc(site)}</link>
+	<description>Luxury Open Bar Catering &amp; Hospitality Services</description>
+	<language>en-US</language>
+	<wp:wxr_version>1.2</wp:wxr_version>
+	<wp:base_site_url>{xesc(site)}</wp:base_site_url>
+	<wp:base_blog_url>{xesc(site)}</wp:base_blog_url>
+	<wp:author><wp:author_id>1</wp:author_id><wp:author_login><![CDATA[admin]]></wp:author_login><wp:author_email><![CDATA[info@meteoraevents.com]]></wp:author_email><wp:author_display_name><![CDATA[Meteora Events]]></wp:author_display_name><wp:author_first_name><![CDATA[]]></wp:author_first_name><wp:author_last_name><![CDATA[]]></wp:author_last_name></wp:author>
+'''
+    parts.append(head)
+    def termmeta(lang, group):
+        return (f'<wp:termmeta><wp:meta_key>{cdata("_meteora_lang")}</wp:meta_key><wp:meta_value>{cdata(lang)}</wp:meta_value></wp:termmeta>'
+                f'<wp:termmeta><wp:meta_key>{cdata("_meteora_group")}</wp:meta_key><wp:meta_value>{cdata(group)}</wp:meta_value></wp:termmeta>')
+
+    for i, ((lang, key), (slug, name)) in enumerate(sorted(cats.items())):
+        parts.append(f'\t<wp:category><wp:term_id>{900 + i}</wp:term_id><wp:category_nicename>{cdata(slug)}</wp:category_nicename><wp:category_parent><![CDATA[]]></wp:category_parent><wp:cat_name>{cdata(name)}</wp:cat_name>{termmeta(lang, "category:" + key)}</wp:category>\n')
+    for i, (lang, t) in enumerate(tags):
+        parts.append(f'\t<wp:tag><wp:term_id>{950 + i}</wp:term_id><wp:tag_slug>{cdata(tag_slug[(lang, t)])}</wp:tag_slug><wp:tag_name>{cdata(t)}</wp:tag_name>{termmeta(lang, tag_group[(lang, t)])}</wp:tag>\n')
+
+    for a in d['attachments']:
+        folder, name = a['path'].rsplit('/', 1)
+        title = folder.replace('-', ' ').title() + ' — ' + name.replace('.webp', '').replace('-', ' ').title()
+        parts.append(item(a['id'], title, slugify(a['path'].replace('.webp', '')), 'attachment', status='inherit',
+                          extra=f'\t\t<wp:attachment_url>{cdata(a["url"])}</wp:attachment_url>\n', link=a['url'],
+                          metas={'_wp_attachment_image_alt': title}))
+
+    for p in d['pages']:
+        group = p['translation_of'] or p['id']
+        metas = {'_wp_page_template': p['template'] or 'default', '_meteora_lang': p['lang'], '_meteora_group': group,
+                 '_yoast_wpseo_title': p['seo_title'], '_yoast_wpseo_metadesc': p['seo_description'],
+                 'rank_math_title': p['seo_title'], 'rank_math_description': p['seo_description']}
+        parts.append(item(p['id'], p['title'], p['slug'], 'page', p['content'], p['seo_description'], p['parent'], p['menu_order'], metas=metas))
+
+    for p in d['posts']:
+        group = p['translation_of'] or p['id']
+        terms = ''
+        for c in p['categories']:
+            slug, name = cats[(p['lang'], c)]
+            terms += f'\t\t<category domain="category" nicename="{xesc(slug)}">{cdata(name)}</category>\n'
+        for t in p['tags']:
+            terms += f'\t\t<category domain="post_tag" nicename="{xesc(tag_slug[(p["lang"], t)])}">{cdata(t)}</category>\n'
+        metas = {'_meteora_lang': p['lang'], '_meteora_group': group, '_thumbnail_id': p['thumbnail']}
+        date = p['date'][:-2] + ('01' if p['lang'] == 'it' else '00')
+        parts.append(item(p['id'], p['title'], p['slug'], 'post', p['content'], p['excerpt'], date=date, metas=metas, terms=terms))
+
+    fid = 501
+    for kind in ('quote', 'partner'):
+        for lang in ('en', 'it'):
+            f = CF7.FORMS[kind][lang]
+            parts.append(item(fid, f['title'], slugify(f['title']), 'wpcf7_contact_form', f['form'], metas=CF7.form_meta(f, lang)))
+            fid += 1
+
+    parts.append('</channel>\n</rss>\n')
+    open(out_path, 'w').write(''.join(parts))
+    print('WXR written to', out_path, f'({os.path.getsize(out_path) // 1024} KB)')
+
+
+if __name__ == '__main__' and sys.argv[1] == 'wxr':
+    build_wxr(sys.argv[2], sys.argv[3])

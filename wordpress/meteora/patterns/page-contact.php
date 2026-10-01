@@ -70,7 +70,7 @@
 
 <!-- wp:group {"className":"mt-form-wrap mt-ct__form","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-form-wrap mt-ct__form"><!-- wp:shortcode -->
-[contact-form-7 title="Meteora — Request a quote" html_class="mt-form mt-form--quote"]
+[contact-form-7 title="<?php echo esc_html__( 'Meteora — Request a quote', 'meteora' ); ?>" html_class="mt-form mt-form--quote"]
 <!-- /wp:shortcode --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></section>

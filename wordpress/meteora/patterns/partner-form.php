@@ -14,6 +14,6 @@
 ?>
 <!-- wp:group {"tagName":"section","align":"full","className":"mt-section","style":{"spacing":{"padding":{"top":"var:preset|spacing|section","bottom":"var:preset|spacing|section"}}},"layout":{"type":"constrained","contentSize":"62rem"}} -->
 <section class="wp-block-group alignfull mt-section" style="padding-top:var(--wp--preset--spacing--section);padding-bottom:var(--wp--preset--spacing--section)"><!-- wp:shortcode -->
-[contact-form-7 title="Meteora — Partner pricing" html_class="mt-form mt-form--partner"]
+[contact-form-7 title="<?php echo esc_html__( 'Meteora — Partner pricing', 'meteora' ); ?>" html_class="mt-form mt-form--partner"]
 <!-- /wp:shortcode --></section>
 <!-- /wp:group -->

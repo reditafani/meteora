@@ -507,5 +507,5 @@ def cta_band(c: Ctx, image, alt, title=None, lead=None, label=None, url=None, tr
 
 # ---------------------------------------------------------------- forms (Contact Form 7)
 def cf7(c: Ctx, kind):
-    title = {'quote': 'Meteora — Request a quote', 'partner': 'Meteora — Partner pricing'}[kind]
-    return B('core/shortcode', {'text': f'[contact-form-7 title="{title}" html_class="mt-form mt-form--{kind}"]'})
+    titles = {'quote': ('Meteora — Request a quote', 'Meteora — Richiesta preventivo'), 'partner': ('Meteora — Partner pricing', 'Meteora — Listino partner')}[kind]
+    return B('core/shortcode', {'text': '[contact-form-7 title="' + c.T(*titles) + f'" html_class="mt-form mt-form--{kind}"]'})

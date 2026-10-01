@@ -1108,6 +1108,12 @@ msgstr "Meteora — Moduli"
 msgid "Meteora — Full pages"
 msgstr "Meteora — Pagine complete"
 
+msgid "Meteora — Partner pricing"
+msgstr "Meteora — Listino partner"
+
+msgid "Meteora — Request a quote"
+msgstr "Meteora — Richiesta preventivo"
+
 msgid "Meteora — Sections"
 msgstr "Meteora — Sezioni"
 
