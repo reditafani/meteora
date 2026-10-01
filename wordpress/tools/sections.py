@@ -179,7 +179,7 @@ def destinations(c: Ctx, compact=False):
 
 
 # ---------------------------------------------------------------- bars
-def bar_card_body(c: Ctx, bar, i, link=True):
+def bar_card_body(c: Ctx, bar, i, link=True, index=False):
     soon = bar['status'] == 'coming-soon'
     body = [p(c, f'<span class="mt-bar__num">{num(i)}</span>' + (('<span class="mt-bar__soon">' + c.T('Coming soon', 'In arrivo') + '</span>') if soon else ''), cls='is-style-micro mt-bar__n')]
     if not soon and link:
@@ -189,6 +189,8 @@ def bar_card_body(c: Ctx, bar, i, link=True):
     body += [
         p(c, LT(c, bar['mood']), cls='mt-bar__mood'),
         p(c, LT(c, bar['description']), cls='mt-bar__desc is-muted'),
+        # The bar index writes "Ideal for: a, b, c." inline; cards use a label and a dotted list (as in the original).
+        p(c, c.T('Ideal for: ' + ', '.join(bar['idealFor']['en']) + '.', 'Ideale per: ' + ', '.join(bar['idealFor']['it']) + '.'), cls='mt-bar__ideal mt-bar__ideal--inline is-muted') if index else
         p(c, c.H('<span class="mt-bar__ideal-label">Ideal for</span> ' + ' · '.join(bar['idealFor']['en']),
                  '<span class="mt-bar__ideal-label">Ideale per</span> ' + ' · '.join(bar['idealFor']['it'])), cls='mt-bar__ideal'),
     ]
@@ -206,7 +208,7 @@ def bar_media(c: Ctx, bar):
 def bar_collection(c: Ctx, cards_grid=False):
     rows = []
     for i, bar in enumerate(DATA['bars']['bars']):
-        rows.append(group(c, [bar_media(c, bar), group(c, bar_card_body(c, bar, i), cls='mt-bar__body')],
+        rows.append(group(c, [bar_media(c, bar), group(c, bar_card_body(c, bar, i, index=not cards_grid), cls='mt-bar__body')],
                           cls=_cls('mt-bar', 'is-soon' if bar['status'] == 'coming-soon' else None, 'animate-fade-up' if cards_grid else None)))
     return group(c, rows, cls='mt-bars-grid' if cards_grid else 'mt-bc', name='Bar collection')
 

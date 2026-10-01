@@ -931,6 +931,24 @@ msgstr "Il ghiaccio è <em>parte del cocktail.</em>"
 msgid "Ideal for"
 msgstr "Ideale per"
 
+msgid "Ideal for: Corporate events, Chic weddings, Minimalist design setups."
+msgstr "Ideale per: Eventi corporate, Wedding chic, Allestimenti minimal di design."
+
+msgid "Ideal for: Elegant weddings, Minimalist luxury events, Sophisticated settings."
+msgstr "Ideale per: Matrimoni eleganti, Eventi luxury minimal, Ambientazioni sofisticate."
+
+msgid "Ideal for: Garden parties, Modern weddings, Eco-chic events."
+msgstr "Ideale per: Garden party, Matrimoni moderni, Eventi eco-chic."
+
+msgid "Ideal for: Glamorous receptions, Exclusive parties, Settings built for visual impact."
+msgstr "Ideale per: Ricevimenti glamour, Party esclusivi, Contesti ad alto effetto visivo."
+
+msgid "Ideal for: Luxury events, Gala nights, Exclusive parties, Modern minimalist weddings."
+msgstr "Ideale per: Eventi luxury, Serate di gala, Party esclusivi, Matrimoni moderni minimal."
+
+msgid "Ideal for: Outdoor events, Boho-style weddings."
+msgstr "Ideale per: Eventi all’aperto, Matrimoni in stile boho."
+
 msgid "If configured, Google Analytics 4 / Google Tag Manager and possibly Meta Pixel are loaded only after your explicit consent. [Detailed list to be completed.]"
 msgstr "Se configurati dal titolare, Google Analytics 4 / Google Tag Manager ed eventualmente Meta Pixel vengono caricati solo dopo il consenso esplicito. [Elenco dettagliato da completare.]"
 

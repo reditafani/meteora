@@ -52,8 +52,8 @@
 <p class="mt-bar__desc is-muted"><?php echo esc_html__( 'Its mirrored gold surface reflects light and atmosphere, turning the bar into the focal point of the event.', 'meteora' ); ?></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"className":"mt-bar__ideal"} -->
-<p class="mt-bar__ideal"><?php echo wp_kses_post( __( '<span class="mt-bar__ideal-label">Ideal for</span> Glamorous receptions · Exclusive parties · Settings built for visual impact', 'meteora' ) ); ?></p>
+<!-- wp:paragraph {"className":"mt-bar__ideal mt-bar__ideal\u002d\u002dinline is-muted"} -->
+<p class="mt-bar__ideal mt-bar__ideal--inline is-muted"><?php echo esc_html__( 'Ideal for: Glamorous receptions, Exclusive parties, Settings built for visual impact.', 'meteora' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
@@ -80,8 +80,8 @@
 <p class="mt-bar__desc is-muted"><?php echo esc_html__( 'Mirrored silver brings contemporary elegance and makes the most of the ambient lighting.', 'meteora' ); ?></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"className":"mt-bar__ideal"} -->
-<p class="mt-bar__ideal"><?php echo wp_kses_post( __( '<span class="mt-bar__ideal-label">Ideal for</span> Corporate events · Chic weddings · Minimalist design setups', 'meteora' ) ); ?></p>
+<!-- wp:paragraph {"className":"mt-bar__ideal mt-bar__ideal\u002d\u002dinline is-muted"} -->
+<p class="mt-bar__ideal mt-bar__ideal--inline is-muted"><?php echo esc_html__( 'Ideal for: Corporate events, Chic weddings, Minimalist design setups.', 'meteora' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
@@ -108,8 +108,8 @@
 <p class="mt-bar__desc is-muted"><?php echo esc_html__( 'Glossy white with a herringbone pattern creates movement and depth while keeping a clean, contemporary look.', 'meteora' ); ?></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"className":"mt-bar__ideal"} -->
-<p class="mt-bar__ideal"><?php echo wp_kses_post( __( '<span class="mt-bar__ideal-label">Ideal for</span> Elegant weddings · Minimalist luxury events · Sophisticated settings', 'meteora' ) ); ?></p>
+<!-- wp:paragraph {"className":"mt-bar__ideal mt-bar__ideal\u002d\u002dinline is-muted"} -->
+<p class="mt-bar__ideal mt-bar__ideal--inline is-muted"><?php echo esc_html__( 'Ideal for: Elegant weddings, Minimalist luxury events, Sophisticated settings.', 'meteora' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
@@ -138,8 +138,8 @@
 <p class="mt-bar__desc is-muted"><?php echo esc_html__( 'Fresh, luminous, contemporary. The light-green finish adds an elegant botanical touch.', 'meteora' ); ?></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"className":"mt-bar__ideal"} -->
-<p class="mt-bar__ideal"><?php echo wp_kses_post( __( '<span class="mt-bar__ideal-label">Ideal for</span> Garden parties · Modern weddings · Eco-chic events', 'meteora' ) ); ?></p>
+<!-- wp:paragraph {"className":"mt-bar__ideal mt-bar__ideal\u002d\u002dinline is-muted"} -->
+<p class="mt-bar__ideal mt-bar__ideal--inline is-muted"><?php echo esc_html__( 'Ideal for: Garden parties, Modern weddings, Eco-chic events.', 'meteora' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
@@ -168,8 +168,8 @@
 <p class="mt-bar__desc is-muted"><?php echo esc_html__( 'Exposed-grain wood creates an authentic country-chic atmosphere.', 'meteora' ); ?></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"className":"mt-bar__ideal"} -->
-<p class="mt-bar__ideal"><?php echo wp_kses_post( __( '<span class="mt-bar__ideal-label">Ideal for</span> Outdoor events · Boho-style weddings', 'meteora' ) ); ?></p>
+<!-- wp:paragraph {"className":"mt-bar__ideal mt-bar__ideal\u002d\u002dinline is-muted"} -->
+<p class="mt-bar__ideal mt-bar__ideal--inline is-muted"><?php echo esc_html__( 'Ideal for: Outdoor events, Boho-style weddings.', 'meteora' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
@@ -198,8 +198,8 @@
 <p class="mt-bar__desc is-muted"><?php echo esc_html__( 'A bold, contemporary character that makes the bar a scenographic element of great impact.', 'meteora' ); ?></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"className":"mt-bar__ideal"} -->
-<p class="mt-bar__ideal"><?php echo wp_kses_post( __( '<span class="mt-bar__ideal-label">Ideal for</span> Luxury events · Gala nights · Exclusive parties · Modern minimalist weddings', 'meteora' ) ); ?></p>
+<!-- wp:paragraph {"className":"mt-bar__ideal mt-bar__ideal\u002d\u002dinline is-muted"} -->
+<p class="mt-bar__ideal mt-bar__ideal--inline is-muted"><?php echo esc_html__( 'Ideal for: Luxury events, Gala nights, Exclusive parties, Modern minimalist weddings.', 'meteora' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>

@@ -931,6 +931,24 @@ msgstr ""
 msgid "Ideal for"
 msgstr ""
 
+msgid "Ideal for: Corporate events, Chic weddings, Minimalist design setups."
+msgstr ""
+
+msgid "Ideal for: Elegant weddings, Minimalist luxury events, Sophisticated settings."
+msgstr ""
+
+msgid "Ideal for: Garden parties, Modern weddings, Eco-chic events."
+msgstr ""
+
+msgid "Ideal for: Glamorous receptions, Exclusive parties, Settings built for visual impact."
+msgstr ""
+
+msgid "Ideal for: Luxury events, Gala nights, Exclusive parties, Modern minimalist weddings."
+msgstr ""
+
+msgid "Ideal for: Outdoor events, Boho-style weddings."
+msgstr ""
+
 msgid "If configured, Google Analytics 4 / Google Tag Manager and possibly Meta Pixel are loaded only after your explicit consent. [Detailed list to be completed.]"
 msgstr ""
 

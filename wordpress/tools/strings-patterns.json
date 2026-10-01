@@ -421,8 +421,8 @@
  ],
  [
   null,
-  "<span class=\"mt-bar__ideal-label\">Ideal for</span> Glamorous receptions · Exclusive parties · Settings built for visual impact",
-  "<span class=\"mt-bar__ideal-label\">Ideale per</span> Ricevimenti glamour · Party esclusivi · Contesti ad alto effetto visivo"
+  "Ideal for: Glamorous receptions, Exclusive parties, Settings built for visual impact.",
+  "Ideale per: Ricevimenti glamour, Party esclusivi, Contesti ad alto effetto visivo."
  ],
  [
   null,
@@ -441,8 +441,8 @@
  ],
  [
   null,
-  "<span class=\"mt-bar__ideal-label\">Ideal for</span> Corporate events · Chic weddings · Minimalist design setups",
-  "<span class=\"mt-bar__ideal-label\">Ideale per</span> Eventi corporate · Wedding chic · Allestimenti minimal di design"
+  "Ideal for: Corporate events, Chic weddings, Minimalist design setups.",
+  "Ideale per: Eventi corporate, Wedding chic, Allestimenti minimal di design."
  ],
  [
   null,
@@ -461,8 +461,8 @@
  ],
  [
   null,
-  "<span class=\"mt-bar__ideal-label\">Ideal for</span> Elegant weddings · Minimalist luxury events · Sophisticated settings",
-  "<span class=\"mt-bar__ideal-label\">Ideale per</span> Matrimoni eleganti · Eventi luxury minimal · Ambientazioni sofisticate"
+  "Ideal for: Elegant weddings, Minimalist luxury events, Sophisticated settings.",
+  "Ideale per: Matrimoni eleganti, Eventi luxury minimal, Ambientazioni sofisticate."
  ],
  [
   null,
@@ -481,8 +481,8 @@
  ],
  [
   null,
-  "<span class=\"mt-bar__ideal-label\">Ideal for</span> Garden parties · Modern weddings · Eco-chic events",
-  "<span class=\"mt-bar__ideal-label\">Ideale per</span> Garden party · Matrimoni moderni · Eventi eco-chic"
+  "Ideal for: Garden parties, Modern weddings, Eco-chic events.",
+  "Ideale per: Garden party, Matrimoni moderni, Eventi eco-chic."
  ],
  [
   null,
@@ -496,8 +496,8 @@
  ],
  [
   null,
-  "<span class=\"mt-bar__ideal-label\">Ideal for</span> Outdoor events · Boho-style weddings",
-  "<span class=\"mt-bar__ideal-label\">Ideale per</span> Eventi all’aperto · Matrimoni in stile boho"
+  "Ideal for: Outdoor events, Boho-style weddings.",
+  "Ideale per: Eventi all’aperto, Matrimoni in stile boho."
  ],
  [
   null,
@@ -511,8 +511,8 @@
  ],
  [
   null,
-  "<span class=\"mt-bar__ideal-label\">Ideal for</span> Luxury events · Gala nights · Exclusive parties · Modern minimalist weddings",
-  "<span class=\"mt-bar__ideal-label\">Ideale per</span> Eventi luxury · Serate di gala · Party esclusivi · Matrimoni moderni minimal"
+  "Ideal for: Luxury events, Gala nights, Exclusive parties, Modern minimalist weddings.",
+  "Ideale per: Eventi luxury, Serate di gala, Party esclusivi, Matrimoni moderni minimal."
  ],
  [
   null,
@@ -1033,6 +1033,36 @@
   null,
   "Tell us the date, the place and the guests. We will reply with a tailored proposal.",
   "Raccontateci data, luogo e ospiti. Vi risponderemo con una proposta su misura."
+ ],
+ [
+  null,
+  "<span class=\"mt-bar__ideal-label\">Ideal for</span> Glamorous receptions · Exclusive parties · Settings built for visual impact",
+  "<span class=\"mt-bar__ideal-label\">Ideale per</span> Ricevimenti glamour · Party esclusivi · Contesti ad alto effetto visivo"
+ ],
+ [
+  null,
+  "<span class=\"mt-bar__ideal-label\">Ideal for</span> Corporate events · Chic weddings · Minimalist design setups",
+  "<span class=\"mt-bar__ideal-label\">Ideale per</span> Eventi corporate · Wedding chic · Allestimenti minimal di design"
+ ],
+ [
+  null,
+  "<span class=\"mt-bar__ideal-label\">Ideal for</span> Elegant weddings · Minimalist luxury events · Sophisticated settings",
+  "<span class=\"mt-bar__ideal-label\">Ideale per</span> Matrimoni eleganti · Eventi luxury minimal · Ambientazioni sofisticate"
+ ],
+ [
+  null,
+  "<span class=\"mt-bar__ideal-label\">Ideal for</span> Garden parties · Modern weddings · Eco-chic events",
+  "<span class=\"mt-bar__ideal-label\">Ideale per</span> Garden party · Matrimoni moderni · Eventi eco-chic"
+ ],
+ [
+  null,
+  "<span class=\"mt-bar__ideal-label\">Ideal for</span> Outdoor events · Boho-style weddings",
+  "<span class=\"mt-bar__ideal-label\">Ideale per</span> Eventi all’aperto · Matrimoni in stile boho"
+ ],
+ [
+  null,
+  "<span class=\"mt-bar__ideal-label\">Ideal for</span> Luxury events · Gala nights · Exclusive parties · Modern minimalist weddings",
+  "<span class=\"mt-bar__ideal-label\">Ideale per</span> Eventi luxury · Serate di gala · Party esclusivi · Matrimoni moderni minimal"
  ],
  [
   null,

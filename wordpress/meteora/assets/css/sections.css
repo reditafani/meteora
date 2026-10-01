@@ -532,6 +532,12 @@ body .mt-bar__body > * {
 	margin-top: 0.9rem !important;
 	font-size: var(--wp--preset--font-size--small);
 }
+.mt-bar__ideal--inline {
+	margin-top: 0.4rem !important;
+}
+.mt-bc.is-enhanced .mt-bar.is-active .mt-bar__ideal--inline {
+	margin-top: 0.4rem !important;
+}
 .mt-bar__ideal-label {
 	display: block;
 	margin-bottom: 0.2rem;
@@ -1858,6 +1864,14 @@ body .mt-form-fallback > * {
 }
 
 /* ---------- Event story (single) ---------- */
+/* Margins here do not collapse: keep only the eyebrow's, as in the original. */
+.mt-eh > .mt-crumbs,
+body .mt-eh > .mt-eh__title {
+	margin-block: 0 !important;
+}
+.site-main > .mt-eh + .mt-ps__cover {
+	margin-block-start: 0;
+}
 .mt-eh__eyebrow {
 	margin-block: var(--wp--preset--spacing--l) var(--wp--preset--spacing--m) !important;
 }
@@ -1999,8 +2013,11 @@ body .mt-ps__facts > div > * {
 	align-items: start;
 	overflow: visible;
 	scroll-snap-type: none;
-	border-top: 1px solid var(--wp--preset--color--border);
 	padding-bottom: 0;
+}
+/* The rule sits on the list column only, like the original. */
+.mt-bc.is-enhanced > .mt-bar:first-child {
+	border-top: 1px solid var(--wp--preset--color--border);
 }
 .mt-bc.is-enhanced > .mt-bar {
 	grid-column: 1;
