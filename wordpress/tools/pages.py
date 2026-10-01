@@ -327,7 +327,7 @@ def corporate(c: Ctx):
                              'La divisa standard è total black: nessun logo vistoso, nessun elemento che distragga. Quando serve, la personalizziamo con il vostro brand.'), cls='is-style-lead is-muted animate-fade-up'),
                 ]),
             ], cls='mt-split mt-split--end'),
-            numbered_grid(c, [(c.T(*t), c.T(*d)) for t, d in pillars], cols=3),
+            numbered_grid(c, [(c.T(*t), c.T(*d)) for t, d in pillars], cols=3, cls='mt-pillars'),
         ], dark=True, name='For companies'),
         section(c, [editorial(c, 'bars/terrace-panorama.webp', c.T('Bar set in front of a panoramic window', 'Banco bar davanti a una vetrata panoramica'), [
             eyebrow(c, c.T('Private events', 'Eventi privati')),
@@ -367,7 +367,7 @@ def partners(c: Ctx):
                       'Lavoriamo al fianco di wedding planner, location, catering e professionisti degli eventi. Il vostro evento resta vostro: noi ci occupiamo del bar, in silenzio e con precisione.'),
                   'venues/fresco-hall.webp', c.T('Long table in a frescoed hall', 'Tavolo imperiale in un salone affrescato'), ctas=[btn_primary(c, c.T(*PP), '#partner-form', 'partner_hero')]),
         section(c, [sh(c, c.T('Who we work with', 'Con chi lavoriamo'), c.H('One goal: <em>a flawless event.</em>', 'Un solo obiettivo: <em>la buona riuscita dell’evento.</em>')),
-                    numbered_grid(c, [(c.T(*t), c.T(*d)) for t, d in audiences], cols=4)], name='Who we work with'),
+                    numbered_grid(c, [(c.T(*t), c.T(*d)) for t, d in audiences], cols=4, cls='mt-aud', numbered=False)], name='Who we work with'),
         section(c, [group(c, [
             group(c, [eyebrow(c, c.T('Why partners choose us', 'Perché i partner ci scelgono')), h(c, 2, c.H('One less thing <em>to worry about.</em>', 'Un pensiero <em>in meno.</em>'), cls='animate-fade-up'),
                       img(c, 'details/champagne-bowl.webp', c.T('Champagne bowl on the bar', 'Champagne bowl sul banco'), cls='mt-ben__img animate-image-reveal')], cls='mt-split__intro'),
@@ -422,9 +422,10 @@ def about(c: Ctx):
                      'Realizziamo servizi bar e cocktail experience per privati, aziende e professionisti del settore, dalla nostra sede di Montecatini Terme, in Toscana.'), cls='is-muted animate-fade-up'),
         ], second='details/mint-coupes.webp', second_alt=c.T('Coupes with mint and red berries', 'Coppe con menta e frutti rossi'))], name='Our story'),
         section(c, [sh(c, c.T('How we work', 'Come lavoriamo'), c.H('Four words, <em>every time.</em>', 'Quattro parole, <em>ogni volta.</em>')),
-                    numbered_grid(c, [(c.T(*t), c.T(*d)) for t, d in values], cols=4, cls='mt-values')], alt=True, name='How we work'),
-        section(c, [sh(c, c.T('Why Meteora', 'Perché Meteora'), c.H('The details <em>that set us apart.</em>', 'I dettagli <em>che ci distinguono.</em>')),
-                    why_grid(c, 4), buttons(c, [btn_link(c, c.T('All the reasons', 'Tutti i motivi'), c.L('why'))], cls='mt-section-cta')], name='Why Meteora'),
+                    numbered_grid(c, [(c.T(*t), c.T(*d)) for t, d in values], cols=4, cls='mt-values', numbered=False)], alt=True, name='How we work'),
+        section(c, [group(c, [group(c, [eyebrow(c, c.T('Why Meteora', 'Perché Meteora')), h(c, 2, c.H('The details <em>that set us apart.</em>', 'I dettagli <em>che ci distinguono.</em>'), cls='mt-sh__title animate-fade-up animate-delay-1')], cls='mt-sh__head'),
+                                   buttons(c, [btn_link(c, c.T('All the reasons', 'Tutti i motivi'), c.L('why'))], cls='mt-sh__lead')], cls='mt-sh mt-sh--split'),
+                    why_grid(c, 4)], name='Why Meteora'),
         cta_band(c, 'bars/golden-mirror-sunset.webp', c.T('Golden Mirror bar at sunset', 'Banco Golden Mirror al tramonto'), track='about_band'),
     ]
     meta = {'en': ('About Us: 14+ Years of Event Experience | Meteora Events', 'Meteora Events is the partner specialised in beverage service management for high-level events. 14+ years of operational experience, based in Montecatini Terme, Tuscany.'),

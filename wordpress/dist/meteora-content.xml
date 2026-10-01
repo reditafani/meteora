@@ -13221,8 +13221,8 @@
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"mt-num mt-num\u002d\u002d3","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num mt-num--3"><!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-1","layout":{"type":"default"}} -->
+<!-- wp:group {"className":"mt-num mt-num\u002d\u002d3 mt-pillars","layout":{"type":"default"}} -->
+<div class="wp-block-group mt-num mt-num--3 mt-pillars"><!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-1","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-num__item animate-fade-up animate-delay-1"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
 <p class="is-style-micro mt-num__n">01</p>
 <!-- /wp:paragraph -->
@@ -13506,8 +13506,8 @@
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"mt-num mt-num\u002d\u002d3","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num mt-num--3"><!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-1","layout":{"type":"default"}} -->
+<!-- wp:group {"className":"mt-num mt-num\u002d\u002d3 mt-pillars","layout":{"type":"default"}} -->
+<div class="wp-block-group mt-num mt-num--3 mt-pillars"><!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-1","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-num__item animate-fade-up animate-delay-1"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
 <p class="is-style-micro mt-num__n">01</p>
 <!-- /wp:paragraph -->
@@ -13747,13 +13747,9 @@
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"mt-num mt-num\u002d\u002d4","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num mt-num--4"><!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-1","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-1"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">01</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<!-- wp:group {"className":"mt-num mt-num\u002d\u002d4 mt-aud","layout":{"type":"default"}} -->
+<div class="wp-block-group mt-num mt-num--4 mt-aud"><!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-1","layout":{"type":"default"}} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-1"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Wedding planners</h3>
 <!-- /wp:heading -->
 
@@ -13763,11 +13759,7 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-2","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-2"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">02</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-2"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Venues</h3>
 <!-- /wp:heading -->
 
@@ -13777,11 +13769,7 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-3","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-3"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">03</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-3"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Caterers</h3>
 <!-- /wp:heading -->
 
@@ -13791,11 +13779,7 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-4","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-4"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">04</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-4"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Event professionals</h3>
 <!-- /wp:heading -->
 
@@ -14014,13 +13998,9 @@
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"mt-num mt-num\u002d\u002d4","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num mt-num--4"><!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-1","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-1"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">01</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<!-- wp:group {"className":"mt-num mt-num\u002d\u002d4 mt-aud","layout":{"type":"default"}} -->
+<div class="wp-block-group mt-num mt-num--4 mt-aud"><!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-1","layout":{"type":"default"}} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-1"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Wedding planner</h3>
 <!-- /wp:heading -->
 
@@ -14030,11 +14010,7 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-2","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-2"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">02</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-2"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Location</h3>
 <!-- /wp:heading -->
 
@@ -14044,11 +14020,7 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-3","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-3"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">03</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-3"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Catering</h3>
 <!-- /wp:heading -->
 
@@ -14058,11 +14030,7 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-4","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-4"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">04</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-4"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Professionisti eventi</h3>
 <!-- /wp:heading -->
 
@@ -14607,11 +14575,7 @@
 
 <!-- wp:group {"className":"mt-num mt-num\u002d\u002d4 mt-values","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-num mt-num--4 mt-values"><!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-1","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-1"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">01</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-1"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Experience</h3>
 <!-- /wp:heading -->
 
@@ -14621,11 +14585,7 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-2","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-2"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">02</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-2"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Method</h3>
 <!-- /wp:heading -->
 
@@ -14635,11 +14595,7 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-3","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-3"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">03</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-3"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Visual culture</h3>
 <!-- /wp:heading -->
 
@@ -14649,11 +14605,7 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-4","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-4"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">04</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-4"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Hospitality</h3>
 <!-- /wp:heading -->
 
@@ -14665,8 +14617,8 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"tagName":"section","metadata":{"name":"Why Meteora"},"align":"full","className":"mt-section","style":{"spacing":{"padding":{"top":"var:preset|spacing|section","bottom":"var:preset|spacing|section"}}},"layout":{"type":"constrained","contentSize":"1440px"}} -->
-<section class="wp-block-group alignfull mt-section" style="padding-top:var(--wp--preset--spacing--section);padding-bottom:var(--wp--preset--spacing--section)"><!-- wp:group {"className":"mt-sh mt-sh\u002d\u002dleft","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-sh mt-sh--left"><!-- wp:group {"className":"mt-sh__head","layout":{"type":"default"}} -->
+<section class="wp-block-group alignfull mt-section" style="padding-top:var(--wp--preset--spacing--section);padding-bottom:var(--wp--preset--spacing--section)"><!-- wp:group {"className":"mt-sh mt-sh\u002d\u002dsplit","layout":{"type":"default"}} -->
+<div class="wp-block-group mt-sh mt-sh--split"><!-- wp:group {"className":"mt-sh__head","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-sh__head"><!-- wp:paragraph {"className":"is-style-eyebrow animate-fade-up"} -->
 <p class="is-style-eyebrow animate-fade-up">Why Meteora</p>
 <!-- /wp:paragraph -->
@@ -14674,7 +14626,13 @@
 <!-- wp:heading {"className":"mt-sh__title animate-fade-up animate-delay-1"} -->
 <h2 class="wp-block-heading mt-sh__title animate-fade-up animate-delay-1">The details <em>that set us apart.</em></h2>
 <!-- /wp:heading --></div>
-<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:buttons {"className":"mt-sh__lead"} -->
+<div class="wp-block-buttons mt-sh__lead"><!-- wp:button {"className":"is-style-button-text-link"} -->
+<div class="wp-block-button is-style-button-text-link"><a class="wp-block-button__link wp-element-button" href="https://meteoraevents.com/why-meteora/">All the reasons</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"mt-num mt-num\u002d\u002d4 mt-why","layout":{"type":"default"}} -->
@@ -14733,13 +14691,7 @@
 <p class="is-muted">We operate completely independently, in harmony with every other supplier.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
-<!-- /wp:group -->
-
-<!-- wp:buttons {"className":"mt-section-cta"} -->
-<div class="wp-block-buttons mt-section-cta"><!-- wp:button {"className":"is-style-button-text-link"} -->
-<div class="wp-block-button is-style-button-text-link"><a class="wp-block-button__link wp-element-button" href="https://meteoraevents.com/why-meteora/">All the reasons</a></div>
-<!-- /wp:button --></div>
-<!-- /wp:buttons --></section>
+<!-- /wp:group --></section>
 <!-- /wp:group -->
 
 <!-- wp:cover {"url":"https://meteoraevents.com/wp-content/themes/meteora/assets/images/bars/golden-mirror-sunset.webp","id":1002,"alt":"Golden Mirror bar at sunset","minHeight":52,"minHeightUnit":"rem","gradient":"band-shade","tagName":"section","align":"full","className":"mt-band animate-drift","layout":{"type":"constrained","contentSize":"1440px"}} -->
@@ -14882,11 +14834,7 @@
 
 <!-- wp:group {"className":"mt-num mt-num\u002d\u002d4 mt-values","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-num mt-num--4 mt-values"><!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-1","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-1"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">01</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-1"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Esperienza</h3>
 <!-- /wp:heading -->
 
@@ -14896,11 +14844,7 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-2","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-2"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">02</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-2"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Metodo</h3>
 <!-- /wp:heading -->
 
@@ -14910,11 +14854,7 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-3","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-3"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">03</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-3"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Cultura visiva</h3>
 <!-- /wp:heading -->
 
@@ -14924,11 +14864,7 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-4","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-4"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">04</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-4"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Ospitalità</h3>
 <!-- /wp:heading -->
 
@@ -14940,8 +14876,8 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"tagName":"section","metadata":{"name":"Why Meteora"},"align":"full","className":"mt-section","style":{"spacing":{"padding":{"top":"var:preset|spacing|section","bottom":"var:preset|spacing|section"}}},"layout":{"type":"constrained","contentSize":"1440px"}} -->
-<section class="wp-block-group alignfull mt-section" style="padding-top:var(--wp--preset--spacing--section);padding-bottom:var(--wp--preset--spacing--section)"><!-- wp:group {"className":"mt-sh mt-sh\u002d\u002dleft","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-sh mt-sh--left"><!-- wp:group {"className":"mt-sh__head","layout":{"type":"default"}} -->
+<section class="wp-block-group alignfull mt-section" style="padding-top:var(--wp--preset--spacing--section);padding-bottom:var(--wp--preset--spacing--section)"><!-- wp:group {"className":"mt-sh mt-sh\u002d\u002dsplit","layout":{"type":"default"}} -->
+<div class="wp-block-group mt-sh mt-sh--split"><!-- wp:group {"className":"mt-sh__head","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-sh__head"><!-- wp:paragraph {"className":"is-style-eyebrow animate-fade-up"} -->
 <p class="is-style-eyebrow animate-fade-up">Perché Meteora</p>
 <!-- /wp:paragraph -->
@@ -14949,7 +14885,13 @@
 <!-- wp:heading {"className":"mt-sh__title animate-fade-up animate-delay-1"} -->
 <h2 class="wp-block-heading mt-sh__title animate-fade-up animate-delay-1">I dettagli <em>che ci distinguono.</em></h2>
 <!-- /wp:heading --></div>
-<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:buttons {"className":"mt-sh__lead"} -->
+<div class="wp-block-buttons mt-sh__lead"><!-- wp:button {"className":"is-style-button-text-link"} -->
+<div class="wp-block-button is-style-button-text-link"><a class="wp-block-button__link wp-element-button" href="https://meteoraevents.com/it/perche-meteora/">Tutti i motivi</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"mt-num mt-num\u002d\u002d4 mt-why","layout":{"type":"default"}} -->
@@ -15008,13 +14950,7 @@
 <p class="is-muted">Operiamo in completa autonomia, in armonia con gli altri fornitori.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
-<!-- /wp:group -->
-
-<!-- wp:buttons {"className":"mt-section-cta"} -->
-<div class="wp-block-buttons mt-section-cta"><!-- wp:button {"className":"is-style-button-text-link"} -->
-<div class="wp-block-button is-style-button-text-link"><a class="wp-block-button__link wp-element-button" href="https://meteoraevents.com/it/perche-meteora/">Tutti i motivi</a></div>
-<!-- /wp:button --></div>
-<!-- /wp:buttons --></section>
+<!-- /wp:group --></section>
 <!-- /wp:group -->
 
 <!-- wp:cover {"url":"https://meteoraevents.com/wp-content/themes/meteora/assets/images/bars/golden-mirror-sunset.webp","id":1002,"alt":"Banco Golden Mirror al tramonto","minHeight":52,"minHeightUnit":"rem","gradient":"band-shade","tagName":"section","align":"full","className":"mt-band animate-drift","layout":{"type":"constrained","contentSize":"1440px"}} -->

@@ -445,8 +445,8 @@ def partner_cta(c: Ctx):
 
 
 # ---------------------------------------------------------------- numbered grid / why
-def numbered_grid(c: Ctx, items, cols=4, cls=None, small=False):
-    cells = [group(c, [p(c, num(i), cls='is-style-micro mt-num__n'), h(c, 3, t), p(c, d, cls='is-muted')], cls=f'mt-num__item animate-fade-up animate-delay-{i % 4 + 1}')
+def numbered_grid(c: Ctx, items, cols=4, cls=None, small=False, numbered=True):
+    cells = [group(c, ([p(c, num(i), cls='is-style-micro mt-num__n')] if numbered else []) + [h(c, 3, t), p(c, d, cls='is-muted')], cls=f'mt-num__item animate-fade-up animate-delay-{i % 4 + 1}')
              for i, (t, d) in enumerate(items)]
     return group(c, cells, cls=_cls('mt-num', f'mt-num--{cols}', cls))
 

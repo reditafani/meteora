@@ -101,8 +101,8 @@
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"mt-num mt-num\u002d\u002d3","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num mt-num--3"><!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-1","layout":{"type":"default"}} -->
+<!-- wp:group {"className":"mt-num mt-num\u002d\u002d3 mt-pillars","layout":{"type":"default"}} -->
+<div class="wp-block-group mt-num mt-num--3 mt-pillars"><!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-1","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-num__item animate-fade-up animate-delay-1"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
 <p class="is-style-micro mt-num__n">01</p>
 <!-- /wp:paragraph -->

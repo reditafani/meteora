@@ -89,11 +89,7 @@
 
 <!-- wp:group {"className":"mt-num mt-num\u002d\u002d4 mt-values","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-num mt-num--4 mt-values"><!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-1","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-1"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">01</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-1"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading"><?php echo esc_html__( 'Experience', 'meteora' ); ?></h3>
 <!-- /wp:heading -->
 
@@ -103,11 +99,7 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-2","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-2"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">02</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-2"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading"><?php echo esc_html__( 'Method', 'meteora' ); ?></h3>
 <!-- /wp:heading -->
 
@@ -117,11 +109,7 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-3","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-3"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">03</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-3"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading"><?php echo esc_html__( 'Visual culture', 'meteora' ); ?></h3>
 <!-- /wp:heading -->
 
@@ -131,11 +119,7 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-4","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-4"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">04</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-4"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading"><?php echo esc_html__( 'Hospitality', 'meteora' ); ?></h3>
 <!-- /wp:heading -->
 
@@ -147,8 +131,8 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"tagName":"section","metadata":{"name":"Why Meteora"},"align":"full","className":"mt-section","style":{"spacing":{"padding":{"top":"var:preset|spacing|section","bottom":"var:preset|spacing|section"}}},"layout":{"type":"constrained","contentSize":"1440px"}} -->
-<section class="wp-block-group alignfull mt-section" style="padding-top:var(--wp--preset--spacing--section);padding-bottom:var(--wp--preset--spacing--section)"><!-- wp:group {"className":"mt-sh mt-sh\u002d\u002dleft","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-sh mt-sh--left"><!-- wp:group {"className":"mt-sh__head","layout":{"type":"default"}} -->
+<section class="wp-block-group alignfull mt-section" style="padding-top:var(--wp--preset--spacing--section);padding-bottom:var(--wp--preset--spacing--section)"><!-- wp:group {"className":"mt-sh mt-sh\u002d\u002dsplit","layout":{"type":"default"}} -->
+<div class="wp-block-group mt-sh mt-sh--split"><!-- wp:group {"className":"mt-sh__head","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-sh__head"><!-- wp:paragraph {"className":"is-style-eyebrow animate-fade-up"} -->
 <p class="is-style-eyebrow animate-fade-up"><?php echo esc_html__( 'Why Meteora', 'meteora' ); ?></p>
 <!-- /wp:paragraph -->
@@ -156,7 +140,13 @@
 <!-- wp:heading {"className":"mt-sh__title animate-fade-up animate-delay-1"} -->
 <h2 class="wp-block-heading mt-sh__title animate-fade-up animate-delay-1"><?php echo wp_kses_post( __( 'The details <em>that set us apart.</em>', 'meteora' ) ); ?></h2>
 <!-- /wp:heading --></div>
-<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:buttons {"className":"mt-sh__lead"} -->
+<div class="wp-block-buttons mt-sh__lead"><!-- wp:button {"className":"is-style-button-text-link"} -->
+<div class="wp-block-button is-style-button-text-link"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( meteora_page_url( 'why' ) ); ?>"><?php echo esc_html__( 'All the reasons', 'meteora' ); ?></a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"mt-num mt-num\u002d\u002d4 mt-why","layout":{"type":"default"}} -->
@@ -215,13 +205,7 @@
 <p class="is-muted"><?php echo esc_html__( 'We operate completely independently, in harmony with every other supplier.', 'meteora' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
-<!-- /wp:group -->
-
-<!-- wp:buttons {"className":"mt-section-cta"} -->
-<div class="wp-block-buttons mt-section-cta"><!-- wp:button {"className":"is-style-button-text-link"} -->
-<div class="wp-block-button is-style-button-text-link"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( meteora_page_url( 'why' ) ); ?>"><?php echo esc_html__( 'All the reasons', 'meteora' ); ?></a></div>
-<!-- /wp:button --></div>
-<!-- /wp:buttons --></section>
+<!-- /wp:group --></section>
 <!-- /wp:group -->
 
 <!-- wp:cover {"url":"<?php echo esc_url( meteora_asset( 'assets/images/bars/golden-mirror-sunset.webp' ) ); ?>","alt":"<?php echo esc_attr__( 'Golden Mirror bar at sunset', 'meteora' ); ?>","minHeight":52,"minHeightUnit":"rem","gradient":"band-shade","tagName":"section","align":"full","className":"mt-band animate-drift","layout":{"type":"constrained","contentSize":"1440px"}} -->

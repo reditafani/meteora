@@ -57,13 +57,9 @@
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"mt-num mt-num\u002d\u002d4","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num mt-num--4"><!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-1","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-1"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">01</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<!-- wp:group {"className":"mt-num mt-num\u002d\u002d4 mt-aud","layout":{"type":"default"}} -->
+<div class="wp-block-group mt-num mt-num--4 mt-aud"><!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-1","layout":{"type":"default"}} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-1"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading"><?php echo esc_html__( 'Wedding planners', 'meteora' ); ?></h3>
 <!-- /wp:heading -->
 
@@ -73,11 +69,7 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-2","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-2"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">02</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-2"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading"><?php echo esc_html__( 'Venues', 'meteora' ); ?></h3>
 <!-- /wp:heading -->
 
@@ -87,11 +79,7 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-3","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-3"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">03</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-3"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading"><?php echo esc_html__( 'Caterers', 'meteora' ); ?></h3>
 <!-- /wp:heading -->
 
@@ -101,11 +89,7 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"mt-num__item animate-fade-up animate-delay-4","layout":{"type":"default"}} -->
-<div class="wp-block-group mt-num__item animate-fade-up animate-delay-4"><!-- wp:paragraph {"className":"is-style-micro mt-num__n"} -->
-<p class="is-style-micro mt-num__n">04</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
+<div class="wp-block-group mt-num__item animate-fade-up animate-delay-4"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading"><?php echo esc_html__( 'Event professionals', 'meteora' ); ?></h3>
 <!-- /wp:heading -->
 

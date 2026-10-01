@@ -566,6 +566,10 @@ body .mt-bar__body > * {
 	.mt-bars-grid > .mt-bar:nth-child(even) {
 		margin-top: var(--wp--preset--spacing--xxl);
 	}
+	/* Bar detail pages: "More from the collection" is not staggered. */
+	.mt-bd__others-title + .mt-bars-grid > .mt-bar:nth-child(even) {
+		margin-top: 0;
+	}
 }
 .mt-bars__note {
 	margin-top: var(--wp--preset--spacing--xl) !important;
@@ -1313,7 +1317,7 @@ body .mt-pc__text > * {
 	gap: var(--wp--preset--spacing--l);
 }
 .mt-num__item {
-	padding-block: var(--wp--preset--spacing--m) var(--wp--preset--spacing--l);
+	padding-block: var(--wp--preset--spacing--m) 0;
 	border-top: 1px solid var(--wp--preset--color--border);
 }
 .is-style-section-dark .mt-num__item {
@@ -1329,7 +1333,7 @@ body .mt-num__item > * {
 	color: var(--wp--preset--color--accent-on-dark);
 }
 .mt-num__item h3 {
-	margin-block: 0.6rem 0.4rem !important;
+	margin-block: 0.5rem !important;
 }
 .mt-why .mt-num__item h3 {
 	font-size: 1.6rem;
@@ -1337,6 +1341,20 @@ body .mt-num__item > * {
 .mt-num__item p:last-child {
 	font-size: var(--wp--preset--font-size--small);
 	max-width: 30rem;
+}
+/* Why and pillars: rows touch (column gap only) and items pad below, as in the original. */
+:is(.mt-why, .mt-pillars) {
+	row-gap: 0;
+}
+:is(.mt-why, .mt-pillars) .mt-num__item {
+	padding-bottom: var(--wp--preset--spacing--l);
+}
+.mt-why .mt-num__item h3 {
+	margin-block: 0.6rem 0.4rem !important;
+}
+/* Values (About) and audiences (Partners) are unnumbered. */
+:is(.mt-values, .mt-aud) .mt-num__item h3 {
+	margin-block: 0 0.5rem !important;
 }
 .mt-values .mt-num__item h3 {
 	font-style: italic;
@@ -1351,6 +1369,13 @@ body .mt-num__item > * {
 }
 @media (min-width: 1100px) {
 	.mt-num--4 { grid-template-columns: repeat(4, 1fr); }
+}
+/* Values and audiences switch columns later, like the original (800 / 1200). */
+@media (min-width: 700px) and (max-width: 799px) {
+	:is(.mt-values, .mt-aud) { grid-template-columns: 1fr; }
+}
+@media (min-width: 1100px) and (max-width: 1199px) {
+	:is(.mt-values, .mt-aud) { grid-template-columns: repeat(2, 1fr); }
 }
 @media (min-width: 1200px) {
 	.mt-num--5 { grid-template-columns: repeat(5, 1fr); }
@@ -1970,6 +1995,7 @@ body .mt-ps__facts > div > * {
 	grid-auto-flow: row;
 	grid-template-columns: 5fr 7fr;
 	column-gap: clamp(2rem, 5vw, 6rem);
+	row-gap: 0;
 	align-items: start;
 	overflow: visible;
 	scroll-snap-type: none;
