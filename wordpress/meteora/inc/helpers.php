@@ -57,6 +57,10 @@ function meteora_page_slugs(): array {
 			'thanks'      => 'thank-you',
 			'privacy'     => 'privacy-policy',
 			'cookies'     => 'cookie-policy',
+			'tuscany'     => 'wedding-bar-catering-tuscany',
+			'bar-golden-mirror'     => 'bars/golden-mirror',
+			'bar-silver-reflection' => 'bars/silver-reflection',
+			'bar-pure-white'        => 'bars/pure-white',
 		)
 	);
 }

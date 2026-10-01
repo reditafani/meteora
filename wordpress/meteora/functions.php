@@ -17,3 +17,4 @@ require METEORA_DIR . '/inc/assets.php';
 require METEORA_DIR . '/inc/blocks.php';
 require METEORA_DIR . '/inc/patterns.php';
 require METEORA_DIR . '/inc/i18n.php';
+require METEORA_DIR . '/inc/forms.php';

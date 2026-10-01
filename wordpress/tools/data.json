@@ -1,0 +1,2236 @@
+{
+ "bars": {
+  "availableBars": [
+   {
+    "slug": "golden-mirror",
+    "name": "Golden Mirror",
+    "status": "available",
+    "swatch": "#b89e72",
+    "images": [
+     {
+      "src": {
+       "src": "../../data/src/assets/images/bars/golden-mirror-sunset.jpg"
+      },
+      "alt": {
+       "it": "Banco bar Golden Mirror al tramonto su una terrazza affacciata sulle colline",
+       "en": "Golden Mirror bar at sunset on a terrace overlooking the hills"
+      }
+     },
+     {
+      "src": {
+       "src": "../../data/src/assets/images/bars/golden-mirror.jpg"
+      },
+      "alt": {
+       "it": "Dettaglio frontale del banco Golden Mirror con bottigliera completa e vetri pronti",
+       "en": "Front view of the Golden Mirror bar with a full back bar and glassware ready"
+      }
+     }
+    ],
+    "mood": {
+     "it": "Impatto scenico, carattere deciso.",
+     "en": "Scenic impact, strong character."
+    },
+    "description": {
+     "it": "La superficie oro specchiato riflette luci e atmosfera e trasforma il bar nel punto focale dell’evento.",
+     "en": "Its mirrored gold surface reflects light and atmosphere, turning the bar into the focal point of the event."
+    },
+    "idealFor": {
+     "it": [
+      "Ricevimenti glamour",
+      "Party esclusivi",
+      "Contesti ad alto effetto visivo"
+     ],
+     "en": [
+      "Glamorous receptions",
+      "Exclusive parties",
+      "Settings built for visual impact"
+     ]
+    }
+   },
+   {
+    "slug": "silver-reflection",
+    "name": "Silver Reflection",
+    "status": "available",
+    "swatch": "#9a9a98",
+    "images": [
+     {
+      "src": {
+       "src": "../../data/src/assets/images/bars/silver-reflection.jpg"
+      },
+      "alt": {
+       "it": "Banco bar Silver Reflection in una grande sala allestita per una cena di gala",
+       "en": "Silver Reflection bar in a large hall set for a gala dinner"
+      }
+     }
+    ],
+    "mood": {
+     "it": "Moderno, brillante, sofisticato.",
+     "en": "Modern, brilliant, sophisticated."
+    },
+    "description": {
+     "it": "L’argento specchiato dona un’eleganza contemporanea e valorizza l’illuminazione dell’ambiente.",
+     "en": "Mirrored silver brings contemporary elegance and makes the most of the ambient lighting."
+    },
+    "idealFor": {
+     "it": [
+      "Eventi corporate",
+      "Wedding chic",
+      "Allestimenti minimal di design"
+     ],
+     "en": [
+      "Corporate events",
+      "Chic weddings",
+      "Minimalist design setups"
+     ]
+    }
+   },
+   {
+    "slug": "pure-white",
+    "name": "Pure White",
+    "status": "available",
+    "swatch": "#ece6dc",
+    "images": [
+     {
+      "src": {
+       "src": "../../data/src/assets/images/bars/pure-white-villa.jpg"
+      },
+      "alt": {
+       "it": "Banco bar Pure White nel giardino di una villa in pietra al tramonto",
+       "en": "Pure White bar in the garden of a stone villa at sunset"
+      }
+     }
+    ],
+    "mood": {
+     "it": "Eleganza luminosa, texture raffinata.",
+     "en": "Luminous elegance, refined texture."
+    },
+    "description": {
+     "it": "Il bianco lucido con disegno a spina di pesce crea movimento e profondità, con un’estetica pulita e contemporanea.",
+     "en": "Glossy white with a herringbone pattern creates movement and depth while keeping a clean, contemporary look."
+    },
+    "idealFor": {
+     "it": [
+      "Matrimoni eleganti",
+      "Eventi luxury minimal",
+      "Ambientazioni sofisticate"
+     ],
+     "en": [
+      "Elegant weddings",
+      "Minimalist luxury events",
+      "Sophisticated settings"
+     ]
+    }
+   }
+  ],
+  "barSizes": [
+   {
+    "name": "Slim",
+    "length": "1,5 m",
+    "lengthEn": "1.5 m"
+   },
+   {
+    "name": "Medium",
+    "length": "3,5 m",
+    "lengthEn": "3.5 m"
+   },
+   {
+    "name": "Large",
+    "length": "5,5 m",
+    "lengthEn": "5.5 m"
+   }
+  ],
+  "bars": [
+   {
+    "slug": "golden-mirror",
+    "name": "Golden Mirror",
+    "status": "available",
+    "swatch": "#b89e72",
+    "images": [
+     {
+      "src": {
+       "src": "../../data/src/assets/images/bars/golden-mirror-sunset.jpg"
+      },
+      "alt": {
+       "it": "Banco bar Golden Mirror al tramonto su una terrazza affacciata sulle colline",
+       "en": "Golden Mirror bar at sunset on a terrace overlooking the hills"
+      }
+     },
+     {
+      "src": {
+       "src": "../../data/src/assets/images/bars/golden-mirror.jpg"
+      },
+      "alt": {
+       "it": "Dettaglio frontale del banco Golden Mirror con bottigliera completa e vetri pronti",
+       "en": "Front view of the Golden Mirror bar with a full back bar and glassware ready"
+      }
+     }
+    ],
+    "mood": {
+     "it": "Impatto scenico, carattere deciso.",
+     "en": "Scenic impact, strong character."
+    },
+    "description": {
+     "it": "La superficie oro specchiato riflette luci e atmosfera e trasforma il bar nel punto focale dell’evento.",
+     "en": "Its mirrored gold surface reflects light and atmosphere, turning the bar into the focal point of the event."
+    },
+    "idealFor": {
+     "it": [
+      "Ricevimenti glamour",
+      "Party esclusivi",
+      "Contesti ad alto effetto visivo"
+     ],
+     "en": [
+      "Glamorous receptions",
+      "Exclusive parties",
+      "Settings built for visual impact"
+     ]
+    }
+   },
+   {
+    "slug": "silver-reflection",
+    "name": "Silver Reflection",
+    "status": "available",
+    "swatch": "#9a9a98",
+    "images": [
+     {
+      "src": {
+       "src": "../../data/src/assets/images/bars/silver-reflection.jpg"
+      },
+      "alt": {
+       "it": "Banco bar Silver Reflection in una grande sala allestita per una cena di gala",
+       "en": "Silver Reflection bar in a large hall set for a gala dinner"
+      }
+     }
+    ],
+    "mood": {
+     "it": "Moderno, brillante, sofisticato.",
+     "en": "Modern, brilliant, sophisticated."
+    },
+    "description": {
+     "it": "L’argento specchiato dona un’eleganza contemporanea e valorizza l’illuminazione dell’ambiente.",
+     "en": "Mirrored silver brings contemporary elegance and makes the most of the ambient lighting."
+    },
+    "idealFor": {
+     "it": [
+      "Eventi corporate",
+      "Wedding chic",
+      "Allestimenti minimal di design"
+     ],
+     "en": [
+      "Corporate events",
+      "Chic weddings",
+      "Minimalist design setups"
+     ]
+    }
+   },
+   {
+    "slug": "pure-white",
+    "name": "Pure White",
+    "status": "available",
+    "swatch": "#ece6dc",
+    "images": [
+     {
+      "src": {
+       "src": "../../data/src/assets/images/bars/pure-white-villa.jpg"
+      },
+      "alt": {
+       "it": "Banco bar Pure White nel giardino di una villa in pietra al tramonto",
+       "en": "Pure White bar in the garden of a stone villa at sunset"
+      }
+     }
+    ],
+    "mood": {
+     "it": "Eleganza luminosa, texture raffinata.",
+     "en": "Luminous elegance, refined texture."
+    },
+    "description": {
+     "it": "Il bianco lucido con disegno a spina di pesce crea movimento e profondità, con un’estetica pulita e contemporanea.",
+     "en": "Glossy white with a herringbone pattern creates movement and depth while keeping a clean, contemporary look."
+    },
+    "idealFor": {
+     "it": [
+      "Matrimoni eleganti",
+      "Eventi luxury minimal",
+      "Ambientazioni sofisticate"
+     ],
+     "en": [
+      "Elegant weddings",
+      "Minimalist luxury events",
+      "Sophisticated settings"
+     ]
+    }
+   },
+   {
+    "slug": "green-harmony",
+    "name": "Green Harmony",
+    "status": "coming-soon",
+    "swatch": "#a9b49a",
+    "images": [],
+    "mood": {
+     "it": "Freschezza naturale.",
+     "en": "Natural freshness."
+    },
+    "description": {
+     "it": "Fresco, luminoso, contemporaneo. La finitura verde chiaro aggiunge un tocco botanico ed elegante.",
+     "en": "Fresh, luminous, contemporary. The light-green finish adds an elegant botanical touch."
+    },
+    "idealFor": {
+     "it": [
+      "Garden party",
+      "Matrimoni moderni",
+      "Eventi eco-chic"
+     ],
+     "en": [
+      "Garden parties",
+      "Modern weddings",
+      "Eco-chic events"
+     ]
+    }
+   },
+   {
+    "slug": "country-classic",
+    "name": "Country Classic",
+    "status": "coming-soon",
+    "swatch": "#8a6a4c",
+    "images": [],
+    "mood": {
+     "it": "Caldo, naturale, accogliente.",
+     "en": "Warm, natural, cosy."
+    },
+    "description": {
+     "it": "Il legno a venatura naturale crea un’atmosfera country-chic autentica.",
+     "en": "Exposed-grain wood creates an authentic country-chic atmosphere."
+    },
+    "idealFor": {
+     "it": [
+      "Eventi all’aperto",
+      "Matrimoni in stile boho"
+     ],
+     "en": [
+      "Outdoor events",
+      "Boho-style weddings"
+     ]
+    }
+   },
+   {
+    "slug": "black-essence",
+    "name": "Black Essence",
+    "status": "coming-soon",
+    "swatch": "#1c1614",
+    "images": [],
+    "mood": {
+     "it": "Nero laccato, puro e sofisticato.",
+     "en": "Lacquered black, pure and sophisticated."
+    },
+    "description": {
+     "it": "Un carattere deciso e contemporaneo che fa del bar un elemento scenografico di grande impatto.",
+     "en": "A bold, contemporary character that makes the bar a scenographic element of great impact."
+    },
+    "idealFor": {
+     "it": [
+      "Eventi luxury",
+      "Serate di gala",
+      "Party esclusivi",
+      "Matrimoni moderni minimal"
+     ],
+     "en": [
+      "Luxury events",
+      "Gala nights",
+      "Exclusive parties",
+      "Modern minimalist weddings"
+     ]
+    }
+   }
+  ]
+ },
+ "cocktails": {
+  "cocktailCategories": [
+   {
+    "id": "classics",
+    "label": {
+     "it": "Classici",
+     "en": "Classics"
+    },
+    "blurb": {
+     "it": "Le grandi ricette di sempre, eseguite con metodo.",
+     "en": "The great recipes, executed with method."
+    }
+   },
+   {
+    "id": "signature",
+    "label": {
+     "it": "Signature",
+     "en": "Signatures"
+    },
+    "blurb": {
+     "it": "Drink creati e nominati sulla vostra storia o sull’identità del brand.",
+     "en": "Drinks created and named after your story or your brand identity."
+    }
+   },
+   {
+    "id": "spritz",
+    "label": {
+     "it": "Spritz",
+     "en": "Spritz"
+    },
+    "blurb": {
+     "it": "Aperol, Campari, Hugo, Limoncello, Passion Fruit.",
+     "en": "Aperol, Campari, Hugo, Limoncello, Passion Fruit."
+    }
+   },
+   {
+    "id": "martini",
+    "label": {
+     "it": "Martini",
+     "en": "Martini"
+    },
+    "blurb": {
+     "it": "Coppe fredde, linee pulite.",
+     "en": "Chilled coupes, clean lines."
+    }
+   },
+   {
+    "id": "sour",
+    "label": {
+     "it": "Sour",
+     "en": "Sour"
+    },
+    "blurb": {
+     "it": "Equilibrio tra agrume, dolcezza e struttura.",
+     "en": "Balance between citrus, sweetness and structure."
+    }
+   },
+   {
+    "id": "tropical",
+    "label": {
+     "it": "Tropical",
+     "en": "Tropical"
+    },
+    "blurb": {
+     "it": "Freschi, dinamici, da festa.",
+     "en": "Fresh, lively, made for the party."
+    }
+   },
+   {
+    "id": "aperitivo",
+    "label": {
+     "it": "Aperitivo italiano",
+     "en": "Italian aperitivo"
+    },
+    "blurb": {
+     "it": "Il rito italiano, dal Negroni al Bellini.",
+     "en": "The Italian ritual, from Negroni to Bellini."
+    }
+   }
+  ],
+  "cocktails": [
+   {
+    "slug": "spritz",
+    "name": "Spritz",
+    "categories": [
+     "spritz",
+     "aperitivo"
+    ],
+    "profile": {
+     "it": "Fresco, agrumato",
+     "en": "Fresh, citrusy"
+    },
+    "alcohol": 2,
+    "variants": "Aperol · Campari · Hugo · Limoncello",
+    "featured": true
+   },
+   {
+    "slug": "negroni",
+    "name": "Negroni",
+    "categories": [
+     "aperitivo",
+     "classics"
+    ],
+    "profile": {
+     "it": "Intenso, strutturato",
+     "en": "Intense, structured"
+    },
+    "alcohol": 5,
+    "featured": true
+   },
+   {
+    "slug": "espresso-martini",
+    "name": "Espresso Martini",
+    "categories": [
+     "martini"
+    ],
+    "profile": {
+     "it": "Intenso, morbido",
+     "en": "Intense, smooth"
+    },
+    "alcohol": 4,
+    "featured": true
+   },
+   {
+    "slug": "pornstar-martini",
+    "name": "Pornstar Martini",
+    "categories": [
+     "martini"
+    ],
+    "profile": {
+     "it": "Fruttato, dolce",
+     "en": "Fruity, sweet"
+    },
+    "alcohol": 3,
+    "featured": true
+   },
+   {
+    "slug": "dry-martini",
+    "name": "Cocktail Martini (Dry)",
+    "categories": [
+     "martini",
+     "classics"
+    ],
+    "profile": {
+     "it": "Secco, intenso",
+     "en": "Dry, intense"
+    },
+    "alcohol": 5
+   },
+   {
+    "slug": "margarita",
+    "name": "Margarita / Tommy’s",
+    "categories": [
+     "sour"
+    ],
+    "profile": {
+     "it": "Secco, intenso",
+     "en": "Dry, intense"
+    },
+    "alcohol": 4,
+    "featured": true
+   },
+   {
+    "slug": "sour",
+    "name": "Whiskey · Vodka · Gin · Tequila Sour",
+    "categories": [
+     "sour"
+    ],
+    "profile": {
+     "it": "Agrumato",
+     "en": "Citrusy"
+    },
+    "alcohol": 4,
+    "featured": true
+   },
+   {
+    "slug": "daiquiri",
+    "name": "Daiquiri",
+    "categories": [
+     "sour",
+     "tropical"
+    ],
+    "profile": {
+     "it": "Fresco, bilanciato",
+     "en": "Fresh, balanced"
+    },
+    "alcohol": 4,
+    "variants": "Classic · Strawberry · Passion · Mango"
+   },
+   {
+    "slug": "cosmopolitan",
+    "name": "Cosmopolitan",
+    "categories": [
+     "martini",
+     "sour"
+    ],
+    "profile": {
+     "it": "Agrumato, fruttato",
+     "en": "Citrusy, fruity"
+    },
+    "alcohol": 3
+   },
+   {
+    "slug": "gin-fizz",
+    "name": "Gin Fizz",
+    "categories": [
+     "sour",
+     "classics"
+    ],
+    "profile": {
+     "it": "Fresco, agrumato",
+     "en": "Fresh, citrusy"
+    },
+    "alcohol": 3
+   },
+   {
+    "slug": "mojito",
+    "name": "Mojito",
+    "categories": [
+     "tropical"
+    ],
+    "profile": {
+     "it": "Fresco, agrumato, mentolato",
+     "en": "Fresh, citrusy, minty"
+    },
+    "alcohol": 2,
+    "variants": "Classic · Passion · Fragola · Mango",
+    "featured": true
+   },
+   {
+    "slug": "caipirinha",
+    "name": "Caipirinha",
+    "categories": [
+     "tropical"
+    ],
+    "profile": {
+     "it": "Fresco, intenso",
+     "en": "Fresh, intense"
+    },
+    "alcohol": 4,
+    "variants": "Caipiroska · Caipirissima · Caipirita"
+   },
+   {
+    "slug": "pina-colada",
+    "name": "Piña Colada",
+    "categories": [
+     "tropical"
+    ],
+    "profile": {
+     "it": "Dolce, tropicale",
+     "en": "Sweet, tropical"
+    },
+    "alcohol": 3
+   },
+   {
+    "slug": "paloma",
+    "name": "Paloma",
+    "categories": [
+     "tropical"
+    ],
+    "profile": {
+     "it": "Fresco, agrumato",
+     "en": "Fresh, citrusy"
+    },
+    "alcohol": 3
+   },
+   {
+    "slug": "cuba-libre",
+    "name": "Cuba Libre",
+    "categories": [
+     "tropical",
+     "classics"
+    ],
+    "profile": {
+     "it": "Fresco, dissetante",
+     "en": "Fresh, thirst-quenching"
+    },
+    "alcohol": 3
+   },
+   {
+    "slug": "americano",
+    "name": "Americano",
+    "categories": [
+     "aperitivo"
+    ],
+    "profile": {
+     "it": "Leggero, amaro",
+     "en": "Light, bitter"
+    },
+    "alcohol": 2
+   },
+   {
+    "slug": "americano-sbagliato",
+    "name": "Americano Sbagliato",
+    "categories": [
+     "aperitivo"
+    ],
+    "profile": {
+     "it": "Leggero, amaro",
+     "en": "Light, bitter"
+    },
+    "alcohol": 2
+   },
+   {
+    "slug": "garibaldi",
+    "name": "Garibaldi",
+    "categories": [
+     "aperitivo"
+    ],
+    "profile": {
+     "it": "Morbido, amaro",
+     "en": "Soft, bitter"
+    },
+    "alcohol": 2
+   },
+   {
+    "slug": "bellini",
+    "name": "Bellini",
+    "categories": [
+     "aperitivo"
+    ],
+    "profile": {
+     "it": "Fruttato, leggero",
+     "en": "Fruity, light"
+    },
+    "alcohol": 2,
+    "featured": true
+   },
+   {
+    "slug": "rossini",
+    "name": "Rossini",
+    "categories": [
+     "aperitivo"
+    ],
+    "profile": {
+     "it": "Fruttato, leggero",
+     "en": "Fruity, light"
+    },
+    "alcohol": 2
+   },
+   {
+    "slug": "mimosa",
+    "name": "Mimosa",
+    "categories": [
+     "aperitivo",
+     "classics"
+    ],
+    "profile": {
+     "it": "Agrumato, leggero",
+     "en": "Citrusy, light"
+    },
+    "alcohol": 2
+   },
+   {
+    "slug": "french-75",
+    "name": "French 75",
+    "categories": [
+     "classics",
+     "sour"
+    ],
+    "profile": {
+     "it": "Fresco, agrumato",
+     "en": "Fresh, citrusy"
+    },
+    "alcohol": 3
+   },
+   {
+    "slug": "gin-tonic",
+    "name": "Gin Tonic · Lemon · Soda",
+    "categories": [
+     "classics"
+    ],
+    "profile": {
+     "it": "Fresco, secco, dissetante",
+     "en": "Fresh, dry, thirst-quenching"
+    },
+    "alcohol": 3,
+    "featured": true
+   },
+   {
+    "slug": "vodka-tonic",
+    "name": "Vodka Tonic · Lemon · Soda",
+    "categories": [
+     "classics"
+    ],
+    "profile": {
+     "it": "Neutro, dissetante",
+     "en": "Neutral, thirst-quenching"
+    },
+    "alcohol": 3
+   },
+   {
+    "slug": "moscow-mule",
+    "name": "Moscow Mule",
+    "categories": [
+     "classics"
+    ],
+    "profile": {
+     "it": "Fresco, speziato",
+     "en": "Fresh, spiced"
+    },
+    "alcohol": 3,
+    "variants": "London · Jalisco · Kentucky"
+   },
+   {
+    "slug": "old-fashioned",
+    "name": "Old Fashioned",
+    "categories": [
+     "classics"
+    ],
+    "profile": {
+     "it": "Intenso, strutturato",
+     "en": "Intense, structured"
+    },
+    "alcohol": 5,
+    "featured": true
+   },
+   {
+    "slug": "manhattan",
+    "name": "Manhattan",
+    "categories": [
+     "classics"
+    ],
+    "profile": {
+     "it": "Intenso, secco",
+     "en": "Intense, dry"
+    },
+    "alcohol": 5
+   },
+   {
+    "slug": "long-island",
+    "name": "Long Island Iced Tea",
+    "categories": [
+     "classics"
+    ],
+    "profile": {
+     "it": "Fresco, dolce",
+     "en": "Fresh, sweet"
+    },
+    "alcohol": 5
+   },
+   {
+    "slug": "black-russian",
+    "name": "Black Russian",
+    "categories": [
+     "classics"
+    ],
+    "profile": {
+     "it": "Intenso, morbido",
+     "en": "Intense, smooth"
+    },
+    "alcohol": 4
+   },
+   {
+    "slug": "screwdriver",
+    "name": "Screwdriver",
+    "categories": [
+     "classics"
+    ],
+    "profile": {
+     "it": "Fresco, agrumato",
+     "en": "Fresh, citrusy"
+    },
+    "alcohol": 3
+   }
+  ],
+  "featuredCocktails": [
+   {
+    "slug": "spritz",
+    "name": "Spritz",
+    "categories": [
+     "spritz",
+     "aperitivo"
+    ],
+    "profile": {
+     "it": "Fresco, agrumato",
+     "en": "Fresh, citrusy"
+    },
+    "alcohol": 2,
+    "variants": "Aperol · Campari · Hugo · Limoncello",
+    "featured": true
+   },
+   {
+    "slug": "negroni",
+    "name": "Negroni",
+    "categories": [
+     "aperitivo",
+     "classics"
+    ],
+    "profile": {
+     "it": "Intenso, strutturato",
+     "en": "Intense, structured"
+    },
+    "alcohol": 5,
+    "featured": true
+   },
+   {
+    "slug": "espresso-martini",
+    "name": "Espresso Martini",
+    "categories": [
+     "martini"
+    ],
+    "profile": {
+     "it": "Intenso, morbido",
+     "en": "Intense, smooth"
+    },
+    "alcohol": 4,
+    "featured": true
+   },
+   {
+    "slug": "pornstar-martini",
+    "name": "Pornstar Martini",
+    "categories": [
+     "martini"
+    ],
+    "profile": {
+     "it": "Fruttato, dolce",
+     "en": "Fruity, sweet"
+    },
+    "alcohol": 3,
+    "featured": true
+   },
+   {
+    "slug": "margarita",
+    "name": "Margarita / Tommy’s",
+    "categories": [
+     "sour"
+    ],
+    "profile": {
+     "it": "Secco, intenso",
+     "en": "Dry, intense"
+    },
+    "alcohol": 4,
+    "featured": true
+   },
+   {
+    "slug": "sour",
+    "name": "Whiskey · Vodka · Gin · Tequila Sour",
+    "categories": [
+     "sour"
+    ],
+    "profile": {
+     "it": "Agrumato",
+     "en": "Citrusy"
+    },
+    "alcohol": 4,
+    "featured": true
+   },
+   {
+    "slug": "mojito",
+    "name": "Mojito",
+    "categories": [
+     "tropical"
+    ],
+    "profile": {
+     "it": "Fresco, agrumato, mentolato",
+     "en": "Fresh, citrusy, minty"
+    },
+    "alcohol": 2,
+    "variants": "Classic · Passion · Fragola · Mango",
+    "featured": true
+   },
+   {
+    "slug": "bellini",
+    "name": "Bellini",
+    "categories": [
+     "aperitivo"
+    ],
+    "profile": {
+     "it": "Fruttato, leggero",
+     "en": "Fruity, light"
+    },
+    "alcohol": 2,
+    "featured": true
+   },
+   {
+    "slug": "gin-tonic",
+    "name": "Gin Tonic · Lemon · Soda",
+    "categories": [
+     "classics"
+    ],
+    "profile": {
+     "it": "Fresco, secco, dissetante",
+     "en": "Fresh, dry, thirst-quenching"
+    },
+    "alcohol": 3,
+    "featured": true
+   },
+   {
+    "slug": "old-fashioned",
+    "name": "Old Fashioned",
+    "categories": [
+     "classics"
+    ],
+    "profile": {
+     "it": "Intenso, strutturato",
+     "en": "Intense, structured"
+    },
+    "alcohol": 5,
+    "featured": true
+   }
+  ]
+ },
+ "craft": {
+  "customizations": [
+   {
+    "title": {
+     "it": "Tovaglioli personalizzati",
+     "en": "Custom napkins"
+    },
+    "text": {
+     "it": "Con i nomi degli sposi o il logo aziendale.",
+     "en": "With the couple’s names or a company logo."
+    },
+    "notice": {
+     "it": "35 giorni di preavviso",
+     "en": "35 days’ notice"
+    }
+   },
+   {
+    "title": {
+     "it": "Frontale banco personalizzato",
+     "en": "Custom bar front"
+    },
+    "text": {
+     "it": "Nomi o logo sul banco: il bar diventa elemento scenografico e punto focale.",
+     "en": "Names or logo on the counter: the bar becomes a branded focal point."
+    },
+    "notice": {
+     "it": "35 giorni di preavviso",
+     "en": "35 days’ notice"
+    }
+   },
+   {
+    "title": {
+     "it": "Incisione su frutta",
+     "en": "Fruit engraving"
+    },
+    "text": {
+     "it": "Nomi o logo incisi sulla frutta decorativa. Un dettaglio che sorprende.",
+     "en": "Names or logo etched on decorative fruit. A detail that surprises."
+    }
+   },
+   {
+    "title": {
+     "it": "Incisione su ghiaccio",
+     "en": "Ice engraving"
+    },
+    "text": {
+     "it": "Logo o nomi impressi sul cubone di ghiaccio. A fine evento lo stampo vi viene regalato come ricordo.",
+     "en": "Logo or names pressed into large ice cubes. At the end of the event the stamp is yours to keep."
+    }
+   },
+   {
+    "title": {
+     "it": "Cocktail list su misura",
+     "en": "Bespoke cocktail list"
+    },
+    "text": {
+     "it": "Drink creati e nominati sulla personalità degli sposi o sull’identità del brand.",
+     "en": "Drinks created and named after the couple’s personality or the brand identity."
+    }
+   },
+   {
+    "title": {
+     "it": "Divise brandizzate",
+     "en": "Branded uniforms"
+    },
+    "text": {
+     "it": "Per eventi aziendali: logo su camicia, gilet e cravatta con patch serigrafate.",
+     "en": "For corporate events: logo on shirt, waistcoat and tie with screen-printed patches."
+    }
+   }
+  ],
+  "differentiators": [
+   {
+    "title": {
+     "it": "Bartender qualificati",
+     "en": "Qualified bartenders"
+    },
+    "text": {
+     "it": "Professionali, affidabili, seri. Total black, nessun logo vistoso.",
+     "en": "Professional and reliable. Total black, no showy logos."
+    }
+   },
+   {
+    "title": {
+     "it": "Pulizia visiva",
+     "en": "A clean visual service"
+    },
+    "text": {
+     "it": "Al banco nessun contenitore termico, cassa o cesta di bicchieri a vista. Ogni rifornimento avviene a vassoio, con discrezione.",
+     "en": "No cool boxes, storage crates or glass racks in view. All restocking is done discreetly, by tray."
+    }
+   },
+   {
+    "title": {
+     "it": "Rispetto per ville e location",
+     "en": "Respect for villas and venues"
+    },
+    "text": {
+     "it": "Massima cura di mura, pavimenti, arredi e verde, in allestimento e a fine servizio. Lasciamo tutto pulito.",
+     "en": "Utmost care for walls, floors, furniture and gardens during setup and after service. We leave everything clean."
+    }
+   },
+   {
+    "title": {
+     "it": "Un pensiero in meno",
+     "en": "One less thing to worry about"
+    },
+    "text": {
+     "it": "Operiamo in completa autonomia, in armonia con gli altri fornitori.",
+     "en": "We operate completely independently, in harmony with every other supplier."
+    }
+   },
+   {
+    "title": {
+     "it": "Massima discrezione",
+     "en": "Complete discretion"
+    },
+    "text": {
+     "it": "Con ogni ospite, anche con personaggi noti. Proteggere l’immagine dei nostri collaboratori è una priorità.",
+     "en": "With every guest, including high-profile ones. Protecting our partners’ reputation is a priority."
+    }
+   },
+   {
+    "title": {
+     "it": "Qualità del drink",
+     "en": "Drink quality"
+    },
+    "text": {
+     "it": "Qualità gustativa, estetica nelle decorazioni, controllo rigoroso delle temperature.",
+     "en": "Taste, aesthetic garnish and rigorous temperature control."
+    }
+   },
+   {
+    "title": {
+     "it": "Supporto al catering",
+     "en": "Support for the catering team"
+    },
+    "text": {
+     "it": "Il catering può chiudere la cena con serenità, caricare il materiale e liberare lo staff senza attendere la fine del dopocena.",
+     "en": "The caterer can close dinner service calmly, load out and release their staff without waiting for the after-party to end."
+    }
+   },
+   {
+    "title": {
+     "it": "Vicinanza",
+     "en": "Close by"
+    },
+    "text": {
+     "it": "Sede a Montecatini Terme, punto di forza per i catering in Toscana. Ci muoviamo in tutta Italia.",
+     "en": "Based in Montecatini Terme — a strategic advantage across Tuscany. We travel throughout Italy."
+    }
+   }
+  ],
+  "glassware": [
+   {
+    "name": {
+     "it": "Calice",
+     "en": "Wine glass"
+    },
+    "use": {
+     "it": "Spritz, bollicine, vino",
+     "en": "Spritz, sparkling, wine"
+    },
+    "image": {
+     "src": "../../data/src/assets/images/glassware/wine.jpg"
+    }
+   },
+   {
+    "name": {
+     "it": "Coppa Martini",
+     "en": "Martini coupe"
+    },
+    "use": {
+     "it": "Martini, sour, cocktail serviti up",
+     "en": "Martinis, sours, drinks served up"
+    },
+    "image": {
+     "src": "../../data/src/assets/images/glassware/martini.jpg"
+    }
+   },
+   {
+    "name": {
+     "it": "Old Fashioned",
+     "en": "Old Fashioned"
+    },
+    "use": {
+     "it": "Spirit-forward su ghiaccio grande",
+     "en": "Spirit-forward drinks over large ice"
+    },
+    "image": {
+     "src": "../../data/src/assets/images/glassware/old-fashioned.jpg"
+    }
+   },
+   {
+    "name": {
+     "it": "Long drink",
+     "en": "Long drink"
+    },
+    "use": {
+     "it": "Highball, tonic, Mojito",
+     "en": "Highballs, tonics, Mojito"
+    },
+    "image": {
+     "src": "../../data/src/assets/images/glassware/long-drink.jpg"
+    }
+   },
+   {
+    "name": {
+     "it": "Cortina",
+     "en": "Highball tumbler"
+    },
+    "use": {
+     "it": "Drink corti e rinfrescanti",
+     "en": "Short, refreshing serves"
+    },
+    "image": {
+     "src": "../../data/src/assets/images/glassware/highball.jpg"
+    }
+   },
+   {
+    "name": {
+     "it": "Shot",
+     "en": "Shot glass"
+    },
+    "use": {
+     "it": "Shot e degustazioni",
+     "en": "Shots and tastings"
+    },
+    "image": {
+     "src": "../../data/src/assets/images/glassware/shot.jpg"
+    }
+   }
+  ],
+  "iceTypes": [
+   {
+    "name": {
+     "it": "Cubo compatto ad alta densità",
+     "en": "High-density compact cube"
+    },
+    "note": {
+     "it": "Scioglimento lento, controllo della diluizione in long drink e cocktail strutturati.",
+     "en": "Slow melting, controlled dilution in long drinks and structured cocktails."
+    },
+    "image": {
+     "src": "../../data/src/assets/images/ice/compact-cube.jpg"
+    }
+   },
+   {
+    "name": {
+     "it": "Ghiaccio Hoshizaki",
+     "en": "Hoshizaki ice"
+    },
+    "note": {
+     "it": "Cubo compatto dalla resa estetica pulita; equilibrio e temperatura costante.",
+     "en": "Compact cube with a clean look; balance and a constant temperature."
+    },
+    "image": {
+     "src": "../../data/src/assets/images/ice/hoshizaki.jpg"
+    }
+   },
+   {
+    "name": {
+     "it": "Ghiaccio nugget",
+     "en": "Nugget ice"
+    },
+    "note": {
+     "it": "Texture morbida e piacevole al sorso, per cocktail freschi e dinamici.",
+     "en": "Soft texture, pleasant to sip — for fresh, lively cocktails."
+    },
+    "image": {
+     "src": "../../data/src/assets/images/ice/nugget.jpg"
+    }
+   },
+   {
+    "name": {
+     "it": "Cubo 5 × 5 cm",
+     "en": "5 × 5 cm cube"
+    },
+    "note": {
+     "it": "Scioglimento molto lento, per Negroni, Old Fashioned e cocktail spirit-forward.",
+     "en": "Very slow melting, for Negroni, Old Fashioned and spirit-forward cocktails."
+    },
+    "image": {
+     "src": "../../data/src/assets/images/ice/cube-5cm.jpg"
+    },
+    "premium": true
+   },
+   {
+    "name": {
+     "it": "Cubo long drink 4 × 4 × 12 cm",
+     "en": "Long drink cube 4 × 4 × 12 cm"
+    },
+    "note": {
+     "it": "Formato verticale per highball e long drink premium; rallenta la diluizione.",
+     "en": "Vertical format for highballs and premium long drinks; slows dilution."
+    },
+    "image": {
+     "src": "../../data/src/assets/images/ice/long-drink.jpg"
+    },
+    "premium": true
+   },
+   {
+    "name": {
+     "it": "Sfera 50 mm",
+     "en": "50 mm sphere"
+    },
+    "note": {
+     "it": "Superficie di scioglimento ridotta e impatto estetico distintivo nel bicchiere.",
+     "en": "Minimal melting surface and a distinctive look in the glass."
+    },
+    "image": {
+     "src": "../../data/src/assets/images/ice/sphere.jpg"
+    },
+    "premium": true
+   }
+  ]
+ },
+ "destinations": {
+  "destinations": [
+   {
+    "id": "tuscany",
+    "name": {
+     "it": "Toscana",
+     "en": "Tuscany"
+    },
+    "line": {
+     "it": "La nostra base. Ville, borghi e casali dove lavoriamo con la naturalezza di chi è di casa.",
+     "en": "Our home base. Villas, hamlets and farmhouses where we work with the ease of locals."
+    },
+    "landing": {
+     "slug": {
+      "it": "bar-catering-matrimoni-toscana",
+      "en": "wedding-bar-catering-tuscany"
+     },
+     "title": {
+      "it": "Bar Catering per Matrimoni in Toscana | Meteora Events",
+      "en": "Wedding Bar Catering in Tuscany | Meteora Events"
+     },
+     "description": {
+      "it": "Open bar e cocktail experience per matrimoni in Toscana. Banchi scenografici, bartender professionisti e servizio autonomo. Base a Montecatini Terme.",
+      "en": "Open bar and cocktail experience for weddings in Tuscany. Scenographic bars, professional bartenders and fully independent service. Based in Montecatini Terme."
+     },
+     "h1": {
+      "it": "Bar catering per matrimoni in Toscana",
+      "en": "Wedding bar catering in Tuscany"
+     },
+     "intro": {
+      "it": [
+       "La Toscana è casa nostra. La sede di Meteora Events è a Montecatini Terme, a poca distanza da Firenze, Lucca, Pisa e dalla Versilia.",
+       "Questa vicinanza è un vantaggio concreto: sopralluoghi più semplici, logistica più agile, e la conoscenza delle dinamiche di ville e location toscane."
+      ],
+      "en": [
+       "Tuscany is home. Meteora Events is based in Montecatini Terme, a short drive from Florence, Lucca, Pisa and the Versilia coast.",
+       "That proximity is a real advantage: simpler site visits, leaner logistics, and first-hand knowledge of how Tuscan villas and venues work."
+      ]
+     },
+     "sections": [
+      {
+       "h2": {
+        "it": "Ville, casali e giardini",
+        "en": "Villas, farmhouses and gardens"
+       },
+       "body": {
+        "it": [
+         "Molte location toscane sono dimore storiche: pietra antica, pavimenti delicati, giardini curati. Allestiamo e smontiamo con la massima cura di mura, pavimentazioni, arredi e verde, e lasciamo tutto pulito a fine servizio.",
+         "Dietro al banco non vedrete contenitori termici o ceste di bicchieri: ogni rifornimento avviene a vassoio, lontano dagli occhi degli ospiti."
+        ],
+        "en": [
+         "Many Tuscan venues are historic homes: old stone, delicate floors, manicured gardens. We set up and dismantle with the utmost care for walls, flooring, furniture and greenery, and leave everything clean after service.",
+         "You will never see cool boxes or glass racks behind the bar: every restock is carried by tray, away from guests’ eyes."
+        ]
+       }
+      },
+      {
+       "h2": {
+        "it": "Dall’aperitivo in giardino al dopocena",
+        "en": "From garden aperitivo to after-dinner"
+       },
+       "body": {
+        "it": [
+         "Il pacchetto Aperitivo + Open Bar copre un’ora e mezza di aperitivo e tre ore di open bar dopo cena, con un unico team. Se aperitivo e open bar sono nella stessa area, l’aperitivo si integra nel banco; altrimenti viene allestito su tavoli tovagliati.",
+         "Operiamo in autonomia e in coordinamento con il catering, che può chiudere il servizio cena con serenità."
+        ],
+        "en": [
+         "The Aperitivo + Open Bar package covers ninety minutes of aperitivo and three hours of after-dinner open bar, with one team throughout. If both take place in the same area, the aperitivo is integrated into the bar; otherwise it is set up on draped tables.",
+         "We work independently and in step with the caterer, who can close dinner service calmly."
+        ]
+       }
+      },
+      {
+       "h2": {
+        "it": "Firenze, Chianti, Siena, Lucca, Pisa, Forte dei Marmi",
+        "en": "Florence, Chianti, Siena, Lucca, Pisa, Forte dei Marmi"
+       },
+       "body": {
+        "it": [
+         "Da Montecatini Terme raggiungiamo tutte le principali aree del matrimonio in Toscana. Gli eventuali costi di trasferta e logistica vengono definiti in fase di preventivo, in modo trasparente."
+        ],
+        "en": [
+         "From Montecatini Terme we reach every major wedding area in Tuscany. Any travel and logistics costs are agreed transparently at the quoting stage."
+        ]
+       }
+      }
+     ]
+    }
+   },
+   {
+    "id": "florence",
+    "name": {
+     "it": "Firenze",
+     "en": "Florence"
+    },
+    "line": {
+     "it": "Palazzi storici, terrazze sui tetti e ville sulle colline fiorentine.",
+     "en": "Historic palazzi, rooftop terraces and villas on the Florentine hills."
+    }
+   },
+   {
+    "id": "chianti",
+    "name": {
+     "it": "Chianti",
+     "en": "Chianti"
+    },
+    "line": {
+     "it": "Tenute e casali tra le vigne, per ricevimenti all’aperto.",
+     "en": "Wine estates and farmhouses among the vines, for open-air receptions."
+    }
+   },
+   {
+    "id": "siena",
+    "name": {
+     "it": "Siena",
+     "en": "Siena"
+    },
+    "line": {
+     "it": "Borghi medievali e dimore di campagna in Val d’Orcia e dintorni.",
+     "en": "Medieval hamlets and country estates around Siena and the Val d’Orcia."
+    }
+   },
+   {
+    "id": "lucca",
+    "name": {
+     "it": "Lucca",
+     "en": "Lucca"
+    },
+    "line": {
+     "it": "Ville lucchesi e giardini storici, a pochi minuti dalla nostra sede.",
+     "en": "Lucchese villas and historic gardens, minutes from our base."
+    }
+   },
+   {
+    "id": "pisa",
+    "name": {
+     "it": "Pisa",
+     "en": "Pisa"
+    },
+    "line": {
+     "it": "Tra città d’arte, campagna e costa.",
+     "en": "Between art city, countryside and coast."
+    }
+   },
+   {
+    "id": "forte-dei-marmi",
+    "name": {
+     "it": "Forte dei Marmi",
+     "en": "Forte dei Marmi"
+    },
+    "line": {
+     "it": "Eventi sul mare in Versilia, dal tramonto a notte fonda.",
+     "en": "Seaside events on the Versilia coast, from sunset until late."
+    }
+   },
+   {
+    "id": "italy",
+    "name": {
+     "it": "Tutta Italia e all’estero",
+     "en": "All of Italy and abroad"
+    },
+    "line": {
+     "it": "Ci spostiamo in tutta Italia e realizziamo servizi anche fuori regione e all’estero.",
+     "en": "We travel throughout Italy and also deliver services outside the region and abroad."
+    }
+   }
+  ],
+  "landingDestinations": [
+   {
+    "id": "tuscany",
+    "name": {
+     "it": "Toscana",
+     "en": "Tuscany"
+    },
+    "line": {
+     "it": "La nostra base. Ville, borghi e casali dove lavoriamo con la naturalezza di chi è di casa.",
+     "en": "Our home base. Villas, hamlets and farmhouses where we work with the ease of locals."
+    },
+    "landing": {
+     "slug": {
+      "it": "bar-catering-matrimoni-toscana",
+      "en": "wedding-bar-catering-tuscany"
+     },
+     "title": {
+      "it": "Bar Catering per Matrimoni in Toscana | Meteora Events",
+      "en": "Wedding Bar Catering in Tuscany | Meteora Events"
+     },
+     "description": {
+      "it": "Open bar e cocktail experience per matrimoni in Toscana. Banchi scenografici, bartender professionisti e servizio autonomo. Base a Montecatini Terme.",
+      "en": "Open bar and cocktail experience for weddings in Tuscany. Scenographic bars, professional bartenders and fully independent service. Based in Montecatini Terme."
+     },
+     "h1": {
+      "it": "Bar catering per matrimoni in Toscana",
+      "en": "Wedding bar catering in Tuscany"
+     },
+     "intro": {
+      "it": [
+       "La Toscana è casa nostra. La sede di Meteora Events è a Montecatini Terme, a poca distanza da Firenze, Lucca, Pisa e dalla Versilia.",
+       "Questa vicinanza è un vantaggio concreto: sopralluoghi più semplici, logistica più agile, e la conoscenza delle dinamiche di ville e location toscane."
+      ],
+      "en": [
+       "Tuscany is home. Meteora Events is based in Montecatini Terme, a short drive from Florence, Lucca, Pisa and the Versilia coast.",
+       "That proximity is a real advantage: simpler site visits, leaner logistics, and first-hand knowledge of how Tuscan villas and venues work."
+      ]
+     },
+     "sections": [
+      {
+       "h2": {
+        "it": "Ville, casali e giardini",
+        "en": "Villas, farmhouses and gardens"
+       },
+       "body": {
+        "it": [
+         "Molte location toscane sono dimore storiche: pietra antica, pavimenti delicati, giardini curati. Allestiamo e smontiamo con la massima cura di mura, pavimentazioni, arredi e verde, e lasciamo tutto pulito a fine servizio.",
+         "Dietro al banco non vedrete contenitori termici o ceste di bicchieri: ogni rifornimento avviene a vassoio, lontano dagli occhi degli ospiti."
+        ],
+        "en": [
+         "Many Tuscan venues are historic homes: old stone, delicate floors, manicured gardens. We set up and dismantle with the utmost care for walls, flooring, furniture and greenery, and leave everything clean after service.",
+         "You will never see cool boxes or glass racks behind the bar: every restock is carried by tray, away from guests’ eyes."
+        ]
+       }
+      },
+      {
+       "h2": {
+        "it": "Dall’aperitivo in giardino al dopocena",
+        "en": "From garden aperitivo to after-dinner"
+       },
+       "body": {
+        "it": [
+         "Il pacchetto Aperitivo + Open Bar copre un’ora e mezza di aperitivo e tre ore di open bar dopo cena, con un unico team. Se aperitivo e open bar sono nella stessa area, l’aperitivo si integra nel banco; altrimenti viene allestito su tavoli tovagliati.",
+         "Operiamo in autonomia e in coordinamento con il catering, che può chiudere il servizio cena con serenità."
+        ],
+        "en": [
+         "The Aperitivo + Open Bar package covers ninety minutes of aperitivo and three hours of after-dinner open bar, with one team throughout. If both take place in the same area, the aperitivo is integrated into the bar; otherwise it is set up on draped tables.",
+         "We work independently and in step with the caterer, who can close dinner service calmly."
+        ]
+       }
+      },
+      {
+       "h2": {
+        "it": "Firenze, Chianti, Siena, Lucca, Pisa, Forte dei Marmi",
+        "en": "Florence, Chianti, Siena, Lucca, Pisa, Forte dei Marmi"
+       },
+       "body": {
+        "it": [
+         "Da Montecatini Terme raggiungiamo tutte le principali aree del matrimonio in Toscana. Gli eventuali costi di trasferta e logistica vengono definiti in fase di preventivo, in modo trasparente."
+        ],
+        "en": [
+         "From Montecatini Terme we reach every major wedding area in Tuscany. Any travel and logistics costs are agreed transparently at the quoting stage."
+        ]
+       }
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "events": {
+  "events": [
+   {
+    "slug": {
+     "it": "golden-hour-sulle-colline",
+     "en": "golden-hour-in-the-hills"
+    },
+    "draft": true,
+    "title": {
+     "it": "Golden hour sulle colline",
+     "en": "Golden hour in the hills"
+    },
+    "type": {
+     "it": "Ricevimento all’aperto",
+     "en": "Outdoor reception"
+    },
+    "bar": "Golden Mirror",
+    "experience": {
+     "it": "Open Bar",
+     "en": "Open Bar"
+    },
+    "excerpt": {
+     "it": "Un banco oro specchiato che cattura l’ultima luce del giorno.",
+     "en": "A mirrored-gold bar catching the last light of the day."
+    },
+    "story": {
+     "it": [
+      "Una terrazza in cotto, le colline all’orizzonte e il sole che scende dietro la bottigliera.",
+      "Il Golden Mirror riflette il paesaggio e diventa parte della scena: il bar è il punto verso cui gli ospiti si muovono naturalmente al calare della sera."
+     ],
+     "en": [
+      "A terracotta terrace, hills on the horizon and the sun setting behind the back bar.",
+      "The Golden Mirror reflects the landscape and becomes part of the scene: the bar is where guests naturally gather as evening falls."
+     ]
+    },
+    "cover": {
+     "src": "../../data/src/assets/images/bars/golden-mirror-sunset.jpg"
+    },
+    "coverAlt": {
+     "it": "Banco Golden Mirror su terrazza al tramonto",
+     "en": "Golden Mirror bar on a terrace at sunset"
+    },
+    "gallery": [
+     {
+      "src": {
+       "src": "../../data/src/assets/images/bars/golden-mirror.jpg"
+      },
+      "alt": {
+       "it": "Vista frontale del Golden Mirror",
+       "en": "Front view of the Golden Mirror"
+      }
+     }
+    ],
+    "relatedService": "weddings"
+   },
+   {
+    "slug": {
+     "it": "villa-in-pietra-pure-white",
+     "en": "stone-villa-pure-white"
+    },
+    "draft": true,
+    "title": {
+     "it": "Pure White in villa",
+     "en": "Pure White at the villa"
+    },
+    "type": {
+     "it": "Ricevimento in villa",
+     "en": "Villa reception"
+    },
+    "bar": "Pure White",
+    "experience": {
+     "it": "Open Bar",
+     "en": "Open Bar"
+    },
+    "excerpt": {
+     "it": "Bianco a spina di pesce davanti alla pietra antica di una villa.",
+     "en": "Herringbone white against the old stone of a villa."
+    },
+    "story": {
+     "it": [
+      "Il prato, le finestre ad arco, la luce radente del tardo pomeriggio.",
+      "Il Pure White dialoga con l’architettura senza sovrastarla: pulito, luminoso, pronto per il servizio."
+     ],
+     "en": [
+      "The lawn, the arched windows, the low light of late afternoon.",
+      "Pure White converses with the architecture without overpowering it: clean, luminous, ready for service."
+     ]
+    },
+    "cover": {
+     "src": "../../data/src/assets/images/bars/pure-white-villa.jpg"
+    },
+    "coverAlt": {
+     "it": "Banco Pure White nel giardino di una villa in pietra",
+     "en": "Pure White bar in a stone villa garden"
+    },
+    "gallery": [],
+    "relatedService": "destination"
+   },
+   {
+    "slug": {
+     "it": "vista-panoramica-dal-giorno-alla-notte",
+     "en": "panoramic-view-day-to-night"
+    },
+    "draft": true,
+    "title": {
+     "it": "Dal giorno alla notte, sopra la città",
+     "en": "Day to night, above the city"
+    },
+    "type": {
+     "it": "Evento privato",
+     "en": "Private event"
+    },
+    "bar": "Golden Mirror · Pure White",
+    "experience": {
+     "it": "Aperitivo + Open Bar",
+     "en": "Aperitivo + Open Bar"
+    },
+    "excerpt": {
+     "it": "Vetrate panoramiche, rami scenografici e un bar che cambia con la luce.",
+     "en": "Panoramic windows, sculptural branches and a bar that changes with the light."
+    },
+    "story": {
+     "it": [
+      "Di giorno la vista entra dalle vetrate e il bar resta leggero, quasi sospeso.",
+      "Di sera le luci si abbassano, la champagne bowl si accende di riflessi e il banco diventa il centro della festa."
+     ],
+     "en": [
+      "By day the view pours in through the windows and the bar feels light, almost suspended.",
+      "By night the lights dim, the champagne bowl catches every reflection and the bar becomes the heart of the party."
+     ]
+    },
+    "cover": {
+     "src": "../../data/src/assets/images/bars/night-lounge.jpg"
+    },
+    "coverAlt": {
+     "it": "Banco bar serale davanti a vetrate panoramiche",
+     "en": "Evening bar in front of panoramic windows"
+    },
+    "gallery": [
+     {
+      "src": {
+       "src": "../../data/src/assets/images/bars/terrace-panorama.jpg"
+      },
+      "alt": {
+       "it": "Banco bar di giorno davanti a una vetrata panoramica",
+       "en": "Bar by day in front of a panoramic window"
+      }
+     },
+     {
+      "src": {
+       "src": "../../data/src/assets/images/bars/golden-marble-night.jpg"
+      },
+      "alt": {
+       "it": "Banco dorato su pavimento chevron",
+       "en": "Golden bar on a chevron floor"
+      }
+     }
+    ],
+    "relatedService": "weddings"
+   },
+   {
+    "slug": {
+     "it": "gala-silver-reflection",
+     "en": "silver-reflection-gala"
+    },
+    "draft": true,
+    "title": {
+     "it": "Una sala, mille riflessi",
+     "en": "One hall, a thousand reflections"
+    },
+    "type": {
+     "it": "Cena di gala",
+     "en": "Gala dinner"
+    },
+    "bar": "Silver Reflection",
+    "experience": {
+     "it": "Open Bar",
+     "en": "Open Bar"
+    },
+    "excerpt": {
+     "it": "Un grande spazio industriale, tavoli imperiali e un bar al centro della sala.",
+     "en": "A vast industrial space, long tables and a bar at the centre of the room."
+    },
+    "story": {
+     "it": [
+      "In una sala di grandi dimensioni il bar deve essere visibile da ogni tavolo.",
+      "Il Silver Reflection raccoglie le luci della sala e le restituisce: moderno, preciso, perfetto per il linguaggio corporate."
+     ],
+     "en": [
+      "In a room this size, the bar has to be visible from every table.",
+      "Silver Reflection gathers the room’s lighting and gives it back: modern, precise, right for a corporate setting."
+     ]
+    },
+    "cover": {
+     "src": "../../data/src/assets/images/bars/silver-reflection.jpg"
+    },
+    "coverAlt": {
+     "it": "Banco Silver Reflection in una grande sala per cena di gala",
+     "en": "Silver Reflection bar in a large gala hall"
+    },
+    "gallery": [],
+    "relatedService": "corporate"
+   },
+   {
+    "slug": {
+     "it": "signature-tower-moments",
+     "en": "signature-tower-moments"
+    },
+    "draft": true,
+    "title": {
+     "it": "Il momento della tower",
+     "en": "The tower moment"
+    },
+    "type": {
+     "it": "Signature Tower Experience",
+     "en": "Signature Tower Experience"
+    },
+    "experience": {
+     "it": "Sparkling & Espresso Martini Tower",
+     "en": "Sparkling & Espresso Martini Tower"
+    },
+    "excerpt": {
+     "it": "Bollicine a cascata, un brindisi che diventa fotografia.",
+     "en": "Cascading bubbles — a toast that becomes a photograph."
+    },
+    "story": {
+     "it": [
+      "Una piramide di coppe, versata dagli sposi o dal nostro staff, al tramonto o in piena notte.",
+      "Una Sparkling Tower per il brindisi, una Espresso Martini Tower per accendere la festa."
+     ],
+     "en": [
+      "A pyramid of coupes, poured by the couple or by our staff, at sunset or deep into the night.",
+      "A Sparkling Tower for the toast, an Espresso Martini Tower to start the party."
+     ]
+    },
+    "cover": {
+     "src": "../../data/src/assets/images/towers/couple-pour.jpg"
+    },
+    "coverAlt": {
+     "it": "Sposi che versano bollicine sulla tower di coppe",
+     "en": "Couple pouring sparkling wine over a coupe tower"
+    },
+    "gallery": [
+     {
+      "src": {
+       "src": "../../data/src/assets/images/towers/coupe-tower-sunset.jpg"
+      },
+      "alt": {
+       "it": "Tower di coppe al tramonto",
+       "en": "Coupe tower at sunset"
+      }
+     },
+     {
+      "src": {
+       "src": "../../data/src/assets/images/towers/espresso-martini-tower.jpg"
+      },
+      "alt": {
+       "it": "Espresso Martini Tower",
+       "en": "Espresso Martini Tower"
+      }
+     }
+    ],
+    "relatedService": "weddings"
+   }
+  ]
+ },
+ "faq": {
+  "faq": [
+   {
+    "q": {
+     "it": "Come funziona il servizio di open bar?",
+     "en": "How does the open bar service work?"
+    },
+    "a": {
+     "it": "Il nostro team si occupa interamente della gestione dell’open bar per tre ore, in modo professionale e autonomo, coordinandosi con il catering. Portiamo banco bar, bicchieri, prodotti, ghiaccio e staff.",
+     "en": "Our team takes full responsibility for running the open bar for three hours, professionally and autonomously, in coordination with the catering. We bring the bar counter, glassware, products, ice and staff."
+    },
+    "topics": [
+     "wedding",
+     "destination",
+     "general"
+    ]
+   },
+   {
+    "q": {
+     "it": "Cosa è incluso?",
+     "en": "What is included?"
+    },
+    "a": {
+     "it": "Prodotti e distillati del menu scelto, banco bar a scelta, drink list signature con eventuali personalizzazioni, staff professionale, gestione indipendente del servizio, bicchieri e allestimento di nostra proprietà. Tempo extra, staff aggiuntivo e moduli bar extra si possono aggiungere su richiesta.",
+     "en": "Products and spirits from the chosen menu, a bar counter of your choice, our signature drink list with any customisation, professional staff, fully independent service management, and our own glassware and setup. Extra time, additional staff and extra bar modules can be added on request."
+    },
+    "topics": [
+     "wedding",
+     "destination",
+     "general"
+    ]
+   },
+   {
+    "q": {
+     "it": "Fin dove vi spostate?",
+     "en": "How far do you travel?"
+    },
+    "a": {
+     "it": "La nostra sede è a Montecatini Terme, in Toscana. Lavoriamo in tutta Italia e realizziamo servizi anche fuori regione e all’estero. Gli eventuali costi di trasferta e logistica vengono concordati in fase di preventivo.",
+     "en": "We are based in Montecatini Terme, Tuscany. We work throughout Italy and also deliver services outside the region and abroad. Any travel and logistics costs are agreed at the quoting stage."
+    },
+    "topics": [
+     "destination",
+     "general",
+     "partner"
+    ]
+   },
+   {
+    "q": {
+     "it": "Come vi coordinate con il catering?",
+     "en": "How do you coordinate with the caterer?"
+    },
+    "a": {
+     "it": "Siamo completamente indipendenti: non dipendiamo da cucina, personale o attrezzature del catering. Questo permette al catering di chiudere il servizio cena con serenità, caricare il materiale e liberare il proprio staff senza attendere la fine del dopocena.",
+     "en": "We are fully independent: we do not rely on the caterer’s kitchen, staff or equipment. This lets the caterer close dinner service calmly, load out and release their team without waiting for the after-party to end."
+    },
+    "topics": [
+     "wedding",
+     "destination",
+     "partner"
+    ]
+   },
+   {
+    "q": {
+     "it": "Come si sceglie il banco bar?",
+     "en": "How do we choose the bar?"
+    },
+    "a": {
+     "it": "Ogni modello della collezione è disponibile in tre misure — Slim 1,5 m, Medium 3,5 m, Large 5,5 m — e si sceglie in base a stile dell’evento, location e numero di ospiti. Vi consigliamo noi in fase di preventivo.",
+     "en": "Every model in the collection comes in three sizes — Slim 1.5 m, Medium 3.5 m, Large 5.5 m — chosen according to the style of the event, the venue and the guest count. We advise you during the quoting stage."
+    },
+    "topics": [
+     "wedding",
+     "destination",
+     "general"
+    ]
+   },
+   {
+    "q": {
+     "it": "Con quanto anticipo vanno richieste le personalizzazioni?",
+     "en": "How early should customisations be requested?"
+    },
+    "a": {
+     "it": "Tovaglioli e frontali banco personalizzati richiedono 35 giorni di preavviso. Tutte le personalizzazioni vanno concordate in fase di ideazione dell’evento.",
+     "en": "Custom napkins and custom bar fronts require 35 days’ notice. All customisations should be agreed during the event-planning phase."
+    },
+    "topics": [
+     "wedding",
+     "destination"
+    ]
+   },
+   {
+    "q": {
+     "it": "Offrite cocktail analcolici?",
+     "en": "Do you offer alcohol-free cocktails?"
+    },
+    "a": {
+     "it": "Sì. La drink list dell’aperitivo include cocktail analcolici e succhi di frutta, e possiamo studiare alternative analcoliche anche per l’open bar.",
+     "en": "Yes. The aperitivo drink list includes alcohol-free cocktails and fruit juices, and we can design alcohol-free options for the open bar too."
+    },
+    "topics": [
+     "wedding",
+     "destination",
+     "general"
+    ]
+   },
+   {
+    "q": {
+     "it": "Possiamo richiedere etichette o bicchieri specifici?",
+     "en": "Can we request specific brands or glassware?"
+    },
+    "a": {
+     "it": "Sì. Siamo disponibili per richieste di altre etichette, ed è possibile noleggiare bicchieri specifici di qualsiasi linea o marca, compatibilmente con disponibilità e tempi di fornitura.",
+     "en": "Yes. We welcome requests for other brands, and specific glassware of any line or brand can be rented, subject to availability and supply times."
+    },
+    "topics": [
+     "wedding",
+     "destination",
+     "general"
+    ]
+   }
+  ]
+ },
+ "services": {
+  "comparison": {
+   "rows": [
+    {
+     "label": {
+      "it": "Distillati",
+      "en": "Spirits"
+     },
+     "essential": {
+      "it": "Etichette affidabili di grandi case internazionali, scelte per equilibrio e costanza.",
+      "en": "Reliable labels from established international houses, chosen for balance and consistency."
+     },
+     "premium": {
+      "it": "Etichette premium, ad esempio Grey Goose, Belvedere, Hendrick’s, Tanqueray No. Ten, Patrón, Diplomático.",
+      "en": "Premium labels such as Grey Goose, Belvedere, Hendrick’s, Tanqueray No. Ten, Patrón and Diplomático."
+     }
+    },
+    {
+     "label": {
+      "it": "Mixer e soft drink",
+      "en": "Mixers and soft drinks"
+     },
+     "essential": {
+      "it": "Toniche, soda e soft drink in formato professionale da servizio.",
+      "en": "Tonics, soda and soft drinks in professional service formats."
+     },
+     "premium": {
+      "it": "Toniche Fever-Tree, soft drink e acqua San Pellegrino, tutto in vetro.",
+      "en": "Fever-Tree tonics, soft drinks and San Pellegrino water, all in glass."
+     }
+    },
+    {
+     "label": {
+      "it": "Presentazione",
+      "en": "Presentation"
+     },
+     "essential": {
+      "it": "Banco a scelta, bicchieri professionali, frutta fresca e disidratata, botaniche e spezie.",
+      "en": "Bar of your choice, professional glassware, fresh and dehydrated fruit, botanicals and spices."
+     },
+     "premium": {
+      "it": "Tutto l’Essential, con bottiglie in vetro a vista che elevano la presentazione del banco.",
+      "en": "Everything in Essential, with glass bottles on display that elevate the look of the bar."
+     }
+    },
+    {
+     "label": {
+      "it": "Esperienza",
+      "en": "Experience"
+     },
+     "essential": {
+      "it": "Un open bar completo e curato, gestito in piena autonomia.",
+      "en": "A complete, polished open bar, managed with full autonomy."
+     },
+     "premium": {
+      "it": "Per chi desidera che ogni drink parli la lingua delle grandi etichette.",
+      "en": "For hosts who want every drink to speak the language of the great labels."
+     }
+    }
+   ],
+   "note": {
+    "it": "Le etichette possono variare in base alla disponibilità, con referenze equivalenti o superiori, sempre comunicate in anticipo. Siamo disponibili per richieste di altre etichette.",
+    "en": "Labels may vary with availability, replaced by equivalent or superior references and always communicated in advance. Requests for other brands are welcome."
+   }
+  },
+  "services": [
+   {
+    "id": "essential",
+    "name": {
+     "it": "Open Bar — Essential Experience",
+     "en": "Open Bar — Essential Experience"
+    },
+    "kicker": {
+     "it": "Open bar · 3 ore",
+     "en": "Open bar · 3 hours"
+    },
+    "summary": {
+     "it": "Tre ore di open bar gestite interamente dal nostro team, in modo autonomo e coordinato con il catering.",
+     "en": "Three hours of open bar run entirely by our team, independently and in step with the catering."
+    },
+    "includes": {
+     "it": [
+      "Prodotti e distillati inclusi dal menu scelto",
+      "Banco bar a scelta dalla collezione",
+      "Drink list signature, con eventuali personalizzazioni",
+      "Staff professionale",
+      "Gestione del servizio completamente indipendente",
+      "Bicchieri e allestimento bar di nostra proprietà"
+     ],
+     "en": [
+      "All products and spirits from the selected menu",
+      "A bar counter of your choice from the collection",
+      "Our signature drink list, with any requested customisation",
+      "Professional staff",
+      "Fully independent service management",
+      "Our own glassware and bar setup"
+     ]
+    },
+    "image": {
+     "src": "../../data/src/assets/images/bars/pure-white-villa.jpg"
+    },
+    "imageAlt": {
+     "it": "Banco Pure White allestito per un open bar in villa",
+     "en": "Pure White bar set for an open bar at a villa"
+    },
+    "formValue": "open-bar"
+   },
+   {
+    "id": "premium",
+    "name": {
+     "it": "Open Bar — Premium Experience",
+     "en": "Open Bar — Premium Experience"
+    },
+    "kicker": {
+     "it": "Open bar · 3 ore",
+     "en": "Open bar · 3 hours"
+    },
+    "summary": {
+     "it": "La stessa cura del servizio, con una selezione di etichette premium e mixer serviti in vetro.",
+     "en": "The same standard of service, with a premium label selection and mixers served from glass bottles."
+    },
+    "includes": {
+     "it": [
+      "Distillati premium dalla nostra selezione stagionale",
+      "Toniche e soft drink premium in vetro",
+      "Banco bar a scelta dalla collezione",
+      "Drink list signature, con eventuali personalizzazioni",
+      "Staff professionale e bicchieri di nostra proprietà"
+     ],
+     "en": [
+      "Premium spirits from our seasonal selection",
+      "Premium tonics and soft drinks in glass bottles",
+      "A bar counter of your choice from the collection",
+      "Our signature drink list, with any requested customisation",
+      "Professional staff and our own glassware"
+     ]
+    },
+    "image": {
+     "src": "../../data/src/assets/images/bars/golden-mirror-sunset.jpg"
+    },
+    "imageAlt": {
+     "it": "Banco Golden Mirror al tramonto",
+     "en": "Golden Mirror bar at sunset"
+    },
+    "formValue": "open-bar"
+   },
+   {
+    "id": "aperitivo",
+    "name": {
+     "it": "Aperitivo + Open Bar",
+     "en": "Aperitivo + Open Bar"
+    },
+    "kicker": {
+     "it": "1h30 aperitivo + 3h open bar",
+     "en": "1h30 aperitivo + 3h open bar"
+    },
+    "summary": {
+     "it": "Un servizio chiavi in mano, dall’aperitivo all’open bar dopo cena. Se le aree coincidono l’aperitivo si integra nel banco bar; altrimenti viene allestito su tavoli tovagliati.",
+     "en": "A turnkey service, from the aperitivo to the after-dinner open bar. If both happen in the same area the aperitivo is integrated into the bar counter; otherwise it is set up on draped tables."
+    },
+    "includes": {
+     "it": [
+      "Aperol, Campari, Limoncello, Passion Fruit e Hugo Spritz",
+      "Bellini, Mimosa, Prosecco",
+      "Cocktail analcolici e succhi di frutta",
+      "Continuità di servizio e staff dall’aperitivo al dopocena"
+     ],
+     "en": [
+      "Aperol, Campari, Limoncello, Passion Fruit and Hugo Spritz",
+      "Bellini, Mimosa, Prosecco",
+      "Alcohol-free cocktails and fruit juices",
+      "One team and seamless service from aperitivo to after-dinner"
+     ]
+    },
+    "image": {
+     "src": "../../data/src/assets/images/bars/night-lounge.jpg"
+    },
+    "imageAlt": {
+     "it": "Banco bar serale con bottigliera e champagne bowl",
+     "en": "Evening bar with back bar and champagne bowl"
+    },
+    "formValue": "aperitivo-open-bar"
+   },
+   {
+    "id": "tower",
+    "name": {
+     "it": "Signature Tower Experience",
+     "en": "Signature Tower Experience"
+    },
+    "kicker": {
+     "it": "Un momento scenografico",
+     "en": "A scenographic moment"
+    },
+    "summary": {
+     "it": "Coppe o calici disposti a cascata e riempiti dal vivo dal nostro staff o dagli sposi. Per brindisi, taglio torta o apertura della festa.",
+     "en": "Coupes or glasses arranged in a cascade and filled live by our staff or by the couple. For toasts, cake cutting or opening the party."
+    },
+    "includes": {
+     "it": [
+      "Una coppa o un drink a persona",
+      "Ingredienti",
+      "Allestimento e attrezzatura",
+      "Personale qualificato di assistenza"
+     ],
+     "en": [
+      "One coupe or drink per person",
+      "Ingredients",
+      "Setup and equipment",
+      "Qualified assistance staff"
+     ]
+    },
+    "image": {
+     "src": "../../data/src/assets/images/towers/couple-pour.jpg"
+    },
+    "imageAlt": {
+     "it": "Sposi che versano le bollicine su una tower di coppe",
+     "en": "A couple pouring sparkling wine over a coupe tower"
+    },
+    "formValue": "signature-tower"
+   },
+   {
+    "id": "bartender",
+    "name": {
+     "it": "Servizio solo barman",
+     "en": "Bartender-only service"
+    },
+    "kicker": {
+     "it": "Staff e metodo Meteora",
+     "en": "Meteora staff and method"
+    },
+    "summary": {
+     "it": "Per chi dispone già di prodotti e attrezzature — banco, bicchieri, ghiaccio, utensileria — e cerca personale qualificato con il nostro metodo di lavoro.",
+     "en": "For clients who already have products and equipment — bar counter, glassware, ice, tools — and need qualified staff working to our method."
+    },
+    "includes": {
+     "it": [
+      "Preparazione e servizio secondo standard professionali di mixology",
+      "Possibile integrazione con un cameriere",
+      "Ideale per eventi privati, aziendali, di piccole dimensioni e rinfreschi"
+     ],
+     "en": [
+      "Preparation and service to professional mixology standards",
+      "Can be combined with a waiter for order handling",
+      "Designed for private, corporate and smaller events and receptions"
+     ]
+    },
+    "image": {
+     "src": "../../data/src/assets/images/team/bartender-pour.jpg"
+    },
+    "imageAlt": {
+     "it": "Bartender che versa un cocktail in una coppa",
+     "en": "Bartender pouring a cocktail into a coupe"
+    },
+    "formValue": "bartender-service"
+   }
+  ],
+  "towers": [
+   {
+    "group": {
+     "it": "Sparkling Towers",
+     "en": "Sparkling Towers"
+    },
+    "items": [
+     "Classic Celebration Tower — Prosecco",
+     "Italian Elegance Tower — Franciacorta",
+     "Golden Cascade — Champagne"
+    ]
+   },
+   {
+    "group": {
+     "it": "Spritz Towers",
+     "en": "Spritz Towers"
+    },
+    "items": [
+     "Aperol / Campari Spritz Tower",
+     "Hugo Spritz Tower"
+    ]
+   },
+   {
+    "group": {
+     "it": "Espresso Martini Tower",
+     "en": "Espresso Martini Tower"
+    },
+    "items": [
+     "Espresso Martini Tower"
+    ]
+   }
+  ]
+ },
+ "site": {
+  "site": {
+   "name": "Meteora Events",
+   "tagline": "Luxury Open Bar Catering & Hospitality Services",
+   "url": "https://meteoraevents.com",
+   "email": "info@meteoraevents.com",
+   "phoneDisplay": "+39 328 064 2479",
+   "phoneE164": "+393280642479",
+   "whatsapp": "393280642479",
+   "instagram": {
+    "handle": "@meteoraevents",
+    "url": "https://www.instagram.com/meteoraevents/"
+   },
+   "address": {
+    "locality": "Montecatini Terme",
+    "postalCode": "51016",
+    "province": "PT",
+    "region": "Toscana",
+    "regionEn": "Tuscany",
+    "country": "IT"
+   },
+   "yearsExperience": 14,
+   "formEndpoint": "/api/send.php",
+   "analytics": {
+    "ga4": "",
+    "gtm": "",
+    "metaPixel": ""
+   },
+   "legal": {
+    "companyName": "",
+    "vatNumber": "",
+    "registeredOffice": ""
+   }
+  }
+ }
+}

@@ -529,14 +529,6 @@
 					"radius": "0"
 				}
 			},
-			"core/cover": {
-				"spacing": {
-					"padding": {
-						"left": "var(--wp--custom--gutter)",
-						"right": "var(--wp--custom--gutter)"
-					}
-				}
-			},
 			"core/navigation": {
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--micro)",

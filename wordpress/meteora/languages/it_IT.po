@@ -1,0 +1,1917 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Meteora 1.0.0\n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: meteora\n"
+
+msgid "1.5 m"
+msgstr "1,5 m"
+
+msgid "14+ years of operational event experience"
+msgstr "Oltre 14 anni di esperienza operativa negli eventi"
+
+msgid "14<span>+</span>"
+msgstr "14<span>+</span>"
+
+msgid "1h30 aperitivo + 3h open bar"
+msgstr "1h30 aperitivo + 3h open bar"
+
+msgid "3.5 m"
+msgstr "3,5 m"
+
+msgid "35 days’ notice"
+msgstr "35 giorni di preavviso"
+
+msgid "5 × 5 cm cube"
+msgstr "Cubo 5 × 5 cm"
+
+msgid "5.5 m"
+msgstr "5,5 m"
+
+msgid "50 mm sphere"
+msgstr "Sfera 50 mm"
+
+msgid "<span class=\"mt-bar__ideal-label\">Ideal for</span> Corporate events · Chic weddings · Minimalist design setups"
+msgstr "<span class=\"mt-bar__ideal-label\">Ideale per</span> Eventi corporate · Wedding chic · Allestimenti minimal di design"
+
+msgid "<span class=\"mt-bar__ideal-label\">Ideal for</span> Elegant weddings · Minimalist luxury events · Sophisticated settings"
+msgstr "<span class=\"mt-bar__ideal-label\">Ideale per</span> Matrimoni eleganti · Eventi luxury minimal · Ambientazioni sofisticate"
+
+msgid "<span class=\"mt-bar__ideal-label\">Ideal for</span> Garden parties · Modern weddings · Eco-chic events"
+msgstr "<span class=\"mt-bar__ideal-label\">Ideale per</span> Garden party · Matrimoni moderni · Eventi eco-chic"
+
+msgid "<span class=\"mt-bar__ideal-label\">Ideal for</span> Glamorous receptions · Exclusive parties · Settings built for visual impact"
+msgstr "<span class=\"mt-bar__ideal-label\">Ideale per</span> Ricevimenti glamour · Party esclusivi · Contesti ad alto effetto visivo"
+
+msgid "<span class=\"mt-bar__ideal-label\">Ideal for</span> Luxury events · Gala nights · Exclusive parties · Modern minimalist weddings"
+msgstr "<span class=\"mt-bar__ideal-label\">Ideale per</span> Eventi luxury · Serate di gala · Party esclusivi · Matrimoni moderni minimal"
+
+msgid "<span class=\"mt-bar__ideal-label\">Ideal for</span> Outdoor events · Boho-style weddings"
+msgstr "<span class=\"mt-bar__ideal-label\">Ideale per</span> Eventi all’aperto · Matrimoni in stile boho"
+
+msgid "<span>Open Bar</span> Essential <em>Experience</em>"
+msgstr "<span>Open Bar</span> Essential <em>Experience</em>"
+
+msgid "<span>Open Bar</span> Premium <em>Experience</em>"
+msgstr "<span>Open Bar</span> Premium <em>Experience</em>"
+
+msgid "A bar counter of your choice from the collection"
+msgstr "Banco bar a scelta dalla collezione"
+
+msgid "A bar that belongs to the most important day: designed around your style, run independently, made for your guests — and for the photographs."
+msgstr "Un bar che fa parte del giorno più importante: progettato sul vostro stile, gestito in autonomia, pensato per gli ospiti e per le fotografie."
+
+msgid "A bespoke cocktail list takes shape during event planning: we start from your story, the flavours you love or your brand colours, and turn them into drinks."
+msgstr "La cocktail list su misura si costruisce in fase di ideazione dell’evento: partiamo dalla vostra storia, dai sapori che amate o dai colori del brand, e la trasformiamo in drink."
+
+msgid "A bold, contemporary character that makes the bar a scenographic element of great impact."
+msgstr "Un carattere deciso e contemporaneo che fa del bar un elemento scenografico di grande impatto."
+
+msgid "A clean service"
+msgstr "Pulizia di servizio"
+
+msgid "A clean visual service"
+msgstr "Pulizia visiva"
+
+msgid "A clear cube, a sphere, a tall long-drink spear: ice is seen, and it speaks."
+msgstr "Un cubo trasparente, una sfera, un long drink verticale: il ghiaccio si vede, e racconta."
+
+msgid "A cocktail <em>with your name on it.</em>"
+msgstr "Un cocktail <em>con il vostro nome.</em>"
+
+msgid "A complete, balanced drink list, from the great classics to the Italian aperitivo, with variations on request and signatures created for you."
+msgstr "Una drink list completa ed equilibrata, dai grandi classici all’aperitivo italiano, con varianti su richiesta e signature create per voi."
+
+msgid "A complete, balanced selection. The way our service is built lets us prepare further classics and variations on request, depending on the ingredients available on site."
+msgstr "Una selezione completa ed equilibrata. La struttura del nostro servizio permette di preparare altri classici e varianti su richiesta, in base agli ingredienti disponibili."
+
+msgid "A complete, polished open bar, managed with full autonomy."
+msgstr "Un open bar completo e curato, gestito in piena autonomia."
+
+msgid "A couple pouring sparkling wine over a coupe tower"
+msgstr "Sposi che versano le bollicine sulla tower di coppe"
+
+msgctxt "variant 2"
+msgid "A couple pouring sparkling wine over a coupe tower"
+msgstr "Sposi che versano le bollicine su una tower di coppe"
+
+msgid "A drink list created and named after your brand identity."
+msgstr "Una drink list creata e nominata sull’identità del brand."
+
+msgid "A guide for couples"
+msgstr "Guida per le coppie"
+
+msgid "A local partner"
+msgstr "Un partner locale"
+
+msgid "A moment designed <em>to be remembered.</em>"
+msgstr "Un momento pensato <em>per essere ricordato.</em>"
+
+msgid "A party, <em>as you imagine it.</em>"
+msgstr "Una festa, <em>come la immaginate.</em>"
+
+msgid "A reliable beverage partner for productions, agencies and organisers."
+msgstr "Un partner beverage affidabile per produzioni, agenzie e organizzatori."
+
+msgid "A scenographic moment"
+msgstr "Un momento scenografico"
+
+msgid "A supplier who works independently, keeps to the timeline and makes you look good in front of your clients."
+msgstr "Un fornitore che lavora in autonomia, rispetta i tempi e fa bella figura con i vostri clienti."
+
+msgid "A turnkey service, from the aperitivo to the after-dinner open bar. If both happen in the same area the aperitivo is integrated into the bar counter; otherwise it is set up on draped tables."
+msgstr "Un servizio chiavi in mano, dall’aperitivo all’open bar dopo cena. Se le aree coincidono l’aperitivo si integra nel banco bar; altrimenti viene allestito su tavoli tovagliati."
+
+msgid "A visually clean service, no crates in view"
+msgstr "Servizio visivamente pulito, nessuna cassa a vista"
+
+msgid "About"
+msgstr "Chi siamo"
+
+msgid "Access, rectification, erasure, restriction, objection, portability, and the right to lodge a complaint with the Italian Data Protection Authority (Garante), by writing to info@meteoraevents.com."
+msgstr "Accesso, rettifica, cancellazione, limitazione, opposizione, portabilità e reclamo al Garante per la protezione dei dati personali, scrivendo a info@meteoraevents.com."
+
+msgid "Alcohol level: 2/5"
+msgstr "Grado alcolico: 2/5"
+
+msgid "Alcohol level: 3/5"
+msgstr "Grado alcolico: 3/5"
+
+msgid "Alcohol level: 4/5"
+msgstr "Grado alcolico: 4/5"
+
+msgid "Alcohol level: 5/5"
+msgstr "Grado alcolico: 5/5"
+
+msgid "Alcohol-free cocktails and fruit juices"
+msgstr "Cocktail analcolici e succhi di frutta"
+
+msgid "All"
+msgstr "Tutti"
+
+msgid "All events"
+msgstr "Tutti gli eventi"
+
+msgid "All of Italy and abroad"
+msgstr "Tutta Italia e all’estero"
+
+msgid "All products and spirits from the selected menu"
+msgstr "Prodotti e distillati inclusi dal menu scelto"
+
+msgid "All rights reserved."
+msgstr "Tutti i diritti riservati."
+
+msgid "All the reasons"
+msgstr "Tutti i motivi"
+
+msgid "Americano"
+msgstr "Americano"
+
+msgid "Americano Sbagliato"
+msgstr "Americano Sbagliato"
+
+msgid "An integral part of the cocktail."
+msgstr "Parte integrante del cocktail."
+
+msgid "Analytics and marketing cookies (consent only)"
+msgstr "Cookie di analisi e marketing (solo con consenso)"
+
+msgid "Aperitivo"
+msgstr "Aperitivo"
+
+msgid "Aperitivo + Open Bar"
+msgstr "Aperitivo + Open Bar"
+
+msgid "Aperol, Campari, Hugo, Limoncello, Passion Fruit."
+msgstr "Aperol, Campari, Hugo, Limoncello, Passion Fruit."
+
+msgid "Aperol, Campari, Limoncello, Passion Fruit and Hugo Spritz"
+msgstr "Aperol, Campari, Limoncello, Passion Fruit e Hugo Spritz"
+
+msgid "Are you a wedding planner, venue or caterer?"
+msgstr "Siete un wedding planner, una location o un catering?"
+
+msgid "Aromatic profile and alcohol level (1 to 5) for every drink. Presentation, ice and garnish may vary depending on the chosen offer."
+msgstr "Profilo aromatico e grado alcolico (da 1 a 5) di ogni drink. Estetica, ghiaccio e garnish possono variare in base all’offerta scelta."
+
+msgid "Availability of premium formats is confirmed during the event definition phase."
+msgstr "La disponibilità delle tipologie premium viene confermata in fase di definizione dell’evento."
+
+msgid "Available throughout Italy"
+msgstr "Operativi in tutta Italia"
+
+msgid "Back to collection"
+msgstr "Torna alla collezione"
+
+msgid "Back to home"
+msgstr "Torna alla home"
+
+msgid "Balance between citrus, sweetness and structure."
+msgstr "Equilibrio tra agrume, dolcezza e struttura."
+
+msgid "Bar in front of a panoramic window"
+msgstr "Banco bar davanti a una vetrata panoramica"
+
+msgid "Bar of your choice, professional glassware, fresh and dehydrated fruit, botanicals and spices."
+msgstr "Banco a scelta, bicchieri professionali, frutta fresca e disidratata, botaniche e spezie."
+
+msgid "Bar set in front of a panoramic window"
+msgstr "Banco bar davanti a una vetrata panoramica"
+
+msgid "Bar set up in front of a panoramic window"
+msgstr "Banco allestito davanti a una vetrata panoramica"
+
+msgid "Bar, glassware, uniforms and garnish speak the same language as your event."
+msgstr "Banco, bicchieri, divise e garnish parlano lo stesso linguaggio dell’evento."
+
+msgid "Bars"
+msgstr "Banchi bar"
+
+msgid "Bartender at work"
+msgstr "Bartender al lavoro"
+
+msgid "Bartender in a black waistcoat straining a cocktail"
+msgstr "Bartender in gilet nero che filtra un cocktail"
+
+msgid "Bartender in black uniform straining a cocktail"
+msgstr "Bartender in divisa nera che filtra un cocktail"
+
+msgid "Bartender in total black straining a cocktail"
+msgstr "Bartender in total black che filtra un cocktail"
+
+msgid "Bartender pouring a cocktail into a coupe"
+msgstr "Bartender che versa un cocktail in una coppa"
+
+msgid "Bartender pouring a red cocktail into a coupe"
+msgstr "Bartender che versa un cocktail rosso in una coppa"
+
+msgid "Bartender straining a cocktail"
+msgstr "Bartender che filtra un cocktail"
+
+msgid "Bartender-only service"
+msgstr "Servizio solo barman"
+
+msgid "Based in Montecatini Terme — a strategic advantage across Tuscany. We travel throughout Italy."
+msgstr "Sede a Montecatini Terme, punto di forza per i catering in Toscana. Ci muoviamo in tutta Italia."
+
+msgid "Based in Tuscany · Throughout Italy"
+msgstr "Base in Toscana · In tutta Italia"
+
+msgid "Based in Tuscany, available throughout Italy. For couples who choose Italy, we are the bar partner who knows the villas, the timings and the people."
+msgstr "Base in Toscana, disponibili in tutta Italia. Per le coppie che scelgono l’Italia, siamo il partner bar che conosce le ville, i tempi e le persone."
+
+msgid "Based in Tuscany, serving events throughout Italy and abroad."
+msgstr "Base in Toscana, operativi in tutta Italia e all’estero."
+
+msgid "Before <em>you write.</em>"
+msgstr "Prima di <em>scriverci.</em>"
+
+msgid "Behind the bar you will never see cool boxes or glass racks: every restock is carried by tray. In your photographs, only the bar remains."
+msgstr "Dietro al banco non vedrete contenitori termici o ceste di bicchieri: ogni rifornimento avviene a vassoio. Nelle vostre fotografie resterà solo il bar."
+
+msgid "Behind the bar, <em>event after event.</em>"
+msgstr "Dietro al banco, <em>evento dopo evento.</em>"
+
+msgid "Bellini"
+msgstr "Bellini"
+
+msgid "Bellini, Mimosa, Prosecco"
+msgstr "Bellini, Mimosa, Prosecco"
+
+msgid "Bespoke cocktail list"
+msgstr "Cocktail list su misura"
+
+msgid "Bespoke details turn the bar service into an experience that reflects the couple, or the brand."
+msgstr "Dettagli studiati su misura trasformano il servizio bar in un’esperienza coerente con l’identità degli sposi o del brand."
+
+msgid "Between art city, countryside and coast."
+msgstr "Tra città d’arte, campagna e costa."
+
+msgid "Beverage expertise. <em>Flawless execution.</em>"
+msgstr "Esperienza beverage. <em>Esecuzione impeccabile.</em>"
+
+msgid "Birthdays, anniversaries, villa dinners, receptions: a full open bar or simply our bartender, with the same care we bring to large events."
+msgstr "Compleanni, anniversari, cene in villa, ricevimenti: open bar completo o solo il nostro barman, con la stessa cura dei grandi eventi."
+
+msgid "Black Russian"
+msgstr "Black Russian"
+
+msgid "Both formulas include three hours of open bar, a bar of your choice, our signature drink list, professional staff and our own glassware. Extra time, additional staff and extra bar modules on request."
+msgstr "Entrambe le formule includono tre ore di open bar, banco a scelta, drink list signature, staff professionale e bicchieri di nostra proprietà. Tempo extra, staff e moduli bar aggiuntivi su richiesta."
+
+msgid "Brand activations"
+msgstr "Brand activation"
+
+msgid "Brand cocktails"
+msgstr "Cocktail di brand"
+
+msgid "Branded uniforms"
+msgstr "Divise brandizzate"
+
+msgid "Branding"
+msgstr "Branding"
+
+msgid "Caipirinha"
+msgstr "Caipirinha"
+
+msgid "Can be combined with a waiter for order handling"
+msgstr "Possibile integrazione con un cameriere"
+
+msgid "Can we request specific brands or glassware?"
+msgstr "Possiamo richiedere etichette o bicchieri specifici?"
+
+msgid "Care for the venue"
+msgstr "Cura della location"
+
+msgid "Caterers"
+msgstr "Catering"
+
+msgid "Champagne bowl and back bar"
+msgstr "Champagne bowl e bottigliera sul banco"
+
+msgid "Champagne bowl on a golden marble bar"
+msgstr "Champagne bowl su banco in marmo dorato"
+
+msgid "Champagne bowl on the bar"
+msgstr "Champagne bowl sul banco"
+
+msgid "Chianti"
+msgstr "Chianti"
+
+msgid "Chic weddings"
+msgstr "Wedding chic"
+
+msgid "Chilled coupes, clean lines."
+msgstr "Coppe fredde, linee pulite."
+
+msgid "Choose <em>your bar.</em>"
+msgstr "Scegliete <em>il vostro banco.</em>"
+
+msgid "Choosing your bar"
+msgstr "La scelta del banco"
+
+msgid "Citrusy"
+msgstr "Agrumato"
+
+msgid "Citrusy, fruity"
+msgstr "Agrumato, fruttato"
+
+msgid "Citrusy, light"
+msgstr "Agrumato, leggero"
+
+msgid "Classics"
+msgstr "Classici"
+
+msgid "Classics made with method, bespoke signatures."
+msgstr "Classici eseguiti con metodo, signature su misura."
+
+msgid "Clear 5×5 cm ice cube held in a hand"
+msgstr "Cubo di ghiaccio trasparente 5×5 cm in mano"
+
+msgid "Close by"
+msgstr "Vicinanza"
+
+msgid "Close dinner service calmly, load out and release your team: the after-party is ours."
+msgstr "Chiudete la cena con serenità, caricate il materiale e liberate il vostro staff: il dopocena è nostro."
+
+msgid "Cocktail Experience"
+msgstr "Cocktail Experience"
+
+msgid "Cocktail Martini (Dry)"
+msgstr "Cocktail Martini (Dry)"
+
+msgid "Cocktail experience"
+msgstr "Cocktail experience"
+
+msgid "Cocktails"
+msgstr "Cocktail"
+
+msgid "Collection"
+msgstr "Collezione"
+
+msgid "Coming soon"
+msgstr "In arrivo"
+
+msgid "Compact IT / EN switcher. Requires Polylang or WPML."
+msgstr "Selettore IT / EN compatto. Richiede Polylang o WPML."
+
+msgid "Compact cube with a clean look; balance and a constant temperature."
+msgstr "Cubo compatto dalla resa estetica pulita; equilibrio e temperatura costante."
+
+msgid "Company celebrations"
+msgstr "Celebrazioni aziendali"
+
+msgid "Company or event logo on shirts, waistcoats and ties with screen-printed patches. To be agreed well in advance."
+msgstr "Logo dell’azienda o dell’evento su camicia, gilet e cravatta, con patch serigrafate. Da concordare con adeguato anticipo."
+
+msgid "Complete discretion"
+msgstr "Massima discrezione"
+
+msgid "Complete page layouts with real content."
+msgstr "Layout di pagina completi con contenuti reali."
+
+msgid "Complete, independent formulas coordinated with your caterer — or simply our staff and our method. Every proposal is built to measure."
+msgstr "Formule complete e autonome, coordinate con il catering, oppure solo il nostro staff e il nostro metodo. Ogni proposta è costruita su misura."
+
+msgid "Contact"
+msgstr "Contatti"
+
+msgid "Cookie Policy"
+msgstr "Cookie Policy"
+
+msgid "Cookie preferences"
+msgstr "Preferenze cookie"
+
+msgid "Coordination with catering"
+msgstr "Coordinamento con il catering"
+
+msgid "Corporate"
+msgstr "Aziende"
+
+msgid "Corporate & Private"
+msgstr "Aziende & privati"
+
+msgid "Corporate & private events"
+msgstr "Eventi aziendali e privati"
+
+msgid "Corporate events"
+msgstr "Eventi corporate"
+
+msgctxt "variant 2"
+msgid "Corporate events"
+msgstr "Eventi aziendali"
+
+msgid "Cosmopolitan"
+msgstr "Cosmopolitan"
+
+msgid "Coupe tower at sunset"
+msgstr "Tower di coppe al tramonto"
+
+msgid "Coupe tower at sunset beneath blossoming trees"
+msgstr "Tower di coppe al tramonto tra gli alberi in fiore"
+
+msgid "Coupes or glasses arranged in a cascade and filled live by our staff or by the couple. For the toast, the cake cutting or opening the party: an elegant, captivating and highly photogenic moment."
+msgstr "Coppe o calici disposti a cascata, riempiti dal vivo dal nostro staff o dagli sposi. Per il brindisi, il taglio della torta o l’apertura della festa: un effetto elegante, coinvolgente e altamente fotografico."
+
+msgid "Coupes or glasses arranged in a cascade and filled live by our staff or by the couple. For toasts, cake cutting or opening the party."
+msgstr "Coppe o calici disposti a cascata e riempiti dal vivo dal nostro staff o dagli sposi. Per brindisi, taglio torta o apertura della festa."
+
+msgid "Coupes with fresh mint and red berries"
+msgstr "Coppe con menta fresca e frutti rossi"
+
+msgid "Coupes with fresh mint and red berries on the bar"
+msgstr "Coppe con menta fresca e frutti rossi sul banco"
+
+msgid "Coupes with mint and red berries"
+msgstr "Coppe con menta e frutti rossi"
+
+msgid "Couple pouring sparkling wine over the tower"
+msgstr "Sposi che versano bollicine sulla tower"
+
+msgid "Crushed ice falling into a cocktail coupe"
+msgstr "Ghiaccio tritato che cade in una coppa da cocktail"
+
+msgid "Cuba Libre"
+msgstr "Cuba Libre"
+
+msgid "Curated ice"
+msgstr "Ghiaccio selezionato"
+
+msgid "Custom bar front"
+msgstr "Frontale banco personalizzato"
+
+msgid "Custom napkins"
+msgstr "Tovaglioli personalizzati"
+
+msgid "Custom napkins and custom bar fronts require 35 days’ notice. All customisations should be agreed during the event-planning phase."
+msgstr "Tovaglioli e frontali banco personalizzati richiedono 35 giorni di preavviso. Tutte le personalizzazioni vanno concordate in fase di ideazione dell’evento."
+
+msgid "Customisation"
+msgstr "Personalizzazione"
+
+msgctxt "variant 2"
+msgid "Customisation"
+msgstr "Personalizzazioni"
+
+msgid "Customisations are agreed during the event-planning phase."
+msgstr "Le personalizzazioni vanno concordate in fase di ideazione dell’evento."
+
+msgid "Cut-crystal tumblers lined up on the bar"
+msgstr "Bicchieri in cristallo lavorato allineati sul banco"
+
+msgid "Daiquiri"
+msgstr "Daiquiri"
+
+msgid "Data controller"
+msgstr "Titolare del trattamento"
+
+msgid "Data we process"
+msgstr "Dati trattati"
+
+msgid "Data you provide through our contact forms (name, surname, email, phone, event details, company details where relevant) and technical browsing data."
+msgstr "Dati forniti volontariamente tramite i moduli di contatto (nome, cognome, email, telefono, dettagli dell’evento, eventuali dati aziendali) e dati di navigazione tecnici."
+
+msgid "Designed for private, corporate and smaller events and receptions"
+msgstr "Ideale per eventi privati, aziendali, di piccole dimensioni e rinfreschi"
+
+msgid "Designed to be experienced. <em>Designed to be remembered.</em>"
+msgstr "Progettato per essere vissuto. <em>Pensato per essere ricordato.</em>"
+
+msgid "Destination Weddings"
+msgstr "Destination Weddings"
+
+msgid "Destination weddings <em>in Italy.</em>"
+msgstr "Destination wedding <em>in Italia.</em>"
+
+msgid "Destination weddings with Meteora"
+msgstr "Destination wedding con Meteora"
+
+msgid "Details"
+msgstr "Dettagli"
+
+msgid "Dilution"
+msgstr "Diluizione"
+
+msgid "Discover the Tower Experience"
+msgstr "Scopri la Tower Experience"
+
+msgid "Discover the cocktail experience"
+msgstr "Scopri la cocktail experience"
+
+msgid "Discover wedding services"
+msgstr "Scopri i servizi per matrimoni"
+
+msgid "Discreet hospitality"
+msgstr "Ospitalità discreta"
+
+msgid "Discreet staff in total black. No crates in view, restocking by tray, the venue left spotless."
+msgstr "Staff in total black, discreto. Nessuna cassa a vista, rifornimenti a vassoio, location lasciata pulita."
+
+msgid "Discretion"
+msgstr "Discrezione"
+
+msgid "Do you offer alcohol-free cocktails?"
+msgstr "Offrite cocktail analcolici?"
+
+msgid "Draft — final legal text to be supplied by the client"
+msgstr "Bozza — testo legale definitivo da inserire a cura del cliente"
+
+msgid "Drink quality"
+msgstr "Qualità del drink"
+
+msgid "Drinks created and named after the couple’s personality or the brand identity."
+msgstr "Drink creati e nominati sulla personalità degli sposi o sull’identità del brand."
+
+msgid "Drinks created and named after your story or your brand identity."
+msgstr "Drink creati e nominati sulla vostra storia o sull’identità del brand."
+
+msgid "Dry, intense"
+msgstr "Secco, intenso"
+
+msgid "Editorial sections of the Meteora Events site."
+msgstr "Sezioni editoriali del sito Meteora Events."
+
+msgid "Elegant weddings"
+msgstr "Matrimoni eleganti"
+
+msgid "Espresso Martini"
+msgstr "Espresso Martini"
+
+msgid "Espresso Martini Tower"
+msgstr "Espresso Martini Tower"
+
+msgid "Espresso Martini Tower on a black table"
+msgstr "Espresso Martini Tower su tavolo nero"
+
+msgid "Essential <em>and Premium,</em> compared."
+msgstr "Essential <em>e Premium,</em> a confronto."
+
+msgid "Essential <em>or Premium.</em>"
+msgstr "Essential <em>o Premium.</em>"
+
+msgid "Essential Experience"
+msgstr "Essential Experience"
+
+msgid "Essential and Premium Experience compared"
+msgstr "Confronto Essential e Premium Experience"
+
+msgid "Essential and Premium share the same service, staff and care. What changes is the label selection, the mixers and the presentation."
+msgstr "Essential e Premium condividono servizio, staff e cura. Cambiano la selezione delle etichette, i mixer e la presentazione."
+
+msgid "Evening bar"
+msgstr "Banco bar serale"
+
+msgid "Evening bar with back bar and champagne bowl"
+msgstr "Banco bar serale con bottigliera e champagne bowl"
+
+msgid "Event professionals"
+msgstr "Professionisti eventi"
+
+msgid "Events"
+msgstr "Eventi"
+
+msgid "Every bar comes in Slim (1.5 m), Medium (3.5 m) and Large (5.5 m), and can run in continuous extension. Extra bar modules on request."
+msgstr "Ogni banco è disponibile in versione Slim (1,5 m), Medium (3,5 m) e Large (5,5 m), anche in estensione continua. Moduli bar aggiuntivi su richiesta."
+
+msgid "Every cocktail has its own rules. Every cocktail begins with a precise choice."
+msgstr "Ogni cocktail ha le sue regole. Ogni cocktail nasce da una scelta precisa."
+
+msgid "Every event is <em>unique and unrepeatable.</em>"
+msgstr "Ogni evento <em>è unico e irripetibile.</em>"
+
+msgid "Every event is unique and unrepeatable, and what is created remains in the images and in the memories. That is why we aim for excellence, in service and in visual impact."
+msgstr "Ogni evento è unico e irripetibile, e ciò che viene realizzato resta impresso nelle immagini e nei ricordi. Per questo puntiamo all’eccellenza, nel servizio e nell’impatto visivo."
+
+msgid "Every event is unique and unrepeatable. A selection of setups, places and moments."
+msgstr "Ogni evento è unico e irripetibile. Una selezione di allestimenti, luoghi e momenti."
+
+msgid "Every format, <em>the same standard.</em>"
+msgstr "Ogni formato, <em>lo stesso standard.</em>"
+
+msgid "Every model in the collection comes in three sizes — Slim 1.5 m, Medium 3.5 m, Large 5.5 m — chosen according to the style of the event, the venue and the guest count. We advise you during the quoting stage."
+msgstr "Ogni modello della collezione è disponibile in tre misure — Slim 1,5 m, Medium 3,5 m, Large 5,5 m — e si sceglie in base a stile dell’evento, location e numero di ospiti. Vi consigliamo noi in fase di preventivo."
+
+msgid "Every model in three sizes, chosen for your style, venue and guest count."
+msgstr "Ogni modello in tre misure, da scegliere in base a stile, location e numero di ospiti."
+
+msgid "Every moment <em>has its drink.</em>"
+msgstr "Ogni momento <em>ha il suo drink.</em>"
+
+msgid "Every service follows a precise method, from setup to load-out."
+msgstr "Ogni servizio segue un metodo preciso, dall’allestimento allo smontaggio."
+
+msgid "Everything in Essential, with glass bottles on display that elevate the look of the bar."
+msgstr "Tutto l’Essential, con bottiglie in vetro a vista che elevano la presentazione del banco."
+
+msgid "Exclusive parties"
+msgstr "Party esclusivi"
+
+msgid "Experience"
+msgstr "Esperienza"
+
+msgid "Explore"
+msgstr "Esplora"
+
+msgid "Explore the collection"
+msgstr "Esplora la collezione"
+
+msgid "Explore the experience"
+msgstr "Scopri l'esperienza"
+
+msgid "Exposed-grain wood creates an authentic country-chic atmosphere."
+msgstr "Il legno a venatura naturale crea un’atmosfera country-chic autentica."
+
+msgid "Fever-Tree tonics, soft drinks and San Pellegrino water, all in glass."
+msgstr "Toniche Fever-Tree, soft drink e acqua San Pellegrino, tutto in vetro."
+
+msgid "Florence"
+msgstr "Firenze"
+
+msgid "Florence, Chianti, Siena, Lucca, Pisa, Forte dei Marmi"
+msgstr "Firenze, Chianti, Siena, Lucca, Pisa, Forte dei Marmi"
+
+msgid "For clients who already have products and equipment — bar counter, glassware, ice, tools — and need qualified staff working to our method."
+msgstr "Per chi dispone già di prodotti e attrezzature — banco, bicchieri, ghiaccio, utensileria — e cerca personale qualificato con il nostro metodo di lavoro."
+
+msgid "For companies"
+msgstr "Per le aziende"
+
+msgid "For corporate events: logo on shirt, waistcoat and tie with screen-printed patches."
+msgstr "Per eventi aziendali: logo su camicia, gilet e cravatta con patch serigrafate."
+
+msgid "For couples who travel from around the world to marry in Italy, we are your Italian bar partner: cocktails, service and scenography, with the peace of mind of a local team."
+msgstr "Per le coppie che arrivano da tutto il mondo per sposarsi in Italia, siamo il partner bar italiano: cocktail, servizio e scenografia, con la tranquillità di un team locale."
+
+msgid "For hosts who want every drink to speak the language of the great labels."
+msgstr "Per chi desidera che ogni drink parli la lingua delle grandi etichette."
+
+msgid "For planners, venues and caterers"
+msgstr "Per wedding planner, location e catering"
+
+msgid "Formats"
+msgstr "Formati"
+
+msgid "Forte dei Marmi"
+msgstr "Forte dei Marmi"
+
+msgid "Four words, <em>every time.</em>"
+msgstr "Quattro parole, <em>ogni volta.</em>"
+
+msgid "French 75"
+msgstr "French 75"
+
+msgid "Frequently <em>asked.</em>"
+msgstr "Domande <em>frequenti.</em>"
+
+msgid "Fresh, balanced"
+msgstr "Fresco, bilanciato"
+
+msgid "Fresh, citrusy"
+msgstr "Fresco, agrumato"
+
+msgid "Fresh, citrusy, minty"
+msgstr "Fresco, agrumato, mentolato"
+
+msgid "Fresh, dry, thirst-quenching"
+msgstr "Fresco, secco, dissetante"
+
+msgid "Fresh, intense"
+msgstr "Fresco, intenso"
+
+msgid "Fresh, lively, made for the party."
+msgstr "Freschi, dinamici, da festa."
+
+msgid "Fresh, luminous, contemporary. The light-green finish adds an elegant botanical touch."
+msgstr "Fresco, luminoso, contemporaneo. La finitura verde chiaro aggiunge un tocco botanico ed elegante."
+
+msgid "Fresh, spiced"
+msgstr "Fresco, speziato"
+
+msgid "Fresh, sweet"
+msgstr "Fresco, dolce"
+
+msgid "Fresh, thirst-quenching"
+msgstr "Fresco, dissetante"
+
+msgid "From Montecatini Terme we reach every major wedding area in Tuscany. Any travel and logistics costs are agreed transparently at the quoting stage."
+msgstr "Da Montecatini Terme raggiungiamo tutte le principali aree del matrimonio in Toscana. Gli eventuali costi di trasferta e logistica vengono definiti in fase di preventivo, in modo trasparente."
+
+msgid "From a product launch to a private villa party: the bar becomes a meeting point and part of your visual identity."
+msgstr "Dal lancio di prodotto alla festa privata in villa: il bar diventa un punto di incontro e un elemento dell’identità visiva."
+
+msgid "From afar, <em>in good hands.</em>"
+msgstr "Da lontano, <em>in buone mani.</em>"
+
+msgid "From aperitivo <em>to the last drink.</em>"
+msgstr "Dall’aperitivo <em>all’ultimo drink.</em>"
+
+msgid "From garden aperitivo to after-dinner"
+msgstr "Dall’aperitivo in giardino al dopocena"
+
+msgid "From the garden aperitivo to the last toast after dinner, the bar accompanies every moment of the day — and stays in the photographs."
+msgstr "Dall’aperitivo in giardino all’ultimo brindisi dopo cena, il bar accompagna ogni momento della giornata — e resta nelle fotografie."
+
+msgid "Front view of the Golden Mirror bar with a full back bar and glassware ready"
+msgstr "Dettaglio frontale del banco Golden Mirror con bottigliera completa e vetri pronti"
+
+msgid "Fruit engraving"
+msgstr "Incisione su frutta"
+
+msgid "Fruit, botanicals, garnish."
+msgstr "Frutta, botaniche, garnish."
+
+msgid "Fruity, light"
+msgstr "Fruttato, leggero"
+
+msgid "Fruity, sweet"
+msgstr "Fruttato, dolce"
+
+msgid "Fully independent service management"
+msgstr "Gestione del servizio completamente indipendente"
+
+msgid "Gala dinners"
+msgstr "Cene di gala"
+
+msgid "Garibaldi"
+msgstr "Garibaldi"
+
+msgid "Getting married in Italy? <em>Write to us.</em>"
+msgstr "Vi sposate in Italia? <em>Scriveteci.</em>"
+
+msgid "Gin Fizz"
+msgstr "Gin Fizz"
+
+msgid "Gin Tonic · Lemon · Soda"
+msgstr "Gin Tonic · Lemon · Soda"
+
+msgid "Glamorous receptions"
+msgstr "Ricevimenti glamour"
+
+msgid "Glassware"
+msgstr "Bicchieri"
+
+msgctxt "variant 2"
+msgid "Glassware"
+msgstr "I bicchieri"
+
+msgid "Glossy white with a herringbone pattern creates movement and depth while keeping a clean, contemporary look."
+msgstr "Il bianco lucido con disegno a spina di pesce crea movimento e profondità, con un’estetica pulita e contemporanea."
+
+msgid "Golden Mirror bar"
+msgstr "Banco Golden Mirror"
+
+msgid "Golden Mirror bar at sunset"
+msgstr "Banco Golden Mirror al tramonto"
+
+msgid "Golden Mirror bar at sunset on a terrace overlooking the hills"
+msgstr "Banco bar Golden Mirror al tramonto su una terrazza affacciata sulle colline"
+
+msgid "Golden Mirror bar on a terrace overlooking the hills"
+msgstr "Banco Golden Mirror su terrazza con vista sulle colline"
+
+msgid "Golden Mirror, Silver Reflection and Pure White, each in three sizes (1.5 m, 3.5 m, 5.5 m). We help you choose based on your venue, style and guest count."
+msgstr "Golden Mirror, Silver Reflection e Pure White, ciascuno in tre misure (1,5 m, 3,5 m, 5,5 m). Vi aiutiamo a scegliere in base a location, stile e numero di ospiti."
+
+msgid "Golden bar at night"
+msgstr "Banco dorato di sera"
+
+msgid "Golden bar lit up at night"
+msgstr "Banco dorato illuminato di sera"
+
+msgid "Golden bar on a chevron floor"
+msgstr "Banco bar dorato su pavimento chevron"
+
+msgctxt "variant 2"
+msgid "Golden bar on a chevron floor"
+msgstr "Banco dorato su pavimento chevron"
+
+msgid "Great attention to the aesthetic and visual side of every setup."
+msgstr "Grande attenzione all’aspetto estetico e visivo dell’allestimento."
+
+msgid "Guest count, length of the party, spaces for aperitivo and after-dinner, the venue’s setup times, preferred labels and alcohol-free options. The more you share, the more precise our proposal."
+msgstr "Numero di ospiti, durata della festa, spazi per aperitivo e dopocena, orari di montaggio della location, preferenze di etichette e bevande analcoliche. Più informazioni ci date, più precisa sarà la proposta."
+
+msgid "Guests who approach the bar during service will never see cool boxes, storage crates or glass racks. Every restock of supplies, ice and glassware is carried discreetly by tray."
+msgstr "Chi si avvicina al banco durante il servizio non vedrà contenitori termici, casse o ceste di bicchieri. Ogni rifornimento di scorte, ghiaccio e bicchieri avviene a vassoio, con discrezione."
+
+msgid "Hello Meteora Events, I would like to request information about a bar catering service for my event."
+msgstr "Buongiorno Meteora Events, vorrei ricevere informazioni su un servizio di bar catering per il mio evento."
+
+msgid "High-density compact cube"
+msgstr "Cubo compatto ad alta densità"
+
+msgid "Highball tumbler"
+msgstr "Cortina"
+
+msgid "Highballs, tonics, Mojito"
+msgstr "Highball, tonic, Mojito"
+
+msgid "Historic palazzi, rooftop terraces and villas on the Florentine hills."
+msgstr "Palazzi storici, terrazze sui tetti e ville sulle colline fiorentine."
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Hoshizaki ice"
+msgstr "Ghiaccio Hoshizaki"
+
+msgid "Hospitality"
+msgstr "Ospitalità"
+
+msgid "Hosting and email provider and, only if enabled with consent, analytics providers. [To be completed.]"
+msgstr "Fornitore di hosting ed email e, solo se attivati con consenso, fornitori di servizi di analisi. [Da completare.]"
+
+msgid "How bar catering works"
+msgstr "Come funziona il bar catering"
+
+msgid "How do we choose the bar?"
+msgstr "Come si sceglie il banco bar?"
+
+msgid "How do you coordinate with the caterer?"
+msgstr "Come vi coordinate con il catering?"
+
+msgid "How does the open bar service work?"
+msgstr "Come funziona il servizio di open bar?"
+
+msgid "How early should customisations be requested?"
+msgstr "Con quanto anticipo vanno richieste le personalizzazioni?"
+
+msgid "How far do you travel?"
+msgstr "Fin dove vi spostate?"
+
+msgid "How we work"
+msgstr "Come lavoriamo"
+
+msgid "How we work with partners"
+msgstr "Come lavoriamo con i partner"
+
+msgid "Hygienically impeccable. <em>Visually refined.</em>"
+msgstr "Igienicamente impeccabile. <em>Visivamente raffinato.</em>"
+
+msgid "IT / EN — activate Polylang or WPML"
+msgstr "IT / EN — attiva Polylang o WPML"
+
+msgid "Ice"
+msgstr "Ghiaccio"
+
+msgid "Ice cube pressed with initials"
+msgstr "Cubo di ghiaccio con iniziali impresse"
+
+msgid "Ice cube pressed with initials beside a brass stamp"
+msgstr "Cubo di ghiaccio con iniziali impresse e stampo in ottone"
+
+msgid "Ice does not only chill: it brings the drink to the right temperature and holds it there."
+msgstr "Il ghiaccio non serve solo a raffreddare: porta il drink alla temperatura giusta e ce lo tiene."
+
+msgid "Ice engraving"
+msgstr "Incisione su ghiaccio"
+
+msgid "Ice is <em>part of the cocktail.</em>"
+msgstr "Il ghiaccio è <em>parte del cocktail.</em>"
+
+msgid "Ideal for"
+msgstr "Ideale per"
+
+msgid "If configured, Google Analytics 4 / Google Tag Manager and possibly Meta Pixel are loaded only after your explicit consent. [Detailed list to be completed.]"
+msgstr "Se configurati dal titolare, Google Analytics 4 / Google Tag Manager ed eventualmente Meta Pixel vengono caricati solo dopo il consenso esplicito. [Elenco dettagliato da completare.]"
+
+msgid "Independent from setup to load-out."
+msgstr "Autonomi dall’allestimento allo smontaggio."
+
+msgid "Independent operation"
+msgstr "Servizio indipendente"
+
+msgid "Independent service, restocking by tray, nothing out of place at the bar."
+msgstr "Servizio autonomo, rifornimenti a vassoio, nessun elemento fuori posto al banco."
+
+msgid "Ingredients"
+msgstr "Ingredienti"
+
+msgid "Initials pressed into ice. The stamp is yours to keep."
+msgstr "Iniziali impresse sul ghiaccio. Lo stampo resta a voi, come ricordo."
+
+msgid "Intense, dry"
+msgstr "Intenso, secco"
+
+msgid "Intense, smooth"
+msgstr "Intenso, morbido"
+
+msgid "Intense, structured"
+msgstr "Intenso, strutturato"
+
+msgid "Italian aperitivo"
+msgstr "Aperitivo italiano"
+
+msgid "Italy-wide service"
+msgstr "In tutta Italia"
+
+msgid "Its mirrored gold surface reflects light and atmosphere, turning the bar into the focal point of the event."
+msgstr "La superficie oro specchiato riflette luci e atmosfera e trasforma il bar nel punto focale dell’evento."
+
+msgid "Labels may vary with availability, replaced by equivalent or superior references and always communicated in advance. Requests for other brands are welcome."
+msgstr "Le etichette possono variare in base alla disponibilità, con referenze equivalenti o superiori, sempre comunicate in anticipo. Siamo disponibili per richieste di altre etichette."
+
+msgid "Lacquered black, pure and sophisticated."
+msgstr "Nero laccato, puro e sofisticato."
+
+msgid "Language"
+msgstr "Lingua"
+
+msgid "Language switcher (IT / EN)"
+msgstr "Selettore lingua (IT / EN)"
+
+msgid "Let’s talk about <em>your event.</em>"
+msgstr "Parliamo <em>del vostro evento.</em>"
+
+msgid "Let’s talk details"
+msgstr "Parliamo dei dettagli"
+
+msgid "Light, bitter"
+msgstr "Leggero, amaro"
+
+msgid "Logistics"
+msgstr "Logistica"
+
+msgid "Logistics and travel"
+msgstr "Logistica e distanze"
+
+msgid "Logo or names pressed into large ice cubes. At the end of the event the stamp is yours to keep."
+msgstr "Logo o nomi impressi sul cubone di ghiaccio. A fine evento lo stampo vi viene regalato come ricordo."
+
+msgid "Long Island Iced Tea"
+msgstr "Long Island Iced Tea"
+
+msgid "Long banquet table set in a frescoed hall"
+msgstr "Tavolo imperiale apparecchiato in un salone affrescato"
+
+msgid "Long drink"
+msgstr "Long drink"
+
+msgid "Long drink cube 4 × 4 × 12 cm"
+msgstr "Cubo long drink 4 × 4 × 12 cm"
+
+msgid "Long table in a frescoed hall"
+msgstr "Tavolo imperiale in un salone affrescato"
+
+msgid "Long table set in a frescoed hall"
+msgstr "Tavolo imperiale in un salone affrescato"
+
+msgid "Lucca"
+msgstr "Lucca"
+
+msgid "Lucchese villas and historic gardens, minutes from our base."
+msgstr "Ville lucchesi e giardini storici, a pochi minuti dalla nostra sede."
+
+msgid "Luminous elegance, refined texture."
+msgstr "Eleganza luminosa, texture raffinata."
+
+msgid "Luxury Open Bar Catering & Hospitality Services"
+msgstr "Luxury Open Bar Catering & Hospitality Services"
+
+msgid "Luxury Open Bar Catering <em>&amp; Hospitality Services</em>"
+msgstr "Luxury Open Bar Catering <em>&amp; Hospitality Services</em>"
+
+msgid "Main navigation"
+msgstr "Navigazione principale"
+
+msgid "Make it <em>yours.</em>"
+msgstr "Rendetelo <em>vostro.</em>"
+
+msgid "Managing your preferences"
+msgstr "Gestire le preferenze"
+
+msgid "Manhattan"
+msgstr "Manhattan"
+
+msgid "Many Tuscan venues are historic homes: old stone, delicate floors, manicured gardens. We set up and dismantle with the utmost care for walls, flooring, furniture and greenery, and leave everything clean after service."
+msgstr "Molte location toscane sono dimore storiche: pietra antica, pavimenti delicati, giardini curati. Allestiamo e smontiamo con la massima cura di mura, pavimentazioni, arredi e verde, e lasciamo tutto pulito a fine servizio."
+
+msgid "Margarita / Tommy’s"
+msgstr "Margarita / Tommy’s"
+
+msgid "Marrying in Italy from abroad?"
+msgstr "Vi sposate in Italia dall’estero?"
+
+msgid "Martini"
+msgstr "Martini"
+
+msgid "Martini coupe"
+msgstr "Coppa Martini"
+
+msgid "Martinis, sours, drinks served up"
+msgstr "Martini, sour, cocktail serviti up"
+
+msgid "Medieval hamlets and country estates around Siena and the Val d’Orcia."
+msgstr "Borghi medievali e dimore di campagna in Val d’Orcia e dintorni."
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Meteora Events is the partner specialised in managing beverage services for high-level events. We grew out of more than 14 years of operational experience in events."
+msgstr "Meteora Events è il partner specializzato nella gestione del servizio beverage per eventi di alto livello. Nasciamo da oltre 14 anni di esperienza operativa negli eventi."
+
+msgid "Meteora Events on Instagram — Champagne bowl"
+msgstr "Meteora Events su Instagram — Champagne bowl"
+
+msgid "Meteora Events on Instagram — Coupe tower"
+msgstr "Meteora Events su Instagram — Coupe tower"
+
+msgid "Meteora Events on Instagram — Espresso Martini Tower"
+msgstr "Meteora Events su Instagram — Espresso Martini Tower"
+
+msgid "Meteora Events on Instagram — Golden Mirror"
+msgstr "Meteora Events su Instagram — Golden Mirror"
+
+msgid "Meteora Events on Instagram — Mint & berries"
+msgstr "Meteora Events su Instagram — Mint & berries"
+
+msgid "Meteora Events on Instagram — Night bar"
+msgstr "Meteora Events su Instagram — Night bar"
+
+msgid "Meteora Experience"
+msgstr "Meteora Experience"
+
+msgid "Meteora staff and method"
+msgstr "Staff e metodo Meteora"
+
+msgid "Meteora — Forms"
+msgstr "Meteora — Moduli"
+
+msgid "Meteora — Full pages"
+msgstr "Meteora — Pagine complete"
+
+msgid "Meteora — Sections"
+msgstr "Meteora — Sezioni"
+
+msgid "Method"
+msgstr "Metodo"
+
+msgid "Mimosa"
+msgstr "Mimosa"
+
+msgid "Minimal melting surface and a distinctive look in the glass."
+msgstr "Superficie di scioglimento ridotta e impatto estetico distintivo nel bicchiere."
+
+msgid "Minimalist design setups"
+msgstr "Allestimenti minimal di design"
+
+msgid "Minimalist luxury events"
+msgstr "Eventi luxury minimal"
+
+msgid "Mirrored silver brings contemporary elegance and makes the most of the ambient lighting."
+msgstr "L’argento specchiato dona un’eleganza contemporanea e valorizza l’illuminazione dell’ambiente."
+
+msgid "Mixers and soft drinks"
+msgstr "Mixer e soft drink"
+
+msgid "Modern, brilliant, sophisticated."
+msgstr "Moderno, brillante, sofisticato."
+
+msgid "Modular, professional, scenographic bars, chosen to match the character of your event. A collection that keeps growing."
+msgstr "Banchi bar modulari, professionali e scenografici, scelti in base al carattere dell’evento. Una collezione in continuo ampliamento."
+
+msgid "Modular, scenographic bars, each in three sizes — Slim 1.5 m, Medium 3.5 m, Large 5.5 m. A collection that keeps growing."
+msgstr "Banchi modulari e scenografici, ciascuno in tre misure — Slim 1,5 m, Medium 3,5 m, Large 5,5 m. Una collezione in continuo ampliamento."
+
+msgid "Mojito"
+msgstr "Mojito"
+
+msgid "Montecatini Terme (PT), Tuscany — serving all of Italy"
+msgstr "Montecatini Terme (PT), Toscana — operativi in tutta Italia"
+
+msgid "More"
+msgstr "Altro"
+
+msgid "More events"
+msgstr "Altri eventi"
+
+msgid "More from the collection"
+msgstr "Altri banchi della collezione"
+
+msgid "More than 14 years of operational experience in events: weddings, corporate and private."
+msgstr "Oltre 14 anni di esperienza operativa nel settore eventi: matrimoni, corporate ed eventi privati."
+
+msgid "Moscow Mule"
+msgstr "Moscow Mule"
+
+msgid "Names or logo etched on decorative fruit. A detail that surprises."
+msgstr "Nomi o logo incisi sulla frutta decorativa. Un dettaglio che sorprende."
+
+msgid "Names or logo on the counter: the bar becomes a branded focal point."
+msgstr "Nomi o logo sul banco: il bar diventa elemento scenografico e punto focale."
+
+msgid "Napkins and a bar front with your names (35 days’ notice), engraved fruit and ice, a cocktail list created around you. All agreed during the planning phase."
+msgstr "Tovaglioli e frontale banco con i vostri nomi (35 giorni di preavviso), incisioni su frutta e ghiaccio, cocktail list creata su di voi. Si definiscono in fase di ideazione dell’evento."
+
+msgid "Napkins and bar front with your names, initials pressed into ice, cocktails named after you."
+msgstr "Tovaglioli e frontale banco con i vostri nomi, iniziali impresse sul ghiaccio, cocktail che portano il vostro nome."
+
+msgid "Natural freshness."
+msgstr "Freschezza naturale."
+
+msgid "Negroni"
+msgstr "Negroni"
+
+msgid "Neutral, thirst-quenching"
+msgstr "Neutro, dissetante"
+
+msgid "No cool boxes, storage crates or glass racks in view. All restocking is done discreetly, by tray."
+msgstr "Al banco nessun contenitore termico, cassa o cesta di bicchieri a vista. Ogni rifornimento avviene a vassoio, con discrezione."
+
+msgid "Not just <em>an open bar.</em>"
+msgstr "Non è solo <em>un open bar.</em>"
+
+msgid "Nothing here yet. New event stories are on their way."
+msgstr "Ancora niente qui. Nuove storie di eventi sono in arrivo."
+
+msgid "Nugget ice"
+msgstr "Ghiaccio nugget"
+
+msgid "Old Fashioned"
+msgstr "Old Fashioned"
+
+msgid "On request, specific glassware of any line or brand can be rented, subject to availability and supply times."
+msgstr "Su richiesta è possibile noleggiare bicchieri specifici di qualsiasi linea o marca, compatibilmente con disponibilità e tempi di fornitura."
+
+msgid "On request: extra time, additional bartenders and waiters, extra bar modules. At peak moments, support staff keep service fast and fluid. Services can also be delivered outside the region and abroad; any logistics costs are defined in the quote."
+msgstr "Su richiesta: tempo extra, bartender e camerieri aggiuntivi, moduli bar extra. Nei momenti di maggiore affluenza il personale di supporto rende il servizio più rapido e fluido. Servizi realizzabili anche fuori regione e all’estero; eventuali costi di logistica si definiscono nel preventivo."
+
+msgid "One coupe or drink per person"
+msgstr "Una coppa o un drink a persona"
+
+msgid "One goal: <em>a flawless event.</em>"
+msgstr "Un solo obiettivo: <em>la buona riuscita dell’evento.</em>"
+
+msgid "One less thing <em>to worry about.</em>"
+msgstr "Un pensiero <em>in meno.</em>"
+
+msgid "One less thing to worry about"
+msgstr "Un pensiero in meno"
+
+msgid "One team and seamless service from aperitivo to after-dinner"
+msgstr "Continuità di servizio e staff dall’aperitivo al dopocena"
+
+msgid "Open Bar — Essential Experience"
+msgstr "Open Bar — Essential Experience"
+
+msgid "Open Bar — Premium Experience"
+msgstr "Open Bar — Premium Experience"
+
+msgid "Open bar"
+msgstr "Open bar"
+
+msgid "Open bar · 3 hours"
+msgstr "Open bar · 3 ore"
+
+msgid "Organised logistics"
+msgstr "Logistica organizzata"
+
+msgid "Our base is in Montecatini Terme. From here we reach Tuscany’s great wedding destinations, travel throughout Italy and also deliver services abroad."
+msgstr "La nostra sede è a Montecatini Terme. Da qui raggiungiamo le grandi destinazioni del matrimonio in Toscana, ci spostiamo in tutta Italia e realizziamo servizi anche all’estero."
+
+msgid "Our cocktail list"
+msgstr "La nostra cocktail list"
+
+msgid "Our glassware"
+msgstr "I nostri bicchieri"
+
+msgid "Our home base. Villas, hamlets and farmhouses where we work with the ease of locals."
+msgstr "La nostra base. Ville, borghi e casali dove lavoriamo con la naturalezza di chi è di casa."
+
+msgid "Our method"
+msgstr "Il nostro metodo"
+
+msgid "Our own equipment and glassware"
+msgstr "Attrezzatura e bicchieri propri"
+
+msgid "Our own glassware and bar setup"
+msgstr "Bicchieri e allestimento bar di nostra proprietà"
+
+msgid "Our price list for planners, venues and professionals is not public. Fill in the form and we will send you our dedicated terms and rates."
+msgstr "Il listino riservato a planner, location e professionisti non è pubblico. Compilate il modulo: vi invieremo condizioni e tariffe dedicate."
+
+msgid "Our signature drink list, with any requested customisation"
+msgstr "Drink list signature, con eventuali personalizzazioni"
+
+msgid "Our standard uniform is total black: no showy logos, nothing to distract. When you need it, we brand it with your identity."
+msgstr "La divisa standard è total black: nessun logo vistoso, nessun elemento che distragga. Quando serve, la personalizziamo con il vostro brand."
+
+msgid "Our story"
+msgstr "La nostra storia"
+
+msgid "Our team takes full responsibility for running the open bar for three hours, professionally and autonomously, in coordination with the catering. We bring the bar counter, glassware, products, ice and staff."
+msgstr "Il nostro team si occupa interamente della gestione dell’open bar per tre ore, in modo professionale e autonomo, coordinandosi con il catering. Portiamo banco bar, bicchieri, prodotti, ghiaccio e staff."
+
+msgid "Page not found. <em>Let’s get you back to the bar.</em>"
+msgstr "Pagina non trovata. <em>Torniamo al bar.</em>"
+
+msgid "Paloma"
+msgstr "Paloma"
+
+msgid "Partner area"
+msgstr "Area partner"
+
+msgid "Partners"
+msgstr "Partner"
+
+msgid "Personal touches"
+msgstr "Personalizzazioni"
+
+msgid "Picture the bar <em>at your event.</em>"
+msgstr "Immaginate il bar <em>al vostro evento.</em>"
+
+msgid "Pisa"
+msgstr "Pisa"
+
+msgid "Piña Colada"
+msgstr "Piña Colada"
+
+msgid "Planners & venues"
+msgstr "Wedding planner & location"
+
+msgid "Planning a wedding in another country means trusting the people on the ground. We work independently alongside your wedding planner, venue and caterer, and we reply in English and Italian."
+msgstr "Organizzare un matrimonio in un altro Paese significa affidarsi. Lavoriamo in autonomia accanto al vostro wedding planner, alla location e al catering, e rispondiamo in italiano e in inglese."
+
+msgid "Pornstar Martini"
+msgstr "Pornstar Martini"
+
+msgid "Precision"
+msgstr "Precisione"
+
+msgid "Premium Experience"
+msgstr "Premium Experience"
+
+msgid "Premium bar catering for weddings, destination weddings, corporate and private events. Based in Tuscany, throughout Italy."
+msgstr "Bar catering premium per matrimoni, destination wedding, eventi aziendali e privati. Base in Toscana, in tutta Italia."
+
+msgid "Premium labels such as Grey Goose, Belvedere, Hendrick’s, Tanqueray No. Ten, Patrón and Diplomático."
+msgstr "Etichette premium, ad esempio Grey Goose, Belvedere, Hendrick’s, Tanqueray No. Ten, Patrón, Diplomático."
+
+msgid "Premium spirits from our seasonal selection"
+msgstr "Distillati premium dalla nostra selezione stagionale"
+
+msgid "Premium tonics and soft drinks in glass bottles"
+msgstr "Toniche e soft drink premium in vetro"
+
+msgid "Preparation and service to professional mixology standards"
+msgstr "Preparazione e servizio secondo standard professionali di mixology"
+
+msgid "Presentation"
+msgstr "Presentazione"
+
+msgid "Primary"
+msgstr "Principale"
+
+msgid "Privacy Policy"
+msgstr "Privacy Policy"
+
+msgid "Private events"
+msgstr "Eventi privati"
+
+msgid "Private parties"
+msgstr "Feste private"
+
+msgid "Product launches"
+msgstr "Lanci prodotto"
+
+msgid "Products and spirits from the chosen menu, a bar counter of your choice, our signature drink list with any customisation, professional staff, fully independent service management, and our own glassware and setup. Extra time, additional staff and extra bar modules can be added on request."
+msgstr "Prodotti e distillati del menu scelto, banco bar a scelta, drink list signature con eventuali personalizzazioni, staff professionale, gestione indipendente del servizio, bicchieri e allestimento di nostra proprietà. Tempo extra, staff aggiuntivo e moduli bar extra si possono aggiungere su richiesta."
+
+msgid "Products and spirits from the chosen menu, a bar from the collection, our signature drink list with any customisation, professional staff, and our own glassware and setup. Extra time, additional staff and extra bar modules can be added on request."
+msgstr "Prodotti e distillati del menu scelto, banco a scelta dalla collezione, drink list signature con personalizzazioni, staff professionale, bicchieri e allestimento di nostra proprietà. Tempo extra, staff e moduli bar aggiuntivi si aggiungono su richiesta."
+
+msgid "Professional and reliable. Total black, no showy logos."
+msgstr "Professionali, affidabili, seri. Total black, nessun logo vistoso."
+
+msgid "Professional glassware"
+msgstr "Bicchieri professionali"
+
+msgid "Professional staff"
+msgstr "Staff professionale"
+
+msgid "Professional staff and our own glassware"
+msgstr "Staff professionale e bicchieri di nostra proprietà"
+
+msgid "Professional, discreet staff"
+msgstr "Staff professionale e discreto"
+
+msgid "Professionalism and discretion, with every guest."
+msgstr "Professionalità e discrezione, con ogni ospite."
+
+msgid "Professionalism, customisation and discretion for corporate events, launches, activations and private parties."
+msgstr "Professionalità, personalizzazione e discrezione per eventi aziendali, lanci, activation e feste private."
+
+msgid "Protecting the image and reputation of our partners <em>is one of our highest priorities.</em>"
+msgstr "Proteggere l’immagine dei nostri collaboratori <em>è una delle nostre priorità.</em>"
+
+msgid "Pure White bar at a villa"
+msgstr "Banco Pure White in villa"
+
+msgid "Pure White bar at a villa at sunset"
+msgstr "Banco Pure White in villa al tramonto"
+
+msgid "Pure White bar in a garden, nothing out of place"
+msgstr "Banco Pure White in giardino, senza nulla a vista"
+
+msgid "Pure White bar in a stone villa garden at sunset"
+msgstr "Banco Pure White nel giardino di una villa in pietra al tramonto"
+
+msgid "Pure White bar in the garden of a stone villa"
+msgstr "Banco Pure White nel giardino di una villa in pietra"
+
+msgid "Pure White bar in the garden of a stone villa at sunset"
+msgstr "Banco bar Pure White nel giardino di una villa in pietra al tramonto"
+
+msgid "Pure White bar set for an open bar at a villa"
+msgstr "Banco Pure White allestito per un open bar in villa"
+
+msgid "Purposes and legal basis"
+msgstr "Finalità e base giuridica"
+
+msgid "Qualified assistance staff"
+msgstr "Personale qualificato di assistenza"
+
+msgid "Qualified bartenders"
+msgstr "Bartender qualificati"
+
+msgid "Read the story"
+msgstr "Leggi la storia"
+
+msgid "Recipients"
+msgstr "Destinatari"
+
+msgid "Reliability"
+msgstr "Affidabilità"
+
+msgid "Reliable labels from established international houses, chosen for balance and consistency."
+msgstr "Etichette affidabili di grandi case internazionali, scelte per equilibrio e costanza."
+
+msgid "Reliable, independent operation"
+msgstr "Operatività indipendente e affidabile"
+
+msgid "Replying to information and quote requests (pre-contractual measures, Art. 6.1.b GDPR). Website usage statistics only with your consent (Art. 6.1.a GDPR)."
+msgstr "Rispondere alle richieste di informazioni e preventivo (misure precontrattuali, art. 6.1.b GDPR). Statistiche di utilizzo del sito solo previo consenso (art. 6.1.a GDPR)."
+
+msgid "Request <em>partner pricing.</em>"
+msgstr "Richiedete il <em>listino partner.</em>"
+
+msgid "Request <em>your quote.</em>"
+msgstr "Richiedete <em>il vostro preventivo.</em>"
+
+msgid "Request a corporate quote"
+msgstr "Richiedi un preventivo aziendale"
+
+msgid "Request a quote"
+msgstr "Richiedi un preventivo"
+
+msgid "Request partner pricing"
+msgstr "Richiedi listino partner"
+
+msgid "Request received"
+msgstr "Richiesta ricevuta"
+
+msgid "Respect for venues"
+msgstr "Rispetto delle location"
+
+msgid "Respect for villas and venues"
+msgstr "Rispetto per ville e location"
+
+msgid "Retention"
+msgstr "Conservazione"
+
+msgid "Rossini"
+msgstr "Rossini"
+
+msgid "Scenic impact, strong character."
+msgstr "Impatto scenico, carattere deciso."
+
+msgid "Scenographic bars"
+msgstr "Banchi scenografici"
+
+msgid "Scenographic, modular, in three sizes."
+msgstr "Scenografico, modulare, in tre misure."
+
+msgid "Screwdriver"
+msgstr "Screwdriver"
+
+msgid "Search"
+msgstr "Cerca"
+
+msgid "Search the site"
+msgstr "Cerca nel sito"
+
+msgid "Seaside events on the Versilia coast, from sunset until late."
+msgstr "Eventi sul mare in Versilia, dal tramonto a notte fonda."
+
+msgid "See our events"
+msgstr "Guarda gli eventi"
+
+msgid "Service"
+msgstr "Servizio"
+
+msgid "Services"
+msgstr "Servizi"
+
+msgid "Settings built for visual impact"
+msgstr "Contesti ad alto effetto visivo"
+
+msgid "Setup and equipment"
+msgstr "Allestimento e attrezzatura"
+
+msgid "Shape, thickness, opening and capacity are chosen for each cocktail: to manage temperature and dilution and to showcase its aromas. Professional HoReCa-grade glass, with lines that match the style of the setup."
+msgstr "Forma, spessore, apertura e capacità si scelgono in base al cocktail: per gestire la temperatura, la diluizione e valorizzare la componente aromatica. Vetro professionale, di livello HoReCa, con linee coerenti con lo stile dell’allestimento."
+
+msgid "Short, refreshing serves"
+msgstr "Drink corti e rinfrescanti"
+
+msgid "Shot glass"
+msgstr "Shot"
+
+msgid "Shots and tastings"
+msgstr "Shot e degustazioni"
+
+msgid "Siena"
+msgstr "Siena"
+
+msgid "Signature Tower Experience"
+msgstr "Signature Tower Experience"
+
+msgid "Signature moments"
+msgstr "Momenti signature"
+
+msgid "Signatures"
+msgstr "Signature"
+
+msgid "Silver Reflection bar"
+msgstr "Banco Silver Reflection"
+
+msgid "Silver Reflection bar in a large hall"
+msgstr "Banco Silver Reflection in una grande sala"
+
+msgid "Silver Reflection bar in a large hall for an evening event"
+msgstr "Banco Silver Reflection in una grande sala per evento serale"
+
+msgid "Silver Reflection bar in a large hall set for a gala dinner"
+msgstr "Banco bar Silver Reflection in una grande sala allestita per una cena di gala"
+
+msgid "Six characters, <em>three sizes.</em>"
+msgstr "Sei caratteri, <em>tre misure.</em>"
+
+msgid "Sizes"
+msgstr "Misure"
+
+msgid "Slow melting, controlled dilution in long drinks and structured cocktails."
+msgstr "Scioglimento lento, controllo della diluizione in long drink e cocktail strutturati."
+
+msgid "Small text files the site stores on your device to work or to gather information about how it is used."
+msgstr "Piccoli file di testo che il sito salva sul dispositivo per funzionare o per raccogliere informazioni sull’utilizzo."
+
+msgid "Soft texture, pleasant to sip — for fresh, lively cocktails."
+msgstr "Texture morbida e piacevole al sorso, per cocktail freschi e dinamici."
+
+msgid "Soft, bitter"
+msgstr "Morbido, amaro"
+
+msgid "Sophisticated settings"
+msgstr "Ambientazioni sofisticate"
+
+msgid "Sour"
+msgstr "Sour"
+
+msgid "Sparkling Towers"
+msgstr "Sparkling Towers"
+
+msgid "Spirit-forward drinks over large ice"
+msgstr "Spirit-forward su ghiaccio grande"
+
+msgid "Spirits"
+msgstr "Distillati"
+
+msgid "Spritz"
+msgstr "Spritz"
+
+msgid "Spritz Towers"
+msgstr "Spritz Towers"
+
+msgid "Spritz, Bellini, Mimosa, Prosecco and alcohol-free cocktails while you are busy with photographs. Integrated into the bar or served from draped tables."
+msgstr "Spritz, Bellini, Mimosa, Prosecco e cocktail analcolici, mentre gli sposi sono impegnati con le foto. Integrato nel banco o su tavoli tovagliati."
+
+msgid "Spritz, sparkling, wine"
+msgstr "Spritz, bollicine, vino"
+
+msgid "Staff"
+msgstr "Staff"
+
+msgid "Staff trained to respect guests’ privacy, including high-profile guests."
+msgstr "Staff formato a non invadere la privacy degli ospiti, anche di quelli più noti."
+
+msgid "Steel shaker and bar tools"
+msgstr "Shaker e strumenti da bar in acciaio"
+
+msgid "Support for the catering team"
+msgstr "Supporto al catering"
+
+msgid "Sweet, tropical"
+msgstr "Dolce, tropicale"
+
+msgid "Taste, aesthetic garnish and rigorous temperature control."
+msgstr "Qualità gustativa, estetica nelle decorazioni, controllo rigoroso delle temperature."
+
+msgid "Technical cookies (always active)"
+msgstr "Cookie tecnici (sempre attivi)"
+
+msgid "Tell us about <em>your day.</em>"
+msgstr "Raccontateci <em>il vostro giorno.</em>"
+
+msgid "Tell us about your event and we will reply with a proposal built around it. The more you share, the more precise it will be."
+msgstr "Raccontateci il vostro evento: vi risponderemo con una proposta costruita su misura. Più dettagli ci date, più precisa sarà."
+
+msgid "Tell us the date, the place and the guests. We will reply with a tailored proposal."
+msgstr "Raccontateci data, luogo e ospiti. Vi risponderemo con una proposta su misura."
+
+msgid "Tell us the date, the place and the number of guests: we will reply with a tailored proposal."
+msgstr "Raccontateci data, luogo e numero di ospiti: vi risponderemo con una proposta su misura."
+
+msgid "Temperature"
+msgstr "Temperatura"
+
+msgid "Texture"
+msgstr "Texture"
+
+msgid "Thank you. <em>Your event is in good hands.</em>"
+msgstr "Grazie. <em>Il vostro evento è in buone mani.</em>"
+
+msgid "That proximity is a real advantage: simpler site visits, leaner logistics, and first-hand knowledge of how Tuscan villas and venues work."
+msgstr "Questa vicinanza è un vantaggio concreto: sopralluoghi più semplici, logistica più agile, e la conoscenza delle dinamiche di ville e location toscane."
+
+msgid "The Aperitivo + Open Bar package covers ninety minutes of aperitivo and three hours of after-dinner open bar, with one team throughout. If both take place in the same area, the aperitivo is integrated into the bar; otherwise it is set up on draped tables."
+msgstr "Il pacchetto Aperitivo + Open Bar copre un’ora e mezza di aperitivo e tre ore di open bar dopo cena, con un unico team. Se aperitivo e open bar sono nella stessa area, l’aperitivo si integra nel banco; altrimenti viene allestito su tavoli tovagliati."
+
+msgid "The Bar Collection"
+msgstr "I nostri banchi"
+
+msgid "The Italian ritual, from Negroni to Bellini."
+msgstr "Il rito italiano, dal Negroni al Bellini."
+
+msgid "The bar"
+msgstr "Il banco"
+
+msgid "The bar <em>collection.</em>"
+msgstr "La collezione <em>dei banchi.</em>"
+
+msgid "The bar <em>for your venue.</em>"
+msgstr "Il banco <em>per la vostra location.</em>"
+
+msgid "The bar becomes <em>part of the event.</em>"
+msgstr "Il bar diventa <em>parte dell’evento.</em>"
+
+msgid "The bar, <em>as scenography.</em>"
+msgstr "Il bar, <em>come scenografia.</em>"
+
+msgid "The bars"
+msgstr "I banchi"
+
+msgid "The caterer can close dinner service calmly, load out and release their staff without waiting for the after-party to end."
+msgstr "Il catering può chiudere la cena con serenità, caricare il materiale e liberare lo staff senza attendere la fine del dopocena."
+
+msgid "The classics, <em>made with method.</em>"
+msgstr "I classici, <em>fatti con metodo.</em>"
+
+msgid "The collection"
+msgstr "La collezione"
+
+msgid "The couple pour sparkling wine over a coupe tower"
+msgstr "Gli sposi versano bollicine su una tower di coppe"
+
+msgid "The details <em>that set us apart.</em>"
+msgstr "I dettagli <em>che ci distinguono.</em>"
+
+msgid "The drink list"
+msgstr "La drink list"
+
+msgid "The great recipes, executed with method."
+msgstr "Le grandi ricette di sempre, eseguite con metodo."
+
+msgid "The ice"
+msgstr "Il ghiaccio"
+
+msgid "The ice we use"
+msgstr "Il nostro ghiaccio"
+
+msgid "The next one <em>could be yours.</em>"
+msgstr "Il prossimo <em>potrebbe essere il vostro.</em>"
+
+msgid "The page you are looking for does not exist or has moved."
+msgstr "La pagina che cercate non esiste o è stata spostata."
+
+msgid "The right glass <em>for the right cocktail.</em>"
+msgstr "Il bicchiere giusto <em>per il cocktail giusto.</em>"
+
+msgid "The right glass for every drink."
+msgstr "Il vetro giusto per ogni drink."
+
+msgid "The same standard of service, with a premium label selection and mixers served from glass bottles."
+msgstr "La stessa cura del servizio, con una selezione di etichette premium e mixer serviti in vetro."
+
+msgid "The site stores your cookie preferences in the browser (localStorage, key meteora_consent). No consent is required."
+msgstr "Il sito salva nel browser (localStorage, chiave meteora_consent) le preferenze sui cookie. Non richiede consenso."
+
+msgid "The smaller the ice, the faster it chills. The larger and denser, the more dilution is controlled over time."
+msgstr "Più è piccolo, più raffredda in fretta. Più è grande e compatto, più la diluizione è controllata nel tempo."
+
+msgid "The toast, the cake cutting, the start of the party: a cascading Tower turns a gesture into a scene."
+msgstr "Il brindisi, il taglio della torta, l’apertura della festa: una Tower a cascata trasforma un gesto in scenografia."
+
+msgid "Three hours after dinner, with our signature drink list, the classics and variations on request."
+msgstr "Tre ore dopo cena, con la nostra drink list signature, i classici e le varianti su richiesta."
+
+msgid "Three hours of open bar run entirely by our team, independently and in step with the catering."
+msgstr "Tre ore di open bar gestite interamente dal nostro team, in modo autonomo e coordinato con il catering."
+
+msgid "Through the day"
+msgstr "Durante la giornata"
+
+msgid "Tonics, soda and soft drinks in professional service formats."
+msgstr "Toniche, soda e soft drink in formato professionale da servizio."
+
+msgid "Too much ice flattens a cocktail; too little makes it aggressive."
+msgstr "Troppo ghiaccio appiattisce un cocktail, troppo poco lo rende aggressivo."
+
+msgid "Total black, discreet, professional."
+msgstr "Total black, discreto, professionale."
+
+msgid "Towers"
+msgstr "Tower"
+
+msgid "Tropical"
+msgstr "Tropical"
+
+msgid "Tuscany"
+msgstr "Toscana"
+
+msgid "Tuscany is home. <em>Italy is our range.</em>"
+msgstr "La Toscana è casa. <em>L’Italia è il nostro raggio.</em>"
+
+msgid "Tuscany is home. Meteora Events is based in Montecatini Terme, a short drive from Florence, Lucca, Pisa and the Versilia coast."
+msgstr "La Toscana è casa nostra. La sede di Meteora Events è a Montecatini Terme, a poca distanza da Firenze, Lucca, Pisa e dalla Versilia."
+
+msgid "Tuscany · Italy"
+msgstr "Toscana · Italia"
+
+msgid "Two experiences, <em>one standard.</em>"
+msgstr "Due esperienze, <em>uno stesso standard.</em>"
+
+msgid "Utmost care for walls, floors, furniture and gardens during setup and after service. We leave everything clean."
+msgstr "Massima cura di mura, pavimenti, arredi e verde, in allestimento e a fine servizio. Lasciamo tutto pulito."
+
+msgid "Utmost care for walls, floors, furniture and gardens. We leave everything clean after service."
+msgstr "Massima cura di mura, pavimenti, arredi e verde. Lasciamo tutto pulito a fine servizio."
+
+msgid "Venues"
+msgstr "Location"
+
+msgid "Vertical format for highballs and premium long drinks; slows dilution."
+msgstr "Formato verticale per highball e long drink premium; rallenta la diluizione."
+
+msgid "Very slow melting, for Negroni, Old Fashioned and spirit-forward cocktails."
+msgstr "Scioglimento molto lento, per Negroni, Old Fashioned e cocktail spirit-forward."
+
+msgid "Villas, farmhouses and gardens"
+msgstr "Ville, casali e giardini"
+
+msgid "Visible <em>professionalism.</em> Invisible <em>discretion.</em>"
+msgstr "Professionalità <em>visibile.</em> Discrezione <em>invisibile.</em>"
+
+msgid "Visual consistency"
+msgstr "Coerenza visiva"
+
+msgid "Visual culture"
+msgstr "Cultura visiva"
+
+msgid "Vodka Tonic · Lemon · Soda"
+msgstr "Vodka Tonic · Lemon · Soda"
+
+msgid "Warm, natural, cosy."
+msgstr "Caldo, naturale, accogliente."
+
+msgid "We are based in Montecatini Terme, Tuscany. We work throughout Italy and also deliver services outside the region and abroad. Any travel and logistics costs are agreed at the quoting stage."
+msgstr "La nostra sede è a Montecatini Terme, in Toscana. Lavoriamo in tutta Italia e realizziamo servizi anche fuori regione e all’estero. Gli eventuali costi di trasferta e logistica vengono concordati in fase di preventivo."
+
+msgid "We are based in Montecatini Terme, in the heart of Tuscany. We work throughout Italy and abroad; any travel and logistics costs are agreed transparently in your quote."
+msgstr "Siamo a Montecatini Terme, nel cuore della Toscana. Lavoriamo in tutta Italia e anche all’estero; gli eventuali costi di trasferta e logistica sono concordati in modo trasparente nel preventivo."
+
+msgid "We are fully independent: we do not rely on the caterer’s kitchen, staff or equipment. This lets the caterer close dinner service calmly, load out and release their team without waiting for the after-party to end."
+msgstr "Siamo completamente indipendenti: non dipendiamo da cucina, personale o attrezzature del catering. Questo permette al catering di chiudere il servizio cena con serenità, caricare il materiale e liberare il proprio staff senza attendere la fine del dopocena."
+
+msgid "We are fully independent: we do not use the caterer’s kitchen, staff or equipment. Your caterer can close dinner service calmly while we carry the party forward."
+msgstr "Siamo completamente indipendenti: non usiamo cucina, staff o attrezzature del catering. Il catering può chiudere la cena con serenità mentre noi portiamo avanti la festa."
+
+msgid "We bring professionalism, method and scenographic experience, with great attention to the aesthetic and visual side of the setup. We know the dynamics of weddings, corporate and private events inside out, because we have lived them for years."
+msgstr "Portiamo professionalità, metodo ed esperienza scenografica, con grande attenzione all’aspetto estetico e visivo dell’allestimento. Conosciamo a fondo le dinamiche di matrimoni, eventi corporate e privati, perché le viviamo da anni dall’interno."
+
+msgid "We bring the bar, glassware, products, ice and staff. We set up, serve and dismantle completely independently, without weighing on the caterer or the venue."
+msgstr "Portiamo banco, bicchieri, prodotti, ghiaccio e staff. Allestiamo, serviamo e smontiamo in completa autonomia, senza pesare sul catering o sulla location."
+
+msgid "We create bar services and cocktail experiences for private clients, companies and event professionals, from our base in Montecatini Terme, Tuscany."
+msgstr "Realizziamo servizi bar e cocktail experience per privati, aziende e professionisti del settore, dalla nostra sede di Montecatini Terme, in Toscana."
+
+msgid "We design and run the entire beverage experience of your event: from the bar to the ice, from glassware to staff, from setup to the last drink. You think about your guests."
+msgstr "Progettiamo e gestiamo l’intera esperienza beverage dell’evento: dal banco al ghiaccio, dai bicchieri allo staff, dall’allestimento all’ultimo drink. Voi pensate agli ospiti."
+
+msgid "We don’t simply offer <em>a bar service.</em>"
+msgstr "Non offriamo semplicemente <em>un servizio bar.</em>"
+
+msgid "We fit into the wedding timeline, in step with your planner, venue and caterer."
+msgstr "Ci integriamo nel programma del matrimonio, coordinandoci con planner, location e catering."
+
+msgid "We know Italian villas, farmhouses and historic homes: we admire them and respect them, during setup and at the end of the night."
+msgstr "Conosciamo ville, casali e dimore storiche: le ammiriamo e le rispettiamo, in allestimento e a fine serata."
+
+msgid "We operate completely independently, in harmony with every other supplier."
+msgstr "Operiamo in completa autonomia, in armonia con gli altri fornitori."
+
+msgid "We recommend the model and size for your venue, style and guest count."
+msgstr "Vi consigliamo modello e misura in base a location, stile e numero di ospiti."
+
+msgid "We take care of the entire bar service: we design the drink list, bring the bar counter, glassware, products and ice, and run the service with our own staff. Our standard open bar lasts three hours; the Aperitivo + Open Bar package adds ninety minutes of aperitivo before dinner."
+msgstr "Ci occupiamo dell’intera gestione del servizio bar: progettiamo la drink list, portiamo banco, bicchieri, prodotti e ghiaccio, e gestiamo il servizio con il nostro staff. L’open bar standard dura tre ore; il pacchetto Aperitivo + Open Bar aggiunge un’ora e mezza di aperitivo."
+
+msgid "We travel throughout Italy and also deliver services outside the region and abroad."
+msgstr "Ci spostiamo in tutta Italia e realizziamo servizi anche fuori regione e all’estero."
+
+msgid "We will reply as soon as possible with a tailored proposal."
+msgstr "Vi risponderemo al più presto con una proposta su misura."
+
+msgid "We work alongside planners, venues and caterers with our own equipment, glassware and staff. Independent, clean, discreet — anywhere in Italy."
+msgstr "Lavoriamo al fianco di planner, location e catering con attrezzatura, bicchieri e staff propri. Autonomi, puliti, discreti — ovunque in Italia."
+
+msgid "We work alongside wedding planners, venues, caterers and event professionals. Your event stays yours: we take care of the bar, quietly and precisely."
+msgstr "Lavoriamo al fianco di wedding planner, location, catering e professionisti degli eventi. Il vostro evento resta vostro: noi ci occupiamo del bar, in silenzio e con precisione."
+
+msgid "We work independently and in step with the caterer, who can close dinner service calmly."
+msgstr "Operiamo in autonomia e in coordinamento con il catering, che può chiudere il servizio cena con serenità."
+
+msgid "Wedding bar catering in Tuscany"
+msgstr "Bar catering per matrimoni in Toscana"
+
+msgid "Wedding planners"
+msgstr "Wedding planner"
+
+msgid "Wedding planners · Venues · Caterers"
+msgstr "Wedding planner · Location · Catering"
+
+msgid "Wedding services"
+msgstr "Servizi per matrimoni"
+
+msgid "Weddings"
+msgstr "Matrimoni"
+
+msgid "Weddings · Destination weddings · Corporate · Private"
+msgstr "Matrimoni · Destination wedding · Aziende · Privati"
+
+msgid "What <em>you don’t see</em> makes the difference."
+msgstr "Ciò che <em>non si vede</em> fa la differenza."
+
+msgid "What cookies are"
+msgstr "Cosa sono i cookie"
+
+msgid "What is included"
+msgstr "Cosa è incluso"
+
+msgid "What is included?"
+msgstr "Cosa è incluso?"
+
+msgid "What to consider"
+msgstr "Cosa considerare"
+
+msgid "What we create <em>stays in the images.</em>"
+msgstr "Ciò che realizziamo <em>resta nelle immagini.</em>"
+
+msgid "What we create remains in the images, and in the memories."
+msgstr "Ciò che realizziamo resta impresso nelle immagini e nei ricordi."
+
+msgid "Where cocktails <em>become part of the event.</em>"
+msgstr "Dove il cocktail <em>diventa parte dell’evento.</em>"
+
+msgid "Where we work"
+msgstr "Dove lavoriamo"
+
+msgid "Which bar <em>for your event?</em>"
+msgstr "Quale banco <em>per il vostro evento?</em>"
+
+msgid "Whiskey · Vodka · Gin · Tequila Sour"
+msgstr "Whiskey · Vodka · Gin · Tequila Sour"
+
+msgid "Who we work with"
+msgstr "Con chi lavoriamo"
+
+msgid "Why Meteora"
+msgstr "Perché Meteora"
+
+msgid "Why partners choose us"
+msgstr "Perché i partner ci scelgono"
+
+msgid "Wine estates and farmhouses among the vines, for open-air receptions."
+msgstr "Tenute e casali tra le vigne, per ricevimenti all’aperto."
+
+msgid "Wine glass"
+msgstr "Calice"
+
+msgid "With every guest, including high-profile ones. Protecting our partners’ reputation is a priority."
+msgstr "Con ogni ospite, anche con personaggi noti. Proteggere l’immagine dei nostri collaboratori è una priorità."
+
+msgid "With the couple’s names or a company logo."
+msgstr "Con i nomi degli sposi o il logo aziendale."
+
+msgid "Working with your caterer"
+msgstr "Il coordinamento con il catering"
+
+msgid "Would you like a different tower? Just ask. Available alongside the bar service, or on its own on request."
+msgstr "Desiderate un altro tipo di tower? Chiedetecelo. Disponibile in abbinamento al servizio bar, o come servizio a sé su richiesta."
+
+msgid "Write to us"
+msgstr "Scriveteci"
+
+msgid "Yes. The aperitivo drink list includes alcohol-free cocktails and fruit juices, and we can design alcohol-free options for the open bar too."
+msgstr "Sì. La drink list dell’aperitivo include cocktail analcolici e succhi di frutta, e possiamo studiare alternative analcoliche anche per l’open bar."
+
+msgid "Yes. We welcome requests for other brands, and specific glassware of any line or brand can be rented, subject to availability and supply times."
+msgstr "Sì. Siamo disponibili per richieste di altre etichette, ed è possibile noleggiare bicchieri specifici di qualsiasi linea o marca, compatibilmente con disponibilità e tempi di fornitura."
+
+msgid "You can change your choices at any time from the “Cookie preferences” link in the footer."
+msgstr "Puoi modificare le tue scelte in qualsiasi momento dal link “Preferenze cookie” nel footer."
+
+msgid "You don’t hire us to serve drinks. <em>You hire us because the bar becomes part of the event.</em>"
+msgstr "Non vi affidate a noi per servire drink. <em>Vi affidate a noi perché il bar diventi parte dell’evento.</em>"
+
+msgid "You will never see cool boxes or glass racks behind the bar: every restock is carried by tray, away from guests’ eyes."
+msgstr "Dietro al banco non vedrete contenitori termici o ceste di bicchieri: ogni rifornimento avviene a vassoio, lontano dagli occhi degli ospiti."
+
+msgid "Your brand, <em>served with style.</em>"
+msgstr "Il vostro brand, <em>servito con stile.</em>"
+
+msgid "Your logo on the bar front, custom napkins, your logo pressed into ice."
+msgstr "Frontale banco con il vostro logo, tovaglioli personalizzati, logo impresso sul ghiaccio."
+
+msgid "Your rights"
+msgstr "Diritti dell’interessato"
+
+msgid "Your trusted <em>bar catering</em> partner."
+msgstr "Il vostro partner <em>di fiducia</em> per il bar."
+
+msgid "Your wedding bar in Italy, <em>step by step.</em>"
+msgstr "Il bar al vostro matrimonio in Italia, <em>passo per passo.</em>"
+
+msgid "Your wedding. <em>Your bar experience.</em>"
+msgstr "Il vostro matrimonio. <em>La vostra bar experience.</em>"
+
+msgid "[COMPANY NAME — to be supplied], Montecatini Terme (PT), Italy. Email: info@meteoraevents.com."
+msgstr "[RAGIONE SOCIALE — da inserire], Montecatini Terme (PT). Email: info@meteoraevents.com."
+
+msgid "[To be defined by the data controller.]"
+msgstr "[Da definire a cura del titolare.]"
+
