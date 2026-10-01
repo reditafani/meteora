@@ -1,0 +1,190 @@
+---
+import type { Alternates, Lang } from '@/i18n/routes';
+import { url } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import { site } from '@/data/site';
+import Logo from './Logo.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props {
+  lang: Lang;
+  alternates: Partial<Alternates>;
+}
+const { lang, alternates } = Astro.props;
+const s = t(lang);
+const it = lang === 'it';
+const nav = [
+  { key: 'weddings', label: it ? 'Matrimoni' : 'Weddings' },
+  { key: 'destination', label: 'Destination Weddings' },
+  { key: 'bars', label: it ? 'Banchi bar' : 'Bars' },
+  { key: 'cocktails', label: 'Cocktail Experience' },
+  { key: 'services', label: it ? 'Servizi' : 'Services' },
+  { key: 'corporate', label: it ? 'Aziende & privati' : 'Corporate' },
+  { key: 'partners', label: 'Partner' },
+  { key: 'events', label: it ? 'Eventi' : 'Events' },
+  { key: 'about', label: it ? 'Chi siamo' : 'About' },
+  { key: 'why', label: it ? 'Perché Meteora' : 'Why Meteora' },
+  { key: 'contact', label: it ? 'Contatti' : 'Contact' },
+] as const;
+const year = new Date().getFullYear();
+---
+
+<footer class="footer on-dark">
+  <div class="container">
+    <div class="footer__cta">
+      <p class="footer__statement">
+        {it ? <>Il bar diventa <em>parte dell’evento.</em></> : <>The bar becomes <em>part of the event.</em></>}
+      </p>
+      <a class="btn btn--light" href={url('contact', lang)} data-track="cta_click" data-track-label="footer_quote">
+        {s.quote} <span class="arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <Logo variant="gold" width={150} />
+        <p class="micro footer__tag">{s.footerTagline}</p>
+        <p class="muted footer__addr">
+          {site.address.locality}<br />
+          {it ? 'Toscana' : 'Tuscany'} · {it ? 'Italia' : 'Italy'}
+        </p>
+        <p class="muted footer__base">{s.footerBase}</p>
+      </div>
+
+      <nav aria-label={s.footerNav}>
+        <h2 class="micro footer__h">{s.footerNav}</h2>
+        <ul role="list" class="footer__nav">
+          {nav.map((n) => <li><a href={url(n.key, lang)}>{n.label}</a></li>)}
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="micro footer__h">{s.footerContact}</h2>
+        <ul role="list" class="footer__contact">
+          <li><a href={`mailto:${site.email}`} data-track="email_click">{site.email}</a></li>
+          <li><a href={`tel:${site.phoneE164}`} data-track="phone_click">{site.phoneDisplay}</a></li>
+          <li><a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener" data-track="whatsapp_click" data-track-label="footer">WhatsApp</a></li>
+          <li><a href={site.instagram.url} target="_blank" rel="noopener" data-track="instagram_click">Instagram {site.instagram.handle}</a></li>
+          <li><a href={url('home', lang)}>meteoraevents.com</a></li>
+        </ul>
+        <a class="link footer__partner" href={url('partners', lang)}>{s.partnerPricing}</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="muted">
+        © {year} {site.legal.companyName || site.name}. {s.rights}
+        {site.legal.vatNumber && <> · P.IVA {site.legal.vatNumber}</>}
+      </p>
+      <ul role="list" class="footer__legal" aria-label={s.footerLegal}>
+        <li><a href={url('privacy', lang)}>{s.privacy}</a></li>
+        <li><a href={url('cookies', lang)}>{s.cookiePolicy}</a></li>
+        <li><button type="button" data-cookie-open>{s.cookieSettings}</button></li>
+      </ul>
+      <LanguageSwitcher lang={lang} alternates={alternates} />
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding-block: var(--space-2xl) calc(var(--space-l) + 4.5rem);
+  }
+  @media (min-width: 768px) {
+    .footer {
+      padding-bottom: var(--space-l);
+    }
+  }
+  .footer__cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-l);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid rgb(255 255 255 / 0.12);
+  }
+  .footer__statement {
+    font-family: var(--font-display);
+    font-size: var(--fs-h2);
+    font-weight: 300;
+    line-height: 1.02;
+    max-width: 14ch;
+  }
+  .footer__statement em {
+    color: var(--color-accent-on-dark);
+  }
+  .footer__grid {
+    display: grid;
+    gap: var(--space-l);
+    padding-block: var(--space-xl);
+  }
+  @media (min-width: 900px) {
+    .footer__grid {
+      grid-template-columns: 1.3fr 1fr 1fr;
+    }
+  }
+  .footer__brand :global(img) {
+    width: 150px;
+    height: auto;
+  }
+  .footer__tag {
+    margin-top: var(--space-m);
+    color: var(--color-accent-on-dark);
+  }
+  .footer__addr,
+  .footer__base {
+    margin-top: var(--space-s);
+    font-size: var(--fs-small);
+  }
+  .footer__h {
+    color: var(--color-on-dark-muted);
+    margin-bottom: var(--space-s);
+  }
+  .footer__nav {
+    columns: 2;
+    column-gap: var(--space-m);
+  }
+  .footer__nav a,
+  .footer__contact a {
+    display: inline-block;
+    padding-block: 0.3rem;
+    text-decoration: none;
+    font-size: var(--fs-small);
+    transition: color 0.3s;
+  }
+  .footer__nav a:hover,
+  .footer__contact a:hover {
+    color: var(--color-accent-on-dark);
+  }
+  .footer__partner {
+    margin-top: var(--space-m);
+    color: var(--color-accent-on-dark);
+  }
+  .footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-s) var(--space-l);
+    padding-top: var(--space-m);
+    border-top: 1px solid rgb(255 255 255 / 0.12);
+    font-size: var(--fs-small);
+  }
+  .footer__legal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.25rem;
+  }
+  .footer__legal a,
+  .footer__legal button {
+    padding-block: 0.4rem;
+    text-decoration: none;
+    color: var(--color-on-dark-muted);
+    font-size: var(--fs-small);
+  }
+  .footer__legal a:hover,
+  .footer__legal button:hover {
+    color: var(--color-on-dark);
+  }
+</style>

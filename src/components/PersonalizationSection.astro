@@ -1,0 +1,108 @@
+---
+/** MAKE IT YOURS. Source: "Personalizzazioni" + "Le divise". */
+import type { Lang } from '@/i18n/routes';
+import { url } from '@/i18n/routes';
+import { customizations } from '@/data/craft';
+import Img from './Img.astro';
+import stamp from '@/assets/images/details/ice-stamp.jpg';
+
+interface Props {
+  lang: Lang;
+  id?: string;
+}
+const { lang, id = 'personalisation' } = Astro.props;
+const it = lang === 'it';
+---
+
+<section class="section section--alt pz" id={id} aria-labelledby={`${id}-title`}>
+  <div class="container pz__grid">
+    <div class="pz__media">
+      <div class="media pz__img drift" data-reveal="image">
+        <Img src={stamp} alt={it ? 'Cubo di ghiaccio con iniziali impresse e stampo in ottone' : 'Ice cube pressed with initials beside a brass stamp'} sizes="(min-width: 960px) 50vw, 100vw" position="45% 50%" />
+      </div>
+      <p class="caption">{it ? 'Iniziali impresse sul ghiaccio. Lo stampo resta a voi, come ricordo.' : 'Initials pressed into ice. The stamp is yours to keep.'}</p>
+    </div>
+    <div class="pz__text">
+      <p class="eyebrow" data-reveal>{it ? 'Personalizzazioni' : 'Customisation'}</p>
+      <h2 id={`${id}-title`} data-reveal style="--delay:.08s">{it ? <>Rendetelo <em>vostro.</em></> : <>Make it <em>yours.</em></>}</h2>
+      <p class="lead muted pz__lead" data-reveal style="--delay:.12s">
+        {it
+          ? 'Dettagli studiati su misura trasformano il servizio bar in un’esperienza coerente con l’identità degli sposi o del brand.'
+          : 'Bespoke details turn the bar service into an experience that reflects the couple, or the brand.'}
+      </p>
+      <ul class="pz__list" role="list">
+        {
+          customizations.map((c, i) => (
+            <li data-reveal style={`--delay:${0.04 * i}s`}>
+              <h3>{c.title[lang]}</h3>
+              <p class="muted">{c.text[lang]}</p>
+              {c.notice && <span class="micro pz__notice">{c.notice[lang]}</span>}
+            </li>
+          ))
+        }
+      </ul>
+      <p class="micro pz__foot">{it ? 'Le personalizzazioni vanno concordate in fase di ideazione dell’evento.' : 'Customisations are agreed during the event-planning phase.'}</p>
+      <a class="link" href={url('contact', lang)} data-track="cta_click" data-track-label="personalisation">{it ? 'Parliamo dei dettagli' : 'Let’s talk details'}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pz__grid {
+    display: grid;
+    gap: var(--space-xl);
+  }
+  .pz__img {
+    aspect-ratio: 4 / 5;
+  }
+  .pz__text h2 {
+    margin-top: var(--space-m);
+  }
+  .pz__lead {
+    margin-top: var(--space-m);
+    max-width: 32rem;
+  }
+  .pz__list {
+    margin-top: var(--space-l);
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .pz__list li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.2rem var(--space-m);
+    padding-block: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .pz__list h3 {
+    font-size: 1.4rem;
+  }
+  .pz__list p {
+    grid-column: 1;
+    font-size: var(--fs-small);
+  }
+  .pz__notice {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    color: var(--color-accent-ink);
+    letter-spacing: 0.14em;
+  }
+  .pz__foot {
+    margin-block: var(--space-m);
+    color: var(--color-text-muted);
+    letter-spacing: 0.14em;
+  }
+  @media (min-width: 960px) {
+    .pz__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 8vw, 8rem);
+      align-items: start;
+    }
+    .pz__media {
+      position: sticky;
+      top: calc(var(--header-h-compact) + 2rem);
+    }
+  }
+</style>

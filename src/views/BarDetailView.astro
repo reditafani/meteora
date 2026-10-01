@@ -1,0 +1,154 @@
+---
+import type { Lang } from '@/i18n/routes';
+import { url, routes } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import type { Bar } from '@/data/bars';
+import { availableBars, barSizes } from '@/data/bars';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import Img from '@/components/Img.astro';
+import BarCard from '@/components/BarCard.astro';
+import CTABand from '@/components/CTABand.astro';
+import { abs } from '@/lib/seo';
+import band from '@/assets/images/bars/terrace-panorama.jpg';
+
+interface Props {
+  lang: Lang;
+  bar: Bar;
+}
+const { lang, bar } = Astro.props;
+const it = lang === 'it';
+const s = t(lang);
+const href = (l: Lang) => `${routes.bars[l]}${bar.slug}/`;
+const crumbs = [
+  { name: s.breadcrumbHome, href: url('home', lang) },
+  { name: it ? 'Banchi bar' : 'Bars', href: url('bars', lang) },
+  { name: bar.name, href: href(lang) },
+];
+const title = it ? `Banco bar ${bar.name} per eventi e matrimoni | Meteora Events` : `${bar.name} Bar for Weddings & Events | Meteora Events`;
+const description = `${bar.mood[lang]} ${bar.description[lang]}`;
+const others = availableBars.filter((b) => b.slug !== bar.slug);
+const schema = [{
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: `${bar.name} — Meteora Events`,
+  description,
+  brand: { '@type': 'Brand', name: 'Meteora Events' },
+  image: bar.images.map((i) => abs(i.src.src)),
+  category: it ? 'Banco bar per eventi' : 'Event bar counter',
+}];
+---
+
+<BaseLayout lang={lang} title={title} description={description} alternates={{ it: href('it'), en: href('en') }} current="bars" breadcrumbs={crumbs} schema={schema} image={bar.images[0]?.src.src}>
+  <section class="bd">
+    <div class="container bd__grid">
+      <div class="bd__text">
+        <Breadcrumbs crumbs={crumbs} />
+        <p class="eyebrow bd__eyebrow">{it ? 'La collezione' : 'The collection'}</p>
+        <h1>{bar.name}</h1>
+        <p class="bd__mood">{bar.mood[lang]}</p>
+        <p class="lead muted">{bar.description[lang]}</p>
+        <div class="bd__facts">
+          <div>
+            <p class="micro">{s.idealFor}</p>
+            <ul role="list">{bar.idealFor[lang].map((x) => <li>{x}</li>)}</ul>
+          </div>
+          <div>
+            <p class="micro">{s.sizes}</p>
+            <ul role="list">{barSizes.map((z) => <li>{z.name} · {it ? z.length : z.lengthEn}</li>)}</ul>
+          </div>
+        </div>
+        <div class="cta-row">
+          <a class="btn" href={url('contact', lang)} data-track="cta_click" data-track-label={`bar_${bar.slug}_quote`}>{s.quote}</a>
+          <a class="link" href={url('bars', lang)}>{s.backTo} {it ? 'collezione' : 'collection'}</a>
+        </div>
+      </div>
+      <div class="bd__media">
+        {bar.images.map((im, i) => (
+          <div class="media" data-reveal="image" style={`--delay:${i * 0.15}s`}>
+            <Img src={im.src} alt={im.alt[lang]} priority={i === 0} sizes="(min-width: 960px) 55vw, 100vw" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {others.length > 0 && (
+    <section class="section section--alt" aria-labelledby="bd-others">
+      <div class="container">
+        <h2 id="bd-others" class="h3 bd__others-title">{it ? 'Altri banchi della collezione' : 'More from the collection'}</h2>
+        <ul class="bd__others" role="list">
+          {others.map((b) => <li><BarCard bar={b} lang={lang} index={availableBars.indexOf(b)} sizes="(min-width: 900px) 45vw, 100vw" /></li>)}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <CTABand lang={lang} image={band} imageAlt={it ? 'Banco bar davanti a una vetrata panoramica' : 'Bar in front of a panoramic window'} trackLabel={`bar_${bar.slug}_band`} />
+</BaseLayout>
+
+<style>
+  .bd {
+    padding-block: var(--space-xl) var(--section);
+  }
+  .bd__grid {
+    display: grid;
+    gap: var(--space-xl);
+  }
+  .bd__text > * + * {
+    margin-top: var(--space-m);
+  }
+  .bd__eyebrow {
+    margin-top: var(--space-l) !important;
+  }
+  .bd__mood {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--fs-h3);
+    color: var(--color-accent-ink);
+  }
+  .bd__facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-m);
+    padding-block: var(--space-m);
+    border-block: 1px solid var(--color-border);
+  }
+  .bd__facts .micro {
+    color: var(--color-text-muted);
+    margin-bottom: 0.4rem;
+  }
+  .bd__facts li {
+    font-size: var(--fs-small);
+  }
+  .bd__media {
+    display: grid;
+    gap: var(--space-m);
+  }
+  .bd__media .media {
+    aspect-ratio: 3 / 2;
+  }
+  .bd__others-title {
+    margin-bottom: var(--space-l);
+  }
+  .bd__others {
+    display: grid;
+    gap: var(--space-xl) var(--space-l);
+  }
+  @media (min-width: 900px) {
+    .bd__others {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (min-width: 960px) {
+    .bd__grid {
+      grid-template-columns: 5fr 7fr;
+      gap: clamp(3rem, 7vw, 8rem);
+      align-items: start;
+    }
+    .bd__text {
+      position: sticky;
+      top: calc(var(--header-h-compact) + 2rem);
+    }
+  }
+</style>

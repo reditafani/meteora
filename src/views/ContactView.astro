@@ -1,0 +1,137 @@
+---
+import type { Lang } from '@/i18n/routes';
+import { url, alternatesFor } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import LeadForm from '@/components/LeadForm.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import FAQ from '@/components/FAQ.astro';
+import Icon from '@/components/Icon.astro';
+import Img from '@/components/Img.astro';
+import { site, whatsappLink } from '@/data/site';
+import { faqFor } from '@/data/faq';
+import { faqSchema } from '@/lib/seo';
+import side from '@/assets/images/bars/golden-mirror-sunset.jpg';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+const s = t(lang);
+const meta = it
+  ? { title: 'Richiedi un Preventivo | Meteora Events', description: 'Richiedi un preventivo per il bar catering del tuo matrimonio o evento. Rispondiamo con una proposta su misura. Email info@meteoraevents.com, WhatsApp e telefono.' }
+  : { title: 'Request a Quote | Meteora Events', description: 'Request a quote for bar catering at your wedding or event in Italy. We reply with a tailored proposal. Email info@meteoraevents.com, WhatsApp or phone.' };
+const crumbs = [
+  { name: s.breadcrumbHome, href: url('home', lang) },
+  { name: it ? 'Contatti' : 'Contact', href: url('contact', lang) },
+];
+const faqs = faqFor('general').slice(0, 4);
+const contactSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: meta.title,
+  url: new URL(url('contact', lang), site.url + '/').toString(),
+};
+---
+
+<BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('contact')} current="contact" breadcrumbs={crumbs} schema={[contactSchema, faqSchema(faqs, lang)]} showQuoteBar={false}>
+  <section class="ct">
+    <div class="container ct__grid">
+      <aside class="ct__side">
+        <Breadcrumbs crumbs={crumbs} />
+        <p class="eyebrow ct__eyebrow">{it ? 'Contatti' : 'Contact'}</p>
+        <h1>{it ? <>Richiedete <em>il vostro preventivo.</em></> : <>Request <em>your quote.</em></>}</h1>
+        <p class="lead muted">
+          {it
+            ? 'Raccontateci il vostro evento: vi risponderemo con una proposta costruita su misura. Più dettagli ci date, più precisa sarà.'
+            : 'Tell us about your event and we will reply with a proposal built around it. The more you share, the more precise it will be.'}
+        </p>
+        <ul class="ct__links" role="list">
+          <li><a href={`mailto:${site.email}`} data-track="email_click"><Icon name="mail" />{site.email}</a></li>
+          <li><a href={whatsappLink(s.whatsappMessage)} target="_blank" rel="noopener" data-track="whatsapp_click" data-track-label="contact_page"><Icon name="whatsapp" />WhatsApp</a></li>
+          <li><a href={`tel:${site.phoneE164}`} data-track="phone_click"><Icon name="phone" />{site.phoneDisplay}</a></li>
+          <li><a href={site.instagram.url} target="_blank" rel="noopener" data-track="instagram_click"><Icon name="instagram" />{site.instagram.handle}</a></li>
+          <li><span><Icon name="pin" />{site.address.locality} ({site.address.province}), {it ? 'Toscana — operativi in tutta Italia' : 'Tuscany — serving all of Italy'}</span></li>
+        </ul>
+        <div class="media ct__img"><Img src={side} alt={it ? 'Banco Golden Mirror al tramonto' : 'Golden Mirror bar at sunset'} sizes="(min-width: 960px) 30vw, 1px" /></div>
+        <p class="ct__partner muted">
+          {it ? 'Siete un wedding planner, una location o un catering?' : 'Are you a wedding planner, venue or caterer?'}
+          <a class="link" href={url('partners', lang, 'partner-form')}>{s.partnerPricing}</a>
+        </p>
+      </aside>
+      <div class="ct__form">
+        <LeadForm lang={lang} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="c-faq">
+    <div class="container container--narrow">
+      <SectionHeading eyebrow="FAQ" id="c-faq">{it ? <>Prima di <em>scriverci.</em></> : <>Before <em>you write.</em></>}</SectionHeading>
+      <FAQ lang={lang} items={faqs} />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .ct {
+    padding-block: var(--space-xl) var(--section);
+  }
+  .ct__grid {
+    display: grid;
+    gap: var(--space-xl);
+  }
+  .ct__side > * + * {
+    margin-top: var(--space-m);
+  }
+  .ct__eyebrow {
+    margin-top: var(--space-l) !important;
+  }
+  .ct__side h1 {
+    font-size: clamp(2.5rem, 1.6rem + 3.5vw, 5rem);
+    max-width: 11ch;
+  }
+  .ct__links {
+    display: grid;
+    gap: 0.2rem;
+    padding-top: var(--space-s);
+  }
+  .ct__links a,
+  .ct__links span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding-block: 0.45rem;
+    text-decoration: none;
+    font-size: var(--fs-small);
+  }
+  .ct__links a:hover {
+    color: var(--color-accent-ink);
+  }
+  .ct__img {
+    display: none;
+  }
+  .ct__partner {
+    font-size: var(--fs-small);
+    display: grid;
+    gap: 0.4rem;
+    justify-items: start;
+  }
+  @media (min-width: 960px) {
+    .ct__grid {
+      grid-template-columns: 4fr 6fr;
+      gap: clamp(3rem, 7vw, 8rem);
+      align-items: start;
+    }
+    .ct__img {
+      display: block;
+      aspect-ratio: 4 / 3;
+      margin-top: var(--space-l);
+    }
+    .ct__form {
+      padding-top: calc(var(--space-xl) + 1rem);
+    }
+  }
+</style>

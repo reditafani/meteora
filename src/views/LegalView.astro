@@ -1,0 +1,106 @@
+---
+/**
+ * Privacy / Cookie policy shell.
+ * TODO(client): replace the placeholder sections with the final legal texts
+ * supplied by your consultant (GDPR, D.Lgs. 196/2003, Garante Privacy cookie guidelines).
+ * Do not publish without the data controller's details.
+ */
+import type { Lang } from '@/i18n/routes';
+import { url, alternatesFor } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import { site } from '@/data/site';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+
+interface Props {
+  lang: Lang;
+  kind: 'privacy' | 'cookies';
+}
+const { lang, kind } = Astro.props;
+const it = lang === 'it';
+const s = t(lang);
+const title = kind === 'privacy' ? s.privacy : s.cookiePolicy;
+const crumbs = [
+  { name: s.breadcrumbHome, href: url('home', lang) },
+  { name: title, href: url(kind, lang) },
+];
+const controller = site.legal.companyName || (it ? '[RAGIONE SOCIALE — da inserire]' : '[COMPANY NAME — to be supplied]');
+---
+
+<BaseLayout lang={lang} title={`${title} | Meteora Events`} description={title} alternates={alternatesFor(kind)} breadcrumbs={crumbs} noindex>
+  <section class="section">
+    <div class="container container--narrow">
+      <Breadcrumbs crumbs={crumbs} />
+      <h1 class="legal__title">{title}</h1>
+      <p class="legal__draft micro">{it ? 'Bozza — testo legale definitivo da inserire a cura del cliente' : 'Draft — final legal text to be supplied by the client'}</p>
+      <div class="prose">
+        {kind === 'privacy' ? (
+          it ? (
+            <>
+              <h2>Titolare del trattamento</h2>
+              <p>{controller}, {site.address.locality} ({site.address.province}). Email: <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+              <h2>Dati trattati</h2>
+              <p>Dati forniti volontariamente tramite i moduli di contatto (nome, cognome, email, telefono, dettagli dell’evento, eventuali dati aziendali) e dati di navigazione tecnici.</p>
+              <h2>Finalità e base giuridica</h2>
+              <p>Rispondere alle richieste di informazioni e preventivo (misure precontrattuali, art. 6.1.b GDPR). Statistiche di utilizzo del sito solo previo consenso (art. 6.1.a GDPR).</p>
+              <h2>Conservazione</h2>
+              <p>[Da definire a cura del titolare.]</p>
+              <h2>Destinatari</h2>
+              <p>Fornitore di hosting ed email (Keliweb S.r.l.) e, solo se attivati con consenso, fornitori di servizi di analisi. [Da completare.]</p>
+              <h2>Diritti dell’interessato</h2>
+              <p>Accesso, rettifica, cancellazione, limitazione, opposizione, portabilità e reclamo al Garante per la protezione dei dati personali, scrivendo a {site.email}.</p>
+            </>
+          ) : (
+            <>
+              <h2>Data controller</h2>
+              <p>{controller}, {site.address.locality} ({site.address.province}), Italy. Email: <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+              <h2>Data we process</h2>
+              <p>Data you provide through our contact forms (name, surname, email, phone, event details, company details where relevant) and technical browsing data.</p>
+              <h2>Purposes and legal basis</h2>
+              <p>Replying to information and quote requests (pre-contractual measures, Art. 6.1.b GDPR). Website usage statistics only with your consent (Art. 6.1.a GDPR).</p>
+              <h2>Retention</h2>
+              <p>[To be defined by the data controller.]</p>
+              <h2>Recipients</h2>
+              <p>Hosting and email provider (Keliweb S.r.l.) and, only if enabled with consent, analytics providers. [To be completed.]</p>
+              <h2>Your rights</h2>
+              <p>Access, rectification, erasure, restriction, objection, portability, and the right to lodge a complaint with the Italian Data Protection Authority (Garante), by writing to {site.email}.</p>
+            </>
+          )
+        ) : it ? (
+          <>
+            <h2>Cosa sono i cookie</h2>
+            <p>Piccoli file di testo che il sito salva sul dispositivo per funzionare o per raccogliere informazioni sull’utilizzo.</p>
+            <h2>Cookie tecnici (sempre attivi)</h2>
+            <p>Il sito salva nel browser (localStorage, chiave <code>meteora_consent</code>) le preferenze sui cookie. Non richiede consenso.</p>
+            <h2>Cookie di analisi e marketing (solo con consenso)</h2>
+            <p>Se configurati dal titolare, Google Analytics 4 / Google Tag Manager ed eventualmente Meta Pixel vengono caricati solo dopo il consenso esplicito. [Elenco dettagliato da completare.]</p>
+            <h2>Gestire le preferenze</h2>
+            <p>Puoi modificare le tue scelte in qualsiasi momento: <button type="button" class="link" data-cookie-open>{s.cookieSettings}</button>.</p>
+          </>
+        ) : (
+          <>
+            <h2>What cookies are</h2>
+            <p>Small text files the site stores on your device to work or to gather information about how it is used.</p>
+            <h2>Technical cookies (always active)</h2>
+            <p>The site stores your cookie preferences in the browser (localStorage, key <code>meteora_consent</code>). No consent is required.</p>
+            <h2>Analytics and marketing cookies (consent only)</h2>
+            <p>If configured, Google Analytics 4 / Google Tag Manager and possibly Meta Pixel are loaded only after your explicit consent. [Detailed list to be completed.]</p>
+            <h2>Managing your preferences</h2>
+            <p>You can change your choices at any time: <button type="button" class="link" data-cookie-open>{s.cookieSettings}</button>.</p>
+          </>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal__title {
+    margin-top: var(--space-l);
+    font-size: var(--fs-h2);
+  }
+  .legal__draft {
+    margin-block: var(--space-m) var(--space-l);
+    color: var(--color-error);
+  }
+</style>

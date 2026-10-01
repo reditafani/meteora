@@ -1,0 +1,27 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout lang="it" title="Pagina non trovata | Meteora Events" description="Pagina non trovata." alternates={{ it: '/', en: '/en/' }} noindex>
+  <section class="section">
+    <div class="container container--narrow nf">
+      <p class="eyebrow">404</p>
+      <h1>Pagina non trovata. <em>Page not found.</em></h1>
+      <p class="lead muted">La pagina che cercate non esiste o è stata spostata. · The page you are looking for does not exist or has moved.</p>
+      <div class="cta-row">
+        <a class="btn" href="/">Home</a>
+        <a class="btn btn--outline" href="/en/">English</a>
+        <a class="link" href="/contatti/">Richiedi un preventivo</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .nf {
+    display: grid;
+    gap: var(--space-m);
+    min-height: 50svh;
+    align-content: center;
+  }
+</style>

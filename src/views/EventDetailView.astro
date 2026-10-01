@@ -1,0 +1,73 @@
+---
+import type { Lang } from '@/i18n/routes';
+import { url, routes } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import type { EventStory } from '@/data/events';
+import { events } from '@/data/events';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import PortfolioStory from '@/components/PortfolioStory.astro';
+import PortfolioGrid from '@/components/PortfolioGrid.astro';
+import CTABand from '@/components/CTABand.astro';
+
+interface Props {
+  lang: Lang;
+  event: EventStory;
+}
+const { lang, event: e } = Astro.props;
+const it = lang === 'it';
+const s = t(lang);
+const href = (l: Lang) => `${routes.events[l]}${e.slug[l]}/`;
+const crumbs = [
+  { name: s.breadcrumbHome, href: url('home', lang) },
+  { name: it ? 'Eventi' : 'Events', href: url('events', lang) },
+  { name: e.title[lang], href: href(lang) },
+];
+const related = events.filter((x) => x !== e).slice(0, 2);
+const serviceLabel: Record<EventStory['relatedService'], string> = {
+  weddings: it ? 'Matrimoni' : 'Weddings',
+  corporate: it ? 'Eventi aziendali e privati' : 'Corporate & private events',
+  destination: 'Destination weddings',
+  bars: it ? 'I banchi' : 'The bars',
+  cocktails: 'Cocktail Experience',
+};
+---
+
+<BaseLayout lang={lang} title={`${e.title[lang]} — ${e.type[lang]} | Meteora Events`} description={e.excerpt[lang]} alternates={{ it: href('it'), en: href('en') }} current="events" breadcrumbs={crumbs} noindex={e.draft} image={e.cover.src} ogType="article">
+  <header class="container eh">
+    <Breadcrumbs crumbs={crumbs} />
+    <p class="eyebrow eh__eyebrow">{e.type[lang]}{e.location && <> — {e.location[lang]}</>}</p>
+    <h1>{e.title[lang]}</h1>
+  </header>
+  <PortfolioStory lang={lang} event={e} />
+  <div class="container eh__links cta-row">
+    <a class="btn" href={url('contact', lang)} data-track="cta_click" data-track-label={`event_${e.slug.en}`}>{s.quote}</a>
+    <a class="link" href={url(e.relatedService, lang)}>{serviceLabel[e.relatedService]}</a>
+    <a class="link" href={url('events', lang)}>{s.backTo} {it ? 'eventi' : 'events'}</a>
+  </div>
+  <section class="section section--alt eh__more" aria-labelledby="eh-more">
+    <div class="container">
+      <h2 id="eh-more" class="h3">{it ? 'Altri eventi' : 'More events'}</h2>
+      <PortfolioGrid lang={lang} items={related} />
+    </div>
+  </section>
+  <CTABand lang={lang} image={e.cover} imageAlt={e.coverAlt[lang]} trackLabel="event_band" />
+</BaseLayout>
+
+<style>
+  .eh {
+    padding-block: var(--space-xl);
+  }
+  .eh__eyebrow {
+    margin-block: var(--space-l) var(--space-m);
+  }
+  .eh h1 {
+    max-width: 16ch;
+  }
+  .eh__links {
+    padding-bottom: var(--space-xl);
+  }
+  .eh__more h2 {
+    margin-bottom: var(--space-l);
+  }
+</style>

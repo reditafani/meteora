@@ -1,0 +1,12 @@
+---
+/** Destination landing pages — generated only for destinations with a `landing` block. */
+import DestinationLandingView from '@/views/DestinationLandingView.astro';
+import { landingDestinations, type Destination } from '@/data/destinations';
+
+export function getStaticPaths() {
+  return landingDestinations.map((destination) => ({ params: { destination: destination.landing!.slug.en }, props: { destination } }));
+}
+const { destination } = Astro.props as { destination: Destination };
+---
+
+<DestinationLandingView lang="en" destination={destination} />

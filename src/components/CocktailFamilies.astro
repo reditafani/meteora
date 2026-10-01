@@ -1,0 +1,165 @@
+---
+/**
+ * Homepage cocktail moment: the seven families as a typographic list; the
+ * arched frame crossfades to a drink from the hovered/focused family.
+ */
+import type { Lang } from '@/i18n/routes';
+import { url } from '@/i18n/routes';
+import { cocktailCategories, cocktails } from '@/data/cocktails';
+import Img from './Img.astro';
+import iceStamp from '@/assets/images/details/ice-stamp.jpg';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const lead: Record<string, string> = {
+  classics: 'old-fashioned',
+  spritz: 'spritz',
+  martini: 'espresso-martini',
+  sour: 'sour',
+  tropical: 'mojito',
+  aperitivo: 'negroni',
+};
+const families = cocktailCategories.map((c) => {
+  const pick = cocktails.find((k) => k.slug === lead[c.id]);
+  return { ...c, image: c.id === 'signature' ? iceStamp : pick?.image, drink: c.id === 'signature' ? '' : (pick?.name ?? '') };
+});
+---
+
+<div class="cf" data-cf>
+  <div class="cf__frame" aria-hidden="true">
+    {
+      families.map((f, i) => (
+        <div class:list={['cf__img', i === 0 && 'is-active']} data-cf-img={f.id}>
+          {f.image && <Img src={f.image} alt="" sizes="(min-width: 960px) 32vw, 80vw" widths={[400, 681, 1000]} />}
+          {f.drink && <span class="cf__drink micro">{f.drink}</span>}
+        </div>
+      ))
+    }
+  </div>
+  <ol class="cf__list" role="list">
+    {
+      families.map((f, i) => (
+        <li class:list={[i === 0 && 'is-active']} data-cf-item={f.id}>
+          <a href={url('cocktails', lang, f.id === 'signature' ? 'signature' : f.id)}>
+            <span class="cf__name">{f.label[lang]}</span>
+            <span class="cf__blurb">{f.blurb[lang]}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-cf]').forEach((root) => {
+    const items = root.querySelectorAll<HTMLElement>('[data-cf-item]');
+    const imgs = root.querySelectorAll<HTMLElement>('[data-cf-img]');
+    const set = (id: string) => {
+      items.forEach((it) => it.classList.toggle('is-active', it.dataset.cfItem === id));
+      imgs.forEach((im) => im.classList.toggle('is-active', im.dataset.cfImg === id));
+    };
+    items.forEach((it) => {
+      it.addEventListener('mouseenter', () => set(it.dataset.cfItem!));
+      it.addEventListener('focusin', () => set(it.dataset.cfItem!));
+    });
+  });
+</script>
+
+<style>
+  .cf {
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+  }
+  .cf__frame {
+    position: relative;
+    width: min(100%, 26rem);
+    aspect-ratio: 3 / 4;
+    margin-inline: auto;
+    border-radius: 50vw 50vw 0 0;
+    overflow: hidden;
+    background: #e9e6e2;
+  }
+  .cf__img {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.9s var(--ease);
+  }
+  .cf__img.is-active {
+    opacity: 1;
+  }
+  .cf__img :global(picture),
+  .cf__img :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .cf__drink {
+    position: absolute;
+    left: 50%;
+    bottom: 1.25rem;
+    transform: translateX(-50%);
+    padding: 0.4rem 0.8rem;
+    background: rgb(249 242 232 / 0.9);
+    white-space: nowrap;
+  }
+  .cf__list {
+    counter-reset: fam;
+    border-top: 1px solid var(--color-border);
+  }
+  .cf__list li {
+    border-bottom: 1px solid var(--color-border);
+  }
+  .cf__list a {
+    display: grid;
+    gap: 0.15rem;
+    padding-block: 0.95rem;
+    text-decoration: none;
+  }
+  .cf__name {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.5rem);
+    line-height: 1.1;
+    transition:
+      transform 0.6s var(--ease-out),
+      color 0.3s;
+  }
+  .cf__blurb {
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+  }
+  @media (min-width: 960px) {
+    .cf {
+      grid-template-columns: 5fr 6fr;
+      gap: clamp(3rem, 8vw, 8rem);
+    }
+    .cf__frame {
+      position: sticky;
+      top: calc(var(--header-h-compact) + 2rem);
+      width: 100%;
+    }
+    .cf__list li:not(.is-active) .cf__name {
+      color: color-mix(in srgb, var(--color-text) 50%, transparent);
+    }
+    .cf__list li.is-active .cf__name {
+      transform: translateX(0.5rem);
+      font-style: italic;
+    }
+    .cf__blurb {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition:
+        max-height 0.5s var(--ease-out),
+        opacity 0.4s;
+    }
+    .cf__list li.is-active .cf__blurb {
+      max-height: 3rem;
+      opacity: 1;
+      padding-left: 0.5rem;
+    }
+  }
+</style>

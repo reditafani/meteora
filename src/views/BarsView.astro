@@ -1,0 +1,98 @@
+---
+import type { Lang } from '@/i18n/routes';
+import { url, alternatesFor } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import BarCard from '@/components/BarCard.astro';
+import CTABand from '@/components/CTABand.astro';
+import { bars, barSizes } from '@/data/bars';
+import hero from '@/assets/images/details/champagne-bowl.jpg';
+import band from '@/assets/images/bars/golden-marble-night.jpg';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+const s = t(lang);
+const meta = it
+  ? { title: 'Banchi Bar Scenografici per Eventi e Matrimoni | Meteora Events', description: 'La collezione di banchi bar Meteora Events: Golden Mirror, Silver Reflection, Pure White e nuovi modelli in arrivo. Modulari, in tre misure, per matrimoni ed eventi.' }
+  : { title: 'Luxury Mobile Bar Setups for Weddings & Events | Meteora Events', description: 'The Meteora Events bar collection: Golden Mirror, Silver Reflection, Pure White and new models coming soon. Modular, in three sizes, for weddings and events in Italy.' };
+const crumbs = [
+  { name: s.breadcrumbHome, href: url('home', lang) },
+  { name: it ? 'Banchi bar' : 'Bars', href: url('bars', lang) },
+];
+const schema = [{
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: it ? 'Collezione banchi bar Meteora Events' : 'Meteora Events bar collection',
+  itemListElement: bars.map((b, i) => ({ '@type': 'ListItem', position: i + 1, name: b.name })),
+}];
+---
+
+<BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('bars')} current="bars" breadcrumbs={crumbs} schema={schema}>
+  <PageHero eyebrow={it ? 'I nostri banchi' : 'The Bar Collection'} image={hero} imageAlt={it ? 'Champagne bowl su banco in marmo dorato' : 'Champagne bowl on a golden marble bar'} crumbs={crumbs}>
+    <h1>{it ? <>Il bar, <em>come scenografia.</em></> : <>The bar, <em>as scenography.</em></>}</h1>
+    <p slot="lead" class="lead muted">
+      {it
+        ? 'Banchi bar modulari, professionali e scenografici, scelti in base al carattere dell’evento. Una collezione in continuo ampliamento.'
+        : 'Modular, professional, scenographic bars, chosen to match the character of your event. A collection that keeps growing.'}
+    </p>
+    <dl slot="cta" class="sizes">
+      {barSizes.map((z) => (<div><dt class="micro">{z.name}</dt><dd>{it ? z.length : z.lengthEn}</dd></div>))}
+    </dl>
+  </PageHero>
+
+  <section class="section" aria-labelledby="bars-list">
+    <div class="container">
+      <SectionHeading eyebrow={it ? 'Collezione' : 'Collection'} id="bars-list">{it ? <>Sei caratteri, <em>tre misure.</em></> : <>Six characters, <em>three sizes.</em></>}</SectionHeading>
+      <ul class="bars" role="list">
+        {bars.map((b, i) => <li data-reveal style={`--delay:${(i % 2) * 0.08}s`}><BarCard bar={b} lang={lang} index={i} sizes="(min-width: 900px) 45vw, 100vw" /></li>)}
+      </ul>
+      <p class="muted bars__note">
+        {it
+          ? 'Ogni banco è disponibile in versione Slim (1,5 m), Medium (3,5 m) e Large (5,5 m), anche in estensione continua. Moduli bar aggiuntivi su richiesta.'
+          : 'Every bar comes in Slim (1.5 m), Medium (3.5 m) and Large (5.5 m), and can run in continuous extension. Extra bar modules on request.'}
+      </p>
+    </div>
+  </section>
+
+  <CTABand lang={lang} image={band} imageAlt={it ? 'Banco dorato di sera' : 'Golden bar at night'} trackLabel="bars_band">
+    <h2>{it ? <>Quale banco <em>per il vostro evento?</em></> : <>Which bar <em>for your event?</em></>}</h2>
+    <Fragment slot="lead">{it ? 'Vi consigliamo modello e misura in base a location, stile e numero di ospiti.' : 'We recommend the model and size for your venue, style and guest count.'}</Fragment>
+  </CTABand>
+</BaseLayout>
+
+<style>
+  .sizes {
+    display: flex;
+    gap: var(--space-l);
+  }
+  .sizes dt {
+    color: var(--color-accent-ink);
+  }
+  .sizes dd {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+  .bars {
+    display: grid;
+    gap: var(--space-xl) var(--space-l);
+  }
+  @media (min-width: 900px) {
+    .bars {
+      grid-template-columns: 1fr 1fr;
+    }
+    .bars li:nth-child(even) {
+      margin-top: var(--space-2xl);
+    }
+  }
+  .bars__note {
+    margin-top: var(--space-xl);
+    max-width: 40rem;
+    font-size: var(--fs-small);
+  }
+</style>

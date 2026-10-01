@@ -1,0 +1,90 @@
+---
+/**
+ * Selected images linking to Instagram — visual proof without an embedded
+ * feed (no third-party scripts, no tracking, no performance cost).
+ */
+import type { Lang } from '@/i18n/routes';
+import { site } from '@/data/site';
+import Img from './Img.astro';
+import a from '@/assets/images/towers/espresso-martini-tower.jpg';
+import b from '@/assets/images/bars/golden-mirror.jpg';
+import c from '@/assets/images/details/mint-coupes.jpg';
+import d from '@/assets/images/bars/night-lounge.jpg';
+import e from '@/assets/images/towers/coupe-tower-sunset.jpg';
+import f from '@/assets/images/details/champagne-bowl.jpg';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+const imgs = [a, b, c, d, e, f];
+---
+
+<section class="section ig" aria-labelledby="ig-title">
+  <div class="container">
+    <div class="ig__head">
+      <div>
+        <p class="eyebrow" data-reveal>Instagram</p>
+        <h2 id="ig-title" class="h3 ig__title" data-reveal style="--delay:.06s">
+          {it ? <>Dietro al banco, <em>evento dopo evento.</em></> : <>Behind the bar, <em>event after event.</em></>}
+        </h2>
+      </div>
+      <a class="link" href={site.instagram.url} target="_blank" rel="noopener" data-track="instagram_click" data-track-label="strip_header">{site.instagram.handle}</a>
+    </div>
+    <ul class="ig__grid" role="list">
+      {
+        imgs.map((src, i) => (
+          <li data-reveal style={`--delay:${i * 0.05}s`}>
+            <a href={site.instagram.url} target="_blank" rel="noopener" class="media" data-track="instagram_click" data-track-label={`strip_${i + 1}`}>
+              <Img src={src} alt="" sizes="(min-width: 960px) 16vw, 33vw" widths={[240, 360, 540]} />
+              <span class="visually-hidden">{it ? `Apri Instagram ${site.instagram.handle}` : `Open Instagram ${site.instagram.handle}`}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .ig__head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--space-m);
+    margin-bottom: var(--space-l);
+  }
+  .ig__title {
+    margin-top: var(--space-s);
+    font-size: clamp(1.8rem, 1.3rem + 1.8vw, 2.75rem);
+  }
+  .ig__title em {
+    font-style: italic;
+    color: var(--color-accent-ink);
+  }
+  .ig__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+  }
+  .ig__grid a {
+    display: block;
+    aspect-ratio: 1;
+  }
+  .ig__grid :global(img) {
+    transition:
+      transform 1.2s var(--ease-out),
+      opacity 0.4s;
+  }
+  .ig__grid a:hover :global(img) {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+  @media (min-width: 960px) {
+    .ig__grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+</style>

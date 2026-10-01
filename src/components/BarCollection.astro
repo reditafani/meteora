@@ -1,0 +1,224 @@
+---
+/**
+ * THE BAR COLLECTION — a luxury "index": on desktop, bar names on the left
+ * drive a large crossfading image on the right; on mobile, a horizontal
+ * scroll-snap rail. Data: src/data/bars.ts
+ */
+import type { Lang } from '@/i18n/routes';
+import { routes } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import { bars } from '@/data/bars';
+import Img from './Img.astro';
+import BarCard from './BarCard.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const s = t(lang);
+---
+
+<div class="bc" data-bc>
+  <!-- Mobile / tablet rail -->
+  <ul class="bc__rail" role="list">
+    {bars.map((bar, i) => <li><BarCard bar={bar} lang={lang} index={i} sizes="85vw" /></li>)}
+  </ul>
+
+  <!-- Desktop index -->
+  <div class="bc__index">
+    <ol class="bc__list" role="list">
+      {
+        bars.map((bar, i) => {
+          const href = bar.status === 'available' ? `${routes.bars[lang]}${bar.slug}/` : undefined;
+          const Tag = href ? 'a' : 'div';
+          return (
+            <li class:list={['bc__row', i === 0 && 'is-active', bar.status === 'coming-soon' && 'is-soon']} data-bc-row={i}>
+              <Tag class="bc__trigger" href={href} tabindex={href ? undefined : 0} aria-describedby={`bc-mood-${i}`}>
+                <span class="bc__num micro">{String(i + 1).padStart(2, '0')}</span>
+                <span class="bc__name">{bar.name}</span>
+                {bar.status === 'coming-soon' && <span class="bc__soon micro">{s.comingSoon}</span>}
+              </Tag>
+              <p class="bc__mood" id={`bc-mood-${i}`}>
+                <em>{bar.mood[lang]}</em> {bar.description[lang]}
+                <span class="bc__ideal">{s.idealFor}: {bar.idealFor[lang].join(', ')}.</span>
+              </p>
+            </li>
+          );
+        })
+      }
+    </ol>
+    <div class="bc__stage" aria-hidden="true">
+      {
+        bars.map((bar, i) => (
+          <div class:list={['bc__slide', i === 0 && 'is-active']} data-bc-slide={i}>
+            {bar.images[0] ? (
+              <Img src={bar.images[0].src} alt="" sizes="50vw" />
+            ) : (
+              <div class="bc__swatch" style={`--swatch:${bar.swatch}`}>
+                <span>{bar.name}</span>
+                <span class="micro">{s.comingSoon}</span>
+              </div>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-bc]').forEach((root) => {
+    const rows = root.querySelectorAll<HTMLElement>('[data-bc-row]');
+    const slides = root.querySelectorAll<HTMLElement>('[data-bc-slide]');
+    const activate = (i: string) => {
+      rows.forEach((r) => r.classList.toggle('is-active', r.dataset.bcRow === i));
+      slides.forEach((s) => s.classList.toggle('is-active', s.dataset.bcSlide === i));
+    };
+    rows.forEach((row) => {
+      const i = row.dataset.bcRow!;
+      row.addEventListener('mouseenter', () => activate(i));
+      row.addEventListener('focusin', () => activate(i));
+    });
+  });
+</script>
+
+<style>
+  .bc__rail {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: min(85%, 26rem);
+    gap: var(--space-m);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-inline: var(--gutter);
+    margin-inline: calc(var(--gutter) * -1);
+    padding-bottom: var(--space-s);
+    scrollbar-width: thin;
+    scroll-padding-inline: var(--gutter);
+  }
+  .bc__rail > li {
+    scroll-snap-align: start;
+  }
+  .bc__index {
+    display: none;
+  }
+  @media (min-width: 1024px) {
+    .bc__rail {
+      display: none;
+    }
+    .bc__index {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: clamp(2rem, 5vw, 6rem);
+      align-items: start;
+    }
+  }
+  .bc__list {
+    border-top: 1px solid var(--color-border);
+  }
+  .bc__row {
+    border-bottom: 1px solid var(--color-border);
+    padding-block: 1.1rem;
+  }
+  .bc__trigger {
+    display: flex;
+    align-items: baseline;
+    gap: 1.25rem;
+    text-decoration: none;
+    outline-offset: 6px;
+  }
+  .bc__num {
+    color: var(--color-accent-ink);
+    min-width: 2ch;
+  }
+  .bc__name {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 1.2rem + 1.8vw, 3.25rem);
+    font-weight: 350;
+    line-height: 1.05;
+    transition:
+      color 0.4s var(--ease),
+      transform 0.6s var(--ease-out);
+  }
+  .bc__row:not(.is-active) .bc__name {
+    color: color-mix(in srgb, var(--color-text) 45%, transparent);
+  }
+  .bc__row.is-active .bc__name {
+    transform: translateX(0.5rem);
+    font-style: italic;
+  }
+  .bc__soon {
+    margin-left: auto;
+    color: var(--color-text-muted);
+  }
+  .bc__mood {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    max-width: 30rem;
+    padding-left: calc(2ch + 1.25rem + 0.5rem);
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+    opacity: 0;
+    max-height: 0;
+    transition:
+      max-height 0.6s var(--ease-out),
+      opacity 0.5s var(--ease),
+      margin 0.6s var(--ease-out);
+  }
+  .bc__row.is-active .bc__mood {
+    max-height: 12rem;
+    opacity: 1;
+    margin-top: 0.6rem;
+  }
+  .bc__mood em {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--color-text);
+  }
+  .bc__ideal {
+    display: block;
+    margin-top: 0.4rem;
+  }
+  .bc__stage {
+    position: sticky;
+    top: calc(var(--header-h-compact) + 2rem);
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--color-background-secondary);
+  }
+  .bc__slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: scale(1.04);
+    transition:
+      opacity 0.9s var(--ease),
+      transform 1.6s var(--ease-out);
+  }
+  .bc__slide.is-active {
+    opacity: 1;
+    transform: none;
+  }
+  .bc__slide :global(picture),
+  .bc__slide :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .bc__swatch {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    gap: 0.75rem;
+    text-align: center;
+    color: rgb(255 255 255 / 0.9);
+    background: radial-gradient(120% 90% at 30% 20%, color-mix(in srgb, var(--swatch) 70%, white) 0%, var(--swatch) 55%, color-mix(in srgb, var(--swatch) 65%, black) 100%);
+  }
+  .bc__swatch span:first-child {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-style: italic;
+  }
+</style>

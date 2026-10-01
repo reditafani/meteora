@@ -1,0 +1,83 @@
+---
+/** Data-driven destination landing page (only for destinations with `landing`). */
+import type { Lang } from '@/i18n/routes';
+import { url } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import type { Destination } from '@/data/destinations';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import BarCollection from '@/components/BarCollection.astro';
+import FAQ from '@/components/FAQ.astro';
+import CTABand from '@/components/CTABand.astro';
+import { faqFor } from '@/data/faq';
+import { faqSchema, serviceSchema } from '@/lib/seo';
+import heroImg from '@/assets/images/bars/pure-white-villa.jpg';
+import band from '@/assets/images/bars/golden-mirror-sunset.jpg';
+
+interface Props {
+  lang: Lang;
+  destination: Destination;
+}
+const { lang, destination: d } = Astro.props;
+const L = d.landing!;
+const it = lang === 'it';
+const s = t(lang);
+const path = (l: Lang) => `${l === 'it' ? '/' : '/en/'}${L.slug[l]}/`;
+const crumbs = [
+  { name: s.breadcrumbHome, href: url('home', lang) },
+  { name: 'Destination Weddings', href: url('destination', lang) },
+  { name: d.name[lang], href: path(lang) },
+];
+const faqs = faqFor('destination');
+const schema = [
+  serviceSchema({ name: L.h1[lang], serviceType: 'Wedding bar catering', description: L.description[lang], url: path(lang), lang, area: [d.name[lang]] }),
+  faqSchema(faqs, lang),
+];
+---
+
+<BaseLayout lang={lang} title={L.title[lang]} description={L.description[lang]} alternates={{ it: path('it'), en: path('en') }} current="destination" breadcrumbs={crumbs} schema={schema}>
+  <PageHero eyebrow={it ? 'Base in Toscana · In tutta Italia' : 'Based in Tuscany · Throughout Italy'} image={heroImg} imageAlt={it ? 'Banco Pure White in villa al tramonto' : 'Pure White bar at a villa at sunset'} crumbs={crumbs}>
+    <h1>{L.h1[lang]}</h1>
+    <div slot="lead" class="stack">{L.intro[lang].map((p, i) => <p class:list={[i === 0 ? 'lead' : 'muted']}>{p}</p>)}</div>
+    <div slot="cta" class="cta-row">
+      <a class="btn" href={url('contact', lang) + '?type=wedding'} data-track="cta_click" data-track-label={`landing_${d.id}_quote`}>{s.quote}</a>
+    </div>
+  </PageHero>
+
+  <section class="section" aria-label={L.h1[lang]}>
+    <div class="container container--narrow prose landing__body">
+      {L.sections.map((sec) => (<>
+        <h2>{sec.h2[lang]}</h2>
+        {sec.body[lang].map((p) => <p>{p}</p>)}
+      </>))}
+      <p>
+        <a href={url('weddings', lang)}>{it ? 'Servizi per matrimoni' : 'Wedding services'}</a> ·
+        <a href={url('destination', lang)}>Destination weddings</a> ·
+        <a href={url('cocktails', lang)}>Cocktail Experience</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="l-bars">
+    <div class="container">
+      <SectionHeading eyebrow={it ? 'I nostri banchi' : 'The Bar Collection'} id="l-bars">{it ? <>Il banco <em>per la vostra location.</em></> : <>The bar <em>for your venue.</em></>}</SectionHeading>
+      <BarCollection lang={lang} />
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="l-faq">
+    <div class="container container--narrow">
+      <SectionHeading eyebrow="FAQ" id="l-faq">{it ? <>Domande <em>frequenti.</em></> : <>Frequently <em>asked.</em></>}</SectionHeading>
+      <FAQ lang={lang} items={faqs} />
+    </div>
+  </section>
+
+  <CTABand lang={lang} image={band} imageAlt={it ? 'Banco Golden Mirror al tramonto' : 'Golden Mirror bar at sunset'} trackLabel={`landing_${d.id}_band`} />
+</BaseLayout>
+
+<style>
+  .landing__body :global(h2:first-child) {
+    margin-top: 0;
+  }
+</style>

@@ -1,0 +1,88 @@
+---
+import type { Lang } from '@/i18n/routes';
+import { url, alternatesFor } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import CocktailGallery from '@/components/CocktailGallery.astro';
+import IceSection from '@/components/IceSection.astro';
+import GlasswareSection from '@/components/GlasswareSection.astro';
+import EditorialSection from '@/components/EditorialSection.astro';
+import TowerSection from '@/components/TowerSection.astro';
+import CTABand from '@/components/CTABand.astro';
+import { cocktailCategories } from '@/data/cocktails';
+import { serviceSchema } from '@/lib/seo';
+import hero from '@/assets/images/team/bartender-pour.jpg';
+import stamp from '@/assets/images/details/ice-stamp.jpg';
+import strain from '@/assets/images/team/bartender-strain.jpg';
+import band from '@/assets/images/bars/night-lounge.jpg';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+const s = t(lang);
+const meta = it
+  ? { title: 'Cocktail Experience per Eventi e Matrimoni | Meteora Events', description: 'Cocktail catering in Toscana e in Italia: classici, spritz, martini, sour, aperitivo italiano e signature su misura. Ghiaccio selezionato e bicchieri professionali.' }
+  : { title: 'Cocktail Experience for Weddings & Events | Meteora Events', description: 'Cocktail catering in Tuscany and across Italy: classics, spritz, martinis, sours, Italian aperitivo and bespoke signatures. Curated ice and professional glassware.' };
+const crumbs = [
+  { name: s.breadcrumbHome, href: url('home', lang) },
+  { name: 'Cocktail Experience', href: url('cocktails', lang) },
+];
+const signature = cocktailCategories.find((c) => c.id === 'signature')!;
+const schema = [serviceSchema({ name: 'Cocktail Experience', serviceType: it ? 'Cocktail catering' : 'Cocktail catering', description: meta.description, url: url('cocktails', lang), lang })];
+---
+
+<BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('cocktails')} current="cocktails" breadcrumbs={crumbs} schema={schema}>
+  <PageHero eyebrow="Cocktail Experience" image={hero} imageAlt={it ? 'Bartender che versa un cocktail rosso in una coppa' : 'Bartender pouring a red cocktail into a coupe'} crumbs={crumbs}>
+    <h1>{it ? <>Progettato per essere vissuto. <em>Pensato per essere ricordato.</em></> : <>Designed to be experienced. <em>Designed to be remembered.</em></>}</h1>
+    <p slot="lead" class="lead muted">
+      {it
+        ? 'Una selezione completa ed equilibrata. La struttura del nostro servizio permette di preparare altri classici e varianti su richiesta, in base agli ingredienti disponibili.'
+        : 'A complete, balanced selection. The way our service is built lets us prepare further classics and variations on request, depending on the ingredients available on site.'}
+    </p>
+    <div slot="cta" class="cta-row">
+      <a class="btn" href="#list">{it ? 'La drink list' : 'The drink list'}</a>
+      <a class="link" href="#ice">{it ? 'Il ghiaccio' : 'The ice'}</a>
+      <a class="link" href="#glassware">{it ? 'I bicchieri' : 'Glassware'}</a>
+    </div>
+  </PageHero>
+
+  <section class="section" id="list" aria-labelledby="ck-list">
+    <div class="container">
+      <SectionHeading eyebrow={it ? 'La nostra cocktail list' : 'Our cocktail list'} align="split" id="ck-list">
+        {it ? <>I classici, <em>fatti con metodo.</em></> : <>The classics, <em>made with method.</em></>}
+        <Fragment slot="lead">
+          {it
+            ? 'Profilo aromatico e grado alcolico (da 1 a 5) di ogni drink. Estetica, ghiaccio e garnish possono variare in base all’offerta scelta.'
+            : 'Aromatic profile and alcohol level (1 to 5) for every drink. Presentation, ice and garnish may vary depending on the chosen offer.'}
+        </Fragment>
+      </SectionHeading>
+      <CocktailGallery lang={lang} />
+    </div>
+  </section>
+
+  <section class="section section--alt" id="signature" aria-labelledby="ck-sig">
+    <div class="container">
+      <EditorialSection image={stamp} imageAlt={it ? 'Cubo di ghiaccio con iniziali impresse' : 'Ice cube pressed with initials'} secondImage={strain} secondAlt={it ? 'Bartender che filtra un cocktail' : 'Bartender straining a cocktail'} ratio="portrait">
+        <p class="eyebrow" data-reveal>{signature.label[lang]}</p>
+        <h2 id="ck-sig" data-reveal>{it ? <>Un cocktail <em>con il vostro nome.</em></> : <>A cocktail <em>with your name on it.</em></>}</h2>
+        <p class="lead muted" data-reveal>{signature.blurb[lang]}</p>
+        <p class="muted" data-reveal>
+          {it
+            ? 'La cocktail list su misura si costruisce in fase di ideazione dell’evento: partiamo dalla vostra storia, dai sapori che amate o dai colori del brand, e la trasformiamo in drink.'
+            : 'A bespoke cocktail list takes shape during event planning: we start from your story, the flavours you love or your brand colours, and turn them into drinks.'}
+        </p>
+        <a class="link" href={url('contact', lang)} data-reveal data-track="cta_click" data-track-label="signature_quote">{s.quote}</a>
+      </EditorialSection>
+    </div>
+  </section>
+
+  <IceSection lang={lang} />
+  <GlasswareSection lang={lang} />
+  <TowerSection lang={lang} />
+
+  <CTABand lang={lang} image={band} imageAlt={it ? 'Banco bar serale' : 'Evening bar'} trackLabel="cocktails_band" />
+</BaseLayout>

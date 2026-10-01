@@ -1,0 +1,98 @@
+---
+import type { Lang } from '@/i18n/routes';
+import { site } from '@/data/site';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+const points = it
+  ? ['Staff professionale', 'Servizio indipendente', 'Banchi scenografici', 'Bicchieri professionali', 'Ghiaccio selezionato', 'Cocktail experience', 'Personalizzazione', 'Rispetto delle location', 'Ospitalità discreta', 'In tutta Italia']
+  : ['Professional staff', 'Independent operation', 'Scenographic bars', 'Professional glassware', 'Curated ice', 'Cocktail experience', 'Customisation', 'Respect for venues', 'Discreet hospitality', 'Italy-wide service'];
+---
+
+<section class="trust" aria-labelledby="trust-title">
+  <div class="container trust__grid">
+    <div class="trust__figure" data-reveal>
+      <p class="trust__num" aria-hidden="true">{site.yearsExperience}<span>+</span></p>
+      <h2 id="trust-title" class="micro trust__label">
+        {it ? `Oltre ${site.yearsExperience} anni di esperienza operativa negli eventi` : `${site.yearsExperience}+ years of operational event experience`}
+      </h2>
+    </div>
+    <ul class="trust__list" role="list" data-reveal style="--delay:.12s">
+      {points.map((p) => <li>{p}</li>)}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .trust {
+    padding-block: var(--space-xl);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .trust__grid {
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+  }
+  .trust__figure {
+    display: flex;
+    align-items: center;
+    gap: var(--space-m);
+  }
+  .trust__num {
+    font-family: var(--font-display);
+    font-size: clamp(4.5rem, 3rem + 6vw, 8rem);
+    font-weight: 300;
+    line-height: 0.8;
+    color: var(--color-text);
+  }
+  .trust__num span {
+    color: var(--color-accent);
+    font-style: italic;
+  }
+  .trust__label {
+    max-width: 15rem;
+    color: var(--color-text-muted);
+    font-family: var(--font-sans);
+    font-size: var(--fs-micro);
+    font-weight: 500;
+    line-height: 1.6;
+  }
+  .trust__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 1rem + 0.5vw, 1.5rem);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-text);
+  }
+  @media (max-width: 699px) {
+    .trust__list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 1rem;
+      font-size: 1.1rem;
+    }
+  }
+  @media (min-width: 700px) {
+  .trust__list li:not(:last-child)::after {
+    content: '';
+    display: inline-block;
+    width: 1.4rem;
+    height: 1px;
+    margin: 0 0.8rem;
+    vertical-align: middle;
+    background: var(--color-accent);
+  }
+  }
+  @media (min-width: 1024px) {
+    .trust__grid {
+      grid-template-columns: auto 1fr;
+      gap: var(--space-xl);
+    }
+  }
+</style>

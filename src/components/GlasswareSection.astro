@@ -1,0 +1,115 @@
+---
+/** THE RIGHT GLASS FOR THE RIGHT COCKTAIL. Source: "I nostri bicchieri". */
+import type { Lang } from '@/i18n/routes';
+import { glassware } from '@/data/craft';
+import Img from './Img.astro';
+import crystal from '@/assets/images/glassware/crystal.jpg';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+---
+
+<section class="section gl" id="glassware" aria-labelledby="glass-title">
+  <div class="container">
+    <div class="gl__top">
+      <SectionHeading eyebrow={it ? 'I nostri bicchieri' : 'Our glassware'} id="glass-title">
+        {it ? <>Il bicchiere giusto <em>per il cocktail giusto.</em></> : <>The right glass <em>for the right cocktail.</em></>}
+        <Fragment slot="lead">
+          {it
+            ? 'Forma, spessore, apertura e capacità si scelgono in base al cocktail: per gestire la temperatura, la diluizione e valorizzare la componente aromatica. Vetro professionale, di livello HoReCa, con linee coerenti con lo stile dell’allestimento.'
+            : 'Shape, thickness, opening and capacity are chosen for each cocktail: to manage temperature and dilution and to showcase its aromas. Professional HoReCa-grade glass, with lines that match the style of the setup.'}
+        </Fragment>
+      </SectionHeading>
+      <div class="gl__hero media" data-reveal="image">
+        <Img src={crystal} alt={it ? 'Bicchieri in cristallo lavorato allineati sul banco' : 'Cut-crystal tumblers lined up on the bar'} sizes="(min-width: 960px) 30vw, 60vw" />
+      </div>
+    </div>
+    <ul class="gl__grid" role="list">
+      {
+        glassware.map((g, i) => (
+          <li data-reveal style={`--delay:${(i % 3) * 0.06}s`}>
+            <div class="gl__tile">
+              <Img src={g.image} alt={g.name[lang]} sizes="(min-width: 960px) 15vw, 45vw" widths={[320, 480, 700]} />
+            </div>
+            <h3>{g.name[lang]}</h3>
+            <p class="muted">{g.use[lang]}</p>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="gl__note muted">
+      {it
+        ? 'Su richiesta è possibile noleggiare bicchieri specifici di qualsiasi linea o marca, compatibilmente con disponibilità e tempi di fornitura.'
+        : 'On request, specific glassware of any line or brand can be rented, subject to availability and supply times.'}
+    </p>
+  </div>
+</section>
+
+<style>
+  .gl__top {
+    display: grid;
+    gap: var(--space-l);
+    align-items: end;
+    margin-bottom: var(--space-xl);
+  }
+  .gl__top :global(.sh) {
+    margin-bottom: 0;
+  }
+  .gl__hero {
+    aspect-ratio: 3 / 4;
+    width: min(100%, 22rem);
+    justify-self: end;
+  }
+  .gl__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-l) var(--space-s);
+  }
+  .gl__tile {
+    aspect-ratio: 1;
+    background: #fff;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+  .gl__tile :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 6%;
+    transition: transform 1s var(--ease-out);
+  }
+  li:hover .gl__tile :global(img) {
+    transform: translateY(-4px);
+  }
+  .gl__grid h3 {
+    font-size: 1.3rem;
+    margin-top: 0.8rem;
+  }
+  .gl__grid p {
+    font-size: var(--fs-small);
+  }
+  .gl__note {
+    margin-top: var(--space-l);
+    font-size: var(--fs-small);
+    max-width: 40rem;
+  }
+  @media (min-width: 700px) {
+    .gl__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (min-width: 1100px) {
+    .gl__top {
+      grid-template-columns: 1fr auto;
+    }
+    .gl__grid {
+      grid-template-columns: repeat(6, 1fr);
+      gap: var(--space-m);
+    }
+  }
+</style>

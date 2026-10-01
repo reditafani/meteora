@@ -1,0 +1,199 @@
+---
+import type { Lang } from '@/i18n/routes';
+import { url, alternatesFor } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/Hero.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import DestinationSection from '@/components/DestinationSection.astro';
+import EditorialSection from '@/components/EditorialSection.astro';
+import FAQ from '@/components/FAQ.astro';
+import CTABand from '@/components/CTABand.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { faqFor } from '@/data/faq';
+import { faqSchema, serviceSchema } from '@/lib/seo';
+import hero from '@/assets/images/bars/pure-white-villa.jpg';
+import golden from '@/assets/images/bars/golden-mirror.jpg';
+import tower from '@/assets/images/towers/coupe-tower-sunset.jpg';
+import hall from '@/assets/images/venues/fresco-hall.jpg';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+const s = t(lang);
+const meta = it
+  ? {
+      title: 'Destination Wedding in Toscana e in Italia: Bar Catering | Meteora Events',
+      description:
+        'Bar catering per destination wedding in Italia. Base in Toscana (Montecatini Terme), operativi a Firenze, Chianti, Siena, Lucca, Pisa, Forte dei Marmi, in tutta Italia e all’estero.',
+    }
+  : {
+      title: 'Destination Wedding Bar Catering in Tuscany & Italy | Meteora Events',
+      description:
+        'Luxury bar catering for destination weddings in Italy. Based in Tuscany, serving Florence, Chianti, Siena, Lucca, Pisa, Forte dei Marmi, the rest of Italy and abroad.',
+    };
+const crumbs = [
+  { name: s.breadcrumbHome, href: url('home', lang) },
+  { name: 'Destination Weddings', href: url('destination', lang) },
+];
+const faqs = faqFor('destination');
+
+/** Planning guide for international couples — every answer grounded in the brochure. */
+const guide = it
+  ? [
+      { h: 'Come funziona il bar catering', p: 'Ci occupiamo dell’intera gestione del servizio bar: progettiamo la drink list, portiamo banco, bicchieri, prodotti e ghiaccio, e gestiamo il servizio con il nostro staff. L’open bar standard dura tre ore; il pacchetto Aperitivo + Open Bar aggiunge un’ora e mezza di aperitivo.' },
+      { h: 'Cosa è incluso', p: 'Prodotti e distillati del menu scelto, banco a scelta dalla collezione, drink list signature con personalizzazioni, staff professionale, bicchieri e allestimento di nostra proprietà. Tempo extra, staff e moduli bar aggiuntivi si aggiungono su richiesta.' },
+      { h: 'Logistica e distanze', p: 'Siamo a Montecatini Terme, nel cuore della Toscana. Lavoriamo in tutta Italia e anche all’estero; gli eventuali costi di trasferta e logistica sono concordati in modo trasparente nel preventivo.' },
+      { h: 'Il coordinamento con il catering', p: 'Siamo completamente indipendenti: non usiamo cucina, staff o attrezzature del catering. Il catering può chiudere la cena con serenità mentre noi portiamo avanti la festa.' },
+      { h: 'La scelta del banco', p: 'Golden Mirror, Silver Reflection e Pure White, ciascuno in tre misure (1,5 m, 3,5 m, 5,5 m). Vi aiutiamo a scegliere in base a location, stile e numero di ospiti.' },
+      { h: 'Personalizzazioni', p: 'Tovaglioli e frontale banco con i vostri nomi (35 giorni di preavviso), incisioni su frutta e ghiaccio, cocktail list creata su di voi. Si definiscono in fase di ideazione dell’evento.' },
+      { h: 'Cosa considerare', p: 'Numero di ospiti, durata della festa, spazi per aperitivo e dopocena, orari di montaggio della location, preferenze di etichette e bevande analcoliche. Più informazioni ci date, più precisa sarà la proposta.' },
+    ]
+  : [
+      { h: 'How bar catering works', p: 'We take care of the entire bar service: we design the drink list, bring the bar counter, glassware, products and ice, and run the service with our own staff. Our standard open bar lasts three hours; the Aperitivo + Open Bar package adds ninety minutes of aperitivo before dinner.' },
+      { h: 'What is included', p: 'Products and spirits from the chosen menu, a bar from the collection, our signature drink list with any customisation, professional staff, and our own glassware and setup. Extra time, additional staff and extra bar modules can be added on request.' },
+      { h: 'Logistics and travel', p: 'We are based in Montecatini Terme, in the heart of Tuscany. We work throughout Italy and abroad; any travel and logistics costs are agreed transparently in your quote.' },
+      { h: 'Working with your caterer', p: 'We are fully independent: we do not use the caterer’s kitchen, staff or equipment. Your caterer can close dinner service calmly while we carry the party forward.' },
+      { h: 'Choosing your bar', p: 'Golden Mirror, Silver Reflection and Pure White, each in three sizes (1.5 m, 3.5 m, 5.5 m). We help you choose based on your venue, style and guest count.' },
+      { h: 'Personal touches', p: 'Napkins and a bar front with your names (35 days’ notice), engraved fruit and ice, a cocktail list created around you. All agreed during the planning phase.' },
+      { h: 'What to consider', p: 'Guest count, length of the party, spaces for aperitivo and after-dinner, the venue’s setup times, preferred labels and alcohol-free options. The more you share, the more precise our proposal.' },
+    ];
+const schema = [
+  serviceSchema({ name: it ? 'Bar catering per destination wedding in Italia' : 'Destination wedding bar catering in Italy', serviceType: 'Wedding bar catering', description: meta.description, url: url('destination', lang), lang, area: it ? ['Toscana', 'Firenze', 'Chianti', 'Siena', 'Lucca', 'Pisa', 'Forte dei Marmi', 'Italia'] : ['Tuscany', 'Florence', 'Chianti', 'Siena', 'Lucca', 'Pisa', 'Forte dei Marmi', 'Italy'] }),
+  faqSchema(faqs, lang),
+];
+---
+
+<BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('destination')} current="destination" breadcrumbs={crumbs} schema={schema} headerTheme="overlay">
+  <Hero image={hero} imageAlt={it ? 'Banco Pure White nel giardino di una villa in pietra al tramonto' : 'Pure White bar in a stone villa garden at sunset'} size="tall" position="50% 55%">
+    <Breadcrumbs crumbs={crumbs} tone="dark" />
+    <p class="eyebrow dh__eyebrow">{it ? 'Base in Toscana · In tutta Italia' : 'Based in Tuscany · Throughout Italy'}</p>
+    <h1 class="dh__title">{it ? <>Destination wedding <em>in Italia.</em></> : <>Destination weddings <em>in Italy.</em></>}</h1>
+    <p class="lead dh__lead">
+      {it
+        ? 'Per le coppie che arrivano da tutto il mondo per sposarsi in Italia, siamo il partner bar italiano: cocktail, servizio e scenografia, con la tranquillità di un team locale.'
+        : 'For couples who travel from around the world to marry in Italy, we are your Italian bar partner: cocktails, service and scenography, with the peace of mind of a local team.'}
+    </p>
+    <div class="cta-row">
+      <a class="btn btn--light" href={url('contact', lang) + '?type=destination-wedding'} data-track="cta_click" data-track-label="destination_hero_quote">{s.quote}</a>
+    </div>
+  </Hero>
+
+  <section class="section" aria-labelledby="d-places">
+    <div class="container">
+      <SectionHeading eyebrow={it ? 'Dove lavoriamo' : 'Where we work'} align="split" id="d-places">
+        {it ? <>La Toscana è casa. <em>L’Italia è il nostro raggio.</em></> : <>Tuscany is home. <em>Italy is our range.</em></>}
+        <Fragment slot="lead">
+          {it
+            ? 'La nostra sede è a Montecatini Terme. Da qui raggiungiamo le grandi destinazioni del matrimonio in Toscana, ci spostiamo in tutta Italia e realizziamo servizi anche all’estero.'
+            : 'Our base is in Montecatini Terme. From here we reach Tuscany’s great wedding destinations, travel throughout Italy and also deliver services abroad.'}
+        </Fragment>
+      </SectionHeading>
+      <DestinationSection lang={lang} />
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="d-local">
+    <div class="container">
+      <EditorialSection image={golden} imageAlt={it ? 'Banco Golden Mirror su terrazza con vista sulle colline' : 'Golden Mirror bar on a terrace overlooking the hills'} secondImage={tower} secondAlt={it ? 'Tower di coppe al tramonto' : 'Coupe tower at sunset'} ratio="landscape">
+        <p class="eyebrow" data-reveal>{it ? 'Un partner locale' : 'A local partner'}</p>
+        <h2 id="d-local" data-reveal>{it ? <>Da lontano, <em>in buone mani.</em></> : <>From afar, <em>in good hands.</em></>}</h2>
+        <p class="muted" data-reveal>
+          {it
+            ? 'Organizzare un matrimonio in un altro Paese significa affidarsi. Lavoriamo in autonomia accanto al vostro wedding planner, alla location e al catering, e rispondiamo in italiano e in inglese.'
+            : 'Planning a wedding in another country means trusting the people on the ground. We work independently alongside your wedding planner, venue and caterer, and we reply in English and Italian.'}
+        </p>
+        <p class="muted" data-reveal>
+          {it
+            ? 'Conosciamo ville, casali e dimore storiche: le ammiriamo e le rispettiamo, in allestimento e a fine serata.'
+            : 'We know Italian villas, farmhouses and historic homes: we admire them and respect them, during setup and at the end of the night.'}
+        </p>
+      </EditorialSection>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="d-guide">
+    <div class="container">
+      <SectionHeading eyebrow={it ? 'Guida per le coppie' : 'A guide for couples'} id="d-guide">
+        {it ? <>Il bar al vostro matrimonio in Italia, <em>passo per passo.</em></> : <>Your wedding bar in Italy, <em>step by step.</em></>}
+      </SectionHeading>
+      <ol class="guide" role="list">
+        {guide.map((g, i) => (
+          <li data-reveal style={`--delay:${(i % 3) * 0.05}s`}>
+            <span class="micro">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{g.h}</h3>
+            <p class="muted">{g.p}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="cta-row guide__links">
+        <a class="link" href={url('bars', lang)}>{it ? 'I banchi' : 'The bars'}</a>
+        <a class="link" href={url('cocktails', lang)}>Cocktail Experience</a>
+        <a class="link" href={url('services', lang)}>{it ? 'Servizi' : 'Services'}</a>
+        <a class="link" href={url('weddings', lang)}>{it ? 'Matrimoni' : 'Weddings'}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="d-faq">
+    <div class="container container--narrow">
+      <SectionHeading eyebrow="FAQ" id="d-faq">{it ? <>Domande <em>frequenti.</em></> : <>Frequently <em>asked.</em></>}</SectionHeading>
+      <FAQ lang={lang} items={faqs} />
+    </div>
+  </section>
+
+  <CTABand lang={lang} image={hall} imageAlt={it ? 'Tavolo imperiale in un salone affrescato' : 'Long table set in a frescoed hall'} trackLabel="destination_band" href={url('contact', lang) + '?type=destination-wedding'}>
+    <h2>{it ? <>Vi sposate in Italia? <em>Scriveteci.</em></> : <>Getting married in Italy? <em>Write to us.</em></>}</h2>
+  </CTABand>
+</BaseLayout>
+
+<style>
+  .dh__eyebrow {
+    margin-top: var(--space-l);
+  }
+  .dh__title {
+    margin-top: var(--space-m);
+    max-width: 12ch;
+  }
+  .dh__title em {
+    color: var(--color-accent-on-dark);
+  }
+  .dh__lead {
+    margin-block: var(--space-m) var(--space-l);
+    max-width: 36rem;
+  }
+  .guide {
+    display: grid;
+    gap: var(--space-l);
+  }
+  .guide li {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-m);
+  }
+  .guide .micro {
+    color: var(--color-accent-ink);
+  }
+  .guide h3 {
+    margin-block: 0.5rem;
+  }
+  .guide p {
+    font-size: var(--fs-small);
+    max-width: 30rem;
+  }
+  .guide__links {
+    margin-top: var(--space-xl);
+    gap: var(--space-s) var(--space-l);
+  }
+  @media (min-width: 800px) {
+    .guide {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1200px) {
+    .guide {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

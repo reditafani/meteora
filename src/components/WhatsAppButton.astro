@@ -1,0 +1,183 @@
+---
+/**
+ * Discreet floating WhatsApp access (desktop) + persistent mobile CTA bar.
+ * Opens a small panel with an editable, pre-written message.
+ */
+import type { Lang } from '@/i18n/routes';
+import { url } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import { site, whatsappLink } from '@/data/site';
+import Icon from './Icon.astro';
+
+interface Props {
+  lang: Lang;
+  showQuote?: boolean;
+}
+const { lang, showQuote = true } = Astro.props;
+const s = t(lang);
+---
+
+<div class:list={['wa', !showQuote && 'wa--solo']} data-wa data-number={site.whatsapp}>
+  <div class="wa__panel" id="wa-panel" role="dialog" aria-labelledby="wa-title" hidden data-wa-panel>
+    <div class="wa__head">
+      <p id="wa-title" class="micro">{s.whatsappTitle}</p>
+      <button type="button" class="wa__x" data-wa-close><Icon name="close" size={18} /><span class="visually-hidden">{s.close}</span></button>
+    </div>
+    <label for="wa-message" class="wa__intro">{s.whatsappIntro}</label>
+    <textarea id="wa-message" rows="4" data-wa-message>{s.whatsappMessage}</textarea>
+    <a class="btn btn--block" href={whatsappLink(s.whatsappMessage)} target="_blank" rel="noopener" data-wa-send data-track="whatsapp_click" data-track-label="panel">
+      <Icon name="whatsapp" size={18} /> {s.whatsappSend}
+    </a>
+  </div>
+
+  <button type="button" class="wa__fab" aria-expanded="false" aria-controls="wa-panel" data-wa-toggle>
+    <Icon name="whatsapp" size={22} />
+    <span class="visually-hidden">{s.whatsappOpen}</span>
+  </button>
+</div>
+
+{
+  showQuote && (
+    <div class="mobile-cta">
+      <a class="btn mobile-cta__quote" href={url('contact', lang)} data-track="cta_click" data-track-label="mobile_bar_quote">
+        {s.quote}
+      </a>
+      <button type="button" class="mobile-cta__wa" aria-controls="wa-panel" aria-expanded="false" data-wa-toggle>
+        <Icon name="whatsapp" size={22} />
+        <span class="visually-hidden">{s.whatsappOpen}</span>
+      </button>
+    </div>
+  )
+}
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-wa]');
+  const panel = root?.querySelector<HTMLElement>('[data-wa-panel]');
+  const msg = root?.querySelector<HTMLTextAreaElement>('[data-wa-message]');
+  const send = root?.querySelector<HTMLAnchorElement>('[data-wa-send]');
+  const toggles = document.querySelectorAll<HTMLButtonElement>('[data-wa-toggle]');
+  const number = root?.dataset.number;
+
+  const setOpen = (open: boolean) => {
+    if (!panel) return;
+    panel.hidden = !open;
+    toggles.forEach((b) => b.setAttribute('aria-expanded', String(open)));
+    if (open) msg?.focus();
+  };
+  toggles.forEach((b) => b.addEventListener('click', () => setOpen(Boolean(panel?.hidden))));
+  root?.querySelector('[data-wa-close]')?.addEventListener('click', () => setOpen(false));
+  panel?.addEventListener('keydown', (e) => e.key === 'Escape' && setOpen(false));
+  msg?.addEventListener('input', () => {
+    if (send && number) send.href = `https://wa.me/${number}?text=${encodeURIComponent(msg.value)}`;
+  });
+</script>
+
+<style>
+  .wa {
+    position: fixed;
+    right: max(1rem, env(safe-area-inset-right));
+    bottom: calc(5.25rem + env(safe-area-inset-bottom));
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.75rem;
+  }
+  .wa__fab {
+    display: none;
+    place-items: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 50%;
+    color: var(--color-on-dark);
+    background: var(--color-dark);
+    border: 1px solid rgb(207 182 138 / 0.4);
+    box-shadow: 0 10px 30px -12px rgb(0 0 0 / 0.45);
+    transition:
+      background-color 0.3s,
+      transform 0.4s var(--ease-out);
+  }
+  .wa__fab:hover {
+    background: var(--color-dark-2);
+    transform: translateY(-2px);
+  }
+  .wa__panel {
+    width: min(22rem, calc(100vw - 2rem));
+    padding: 1.25rem;
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 30px 60px -30px rgb(20 14 10 / 0.45);
+    display: grid;
+    gap: 0.85rem;
+  }
+  .wa__panel[hidden] {
+    display: none;
+  }
+  .wa__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .wa__x {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    margin: -0.5rem -0.5rem -0.5rem 0;
+  }
+  .wa__intro {
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+  }
+  .wa__panel textarea {
+    width: 100%;
+    resize: vertical;
+    padding: 0.75rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-background);
+    font-size: var(--fs-small);
+    line-height: 1.5;
+  }
+  .mobile-cta {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 45;
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.6rem max(0.75rem, env(safe-area-inset-left)) calc(0.6rem + env(safe-area-inset-bottom));
+    background: color-mix(in srgb, var(--color-background) 92%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid var(--color-border);
+  }
+  .mobile-cta__quote {
+    flex: 1;
+    min-height: 3rem;
+  }
+  .mobile-cta__wa {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    min-height: 3rem;
+    border: 1px solid var(--color-text);
+  }
+  .wa--solo {
+    bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+  .wa--solo .wa__fab {
+    display: grid;
+  }
+  @media (min-width: 768px) {
+    .wa {
+      bottom: max(1.5rem, env(safe-area-inset-bottom));
+      right: 1.5rem;
+    }
+    .wa__fab {
+      display: grid;
+    }
+    .mobile-cta {
+      display: none;
+    }
+  }
+</style>

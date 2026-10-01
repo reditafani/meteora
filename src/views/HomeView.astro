@@ -1,0 +1,286 @@
+---
+import type { Lang } from '@/i18n/routes';
+import { url, alternatesFor } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/Hero.astro';
+import TrustBar from '@/components/TrustBar.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import ExperienceMosaic from '@/components/ExperienceMosaic.astro';
+import EditorialSection from '@/components/EditorialSection.astro';
+import BarCollection from '@/components/BarCollection.astro';
+import CocktailFamilies from '@/components/CocktailFamilies.astro';
+import IceSection from '@/components/IceSection.astro';
+import PersonalizationSection from '@/components/PersonalizationSection.astro';
+import TowerSection from '@/components/TowerSection.astro';
+import ExperienceComparison from '@/components/ExperienceComparison.astro';
+import DestinationSection from '@/components/DestinationSection.astro';
+import PortfolioGrid from '@/components/PortfolioGrid.astro';
+import PartnerCTA from '@/components/PartnerCTA.astro';
+import Testimonial from '@/components/Testimonial.astro';
+import InstagramStrip from '@/components/InstagramStrip.astro';
+import CTABand from '@/components/CTABand.astro';
+import { events } from '@/data/events';
+import { serviceSchema } from '@/lib/seo';
+import hero from '@/assets/images/bars/golden-mirror-sunset.jpg';
+import villa from '@/assets/images/bars/pure-white-villa.jpg';
+import mint from '@/assets/images/details/mint-coupes.jpg';
+import marble from '@/assets/images/bars/golden-marble-night.jpg';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+const s = t(lang);
+
+const meta = it
+  ? {
+      title: 'Meteora Events | Open Bar Catering di lusso in Toscana e in Italia',
+      description:
+        'Luxury open bar catering per matrimoni, destination wedding, eventi aziendali e privati. Banchi scenografici, cocktail, ghiaccio e bicchieri professionali. Base in Toscana, in tutta Italia.',
+    }
+  : {
+      title: 'Meteora Events | Luxury Open Bar Catering in Tuscany & Italy',
+      description:
+        'Luxury open bar catering for weddings, destination weddings, corporate and private events. Scenographic bars, cocktails, premium ice and professional glassware. Based in Tuscany, serving all of Italy.',
+    };
+
+const weddingMoments = it
+  ? ['Aperitivo', 'Open bar', 'Cocktail', 'Momenti signature', 'Tower', 'Personalizzazione', 'Servizio']
+  : ['Aperitivo', 'Open bar', 'Cocktails', 'Signature moments', 'Towers', 'Customisation', 'Service'];
+
+const schema = [
+  serviceSchema({
+    name: it ? 'Open bar catering per eventi' : 'Open bar catering for events',
+    serviceType: it ? 'Bar catering' : 'Bar catering',
+    description: meta.description,
+    url: url('home', lang),
+    lang,
+    area: it ? ['Toscana', 'Italia'] : ['Tuscany', 'Italy'],
+  }),
+];
+---
+
+<BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('home')} headerTheme="overlay" current="home" schema={schema}>
+  <!-- 1 · HERO -->
+  <Hero image={hero} imageAlt={it ? 'Banco bar Golden Mirror al tramonto su una terrazza affacciata sulle colline' : 'Golden Mirror bar at sunset on a terrace overlooking the hills'} position="50% 60%" eyebrow={it ? 'Matrimoni · Destination wedding · Aziende · Privati' : 'Weddings · Destination weddings · Corporate · Private'}>
+    <h1 class="home-hero__title">
+      Luxury Open Bar Catering <em>&amp; Hospitality Services</em>
+    </h1>
+    <p class="lead home-hero__lead">
+      {it
+        ? 'Bar catering premium per matrimoni, destination wedding, eventi aziendali e privati. Base in Toscana, in tutta Italia.'
+        : 'Premium bar catering for weddings, destination weddings, corporate and private events. Based in Tuscany, throughout Italy.'}
+    </p>
+    <div class="cta-row home-hero__cta">
+      <a class="btn btn--light" href={url('contact', lang)} data-track="cta_click" data-track-label="hero_quote">{s.quote} <span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn--ghost-light" href="#experience" data-track="cta_click" data-track-label="hero_explore">{s.explore}</a>
+    </div>
+  </Hero>
+
+  <!-- 2 · TRUST -->
+  <TrustBar lang={lang} />
+
+  <!-- 3 · NOT JUST AN OPEN BAR -->
+  <section class="section section--dark" id="experience" aria-labelledby="exp-title">
+    <div class="container">
+      <SectionHeading eyebrow="Meteora Experience" align="split" id="exp-title">
+        {it ? <>Non è solo <em>un open bar.</em></> : <>Not just <em>an open bar.</em></>}
+        <Fragment slot="lead">
+          {it
+            ? 'Progettiamo e gestiamo l’intera esperienza beverage dell’evento: dal banco al ghiaccio, dai bicchieri allo staff, dall’allestimento all’ultimo drink. Voi pensate agli ospiti.'
+            : 'We design and run the entire beverage experience of your event: from the bar to the ice, from glassware to staff, from setup to the last drink. You think about your guests.'}
+        </Fragment>
+      </SectionHeading>
+      <ExperienceMosaic lang={lang} />
+      <div class="cta-row exp__cta">
+        <a class="btn btn--light" href={url('cocktails', lang)}>{it ? 'Scopri la cocktail experience' : 'Discover the cocktail experience'}</a>
+        <a class="link" href={url('contact', lang)} data-track="cta_click" data-track-label="experience_quote">{s.quote}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · WEDDINGS -->
+  <section class="section" aria-labelledby="wed-title">
+    <div class="container">
+      <EditorialSection image={villa} imageAlt={it ? 'Banco Pure White nel giardino di una villa in pietra' : 'Pure White bar in the garden of a stone villa'} secondImage={mint} secondAlt={it ? 'Coppe con menta fresca e frutti rossi sul banco' : 'Coupes with fresh mint and red berries on the bar'} ratio="landscape">
+        <p class="eyebrow" data-reveal>{it ? 'Matrimoni' : 'Weddings'}</p>
+        <h2 id="wed-title" data-reveal style="--delay:.08s">{it ? <>Il vostro matrimonio. <em>La vostra bar experience.</em></> : <>Your wedding. <em>Your bar experience.</em></>}</h2>
+        <p class="lead muted" data-reveal style="--delay:.12s">
+          {it
+            ? 'Dall’aperitivo in giardino all’ultimo brindisi dopo cena, il bar accompagna ogni momento della giornata — e resta nelle fotografie.'
+            : 'From the garden aperitivo to the last toast after dinner, the bar accompanies every moment of the day — and stays in the photographs.'}
+        </p>
+        <ul class="moments" role="list" data-reveal style="--delay:.16s">
+          {weddingMoments.map((m) => <li>{m}</li>)}
+        </ul>
+        <div class="cta-row" data-reveal style="--delay:.2s">
+          <a class="btn" href={url('weddings', lang)}>{it ? 'Scopri i servizi per matrimoni' : 'Discover wedding services'}</a>
+          <a class="link" href={url('contact', lang)} data-track="cta_click" data-track-label="weddings_quote">{s.quote}</a>
+        </div>
+      </EditorialSection>
+    </div>
+  </section>
+
+  <!-- 5 · DESTINATION -->
+  <section class="section section--alt" aria-labelledby="dest-title">
+    <div class="container dest-home">
+      <div class="dest-home__intro">
+        <p class="eyebrow" data-reveal>Destination Weddings</p>
+        <h2 id="dest-title" data-reveal style="--delay:.08s">{it ? <>Destination wedding <em>in Italia.</em></> : <>Destination weddings <em>in Italy.</em></>}</h2>
+        <p class="lead muted" data-reveal style="--delay:.12s">
+          {it
+            ? 'Base in Toscana, disponibili in tutta Italia. Per le coppie che scelgono l’Italia, siamo il partner bar che conosce le ville, i tempi e le persone.'
+            : 'Based in Tuscany, available throughout Italy. For couples who choose Italy, we are the bar partner who knows the villas, the timings and the people.'}
+        </p>
+        <a class="btn" href={url('destination', lang)} data-reveal>{it ? 'Destination wedding con Meteora' : 'Destination weddings with Meteora'}</a>
+      </div>
+      <DestinationSection lang={lang} compact />
+    </div>
+  </section>
+
+  <!-- 6 · BAR COLLECTION -->
+  <section class="section" aria-labelledby="bars-title">
+    <div class="container">
+      <SectionHeading eyebrow={it ? 'I nostri banchi' : 'The Bar Collection'} align="split" id="bars-title">
+        {it ? <>La collezione <em>dei banchi.</em></> : <>The bar <em>collection.</em></>}
+        <Fragment slot="lead">
+          {it
+            ? 'Banchi modulari e scenografici, ciascuno in tre misure — Slim 1,5 m, Medium 3,5 m, Large 5,5 m. Una collezione in continuo ampliamento.'
+            : 'Modular, scenographic bars, each in three sizes — Slim 1.5 m, Medium 3.5 m, Large 5.5 m. A collection that keeps growing.'}
+        </Fragment>
+      </SectionHeading>
+      <BarCollection lang={lang} />
+      <div class="cta-row section-cta">
+        <a class="btn" href={url('bars', lang)}>{it ? 'Esplora la collezione' : 'Explore the collection'}</a>
+        <a class="link" href={url('contact', lang)} data-track="cta_click" data-track-label="bars_quote">{s.quote}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · COCKTAILS -->
+  <section class="section section--alt" aria-labelledby="ck-title">
+    <div class="container">
+      <SectionHeading eyebrow="Cocktail Experience" align="split" id="ck-title">
+        {it ? <>Dove il cocktail <em>diventa parte dell’evento.</em></> : <>Where cocktails <em>become part of the event.</em></>}
+        <Fragment slot="lead">
+          {it
+            ? 'Una drink list completa ed equilibrata, dai grandi classici all’aperitivo italiano, con varianti su richiesta e signature create per voi.'
+            : 'A complete, balanced drink list, from the great classics to the Italian aperitivo, with variations on request and signatures created for you.'}
+        </Fragment>
+      </SectionHeading>
+      <CocktailFamilies lang={lang} />
+    </div>
+  </section>
+
+  <!-- 8 · ICE -->
+  <IceSection lang={lang} showTypes={false} />
+
+  <!-- 9 · PERSONALISATION -->
+  <PersonalizationSection lang={lang} />
+
+  <!-- 10 · TOWER -->
+  <TowerSection lang={lang} />
+
+  <!-- 11 · ESSENTIAL vs PREMIUM -->
+  <section class="section" aria-labelledby="cmp-title">
+    <div class="container">
+      <SectionHeading eyebrow="Open Bar" align="split" id="cmp-title">
+        {it ? <>Due esperienze, <em>uno stesso standard.</em></> : <>Two experiences, <em>one standard.</em></>}
+        <Fragment slot="lead">
+          {it
+            ? 'Essential e Premium condividono servizio, staff e cura. Cambiano la selezione delle etichette, i mixer e la presentazione.'
+            : 'Essential and Premium share the same service, staff and care. What changes is the label selection, the mixers and the presentation.'}
+        </Fragment>
+      </SectionHeading>
+      <ExperienceComparison lang={lang} />
+    </div>
+  </section>
+
+  <!-- 12 · PORTFOLIO -->
+  <section class="section section--alt" aria-labelledby="pf-title">
+    <div class="container">
+      <SectionHeading eyebrow={it ? 'Eventi' : 'Events'} align="split" id="pf-title">
+        {it ? <>Ogni evento <em>è unico e irripetibile.</em></> : <>Every event is <em>unique and unrepeatable.</em></>}
+        <Fragment slot="lead">
+          {it ? 'Ciò che realizziamo resta impresso nelle immagini e nei ricordi.' : 'What we create remains in the images, and in the memories.'}
+        </Fragment>
+      </SectionHeading>
+      <PortfolioGrid lang={lang} items={events} limit={3} />
+      <div class="cta-row section-cta">
+        <a class="btn" href={url('events', lang)}>{it ? 'Tutti gli eventi' : 'All events'}</a>
+        <a class="link" href={url('contact', lang)} data-track="cta_click" data-track-label="portfolio_quote">{s.quote}</a>
+      </div>
+    </div>
+  </section>
+
+  <Testimonial lang={lang} />
+
+  <!-- 13 · PARTNERS -->
+  <PartnerCTA lang={lang} />
+
+  <!-- 14 · INSTAGRAM -->
+  <InstagramStrip lang={lang} />
+
+  <!-- 15 · CLOSING CTA -->
+  <CTABand lang={lang} image={marble} imageAlt={it ? 'Banco dorato illuminato di sera' : 'Golden bar lit up at night'} trackLabel="home_band" />
+</BaseLayout>
+
+<style>
+  .home-hero__title {
+    font-size: clamp(2.75rem, 1.1rem + 4.6vw, 6.75rem);
+    line-height: 0.96;
+    font-weight: 300;
+    max-width: 13ch;
+  }
+  .home-hero__title em {
+    display: block;
+    color: var(--color-accent-on-dark);
+  }
+  .home-hero__lead {
+    margin-top: var(--space-m);
+    max-width: 34rem;
+    color: var(--color-on-dark);
+  }
+  .home-hero__cta {
+    margin-top: var(--space-l);
+  }
+  .exp__cta,
+  .section-cta {
+    margin-top: var(--space-xl);
+  }
+  .moments {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.3rem;
+  }
+  .moments li:not(:last-child)::after {
+    content: '·';
+    margin-inline: 0.6rem;
+    color: var(--color-accent);
+  }
+  .dest-home {
+    display: grid;
+    gap: var(--space-xl);
+  }
+  .dest-home__intro {
+    display: grid;
+    gap: var(--space-m);
+    align-content: start;
+    justify-items: start;
+  }
+  @media (min-width: 960px) {
+    .dest-home {
+      grid-template-columns: 5fr 7fr;
+      gap: clamp(3rem, 8vw, 9rem);
+    }
+    .dest-home__intro {
+      position: sticky;
+      top: calc(var(--header-h-compact) + 2rem);
+    }
+  }
+</style>

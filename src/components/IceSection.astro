@@ -1,0 +1,173 @@
+---
+/** ICE IS PART OF THE COCKTAIL — cinematic dark section. Source: "Il nostro ghiaccio". */
+import type { Lang } from '@/i18n/routes';
+import { iceTypes } from '@/data/craft';
+import Img from './Img.astro';
+import pour from '@/assets/images/ice/pour-coupe.jpg';
+
+interface Props {
+  lang: Lang;
+  showTypes?: boolean;
+  id?: string;
+}
+const { lang, showTypes = true, id = 'ice' } = Astro.props;
+const it = lang === 'it';
+const principles = it
+  ? [
+      ['Temperatura', 'Il ghiaccio non serve solo a raffreddare: porta il drink alla temperatura giusta e ce lo tiene.'],
+      ['Diluizione', 'Troppo ghiaccio appiattisce un cocktail, troppo poco lo rende aggressivo.'],
+      ['Texture', 'Più è piccolo, più raffredda in fretta. Più è grande e compatto, più la diluizione è controllata nel tempo.'],
+      ['Presentazione', 'Un cubo trasparente, una sfera, un long drink verticale: il ghiaccio si vede, e racconta.'],
+      ['Precisione', 'Ogni cocktail ha le sue regole. Ogni cocktail nasce da una scelta precisa.'],
+    ]
+  : [
+      ['Temperature', 'Ice does not only chill: it brings the drink to the right temperature and holds it there.'],
+      ['Dilution', 'Too much ice flattens a cocktail; too little makes it aggressive.'],
+      ['Texture', 'The smaller the ice, the faster it chills. The larger and denser, the more dilution is controlled over time.'],
+      ['Presentation', 'A clear cube, a sphere, a tall long-drink spear: ice is seen, and it speaks.'],
+      ['Precision', 'Every cocktail has its own rules. Every cocktail begins with a precise choice.'],
+    ];
+---
+
+<section class="ice section section--dark" id={id} aria-labelledby={`${id}-title`}>
+  <div class="container">
+    <div class="ice__grid">
+      <div class="ice__media media drift" data-reveal="image">
+        <Img src={pour} alt={it ? 'Ghiaccio tritato che cade in una coppa da cocktail' : 'Crushed ice falling into a cocktail coupe'} sizes="(min-width: 960px) 40vw, 100vw" />
+      </div>
+      <div class="ice__text">
+        <p class="eyebrow" data-reveal>{it ? 'Il nostro ghiaccio' : 'The ice we use'}</p>
+        <h2 id={`${id}-title`} class="display ice__title" data-reveal style="--delay:.08s">
+          {it ? <>Il ghiaccio è <em>parte del cocktail.</em></> : <>Ice is <em>part of the cocktail.</em></>}
+        </h2>
+        <ol class="ice__principles" role="list">
+          {
+            principles.map(([k, v], i) => (
+              <li data-reveal style={`--delay:${0.05 * i}s`}>
+                <span class="micro">{String(i + 1).padStart(2, '0')}</span>
+                <h3>{k}</h3>
+                <p class="muted">{v}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+
+    {
+      showTypes && (
+        <div class="ice__types">
+          <ul role="list" class="ice__rail">
+            {iceTypes.map((ice) => (
+              <li data-reveal>
+                <div class="media ice__thumb">
+                  <Img src={ice.image} alt={ice.name[lang]} sizes="(min-width: 960px) 16vw, 60vw" widths={[320, 480, 711]} />
+                </div>
+                <h3 class="ice__name">{ice.name[lang]}</h3>
+                <p class="muted">{ice.note[lang]}</p>
+              </li>
+            ))}
+          </ul>
+          <p class="micro muted ice__note">
+            {it
+              ? 'La disponibilità delle tipologie premium viene confermata in fase di definizione dell’evento.'
+              : 'Availability of premium formats is confirmed during the event definition phase.'}
+          </p>
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .ice__grid {
+    display: grid;
+    gap: var(--space-xl);
+  }
+  .ice__media {
+    aspect-ratio: 3 / 4.2;
+    max-height: 90svh;
+  }
+  .ice__title {
+    margin-top: var(--space-m);
+    font-size: clamp(3rem, 1.5rem + 5.5vw, 7.5rem);
+  }
+  .ice__principles {
+    margin-top: var(--space-xl);
+    display: grid;
+    gap: var(--space-m);
+  }
+  .ice__principles li {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    column-gap: var(--space-s);
+    padding-top: var(--space-m);
+    border-top: 1px solid rgb(255 255 255 / 0.12);
+  }
+  .ice__principles .micro {
+    color: var(--color-accent-on-dark);
+    padding-top: 0.5rem;
+    grid-row: span 2;
+  }
+  .ice__principles h3 {
+    font-size: 1.6rem;
+  }
+  .ice__principles p {
+    font-size: var(--fs-small);
+    max-width: 30rem;
+  }
+  .ice__types {
+    margin-top: var(--space-2xl);
+  }
+  .ice__rail {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: min(62%, 16rem);
+    gap: var(--space-m);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-inline: var(--gutter);
+    margin-inline: calc(var(--gutter) * -1);
+    padding-bottom: var(--space-s);
+  }
+  .ice__rail li {
+    scroll-snap-align: start;
+  }
+  .ice__thumb {
+    aspect-ratio: 1;
+  }
+  .ice__name {
+    margin-top: 0.9rem;
+    font-size: 1.3rem;
+  }
+  .ice__rail p {
+    margin-top: 0.3rem;
+    font-size: var(--fs-small);
+  }
+  .ice__note {
+    margin-top: var(--space-l);
+    letter-spacing: 0.14em;
+  }
+  @media (min-width: 960px) {
+    .ice__grid {
+      grid-template-columns: 5fr 6fr;
+      gap: clamp(3rem, 8vw, 9rem);
+      align-items: start;
+    }
+    .ice__media {
+      position: sticky;
+      top: calc(var(--header-h-compact) + 2rem);
+    }
+    .ice__principles {
+      grid-template-columns: 1fr 1fr;
+      column-gap: var(--space-l);
+    }
+    .ice__rail {
+      grid-auto-flow: row;
+      grid-template-columns: repeat(6, 1fr);
+      overflow: visible;
+      margin-inline: 0;
+      padding-inline: 0;
+    }
+  }
+</style>

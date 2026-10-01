@@ -1,0 +1,11 @@
+---
+import EventDetailView from '@/views/EventDetailView.astro';
+import { events, type EventStory } from '@/data/events';
+
+export function getStaticPaths() {
+  return events.map((event) => ({ params: { slug: event.slug.it }, props: { event } }));
+}
+const { event } = Astro.props as { event: EventStory };
+---
+
+<EventDetailView lang="it" event={event} />

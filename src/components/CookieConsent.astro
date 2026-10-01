@@ -1,0 +1,172 @@
+---
+import type { Lang } from '@/i18n/routes';
+import { url } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import { site } from '@/data/site';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const s = t(lang);
+const hasMarketing = Boolean(site.analytics.metaPixel);
+---
+
+<div class="cookie" role="region" aria-label={s.cookieTitle} hidden data-cookie data-ga4={site.analytics.ga4} data-gtm={site.analytics.gtm} data-pixel={site.analytics.metaPixel}>
+  <div class="cookie__inner">
+    <div class="cookie__text">
+      <p class="micro cookie__title">{s.cookieTitle}</p>
+      <p>
+        {s.cookieText} <a href={url('cookies', lang)}>{s.cookiePolicy}</a>.
+      </p>
+    </div>
+
+    <form class="cookie__prefs" hidden data-cookie-prefs>
+      <fieldset>
+        <legend class="visually-hidden">{s.cookieSettings}</legend>
+        <label class="cookie__opt">
+          <input type="checkbox" checked disabled />
+          <span><strong>{s.cookieNecessary}</strong> — {s.cookieNecessaryDesc}</span>
+        </label>
+        <label class="cookie__opt">
+          <input type="checkbox" name="analytics" />
+          <span><strong>{s.cookieAnalytics}</strong> — {s.cookieAnalyticsDesc}</span>
+        </label>
+        {
+          hasMarketing && (
+            <label class="cookie__opt">
+              <input type="checkbox" name="marketing" />
+              <span><strong>{s.cookieMarketing}</strong> — {s.cookieMarketingDesc}</span>
+            </label>
+          )
+        }
+      </fieldset>
+    </form>
+
+    <div class="cookie__actions">
+      <button type="button" class="btn btn--outline" data-cookie-reject>{s.cookieReject}</button>
+      <button type="button" class="btn btn--outline" data-cookie-customize>{s.cookieCustomize}</button>
+      <button type="button" class="btn btn--outline" data-cookie-save hidden>{s.cookieSave}</button>
+      <button type="button" class="btn" data-cookie-accept>{s.cookieAccept}</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { initAnalytics, readConsent, saveConsent } from '@/scripts/analytics';
+
+  const box = document.querySelector<HTMLElement>('[data-cookie]');
+  if (box) {
+    const ids = { ga4: box.dataset.ga4 || '', gtm: box.dataset.gtm || '', metaPixel: box.dataset.pixel || '' };
+    initAnalytics(ids);
+
+    const prefs = box.querySelector<HTMLFormElement>('[data-cookie-prefs]')!;
+    const saveBtn = box.querySelector<HTMLButtonElement>('[data-cookie-save]')!;
+    const customizeBtn = box.querySelector<HTMLButtonElement>('[data-cookie-customize]')!;
+    const show = (withPrefs = false) => {
+      const st = readConsent();
+      (prefs.elements.namedItem('analytics') as HTMLInputElement | null)!.checked = st?.analytics ?? false;
+      const mk = prefs.elements.namedItem('marketing') as HTMLInputElement | null;
+      if (mk) mk.checked = st?.marketing ?? false;
+      prefs.hidden = !withPrefs;
+      saveBtn.hidden = !withPrefs;
+      customizeBtn.hidden = withPrefs;
+      box.hidden = false;
+    };
+    const hide = () => (box.hidden = true);
+
+    if (!readConsent()) show();
+
+    box.querySelector('[data-cookie-accept]')?.addEventListener('click', () => {
+      saveConsent(true, true);
+      hide();
+    });
+    box.querySelector('[data-cookie-reject]')?.addEventListener('click', () => {
+      saveConsent(false, false);
+      hide();
+    });
+    customizeBtn.addEventListener('click', () => show(true));
+    saveBtn.addEventListener('click', () => {
+      const a = (prefs.elements.namedItem('analytics') as HTMLInputElement).checked;
+      const m = (prefs.elements.namedItem('marketing') as HTMLInputElement | null)?.checked ?? false;
+      saveConsent(a, m);
+      hide();
+    });
+    document.querySelectorAll('[data-cookie-open]').forEach((b) => b.addEventListener('click', () => show(true)));
+  }
+</script>
+
+<style>
+  .cookie {
+    position: fixed;
+    left: max(0.75rem, env(safe-area-inset-left));
+    right: max(0.75rem, env(safe-area-inset-right));
+    bottom: calc(0.75rem + env(safe-area-inset-bottom));
+    z-index: 90;
+    max-width: 44rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 30px 80px -30px rgb(20 14 10 / 0.5);
+  }
+  .cookie[hidden] {
+    display: none;
+  }
+  .cookie__inner {
+    display: grid;
+    gap: var(--space-m);
+    padding: clamp(1.25rem, 3vw, 2rem);
+    max-height: 80svh;
+    overflow-y: auto;
+  }
+  .cookie__title {
+    color: var(--color-accent-ink);
+    margin-bottom: 0.5rem;
+  }
+  .cookie__text p:last-child {
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+  }
+  .cookie__text a {
+    color: var(--color-text);
+  }
+  .cookie__prefs fieldset {
+    border: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .cookie__opt {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.75rem;
+    align-items: start;
+    font-size: var(--fs-small);
+  }
+  .cookie__opt input {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-top: 0.2rem;
+    accent-color: var(--color-text);
+  }
+  .cookie__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .cookie__actions .btn {
+    flex: 1 1 auto;
+    min-height: 2.9rem;
+    padding: 0.7rem 1rem;
+  }
+  @media (min-width: 768px) {
+    .cookie {
+      left: auto;
+      right: 1.5rem;
+      bottom: 1.5rem;
+      max-width: 30rem;
+    }
+    .cookie__inner {
+      gap: var(--space-s);
+    }
+  }
+</style>

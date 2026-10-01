@@ -1,0 +1,119 @@
+---
+/**
+ * REQUEST A QUOTE — the primary conversion form.
+ * Posts to the PHP handler (public/api/send.php). See README → Contact form.
+ */
+import '@/styles/forms.css';
+import type { Lang } from '@/i18n/routes';
+import { url } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import { site } from '@/data/site';
+import Field from './Field.astro';
+
+interface Props {
+  lang: Lang;
+  /** Pre-select event type, e.g. 'corporate' */
+  preset?: string;
+}
+const { lang, preset } = Astro.props;
+const s = t(lang);
+const it = lang === 'it';
+const eventTypes = [
+  { value: 'wedding', label: it ? 'Matrimonio' : 'Wedding' },
+  { value: 'destination-wedding', label: 'Destination Wedding' },
+  { value: 'corporate', label: it ? 'Evento aziendale' : 'Corporate' },
+  { value: 'private', label: it ? 'Evento privato' : 'Private event' },
+  { value: 'other', label: it ? 'Altro' : 'Other' },
+];
+const servicesOpts = [
+  { value: 'open-bar', label: 'Open Bar' },
+  { value: 'aperitivo-open-bar', label: 'Aperitivo + Open Bar' },
+  { value: 'cocktail-experience', label: 'Cocktail Experience' },
+  { value: 'signature-tower', label: 'Signature Tower' },
+  { value: 'bartender-service', label: it ? 'Servizio solo barman' : 'Bartender service' },
+  { value: 'custom', label: it ? 'Servizio su misura' : 'Custom service' },
+  { value: 'not-sure', label: it ? 'Non lo so ancora' : 'Not sure yet' },
+];
+const messages = {
+  required: s.errRequired,
+  email: s.errEmail,
+  phone: s.errPhone,
+  date: s.errDate,
+  consent: s.errConsent,
+  invalid: s.formInvalid,
+  sending: s.sending,
+  error: s.formError,
+};
+---
+
+<form
+  class="form"
+  action={site.formEndpoint}
+  method="post"
+  data-lead-form
+  data-form="quote"
+  data-event="quote_request"
+  data-done="quote-done"
+  data-messages={JSON.stringify(messages)}
+  data-preset={preset}
+>
+  <input type="hidden" name="form_type" value="quote" />
+  <input type="hidden" name="lang" value={lang} />
+  <input type="hidden" name="_t" value="" />
+  <input type="hidden" name="redirect" value={url('thanks', lang)} />
+  <div class="hp" aria-hidden="true">
+    <label>Leave empty <input type="text" name="company_fax" tabindex="-1" autocomplete="off" /></label>
+  </div>
+
+  <p class="micro form__legend">{it ? 'Voi' : 'About you'}</p>
+  <Field lang={lang} name="first_name" label={it ? 'Nome' : 'First name'} required autocomplete="given-name" />
+  <Field lang={lang} name="last_name" label={it ? 'Cognome' : 'Last name'} required autocomplete="family-name" />
+  <Field lang={lang} name="email" type="email" label="Email" required autocomplete="email" inputmode="email" />
+  <Field lang={lang} name="phone" type="tel" label="WhatsApp / Telefono" autocomplete="tel" inputmode="tel" placeholder="+39 …" />
+
+  <p class="micro form__legend">{it ? 'L’evento' : 'The event'}</p>
+  <Field lang={lang} name="event_type" type="select" label={it ? 'Tipo di evento' : 'Event type'} required options={eventTypes} placeholder={it ? 'Seleziona' : 'Select'} />
+  <Field lang={lang} name="event_date" type="date" label={it ? 'Data dell’evento' : 'Event date'} hint={it ? 'Anche indicativa.' : 'An approximate date is fine.'} />
+  <Field lang={lang} name="event_location" label={it ? 'Luogo dell’evento' : 'Event location'} required placeholder={it ? 'Location, città o zona' : 'Venue, town or area'} />
+  <Field lang={lang} name="guests" type="number" label={it ? 'Numero di ospiti' : 'Number of guests'} min={10} max={5000} inputmode="numeric" />
+  <Field lang={lang} name="service" type="select" label={it ? 'Servizio richiesto' : 'Service requested'} options={servicesOpts} placeholder={it ? 'Seleziona' : 'Select'} span="full" />
+  <Field lang={lang} name="style" label={it ? 'Stile dell’evento / esigenze' : 'Event style / requirements'} span="full" placeholder={it ? 'Es. elegante in villa, banco Golden Mirror, cocktail signature' : 'E.g. elegant villa wedding, Golden Mirror bar, signature cocktails'} />
+  <Field lang={lang} name="message" type="textarea" label={it ? 'Messaggio' : 'Message'} span="full" rows={4} />
+
+  <div class="form__full consent-wrap">
+    <label class="consent">
+      <input type="checkbox" name="privacy" value="1" required aria-describedby="quote-consent-err" />
+      <span set:html={s.privacyConsent.replace('{href}', url('privacy', lang))} />
+    </label>
+    <p class="field__err" id="quote-consent-err" aria-live="polite"></p>
+  </div>
+
+  <div class="form__full form__actions">
+    <button type="submit" class="btn">{s.quoteYour} <span class="arrow" aria-hidden="true">→</span></button>
+    <p class="form__status" role="status" data-form-status></p>
+  </div>
+</form>
+
+<div class="form-done" id="quote-done" tabindex="-1" hidden role="status">
+  <p class="eyebrow">{it ? 'Richiesta ricevuta' : 'Request received'}</p>
+  <h3>{it ? <>Grazie. <em>Il vostro evento è in buone mani.</em></> : <>Thank you. <em>Your event is in good hands.</em></>}</h3>
+  <p class="muted">
+    {it
+      ? 'Abbiamo ricevuto la vostra richiesta e vi risponderemo al più presto con una proposta su misura. Se preferite, scriveteci anche su WhatsApp.'
+      : 'We have received your request and will reply as soon as possible with a tailored proposal. If you prefer, you can also message us on WhatsApp.'}
+  </p>
+</div>
+
+<script>
+  import { initForms } from '@/scripts/forms';
+  initForms();
+  document.querySelectorAll<HTMLFormElement>('form[data-form="quote"]').forEach((f) => {
+    const sel = f.querySelector<HTMLSelectElement>('select[name="event_type"]');
+    const fromUrl = new URLSearchParams(location.search).get('type');
+    const v = fromUrl || f.dataset.preset;
+    if (sel && v && Array.from(sel.options).some((o) => o.value === v)) sel.value = v;
+    const svc = f.querySelector<HTMLSelectElement>('select[name="service"]');
+    const sv = new URLSearchParams(location.search).get('service');
+    if (svc && sv && Array.from(svc.options).some((o) => o.value === sv)) svc.value = sv;
+  });
+</script>
