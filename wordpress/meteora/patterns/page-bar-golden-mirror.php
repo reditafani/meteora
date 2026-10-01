@@ -113,7 +113,7 @@
 
 <!-- wp:group {"className":"mt-bar__body","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-bar__body"><!-- wp:paragraph {"className":"is-style-micro mt-bar__n"} -->
-<p class="is-style-micro mt-bar__n">02</p>
+<p class="is-style-micro mt-bar__n"><span class="mt-bar__num">02</span></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3,"className":"mt-bar__name"} -->
@@ -141,7 +141,7 @@
 
 <!-- wp:group {"className":"mt-bar__body","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-bar__body"><!-- wp:paragraph {"className":"is-style-micro mt-bar__n"} -->
-<p class="is-style-micro mt-bar__n">03</p>
+<p class="is-style-micro mt-bar__n"><span class="mt-bar__num">03</span></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3,"className":"mt-bar__name"} -->

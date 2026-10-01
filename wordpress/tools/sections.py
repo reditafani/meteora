@@ -181,7 +181,7 @@ def destinations(c: Ctx, compact=False):
 # ---------------------------------------------------------------- bars
 def bar_card_body(c: Ctx, bar, i, link=True):
     soon = bar['status'] == 'coming-soon'
-    body = [p(c, num(i) + ((' · ' + c.T('Coming soon', 'In arrivo')) if soon else ''), cls='is-style-micro mt-bar__n')]
+    body = [p(c, f'<span class="mt-bar__num">{num(i)}</span>' + (('<span class="mt-bar__soon">' + c.T('Coming soon', 'In arrivo') + '</span>') if soon else ''), cls='is-style-micro mt-bar__n')]
     if not soon and link:
         body.append(h(c, 3, f'<a href="{c.L("bar-" + bar["slug"])}">{bar["name"]}</a>', cls='mt-bar__name'))
     else:

@@ -29,6 +29,51 @@ function meteora_enqueue_assets(): void {
 add_action( 'wp_enqueue_scripts', 'meteora_enqueue_assets' );
 
 /**
+ * Map of class name → script handle. A script is enqueued only when a rendered
+ * block carries one of its classes (so pages without that section load no extra JS).
+ *
+ * @return array<string,string>
+ */
+function meteora_conditional_scripts(): array {
+	return array(
+		'animate-fade-up'      => 'reveal',
+		'animate-image-reveal' => 'reveal',
+		'mt-bc'                => 'bar-collection',
+		'mt-cf'                => 'cocktail-families',
+		'mt-cg'                => 'cocktail-gallery',
+	);
+}
+
+/**
+ * Enqueue section scripts on demand while blocks render.
+ *
+ * @param string              $content Rendered block.
+ * @param array<string,mixed> $block   Parsed block.
+ */
+function meteora_enqueue_on_render( string $content, array $block ): string {
+	if ( empty( $block['attrs']['className'] ) || ! is_string( $block['attrs']['className'] ) ) {
+		return $content;
+	}
+	$classes = preg_split( '/\s+/', $block['attrs']['className'] );
+	foreach ( meteora_conditional_scripts() as $class => $handle ) {
+		if ( in_array( $class, $classes, true ) && ! wp_script_is( 'meteora-' . $handle, 'enqueued' ) ) {
+			wp_enqueue_script(
+				'meteora-' . $handle,
+				meteora_asset( 'assets/js/' . $handle . '.js' ),
+				array(),
+				METEORA_VERSION,
+				array(
+					'strategy'  => 'defer',
+					'in_footer' => true,
+				)
+			);
+		}
+	}
+	return $content;
+}
+add_filter( 'render_block', 'meteora_enqueue_on_render', 10, 2 );
+
+/**
  * Preload the two most used font files (display roman + body) for faster first paint.
  */
 function meteora_preload_fonts(): void {

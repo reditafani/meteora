@@ -37,7 +37,7 @@
 
 <!-- wp:group {"className":"mt-bar__body","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-bar__body"><!-- wp:paragraph {"className":"is-style-micro mt-bar__n"} -->
-<p class="is-style-micro mt-bar__n">01</p>
+<p class="is-style-micro mt-bar__n"><span class="mt-bar__num">01</span></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3,"className":"mt-bar__name"} -->
@@ -65,7 +65,7 @@
 
 <!-- wp:group {"className":"mt-bar__body","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-bar__body"><!-- wp:paragraph {"className":"is-style-micro mt-bar__n"} -->
-<p class="is-style-micro mt-bar__n">02</p>
+<p class="is-style-micro mt-bar__n"><span class="mt-bar__num">02</span></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3,"className":"mt-bar__name"} -->
@@ -93,7 +93,7 @@
 
 <!-- wp:group {"className":"mt-bar__body","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-bar__body"><!-- wp:paragraph {"className":"is-style-micro mt-bar__n"} -->
-<p class="is-style-micro mt-bar__n">03</p>
+<p class="is-style-micro mt-bar__n"><span class="mt-bar__num">03</span></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3,"className":"mt-bar__name"} -->
@@ -123,7 +123,7 @@
 
 <!-- wp:group {"className":"mt-bar__body","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-bar__body"><!-- wp:paragraph {"className":"is-style-micro mt-bar__n"} -->
-<p class="is-style-micro mt-bar__n">04 · <?php echo esc_html__( 'Coming soon', 'meteora' ); ?></p>
+<p class="is-style-micro mt-bar__n"><span class="mt-bar__num">04</span><span class="mt-bar__soon"><?php echo esc_html__( 'Coming soon', 'meteora' ); ?></span></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3,"className":"mt-bar__name"} -->
@@ -153,7 +153,7 @@
 
 <!-- wp:group {"className":"mt-bar__body","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-bar__body"><!-- wp:paragraph {"className":"is-style-micro mt-bar__n"} -->
-<p class="is-style-micro mt-bar__n">05 · <?php echo esc_html__( 'Coming soon', 'meteora' ); ?></p>
+<p class="is-style-micro mt-bar__n"><span class="mt-bar__num">05</span><span class="mt-bar__soon"><?php echo esc_html__( 'Coming soon', 'meteora' ); ?></span></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3,"className":"mt-bar__name"} -->
@@ -183,7 +183,7 @@
 
 <!-- wp:group {"className":"mt-bar__body","layout":{"type":"default"}} -->
 <div class="wp-block-group mt-bar__body"><!-- wp:paragraph {"className":"is-style-micro mt-bar__n"} -->
-<p class="is-style-micro mt-bar__n">06 · <?php echo esc_html__( 'Coming soon', 'meteora' ); ?></p>
+<p class="is-style-micro mt-bar__n"><span class="mt-bar__num">06</span><span class="mt-bar__soon"><?php echo esc_html__( 'Coming soon', 'meteora' ); ?></span></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3,"className":"mt-bar__name"} -->

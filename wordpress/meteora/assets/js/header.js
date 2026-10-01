@@ -1,8 +1,7 @@
 /**
- * Header: compact and solid once the page scrolls; adds `.js` for motion CSS.
+ * Header: compact and solid once the page scrolls.
  */
 ( function () {
-	document.documentElement.classList.add( 'js' );
 	var header = document.querySelector( '.site-header' );
 	if ( ! header ) {
 		return;
