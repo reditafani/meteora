@@ -189,15 +189,14 @@ Differenze che restano:
 
 1. **Lingue e URL.** L'originale aveva l'italiano alla radice e l'inglese sotto `/en/`. Come concordato, qui l'inglese è alla radice e l'italiano sotto `/it/`. Polylang gratuito non permette lo stesso slug in due lingue, per cui una storia italiana usa `signature-tower-moments-it` e un tag italiano `signature-tower-experience-it`.
 2. **Tabella Essential vs Premium su mobile.** L'originale impilava delle schede. Il tema usa il blocco Tabella nativo a due colonne: stesso contenuto, circa 255 px più corta. Si modifica come una normale tabella.
-3. **Galleria delle storie evento.** L'originale arrivava ai bordi dello schermo per effetto collaterale di un reset CSS. Il tema la allinea ai margini del testo.
-4. **Campo data del preventivo.** La nota "facoltativo — anche indicativa" sta accanto all'etichetta, invece che sotto il campo.
-5. **Accessibilità migliorata rispetto all'originale** (WCAG 2.2 AA):
+3. **Campo data del preventivo.** La nota "facoltativo — anche indicativa" sta accanto all'etichetta, invece che sotto il campo.
+4. **Accessibilità migliorata rispetto all'originale** (WCAG 2.2 AA):
    - più contrasto per briciole di pane, contatori dei filtri cocktail e nomi dei banchi non selezionati;
    - il carosello del ghiaccio su mobile si raggiunge anche da tastiera;
    - il menu mobile è il menu nativo di WordPress, con la stessa grafica e animazione dell'originale.
-6. **Peso tecnico.** WordPress aggiunge il proprio CSS dei blocchi, gli stili globali e lo script dell'Interactivity API (circa 40 KB) usato dal menu mobile. La pagina resta senza spostamenti di layout (CLS 0,000).
-7. **Testi del core in italiano.** "Pagina non trovata" e "Risultati della ricerca" vengono dal pacchetto italiano di WordPress, che si installa quando aggiungi la lingua.
-8. **Moduli.** Usano Contact Form 7 invece dell'invio personalizzato dell'originale: stessi campi, stessa grafica, stessi eventi di conversione.
+5. **Peso tecnico.** WordPress aggiunge il proprio CSS dei blocchi, gli stili globali e lo script dell'Interactivity API (circa 40 KB) usato dal menu mobile. La pagina resta senza spostamenti di layout (CLS 0,000).
+6. **Testi del core in italiano.** "Pagina non trovata" e "Risultati della ricerca" vengono dal pacchetto italiano di WordPress, che si installa quando aggiungi la lingua.
+7. **Moduli.** Usano Contact Form 7 invece dell'invio personalizzato dell'originale: stessi campi, stessa grafica, stessi eventi di conversione.
 
 ## Verifiche eseguite
 

@@ -1915,6 +1915,13 @@ body .mt-ps__facts > div > * {
 	gap: var(--wp--preset--spacing--m);
 	margin-top: var(--wp--preset--spacing--xl) !important;
 }
+/* As in the original: as wide as the screen up to 1440px, centred (bleeds over the page gutter). */
+body .mt-ps__gallery {
+	margin-inline: calc((100% - min(var(--wp--style--global--wide-size, 1440px), 100% + var(--wp--style--root--padding-left) + var(--wp--style--root--padding-right))) / 2);
+}
+.mt-ps__gallery > * {
+	overflow: hidden; /* clips the image-reveal zoom at the screen edge */
+}
 .mt-ps__gimg img {
 	aspect-ratio: 3 / 2;
 }
