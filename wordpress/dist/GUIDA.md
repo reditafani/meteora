@@ -21,6 +21,18 @@ Tema a blocchi (Full Site Editing) che riproduce il sito Meteora Events. Non usa
 
 ---
 
+## Preview su WordPress Playground (senza installare nulla)
+
+Apri questo link: si crea in 1–2 minuti un WordPress temporaneo nel browser, con tema, plugin (Polylang, Contact Form 7), pagine EN/IT, storie, immagini e moduli già pronti, e sei già collegato come amministratore:
+
+https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/reditafani/meteora/refs/heads/claude/meteora-events-website-re591s/wordpress/playground/blueprint.json
+
+- Per l'editor: barra in alto → **Modifica pagina**, oppure **Aspetto → Editor**. Se serve una password: utente `admin`, password `password`.
+- La preview è temporanea e privata (vive nel tuo browser): le modifiche si perdono chiudendo la scheda e l'invio dei moduli non spedisce email.
+- La configurazione è in `wordpress/playground/blueprint.json`. Se il branch viene unito a `main` ed eliminato, nel link sostituisci `refs/heads/claude/meteora-events-website-re591s` con `refs/heads/main` (anche dentro il file blueprint).
+
+---
+
 ## 1. Installazione (ordine consigliato)
 
 1. **Aspetto → Temi → Aggiungi nuovo → Carica tema**: scegli `meteora.zip` e poi **Attiva**.
