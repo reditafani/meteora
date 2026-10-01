@@ -17,13 +17,23 @@
 	"steps": [
 		{
 			"step": "installPlugin",
-			"pluginData": { "resource": "wordpress.org/plugins", "slug": "polylang" },
-			"options": { "activate": true }
+			"pluginData": {
+				"resource": "wordpress.org/plugins",
+				"slug": "polylang"
+			},
+			"options": {
+				"activate": true
+			}
 		},
 		{
 			"step": "installPlugin",
-			"pluginData": { "resource": "wordpress.org/plugins", "slug": "contact-form-7" },
-			"options": { "activate": true }
+			"pluginData": {
+				"resource": "wordpress.org/plugins",
+				"slug": "contact-form-7"
+			},
+			"options": {
+				"activate": true
+			}
 		},
 		{
 			"step": "installTheme",
@@ -31,7 +41,9 @@
 				"resource": "url",
 				"url": "https://raw.githubusercontent.com/reditafani/meteora/refs/heads/claude/meteora-events-website-re591s/wordpress/dist/meteora.zip"
 			},
-			"options": { "activate": true }
+			"options": {
+				"activate": true
+			}
 		},
 		{
 			"step": "setSiteOptions",
@@ -42,7 +54,7 @@
 		},
 		{
 			"step": "runPHP",
-			"code": "<?php require '/wordpress/wp-load.php'; if ( function_exists( 'PLL' ) && ! PLL()->model->get_language( 'en' ) ) { PLL()->model->languages->add( array( 'name' => 'English', 'slug' => 'en', 'locale' => 'en_US', 'rtl' => 0, 'flag' => 'gb', 'term_group' => 0 ) ); } if ( function_exists( 'PLL' ) && ! PLL()->model->get_language( 'it' ) ) { PLL()->model->languages->add( array( 'name' => 'Italiano', 'slug' => 'it', 'locale' => 'it_IT', 'rtl' => 0, 'flag' => 'it', 'term_group' => 1 ) ); } $o = get_option( 'polylang' ); if ( is_array( $o ) ) { $o['default_lang'] = 'en'; $o['hide_default'] = 1; $o['force_lang'] = 1; $o['rewrite'] = 1; update_option( 'polylang', $o ); }"
+			"code": "<?php define( 'WP_ADMIN', true ); require '/wordpress/wp-load.php'; if ( function_exists( 'PLL' ) && ! PLL()->model->get_language( 'en' ) ) { PLL()->model->languages->add( array( 'name' => 'English', 'slug' => 'en', 'locale' => 'en_US', 'rtl' => 0, 'flag' => 'gb', 'term_group' => 0 ) ); } if ( function_exists( 'PLL' ) && ! PLL()->model->get_language( 'it' ) ) { PLL()->model->languages->add( array( 'name' => 'Italiano', 'slug' => 'it', 'locale' => 'it_IT', 'rtl' => 0, 'flag' => 'it', 'term_group' => 1 ) ); } $o = get_option( 'polylang' ); if ( is_array( $o ) ) { $o['default_lang'] = 'en'; $o['hide_default'] = 1; $o['force_lang'] = 1; $o['rewrite'] = 1; update_option( 'polylang', $o ); }"
 		},
 		{
 			"step": "importWxr",
