@@ -1,0 +1,63 @@
+---
+interface Props {
+  eyebrow?: string;
+  level?: 'h2' | 'h3';
+  align?: 'left' | 'center' | 'split';
+  id?: string;
+  class?: string;
+}
+const { eyebrow, level = 'h2', align = 'left', id, class: cls } = Astro.props;
+const Tag = level;
+---
+
+<header class:list={['sh', `sh--${align}`, cls]}>
+  <div class="sh__head">
+    {eyebrow && <p class="eyebrow" data-reveal>{eyebrow}</p>}
+    <Tag id={id} class="sh__title" data-reveal style="--delay:.08s"><slot /></Tag>
+  </div>
+  {
+    Astro.slots.has('lead') && (
+      <div class="sh__lead lead muted" data-reveal style="--delay:.16s">
+        <slot name="lead" />
+      </div>
+    )
+  }
+</header>
+
+<style>
+  .sh {
+    display: grid;
+    gap: var(--space-m);
+    margin-bottom: var(--space-xl);
+  }
+  .sh__head {
+    display: grid;
+    gap: var(--space-m);
+  }
+  .sh__title {
+    max-width: 16ch;
+  }
+  .sh__lead {
+    max-width: 34rem;
+  }
+  .sh--center {
+    text-align: center;
+    justify-items: center;
+  }
+  .sh--center .eyebrow {
+    justify-self: center;
+  }
+  .sh--center .sh__title {
+    max-width: 18ch;
+  }
+  @media (min-width: 960px) {
+    .sh--split {
+      grid-template-columns: 1.2fr 1fr;
+      align-items: end;
+      gap: var(--space-xl);
+    }
+    .sh--split .sh__lead {
+      justify-self: end;
+    }
+  }
+</style>

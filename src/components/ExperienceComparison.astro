@@ -1,0 +1,115 @@
+---
+/** Essential vs Premium — a refined comparison, never a price table. */
+import type { Lang } from '@/i18n/routes';
+import { url } from '@/i18n/routes';
+import { comparison } from '@/data/services';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+---
+
+<div class="cmp">
+  <div class="cmp__cols" role="table" aria-label={it ? 'Confronto Essential e Premium Experience' : 'Essential and Premium Experience compared'}>
+    <div class="cmp__row cmp__row--head" role="row">
+      <span role="columnheader" class="visually-hidden">{it ? 'Aspetto' : 'Aspect'}</span>
+      <div role="columnheader" class="cmp__h">
+        <span class="micro">Open Bar</span>
+        <span class="cmp__name">Essential <em>Experience</em></span>
+      </div>
+      <div role="columnheader" class="cmp__h cmp__h--premium">
+        <span class="micro">Open Bar</span>
+        <span class="cmp__name">Premium <em>Experience</em></span>
+      </div>
+    </div>
+    {
+      comparison.rows.map((r) => (
+        <div class="cmp__row" role="row" data-reveal>
+          <span role="rowheader" class="cmp__label micro">{r.label[lang]}</span>
+          <p role="cell" data-label="Essential">{r.essential[lang]}</p>
+          <p role="cell" data-label="Premium" class="cmp__premium">{r.premium[lang]}</p>
+        </div>
+      ))
+    }
+  </div>
+  <p class="cmp__note muted">{comparison.note[lang]}</p>
+  <p class="cmp__note muted">
+    {it
+      ? 'Entrambe le formule includono tre ore di open bar, banco a scelta, drink list signature, staff professionale e bicchieri di nostra proprietà. Tempo extra, staff e moduli bar aggiuntivi su richiesta.'
+      : 'Both formulas include three hours of open bar, a bar of your choice, our signature drink list, professional staff and our own glassware. Extra time, additional staff and extra bar modules on request.'}
+  </p>
+  <a class="btn" href={url('contact', lang)} data-track="cta_click" data-track-label="comparison_quote">{it ? 'Richiedi un preventivo' : 'Request a quote'} <span class="arrow" aria-hidden="true">→</span></a>
+</div>
+
+<style>
+  .cmp__cols {
+    border-top: 1px solid var(--color-text);
+  }
+  .cmp__row {
+    display: grid;
+    gap: 0.5rem var(--space-m);
+    padding-block: var(--space-m);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .cmp__row--head {
+    display: none;
+  }
+  .cmp__label {
+    color: var(--color-accent-ink);
+  }
+  .cmp__row p {
+    font-size: var(--fs-small);
+  }
+  .cmp__row p::before {
+    content: attr(data-label);
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-bottom: 0.15rem;
+  }
+  .cmp__premium {
+    color: var(--color-text);
+  }
+  .cmp__note {
+    margin-block: var(--space-m);
+    font-size: var(--fs-small);
+    max-width: 44rem;
+  }
+  .cmp__note + .btn {
+    margin-top: var(--space-s);
+  }
+  @media (min-width: 800px) {
+    .cmp__row {
+      grid-template-columns: 1fr 2fr 2fr;
+      align-items: baseline;
+    }
+    .cmp__row--head {
+      display: grid;
+      padding-block: var(--space-l) var(--space-m);
+    }
+    .cmp__row p::before {
+      display: none;
+    }
+    .cmp__h {
+      display: grid;
+      gap: 0.3rem;
+    }
+    .cmp__h .micro {
+      color: var(--color-text-muted);
+    }
+    .cmp__name {
+      font-family: var(--font-display);
+      font-size: var(--fs-h3);
+      line-height: 1.1;
+    }
+    .cmp__name em {
+      color: var(--color-accent-ink);
+    }
+    .cmp__row p {
+      font-size: var(--fs-body);
+    }
+  }
+</style>

@@ -1,0 +1,84 @@
+---
+/**
+ * Editorial page header for inner pages: asymmetric text + tall image.
+ */
+import type { ImageMetadata } from 'astro';
+import type { Crumb } from '@/lib/seo';
+import Img from './Img.astro';
+import Breadcrumbs from './Breadcrumbs.astro';
+
+interface Props {
+  eyebrow?: string;
+  image?: ImageMetadata;
+  imageAlt?: string;
+  position?: string;
+  crumbs?: Crumb[];
+  tone?: 'light' | 'alt';
+}
+const { eyebrow, image, imageAlt = '', position, crumbs, tone = 'light' } = Astro.props;
+---
+
+<section class:list={['phero', tone === 'alt' && 'section--alt', !image && 'phero--text']}>
+  <div class="container phero__grid">
+    <div class="phero__text">
+      {crumbs && <Breadcrumbs crumbs={crumbs} />}
+      {eyebrow && <p class="eyebrow phero__eyebrow" data-reveal>{eyebrow}</p>}
+      <div class="phero__title" data-reveal style="--delay:.08s"><slot /></div>
+      <div class="phero__lead" data-reveal style="--delay:.16s"><slot name="lead" /></div>
+      <div class="phero__cta" data-reveal style="--delay:.24s"><slot name="cta" /></div>
+    </div>
+    {
+      image && (
+        <div class="phero__media media" data-reveal="image">
+          <Img src={image} alt={imageAlt} priority sizes="(min-width: 900px) 45vw, 100vw" position={position} />
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .phero {
+    padding-block: var(--space-xl) var(--section);
+  }
+  .phero__grid {
+    display: grid;
+    gap: var(--space-l);
+    align-items: end;
+  }
+  .phero__text > :global(.crumbs) {
+    margin-bottom: var(--space-l);
+  }
+  .phero__eyebrow {
+    margin-bottom: var(--space-m);
+  }
+  .phero__title :global(h1) {
+    max-width: 14ch;
+  }
+  .phero--text .phero__title :global(h1) {
+    max-width: 18ch;
+  }
+  .phero__lead:not(:empty) {
+    margin-top: var(--space-m);
+    max-width: 34rem;
+  }
+  .phero__cta:not(:empty) {
+    margin-top: var(--space-l);
+  }
+  .phero__media {
+    aspect-ratio: 4 / 5;
+    max-height: 78svh;
+  }
+  @media (min-width: 900px) {
+    .phero__grid {
+      grid-template-columns: 7fr 5fr;
+      gap: var(--space-xl);
+    }
+    .phero--text .phero__grid {
+      grid-template-columns: 1fr;
+    }
+    .phero__media {
+      margin-bottom: calc(var(--section) * -0.35);
+    }
+  }
+</style>

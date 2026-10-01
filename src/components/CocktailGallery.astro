@@ -1,0 +1,116 @@
+---
+/**
+ * Full, filterable cocktail list. Data-driven: src/data/cocktails.ts
+ * Without JavaScript every cocktail is visible; with JS, category filters appear.
+ */
+import type { Lang } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import { cocktails, cocktailCategories } from '@/data/cocktails';
+import CocktailCard from './CocktailCard.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const s = t(lang);
+const cats = cocktailCategories.filter((c) => cocktails.some((k) => k.categories.includes(c.id)));
+---
+
+<div class="cg" data-cg>
+  <div class="cg__filters" role="group" aria-label={lang === 'it' ? 'Filtra per famiglia' : 'Filter by family'} hidden data-cg-filters>
+    <button type="button" aria-pressed="true" data-filter="all">{s.all} <span>{cocktails.length}</span></button>
+    {
+      cats.map((c) => (
+        <button type="button" aria-pressed="false" data-filter={c.id}>
+          {c.label[lang]} <span>{cocktails.filter((k) => k.categories.includes(c.id)).length}</span>
+        </button>
+      ))
+    }
+  </div>
+  <p class="visually-hidden" aria-live="polite" data-cg-status></p>
+  <ul class="cg__grid" role="list">
+    {cocktails.map((c) => <li data-categories={c.categories.join(' ')}><CocktailCard cocktail={c} lang={lang} /></li>)}
+  </ul>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-cg]').forEach((root) => {
+    const filters = root.querySelector<HTMLElement>('[data-cg-filters]');
+    const status = root.querySelector<HTMLElement>('[data-cg-status]');
+    const items = root.querySelectorAll<HTMLElement>('li[data-categories]');
+    if (!filters) return;
+    filters.hidden = false;
+    const apply = (id: string, btn: HTMLButtonElement) => {
+      filters.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+      let n = 0;
+      items.forEach((li) => {
+        const show = id === 'all' || li.dataset.categories!.split(' ').includes(id);
+        li.hidden = !show;
+        if (show) n++;
+      });
+      if (status) status.textContent = `${n} cocktail — ${btn.firstChild?.textContent?.trim()}`;
+    };
+    filters.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-filter]');
+      if (btn) apply(btn.dataset.filter!, btn);
+    });
+    const hash = location.hash.replace('#', '');
+    const initial = filters.querySelector<HTMLButtonElement>(`button[data-filter="${hash}"]`);
+    if (initial) apply(hash, initial);
+  });
+</script>
+
+<style>
+  .cg__filters {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    margin-bottom: var(--space-l);
+    scrollbar-width: none;
+  }
+  .cg__filters[hidden] {
+    display: none;
+  }
+  .cg__filters button {
+    flex: none;
+    padding: 0.7rem 1.1rem;
+    border: 1px solid var(--color-border);
+    font-size: var(--fs-micro);
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    transition:
+      background-color 0.3s,
+      color 0.3s,
+      border-color 0.3s;
+  }
+  .cg__filters button span {
+    opacity: 0.55;
+    margin-left: 0.3rem;
+  }
+  .cg__filters button:hover {
+    border-color: var(--color-text);
+  }
+  .cg__filters button[aria-pressed='true'] {
+    background: var(--color-text);
+    color: var(--color-background);
+    border-color: var(--color-text);
+  }
+  .cg__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-l) var(--space-s);
+  }
+  @media (min-width: 700px) {
+    .cg__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl) var(--space-m);
+    }
+  }
+  @media (min-width: 1200px) {
+    .cg__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>

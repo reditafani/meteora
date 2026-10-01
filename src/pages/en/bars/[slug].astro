@@ -1,0 +1,11 @@
+---
+import BarDetailView from '@/views/BarDetailView.astro';
+import { availableBars, type Bar } from '@/data/bars';
+
+export function getStaticPaths() {
+  return availableBars.map((bar) => ({ params: { slug: bar.slug }, props: { bar } }));
+}
+const { bar } = Astro.props as { bar: Bar };
+---
+
+<BarDetailView lang="en" bar={bar} />

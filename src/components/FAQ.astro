@@ -1,0 +1,77 @@
+---
+import type { Lang } from '@/i18n/routes';
+import type { FaqItem } from '@/data/faq';
+
+interface Props {
+  lang: Lang;
+  items: FaqItem[];
+}
+const { lang, items } = Astro.props;
+---
+
+<div class="faq">
+  {
+    items.map((f, i) => (
+      <details class="faq__item" data-reveal style={`--delay:${Math.min(i, 4) * 0.04}s`}>
+        <summary>
+          <h3 class="faq__q">{f.q[lang]}</h3>
+          <span class="faq__icon" aria-hidden="true" />
+        </summary>
+        <div class="faq__a">
+          <p>{f.a[lang]}</p>
+        </div>
+      </details>
+    ))
+  }
+</div>
+
+<style>
+  .faq {
+    border-top: 1px solid var(--color-border);
+  }
+  .faq__item {
+    border-bottom: 1px solid var(--color-border);
+  }
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-m);
+    padding-block: 1.25rem;
+    cursor: pointer;
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq__q {
+    font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.65rem);
+    line-height: 1.25;
+  }
+  .faq__icon {
+    position: relative;
+    flex: none;
+    width: 14px;
+    height: 14px;
+  }
+  .faq__icon::before,
+  .faq__icon::after {
+    content: '';
+    position: absolute;
+    inset: 50% 0 auto;
+    height: 1px;
+    background: currentColor;
+    transition: transform 0.4s var(--ease-out);
+  }
+  .faq__icon::after {
+    transform: rotate(90deg);
+  }
+  details[open] .faq__icon::after {
+    transform: rotate(0deg);
+  }
+  .faq__a {
+    padding-bottom: 1.5rem;
+    max-width: 44rem;
+    color: var(--color-text-muted);
+  }
+</style>

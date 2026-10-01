@@ -1,0 +1,89 @@
+---
+/**
+ * Destinations as a typographic index. Links to a landing page only where
+ * one exists (see src/data/destinations.ts).
+ */
+import type { Lang } from '@/i18n/routes';
+import { destinations } from '@/data/destinations';
+
+interface Props {
+  lang: Lang;
+  compact?: boolean;
+}
+const { lang, compact = false } = Astro.props;
+const base = lang === 'it' ? '/' : '/en/';
+---
+
+<ul class:list={['dest', compact && 'dest--compact']} role="list">
+  {
+    destinations.map((d, i) => (
+      <li id={`dest-${d.id}`} data-reveal style={`--delay:${(i % 4) * 0.05}s`}>
+        {d.landing ? (
+          <a href={`${base}${d.landing.slug[lang]}/`} class="dest__row">
+            <span class="dest__name">{d.name[lang]}</span>
+            <span class="dest__line">{d.line[lang]}</span>
+            <span class="dest__go micro" aria-hidden="true">→</span>
+          </a>
+        ) : (
+          <div class="dest__row">
+            <span class="dest__name">{d.name[lang]}</span>
+            <span class="dest__line">{d.line[lang]}</span>
+          </div>
+        )}
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .dest {
+    border-top: 1px solid currentColor;
+    border-color: var(--color-border);
+  }
+  :global(.section--dark) .dest,
+  :global(.section--dark) .dest li {
+    border-color: rgb(255 255 255 / 0.14);
+  }
+  .dest li {
+    border-bottom: 1px solid var(--color-border);
+  }
+  .dest__row {
+    display: grid;
+    gap: 0.25rem;
+    padding-block: 1.1rem;
+    text-decoration: none;
+  }
+  .dest__name {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 1.2rem + 2vw, 3.25rem);
+    line-height: 1.05;
+    font-weight: 350;
+    transition: transform 0.6s var(--ease-out);
+  }
+  .dest__line {
+    font-size: var(--fs-small);
+    opacity: 0.72;
+    max-width: 30rem;
+  }
+  .dest__go {
+    display: none;
+  }
+  a.dest__row:hover .dest__name {
+    transform: translateX(0.5rem);
+    font-style: italic;
+  }
+  .dest--compact .dest__name {
+    font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2.25rem);
+  }
+  @media (min-width: 900px) {
+    .dest__row {
+      grid-template-columns: 5fr 6fr auto;
+      align-items: baseline;
+      gap: var(--space-l);
+    }
+    .dest__go {
+      display: block;
+      font-size: 1.1rem;
+    }
+  }
+</style>

@@ -1,0 +1,69 @@
+---
+import type { Alternates, Lang } from '@/i18n/routes';
+import { LANGS, routes } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+
+interface Props {
+  lang: Lang;
+  alternates: Partial<Alternates>;
+  class?: string;
+}
+const { lang, alternates, class: cls } = Astro.props;
+const names: Record<Lang, string> = { it: 'Italiano', en: 'English' };
+---
+
+<ul class:list={['lang-switch', cls]} role="list" aria-label={t(lang).langLabel}>
+  {
+    LANGS.map((l) => {
+      const href = alternates[l] ?? routes.home[l];
+      return (
+        <li>
+          {l === lang ? (
+            <span aria-current="true" lang={l} title={names[l]}>
+              {l.toUpperCase()}
+              <span class="visually-hidden"> — {names[l]}</span>
+            </span>
+          ) : (
+            <a href={href} hreflang={l} lang={l} data-track="language_switch" data-track-label={l} title={names[l]}>
+              {l.toUpperCase()}
+              <span class="visually-hidden"> — {names[l]}</span>
+            </a>
+          )}
+        </li>
+      );
+    })
+  }
+</ul>
+
+<style>
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+    font-size: var(--fs-micro);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+  }
+  li + li::before {
+    content: '/';
+    opacity: 0.4;
+    margin-inline: 0.35rem;
+  }
+  li {
+    display: flex;
+    align-items: center;
+  }
+  a,
+  span[aria-current] {
+    display: inline-block;
+    padding: 0.6rem 0.15rem;
+    text-decoration: none;
+  }
+  a {
+    opacity: 0.6;
+    transition: opacity 0.3s;
+  }
+  a:hover {
+    opacity: 1;
+  }
+</style>

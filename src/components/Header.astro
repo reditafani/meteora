@@ -1,0 +1,233 @@
+---
+import type { Alternates, Lang } from '@/i18n/routes';
+import { url } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import Logo from './Logo.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import MobileMenu from './MobileMenu.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  lang: Lang;
+  alternates: Partial<Alternates>;
+  /** 'overlay' = transparent over a dark hero until scrolled */
+  theme?: 'overlay' | 'solid';
+  current?: string;
+}
+const { lang, alternates, theme = 'solid', current } = Astro.props;
+const s = t(lang);
+const nav = [
+  { key: 'weddings', label: lang === 'it' ? 'Matrimoni' : 'Weddings', href: url('weddings', lang) },
+  { key: 'cocktails', label: lang === 'it' ? 'Esperienza' : 'Experience', href: url('cocktails', lang) },
+  { key: 'bars', label: lang === 'it' ? 'Banchi bar' : 'Bars', href: url('bars', lang) },
+  { key: 'events', label: lang === 'it' ? 'Eventi' : 'Events', href: url('events', lang) },
+  { key: 'about', label: lang === 'it' ? 'Chi siamo' : 'About', href: url('about', lang) },
+];
+---
+
+<header class="site-header" data-theme={theme} data-header>
+  <div class="container site-header__inner">
+    <a class="site-header__brand" href={url('home', lang)} aria-label={`Meteora Events — ${s.breadcrumbHome}`}>
+      <Logo variant="cream" width={132} class="logo logo--cream" priority />
+      <Logo variant="gold" width={132} class="logo logo--gold" priority />
+    </a>
+
+    <nav class="site-header__nav" aria-label={s.mainNav}>
+      <ul role="list">
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} aria-current={current === item.key ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      <a class="site-header__partner" href={url('partners', lang)} aria-current={current === 'partners' ? 'page' : undefined}>
+        {s.partnerArea}
+      </a>
+      <LanguageSwitcher lang={lang} alternates={alternates} class="site-header__lang" />
+      <a class="btn site-header__cta" href={url('contact', lang)} data-track="cta_click" data-track-label="header_quote">
+        {s.quote}
+      </a>
+      <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-open>
+        <Icon name="menu" size={24} />
+        <span class="visually-hidden">{s.menu}</span>
+      </button>
+    </div>
+  </div>
+</header>
+<MobileMenu lang={lang} alternates={alternates} current={current} />
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]');
+  if (header) {
+    let ticking = false;
+    const update = () => {
+      header.toggleAttribute('data-scrolled', window.scrollY > 24);
+      ticking = false;
+    };
+    update();
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      },
+      { passive: true },
+    );
+  }
+</script>
+
+<style>
+  .site-header {
+    --fg: var(--color-text);
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 50;
+    color: var(--fg);
+    background: color-mix(in srgb, var(--color-background) 94%, transparent);
+    backdrop-filter: saturate(1.2) blur(10px);
+    -webkit-backdrop-filter: saturate(1.2) blur(10px);
+    border-bottom: 1px solid transparent;
+    transition:
+      background-color 0.5s var(--ease),
+      color 0.5s var(--ease),
+      border-color 0.5s var(--ease);
+  }
+  .site-header[data-scrolled] {
+    border-bottom-color: var(--color-border);
+  }
+  .site-header[data-theme='overlay']:not([data-scrolled]) {
+    --fg: var(--color-on-dark);
+    background: linear-gradient(to bottom, rgb(12 9 7 / 0.55), rgb(12 9 7 / 0)) border-box no-repeat;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-m);
+    height: var(--header-h);
+    transition: height 0.45s var(--ease);
+  }
+  .site-header[data-scrolled] .site-header__inner {
+    height: var(--header-h-compact);
+  }
+  .site-header__brand {
+    position: relative;
+    display: block;
+    flex: none;
+    width: 118px;
+    transition: width 0.45s var(--ease);
+  }
+  .site-header[data-scrolled] .site-header__brand {
+    width: 96px;
+  }
+  .site-header__brand :global(.logo) {
+    width: 100%;
+    height: auto;
+    transition: opacity 0.4s var(--ease);
+  }
+  .site-header__brand :global(.logo--cream) {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+  }
+  .site-header[data-theme='overlay']:not([data-scrolled]) :global(.logo--cream) {
+    opacity: 1;
+  }
+  .site-header[data-theme='overlay']:not([data-scrolled]) :global(.logo--gold) {
+    opacity: 0;
+  }
+  .site-header__nav {
+    display: none;
+  }
+  .site-header__nav ul {
+    display: flex;
+    gap: clamp(1.25rem, 2.2vw, 2.5rem);
+  }
+  .site-header__nav a,
+  .site-header__partner {
+    position: relative;
+    font-size: var(--fs-micro);
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding-block: 0.6rem;
+  }
+  .site-header__nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.25rem;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.45s var(--ease-out);
+  }
+  .site-header__nav a:hover::after,
+  .site-header__nav a[aria-current='page']::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  .site-header__actions {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.75rem, 1.6vw, 1.5rem);
+  }
+  .site-header__partner {
+    display: none;
+    opacity: 0.75;
+  }
+  .site-header__partner:hover {
+    opacity: 1;
+  }
+  .site-header__cta {
+    display: none;
+    min-height: 2.75rem;
+    padding: 0.7rem 1.25rem;
+  }
+  .site-header[data-theme='overlay']:not([data-scrolled]) .site-header__cta {
+    --btn-bg: transparent;
+    --btn-fg: var(--color-on-dark);
+    --btn-bd: color-mix(in srgb, var(--color-on-dark) 60%, transparent);
+  }
+  .site-header[data-theme='overlay']:not([data-scrolled]) .site-header__cta:hover {
+    --btn-bg: var(--color-on-dark);
+    --btn-fg: var(--color-dark);
+  }
+  .site-header__toggle {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-right: -0.6rem;
+  }
+  @media (min-width: 768px) {
+    .site-header__cta {
+      display: inline-flex;
+    }
+  }
+  @media (min-width: 1180px) {
+    .site-header__nav {
+      display: block;
+    }
+    .site-header__partner {
+      display: inline-block;
+    }
+    .site-header__toggle {
+      display: none;
+    }
+  }
+</style>

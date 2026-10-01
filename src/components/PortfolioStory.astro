@@ -1,0 +1,114 @@
+---
+/** Event story detail — cover, facts, story, gallery, optional video. */
+import type { Lang } from '@/i18n/routes';
+import type { EventStory } from '@/data/events';
+import Img from './Img.astro';
+
+interface Props {
+  lang: Lang;
+  event: EventStory;
+}
+const { lang, event: e } = Astro.props;
+const it = lang === 'it';
+const facts = [
+  { k: it ? 'Tipologia' : 'Event type', v: e.type[lang] },
+  e.location && { k: it ? 'Luogo' : 'Location', v: e.location[lang] },
+  e.guests && { k: it ? 'Ospiti' : 'Guests', v: String(e.guests) },
+  e.bar && { k: it ? 'Banco bar' : 'Bar', v: e.bar },
+  { k: it ? 'Esperienza' : 'Experience', v: e.experience[lang] },
+].filter(Boolean) as { k: string; v: string }[];
+---
+
+<article class="ps">
+  <div class="ps__cover media">
+    <Img src={e.cover} alt={e.coverAlt[lang]} priority sizes="100vw" />
+  </div>
+  <div class="container ps__body">
+    <dl class="ps__facts">
+      {facts.map((f) => (<div><dt class="micro">{f.k}</dt><dd>{f.v}</dd></div>))}
+    </dl>
+    <div class="ps__story prose">
+      {e.story[lang].map((p, i) => <p class:list={[i === 0 && 'lead']}>{p}</p>)}
+    </div>
+  </div>
+  {
+    e.video && (e.video.mp4 || e.video.webm) && (
+      <div class="container ps__video">
+        <video controls playsinline preload="none" poster={e.video.poster?.src}>
+          {e.video.webm && <source src={e.video.webm} type="video/webm" />}
+          {e.video.mp4 && <source src={e.video.mp4} type="video/mp4" />}
+        </video>
+      </div>
+    )
+  }
+  {
+    e.gallery.length > 0 && (
+      <ul class="container ps__gallery" role="list">
+        {e.gallery.map((g) => (
+          <li class="media" data-reveal="image">
+            <Img src={g.src} alt={g.alt[lang]} sizes="(min-width: 900px) 50vw, 100vw" />
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</article>
+
+<style>
+  .ps__cover {
+    height: min(80svh, 56rem);
+  }
+  .ps__body {
+    display: grid;
+    gap: var(--space-xl);
+    padding-block: var(--space-xl);
+  }
+  .ps__facts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-m);
+    align-content: start;
+  }
+  .ps__facts dt {
+    color: var(--color-accent-ink);
+    margin-bottom: 0.25rem;
+  }
+  .ps__facts dd {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    line-height: 1.25;
+  }
+  .ps__story {
+    max-width: 38rem;
+  }
+  .ps__video video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--color-dark);
+  }
+  .ps__gallery {
+    display: grid;
+    gap: var(--space-m);
+    padding-bottom: var(--space-xl);
+  }
+  .ps__gallery li {
+    aspect-ratio: 3 / 2;
+  }
+  @media (min-width: 900px) {
+    .ps__body {
+      grid-template-columns: 4fr 7fr;
+      gap: clamp(3rem, 8vw, 8rem);
+    }
+    .ps__facts {
+      grid-template-columns: 1fr;
+      position: sticky;
+      top: calc(var(--header-h-compact) + 2rem);
+    }
+    .ps__gallery {
+      grid-template-columns: 1fr 1fr;
+    }
+    .ps__gallery li:first-child:last-child {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

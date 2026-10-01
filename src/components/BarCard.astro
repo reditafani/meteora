@@ -1,0 +1,113 @@
+---
+import type { Bar } from '@/data/bars';
+import type { Lang } from '@/i18n/routes';
+import { routes } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import Img from './Img.astro';
+
+interface Props {
+  bar: Bar;
+  lang: Lang;
+  index: number;
+  sizes?: string;
+}
+const { bar, lang, index, sizes = '(min-width: 1024px) 50vw, 85vw' } = Astro.props;
+const s = t(lang);
+const href = bar.status === 'available' ? `${routes.bars[lang]}${bar.slug}/` : undefined;
+const cover = bar.images[0];
+---
+
+<article class:list={['barcard', bar.status === 'coming-soon' && 'barcard--soon']}>
+  <div class="barcard__media media">
+    {
+      cover ? (
+        <Img src={cover.src} alt={cover.alt[lang]} sizes={sizes} />
+      ) : (
+        <div class="barcard__swatch" style={`--swatch:${bar.swatch}`} role="img" aria-label={`${bar.name} — ${s.comingSoon}`}>
+          <span>{s.comingSoon}</span>
+        </div>
+      )
+    }
+  </div>
+  <div class="barcard__body">
+    <p class="micro barcard__n">{String(index + 1).padStart(2, '0')}{bar.status === 'coming-soon' && <> · {s.comingSoon}</>}</p>
+    <h3 class="barcard__name">{href ? <a href={href}>{bar.name}</a> : bar.name}</h3>
+    <p class="barcard__mood">{bar.mood[lang]}</p>
+    <p class="barcard__desc muted">{bar.description[lang]}</p>
+    <p class="barcard__ideal"><span class="micro">{s.idealFor}</span> {bar.idealFor[lang].join(' · ')}</p>
+    {href && <span class="link barcard__cta" aria-hidden="true">{s.discover} {bar.name}</span>}
+  </div>
+</article>
+
+<style>
+  .barcard {
+    position: relative;
+    display: grid;
+    gap: var(--space-m);
+  }
+  .barcard__media {
+    aspect-ratio: 4 / 3;
+  }
+  .barcard__media :global(img) {
+    transition: transform 1.4s var(--ease-out);
+  }
+  .barcard:hover .barcard__media :global(img) {
+    transform: scale(1.04);
+  }
+  .barcard__swatch {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background:
+      radial-gradient(120% 90% at 30% 20%, color-mix(in srgb, var(--swatch) 70%, white) 0%, var(--swatch) 55%, color-mix(in srgb, var(--swatch) 70%, black) 100%);
+  }
+  .barcard__swatch span {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    color: rgb(255 255 255 / 0.85);
+    mix-blend-mode: overlay;
+    letter-spacing: 0.02em;
+  }
+  .barcard__n {
+    color: var(--color-accent-ink);
+  }
+  .barcard__name {
+    font-size: var(--fs-h3);
+    margin-top: 0.35rem;
+  }
+  .barcard__name a {
+    text-decoration: none;
+  }
+  .barcard__name a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  .barcard__mood {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.2rem;
+    margin-top: 0.25rem;
+  }
+  .barcard__desc {
+    margin-top: 0.6rem;
+    font-size: var(--fs-small);
+  }
+  .barcard__ideal {
+    margin-top: 0.9rem;
+    font-size: var(--fs-small);
+  }
+  .barcard__ideal .micro {
+    display: block;
+    color: var(--color-text-muted);
+    margin-bottom: 0.2rem;
+  }
+  .barcard__cta {
+    margin-top: var(--space-s);
+  }
+  .barcard--soon .barcard__name {
+    color: var(--color-text-muted);
+  }
+</style>

@@ -1,0 +1,149 @@
+---
+import type { Lang } from '@/i18n/routes';
+import { url, alternatesFor } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import Img from '@/components/Img.astro';
+import ExperienceComparison from '@/components/ExperienceComparison.astro';
+import TowerSection from '@/components/TowerSection.astro';
+import FAQ from '@/components/FAQ.astro';
+import CTABand from '@/components/CTABand.astro';
+import { services } from '@/data/services';
+import { faqFor } from '@/data/faq';
+import { faqSchema, serviceSchema } from '@/lib/seo';
+import hero from '@/assets/images/bars/golden-marble-night.jpg';
+import band from '@/assets/images/bars/golden-mirror.jpg';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+const s = t(lang);
+const meta = it
+  ? { title: 'Servizi di Open Bar e Bar Catering | Meteora Events', description: 'Open Bar Essential e Premium, Aperitivo + Open Bar, Signature Tower Experience e servizio solo barman. Preventivi su misura per matrimoni ed eventi in tutta Italia.' }
+  : { title: 'Open Bar & Bar Catering Services | Meteora Events', description: 'Essential and Premium Open Bar, Aperitivo + Open Bar, Signature Tower Experience and bartender-only service. Tailored quotes for weddings and events across Italy.' };
+const crumbs = [
+  { name: s.breadcrumbHome, href: url('home', lang) },
+  { name: it ? 'Servizi' : 'Services', href: url('services', lang) },
+];
+const faqs = faqFor('general');
+const schema = [
+  ...services.map((sv) => serviceSchema({ name: sv.name[lang], serviceType: 'Bar catering', description: sv.summary[lang], url: url('services', lang, sv.id), lang })),
+  faqSchema(faqs, lang),
+];
+---
+
+<BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('services')} current="services" breadcrumbs={crumbs} schema={schema}>
+  <PageHero eyebrow={it ? 'Servizi' : 'Services'} image={hero} imageAlt={it ? 'Banco dorato su pavimento chevron' : 'Golden bar on a chevron floor'} crumbs={crumbs}>
+    <h1>{it ? <>Dall’aperitivo <em>all’ultimo drink.</em></> : <>From aperitivo <em>to the last drink.</em></>}</h1>
+    <p slot="lead" class="lead muted">
+      {it
+        ? 'Formule complete e autonome, coordinate con il catering, oppure solo il nostro staff e il nostro metodo. Ogni proposta è costruita su misura.'
+        : 'Complete, independent formulas coordinated with your caterer — or simply our staff and our method. Every proposal is built to measure.'}
+    </p>
+    <nav slot="cta" class="svc-index" aria-label={it ? 'Indice servizi' : 'Services index'}>
+      {services.map((sv) => <a class="link" href={`#${sv.id}`}>{sv.name[lang].replace('Open Bar — ', '')}</a>)}
+    </nav>
+  </PageHero>
+
+  <section class="section" aria-label={it ? 'Formule' : 'Formulas'}>
+    <div class="container svc">
+      {services.map((sv, i) => (
+        <article class:list={['svc__item', i % 2 === 1 && 'svc__item--rev']} id={sv.id} aria-labelledby={`${sv.id}-t`}>
+          <div class="media svc__media" data-reveal="image">
+            <Img src={sv.image} alt={sv.imageAlt[lang]} sizes="(min-width: 960px) 45vw, 100vw" />
+          </div>
+          <div class="svc__text">
+            <p class="micro svc__kicker" data-reveal>{String(i + 1).padStart(2, '0')} · {sv.kicker[lang]}</p>
+            <h2 id={`${sv.id}-t`} class="h3 svc__title" data-reveal>{sv.name[lang]}</h2>
+            <p class="lead muted" data-reveal>{sv.summary[lang]}</p>
+            <ul class="svc__inc" role="list" data-reveal>
+              {sv.includes[lang].map((x) => <li>{x}</li>)}
+            </ul>
+            <a class="btn btn--outline" href={`${url('contact', lang)}?service=${sv.formValue}`} data-track="cta_click" data-track-label={`service_${sv.id}`}>{s.quote}</a>
+          </div>
+        </article>
+      ))}
+      <p class="muted svc__note">
+        {it
+          ? 'Su richiesta: tempo extra, bartender e camerieri aggiuntivi, moduli bar extra. Nei momenti di maggiore affluenza il personale di supporto rende il servizio più rapido e fluido. Servizi realizzabili anche fuori regione e all’estero; eventuali costi di logistica si definiscono nel preventivo.'
+          : 'On request: extra time, additional bartenders and waiters, extra bar modules. At peak moments, support staff keep service fast and fluid. Services can also be delivered outside the region and abroad; any logistics costs are defined in the quote.'}
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="s-cmp">
+    <div class="container">
+      <SectionHeading eyebrow="Open Bar" align="split" id="s-cmp">{it ? <>Essential <em>e Premium,</em> a confronto.</> : <>Essential <em>and Premium,</em> compared.</>}</SectionHeading>
+      <ExperienceComparison lang={lang} />
+    </div>
+  </section>
+
+  <TowerSection lang={lang} cta={false} id="tower-detail" />
+
+  <section class="section" aria-labelledby="s-faq">
+    <div class="container container--narrow">
+      <SectionHeading eyebrow="FAQ" id="s-faq">{it ? <>Domande <em>frequenti.</em></> : <>Frequently <em>asked.</em></>}</SectionHeading>
+      <FAQ lang={lang} items={faqs} />
+    </div>
+  </section>
+
+  <CTABand lang={lang} image={band} imageAlt={it ? 'Banco Golden Mirror' : 'Golden Mirror bar'} trackLabel="services_band" />
+</BaseLayout>
+
+<style>
+  .svc-index {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+  }
+  .svc {
+    display: grid;
+    gap: var(--space-2xl);
+  }
+  .svc__item {
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+    scroll-margin-top: calc(var(--header-h-compact) + 1rem);
+  }
+  .svc__media {
+    aspect-ratio: 4 / 3;
+  }
+  .svc__text > * + * {
+    margin-top: var(--space-m);
+  }
+  .svc__kicker {
+    color: var(--color-accent-ink);
+  }
+  .svc__title {
+    font-size: clamp(1.9rem, 1.4rem + 1.8vw, 3rem);
+  }
+  .svc__inc {
+    border-top: 1px solid var(--color-border);
+  }
+  .svc__inc li {
+    padding-block: 0.6rem;
+    border-bottom: 1px solid var(--color-border);
+    font-size: var(--fs-small);
+  }
+  .svc__note {
+    max-width: 44rem;
+    font-size: var(--fs-small);
+  }
+  @media (min-width: 960px) {
+    .svc__item {
+      grid-template-columns: 6fr 5fr;
+      gap: clamp(3rem, 7vw, 8rem);
+    }
+    .svc__item--rev .svc__media {
+      order: 2;
+    }
+    .svc__item--rev {
+      grid-template-columns: 5fr 6fr;
+    }
+  }
+</style>

@@ -1,0 +1,122 @@
+---
+import type { Lang } from '@/i18n/routes';
+import { url, alternatesFor } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import EditorialSection from '@/components/EditorialSection.astro';
+import WhyGrid from '@/components/WhyGrid.astro';
+import CTABand from '@/components/CTABand.astro';
+import { site } from '@/data/site';
+import terrace from '@/assets/images/bars/terrace-panorama.jpg';
+import mint from '@/assets/images/details/mint-coupes.jpg';
+import strain from '@/assets/images/team/bartender-strain.jpg';
+import band from '@/assets/images/bars/golden-mirror-sunset.jpg';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+const s = t(lang);
+const meta = it
+  ? { title: 'Chi Siamo: oltre 14 anni di eventi | Meteora Events', description: 'Meteora Events è il partner specializzato nella gestione del servizio beverage per eventi di alto livello. Oltre 14 anni di esperienza operativa, base a Montecatini Terme.' }
+  : { title: 'About Us: 14+ Years of Event Experience | Meteora Events', description: 'Meteora Events is the partner specialised in beverage service management for high-level events. 14+ years of operational experience, based in Montecatini Terme, Tuscany.' };
+const crumbs = [
+  { name: s.breadcrumbHome, href: url('home', lang) },
+  { name: it ? 'Chi siamo' : 'About', href: url('about', lang) },
+];
+const values = it
+  ? [['Esperienza', `Oltre ${site.yearsExperience} anni di esperienza operativa nel settore eventi: matrimoni, corporate ed eventi privati.`], ['Metodo', 'Ogni servizio segue un metodo preciso, dall’allestimento allo smontaggio.'], ['Cultura visiva', 'Grande attenzione all’aspetto estetico e visivo dell’allestimento.'], ['Ospitalità', 'Professionalità e discrezione, con ogni ospite.']]
+  : [['Experience', `More than ${site.yearsExperience} years of operational experience in events: weddings, corporate and private.`], ['Method', 'Every service follows a precise method, from setup to load-out.'], ['Visual culture', 'Great attention to the aesthetic and visual side of every setup.'], ['Hospitality', 'Professionalism and discretion, with every guest.']];
+---
+
+<BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('about')} current="about" breadcrumbs={crumbs}>
+  <PageHero eyebrow={it ? 'Chi siamo' : 'About'} image={strain} imageAlt={it ? 'Bartender in gilet nero che filtra un cocktail' : 'Bartender in a black waistcoat straining a cocktail'} crumbs={crumbs}>
+    <h1>{it ? <>Esperienza beverage. <em>Esecuzione impeccabile.</em></> : <>Beverage expertise. <em>Flawless execution.</em></>}</h1>
+    <p slot="lead" class="lead muted">
+      {it
+        ? `Meteora Events è il partner specializzato nella gestione del servizio beverage per eventi di alto livello. Nasciamo da oltre ${site.yearsExperience} anni di esperienza operativa negli eventi.`
+        : `Meteora Events is the partner specialised in managing beverage services for high-level events. We grew out of more than ${site.yearsExperience} years of operational experience in events.`}
+    </p>
+  </PageHero>
+
+  <section class="section" aria-labelledby="a-story">
+    <div class="container">
+      <EditorialSection image={terrace} imageAlt={it ? 'Banco bar davanti a una vetrata panoramica' : 'Bar in front of a panoramic window'} secondImage={mint} secondAlt={it ? 'Coppe con menta e frutti rossi' : 'Coupes with mint and red berries'} ratio="landscape">
+        <p class="eyebrow" data-reveal>{it ? 'La nostra storia' : 'Our story'}</p>
+        <h2 id="a-story" data-reveal>{it ? <>Non offriamo semplicemente <em>un servizio bar.</em></> : <>We don’t simply offer <em>a bar service.</em></>}</h2>
+        <p class="muted" data-reveal>
+          {it
+            ? 'Portiamo professionalità, metodo ed esperienza scenografica, con grande attenzione all’aspetto estetico e visivo dell’allestimento. Conosciamo a fondo le dinamiche di matrimoni, eventi corporate e privati, perché le viviamo da anni dall’interno.'
+            : 'We bring professionalism, method and scenographic experience, with great attention to the aesthetic and visual side of the setup. We know the dynamics of weddings, corporate and private events inside out, because we have lived them for years.'}
+        </p>
+        <p class="lead" data-reveal>
+          {it
+            ? 'Ogni evento è unico e irripetibile, e ciò che viene realizzato resta impresso nelle immagini e nei ricordi. Per questo puntiamo all’eccellenza, nel servizio e nell’impatto visivo.'
+            : 'Every event is unique and unrepeatable, and what is created remains in the images and in the memories. That is why we aim for excellence, in service and in visual impact.'}
+        </p>
+        <p class="muted" data-reveal>
+          {it
+            ? 'Realizziamo servizi bar e cocktail experience per privati, aziende e professionisti del settore, dalla nostra sede di Montecatini Terme, in Toscana.'
+            : 'We create bar services and cocktail experiences for private clients, companies and event professionals, from our base in Montecatini Terme, Tuscany.'}
+        </p>
+      </EditorialSection>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="a-values">
+    <div class="container">
+      <SectionHeading eyebrow={it ? 'Come lavoriamo' : 'How we work'} id="a-values">{it ? <>Quattro parole, <em>ogni volta.</em></> : <>Four words, <em>every time.</em></>}</SectionHeading>
+      <ol class="values" role="list">
+        {values.map(([k, v], i) => (<li data-reveal style={`--delay:${i * 0.06}s`}><span class="values__k">{k}</span><p class="muted">{v}</p></li>))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="a-why">
+    <div class="container">
+      <SectionHeading eyebrow={it ? 'Perché Meteora' : 'Why Meteora'} align="split" id="a-why">
+        {it ? <>I dettagli <em>che ci distinguono.</em></> : <>The details <em>that set us apart.</em></>}
+        <Fragment slot="lead"><a class="link" href={url('why', lang)}>{it ? 'Tutti i motivi' : 'All the reasons'}</a></Fragment>
+      </SectionHeading>
+      <WhyGrid lang={lang} limit={4} />
+    </div>
+  </section>
+
+  <CTABand lang={lang} image={band} imageAlt={it ? 'Banco Golden Mirror al tramonto' : 'Golden Mirror bar at sunset'} trackLabel="about_band" />
+</BaseLayout>
+
+<style>
+  .values {
+    display: grid;
+    gap: var(--space-l);
+  }
+  .values li {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-m);
+  }
+  .values__k {
+    display: block;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(2rem, 1.4rem + 2vw, 3rem);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .values p {
+    font-size: var(--fs-small);
+    max-width: 22rem;
+  }
+  @media (min-width: 800px) {
+    .values {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1200px) {
+    .values {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>

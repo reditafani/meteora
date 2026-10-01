@@ -1,0 +1,53 @@
+---
+/** Fallback confirmation page for submissions without JavaScript (and error state). */
+import type { Lang } from '@/i18n/routes';
+import { url, alternatesFor } from '@/i18n/routes';
+import { site } from '@/data/site';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+---
+
+<BaseLayout lang={lang} title={it ? 'Grazie | Meteora Events' : 'Thank you | Meteora Events'} description={it ? 'Richiesta ricevuta.' : 'Request received.'} alternates={alternatesFor('thanks')} noindex>
+  <section class="section">
+    <div class="container container--narrow ty">
+      <div data-ok>
+        <p class="eyebrow">{it ? 'Richiesta ricevuta' : 'Request received'}</p>
+        <h1>{it ? <>Grazie. <em>Il vostro evento è in buone mani.</em></> : <>Thank you. <em>Your event is in good hands.</em></>}</h1>
+        <p class="lead muted">{it ? 'Vi risponderemo al più presto con una proposta su misura.' : 'We will reply as soon as possible with a tailored proposal.'}</p>
+      </div>
+      <div data-err hidden>
+        <p class="eyebrow">{it ? 'Qualcosa non ha funzionato' : 'Something went wrong'}</p>
+        <h1>{it ? 'La richiesta non è stata inviata.' : 'Your request was not sent.'}</h1>
+        <p class="lead muted">{it ? 'Scriveteci direttamente a' : 'Please write to us directly at'} <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+      </div>
+      <div class="cta-row">
+        <a class="btn" href={url('home', lang)}>{it ? 'Torna alla home' : 'Back to home'}</a>
+        <a class="link" href={url('events', lang)}>{it ? 'Guarda gli eventi' : 'See our events'}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  if (new URLSearchParams(location.search).has('error')) {
+    document.querySelector<HTMLElement>('[data-ok]')!.hidden = true;
+    document.querySelector<HTMLElement>('[data-err]')!.hidden = false;
+  }
+</script>
+
+<style>
+  .ty {
+    display: grid;
+    gap: var(--space-l);
+    min-height: 50svh;
+    align-content: center;
+  }
+  .ty h1 {
+    margin-block: var(--space-m);
+  }
+</style>

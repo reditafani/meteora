@@ -1,0 +1,133 @@
+---
+import '@/styles/global.css';
+import type { Alternates, Lang } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import { site } from '@/data/site';
+import { abs, breadcrumbSchema, organizationSchema, websiteSchema, type Crumb } from '@/lib/seo';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import WhatsAppButton from '@/components/WhatsAppButton.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  /** Localised URLs of this page. Missing languages fall back to the home page in the switcher and get no hreflang. */
+  alternates: Partial<Alternates>;
+  image?: string;
+  noindex?: boolean;
+  schema?: object[];
+  breadcrumbs?: Crumb[];
+  headerTheme?: 'overlay' | 'solid';
+  current?: string;
+  showQuoteBar?: boolean;
+  ogType?: 'website' | 'article';
+}
+
+const {
+  lang,
+  title,
+  description,
+  alternates,
+  image = '/images/og/meteora-events.jpg',
+  noindex = false,
+  schema = [],
+  breadcrumbs,
+  headerTheme = 'solid',
+  current,
+  showQuoteBar = true,
+  ogType = 'website',
+} = Astro.props;
+
+const canonical = abs(alternates[lang] ?? Astro.url.pathname);
+const ogImage = abs(image);
+const locales: Record<Lang, string> = { it: 'it_IT', en: 'en_GB' };
+const hreflangs = (Object.entries(alternates) as [Lang, string][]).filter(([, href]) => Boolean(href));
+const graph = [
+  organizationSchema(lang),
+  ...(current === 'home' ? [websiteSchema(lang)] : []),
+  ...(breadcrumbs && breadcrumbs.length > 1 ? [breadcrumbSchema(breadcrumbs)] : []),
+  ...schema,
+];
+const s = t(lang);
+---
+
+<!doctype html>
+<html lang={lang} class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <script is:inline>document.documentElement.classList.replace('no-js', 'js');</script>
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    {hreflangs.map(([l, href]) => <link rel="alternate" hreflang={l} href={abs(href)} />)}
+    {alternates.it && <link rel="alternate" hreflang="x-default" href={abs(alternates.it)} />}
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={locales[lang]} />
+    {hreflangs.filter(([l]) => l !== lang).map(([l]) => <meta property="og:locale:alternate" content={locales[l]} />)}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <meta name="theme-color" content="#f9f2e8" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" href="/sitemap.xml" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(graph.length === 1 ? graph[0] : graph)} />
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip" href="#main">{s.skip}</a>
+    <Header lang={lang} alternates={alternates} theme={headerTheme} current={current} />
+    <main id="main" tabindex="-1" class:list={[headerTheme === 'solid' && 'main--offset']}>
+      <slot />
+    </main>
+    <Footer lang={lang} alternates={alternates} />
+    <WhatsAppButton lang={lang} showQuote={showQuoteBar} />
+    <CookieConsent lang={lang} />
+    <script>
+      import { initReveal } from '@/scripts/reveal';
+      initReveal();
+    </script>
+  </body>
+</html>
+
+<style>
+  .skip {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 100;
+    padding: 0.75rem 1.25rem;
+    background: var(--color-text);
+    color: var(--color-background);
+    text-decoration: none;
+    transform: translateY(-200%);
+    transition: transform 0.3s;
+  }
+  .skip:focus {
+    transform: none;
+  }
+  main:focus {
+    outline: none;
+  }
+  .main--offset {
+    padding-top: var(--header-h);
+  }
+</style>

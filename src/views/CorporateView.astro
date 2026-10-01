@@ -1,0 +1,237 @@
+---
+import type { Lang } from '@/i18n/routes';
+import { url, alternatesFor } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/Hero.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import EditorialSection from '@/components/EditorialSection.astro';
+import CTABand from '@/components/CTABand.astro';
+import Img from '@/components/Img.astro';
+import { serviceSchema } from '@/lib/seo';
+import silver from '@/assets/images/bars/silver-reflection.jpg';
+import strain from '@/assets/images/team/bartender-strain.jpg';
+import shaker from '@/assets/images/details/shaker.jpg';
+import terrace from '@/assets/images/bars/terrace-panorama.jpg';
+import marble from '@/assets/images/bars/golden-marble-night.jpg';
+import espresso from '@/assets/images/cocktails/espresso-martini.jpg';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+const s = t(lang);
+const meta = it
+  ? { title: 'Bar Catering per Eventi Aziendali e Privati in Italia | Meteora Events', description: 'Open bar per eventi aziendali, lanci prodotto, brand activation, feste private e celebrazioni. Banchi e divise brandizzati, cocktail list su misura, massima discrezione.' }
+  : { title: 'Corporate & Private Event Bar Catering in Italy | Meteora Events', description: 'Open bar for corporate events, product launches, brand activations, private parties and celebrations. Branded bars and uniforms, bespoke cocktail lists, complete discretion.' };
+const crumbs = [
+  { name: s.breadcrumbHome, href: url('home', lang) },
+  { name: it ? 'Aziende & privati' : 'Corporate & private', href: url('corporate', lang) },
+];
+const formats = it
+  ? ['Eventi aziendali', 'Brand activation', 'Lanci prodotto', 'Feste private', 'Celebrazioni aziendali', 'Cene di gala']
+  : ['Corporate events', 'Brand activations', 'Product launches', 'Private parties', 'Company celebrations', 'Gala dinners'];
+const pillars = it
+  ? [
+      ['Branding', 'Frontale banco con il vostro logo, tovaglioli personalizzati, logo impresso sul ghiaccio.'],
+      ['Divise brandizzate', 'Logo dell’azienda o dell’evento su camicia, gilet e cravatta, con patch serigrafate. Da concordare con adeguato anticipo.'],
+      ['Cocktail di brand', 'Una drink list creata e nominata sull’identità del brand.'],
+      ['Discrezione', 'Staff formato a non invadere la privacy degli ospiti, anche di quelli più noti.'],
+      ['Affidabilità', 'Servizio autonomo, rifornimenti a vassoio, nessun elemento fuori posto al banco.'],
+      ['Coerenza visiva', 'Banco, bicchieri, divise e garnish parlano lo stesso linguaggio dell’evento.'],
+    ]
+  : [
+      ['Branding', 'Your logo on the bar front, custom napkins, your logo pressed into ice.'],
+      ['Branded uniforms', 'Company or event logo on shirts, waistcoats and ties with screen-printed patches. To be agreed well in advance.'],
+      ['Brand cocktails', 'A drink list created and named after your brand identity.'],
+      ['Discretion', 'Staff trained to respect guests’ privacy, including high-profile guests.'],
+      ['Reliability', 'Independent service, restocking by tray, nothing out of place at the bar.'],
+      ['Visual consistency', 'Bar, glassware, uniforms and garnish speak the same language as your event.'],
+    ];
+const schema = [serviceSchema({ name: it ? 'Bar catering per eventi aziendali' : 'Corporate event bar catering', serviceType: 'Corporate bar catering', description: meta.description, url: url('corporate', lang), lang })];
+---
+
+<BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('corporate')} current="corporate" breadcrumbs={crumbs} schema={schema} headerTheme="overlay">
+  <Hero image={silver} imageAlt={it ? 'Banco Silver Reflection in una grande sala per evento serale' : 'Silver Reflection bar in a large hall for an evening event'} size="tall">
+    <Breadcrumbs crumbs={crumbs} tone="dark" />
+    <p class="eyebrow ch__eyebrow">{it ? 'Eventi aziendali e privati' : 'Corporate & private events'}</p>
+    <h1 class="ch__title">{it ? <>Il vostro brand, <em>servito con stile.</em></> : <>Your brand, <em>served with style.</em></>}</h1>
+    <p class="lead ch__lead">
+      {it
+        ? 'Professionalità, personalizzazione e discrezione per eventi aziendali, lanci, activation e feste private.'
+        : 'Professionalism, customisation and discretion for corporate events, launches, activations and private parties.'}
+    </p>
+    <a class="btn btn--light" href={url('contact', lang) + '?type=corporate'} data-track="cta_click" data-track-label="corporate_hero_quote">{it ? 'Richiedi un preventivo aziendale' : 'Request a corporate quote'}</a>
+  </Hero>
+
+  <section class="section" aria-labelledby="c-formats">
+    <div class="container">
+      <SectionHeading eyebrow={it ? 'Formati' : 'Formats'} align="split" id="c-formats">
+        {it ? <>Ogni formato, <em>lo stesso standard.</em></> : <>Every format, <em>the same standard.</em></>}
+        <Fragment slot="lead">{it ? 'Dal lancio di prodotto alla festa privata in villa: il bar diventa un punto di incontro e un elemento dell’identità visiva.' : 'From a product launch to a private villa party: the bar becomes a meeting point and part of your visual identity.'}</Fragment>
+      </SectionHeading>
+      <ul class="formats" role="list">{formats.map((f, i) => <li data-reveal style={`--delay:${i * 0.04}s`}>{f}</li>)}</ul>
+    </div>
+  </section>
+
+  <section class="section section--dark" aria-labelledby="c-pillars">
+    <div class="container">
+      <div class="pillars__top">
+        <div class="media pillars__img" data-reveal="image"><Img src={strain} alt={it ? 'Bartender in total black che filtra un cocktail' : 'Bartender in total black straining a cocktail'} sizes="(min-width: 960px) 35vw, 100vw" /></div>
+        <div>
+          <p class="eyebrow" data-reveal>{it ? 'Per le aziende' : 'For companies'}</p>
+          <h2 id="c-pillars" data-reveal>{it ? <>Professionalità <em>visibile.</em> Discrezione <em>invisibile.</em></> : <>Visible <em>professionalism.</em> Invisible <em>discretion.</em></>}</h2>
+          <p class="lead muted pillars__lead" data-reveal>
+            {it
+              ? 'La divisa standard è total black: nessun logo vistoso, nessun elemento che distragga. Quando serve, la personalizziamo con il vostro brand.'
+              : 'Our standard uniform is total black: no showy logos, nothing to distract. When you need it, we brand it with your identity.'}
+          </p>
+        </div>
+      </div>
+      <ol class="pillars" role="list">
+        {pillars.map(([k, v], i) => (
+          <li data-reveal style={`--delay:${(i % 3) * 0.06}s`}>
+            <span class="micro">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{k}</h3>
+            <p class="muted">{v}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="c-private">
+    <div class="container">
+      <EditorialSection image={terrace} imageAlt={it ? 'Banco bar davanti a una vetrata panoramica' : 'Bar set in front of a panoramic window'} secondImage={espresso} secondAlt="Espresso Martini" ratio="landscape" reverse>
+        <p class="eyebrow" data-reveal>{it ? 'Eventi privati' : 'Private events'}</p>
+        <h2 id="c-private" data-reveal>{it ? <>Una festa, <em>come la immaginate.</em></> : <>A party, <em>as you imagine it.</em></>}</h2>
+        <p class="muted" data-reveal>
+          {it
+            ? 'Compleanni, anniversari, cene in villa, ricevimenti: open bar completo o solo il nostro barman, con la stessa cura dei grandi eventi.'
+            : 'Birthdays, anniversaries, villa dinners, receptions: a full open bar or simply our bartender, with the same care we bring to large events.'}
+        </p>
+        <a class="link" href={url('services', lang, 'bartender')} data-reveal>{it ? 'Servizio solo barman' : 'Bartender-only service'}</a>
+      </EditorialSection>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-label={it ? 'Dettaglio' : 'Detail'}>
+    <div class="container quote-block">
+      <div class="media quote-block__img" data-reveal="image"><Img src={shaker} alt={it ? 'Shaker e strumenti da bar in acciaio' : 'Steel shaker and bar tools'} sizes="(min-width: 960px) 25vw, 60vw" /></div>
+      <p class="quote-block__text" data-reveal>
+        {it
+          ? <>Proteggere l’immagine dei nostri collaboratori <em>è una delle nostre priorità.</em></>
+          : <>Protecting the image and reputation of our partners <em>is one of our highest priorities.</em></>}
+      </p>
+    </div>
+  </section>
+
+  <CTABand lang={lang} image={marble} imageAlt={it ? 'Banco dorato illuminato di sera' : 'Golden bar lit up at night'} trackLabel="corporate_band" href={url('contact', lang) + '?type=corporate'} label={it ? 'Richiedi un preventivo aziendale' : 'Request a corporate quote'}>
+    <h2>{it ? <>Parliamo <em>del vostro evento.</em></> : <>Let’s talk about <em>your event.</em></>}</h2>
+  </CTABand>
+</BaseLayout>
+
+<style>
+  .ch__eyebrow {
+    margin-top: var(--space-l);
+  }
+  .ch__title {
+    margin-top: var(--space-m);
+    max-width: 13ch;
+  }
+  .ch__title em {
+    color: var(--color-accent-on-dark);
+  }
+  .ch__lead {
+    margin-block: var(--space-m) var(--space-l);
+    max-width: 34rem;
+  }
+  .formats {
+    display: grid;
+    border-top: 1px solid var(--color-border);
+  }
+  .formats li {
+    padding-block: 1rem;
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.6rem);
+    line-height: 1.1;
+  }
+  @media (min-width: 800px) {
+    .formats {
+      grid-template-columns: 1fr 1fr;
+      column-gap: var(--space-xl);
+    }
+  }
+  .pillars__top {
+    display: grid;
+    gap: var(--space-l);
+    align-items: end;
+    margin-bottom: var(--space-xl);
+  }
+  .pillars__top h2 {
+    margin-top: var(--space-m);
+  }
+  .pillars__lead {
+    margin-top: var(--space-m);
+    max-width: 34rem;
+  }
+  .pillars__img {
+    aspect-ratio: 4 / 3;
+  }
+  .pillars {
+    display: grid;
+    gap: 0 var(--space-l);
+  }
+  .pillars li {
+    border-top: 1px solid rgb(255 255 255 / 0.14);
+    padding-block: var(--space-m) var(--space-l);
+  }
+  .pillars .micro {
+    color: var(--color-accent-on-dark);
+  }
+  .pillars h3 {
+    margin-block: 0.5rem;
+  }
+  .pillars p {
+    font-size: var(--fs-small);
+  }
+  @media (min-width: 800px) {
+    .pillars {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (min-width: 960px) {
+    .pillars__top {
+      grid-template-columns: 5fr 6fr;
+      gap: clamp(3rem, 7vw, 8rem);
+    }
+  }
+  .quote-block {
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+  }
+  .quote-block__img {
+    aspect-ratio: 3 / 4;
+    width: min(100%, 18rem);
+  }
+  .quote-block__text {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 1.3rem + 2.4vw, 3.6rem);
+    line-height: 1.12;
+    font-weight: 350;
+    max-width: 22ch;
+  }
+  .quote-block__text em {
+    color: var(--color-accent-ink);
+  }
+  @media (min-width: 900px) {
+    .quote-block {
+      grid-template-columns: auto 1fr;
+      gap: var(--space-xl);
+    }
+  }
+</style>

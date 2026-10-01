@@ -1,0 +1,65 @@
+---
+/** Accessible form field: label, control, hint and error message wiring. */
+import type { Lang } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+
+interface Props {
+  lang: Lang;
+  name: string;
+  label: string;
+  type?: 'text' | 'email' | 'tel' | 'date' | 'number' | 'url' | 'select' | 'textarea';
+  required?: boolean;
+  options?: { value: string; label: string }[];
+  placeholder?: string;
+  autocomplete?: string;
+  hint?: string;
+  span?: 'full' | 'half';
+  min?: string | number;
+  max?: string | number;
+  rows?: number;
+  inputmode?: 'text' | 'numeric' | 'tel' | 'email' | 'url';
+  maxlength?: number;
+}
+const {
+  lang,
+  name,
+  label,
+  type = 'text',
+  required = false,
+  options = [],
+  placeholder,
+  autocomplete,
+  hint,
+  span = 'half',
+  min,
+  max,
+  rows = 4,
+  inputmode,
+  maxlength,
+} = Astro.props;
+const s = t(lang);
+const id = `f-${name}-${Math.random().toString(36).slice(2, 7)}`;
+const describedBy = [hint && `${id}-hint`, `${id}-err`].filter(Boolean).join(' ');
+const common = { id, name, required, 'aria-describedby': describedBy, autocomplete };
+---
+
+<div class:list={['field', `field--${span}`]}>
+  <label for={id}>
+    {label}
+    {required ? <span class="req" aria-hidden="true">*</span> : <span class="opt">({s.optional})</span>}
+  </label>
+  {
+    type === 'select' ? (
+      <select {...common}>
+        <option value="">{placeholder ?? '—'}</option>
+        {options.map((o) => <option value={o.value}>{o.label}</option>)}
+      </select>
+    ) : type === 'textarea' ? (
+      <textarea {...common} rows={rows} placeholder={placeholder} maxlength={maxlength ?? 3000} />
+    ) : (
+      <input {...common} type={type} placeholder={placeholder} min={min} max={max} inputmode={inputmode} maxlength={maxlength ?? 200} />
+    )
+  }
+  {hint && <p class="field__hint" id={`${id}-hint`}>{hint}</p>}
+  <p class="field__err" id={`${id}-err`} aria-live="polite"></p>
+</div>

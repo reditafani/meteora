@@ -1,0 +1,61 @@
+---
+import type { Lang } from '@/i18n/routes';
+import { differentiators } from '@/data/craft';
+
+interface Props {
+  lang: Lang;
+  limit?: number;
+}
+const { lang, limit } = Astro.props;
+const list = limit ? differentiators.slice(0, limit) : differentiators;
+---
+
+<ol class="why" role="list">
+  {
+    list.map((d, i) => (
+      <li data-reveal style={`--delay:${(i % 4) * 0.06}s`}>
+        <span class="micro why__n">{String(i + 1).padStart(2, '0')}</span>
+        <h3>{d.title[lang]}</h3>
+        <p class="muted">{d.text[lang]}</p>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .why {
+    display: grid;
+    gap: 0 var(--space-l);
+  }
+  .why li {
+    padding-block: var(--space-m) var(--space-l);
+    border-top: 1px solid var(--color-border);
+  }
+  :global(.section--dark) .why li {
+    border-color: rgb(255 255 255 / 0.14);
+  }
+  .why__n {
+    color: var(--color-accent-ink);
+  }
+  :global(.section--dark) .why__n {
+    color: var(--color-accent-on-dark);
+  }
+  .why h3 {
+    font-size: 1.6rem;
+    margin-block: 0.6rem 0.4rem;
+  }
+  .why p {
+    font-size: var(--fs-small);
+    max-width: 26rem;
+  }
+  @media (min-width: 700px) {
+    .why {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1100px) {
+    .why {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>

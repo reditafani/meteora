@@ -1,0 +1,54 @@
+---
+import type { Crumb } from '@/lib/seo';
+interface Props {
+  crumbs: Crumb[];
+  label?: string;
+  tone?: 'light' | 'dark';
+}
+const { crumbs, label = 'Breadcrumb', tone = 'light' } = Astro.props;
+---
+
+<nav class:list={['crumbs', `crumbs--${tone}`]} aria-label={label}>
+  <ol role="list">
+    {
+      crumbs.map((c, i) => (
+        <li>
+          {i < crumbs.length - 1 ? <a href={c.href}>{c.name}</a> : <span aria-current="page">{c.name}</span>}
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+
+<style>
+  .crumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    font-size: var(--fs-micro);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .crumbs li + li::before {
+    content: '·';
+    margin-right: 0.35rem;
+    opacity: 0.6;
+  }
+  .crumbs a {
+    text-decoration: none;
+    opacity: 0.7;
+  }
+  .crumbs a:hover {
+    opacity: 1;
+  }
+  .crumbs--light {
+    color: var(--color-text-muted);
+  }
+  .crumbs--dark {
+    color: var(--color-on-dark-muted);
+  }
+  [aria-current] {
+    color: inherit;
+  }
+</style>

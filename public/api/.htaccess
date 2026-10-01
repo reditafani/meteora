@@ -1,0 +1,5 @@
+# Protect configuration and internal files from direct access.
+<FilesMatch "^(config|config\.sample|mailer)\.php$">
+  Require all denied
+</FilesMatch>
+Options -Indexes

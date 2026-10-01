@@ -1,0 +1,56 @@
+---
+/** B2B conversion band for planners, venues, caterers. */
+import type { Lang } from '@/i18n/routes';
+import { url } from '@/i18n/routes';
+import Img from './Img.astro';
+import hall from '@/assets/images/venues/fresco-hall.jpg';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+---
+
+<section class="section pc" aria-labelledby="pc-title">
+  <div class="container pc__grid">
+    <div class="pc__media media" data-reveal="image">
+      <Img src={hall} alt={it ? 'Tavolo imperiale apparecchiato in un salone affrescato' : 'Long banquet table set in a frescoed hall'} sizes="(min-width: 960px) 30vw, 70vw" />
+    </div>
+    <div class="pc__text stack">
+      <p class="eyebrow" data-reveal>{it ? 'Wedding planner · Location · Catering' : 'Wedding planners · Venues · Caterers'}</p>
+      <h2 id="pc-title" data-reveal style="--delay:.08s">{it ? <>Il vostro partner <em>di fiducia</em> per il bar.</> : <>Your trusted <em>bar catering</em> partner.</>}</h2>
+      <p class="lead muted" data-reveal style="--delay:.12s">
+        {it
+          ? 'Lavoriamo al fianco di planner, location e catering con attrezzatura, bicchieri e staff propri. Autonomi, puliti, discreti — ovunque in Italia.'
+          : 'We work alongside planners, venues and caterers with our own equipment, glassware and staff. Independent, clean, discreet — anywhere in Italy.'}
+      </p>
+      <div class="cta-row" data-reveal style="--delay:.16s">
+        <a class="btn" href={url('partners', lang, 'partner-form')} data-track="cta_click" data-track-label="partner_band">{it ? 'Richiedi listino partner' : 'Request partner pricing'}</a>
+        <a class="link" href={url('partners', lang)}>{it ? 'Come lavoriamo con i partner' : 'How we work with partners'}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pc__grid {
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+  }
+  .pc__media {
+    aspect-ratio: 3 / 4;
+    width: min(100%, 26rem);
+  }
+  .pc__text {
+    --stack: var(--space-m);
+    max-width: 36rem;
+  }
+  @media (min-width: 960px) {
+    .pc__grid {
+      grid-template-columns: 4fr 7fr;
+      gap: clamp(3rem, 8vw, 9rem);
+    }
+  }
+</style>

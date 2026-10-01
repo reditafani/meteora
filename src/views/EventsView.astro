@@ -1,0 +1,44 @@
+---
+import type { Lang } from '@/i18n/routes';
+import { url, alternatesFor } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import PortfolioGrid from '@/components/PortfolioGrid.astro';
+import InstagramStrip from '@/components/InstagramStrip.astro';
+import CTABand from '@/components/CTABand.astro';
+import { events } from '@/data/events';
+import band from '@/assets/images/towers/couple-pour.jpg';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+const s = t(lang);
+const meta = it
+  ? { title: 'Eventi e Portfolio: Matrimoni, Gala e Feste | Meteora Events', description: 'Una selezione di allestimenti e momenti Meteora Events: banchi scenografici in villa, su terrazze panoramiche e in grandi sale, Signature Tower e open bar.' }
+  : { title: 'Events & Portfolio: Weddings, Galas and Parties | Meteora Events', description: 'A selection of Meteora Events setups and moments: scenographic bars at villas, on panoramic terraces and in grand halls, Signature Towers and open bars.' };
+const crumbs = [
+  { name: s.breadcrumbHome, href: url('home', lang) },
+  { name: it ? 'Eventi' : 'Events', href: url('events', lang) },
+];
+---
+
+<BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('events')} current="events" breadcrumbs={crumbs}>
+  <PageHero eyebrow={it ? 'Eventi' : 'Events'} crumbs={crumbs}>
+    <h1>{it ? <>Ciò che realizziamo <em>resta nelle immagini.</em></> : <>What we create <em>stays in the images.</em></>}</h1>
+    <p slot="lead" class="lead muted">
+      {it
+        ? 'Ogni evento è unico e irripetibile. Una selezione di allestimenti, luoghi e momenti.'
+        : 'Every event is unique and unrepeatable. A selection of setups, places and moments.'}
+    </p>
+  </PageHero>
+  <section class="section" aria-label={it ? 'Portfolio' : 'Portfolio'}>
+    <div class="container"><PortfolioGrid lang={lang} items={events} /></div>
+  </section>
+  <InstagramStrip lang={lang} />
+  <CTABand lang={lang} image={band} imageAlt={it ? 'Sposi che versano bollicine sulla tower' : 'Couple pouring sparkling wine over the tower'} trackLabel="events_band">
+    <h2>{it ? <>Il prossimo <em>potrebbe essere il vostro.</em></> : <>The next one <em>could be yours.</em></>}</h2>
+  </CTABand>
+</BaseLayout>

@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import gold from '@/assets/images/brand/logo-gold.png';
+import cream from '@/assets/images/brand/logo-cream.png';
+import dark from '@/assets/images/brand/logo-dark.png';
+
+/**
+ * Brand logo. TODO(client): replace the PNGs in src/assets/images/brand/
+ * with the original vector logo (SVG) when available — these were extracted
+ * from the brochure.
+ */
+interface Props {
+  variant?: 'gold' | 'cream' | 'dark';
+  width?: number;
+  class?: string;
+  priority?: boolean;
+}
+const { variant = 'gold', width = 150, class: cls, priority = false } = Astro.props;
+const src = { gold, cream, dark }[variant];
+---
+
+<Image
+  src={src}
+  alt="Meteora Events"
+  width={width}
+  densities={[1, 2, 3]}
+  format="webp"
+  quality={90}
+  class={cls}
+  loading={priority ? 'eager' : 'lazy'}
+/>

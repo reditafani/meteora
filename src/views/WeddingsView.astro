@@ -1,0 +1,193 @@
+---
+import type { Lang } from '@/i18n/routes';
+import { url, alternatesFor } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import EditorialSection from '@/components/EditorialSection.astro';
+import BarCollection from '@/components/BarCollection.astro';
+import TowerSection from '@/components/TowerSection.astro';
+import PersonalizationSection from '@/components/PersonalizationSection.astro';
+import ExperienceComparison from '@/components/ExperienceComparison.astro';
+import WhyGrid from '@/components/WhyGrid.astro';
+import FAQ from '@/components/FAQ.astro';
+import CTABand from '@/components/CTABand.astro';
+import Testimonial from '@/components/Testimonial.astro';
+import { faqFor } from '@/data/faq';
+import { faqSchema, serviceSchema } from '@/lib/seo';
+import couple from '@/assets/images/towers/couple-pour.jpg';
+import villa from '@/assets/images/bars/pure-white-villa.jpg';
+import bowl from '@/assets/images/details/champagne-bowl.jpg';
+import sunset from '@/assets/images/bars/golden-mirror-sunset.jpg';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+const s = t(lang);
+const meta = it
+  ? {
+      title: 'Bar Catering per Matrimoni in Toscana e in Italia | Meteora Events',
+      description:
+        'Open bar e cocktail experience per matrimoni: aperitivo, open bar dopo cena, Signature Tower, banchi scenografici e personalizzazioni. Base in Toscana, in tutta Italia.',
+    }
+  : {
+      title: 'Wedding Bar Catering in Italy | Meteora Events',
+      description:
+        'Open bar and cocktail experience for weddings in Italy: aperitivo, after-dinner open bar, Signature Towers, scenographic bars and personalisation. Based in Tuscany.',
+    };
+const crumbs = [
+  { name: s.breadcrumbHome, href: url('home', lang) },
+  { name: it ? 'Matrimoni' : 'Weddings', href: url('weddings', lang) },
+];
+const faqs = faqFor('wedding');
+const day = it
+  ? [
+      ['Aperitivo', 'Spritz, Bellini, Mimosa, Prosecco e cocktail analcolici, mentre gli sposi sono impegnati con le foto. Integrato nel banco o su tavoli tovagliati.'],
+      ['Open bar', 'Tre ore dopo cena, con la nostra drink list signature, i classici e le varianti su richiesta.'],
+      ['Momenti signature', 'Il brindisi, il taglio della torta, l’apertura della festa: una Tower a cascata trasforma un gesto in scenografia.'],
+      ['Personalizzazione', 'Tovaglioli e frontale banco con i vostri nomi, iniziali impresse sul ghiaccio, cocktail che portano il vostro nome.'],
+      ['Servizio', 'Staff in total black, discreto. Nessuna cassa a vista, rifornimenti a vassoio, location lasciata pulita.'],
+    ]
+  : [
+      ['Aperitivo', 'Spritz, Bellini, Mimosa, Prosecco and alcohol-free cocktails while you are busy with photographs. Integrated into the bar or served from draped tables.'],
+      ['Open bar', 'Three hours after dinner, with our signature drink list, the classics and variations on request.'],
+      ['Signature moments', 'The toast, the cake cutting, the start of the party: a cascading Tower turns a gesture into a scene.'],
+      ['Customisation', 'Napkins and bar front with your names, initials pressed into ice, cocktails named after you.'],
+      ['Service', 'Discreet staff in total black. No crates in view, restocking by tray, the venue left spotless.'],
+    ];
+const schema = [
+  serviceSchema({ name: it ? 'Bar catering per matrimoni' : 'Wedding bar catering', serviceType: 'Wedding bar catering', description: meta.description, url: url('weddings', lang), lang, area: it ? ['Toscana', 'Italia'] : ['Tuscany', 'Italy'] }),
+  faqSchema(faqs, lang),
+];
+---
+
+<BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('weddings')} current="weddings" breadcrumbs={crumbs} schema={schema}>
+  <PageHero eyebrow={it ? 'Matrimoni' : 'Weddings'} image={couple} imageAlt={it ? 'Sposi che versano le bollicine sulla tower di coppe' : 'A couple pouring sparkling wine over a coupe tower'} crumbs={crumbs}>
+    <h1>{it ? <>Il vostro matrimonio. <em>La vostra bar experience.</em></> : <>Your wedding. <em>Your bar experience.</em></>}</h1>
+    <p slot="lead" class="lead muted">
+      {it
+        ? 'Un bar che fa parte del giorno più importante: progettato sul vostro stile, gestito in autonomia, pensato per gli ospiti e per le fotografie.'
+        : 'A bar that belongs to the most important day: designed around your style, run independently, made for your guests — and for the photographs.'}
+    </p>
+    <div slot="cta" class="cta-row">
+      <a class="btn" href={url('contact', lang) + '?type=wedding'} data-track="cta_click" data-track-label="weddings_hero_quote">{s.quote}</a>
+      <a class="link" href={url('destination', lang)}>{it ? 'Vi sposate in Italia dall’estero?' : 'Marrying in Italy from abroad?'}</a>
+    </div>
+  </PageHero>
+
+  <section class="section" aria-labelledby="day-title">
+    <div class="container">
+      <SectionHeading eyebrow={it ? 'Durante la giornata' : 'Through the day'} align="split" id="day-title">
+        {it ? <>Ogni momento <em>ha il suo drink.</em></> : <>Every moment <em>has its drink.</em></>}
+        <Fragment slot="lead">{it ? 'Ci integriamo nel programma del matrimonio, coordinandoci con planner, location e catering.' : 'We fit into the wedding timeline, in step with your planner, venue and caterer.'}</Fragment>
+      </SectionHeading>
+      <ol class="day" role="list">
+        {day.map(([k, v], i) => (
+          <li data-reveal style={`--delay:${i * 0.05}s`}>
+            <span class="micro">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{k}</h3>
+            <p class="muted">{v}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="w-ed">
+    <div class="container">
+      <EditorialSection image={villa} imageAlt={it ? 'Banco Pure White in villa' : 'Pure White bar at a villa'} secondImage={bowl} secondAlt={it ? 'Champagne bowl sul banco' : 'Champagne bowl on the bar'} ratio="landscape" reverse>
+        <p class="eyebrow" data-reveal>{it ? 'Il nostro metodo' : 'Our method'}</p>
+        <h2 id="w-ed" data-reveal>{it ? <>Un pensiero <em>in meno.</em></> : <>One less thing <em>to worry about.</em></>}</h2>
+        <p class="muted" data-reveal>
+          {it
+            ? 'Portiamo banco, bicchieri, prodotti, ghiaccio e staff. Allestiamo, serviamo e smontiamo in completa autonomia, senza pesare sul catering o sulla location.'
+            : 'We bring the bar, glassware, products, ice and staff. We set up, serve and dismantle completely independently, without weighing on the caterer or the venue.'}
+        </p>
+        <p class="muted" data-reveal>
+          {it
+            ? 'Dietro al banco non vedrete contenitori termici o ceste di bicchieri: ogni rifornimento avviene a vassoio. Nelle vostre fotografie resterà solo il bar.'
+            : 'Behind the bar you will never see cool boxes or glass racks: every restock is carried by tray. In your photographs, only the bar remains.'}
+        </p>
+        <a class="link" href={url('why', lang)} data-reveal>{it ? 'Perché Meteora' : 'Why Meteora'}</a>
+      </EditorialSection>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="w-bars">
+    <div class="container">
+      <SectionHeading eyebrow={it ? 'I nostri banchi' : 'The Bar Collection'} align="split" id="w-bars">
+        {it ? <>Scegliete <em>il vostro banco.</em></> : <>Choose <em>your bar.</em></>}
+        <Fragment slot="lead">{it ? 'Ogni modello in tre misure, da scegliere in base a stile, location e numero di ospiti.' : 'Every model in three sizes, chosen for your style, venue and guest count.'}</Fragment>
+      </SectionHeading>
+      <BarCollection lang={lang} />
+    </div>
+  </section>
+
+  <TowerSection lang={lang} />
+  <PersonalizationSection lang={lang} />
+
+  <section class="section" aria-labelledby="w-cmp">
+    <div class="container">
+      <SectionHeading eyebrow="Open Bar" align="split" id="w-cmp">
+        {it ? <>Essential <em>o Premium.</em></> : <>Essential <em>or Premium.</em></>}
+      </SectionHeading>
+      <ExperienceComparison lang={lang} />
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="w-why">
+    <div class="container">
+      <SectionHeading eyebrow={it ? 'Perché Meteora' : 'Why Meteora'} id="w-why">
+        {it ? <>Ciò che <em>non si vede</em> fa la differenza.</> : <>What <em>you don’t see</em> makes the difference.</>}
+      </SectionHeading>
+      <WhyGrid lang={lang} limit={4} />
+    </div>
+  </section>
+
+  <Testimonial lang={lang} />
+
+  <section class="section" aria-labelledby="w-faq">
+    <div class="container container--narrow">
+      <SectionHeading eyebrow="FAQ" id="w-faq">{it ? <>Domande <em>frequenti.</em></> : <>Frequently <em>asked.</em></>}</SectionHeading>
+      <FAQ lang={lang} items={faqs} />
+    </div>
+  </section>
+
+  <CTABand lang={lang} image={sunset} imageAlt={it ? 'Banco Golden Mirror al tramonto' : 'Golden Mirror bar at sunset'} trackLabel="weddings_band" href={url('contact', lang) + '?type=wedding'}>
+    <h2>{it ? <>Raccontateci <em>il vostro giorno.</em></> : <>Tell us about <em>your day.</em></>}</h2>
+    <a slot="secondary" class="link" href={url('destination', lang)}>Destination weddings</a>
+  </CTABand>
+</BaseLayout>
+
+<style>
+  .day {
+    display: grid;
+    gap: var(--space-l) var(--space-l);
+  }
+  .day li {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-m);
+  }
+  .day .micro {
+    color: var(--color-accent-ink);
+  }
+  .day h3 {
+    margin-block: 0.5rem;
+  }
+  .day p {
+    font-size: var(--fs-small);
+  }
+  @media (min-width: 800px) {
+    .day {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1200px) {
+    .day {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+</style>

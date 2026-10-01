@@ -1,0 +1,129 @@
+---
+/**
+ * "Not just an open bar" — the seven components of the Meteora experience,
+ * each tied to a real photograph.
+ */
+import type { Lang } from '@/i18n/routes';
+import Img from './Img.astro';
+import bar from '@/assets/images/bars/golden-marble-night.jpg';
+import cocktails from '@/assets/images/cocktails/espresso-martini.jpg';
+import staff from '@/assets/images/team/bartender-strain.jpg';
+import glass from '@/assets/images/details/champagne-bowl.jpg';
+import ice from '@/assets/images/ice/cube-5cm.jpg';
+import details from '@/assets/images/details/mint-coupes.jpg';
+import logistics from '@/assets/images/bars/terrace-panorama.jpg';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+const items = [
+  { img: bar, cls: 'a', n: it ? 'Il banco' : 'The bar', d: it ? 'Scenografico, modulare, in tre misure.' : 'Scenographic, modular, in three sizes.', alt: it ? 'Banco bar dorato su pavimento chevron' : 'Golden bar on a chevron floor' },
+  { img: cocktails, cls: 'b', n: 'Cocktail', d: it ? 'Classici eseguiti con metodo, signature su misura.' : 'Classics made with method, bespoke signatures.', alt: 'Espresso Martini' },
+  { img: staff, cls: 'c', n: 'Staff', d: it ? 'Total black, discreto, professionale.' : 'Total black, discreet, professional.', alt: it ? 'Bartender in divisa nera che filtra un cocktail' : 'Bartender in black uniform straining a cocktail' },
+  { img: glass, cls: 'd', n: it ? 'Bicchieri' : 'Glassware', d: it ? 'Il vetro giusto per ogni drink.' : 'The right glass for every drink.', alt: it ? 'Champagne bowl e bottigliera sul banco' : 'Champagne bowl and back bar' },
+  { img: ice, cls: 'e', n: it ? 'Ghiaccio' : 'Ice', d: it ? 'Parte integrante del cocktail.' : 'An integral part of the cocktail.', alt: it ? 'Cubo di ghiaccio trasparente 5×5 cm in mano' : 'Clear 5×5 cm ice cube held in a hand' },
+  { img: details, cls: 'f', n: it ? 'Dettagli' : 'Details', d: it ? 'Frutta, botaniche, garnish.' : 'Fruit, botanicals, garnish.', alt: it ? 'Coppe con menta fresca e frutti rossi' : 'Coupes with fresh mint and red berries' },
+  { img: logistics, cls: 'g', n: it ? 'Logistica' : 'Logistics', d: it ? 'Autonomi dall’allestimento allo smontaggio.' : 'Independent from setup to load-out.', alt: it ? 'Banco allestito davanti a una vetrata panoramica' : 'Bar set up in front of a panoramic window' },
+];
+---
+
+<div class="mosaic">
+  {
+    items.map((item, i) => (
+      <figure class:list={['mosaic__item', `mosaic__item--${item.cls}`]} data-reveal style={`--delay:${(i % 3) * 0.08}s`}>
+        <div class="media mosaic__media">
+          <Img src={item.img} alt={item.alt} sizes="(min-width: 960px) 30vw, 50vw" widths={[400, 640, 900, 1200]} />
+        </div>
+        <figcaption>
+          <span class="mosaic__n micro">{String(i + 1).padStart(2, '0')}</span>
+          <span class="mosaic__name">{item.n}</span>
+          <span class="mosaic__d">{item.d}</span>
+        </figcaption>
+      </figure>
+    ))
+  }
+</div>
+
+<style>
+  .mosaic {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-l) var(--space-s);
+  }
+  .mosaic__media {
+    aspect-ratio: 4 / 5;
+  }
+  .mosaic__item--a {
+    grid-column: 1 / -1;
+  }
+  .mosaic__item--a .mosaic__media {
+    aspect-ratio: 3 / 2;
+  }
+  figcaption {
+    display: grid;
+    gap: 0.25rem;
+    margin-top: 0.9rem;
+  }
+  .mosaic__n {
+    color: var(--color-accent-on-dark);
+  }
+  .mosaic__name {
+    font-family: var(--font-display);
+    font-size: var(--fs-h3);
+    line-height: 1.1;
+  }
+  .mosaic__d {
+    font-size: var(--fs-small);
+    color: var(--color-on-dark-muted);
+  }
+  .mosaic__media :global(img) {
+    transition: transform 1.4s var(--ease-out);
+  }
+  .mosaic__item:hover .mosaic__media :global(img) {
+    transform: scale(1.04);
+  }
+  @media (min-width: 960px) {
+    .mosaic {
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--space-xl) var(--space-m);
+    }
+    .mosaic__item--a {
+      grid-column: 1 / 8;
+      grid-row: span 2;
+    }
+    .mosaic__item--a .mosaic__media {
+      aspect-ratio: 4 / 3.6;
+    }
+    .mosaic__item--b {
+      grid-column: 9 / 13;
+    }
+    .mosaic__item--c {
+      grid-column: 9 / 13;
+    }
+    .mosaic__item--c .mosaic__media {
+      aspect-ratio: 4 / 3;
+    }
+    .mosaic__item--d {
+      grid-column: 1 / 4;
+      margin-top: var(--space-xl);
+    }
+    .mosaic__item--e {
+      grid-column: 5 / 9;
+    }
+    .mosaic__item--e .mosaic__media {
+      aspect-ratio: 1;
+    }
+    .mosaic__item--f {
+      grid-column: 10 / 13;
+      margin-top: calc(var(--space-2xl) * 0.8);
+    }
+    .mosaic__item--g {
+      grid-column: 3 / 9;
+    }
+    .mosaic__item--g .mosaic__media {
+      aspect-ratio: 16 / 9;
+    }
+  }
+</style>

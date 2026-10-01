@@ -1,0 +1,79 @@
+---
+import type { Cocktail } from '@/data/cocktails';
+import type { Lang } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import Img from './Img.astro';
+
+interface Props {
+  cocktail: Cocktail;
+  lang: Lang;
+}
+const { cocktail: c, lang } = Astro.props;
+const s = t(lang);
+---
+
+<article class="cc" data-categories={c.categories.join(' ')}>
+  <div class="cc__media media">
+    {c.image && <Img src={c.image} alt={c.name} sizes="(min-width: 1200px) 22vw, (min-width: 700px) 30vw, 46vw" widths={[320, 480, 681]} />}
+  </div>
+  <h3 class="cc__name">{c.name}</h3>
+  {c.variants && <p class="cc__variants">{c.variants}</p>}
+  <dl class="cc__meta">
+    <div>
+      <dt class="visually-hidden">{s.profile}</dt>
+      <dd>{c.profile[lang]}</dd>
+    </div>
+    <div class="cc__abv">
+      <dt class="visually-hidden">{s.alcohol}</dt>
+      <dd aria-label={`${s.alcohol}: ${c.alcohol}/5`}>
+        {[1, 2, 3, 4, 5].map((n) => <span class:list={['dot', n <= c.alcohol && 'on']} aria-hidden="true" />)}
+      </dd>
+    </div>
+  </dl>
+</article>
+
+<style>
+  .cc__media {
+    aspect-ratio: 4 / 5;
+    background: #e9e6e2;
+  }
+  .cc__media :global(img) {
+    transition: transform 1.2s var(--ease-out);
+  }
+  .cc:hover .cc__media :global(img) {
+    transform: scale(1.05);
+  }
+  .cc__name {
+    font-size: 1.35rem;
+    line-height: 1.15;
+    margin-top: 0.9rem;
+  }
+  .cc__variants {
+    font-size: var(--fs-micro);
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+    margin-top: 0.2rem;
+  }
+  .cc__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+  }
+  .cc__abv dd {
+    display: flex;
+    gap: 3px;
+  }
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: 1px solid var(--color-accent);
+  }
+  .dot.on {
+    background: var(--color-accent);
+  }
+</style>
