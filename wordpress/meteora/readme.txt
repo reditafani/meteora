@@ -28,6 +28,8 @@ forms. Everything is built with core blocks — no page builder and no required 
   Polylang and WPML; language switcher in header, menu and footer.
 * JSON-LD LocalBusiness + Service (area served: Tuscany, Italy); defers to Yoast SEO or
   Rank Math when one of them is active.
+* Instagram strip with the latest posts of @meteoraevents through the free
+  "Smash Balloon Social Photo Feed" plugin (curated images as fallback).
 * Optional Contact Form 7 integration for the quote and partner forms (an email /
   WhatsApp fallback is shown when the plugin is not active).
 

@@ -17,6 +17,7 @@ Tema a blocchi (Full Site Editing) che riproduce il sito Meteora Events. Non usa
   - **Polylang**: sito bilingue EN/IT, con l'inglese come lingua principale e l'italiano sotto `/it/`.
   - **Contact Form 7**: moduli di preventivo e partner. Senza il plugin, al posto del modulo compaiono email e WhatsApp.
   - **WordPress Importer**: serve solo per importare `meteora-content.xml`.
+  - **Smash Balloon Social Photo Feed** (Instagram Feed): mostra gli ultimi post di @meteoraevents nella sezione Instagram (vedi [Feed Instagram](#6-feed-instagram)).
 - Facoltativi: Yoast SEO o Rank Math. Il tema li riconosce da solo (vedi [SEO](#seo)).
 
 ---
@@ -156,7 +157,22 @@ Esempio: `animate-fade-up animate-delay-2`.
 - Se il visitatore ha attivato "Riduci movimento" nel sistema operativo, il contenuto appare subito, senza animazioni.
 - Nell'editor i blocchi sono sempre visibili.
 
-## 6. Cookie, analytics e WhatsApp
+## 6. Feed Instagram
+
+La sezione "Behind the bar, event after event" (Home ed Eventi, EN e IT) mostra **gli ultimi 6 post di @meteoraevents** tramite il plugin gratuito *Smash Balloon Social Photo Feed*. Finché il plugin non è attivo e collegato (o se Instagram non risponde), restano le 6 foto scelte: la sezione non è mai vuota.
+
+1. **Account professionale.** Dal 2024 Meta consente il collegamento solo agli account *Business* o *Creator*. Nell'app Instagram di @meteoraevents: **Impostazioni → Tipo di account e strumenti → Passa a un account professionale** (gratuito, reversibile).
+2. **Plugin → Aggiungi nuovo**: cerca "Smash Balloon Social Photo Feed", installa e attiva.
+3. **Instagram Feed → Tutti i feed → Aggiungi nuovo → Connetti un account**: accedi con @meteoraevents e autorizza. Il plugin rinnova da solo il collegamento.
+4. Completa e **salva il feed** (layout e colonne non contano: il tema impone sempre la griglia di 6 quadrati del sito). Il primo feed creato ha ID 1, quello che il tema usa in automatico.
+5. **Privacy (consigliato):** **Instagram Feed → Impostazioni → Avanzate → GDPR → Sì**. Le immagini vengono salvate e servite dal tuo sito, senza che il browser dei visitatori contatti i server di Meta; aggiungi comunque Instagram tra i servizi terzi nella Cookie Policy.
+
+Il feed si aggiorna da solo (frequenza in **Impostazioni → Configura → Controlla nuovi post**). I clic sui post sono tracciati come `instagram_click`.
+
+> Se il feed Meteora non è il primo creato nel plugin, indica il suo ID con un piccolo plugin:
+> `add_filter( 'meteora_instagram_shortcode', fn() => '[instagram-feed feed=3]' );`
+
+## 7. Cookie, analytics e WhatsApp
 
 Banner cookie (con Google Consent Mode v2) e pulsante WhatsApp sono già attivi. Gli strumenti di analisi si caricano **solo dopo il consenso** del visitatore. Per attivarli, aggiungi in `wp-config.php` le costanti che ti servono:
 
@@ -176,14 +192,14 @@ Eventi tracciati in automatico:
 
 I link come `/contact/?type=wedding&service=open-bar` preselezionano i campi del modulo.
 
-## 7. SEO
+## 8. SEO
 
 - Ogni pagina ha **un solo H1**. Titolo e meta description di ogni pagina sono già compilati, sia per **Yoast** sia per **Rank Math**.
 - Il tema stampa i dati strutturati **LocalBusiness + Service** (area servita: Toscana e Italia). Con Yoast o Rank Math attivi, il tema li aggiunge al loro grafo invece di stamparli due volte.
 - Senza plugin SEO, la meta description viene dal riassunto (*excerpt*) della pagina.
 - Polylang genera i tag `hreflang` tra le versioni EN e IT.
 
-## 8. Prestazioni consigliate
+## 9. Prestazioni consigliate
 
 - Il tema non usa jQuery.
 - Gli script si caricano solo dove servono, le immagini sono WebP responsive con lazy-load e i font sono precaricati.

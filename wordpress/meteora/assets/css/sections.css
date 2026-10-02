@@ -1559,6 +1559,86 @@ body .mt-ig__head > div > * {
 @media (min-width: 960px) {
 	.mt-ig__grid { grid-template-columns: repeat(6, 1fr); }
 }
+/* Live feed (Smash Balloon "instagram-feed"): same grid and tiles as the
+   curated strip, whatever layout is chosen in the plugin settings. */
+.mt-ig__feed #sb_instagram,
+.mt-ig__feed .sbi {
+	width: 100% !important;
+	max-width: none !important;
+	height: auto !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	background: none !important;
+}
+.mt-ig__feed .sb_instagram_header,
+.mt-ig__feed #sbi_load,
+.mt-ig__feed .sbi_follow_btn,
+.mt-ig__feed .sbi_load_btn,
+.mt-ig__feed .sbi_info,
+.mt-ig__feed .sbi-screenreader + svg,
+.mt-ig__feed .sbi_carousel_icon,
+.mt-ig__feed .sbi_playbtn {
+	display: none !important;
+}
+.mt-ig__feed #sbi_images {
+	display: grid !important;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 4px !important;
+	padding: 0 !important;
+	width: 100% !important;
+	float: none !important;
+}
+.mt-ig__feed .sbi_item {
+	display: block !important;
+	width: auto !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	float: none !important;
+	opacity: 1 !important;
+}
+.mt-ig__feed .sbi_item:nth-child(n + 7) {
+	display: none !important; /* six tiles, as in the design */
+}
+/* Keep the plugin's screen-reader labels hidden even if its stylesheet is off. */
+.mt-ig__feed .sbi-screenreader {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	overflow: hidden !important;
+	clip-path: inset(50%) !important;
+	white-space: nowrap !important;
+}
+.mt-ig__feed .sbi_photo_wrap {
+	position: relative;
+	overflow: hidden;
+}
+.mt-ig__feed .sbi_photo {
+	display: block !important;
+	aspect-ratio: 1;
+	height: auto !important;
+	overflow: hidden;
+	background-size: cover;
+	background-position: center;
+	transition: transform 1.2s var(--mt-ease-out), opacity 0.4s;
+}
+.mt-ig__feed .sbi_photo img {
+	display: block !important;
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: cover;
+	opacity: 1 !important;
+}
+.mt-ig__feed .sbi_photo:hover {
+	transform: scale(1.05);
+	opacity: 0.9;
+}
+@media (min-width: 960px) {
+	.mt-ig__feed #sbi_images { grid-template-columns: repeat(6, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+	.mt-ig__feed .sbi_photo,
+	.mt-ig__feed .sbi_photo:hover { transition: none; transform: none; }
+}
 
 /* ---------- CTA band (Cover) ---------- */
 .mt-band.wp-block-cover {
