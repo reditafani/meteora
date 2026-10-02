@@ -1530,6 +1530,7 @@ body .mt-num__item > * {
 	gap: var(--wp--preset--spacing--m);
 	margin-bottom: var(--wp--preset--spacing--l) !important;
 }
+body .mt-ig__head > *,
 body .mt-ig__head > div > * {
 	margin: 0;
 }
@@ -1541,6 +1542,11 @@ body .mt-ig__head > div > * {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 4px;
+}
+/* Block-level link: no text-baseline gap under the square, zoom stays inside. */
+.mt-ig__tile a {
+	display: block;
+	overflow: hidden;
 }
 .mt-ig__tile img {
 	aspect-ratio: 1;

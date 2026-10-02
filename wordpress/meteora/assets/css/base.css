@@ -262,10 +262,13 @@ a:hover .hover-zoom img {
 	backdrop-filter: saturate(1.2) blur(10px);
 	-webkit-backdrop-filter: saturate(1.2) blur(10px);
 	border-bottom: 1px solid transparent;
+	/* One duration and curve for every part of the scroll change (background,
+	   colours, height, logo), so it reads as a single clean switch. */
+	--mt-header-t: 0.32s cubic-bezier(0.22, 1, 0.36, 1);
 	transition:
-		background-color 0.5s var(--mt-ease),
-		color 0.5s var(--mt-ease),
-		border-color 0.5s var(--mt-ease);
+		background-color var(--mt-header-t),
+		color var(--mt-header-t),
+		border-color var(--mt-header-t);
 }
 /* The header is fixed: no root block gap between header, main and footer. */
 .wp-site-blocks > .site-main,
@@ -279,11 +282,26 @@ body:not(.has-overlay-header) .wp-site-blocks > .site-main {
 .site-header.is-scrolled {
 	border-bottom-color: var(--wp--preset--color--border);
 }
+/* Over a dark hero: transparent bar with a soft shade, which fades out in step
+   with the cream background instead of disappearing at once. */
+.site-header::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: linear-gradient(to bottom, rgb(12 9 7 / 0.55), rgb(12 9 7 / 0));
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity var(--mt-header-t);
+}
 .has-overlay-header .site-header:not(.is-scrolled) {
 	--fg: var(--wp--preset--color--on-dark);
-	background: linear-gradient(to bottom, rgb(12 9 7 / 0.55), rgb(12 9 7 / 0)) border-box no-repeat;
+	background-color: transparent;
 	backdrop-filter: none;
 	-webkit-backdrop-filter: none;
+}
+.has-overlay-header .site-header:not(.is-scrolled)::before {
+	opacity: 1;
 }
 .site-header__inner {
 	max-width: var(--wp--style--global--wide-size);
@@ -291,7 +309,7 @@ body:not(.has-overlay-header) .wp-site-blocks > .site-main {
 	padding-inline: var(--mt-gutter);
 	height: var(--mt-header-h);
 	gap: var(--wp--preset--spacing--m);
-	transition: height 0.45s var(--mt-ease);
+	transition: height var(--mt-header-t);
 }
 .site-header.is-scrolled .site-header__inner {
 	height: var(--mt-header-h-compact);
@@ -299,23 +317,39 @@ body:not(.has-overlay-header) .wp-site-blocks > .site-main {
 .site-header a:not(.wp-element-button) {
 	color: inherit;
 }
-/* Logo: gold on cream, cream over dark heroes (same file, tinted). */
+/* Logo: gold on cream, cream over dark heroes. The header carries two copies
+   (see inc/blocks.php) and cross-fades them, as the original does. */
 .site-header__brand {
 	flex: none;
 	width: 118px;
-	transition: width 0.45s var(--mt-ease);
+	transition: width var(--mt-header-t);
 }
 .site-header.is-scrolled .site-header__brand {
 	width: 96px;
 }
+.site-header__brand a {
+	position: relative;
+	display: block;
+}
 .site-header__brand img {
 	width: 100% !important;
 	height: auto;
-	transition: filter 0.4s var(--mt-ease);
+	transition: opacity var(--mt-header-t);
 }
-.has-overlay-header .site-header:not(.is-scrolled) .site-header__brand img,
+.site-header__brand .site-header__logo-light {
+	position: absolute;
+	inset: 0;
+	opacity: 0;
+}
+.site-header__logo-light,
 .is-logo-light img {
 	filter: brightness(0) invert(1) sepia(0.12);
+}
+.has-overlay-header .site-header:not(.is-scrolled) .site-header__logo-light {
+	opacity: 1;
+}
+.has-overlay-header .site-header:not(.is-scrolled) .site-header__brand img:not(.site-header__logo-light) {
+	opacity: 0;
 }
 
 .site-header__nav,
@@ -459,6 +493,9 @@ body:not(.has-overlay-header) .wp-site-blocks > .site-main {
 }
 .mm__bar {
 	min-height: var(--mt-header-h);
+	/* The close button comes first in the markup, so it gets focus when the
+	   menu opens (as in the original); it is shown on the right. */
+	flex-direction: row-reverse;
 }
 .mm__logo {
 	width: 104px;

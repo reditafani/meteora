@@ -14,9 +14,9 @@ $meteora_contact = meteora_contact();
 ?>
 <!-- wp:group {"metadata":{"name":"Mobile menu"},"className":"mm","style":{"elements":{"link":{"color":{"text":"var:preset|color|on-dark"}}}},"backgroundColor":"dark","textColor":"on-dark","layout":{"type":"default"}} -->
 <div class="wp-block-group mm has-on-dark-color has-dark-background-color has-text-color has-background has-link-color"><!-- wp:group {"className":"mm__bar","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
-<div class="wp-block-group mm__bar"><!-- wp:site-logo {"width":104,"className":"mm__logo is-logo-light"} /-->
+<div class="wp-block-group mm__bar"><!-- wp:navigation-overlay-close {"className":"mm__close"} /-->
 
-<!-- wp:navigation-overlay-close {"className":"mm__close"} /--></div>
+<!-- wp:site-logo {"width":104,"className":"mm__logo is-logo-light"} /--></div>
 <!-- /wp:group -->
 
 <!-- wp:navigation {"overlayMenu":"never","ariaLabel":"<?php echo esc_attr__( 'Primary', 'meteora' ); ?>","className":"mm__primary","layout":{"type":"flex","orientation":"vertical"}} -->

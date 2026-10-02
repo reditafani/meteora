@@ -154,3 +154,52 @@ function meteora_scroll_rail_a11y( string $content, array $block ): string {
 	return $content;
 }
 add_filter( 'render_block_core/group', 'meteora_scroll_rail_a11y', 10, 2 );
+
+/**
+ * Header menu button: the core "handle" icon draws two 1.5px filled bars on
+ * half-pixel coordinates, which blur and shimmer while the header shrinks on
+ * scroll. Use the thin, pixel-aligned stroked icon of the original design.
+ *
+ * @param string              $content Rendered block.
+ * @param array<string,mixed> $block   Parsed block.
+ */
+function meteora_menu_button_icon( string $content, array $block ): string {
+	$class = isset( $block['attrs']['className'] ) ? (string) $block['attrs']['className'] : '';
+	if ( false === strpos( $class, 'site-header__toggle' ) ) {
+		return $content;
+	}
+	$icon = '<svg class="meteora-menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M3 8h18M3 16h18"/></svg>';
+	return (string) preg_replace(
+		'#(<button[^>]*wp-block-navigation__responsive-container-open[^>]*>)\s*<svg\b.*?</svg>#s',
+		'$1' . $icon,
+		$content,
+		1
+	);
+}
+add_filter( 'render_block_core/navigation', 'meteora_menu_button_icon', 10, 2 );
+
+/**
+ * Header logo: add a light copy of the logo so the overlay header can
+ * cross-fade between the two (a CSS filter transition would pass through a
+ * dark grey frame while scrolling).
+ *
+ * @param string              $content Rendered block.
+ * @param array<string,mixed> $block   Parsed block.
+ */
+function meteora_header_logo_crossfade( string $content, array $block ): string {
+	$class = isset( $block['attrs']['className'] ) ? (string) $block['attrs']['className'] : '';
+	if ( false === strpos( $class, 'site-header__brand' ) || ! preg_match( '#<img\b[^>]*>#', $content, $m ) ) {
+		return $content;
+	}
+	$light = new WP_HTML_Tag_Processor( $m[0] );
+	if ( ! $light->next_tag( 'img' ) ) {
+		return $content;
+	}
+	$light->add_class( 'site-header__logo-light' );
+	$light->set_attribute( 'alt', '' );
+	$light->set_attribute( 'aria-hidden', 'true' );
+	$light->remove_attribute( 'id' );
+	$light->remove_attribute( 'fetchpriority' );
+	return str_replace( $m[0], $m[0] . $light->get_updated_html(), $content );
+}
+add_filter( 'render_block_core/site-logo', 'meteora_header_logo_crossfade', 20, 2 );
