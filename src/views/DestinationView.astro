@@ -6,6 +6,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
 import SectionHeading from '@/components/SectionHeading.astro';
 import DestinationSection from '@/components/DestinationSection.astro';
+import VenueShowcase from '@/components/VenueShowcase.astro';
 import EditorialSection from '@/components/EditorialSection.astro';
 import FAQ from '@/components/FAQ.astro';
 import CTABand from '@/components/CTABand.astro';
@@ -16,6 +17,10 @@ import hero from '@/assets/images/bars/pure-white-villa.jpg';
 import golden from '@/assets/images/bars/golden-mirror.jpg';
 import tower from '@/assets/images/towers/coupe-tower-sunset.jpg';
 import hall from '@/assets/images/venues/fresco-hall.jpg';
+/* Venue showcase — replace placeholders with real venue photos when available */
+import venueMailano from '@/assets/images/venues/villa-maiano.png';
+import venueBisarno from '@/assets/images/bars/terrace-panorama.jpg';
+import venueBorghese from '@/assets/images/bars/pure-white-villa.jpg';
 
 interface Props {
   lang: Lang;
@@ -60,6 +65,27 @@ const guide = it
       { h: 'Personal touches', p: 'Napkins and a bar front with your names (35 days’ notice), engraved fruit and ice, a cocktail list created around you. All agreed during the planning phase.' },
       { h: 'What to consider', p: 'Guest count, length of the party, spaces for aperitivo and after-dinner, the venue’s setup times, preferred labels and alcohol-free options. The more you share, the more precise our proposal.' },
     ];
+const venues = [
+  {
+    name: 'Villa di Maiano',
+    location: it ? 'Firenze, Toscana' : 'Florence, Tuscany',
+    image: venueMailano,
+    imageAlt: it ? 'Villa di Maiano, Firenze' : 'Villa di Maiano, Florence',
+  },
+  {
+    name: 'Castello di Bisarno',
+    location: it ? 'Firenze, Toscana' : 'Florence, Tuscany',
+    image: venueBisarno,
+    imageAlt: it ? 'Castello di Bisarno, Firenze' : 'Castello di Bisarno, Florence',
+  },
+  {
+    name: "Ca'Borghese",
+    location: it ? 'Toscana' : 'Tuscany',
+    image: venueBorghese,
+    imageAlt: it ? "Ca'Borghese, Toscana" : "Ca'Borghese, Tuscany",
+  },
+];
+
 const schema = [
   serviceSchema({ name: it ? 'Bar catering per destination wedding in Italia' : 'Destination wedding bar catering in Italy', serviceType: 'Wedding bar catering', description: meta.description, url: url('destination', lang), lang, area: it ? ['Toscana', 'Firenze', 'Chianti', 'Siena', 'Lucca', 'Pisa', 'Forte dei Marmi', 'Italia'] : ['Tuscany', 'Florence', 'Chianti', 'Siena', 'Lucca', 'Pisa', 'Forte dei Marmi', 'Italy'] }),
   faqSchema(faqs, lang),
@@ -92,6 +118,17 @@ const schema = [
         </Fragment>
       </SectionHeading>
       <DestinationSection lang={lang} />
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="d-venues">
+    <div class="container">
+      <SectionHeading eyebrow={it ? 'Alcune venue' : 'Selected venues'} align="split" id="d-venues">
+        {it ? <>Location in cui abbiamo <em>lavorato.</em></> : <>Venues where we <em>have worked.</em></>}
+      </SectionHeading>
+    </div>
+    <div class="venues-wrap">
+      <VenueShowcase venues={venues} />
     </div>
   </section>
 
@@ -150,6 +187,17 @@ const schema = [
 </BaseLayout>
 
 <style>
+  .venues-wrap {
+    margin-top: var(--space-l);
+    padding-inline: var(--gutter);
+    max-width: var(--max);
+    margin-inline: auto;
+  }
+  @media (min-width: 960px) {
+    .venues-wrap {
+      padding-inline: var(--gutter);
+    }
+  }
   .dh__eyebrow {
     margin-top: var(--space-l);
   }

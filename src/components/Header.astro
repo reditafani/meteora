@@ -16,13 +16,6 @@ interface Props {
 }
 const { lang, alternates, theme = 'solid', current } = Astro.props;
 const s = t(lang);
-const nav = [
-  { key: 'weddings', label: lang === 'it' ? 'Matrimoni' : 'Weddings', href: url('weddings', lang) },
-  { key: 'cocktails', label: lang === 'it' ? 'Esperienza' : 'Experience', href: url('cocktails', lang) },
-  { key: 'bars', label: lang === 'it' ? 'Banchi bar' : 'Bars', href: url('bars', lang) },
-  { key: 'events', label: lang === 'it' ? 'Eventi' : 'Events', href: url('events', lang) },
-  { key: 'about', label: lang === 'it' ? 'Chi siamo' : 'About', href: url('about', lang) },
-];
 ---
 
 <header class="site-header" data-theme={theme} data-header>
@@ -32,24 +25,7 @@ const nav = [
       <Logo variant="gold" width={132} class="logo logo--gold" priority />
     </a>
 
-    <nav class="site-header__nav" aria-label={s.mainNav}>
-      <ul role="list">
-        {
-          nav.map((item) => (
-            <li>
-              <a href={item.href} aria-current={current === item.key ? 'page' : undefined}>
-                {item.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
-
     <div class="site-header__actions">
-      <a class="site-header__partner" href={url('partners', lang)} aria-current={current === 'partners' ? 'page' : undefined}>
-        {s.partnerArea}
-      </a>
       <LanguageSwitcher lang={lang} alternates={alternates} class="site-header__lang" />
       <a class="btn site-header__cta" href={url('contact', lang)} data-track="cta_click" data-track-label="header_quote">
         {s.quote}
@@ -147,51 +123,10 @@ const nav = [
   .site-header[data-theme='overlay']:not([data-scrolled]) :global(.logo--gold) {
     opacity: 0;
   }
-  .site-header__nav {
-    display: none;
-  }
-  .site-header__nav ul {
-    display: flex;
-    gap: clamp(1.25rem, 2.2vw, 2.5rem);
-  }
-  .site-header__nav a,
-  .site-header__partner {
-    position: relative;
-    font-size: var(--fs-micro);
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding-block: 0.6rem;
-  }
-  .site-header__nav a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0.25rem;
-    height: 1px;
-    background: currentColor;
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.45s var(--ease-out);
-  }
-  .site-header__nav a:hover::after,
-  .site-header__nav a[aria-current='page']::after {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
   .site-header__actions {
     display: flex;
     align-items: center;
     gap: clamp(0.75rem, 1.6vw, 1.5rem);
-  }
-  .site-header__partner {
-    display: none;
-    opacity: 0.75;
-  }
-  .site-header__partner:hover {
-    opacity: 1;
   }
   .site-header__cta {
     display: none;
@@ -217,17 +152,6 @@ const nav = [
   @media (min-width: 768px) {
     .site-header__cta {
       display: inline-flex;
-    }
-  }
-  @media (min-width: 1180px) {
-    .site-header__nav {
-      display: block;
-    }
-    .site-header__partner {
-      display: inline-block;
-    }
-    .site-header__toggle {
-      display: none;
     }
   }
 </style>

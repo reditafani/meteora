@@ -12,13 +12,16 @@ import c from '@/assets/images/details/mint-coupes.jpg';
 import d from '@/assets/images/bars/night-lounge.jpg';
 import e from '@/assets/images/towers/coupe-tower-sunset.jpg';
 import f from '@/assets/images/details/champagne-bowl.jpg';
+import g from '@/assets/images/bars/golden-marble-night.jpg';
+import h from '@/assets/images/team/bartender-pour.jpg';
+import i from '@/assets/images/bars/pure-white-villa.jpg';
 
 interface Props {
   lang: Lang;
 }
 const { lang } = Astro.props;
 const it = lang === 'it';
-const imgs = [a, b, c, d, e, f];
+const imgs = [a, b, c, d, e, f, g, h, i];
 ---
 
 <section class="section ig" aria-labelledby="ig-title">
@@ -37,7 +40,7 @@ const imgs = [a, b, c, d, e, f];
         imgs.map((src, i) => (
           <li data-reveal style={`--delay:${i * 0.05}s`}>
             <a href={site.instagram.url} target="_blank" rel="noopener" class="media" data-track="instagram_click" data-track-label={`strip_${i + 1}`}>
-              <Img src={src} alt="" sizes="(min-width: 960px) 16vw, 33vw" widths={[240, 360, 540]} />
+              <Img src={src} alt="" sizes="(min-width: 960px) 33vw, 33vw" widths={[360, 540, 720, 1080]} />
               <span class="visually-hidden">{it ? `Apri Instagram ${site.instagram.handle}` : `Open Instagram ${site.instagram.handle}`}</span>
             </a>
           </li>
@@ -81,10 +84,5 @@ const imgs = [a, b, c, d, e, f];
   .ig__grid a:hover :global(img) {
     transform: scale(1.05);
     opacity: 0.9;
-  }
-  @media (min-width: 960px) {
-    .ig__grid {
-      grid-template-columns: repeat(6, 1fr);
-    }
   }
 </style>

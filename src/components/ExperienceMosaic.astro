@@ -86,43 +86,10 @@ const items = [
   }
   @media (min-width: 960px) {
     .mosaic {
-      grid-template-columns: repeat(12, 1fr);
-      gap: var(--space-xl) var(--space-m);
-    }
-    .mosaic__item--a {
-      grid-column: 1 / 8;
-      grid-row: span 2;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl) var(--space-l);
     }
     .mosaic__item--a .mosaic__media {
-      aspect-ratio: 4 / 3.6;
-    }
-    .mosaic__item--b {
-      grid-column: 9 / 13;
-    }
-    .mosaic__item--c {
-      grid-column: 9 / 13;
-    }
-    .mosaic__item--c .mosaic__media {
-      aspect-ratio: 4 / 3;
-    }
-    .mosaic__item--d {
-      grid-column: 1 / 4;
-      margin-top: var(--space-xl);
-    }
-    .mosaic__item--e {
-      grid-column: 5 / 9;
-    }
-    .mosaic__item--e .mosaic__media {
-      aspect-ratio: 1;
-    }
-    .mosaic__item--f {
-      grid-column: 10 / 13;
-      margin-top: calc(var(--space-2xl) * 0.8);
-    }
-    .mosaic__item--g {
-      grid-column: 3 / 9;
-    }
-    .mosaic__item--g .mosaic__media {
       aspect-ratio: 16 / 9;
     }
   }

@@ -1,0 +1,1983 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Meteora 1.0.0\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: meteora\n"
+
+msgid "1.5 m"
+msgstr ""
+
+msgid "14+ years of operational event experience"
+msgstr ""
+
+msgid "14<span>+</span>"
+msgstr ""
+
+msgid "1h30 aperitivo + 3h open bar"
+msgstr ""
+
+msgid "3.5 m"
+msgstr ""
+
+msgid "35 days’ notice"
+msgstr ""
+
+msgid "5 × 5 cm cube"
+msgstr ""
+
+msgid "5.5 m"
+msgstr ""
+
+msgid "50 mm sphere"
+msgstr ""
+
+msgid "<span class=\"mt-bar__ideal-label\">Ideal for</span> Corporate events · Chic weddings · Minimalist design setups"
+msgstr ""
+
+msgid "<span class=\"mt-bar__ideal-label\">Ideal for</span> Elegant weddings · Minimalist luxury events · Sophisticated settings"
+msgstr ""
+
+msgid "<span class=\"mt-bar__ideal-label\">Ideal for</span> Garden parties · Modern weddings · Eco-chic events"
+msgstr ""
+
+msgid "<span class=\"mt-bar__ideal-label\">Ideal for</span> Glamorous receptions · Exclusive parties · Settings built for visual impact"
+msgstr ""
+
+msgid "<span class=\"mt-bar__ideal-label\">Ideal for</span> Luxury events · Gala nights · Exclusive parties · Modern minimalist weddings"
+msgstr ""
+
+msgid "<span class=\"mt-bar__ideal-label\">Ideal for</span> Outdoor events · Boho-style weddings"
+msgstr ""
+
+msgid "<span>Open Bar</span> Essential <em>Experience</em>"
+msgstr ""
+
+msgid "<span>Open Bar</span> Premium <em>Experience</em>"
+msgstr ""
+
+msgid "A bar counter of your choice from the collection"
+msgstr ""
+
+msgid "A bar that belongs to the most important day: designed around your style, run independently, made for your guests — and for the photographs."
+msgstr ""
+
+msgid "A bespoke cocktail list takes shape during event planning: we start from your story, the flavours you love or your brand colours, and turn them into drinks."
+msgstr ""
+
+msgid "A bold, contemporary character that makes the bar a scenographic element of great impact."
+msgstr ""
+
+msgid "A clean service"
+msgstr ""
+
+msgid "A clean visual service"
+msgstr ""
+
+msgid "A clear cube, a sphere, a tall long-drink spear: ice is seen, and it speaks."
+msgstr ""
+
+msgid "A cocktail <em>with your name on it.</em>"
+msgstr ""
+
+msgid "A complete, balanced drink list, from the great classics to the Italian aperitivo, with variations on request and signatures created for you."
+msgstr ""
+
+msgid "A complete, balanced selection. The way our service is built lets us prepare further classics and variations on request, depending on the ingredients available on site."
+msgstr ""
+
+msgid "A complete, polished open bar, managed with full autonomy."
+msgstr ""
+
+msgid "A couple pouring sparkling wine over a coupe tower"
+msgstr ""
+
+msgctxt "variant 2"
+msgid "A couple pouring sparkling wine over a coupe tower"
+msgstr ""
+
+msgid "A drink list created and named after your brand identity."
+msgstr ""
+
+msgid "A guide for couples"
+msgstr ""
+
+msgid "A local partner"
+msgstr ""
+
+msgid "A moment designed <em>to be remembered.</em>"
+msgstr ""
+
+msgid "A party, <em>as you imagine it.</em>"
+msgstr ""
+
+msgid "A reliable beverage partner for productions, agencies and organisers."
+msgstr ""
+
+msgid "A scenographic moment"
+msgstr ""
+
+msgid "A supplier who works independently, keeps to the timeline and makes you look good in front of your clients."
+msgstr ""
+
+msgid "A turnkey service, from the aperitivo to the after-dinner open bar. If both happen in the same area the aperitivo is integrated into the bar counter; otherwise it is set up on draped tables."
+msgstr ""
+
+msgid "A visually clean service, no crates in view"
+msgstr ""
+
+msgid "About"
+msgstr ""
+
+msgid "Accept all"
+msgstr ""
+
+msgid "Access, rectification, erasure, restriction, objection, portability, and the right to lodge a complaint with the Italian Data Protection Authority (Garante), by writing to info@meteoraevents.com."
+msgstr ""
+
+msgid "Advertising campaign measurement (e.g. Meta Pixel)."
+msgstr ""
+
+msgid "Alcohol level: 2/5"
+msgstr ""
+
+msgid "Alcohol level: 3/5"
+msgstr ""
+
+msgid "Alcohol level: 4/5"
+msgstr ""
+
+msgid "Alcohol level: 5/5"
+msgstr ""
+
+msgid "Alcohol-free cocktails and fruit juices"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "All events"
+msgstr ""
+
+msgid "All of Italy and abroad"
+msgstr ""
+
+msgid "All products and spirits from the selected menu"
+msgstr ""
+
+msgid "All rights reserved."
+msgstr ""
+
+msgid "All the reasons"
+msgstr ""
+
+msgid "Americano"
+msgstr ""
+
+msgid "Americano Sbagliato"
+msgstr ""
+
+msgid "An integral part of the cocktail."
+msgstr ""
+
+msgid "Analytics"
+msgstr ""
+
+msgid "Analytics and marketing cookies (consent only)"
+msgstr ""
+
+msgid "Anonymous, aggregated statistics about how the site is used (e.g. Google Analytics)."
+msgstr ""
+
+msgid "Aperitivo"
+msgstr ""
+
+msgid "Aperitivo + Open Bar"
+msgstr ""
+
+msgid "Aperol, Campari, Hugo, Limoncello, Passion Fruit."
+msgstr ""
+
+msgid "Aperol, Campari, Limoncello, Passion Fruit and Hugo Spritz"
+msgstr ""
+
+msgid "Are you a wedding planner, venue or caterer?"
+msgstr ""
+
+msgid "Aromatic profile and alcohol level (1 to 5) for every drink. Presentation, ice and garnish may vary depending on the chosen offer."
+msgstr ""
+
+msgid "Availability of premium formats is confirmed during the event definition phase."
+msgstr ""
+
+msgid "Available throughout Italy"
+msgstr ""
+
+msgid "Back to collection"
+msgstr ""
+
+msgid "Back to home"
+msgstr ""
+
+msgid "Balance between citrus, sweetness and structure."
+msgstr ""
+
+msgid "Bar in front of a panoramic window"
+msgstr ""
+
+msgid "Bar of your choice, professional glassware, fresh and dehydrated fruit, botanicals and spices."
+msgstr ""
+
+msgid "Bar set in front of a panoramic window"
+msgstr ""
+
+msgid "Bar set up in front of a panoramic window"
+msgstr ""
+
+msgid "Bar, glassware, uniforms and garnish speak the same language as your event."
+msgstr ""
+
+msgid "Bars"
+msgstr ""
+
+msgid "Bartender at work"
+msgstr ""
+
+msgid "Bartender in a black waistcoat straining a cocktail"
+msgstr ""
+
+msgid "Bartender in black uniform straining a cocktail"
+msgstr ""
+
+msgid "Bartender in total black straining a cocktail"
+msgstr ""
+
+msgid "Bartender pouring a cocktail into a coupe"
+msgstr ""
+
+msgid "Bartender pouring a red cocktail into a coupe"
+msgstr ""
+
+msgid "Bartender straining a cocktail"
+msgstr ""
+
+msgid "Bartender-only service"
+msgstr ""
+
+msgid "Based in Montecatini Terme — a strategic advantage across Tuscany. We travel throughout Italy."
+msgstr ""
+
+msgid "Based in Tuscany · Throughout Italy"
+msgstr ""
+
+msgid "Based in Tuscany, available throughout Italy. For couples who choose Italy, we are the bar partner who knows the villas, the timings and the people."
+msgstr ""
+
+msgid "Based in Tuscany, serving events throughout Italy and abroad."
+msgstr ""
+
+msgid "Before <em>you write.</em>"
+msgstr ""
+
+msgid "Behind the bar you will never see cool boxes or glass racks: every restock is carried by tray. In your photographs, only the bar remains."
+msgstr ""
+
+msgid "Behind the bar, <em>event after event.</em>"
+msgstr ""
+
+msgid "Bellini"
+msgstr ""
+
+msgid "Bellini, Mimosa, Prosecco"
+msgstr ""
+
+msgid "Bespoke cocktail list"
+msgstr ""
+
+msgid "Bespoke details turn the bar service into an experience that reflects the couple, or the brand."
+msgstr ""
+
+msgid "Between art city, countryside and coast."
+msgstr ""
+
+msgid "Beverage expertise. <em>Flawless execution.</em>"
+msgstr ""
+
+msgid "Birthdays, anniversaries, villa dinners, receptions: a full open bar or simply our bartender, with the same care we bring to large events."
+msgstr ""
+
+msgid "Black Russian"
+msgstr ""
+
+msgid "Both formulas include three hours of open bar, a bar of your choice, our signature drink list, professional staff and our own glassware. Extra time, additional staff and extra bar modules on request."
+msgstr ""
+
+msgid "Brand activations"
+msgstr ""
+
+msgid "Brand cocktails"
+msgstr ""
+
+msgid "Branded uniforms"
+msgstr ""
+
+msgid "Branding"
+msgstr ""
+
+msgid "Caipirinha"
+msgstr ""
+
+msgid "Can be combined with a waiter for order handling"
+msgstr ""
+
+msgid "Can we request specific brands or glassware?"
+msgstr ""
+
+msgid "Care for the venue"
+msgstr ""
+
+msgid "Caterers"
+msgstr ""
+
+msgid "Champagne bowl and back bar"
+msgstr ""
+
+msgid "Champagne bowl on a golden marble bar"
+msgstr ""
+
+msgid "Champagne bowl on the bar"
+msgstr ""
+
+msgid "Chianti"
+msgstr ""
+
+msgid "Chic weddings"
+msgstr ""
+
+msgid "Chilled coupes, clean lines."
+msgstr ""
+
+msgid "Choose <em>your bar.</em>"
+msgstr ""
+
+msgid "Choosing your bar"
+msgstr ""
+
+msgid "Citrusy"
+msgstr ""
+
+msgid "Citrusy, fruity"
+msgstr ""
+
+msgid "Citrusy, light"
+msgstr ""
+
+msgid "Classics"
+msgstr ""
+
+msgid "Classics made with method, bespoke signatures."
+msgstr ""
+
+msgid "Clear 5×5 cm ice cube held in a hand"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Close by"
+msgstr ""
+
+msgid "Close dinner service calmly, load out and release your team: the after-party is ours."
+msgstr ""
+
+msgid "Cocktail Experience"
+msgstr ""
+
+msgid "Cocktail Martini (Dry)"
+msgstr ""
+
+msgid "Cocktail experience"
+msgstr ""
+
+msgid "Cocktails"
+msgstr ""
+
+msgid "Collection"
+msgstr ""
+
+msgid "Coming soon"
+msgstr ""
+
+msgid "Compact cube with a clean look; balance and a constant temperature."
+msgstr ""
+
+msgid "Company celebrations"
+msgstr ""
+
+msgid "Company or event logo on shirts, waistcoats and ties with screen-printed patches. To be agreed well in advance."
+msgstr ""
+
+msgid "Complete discretion"
+msgstr ""
+
+msgid "Complete page layouts with real content."
+msgstr ""
+
+msgid "Complete, independent formulas coordinated with your caterer — or simply our staff and our method. Every proposal is built to measure."
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Cookie Policy"
+msgstr ""
+
+msgid "Cookie preferences"
+msgstr ""
+
+msgid "Coordination with catering"
+msgstr ""
+
+msgid "Corporate"
+msgstr ""
+
+msgid "Corporate & Private"
+msgstr ""
+
+msgid "Corporate & private events"
+msgstr ""
+
+msgid "Corporate events"
+msgstr ""
+
+msgctxt "variant 2"
+msgid "Corporate events"
+msgstr ""
+
+msgid "Cosmopolitan"
+msgstr ""
+
+msgid "Coupe tower at sunset"
+msgstr ""
+
+msgid "Coupe tower at sunset beneath blossoming trees"
+msgstr ""
+
+msgid "Coupes or glasses arranged in a cascade and filled live by our staff or by the couple. For the toast, the cake cutting or opening the party: an elegant, captivating and highly photogenic moment."
+msgstr ""
+
+msgid "Coupes or glasses arranged in a cascade and filled live by our staff or by the couple. For toasts, cake cutting or opening the party."
+msgstr ""
+
+msgid "Coupes with fresh mint and red berries"
+msgstr ""
+
+msgid "Coupes with fresh mint and red berries on the bar"
+msgstr ""
+
+msgid "Coupes with mint and red berries"
+msgstr ""
+
+msgid "Couple pouring sparkling wine over the tower"
+msgstr ""
+
+msgid "Crushed ice falling into a cocktail coupe"
+msgstr ""
+
+msgid "Cuba Libre"
+msgstr ""
+
+msgid "Curated ice"
+msgstr ""
+
+msgid "Custom bar front"
+msgstr ""
+
+msgid "Custom napkins"
+msgstr ""
+
+msgid "Custom napkins and custom bar fronts require 35 days’ notice. All customisations should be agreed during the event-planning phase."
+msgstr ""
+
+msgid "Customisation"
+msgstr ""
+
+msgctxt "variant 2"
+msgid "Customisation"
+msgstr ""
+
+msgid "Customisations are agreed during the event-planning phase."
+msgstr ""
+
+msgid "Customise"
+msgstr ""
+
+msgid "Cut-crystal tumblers lined up on the bar"
+msgstr ""
+
+msgid "Daiquiri"
+msgstr ""
+
+msgid "Data controller"
+msgstr ""
+
+msgid "Data we process"
+msgstr ""
+
+msgid "Data you provide through our contact forms (name, surname, email, phone, event details, company details where relevant) and technical browsing data."
+msgstr ""
+
+msgid "Designed for private, corporate and smaller events and receptions"
+msgstr ""
+
+msgid "Designed to be experienced. <em>Designed to be remembered.</em>"
+msgstr ""
+
+msgid "Destination Weddings"
+msgstr ""
+
+msgid "Destination weddings <em>in Italy.</em>"
+msgstr ""
+
+msgid "Destination weddings with Meteora"
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid "Dilution"
+msgstr ""
+
+msgid "Discover the Tower Experience"
+msgstr ""
+
+msgid "Discover the cocktail experience"
+msgstr ""
+
+msgid "Discover wedding services"
+msgstr ""
+
+msgid "Discreet hospitality"
+msgstr ""
+
+msgid "Discreet staff in total black. No crates in view, restocking by tray, the venue left spotless."
+msgstr ""
+
+msgid "Discretion"
+msgstr ""
+
+msgid "Do you offer alcohol-free cocktails?"
+msgstr ""
+
+msgid "Draft — final legal text to be supplied by the client"
+msgstr ""
+
+msgid "Drink quality"
+msgstr ""
+
+msgid "Drinks created and named after the couple’s personality or the brand identity."
+msgstr ""
+
+msgid "Drinks created and named after your story or your brand identity."
+msgstr ""
+
+msgid "Dry, intense"
+msgstr ""
+
+msgid "Editorial sections of the Meteora Events site."
+msgstr ""
+
+msgid "Elegant weddings"
+msgstr ""
+
+msgid "Espresso Martini"
+msgstr ""
+
+msgid "Espresso Martini Tower"
+msgstr ""
+
+msgid "Espresso Martini Tower on a black table"
+msgstr ""
+
+msgid "Essential <em>and Premium,</em> compared."
+msgstr ""
+
+msgid "Essential <em>or Premium.</em>"
+msgstr ""
+
+msgid "Essential Experience"
+msgstr ""
+
+msgid "Essential and Premium Experience compared"
+msgstr ""
+
+msgid "Essential and Premium share the same service, staff and care. What changes is the label selection, the mixers and the presentation."
+msgstr ""
+
+msgid "Evening bar"
+msgstr ""
+
+msgid "Evening bar with back bar and champagne bowl"
+msgstr ""
+
+msgid "Event professionals"
+msgstr ""
+
+msgid "Events"
+msgstr ""
+
+msgid "Every bar comes in Slim (1.5 m), Medium (3.5 m) and Large (5.5 m), and can run in continuous extension. Extra bar modules on request."
+msgstr ""
+
+msgid "Every cocktail has its own rules. Every cocktail begins with a precise choice."
+msgstr ""
+
+msgid "Every event is <em>unique and unrepeatable.</em>"
+msgstr ""
+
+msgid "Every event is unique and unrepeatable, and what is created remains in the images and in the memories. That is why we aim for excellence, in service and in visual impact."
+msgstr ""
+
+msgid "Every event is unique and unrepeatable. A selection of setups, places and moments."
+msgstr ""
+
+msgid "Every format, <em>the same standard.</em>"
+msgstr ""
+
+msgid "Every model in the collection comes in three sizes — Slim 1.5 m, Medium 3.5 m, Large 5.5 m — chosen according to the style of the event, the venue and the guest count. We advise you during the quoting stage."
+msgstr ""
+
+msgid "Every model in three sizes, chosen for your style, venue and guest count."
+msgstr ""
+
+msgid "Every moment <em>has its drink.</em>"
+msgstr ""
+
+msgid "Every service follows a precise method, from setup to load-out."
+msgstr ""
+
+msgid "Everything in Essential, with glass bottles on display that elevate the look of the bar."
+msgstr ""
+
+msgid "Exclusive parties"
+msgstr ""
+
+msgid "Experience"
+msgstr ""
+
+msgid "Explore"
+msgstr ""
+
+msgid "Explore the collection"
+msgstr ""
+
+msgid "Explore the experience"
+msgstr ""
+
+msgid "Exposed-grain wood creates an authentic country-chic atmosphere."
+msgstr ""
+
+msgid "Fever-Tree tonics, soft drinks and San Pellegrino water, all in glass."
+msgstr ""
+
+msgid "Florence"
+msgstr ""
+
+msgid "Florence, Chianti, Siena, Lucca, Pisa, Forte dei Marmi"
+msgstr ""
+
+msgid "For clients who already have products and equipment — bar counter, glassware, ice, tools — and need qualified staff working to our method."
+msgstr ""
+
+msgid "For companies"
+msgstr ""
+
+msgid "For corporate events: logo on shirt, waistcoat and tie with screen-printed patches."
+msgstr ""
+
+msgid "For couples who travel from around the world to marry in Italy, we are your Italian bar partner: cocktails, service and scenography, with the peace of mind of a local team."
+msgstr ""
+
+msgid "For hosts who want every drink to speak the language of the great labels."
+msgstr ""
+
+msgid "For planners, venues and caterers"
+msgstr ""
+
+msgid "Formats"
+msgstr ""
+
+msgid "Forte dei Marmi"
+msgstr ""
+
+msgid "Four words, <em>every time.</em>"
+msgstr ""
+
+msgid "French 75"
+msgstr ""
+
+msgid "Frequently <em>asked.</em>"
+msgstr ""
+
+msgid "Fresh, balanced"
+msgstr ""
+
+msgid "Fresh, citrusy"
+msgstr ""
+
+msgid "Fresh, citrusy, minty"
+msgstr ""
+
+msgid "Fresh, dry, thirst-quenching"
+msgstr ""
+
+msgid "Fresh, intense"
+msgstr ""
+
+msgid "Fresh, lively, made for the party."
+msgstr ""
+
+msgid "Fresh, luminous, contemporary. The light-green finish adds an elegant botanical touch."
+msgstr ""
+
+msgid "Fresh, spiced"
+msgstr ""
+
+msgid "Fresh, sweet"
+msgstr ""
+
+msgid "Fresh, thirst-quenching"
+msgstr ""
+
+msgid "From Montecatini Terme we reach every major wedding area in Tuscany. Any travel and logistics costs are agreed transparently at the quoting stage."
+msgstr ""
+
+msgid "From a product launch to a private villa party: the bar becomes a meeting point and part of your visual identity."
+msgstr ""
+
+msgid "From afar, <em>in good hands.</em>"
+msgstr ""
+
+msgid "From aperitivo <em>to the last drink.</em>"
+msgstr ""
+
+msgid "From garden aperitivo to after-dinner"
+msgstr ""
+
+msgid "From the garden aperitivo to the last toast after dinner, the bar accompanies every moment of the day — and stays in the photographs."
+msgstr ""
+
+msgid "Front view of the Golden Mirror bar with a full back bar and glassware ready"
+msgstr ""
+
+msgid "Fruit engraving"
+msgstr ""
+
+msgid "Fruit, botanicals, garnish."
+msgstr ""
+
+msgid "Fruity, light"
+msgstr ""
+
+msgid "Fruity, sweet"
+msgstr ""
+
+msgid "Fully independent service management"
+msgstr ""
+
+msgid "Gala dinners"
+msgstr ""
+
+msgid "Garibaldi"
+msgstr ""
+
+msgid "Getting married in Italy? <em>Write to us.</em>"
+msgstr ""
+
+msgid "Gin Fizz"
+msgstr ""
+
+msgid "Gin Tonic · Lemon · Soda"
+msgstr ""
+
+msgid "Glamorous receptions"
+msgstr ""
+
+msgid "Glassware"
+msgstr ""
+
+msgctxt "variant 2"
+msgid "Glassware"
+msgstr ""
+
+msgid "Glossy white with a herringbone pattern creates movement and depth while keeping a clean, contemporary look."
+msgstr ""
+
+msgid "Golden Mirror bar"
+msgstr ""
+
+msgid "Golden Mirror bar at sunset"
+msgstr ""
+
+msgid "Golden Mirror bar at sunset on a terrace overlooking the hills"
+msgstr ""
+
+msgid "Golden Mirror bar on a terrace overlooking the hills"
+msgstr ""
+
+msgid "Golden Mirror, Silver Reflection and Pure White, each in three sizes (1.5 m, 3.5 m, 5.5 m). We help you choose based on your venue, style and guest count."
+msgstr ""
+
+msgid "Golden bar at night"
+msgstr ""
+
+msgid "Golden bar lit up at night"
+msgstr ""
+
+msgid "Golden bar on a chevron floor"
+msgstr ""
+
+msgctxt "variant 2"
+msgid "Golden bar on a chevron floor"
+msgstr ""
+
+msgid "Great attention to the aesthetic and visual side of every setup."
+msgstr ""
+
+msgid "Guest count, length of the party, spaces for aperitivo and after-dinner, the venue’s setup times, preferred labels and alcohol-free options. The more you share, the more precise our proposal."
+msgstr ""
+
+msgid "Guests who approach the bar during service will never see cool boxes, storage crates or glass racks. Every restock of supplies, ice and glassware is carried discreetly by tray."
+msgstr ""
+
+msgid "Hello Meteora Events, I would like to request information about a bar catering service for my event."
+msgstr ""
+
+msgid "High-density compact cube"
+msgstr ""
+
+msgid "Highball tumbler"
+msgstr ""
+
+msgid "Highballs, tonics, Mojito"
+msgstr ""
+
+msgid "Historic palazzi, rooftop terraces and villas on the Florentine hills."
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Hoshizaki ice"
+msgstr ""
+
+msgid "Hospitality"
+msgstr ""
+
+msgid "Hosting and email provider and, only if enabled with consent, analytics providers. [To be completed.]"
+msgstr ""
+
+msgid "How bar catering works"
+msgstr ""
+
+msgid "How do we choose the bar?"
+msgstr ""
+
+msgid "How do you coordinate with the caterer?"
+msgstr ""
+
+msgid "How does the open bar service work?"
+msgstr ""
+
+msgid "How early should customisations be requested?"
+msgstr ""
+
+msgid "How far do you travel?"
+msgstr ""
+
+msgid "How we work"
+msgstr ""
+
+msgid "How we work with partners"
+msgstr ""
+
+msgid "Hygienically impeccable. <em>Visually refined.</em>"
+msgstr ""
+
+msgid "Ice"
+msgstr ""
+
+msgid "Ice cube pressed with initials"
+msgstr ""
+
+msgid "Ice cube pressed with initials beside a brass stamp"
+msgstr ""
+
+msgid "Ice does not only chill: it brings the drink to the right temperature and holds it there."
+msgstr ""
+
+msgid "Ice engraving"
+msgstr ""
+
+msgid "Ice formats"
+msgstr ""
+
+msgid "Ice is <em>part of the cocktail.</em>"
+msgstr ""
+
+msgid "Ideal for"
+msgstr ""
+
+msgid "Ideal for: Corporate events, Chic weddings, Minimalist design setups."
+msgstr ""
+
+msgid "Ideal for: Elegant weddings, Minimalist luxury events, Sophisticated settings."
+msgstr ""
+
+msgid "Ideal for: Garden parties, Modern weddings, Eco-chic events."
+msgstr ""
+
+msgid "Ideal for: Glamorous receptions, Exclusive parties, Settings built for visual impact."
+msgstr ""
+
+msgid "Ideal for: Luxury events, Gala nights, Exclusive parties, Modern minimalist weddings."
+msgstr ""
+
+msgid "Ideal for: Outdoor events, Boho-style weddings."
+msgstr ""
+
+msgid "If configured, Google Analytics 4 / Google Tag Manager and possibly Meta Pixel are loaded only after your explicit consent. [Detailed list to be completed.]"
+msgstr ""
+
+msgid "Independent from setup to load-out."
+msgstr ""
+
+msgid "Independent operation"
+msgstr ""
+
+msgid "Independent service, restocking by tray, nothing out of place at the bar."
+msgstr ""
+
+msgid "Ingredients"
+msgstr ""
+
+msgid "Initials pressed into ice. The stamp is yours to keep."
+msgstr ""
+
+msgid "Intense, dry"
+msgstr ""
+
+msgid "Intense, smooth"
+msgstr ""
+
+msgid "Intense, structured"
+msgstr ""
+
+msgid "Italian aperitivo"
+msgstr ""
+
+msgid "Italy-wide service"
+msgstr ""
+
+msgid "Its mirrored gold surface reflects light and atmosphere, turning the bar into the focal point of the event."
+msgstr ""
+
+msgid "Labels may vary with availability, replaced by equivalent or superior references and always communicated in advance. Requests for other brands are welcome."
+msgstr ""
+
+msgid "Lacquered black, pure and sophisticated."
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Let’s talk about <em>your event.</em>"
+msgstr ""
+
+msgid "Let’s talk details"
+msgstr ""
+
+msgid "Light, bitter"
+msgstr ""
+
+msgid "Logistics"
+msgstr ""
+
+msgid "Logistics and travel"
+msgstr ""
+
+msgid "Logo or names pressed into large ice cubes. At the end of the event the stamp is yours to keep."
+msgstr ""
+
+msgid "Long Island Iced Tea"
+msgstr ""
+
+msgid "Long banquet table set in a frescoed hall"
+msgstr ""
+
+msgid "Long drink"
+msgstr ""
+
+msgid "Long drink cube 4 × 4 × 12 cm"
+msgstr ""
+
+msgid "Long table in a frescoed hall"
+msgstr ""
+
+msgid "Long table set in a frescoed hall"
+msgstr ""
+
+msgid "Lucca"
+msgstr ""
+
+msgid "Lucchese villas and historic gardens, minutes from our base."
+msgstr ""
+
+msgid "Luminous elegance, refined texture."
+msgstr ""
+
+msgid "Luxury Open Bar Catering & Hospitality Services"
+msgstr ""
+
+msgid "Luxury Open Bar Catering <em>&amp; Hospitality Services</em>"
+msgstr ""
+
+msgid "Main navigation"
+msgstr ""
+
+msgid "Make it <em>yours.</em>"
+msgstr ""
+
+msgid "Managing your preferences"
+msgstr ""
+
+msgid "Manhattan"
+msgstr ""
+
+msgid "Many Tuscan venues are historic homes: old stone, delicate floors, manicured gardens. We set up and dismantle with the utmost care for walls, flooring, furniture and greenery, and leave everything clean after service."
+msgstr ""
+
+msgid "Margarita / Tommy’s"
+msgstr ""
+
+msgid "Marketing"
+msgstr ""
+
+msgid "Marrying in Italy from abroad?"
+msgstr ""
+
+msgid "Martini"
+msgstr ""
+
+msgid "Martini coupe"
+msgstr ""
+
+msgid "Martinis, sours, drinks served up"
+msgstr ""
+
+msgid "Medieval hamlets and country estates around Siena and the Val d’Orcia."
+msgstr ""
+
+msgid "Menu"
+msgstr ""
+
+msgid "Message us on WhatsApp"
+msgstr ""
+
+msgid "Meteora Events is the partner specialised in managing beverage services for high-level events. We grew out of more than 14 years of operational experience in events."
+msgstr ""
+
+msgid "Meteora Events on Instagram — Champagne bowl"
+msgstr ""
+
+msgid "Meteora Events on Instagram — Coupe tower"
+msgstr ""
+
+msgid "Meteora Events on Instagram — Espresso Martini Tower"
+msgstr ""
+
+msgid "Meteora Events on Instagram — Golden Mirror"
+msgstr ""
+
+msgid "Meteora Events on Instagram — Mint & berries"
+msgstr ""
+
+msgid "Meteora Events on Instagram — Night bar"
+msgstr ""
+
+msgid "Meteora Experience"
+msgstr ""
+
+msgid "Meteora staff and method"
+msgstr ""
+
+msgid "Meteora — Forms"
+msgstr ""
+
+msgid "Meteora — Full pages"
+msgstr ""
+
+msgid "Meteora — Partner pricing"
+msgstr ""
+
+msgid "Meteora — Request a quote"
+msgstr ""
+
+msgid "Meteora — Sections"
+msgstr ""
+
+msgid "Method"
+msgstr ""
+
+msgid "Mimosa"
+msgstr ""
+
+msgid "Minimal melting surface and a distinctive look in the glass."
+msgstr ""
+
+msgid "Minimalist design setups"
+msgstr ""
+
+msgid "Minimalist luxury events"
+msgstr ""
+
+msgid "Mirrored silver brings contemporary elegance and makes the most of the ambient lighting."
+msgstr ""
+
+msgid "Mixers and soft drinks"
+msgstr ""
+
+msgid "Modern, brilliant, sophisticated."
+msgstr ""
+
+msgid "Modular, professional, scenographic bars, chosen to match the character of your event. A collection that keeps growing."
+msgstr ""
+
+msgid "Modular, scenographic bars, each in three sizes — Slim 1.5 m, Medium 3.5 m, Large 5.5 m. A collection that keeps growing."
+msgstr ""
+
+msgid "Mojito"
+msgstr ""
+
+msgid "Montecatini Terme (PT), Tuscany — serving all of Italy"
+msgstr ""
+
+msgid "More"
+msgstr ""
+
+msgid "More events"
+msgstr ""
+
+msgid "More from the collection"
+msgstr ""
+
+msgid "More than 14 years of operational experience in events: weddings, corporate and private."
+msgstr ""
+
+msgid "Moscow Mule"
+msgstr ""
+
+msgid "Names or logo etched on decorative fruit. A detail that surprises."
+msgstr ""
+
+msgid "Names or logo on the counter: the bar becomes a branded focal point."
+msgstr ""
+
+msgid "Napkins and a bar front with your names (35 days’ notice), engraved fruit and ice, a cocktail list created around you. All agreed during the planning phase."
+msgstr ""
+
+msgid "Napkins and bar front with your names, initials pressed into ice, cocktails named after you."
+msgstr ""
+
+msgid "Natural freshness."
+msgstr ""
+
+msgid "Necessary"
+msgstr ""
+
+msgid "Necessary only"
+msgstr ""
+
+msgid "Negroni"
+msgstr ""
+
+msgid "Neutral, thirst-quenching"
+msgstr ""
+
+msgid "No cool boxes, storage crates or glass racks in view. All restocking is done discreetly, by tray."
+msgstr ""
+
+msgid "Not just <em>an open bar.</em>"
+msgstr ""
+
+msgid "Nothing here yet. New event stories are on their way."
+msgstr ""
+
+msgid "Nugget ice"
+msgstr ""
+
+msgid "Old Fashioned"
+msgstr ""
+
+msgid "On request, specific glassware of any line or brand can be rented, subject to availability and supply times."
+msgstr ""
+
+msgid "On request: extra time, additional bartenders and waiters, extra bar modules. At peak moments, support staff keep service fast and fluid. Services can also be delivered outside the region and abroad; any logistics costs are defined in the quote."
+msgstr ""
+
+msgid "One coupe or drink per person"
+msgstr ""
+
+msgid "One goal: <em>a flawless event.</em>"
+msgstr ""
+
+msgid "One less thing <em>to worry about.</em>"
+msgstr ""
+
+msgid "One less thing to worry about"
+msgstr ""
+
+msgid "One team and seamless service from aperitivo to after-dinner"
+msgstr ""
+
+msgid "Open Bar — Essential Experience"
+msgstr ""
+
+msgid "Open Bar — Premium Experience"
+msgstr ""
+
+msgid "Open WhatsApp"
+msgstr ""
+
+msgid "Open bar"
+msgstr ""
+
+msgid "Open bar · 3 hours"
+msgstr ""
+
+msgid "Organised logistics"
+msgstr ""
+
+msgid "Our base is in Montecatini Terme. From here we reach Tuscany’s great wedding destinations, travel throughout Italy and also deliver services abroad."
+msgstr ""
+
+msgid "Our cocktail list"
+msgstr ""
+
+msgid "Our glassware"
+msgstr ""
+
+msgid "Our home base. Villas, hamlets and farmhouses where we work with the ease of locals."
+msgstr ""
+
+msgid "Our method"
+msgstr ""
+
+msgid "Our own equipment and glassware"
+msgstr ""
+
+msgid "Our own glassware and bar setup"
+msgstr ""
+
+msgid "Our price list for planners, venues and professionals is not public. Fill in the form and we will send you our dedicated terms and rates."
+msgstr ""
+
+msgid "Our signature drink list, with any requested customisation"
+msgstr ""
+
+msgid "Our standard uniform is total black: no showy logos, nothing to distract. When you need it, we brand it with your identity."
+msgstr ""
+
+msgid "Our story"
+msgstr ""
+
+msgid "Our team takes full responsibility for running the open bar for three hours, professionally and autonomously, in coordination with the catering. We bring the bar counter, glassware, products, ice and staff."
+msgstr ""
+
+msgid "Page not found. <em>Let’s get you back to the bar.</em>"
+msgstr ""
+
+msgid "Paloma"
+msgstr ""
+
+msgid "Partner area"
+msgstr ""
+
+msgid "Partners"
+msgstr ""
+
+msgid "Personal touches"
+msgstr ""
+
+msgid "Picture the bar <em>at your event.</em>"
+msgstr ""
+
+msgid "Pisa"
+msgstr ""
+
+msgid "Piña Colada"
+msgstr ""
+
+msgid "Planners & venues"
+msgstr ""
+
+msgid "Planning a wedding in another country means trusting the people on the ground. We work independently alongside your wedding planner, venue and caterer, and we reply in English and Italian."
+msgstr ""
+
+msgid "Pornstar Martini"
+msgstr ""
+
+msgid "Precision"
+msgstr ""
+
+msgid "Premium Experience"
+msgstr ""
+
+msgid "Premium bar catering for weddings, destination weddings, corporate and private events. Based in Tuscany, throughout Italy."
+msgstr ""
+
+msgid "Premium labels such as Grey Goose, Belvedere, Hendrick’s, Tanqueray No. Ten, Patrón and Diplomático."
+msgstr ""
+
+msgid "Premium spirits from our seasonal selection"
+msgstr ""
+
+msgid "Premium tonics and soft drinks in glass bottles"
+msgstr ""
+
+msgid "Preparation and service to professional mixology standards"
+msgstr ""
+
+msgid "Presentation"
+msgstr ""
+
+msgid "Primary"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "Private events"
+msgstr ""
+
+msgid "Private parties"
+msgstr ""
+
+msgid "Product launches"
+msgstr ""
+
+msgid "Products and spirits from the chosen menu, a bar counter of your choice, our signature drink list with any customisation, professional staff, fully independent service management, and our own glassware and setup. Extra time, additional staff and extra bar modules can be added on request."
+msgstr ""
+
+msgid "Products and spirits from the chosen menu, a bar from the collection, our signature drink list with any customisation, professional staff, and our own glassware and setup. Extra time, additional staff and extra bar modules can be added on request."
+msgstr ""
+
+msgid "Professional and reliable. Total black, no showy logos."
+msgstr ""
+
+msgid "Professional glassware"
+msgstr ""
+
+msgid "Professional staff"
+msgstr ""
+
+msgid "Professional staff and our own glassware"
+msgstr ""
+
+msgid "Professional, discreet staff"
+msgstr ""
+
+msgid "Professionalism and discretion, with every guest."
+msgstr ""
+
+msgid "Professionalism, customisation and discretion for corporate events, launches, activations and private parties."
+msgstr ""
+
+msgid "Protecting the image and reputation of our partners <em>is one of our highest priorities.</em>"
+msgstr ""
+
+msgid "Pure White bar at a villa"
+msgstr ""
+
+msgid "Pure White bar at a villa at sunset"
+msgstr ""
+
+msgid "Pure White bar in a garden, nothing out of place"
+msgstr ""
+
+msgid "Pure White bar in a stone villa garden at sunset"
+msgstr ""
+
+msgid "Pure White bar in the garden of a stone villa"
+msgstr ""
+
+msgid "Pure White bar in the garden of a stone villa at sunset"
+msgstr ""
+
+msgid "Pure White bar set for an open bar at a villa"
+msgstr ""
+
+msgid "Purposes and legal basis"
+msgstr ""
+
+msgid "Qualified assistance staff"
+msgstr ""
+
+msgid "Qualified bartenders"
+msgstr ""
+
+msgid "Read the story"
+msgstr ""
+
+msgid "Recipients"
+msgstr ""
+
+msgid "Reliability"
+msgstr ""
+
+msgid "Reliable labels from established international houses, chosen for balance and consistency."
+msgstr ""
+
+msgid "Reliable, independent operation"
+msgstr ""
+
+msgid "Replying to information and quote requests (pre-contractual measures, Art. 6.1.b GDPR). Website usage statistics only with your consent (Art. 6.1.a GDPR)."
+msgstr ""
+
+msgid "Request <em>partner pricing.</em>"
+msgstr ""
+
+msgid "Request <em>your quote.</em>"
+msgstr ""
+
+msgid "Request a corporate quote"
+msgstr ""
+
+msgid "Request a quote"
+msgstr ""
+
+msgid "Request partner pricing"
+msgstr ""
+
+msgid "Request received"
+msgstr ""
+
+msgid "Required for the site to work and to remember your choices. Always active."
+msgstr ""
+
+msgid "Respect for venues"
+msgstr ""
+
+msgid "Respect for villas and venues"
+msgstr ""
+
+msgid "Retention"
+msgstr ""
+
+msgid "Rossini"
+msgstr ""
+
+msgid "Save preferences"
+msgstr ""
+
+msgid "Scenic impact, strong character."
+msgstr ""
+
+msgid "Scenographic bars"
+msgstr ""
+
+msgid "Scenographic, modular, in three sizes."
+msgstr ""
+
+msgid "Screwdriver"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Search the site"
+msgstr ""
+
+msgid "Seaside events on the Versilia coast, from sunset until late."
+msgstr ""
+
+msgid "See our events"
+msgstr ""
+
+msgid "Service"
+msgstr ""
+
+msgid "Services"
+msgstr ""
+
+msgid "Settings built for visual impact"
+msgstr ""
+
+msgid "Setup and equipment"
+msgstr ""
+
+msgid "Shape, thickness, opening and capacity are chosen for each cocktail: to manage temperature and dilution and to showcase its aromas. Professional HoReCa-grade glass, with lines that match the style of the setup."
+msgstr ""
+
+msgid "Short, refreshing serves"
+msgstr ""
+
+msgid "Shot glass"
+msgstr ""
+
+msgid "Shots and tastings"
+msgstr ""
+
+msgid "Siena"
+msgstr ""
+
+msgid "Signature Tower Experience"
+msgstr ""
+
+msgid "Signature moments"
+msgstr ""
+
+msgid "Signatures"
+msgstr ""
+
+msgid "Silver Reflection bar"
+msgstr ""
+
+msgid "Silver Reflection bar in a large hall"
+msgstr ""
+
+msgid "Silver Reflection bar in a large hall for an evening event"
+msgstr ""
+
+msgid "Silver Reflection bar in a large hall set for a gala dinner"
+msgstr ""
+
+msgid "Six characters, <em>three sizes.</em>"
+msgstr ""
+
+msgid "Sizes"
+msgstr ""
+
+msgid "Slow melting, controlled dilution in long drinks and structured cocktails."
+msgstr ""
+
+msgid "Small text files the site stores on your device to work or to gather information about how it is used."
+msgstr ""
+
+msgid "Soft texture, pleasant to sip — for fresh, lively cocktails."
+msgstr ""
+
+msgid "Soft, bitter"
+msgstr ""
+
+msgid "Sophisticated settings"
+msgstr ""
+
+msgid "Sour"
+msgstr ""
+
+msgid "Sparkling Towers"
+msgstr ""
+
+msgid "Spirit-forward drinks over large ice"
+msgstr ""
+
+msgid "Spirits"
+msgstr ""
+
+msgid "Spritz"
+msgstr ""
+
+msgid "Spritz Towers"
+msgstr ""
+
+msgid "Spritz, Bellini, Mimosa, Prosecco and alcohol-free cocktails while you are busy with photographs. Integrated into the bar or served from draped tables."
+msgstr ""
+
+msgid "Spritz, sparkling, wine"
+msgstr ""
+
+msgid "Staff"
+msgstr ""
+
+msgid "Staff trained to respect guests’ privacy, including high-profile guests."
+msgstr ""
+
+msgid "Steel shaker and bar tools"
+msgstr ""
+
+msgid "Support for the catering team"
+msgstr ""
+
+msgid "Sweet, tropical"
+msgstr ""
+
+msgid "Taste, aesthetic garnish and rigorous temperature control."
+msgstr ""
+
+msgid "Technical cookies (always active)"
+msgstr ""
+
+msgid "Tell us about <em>your day.</em>"
+msgstr ""
+
+msgid "Tell us about your event and we will reply with a proposal built around it. The more you share, the more precise it will be."
+msgstr ""
+
+msgid "Tell us the date, the place and the guests. We will reply with a tailored proposal."
+msgstr ""
+
+msgid "Tell us the date, the place and the number of guests: we will reply with a tailored proposal."
+msgstr ""
+
+msgid "Temperature"
+msgstr ""
+
+msgid "Texture"
+msgstr ""
+
+msgid "Thank you. <em>Your event is in good hands.</em>"
+msgstr ""
+
+msgid "That proximity is a real advantage: simpler site visits, leaner logistics, and first-hand knowledge of how Tuscan villas and venues work."
+msgstr ""
+
+msgid "The Aperitivo + Open Bar package covers ninety minutes of aperitivo and three hours of after-dinner open bar, with one team throughout. If both take place in the same area, the aperitivo is integrated into the bar; otherwise it is set up on draped tables."
+msgstr ""
+
+msgid "The Bar Collection"
+msgstr ""
+
+msgid "The Italian ritual, from Negroni to Bellini."
+msgstr ""
+
+msgid "The bar"
+msgstr ""
+
+msgid "The bar <em>collection.</em>"
+msgstr ""
+
+msgid "The bar <em>for your venue.</em>"
+msgstr ""
+
+msgid "The bar becomes <em>part of the event.</em>"
+msgstr ""
+
+msgid "The bar, <em>as scenography.</em>"
+msgstr ""
+
+msgid "The bars"
+msgstr ""
+
+msgid "The caterer can close dinner service calmly, load out and release their staff without waiting for the after-party to end."
+msgstr ""
+
+msgid "The classics, <em>made with method.</em>"
+msgstr ""
+
+msgid "The collection"
+msgstr ""
+
+msgid "The couple pour sparkling wine over a coupe tower"
+msgstr ""
+
+msgid "The details <em>that set us apart.</em>"
+msgstr ""
+
+msgid "The drink list"
+msgstr ""
+
+msgid "The great recipes, executed with method."
+msgstr ""
+
+msgid "The ice"
+msgstr ""
+
+msgid "The ice we use"
+msgstr ""
+
+msgid "The next one <em>could be yours.</em>"
+msgstr ""
+
+msgid "The page you are looking for does not exist or has moved."
+msgstr ""
+
+msgid "The right glass <em>for the right cocktail.</em>"
+msgstr ""
+
+msgid "The right glass for every drink."
+msgstr ""
+
+msgid "The same standard of service, with a premium label selection and mixers served from glass bottles."
+msgstr ""
+
+msgid "The site stores your cookie preferences in the browser (localStorage, key meteora_consent). No consent is required."
+msgstr ""
+
+msgid "The smaller the ice, the faster it chills. The larger and denser, the more dilution is controlled over time."
+msgstr ""
+
+msgid "The toast, the cake cutting, the start of the party: a cascading Tower turns a gesture into a scene."
+msgstr ""
+
+msgid "Three hours after dinner, with our signature drink list, the classics and variations on request."
+msgstr ""
+
+msgid "Three hours of open bar run entirely by our team, independently and in step with the catering."
+msgstr ""
+
+msgid "Through the day"
+msgstr ""
+
+msgid "Tonics, soda and soft drinks in professional service formats."
+msgstr ""
+
+msgid "Too much ice flattens a cocktail; too little makes it aggressive."
+msgstr ""
+
+msgid "Total black, discreet, professional."
+msgstr ""
+
+msgid "Towers"
+msgstr ""
+
+msgid "Tropical"
+msgstr ""
+
+msgid "Tuscany"
+msgstr ""
+
+msgid "Tuscany is home. <em>Italy is our range.</em>"
+msgstr ""
+
+msgid "Tuscany is home. Meteora Events is based in Montecatini Terme, a short drive from Florence, Lucca, Pisa and the Versilia coast."
+msgstr ""
+
+msgid "Tuscany · Italy"
+msgstr ""
+
+msgid "Two experiences, <em>one standard.</em>"
+msgstr ""
+
+msgid "Utmost care for walls, floors, furniture and gardens during setup and after service. We leave everything clean."
+msgstr ""
+
+msgid "Utmost care for walls, floors, furniture and gardens. We leave everything clean after service."
+msgstr ""
+
+msgid "Venues"
+msgstr ""
+
+msgid "Vertical format for highballs and premium long drinks; slows dilution."
+msgstr ""
+
+msgid "Very slow melting, for Negroni, Old Fashioned and spirit-forward cocktails."
+msgstr ""
+
+msgid "Villas, farmhouses and gardens"
+msgstr ""
+
+msgid "Visible <em>professionalism.</em> Invisible <em>discretion.</em>"
+msgstr ""
+
+msgid "Visual consistency"
+msgstr ""
+
+msgid "Visual culture"
+msgstr ""
+
+msgid "Vodka Tonic · Lemon · Soda"
+msgstr ""
+
+msgid "Warm, natural, cosy."
+msgstr ""
+
+msgid "We are based in Montecatini Terme, Tuscany. We work throughout Italy and also deliver services outside the region and abroad. Any travel and logistics costs are agreed at the quoting stage."
+msgstr ""
+
+msgid "We are based in Montecatini Terme, in the heart of Tuscany. We work throughout Italy and abroad; any travel and logistics costs are agreed transparently in your quote."
+msgstr ""
+
+msgid "We are fully independent: we do not rely on the caterer’s kitchen, staff or equipment. This lets the caterer close dinner service calmly, load out and release their team without waiting for the after-party to end."
+msgstr ""
+
+msgid "We are fully independent: we do not use the caterer’s kitchen, staff or equipment. Your caterer can close dinner service calmly while we carry the party forward."
+msgstr ""
+
+msgid "We bring professionalism, method and scenographic experience, with great attention to the aesthetic and visual side of the setup. We know the dynamics of weddings, corporate and private events inside out, because we have lived them for years."
+msgstr ""
+
+msgid "We bring the bar, glassware, products, ice and staff. We set up, serve and dismantle completely independently, without weighing on the caterer or the venue."
+msgstr ""
+
+msgid "We create bar services and cocktail experiences for private clients, companies and event professionals, from our base in Montecatini Terme, Tuscany."
+msgstr ""
+
+msgid "We design and run the entire beverage experience of your event: from the bar to the ice, from glassware to staff, from setup to the last drink. You think about your guests."
+msgstr ""
+
+msgid "We don’t simply offer <em>a bar service.</em>"
+msgstr ""
+
+msgid "We fit into the wedding timeline, in step with your planner, venue and caterer."
+msgstr ""
+
+msgid "We know Italian villas, farmhouses and historic homes: we admire them and respect them, during setup and at the end of the night."
+msgstr ""
+
+msgid "We operate completely independently, in harmony with every other supplier."
+msgstr ""
+
+msgid "We recommend the model and size for your venue, style and guest count."
+msgstr ""
+
+msgid "We take care of the entire bar service: we design the drink list, bring the bar counter, glassware, products and ice, and run the service with our own staff. Our standard open bar lasts three hours; the Aperitivo + Open Bar package adds ninety minutes of aperitivo before dinner."
+msgstr ""
+
+msgid "We travel throughout Italy and also deliver services outside the region and abroad."
+msgstr ""
+
+msgid "We use technical cookies that the site needs to work. With your consent we will also use analytics cookies to understand how to improve it. No non-essential cookie is set until you choose."
+msgstr ""
+
+msgid "We will reply as soon as possible with a tailored proposal."
+msgstr ""
+
+msgid "We work alongside planners, venues and caterers with our own equipment, glassware and staff. Independent, clean, discreet — anywhere in Italy."
+msgstr ""
+
+msgid "We work alongside wedding planners, venues, caterers and event professionals. Your event stays yours: we take care of the bar, quietly and precisely."
+msgstr ""
+
+msgid "We work independently and in step with the caterer, who can close dinner service calmly."
+msgstr ""
+
+msgid "Wedding bar catering in Tuscany"
+msgstr ""
+
+msgid "Wedding planners"
+msgstr ""
+
+msgid "Wedding planners · Venues · Caterers"
+msgstr ""
+
+msgid "Wedding services"
+msgstr ""
+
+msgid "Weddings"
+msgstr ""
+
+msgid "Weddings · Destination weddings · Corporate · Private"
+msgstr ""
+
+msgid "What <em>you don’t see</em> makes the difference."
+msgstr ""
+
+msgid "What cookies are"
+msgstr ""
+
+msgid "What is included"
+msgstr ""
+
+msgid "What is included?"
+msgstr ""
+
+msgid "What to consider"
+msgstr ""
+
+msgid "What we create <em>stays in the images.</em>"
+msgstr ""
+
+msgid "What we create remains in the images, and in the memories."
+msgstr ""
+
+msgid "Where cocktails <em>become part of the event.</em>"
+msgstr ""
+
+msgid "Where we work"
+msgstr ""
+
+msgid "Which bar <em>for your event?</em>"
+msgstr ""
+
+msgid "Whiskey · Vodka · Gin · Tequila Sour"
+msgstr ""
+
+msgid "Who we work with"
+msgstr ""
+
+msgid "Why Meteora"
+msgstr ""
+
+msgid "Why partners choose us"
+msgstr ""
+
+msgid "Wine estates and farmhouses among the vines, for open-air receptions."
+msgstr ""
+
+msgid "Wine glass"
+msgstr ""
+
+msgid "With every guest, including high-profile ones. Protecting our partners’ reputation is a priority."
+msgstr ""
+
+msgid "With the couple’s names or a company logo."
+msgstr ""
+
+msgid "Working with your caterer"
+msgstr ""
+
+msgid "Would you like a different tower? Just ask. Available alongside the bar service, or on its own on request."
+msgstr ""
+
+msgid "Write to us"
+msgstr ""
+
+msgid "Yes. The aperitivo drink list includes alcohol-free cocktails and fruit juices, and we can design alcohol-free options for the open bar too."
+msgstr ""
+
+msgid "Yes. We welcome requests for other brands, and specific glassware of any line or brand can be rented, subject to availability and supply times."
+msgstr ""
+
+msgid "You can change your choices at any time from the “Cookie preferences” link in the footer."
+msgstr ""
+
+msgid "You can edit the message before sending it."
+msgstr ""
+
+msgid "You don’t hire us to serve drinks. <em>You hire us because the bar becomes part of the event.</em>"
+msgstr ""
+
+msgid "You will never see cool boxes or glass racks behind the bar: every restock is carried by tray, away from guests’ eyes."
+msgstr ""
+
+msgid "Your brand, <em>served with style.</em>"
+msgstr ""
+
+msgid "Your logo on the bar front, custom napkins, your logo pressed into ice."
+msgstr ""
+
+msgid "Your privacy"
+msgstr ""
+
+msgid "Your rights"
+msgstr ""
+
+msgid "Your trusted <em>bar catering</em> partner."
+msgstr ""
+
+msgid "Your wedding bar in Italy, <em>step by step.</em>"
+msgstr ""
+
+msgid "Your wedding. <em>Your bar experience.</em>"
+msgstr ""
+
+msgid "[COMPANY NAME — to be supplied], Montecatini Terme (PT), Italy. Email: info@meteoraevents.com."
+msgstr ""
+
+msgid "[To be defined by the data controller.]"
+msgstr ""
+

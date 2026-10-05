@@ -17,16 +17,12 @@ const s = t(lang);
 const it = lang === 'it';
 const primary = [
   { key: 'weddings', label: it ? 'Matrimoni' : 'Weddings' },
-  { key: 'destination', label: 'Destination Weddings' },
-  { key: 'bars', label: it ? 'Banchi bar' : 'The Bar Collection' },
-  { key: 'cocktails', label: 'Cocktail Experience' },
-  { key: 'services', label: it ? 'Servizi' : 'Services' },
+  { key: 'destination', label: it ? 'Destination wedding bar' : 'Destination Wedding Bar' },
+  { key: 'bars', label: it ? 'I nostri banchi bar' : 'Our Bar Collection' },
+  { key: 'services', label: it ? 'Eventi e servizi' : 'Events & Services' },
+  { key: 'ice', label: it ? 'Noleggio ghiaccio' : 'Ice Rental' },
   { key: 'corporate', label: it ? 'Aziende & privati' : 'Corporate & Private' },
-  { key: 'events', label: it ? 'Eventi' : 'Events' },
-] as const;
-const secondary = [
-  { key: 'partners', label: it ? 'Wedding planner & location' : 'Planners & venues' },
-  { key: 'about', label: it ? 'Chi siamo' : 'About' },
+  { key: 'partners', label: 'Wedding planner & Partner' },
   { key: 'why', label: it ? 'Perché Meteora' : 'Why Meteora' },
   { key: 'contact', label: it ? 'Contatti' : 'Contact' },
 ] as const;
@@ -52,23 +48,13 @@ const secondary = [
         ))
       }
     </ul>
-    <ul role="list" class="mm__secondary">
-      {
-        secondary.map((item) => (
-          <li>
-            <a href={url(item.key, lang)} aria-current={current === item.key ? 'page' : undefined}>
-              {item.label}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
     <div class="mm__foot">
       <a class="btn btn--light btn--block" href={url('contact', lang)} data-track="cta_click" data-track-label="menu_quote">{s.quote}</a>
       <div class="mm__meta">
         <LanguageSwitcher lang={lang} alternates={alternates} />
         <a href={`mailto:${site.email}`} data-track="email_click">{site.email}</a>
         <a href={site.instagram.url} target="_blank" rel="noopener" data-track="instagram_click">{site.instagram.handle}</a>
+        <span>P.IVA {site.legal.vatNumber || '—'}</span>
       </div>
     </div>
   </nav>
@@ -183,21 +169,6 @@ const secondary = [
   .mm.is-open .mm__primary li {
     opacity: 1;
     transform: none;
-  }
-  .mm__secondary {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.25rem 1rem;
-    border-top: 1px solid rgb(255 255 255 / 0.12);
-    padding-top: var(--space-m);
-  }
-  .mm__secondary a {
-    display: block;
-    padding-block: 0.55rem;
-    font-size: var(--fs-small);
-    letter-spacing: 0.06em;
-    text-decoration: none;
-    color: var(--color-on-dark-muted);
   }
   .mm__foot {
     margin-top: auto;

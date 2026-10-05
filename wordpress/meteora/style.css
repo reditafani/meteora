@@ -1,0 +1,18 @@
+/*
+Theme Name: Meteora
+Theme URI: https://meteoraevents.com/
+Author: Meteora Events
+Author URI: https://meteoraevents.com/
+Description: Block theme (Full Site Editing) for Meteora Events — Luxury Open Bar Catering & Hospitality Services. Editorial layouts, cinematic sections, self-hosted fonts, scroll animations controllable from the editor, bilingual-ready (Polylang / WPML).
+Version: 1.0.0
+Requires at least: 7.0
+Tested up to: 7.1
+Requires PHP: 8.2
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: meteora
+Domain Path: /languages
+Tags: block-patterns, block-styles, full-site-editing, editor-style, custom-logo, custom-colors, custom-menu, wide-blocks, translation-ready, accessibility-ready, one-column, featured-images
+*/
+
+/* All styles live in theme.json and assets/css/. This file only carries the theme header. */
