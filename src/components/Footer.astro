@@ -5,6 +5,7 @@ import { t } from '@/i18n/ui';
 import { site } from '@/data/site';
 import Logo from './Logo.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
+import Icon from './Icon.astro';
 
 interface Props {
   lang: Lang;
@@ -18,11 +19,9 @@ const nav = [
   { key: 'destination', label: 'Destination Weddings' },
   { key: 'bars', label: it ? 'Banchi bar' : 'Bars' },
   { key: 'cocktails', label: 'Cocktail Experience' },
-  { key: 'services', label: it ? 'Servizi' : 'Services' },
+  { key: 'services', label: it ? 'Eventi e servizi' : 'Events & Services' },
   { key: 'corporate', label: it ? 'Aziende & privati' : 'Corporate' },
-  { key: 'partners', label: 'Partner' },
-  { key: 'events', label: it ? 'Eventi' : 'Events' },
-  { key: 'about', label: it ? 'Chi siamo' : 'About' },
+  { key: 'partners', label: 'Wedding planner & Partner' },
   { key: 'why', label: it ? 'Perché Meteora' : 'Why Meteora' },
   { key: 'contact', label: it ? 'Contatti' : 'Contact' },
 ] as const;
@@ -31,15 +30,6 @@ const year = new Date().getFullYear();
 
 <footer class="footer on-dark">
   <div class="container">
-    <div class="footer__cta">
-      <p class="footer__statement">
-        {it ? <>Il bar diventa <em>parte dell’evento.</em></> : <>The bar becomes <em>part of the event.</em></>}
-      </p>
-      <a class="btn btn--light" href={url('contact', lang)} data-track="cta_click" data-track-label="footer_quote">
-        {s.quote} <span class="arrow" aria-hidden="true">→</span>
-      </a>
-    </div>
-
     <div class="footer__grid">
       <div class="footer__brand">
         <Logo variant="gold" width={150} />
@@ -63,9 +53,9 @@ const year = new Date().getFullYear();
         <ul role="list" class="footer__contact">
           <li><a href={`mailto:${site.email}`} data-track="email_click">{site.email}</a></li>
           <li><a href={`tel:${site.phoneE164}`} data-track="phone_click">{site.phoneDisplay}</a></li>
-          <li><a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener" data-track="whatsapp_click" data-track-label="footer">WhatsApp</a></li>
-          <li><a href={site.instagram.url} target="_blank" rel="noopener" data-track="instagram_click">Instagram {site.instagram.handle}</a></li>
+          <li><a class="footer__ig" href={site.instagram.url} target="_blank" rel="noopener" data-track="instagram_click"><Icon name="instagram" size={14} />{site.instagram.handle}</a></li>
           <li><a href={url('home', lang)}>meteoraevents.com</a></li>
+          <li class="footer__vat">P.IVA {site.legal.vatNumber || '—'}</li>
         </ul>
         <a class="link footer__partner" href={url('partners', lang)}>{s.partnerPricing}</a>
       </div>
@@ -94,25 +84,6 @@ const year = new Date().getFullYear();
     .footer {
       padding-bottom: var(--space-l);
     }
-  }
-  .footer__cta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: var(--space-l);
-    padding-bottom: var(--space-xl);
-    border-bottom: 1px solid rgb(255 255 255 / 0.12);
-  }
-  .footer__statement {
-    font-family: var(--font-display);
-    font-size: var(--fs-h2);
-    font-weight: 300;
-    line-height: 1.02;
-    max-width: 14ch;
-  }
-  .footer__statement em {
-    color: var(--color-accent-on-dark);
   }
   .footer__grid {
     display: grid;
@@ -174,6 +145,7 @@ const year = new Date().getFullYear();
   .footer__legal {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: 0.25rem 1.25rem;
   }
   .footer__legal a,
@@ -183,8 +155,34 @@ const year = new Date().getFullYear();
     color: var(--color-on-dark-muted);
     font-size: var(--fs-small);
   }
+  .footer__legal button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    appearance: none;
+    -webkit-appearance: none;
+    line-height: inherit;
+    vertical-align: baseline;
+    margin: 0;
+    padding-inline: 0;
+  }
   .footer__legal a:hover,
   .footer__legal button:hover {
     color: var(--color-on-dark);
+  }
+  .footer__contact a.footer__ig {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .footer__contact a.footer__ig :global(svg) {
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .footer__vat {
+    font-size: var(--fs-small);
+    color: var(--color-on-dark-muted);
+    padding-block: 0.3rem;
   }
 </style>

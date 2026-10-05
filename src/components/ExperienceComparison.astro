@@ -40,7 +40,7 @@ const it = lang === 'it';
       ? 'Entrambe le formule includono tre ore di open bar, banco a scelta, drink list signature, staff professionale e bicchieri di nostra proprietà. Tempo extra, staff e moduli bar aggiuntivi su richiesta.'
       : 'Both formulas include three hours of open bar, a bar of your choice, our signature drink list, professional staff and our own glassware. Extra time, additional staff and extra bar modules on request.'}
   </p>
-  <a class="btn" href={url('contact', lang)} data-track="cta_click" data-track-label="comparison_quote">{it ? 'Richiedi un preventivo' : 'Request a quote'} <span class="arrow" aria-hidden="true">→</span></a>
+  <a class="btn" href={url('services', lang)}>{it ? 'Eventi e servizi' : 'Events & Services'}</a>
 </div>
 
 <style>
@@ -89,6 +89,12 @@ const it = lang === 'it';
     .cmp__row--head {
       display: grid;
       padding-block: var(--space-l) var(--space-m);
+    }
+    .cmp__row--head .cmp__h:first-of-type {
+      grid-column: 2;
+    }
+    .cmp__row--head .cmp__h--premium {
+      grid-column: 3;
     }
     .cmp__row p::before {
       display: none;

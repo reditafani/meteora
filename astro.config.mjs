@@ -21,4 +21,9 @@ export default defineConfig({
     responsiveStyles: false,
   },
   devToolbar: { enabled: false },
+  vite: {
+    server: {
+      allowedHosts: ['.loca.lt'],
+    },
+  },
 });

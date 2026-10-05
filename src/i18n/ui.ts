@@ -37,7 +37,7 @@ export const ui = {
     whatsappMessage:
       'Buongiorno Meteora Events, vorrei ricevere informazioni su un servizio di bar catering per il mio evento.',
     close: 'Chiudi',
-    footerTagline: 'Luxury Open Bar Catering & Hospitality Services',
+    footerTagline: 'Luxury Open Bar Catering',
     footerBase: 'Base in Toscana, operativi in tutta Italia e all’estero.',
     footerNav: 'Esplora',
     footerContact: 'Contatti',
@@ -107,7 +107,7 @@ export const ui = {
     whatsappMessage:
       'Hello Meteora Events, I would like to request information about a bar catering service for my event.',
     close: 'Close',
-    footerTagline: 'Luxury Open Bar Catering & Hospitality Services',
+    footerTagline: 'Luxury Open Bar Catering',
     footerBase: 'Based in Tuscany, serving events throughout Italy and abroad.',
     footerNav: 'Explore',
     footerContact: 'Contact',

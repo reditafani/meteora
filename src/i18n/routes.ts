@@ -19,6 +19,7 @@ export const routes = {
   events: { it: '/eventi/', en: '/en/events/' },
   about: { it: '/chi-siamo/', en: '/en/about/' },
   why: { it: '/perche-meteora/', en: '/en/why-meteora/' },
+  ice: { it: '/noleggio-ghiaccio/', en: '/en/ice-rental/' },
   contact: { it: '/contatti/', en: '/en/contact/' },
   thanks: { it: '/grazie/', en: '/en/thank-you/' },
   privacy: { it: '/privacy-policy/', en: '/en/privacy-policy/' },

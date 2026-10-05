@@ -2,14 +2,17 @@
 import type { Lang } from '@/i18n/routes';
 import { url, alternatesFor } from '@/i18n/routes';
 import { t } from '@/i18n/ui';
+import { site } from '@/data/site';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
-import WhyGrid from '@/components/WhyGrid.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
 import EditorialSection from '@/components/EditorialSection.astro';
+import WhyGrid from '@/components/WhyGrid.astro';
 import IceSection from '@/components/IceSection.astro';
-import PartnerCTA from '@/components/PartnerCTA.astro';
 import CTABand from '@/components/CTABand.astro';
 import hero from '@/assets/images/bars/golden-marble-night.jpg';
+import terrace from '@/assets/images/bars/terrace-panorama.jpg';
+import mint from '@/assets/images/details/mint-coupes.jpg';
 import villa from '@/assets/images/bars/pure-white-villa.jpg';
 import strain from '@/assets/images/team/bartender-strain.jpg';
 import band from '@/assets/images/bars/silver-reflection.jpg';
@@ -21,23 +24,88 @@ const { lang } = Astro.props;
 const it = lang === 'it';
 const s = t(lang);
 const meta = it
-  ? { title: 'Perché scegliere Meteora Events | Bar Catering di livello', description: 'Bartender qualificati, servizio visivamente pulito, rispetto delle location, autonomia, discrezione e controllo delle temperature. Ecco perché scegliere Meteora Events.' }
-  : { title: 'Why Choose Meteora Events | High-End Bar Catering', description: 'Qualified bartenders, a visually clean service, respect for venues, independence, discretion and temperature control. Here is why clients choose Meteora Events.' };
+  ? {
+      title: `Perché Meteora Events | Chi Siamo e Come Lavoriamo`,
+      description: `Oltre ${site.yearsExperience} anni di esperienza nel beverage per eventi di alto livello. Bartender qualificati, servizio pulito, autonomia e discrezione. Scopri chi siamo e perché scegliere Meteora Events.`,
+    }
+  : {
+      title: 'Why Meteora Events | About Us and How We Work',
+      description: `More than ${site.yearsExperience} years of beverage expertise for high-level events. Qualified bartenders, a clean service, independence and discretion. Discover who we are and why clients choose Meteora Events.`,
+    };
 const crumbs = [
   { name: s.breadcrumbHome, href: url('home', lang) },
   { name: it ? 'Perché Meteora' : 'Why Meteora', href: url('why', lang) },
 ];
+const values = it
+  ? [
+      ['Esperienza', `Oltre ${site.yearsExperience} anni di esperienza operativa nel settore eventi: matrimoni, corporate ed eventi privati.`],
+      ['Metodo', "Ogni servizio segue un metodo preciso, dall'allestimento allo smontaggio."],
+      ['Cultura visiva', "Grande attenzione all'aspetto estetico e visivo dell'allestimento."],
+      ['Ospitalità', 'Professionalità e discrezione, con ogni ospite.'],
+    ]
+  : [
+      ['Experience', `More than ${site.yearsExperience} years of operational experience in events: weddings, corporate and private.`],
+      ['Method', 'Every service follows a precise method, from setup to load-out.'],
+      ['Visual culture', 'Great attention to the aesthetic and visual side of every setup.'],
+      ['Hospitality', 'Professionalism and discretion, with every guest.'],
+    ];
 ---
 
 <BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('why')} current="why" breadcrumbs={crumbs}>
   <PageHero eyebrow={it ? 'Perché Meteora' : 'Why Meteora'} image={hero} imageAlt={it ? 'Banco dorato su pavimento chevron' : 'Golden bar on a chevron floor'} crumbs={crumbs}>
-    <h1>{it ? <>Non vi affidate a noi per servire drink. <em>Vi affidate a noi perché il bar diventi parte dell’evento.</em></> : <>You don’t hire us to serve drinks. <em>You hire us because the bar becomes part of the event.</em></>}</h1>
+    <h1>{it ? <>Non vi affidate a noi per servire drink. <em>Vi affidate a noi perché il bar diventi parte dell'evento.</em></> : <>You don't hire us to serve drinks. <em>You hire us because the bar becomes part of the event.</em></>}</h1>
+    <p slot="lead" class="lead muted">
+      {it
+        ? `Meteora Events è il partner specializzato nella gestione del servizio beverage per eventi di alto livello. Nasciamo da oltre ${site.yearsExperience} anni di esperienza operativa negli eventi.`
+        : `Meteora Events is the partner specialised in managing beverage services for high-level events. We grew out of more than ${site.yearsExperience} years of operational experience in events.`}
+    </p>
   </PageHero>
 
-  <section class="section" aria-label={it ? 'I motivi' : 'The reasons'}>
-    <div class="container"><WhyGrid lang={lang} /></div>
+  <!-- Chi siamo / La nostra storia -->
+  <section class="section" aria-labelledby="why-story">
+    <div class="container">
+      <EditorialSection image={terrace} imageAlt={it ? 'Banco bar davanti a una vetrata panoramica' : 'Bar in front of a panoramic window'} secondImage={mint} secondAlt={it ? 'Coppe con menta e frutti rossi' : 'Coupes with mint and red berries'} ratio="landscape">
+        <p class="eyebrow" data-reveal>{it ? 'La nostra storia' : 'Our story'}</p>
+        <h2 id="why-story" data-reveal>{it ? <>Non offriamo semplicemente <em>un servizio bar.</em></> : <>We don't simply offer <em>a bar service.</em></>}</h2>
+        <p class="muted" data-reveal>
+          {it
+            ? "Portiamo professionalità, metodo ed esperienza scenografica, con grande attenzione all'aspetto estetico e visivo dell'allestimento. Conosciamo a fondo le dinamiche di matrimoni, eventi corporate e privati, perché le viviamo da anni dall'interno."
+            : 'We bring professionalism, method and scenographic experience, with great attention to the aesthetic and visual side of the setup. We know the dynamics of weddings, corporate and private events inside out, because we have lived them for years.'}
+        </p>
+        <p class="lead" data-reveal>
+          {it
+            ? "Ogni evento è unico e irripetibile, e ciò che viene realizzato resta impresso nelle immagini e nei ricordi. Per questo puntiamo all'eccellenza, nel servizio e nell'impatto visivo."
+            : "Every event is unique and unrepeatable, and what is created remains in the images and in the memories. That is why we aim for excellence, in service and in visual impact."}
+        </p>
+      </EditorialSection>
+    </div>
   </section>
 
+  <!-- Come lavoriamo / Valori -->
+  <section class="section section--alt" aria-labelledby="why-values">
+    <div class="container">
+      <SectionHeading eyebrow={it ? 'Come lavoriamo' : 'How we work'} id="why-values">
+        {it ? <>Quattro parole, <em>ogni volta.</em></> : <>Four words, <em>every time.</em></>}
+      </SectionHeading>
+      <ol class="values" role="list">
+        {values.map(([k, v], i) => (
+          <li data-reveal style={`--delay:${i * 0.06}s`}>
+            <span class="values__k">{k}</span>
+            <p class="muted">{v}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- I motivi: WhyGrid -->
+  <section class="section" aria-label={it ? 'I motivi' : 'The reasons'}>
+    <div class="container">
+      <WhyGrid lang={lang} />
+    </div>
+  </section>
+
+  <!-- Pulizia di servizio -->
   <section class="section section--alt" aria-labelledby="why-clean">
     <div class="container">
       <EditorialSection image={villa} imageAlt={it ? 'Banco Pure White in giardino, senza nulla a vista' : 'Pure White bar in a garden, nothing out of place'} secondImage={strain} secondAlt={it ? 'Bartender al lavoro' : 'Bartender at work'} ratio="landscape">
@@ -53,6 +121,38 @@ const crumbs = [
   </section>
 
   <IceSection lang={lang} showTypes={false} />
-  <PartnerCTA lang={lang} />
   <CTABand lang={lang} image={band} imageAlt={it ? 'Banco Silver Reflection' : 'Silver Reflection bar'} trackLabel="why_band" />
 </BaseLayout>
+
+<style>
+  .values {
+    display: grid;
+    gap: var(--space-l);
+  }
+  .values li {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-m);
+  }
+  .values__k {
+    display: block;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(2rem, 1.4rem + 2vw, 3rem);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .values p {
+    font-size: var(--fs-small);
+    max-width: 22rem;
+  }
+  @media (min-width: 800px) {
+    .values {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1200px) {
+    .values {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>

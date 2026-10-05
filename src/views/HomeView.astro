@@ -66,7 +66,7 @@ const schema = [
   <!-- 1 · HERO -->
   <Hero image={hero} imageAlt={it ? 'Banco bar Golden Mirror al tramonto su una terrazza affacciata sulle colline' : 'Golden Mirror bar at sunset on a terrace overlooking the hills'} position="50% 60%" eyebrow={it ? 'Matrimoni · Destination wedding · Aziende · Privati' : 'Weddings · Destination weddings · Corporate · Private'}>
     <h1 class="home-hero__title">
-      Luxury Open Bar Catering <em>&amp; Hospitality Services</em>
+      Luxury Open Bar Catering
     </h1>
     <p class="lead home-hero__lead">
       {it
@@ -96,7 +96,6 @@ const schema = [
       <ExperienceMosaic lang={lang} />
       <div class="cta-row exp__cta">
         <a class="btn btn--light" href={url('cocktails', lang)}>{it ? 'Scopri la cocktail experience' : 'Discover the cocktail experience'}</a>
-        <a class="link" href={url('contact', lang)} data-track="cta_click" data-track-label="experience_quote">{s.quote}</a>
       </div>
     </div>
   </section>
@@ -117,7 +116,6 @@ const schema = [
         </ul>
         <div class="cta-row" data-reveal style="--delay:.2s">
           <a class="btn" href={url('weddings', lang)}>{it ? 'Scopri i servizi per matrimoni' : 'Discover wedding services'}</a>
-          <a class="link" href={url('contact', lang)} data-track="cta_click" data-track-label="weddings_quote">{s.quote}</a>
         </div>
       </EditorialSection>
     </div>
@@ -143,7 +141,7 @@ const schema = [
   <!-- 6 · BAR COLLECTION -->
   <section class="section" aria-labelledby="bars-title">
     <div class="container">
-      <SectionHeading eyebrow={it ? 'I nostri banchi' : 'The Bar Collection'} align="split" id="bars-title">
+      <SectionHeading eyebrow={it ? 'I nostri banchi' : 'The Bar Collection'} align="left" id="bars-title">
         {it ? <>La collezione <em>dei banchi.</em></> : <>The bar <em>collection.</em></>}
         <Fragment slot="lead">
           {it
@@ -154,7 +152,6 @@ const schema = [
       <BarCollection lang={lang} />
       <div class="cta-row section-cta">
         <a class="btn" href={url('bars', lang)}>{it ? 'Esplora la collezione' : 'Explore the collection'}</a>
-        <a class="link" href={url('contact', lang)} data-track="cta_click" data-track-label="bars_quote">{s.quote}</a>
       </div>
     </div>
   </section>
@@ -162,7 +159,7 @@ const schema = [
   <!-- 7 · COCKTAILS -->
   <section class="section section--alt" aria-labelledby="ck-title">
     <div class="container">
-      <SectionHeading eyebrow="Cocktail Experience" align="split" id="ck-title">
+      <SectionHeading eyebrow="Cocktail Experience" align="left" id="ck-title">
         {it ? <>Dove il cocktail <em>diventa parte dell’evento.</em></> : <>Where cocktails <em>become part of the event.</em></>}
         <Fragment slot="lead">
           {it
@@ -186,7 +183,7 @@ const schema = [
   <!-- 11 · ESSENTIAL vs PREMIUM -->
   <section class="section" aria-labelledby="cmp-title">
     <div class="container">
-      <SectionHeading eyebrow="Open Bar" align="split" id="cmp-title">
+      <SectionHeading eyebrow="Open Bar" align="left" id="cmp-title">
         {it ? <>Due esperienze, <em>uno stesso standard.</em></> : <>Two experiences, <em>one standard.</em></>}
         <Fragment slot="lead">
           {it
@@ -201,7 +198,7 @@ const schema = [
   <!-- 12 · PORTFOLIO -->
   <section class="section section--alt" aria-labelledby="pf-title">
     <div class="container">
-      <SectionHeading eyebrow={it ? 'Eventi' : 'Events'} align="split" id="pf-title">
+      <SectionHeading eyebrow={it ? 'Eventi' : 'Events'} align="left" id="pf-title">
         {it ? <>Ogni evento <em>è unico e irripetibile.</em></> : <>Every event is <em>unique and unrepeatable.</em></>}
         <Fragment slot="lead">
           {it ? 'Ciò che realizziamo resta impresso nelle immagini e nei ricordi.' : 'What we create remains in the images, and in the memories.'}
@@ -210,7 +207,6 @@ const schema = [
       <PortfolioGrid lang={lang} items={events} limit={3} />
       <div class="cta-row section-cta">
         <a class="btn" href={url('events', lang)}>{it ? 'Tutti gli eventi' : 'All events'}</a>
-        <a class="link" href={url('contact', lang)} data-track="cta_click" data-track-label="portfolio_quote">{s.quote}</a>
       </div>
     </div>
   </section>
