@@ -50,22 +50,16 @@ const serves = it
         n: '01',
         title: 'Matrimoni & Destination Wedding',
         text: "Dall'aperitivo in giardino all'open bar dopo cena. Il banco diventa scenografia dell'evento e resta nelle fotografie.",
-        cta: url('weddings', lang),
-        ctaLabel: 'Scopri i servizi matrimonio',
       },
       {
         n: '02',
-        title: it ? 'Eventi aziendali' : 'Corporate events',
+        title: 'Eventi aziendali',
         text: 'Brand activation, lanci di prodotto, cene di gala, team building. Il nostro staff si adatta al registro corporate con divisa personalizzabile.',
-        cta: url('services', lang),
-        ctaLabel: 'I nostri servizi',
       },
       {
         n: '03',
-        title: it ? 'Eventi privati' : 'Private events',
+        title: 'Eventi privati',
         text: 'Compleanni, anniversari, celebrazioni e rinfreschi. Ogni occasione, piccola o grande, merita il nostro standard di servizio.',
-        cta: url('services', lang),
-        ctaLabel: 'Richiedi un preventivo',
       },
     ]
   : [
@@ -73,22 +67,16 @@ const serves = it
         n: '01',
         title: 'Weddings & Destination Weddings',
         text: 'From the garden aperitivo to the after-dinner open bar. The bar becomes part of the scenography and stays in the photographs.',
-        cta: url('weddings', lang),
-        ctaLabel: 'Discover wedding services',
       },
       {
         n: '02',
         title: 'Corporate events',
         text: 'Brand activations, product launches, gala dinners, team building. Our staff adapts to the corporate register with customisable uniforms.',
-        cta: url('services', lang),
-        ctaLabel: 'Our services',
       },
       {
         n: '03',
         title: 'Private events',
         text: 'Birthdays, anniversaries, celebrations and receptions. Every occasion, large or small, deserves our service standard.',
-        cta: url('services', lang),
-        ctaLabel: 'Request a quote',
       },
     ];
 ---
@@ -177,10 +165,12 @@ const serves = it
             <span class="micro serves__n">{item.n}</span>
             <h3>{item.title}</h3>
             <p class="muted">{item.text}</p>
-            <a class="link" href={item.cta}>{item.ctaLabel}</a>
           </li>
         ))}
       </ol>
+      <div class="serves__cta" data-reveal>
+        <a class="btn" href={url('services', lang)}>{it ? 'Scopri i nostri servizi' : 'Discover our services'}</a>
+      </div>
     </div>
   </section>
 
@@ -274,9 +264,8 @@ const serves = it
     font-size: var(--fs-small);
     max-width: 28rem;
   }
-  .serves .link {
-    justify-self: start;
-    margin-top: 0.25rem;
+  .serves__cta {
+    margin-top: var(--space-l);
   }
   @media (min-width: 700px) {
     .serves { grid-template-columns: repeat(3, 1fr); }
