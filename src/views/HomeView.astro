@@ -9,7 +9,6 @@ import SectionHeading from '@/components/SectionHeading.astro';
 import ExperienceMosaic from '@/components/ExperienceMosaic.astro';
 import EditorialSection from '@/components/EditorialSection.astro';
 import BarCollection from '@/components/BarCollection.astro';
-import CocktailFamilies from '@/components/CocktailFamilies.astro';
 import IceSection from '@/components/IceSection.astro';
 import PersonalizationSection from '@/components/PersonalizationSection.astro';
 import TowerSection from '@/components/TowerSection.astro';
@@ -151,21 +150,6 @@ const schema = [
       <div class="cta-row section-cta">
         <a class="btn" href={url('bars', lang)}>{it ? 'Esplora la collezione' : 'Explore the collection'}</a>
       </div>
-    </div>
-  </section>
-
-  <!-- 7 · COCKTAILS -->
-  <section class="section section--alt" aria-labelledby="ck-title">
-    <div class="container">
-      <SectionHeading eyebrow="Cocktail Experience" align="left" id="ck-title">
-        {it ? <>Dove il cocktail <em>diventa parte dell’evento.</em></> : <>Where cocktails <em>become part of the event.</em></>}
-        <Fragment slot="lead">
-          {it
-            ? 'Una drink list completa ed equilibrata, dai grandi classici all’aperitivo italiano, con varianti su richiesta e signature create per voi.'
-            : 'A complete, balanced drink list, from the great classics to the Italian aperitivo, with variations on request and signatures created for you.'}
-        </Fragment>
-      </SectionHeading>
-      <CocktailFamilies lang={lang} />
     </div>
   </section>
 
