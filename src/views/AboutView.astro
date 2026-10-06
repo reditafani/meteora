@@ -10,7 +10,6 @@ import { site } from '@/data/site';
 import terrace from '@/assets/images/bars/terrace-panorama.jpg';
 import mint from '@/assets/images/details/mint-coupes.jpg';
 import strain from '@/assets/images/team/bartender-strain.jpg';
-import tower from '@/assets/images/towers/couple-pour.jpg';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -174,34 +173,6 @@ const serves = it
     </div>
   </section>
 
-  <!-- DIVISE: TOTAL BLACK -->
-  <section class="section section--alt" aria-labelledby="a-uniform">
-    <div class="container">
-      <EditorialSection
-        image={tower}
-        imageAlt={it ? 'Sposi versano bollicine su una tower di coppe' : 'Couple pouring sparkling wine over a coupe tower'}
-        ratio="portrait"
-      >
-        <p class="eyebrow" data-reveal>{it ? 'Il nostro staff' : 'Our staff'}</p>
-        <h2 id="a-uniform" data-reveal>
-          {it
-            ? <>Total black. <em>Nessun logo. Nessuna distrazione.</em></>
-            : <>Total black. <em>No logo. No distraction.</em></>}
-        </h2>
-        <p class="muted" data-reveal>
-          {it
-            ? 'La nostra divisa ordinaria è completamente nera: pantalone elegante, camicia, gilet e cravatta nera. Nessun marchio esposto, nessun elemento vistoso. Una linea essenziale che valorizza il banco e non distrae gli ospiti.'
-            : 'Our standard uniform is entirely black: smart trousers, shirt, waistcoat and black tie. No brand visible, no showy element. A clean line that enhances the bar and keeps the focus on your guests.'}
-        </p>
-        <p class="muted" data-reveal>
-          {it
-            ? "Su richiesta è possibile personalizzare la divisa con logo aziendale o dell'evento su camicia, gilet e cravatta — ideale per eventi corporate, lanci prodotto e brand activation."
-            : 'On request, uniforms can be personalised with your company or event logo on shirt, waistcoat and tie — ideal for corporate events, product launches and brand activations.'}
-        </p>
-        <a class="btn btn--outline" href={url('contact', lang)} data-reveal>{s.quote}</a>
-      </EditorialSection>
-    </div>
-  </section>
 
 
 </BaseLayout>
