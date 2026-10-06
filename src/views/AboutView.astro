@@ -9,6 +9,8 @@ import Img from '@/components/Img.astro';
 import { site } from '@/data/site';
 import terrace from '@/assets/images/bars/terrace-panorama.jpg';
 import mint from '@/assets/images/details/mint-coupes.jpg';
+import sunset from '@/assets/images/bars/golden-mirror-sunset.jpg';
+import shaker from '@/assets/images/details/shaker.jpg';
 import strain from '@/assets/images/team/bartender-strain.jpg';
 
 interface Props { lang: Lang }
@@ -111,10 +113,16 @@ const serves = it
       </div>
       <div class="story__media">
         <div class="media story__img" data-reveal="image">
-          <Img src={terrace} alt={it ? 'Banco bar davanti a una vetrata panoramica' : 'Bar in front of a panoramic window'} sizes="(min-width: 900px) 50vw, 100vw" />
+          <Img src={terrace} alt={it ? 'Banco bar davanti a una vetrata panoramica' : 'Bar in front of a panoramic window'} sizes="(min-width: 900px) 25vw, 50vw" />
         </div>
-        <div class="media story__img" data-reveal="image" style="--delay:.08s">
-          <Img src={mint} alt={it ? 'Coppe con menta e frutti rossi' : 'Coupes with mint and red berries'} sizes="(min-width: 900px) 50vw, 100vw" />
+        <div class="media story__img" data-reveal="image" style="--delay:.06s">
+          <Img src={mint} alt={it ? 'Coppe con menta e frutti rossi' : 'Coupes with mint and red berries'} sizes="(min-width: 900px) 25vw, 50vw" />
+        </div>
+        <div class="media story__img" data-reveal="image" style="--delay:.12s">
+          <Img src={sunset} alt={it ? 'Banco Golden Mirror al tramonto su una terrazza' : 'Golden Mirror bar at sunset on a terrace'} sizes="(min-width: 900px) 25vw, 50vw" />
+        </div>
+        <div class="media story__img" data-reveal="image" style="--delay:.18s">
+          <Img src={shaker} alt={it ? 'Shaker professionale sul banco' : 'Professional shaker on the bar'} sizes="(min-width: 900px) 25vw, 50vw" />
         </div>
       </div>
       <div class="story__text">
@@ -204,8 +212,8 @@ const serves = it
   }
   .story__media {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-m);
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-s);
   }
   .story__img {
     aspect-ratio: 4 / 3;
@@ -214,6 +222,16 @@ const serves = it
     display: grid;
     gap: var(--space-m);
     max-width: 52rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+  .story__text p {
+    font-size: clamp(1rem, 0.9rem + 0.3vw, 1.15rem);
+  }
+  @media (min-width: 700px) {
+    .story__media {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 
   .values {
