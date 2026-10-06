@@ -1,0 +1,164 @@
+---
+import type { Lang } from '@/i18n/routes';
+import { url } from '@/i18n/routes';
+import { t } from '@/i18n/ui';
+import { featuredCocktails } from '@/data/cocktails';
+import Img from './Img.astro';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const s = t(lang);
+const it = lang === 'it';
+---
+
+<section class="section section--alt cs" aria-labelledby="cs-title">
+  <div class="container cs__head">
+    <div>
+      <p class="eyebrow" data-reveal>Cocktail Experience</p>
+      <h2 id="cs-title" class="cs__title" data-reveal style="--delay:.06s">
+        {it ? <>La nostra <em>cocktail list.</em></> : <>Our <em>cocktail list.</em></>}
+      </h2>
+    </div>
+    <a class="link cs__link" href={url('cocktails', lang)} data-reveal>
+      {it ? 'Esplora tutti i cocktail' : 'Explore all cocktails'}
+    </a>
+  </div>
+
+  <div class="cs__track-wrap">
+    <ul class="cs__track" role="list">
+      {featuredCocktails.map((c, i) => (
+        <li class="cs__slide" data-reveal style={`--delay:${i * 0.04}s`}>
+          <div class="cs__media media">
+            {c.image
+              ? <Img src={c.image} alt={c.name} sizes="260px" widths={[260, 520]} />
+              : <div class="cs__placeholder" aria-hidden="true"></div>
+            }
+          </div>
+          <div class="cs__info">
+            <h3 class="cs__name">{c.name}</h3>
+            {c.variants && <p class="cs__variants">{c.variants}</p>}
+            <dl class="cs__meta">
+              <div>
+                <dt class="visually-hidden">{s.profile}</dt>
+                <dd class="cs__profile">{c.profile[lang]}</dd>
+              </div>
+              <div class="cs__abv">
+                <dt class="visually-hidden">{s.alcohol}</dt>
+                <dd aria-label={`${s.alcohol}: ${c.alcohol}/5`}>
+                  {[1,2,3,4,5].map(n => (
+                    <span class:list={['dot', n <= c.alcohol && 'on']} aria-hidden="true" />
+                  ))}
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .cs {
+    padding-inline: 0;
+  }
+  .cs__head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--space-m);
+    margin-bottom: var(--space-l);
+  }
+  .cs__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 1.3rem + 1.8vw, 2.75rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-top: var(--space-s);
+  }
+  .cs__title em {
+    font-style: italic;
+    color: var(--color-accent-ink);
+  }
+  .cs__link {
+    flex-shrink: 0;
+  }
+
+  /* ── Track ── */
+  .cs__track-wrap {
+    overflow: hidden;
+  }
+  .cs__track {
+    display: flex;
+    gap: var(--space-m);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding-inline: var(--gutter);
+    padding-bottom: var(--space-s);
+    scrollbar-width: none;
+  }
+  .cs__track::-webkit-scrollbar { display: none; }
+
+  /* ── Slide ── */
+  .cs__slide {
+    flex-shrink: 0;
+    width: clamp(200px, 22vw, 260px);
+    scroll-snap-align: start;
+  }
+  .cs__media {
+    aspect-ratio: 4 / 5;
+    background: #e9e6e2;
+    overflow: hidden;
+  }
+  .cs__media :global(img) {
+    transition: transform 1.2s var(--ease-out);
+  }
+  .cs__slide:hover .cs__media :global(img) {
+    transform: scale(1.05);
+  }
+  .cs__placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--color-border);
+  }
+  .cs__info {
+    padding-top: 0.8rem;
+  }
+  .cs__name {
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 0.9rem + 0.5vw, 1.3rem);
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  .cs__variants {
+    font-size: var(--fs-micro);
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+    margin-top: 0.2rem;
+  }
+  .cs__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+  }
+  .cs__abv dd {
+    display: flex;
+    gap: 3px;
+  }
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: 1px solid var(--color-accent);
+  }
+  .dot.on {
+    background: var(--color-accent);
+  }
+</style>

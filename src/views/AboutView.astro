@@ -147,7 +147,7 @@ const serves = it
   </section>
 
   <!-- 4 VALORI -->
-  <section class="section section--alt" aria-labelledby="a-values">
+  <section class="section section--alt section--tight" aria-labelledby="a-values">
     <div class="container">
       <SectionHeading eyebrow={it ? 'Come lavoriamo' : 'How we work'} id="a-values">
         {it ? <>Quattro parole, <em>ogni volta.</em></> : <>Four words, <em>every time.</em></>}
@@ -164,7 +164,7 @@ const serves = it
   </section>
 
   <!-- CHI SERVIAMO -->
-  <section class="section" aria-labelledby="a-serves">
+  <section class="section section--tight" aria-labelledby="a-serves">
     <div class="container">
       <SectionHeading eyebrow={it ? 'Chi serviamo' : 'Who we serve'} align="split" id="a-serves">
         {it
@@ -217,10 +217,14 @@ const serves = it
 </BaseLayout>
 
 <style>
+  .section--tight :global(.sh) {
+    margin-bottom: var(--space-m);
+  }
+
   .values {
     display: grid;
     gap: var(--space-l);
-    margin-top: var(--space-xl);
+    margin-top: var(--space-s);
   }
   .values li {
     border-top: 1px solid var(--color-border);
@@ -248,7 +252,7 @@ const serves = it
   .serves {
     display: grid;
     gap: var(--space-l);
-    margin-top: var(--space-xl);
+    margin-top: var(--space-s);
   }
   .serves li {
     border-top: 1px solid var(--color-border);

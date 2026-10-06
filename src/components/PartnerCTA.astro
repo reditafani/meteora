@@ -12,7 +12,7 @@ const { lang } = Astro.props;
 const it = lang === 'it';
 ---
 
-<section class="section pc" aria-labelledby="pc-title">
+<section class="section section--alt pc" aria-labelledby="pc-title">
   <div class="container pc__grid">
     <div class="pc__media media" data-reveal="image">
       <Img src={hall} alt={it ? 'Tavolo imperiale apparecchiato in un salone affrescato' : 'Long banquet table set in a frescoed hall'} sizes="(min-width: 960px) 30vw, 70vw" />

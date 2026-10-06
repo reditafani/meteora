@@ -8,6 +8,7 @@ import SectionHeading from '@/components/SectionHeading.astro';
 import Img from '@/components/Img.astro';
 import ExperienceComparison from '@/components/ExperienceComparison.astro';
 import TowerSection from '@/components/TowerSection.astro';
+import CocktailSlideshow from '@/components/CocktailSlideshow.astro';
 import FAQ from '@/components/FAQ.astro';
 import { services } from '@/data/services';
 import { faqFor } from '@/data/faq';
@@ -36,20 +37,20 @@ const schema = [
 
 <BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('services')} current="services" breadcrumbs={crumbs} schema={schema} headerTheme="overlay">
   <PageHero variant="fullscreen" eyebrow={it ? 'Servizi' : 'Services'} image={hero} imageAlt={it ? 'Banco dorato su pavimento chevron' : 'Golden bar on a chevron floor'} crumbs={crumbs}>
-    <h1>{it ? <>Dall’aperitivo <em>all’ultimo drink.</em></> : <>From aperitivo <em>to the last drink.</em></>}</h1>
+    <h1>{it ? <>Dall'aperitivo <em>all'ultimo drink.</em></> : <>From aperitivo <em>to the last drink.</em></>}</h1>
     <p slot="lead" class="lead muted">
       {it
         ? 'Formule complete e autonome, coordinate con il catering, oppure solo il nostro staff e il nostro metodo. Ogni proposta è costruita su misura.'
         : 'Complete, independent formulas coordinated with your caterer — or simply our staff and our method. Every proposal is built to measure.'}
     </p>
-    <nav slot="cta" class="svc-index" aria-label={it ? 'Indice servizi' : 'Services index'}>
+    <nav slot="cta" class="svc-index" aria-label={it ? "Indice servizi" : "Services index"}>
       {services.map((sv) => <a class="link" href={`#${sv.id}`}>{sv.name[lang].replace('Open Bar — ', '')}</a>)}
     </nav>
   </PageHero>
 
-  <section class="section" aria-label={it ? 'Formule' : 'Formulas'}>
+  <section class="section section--tight">
     <div class="container svc">
-      {services.map((sv, i) => (
+      {services.slice(0, 3).map((sv, i) => (
         <article class:list={['svc__item', i % 2 === 1 && 'svc__item--rev']} id={sv.id} aria-labelledby={`${sv.id}-t`}>
           <div class="media svc__media" data-reveal="image">
             <Img src={sv.image} alt={sv.imageAlt[lang]} sizes="(min-width: 960px) 45vw, 100vw" />
@@ -65,15 +66,38 @@ const schema = [
           </div>
         </article>
       ))}
+    </div>
+  </section>
+
+  <CocktailSlideshow lang={lang} />
+
+  <section class="section section--tight">
+    <div class="container svc">
+      {services.slice(3).map((sv, i) => (
+        <article class:list={['svc__item', i % 2 === 1 && 'svc__item--rev']} id={sv.id} aria-labelledby={`${sv.id}-t`}>
+          <div class="media svc__media" data-reveal="image">
+            <Img src={sv.image} alt={sv.imageAlt[lang]} sizes="(min-width: 960px) 45vw, 100vw" />
+          </div>
+          <div class="svc__text">
+            <p class="micro svc__kicker" data-reveal>{String(i + 4).padStart(2, '0')} · {sv.kicker[lang]}</p>
+            <h2 id={`${sv.id}-t`} class="h3 svc__title" data-reveal>{sv.name[lang]}</h2>
+            <p class="lead muted" data-reveal>{sv.summary[lang]}</p>
+            <ul class="svc__inc" role="list" data-reveal>
+              {sv.includes[lang].map((x) => <li>{x}</li>)}
+            </ul>
+            <a class="btn btn--outline" href={`${url('contact', lang)}?service=${sv.formValue}`} data-track="cta_click" data-track-label={`service_${sv.id}`}>{s.quote}</a>
+          </div>
+        </article>
+      ))}
       <p class="muted svc__note">
         {it
-          ? 'Su richiesta: tempo extra, bartender e camerieri aggiuntivi, moduli bar extra. Nei momenti di maggiore affluenza il personale di supporto rende il servizio più rapido e fluido. Servizi realizzabili anche fuori regione e all’estero; eventuali costi di logistica si definiscono nel preventivo.'
-          : 'On request: extra time, additional bartenders and waiters, extra bar modules. At peak moments, support staff keep service fast and fluid. Services can also be delivered outside the region and abroad; any logistics costs are defined in the quote.'}
+          ? "Su richiesta: tempo extra, bartender e camerieri aggiuntivi, moduli bar extra. Nei momenti di maggiore affluenza il personale di supporto rende il servizio più rapido e fluido. Servizi realizzabili anche fuori regione e all'estero; eventuali costi di logistica si definiscono nel preventivo."
+          : "On request: extra time, additional bartenders and waiters, extra bar modules. At peak moments, support staff keep service fast and fluid. Services can also be delivered outside the region and abroad; any logistics costs are defined in the quote."}
       </p>
     </div>
   </section>
 
-  <section class="section section--alt" aria-labelledby="s-cmp">
+  <section class="section section--alt section--tight" aria-labelledby="s-cmp">
     <div class="container">
       <SectionHeading eyebrow="Open Bar" align="split" id="s-cmp">{it ? <>Essential <em>e Premium,</em> a confronto.</> : <>Essential <em>and Premium,</em> compared.</>}</SectionHeading>
       <ExperienceComparison lang={lang} />
@@ -82,7 +106,7 @@ const schema = [
 
   <TowerSection lang={lang} cta={false} id="tower-detail" />
 
-  <section class="section" aria-labelledby="s-faq">
+  <section class="section section--tight" aria-labelledby="s-faq">
     <div class="container container--narrow">
       <SectionHeading eyebrow="FAQ" id="s-faq">{it ? <>Domande <em>frequenti.</em></> : <>Frequently <em>asked.</em></>}</SectionHeading>
       <FAQ lang={lang} items={faqs} />
@@ -109,7 +133,7 @@ const schema = [
   }
   .svc {
     display: grid;
-    gap: var(--space-2xl);
+    gap: var(--space-xl);
   }
   .svc__item {
     display: grid;
@@ -140,6 +164,10 @@ const schema = [
   .svc__note {
     max-width: 44rem;
     font-size: var(--fs-small);
+    margin-top: calc(var(--space-xl) * -0.4);
+  }
+  .section--tight :global(.sh) {
+    margin-bottom: var(--space-m);
   }
   @media (min-width: 960px) {
     .svc__item {
