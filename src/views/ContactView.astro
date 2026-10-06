@@ -50,7 +50,6 @@ const contactSchema = {
         </p>
         <ul class="ct__links" role="list">
           <li><a href={`mailto:${site.email}`} data-track="email_click"><Icon name="mail" />{site.email}</a></li>
-          <li><a href={whatsappLink(s.whatsappMessage)} target="_blank" rel="noopener" data-track="whatsapp_click" data-track-label="contact_page"><Icon name="whatsapp" />WhatsApp</a></li>
           <li><a href={`tel:${site.phoneE164}`} data-track="phone_click"><Icon name="phone" />{site.phoneDisplay}</a></li>
           <li><a href={site.instagram.url} target="_blank" rel="noopener" data-track="instagram_click"><Icon name="instagram" />{site.instagram.handle}</a></li>
           <li><span><Icon name="pin" />{site.address.locality} ({site.address.province}), {it ? 'Toscana — operativi in tutta Italia' : 'Tuscany — serving all of Italy'}</span></li>

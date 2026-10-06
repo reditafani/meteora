@@ -15,15 +15,13 @@ const { lang, alternates } = Astro.props;
 const s = t(lang);
 const it = lang === 'it';
 const nav = [
-  { key: 'weddings', label: it ? 'Matrimoni' : 'Weddings' },
-  { key: 'destination', label: 'Destination Weddings' },
-  { key: 'bars', label: it ? 'Banchi bar' : 'Bars' },
-  { key: 'cocktails', label: 'Cocktail Experience' },
-  { key: 'services', label: it ? 'Eventi e servizi' : 'Events & Services' },
-  { key: 'corporate', label: it ? 'Aziende & privati' : 'Corporate' },
-  { key: 'partners', label: 'Wedding planner & Partner' },
-  { key: 'why', label: it ? 'Perché Meteora' : 'Why Meteora' },
-  { key: 'contact', label: it ? 'Contatti' : 'Contact' },
+  { key: 'about',    label: it ? 'Chi siamo'          : 'About us'           },
+  { key: 'services', label: it ? 'I nostri servizi'   : 'Our Services'       },
+  { key: 'bars',     label: it ? 'I nostri banchi bar': 'Our Bar Collection'  },
+  { key: 'partners', label: it ? 'Collabora con noi'  : 'Work with us'       },
+  { key: 'ice',      label: it ? 'Noleggio ghiaccio'  : 'Ice Rental'         },
+  { key: 'why',      label: it ? 'Perché Meteora'     : 'Why Meteora'        },
+  { key: 'contact',  label: it ? 'Contatti'           : 'Contact'            },
 ] as const;
 const year = new Date().getFullYear();
 ---
