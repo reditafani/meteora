@@ -1,6 +1,5 @@
 ---
 import type { Lang } from '@/i18n/routes';
-import { url } from '@/i18n/routes';
 import { t } from '@/i18n/ui';
 import { featuredCocktails } from '@/data/cocktails';
 import Img from './Img.astro';
@@ -19,9 +18,6 @@ const it = lang === 'it';
         {it ? <>La nostra <em>cocktail list.</em></> : <>Our <em>cocktail list.</em></>}
       </h2>
     </div>
-    <a class="link cs__link" href={url('cocktails', lang)} data-reveal>
-      {it ? 'Esplora tutti i cocktail' : 'Explore all cocktails'}
-    </a>
   </div>
 
   <div class="cs__track-wrap">
@@ -162,3 +158,43 @@ const it = lang === 'it';
     background: var(--color-accent);
   }
 </style>
+
+<script>
+  const track = document.querySelector('.cs__track') as HTMLElement | null;
+  if (track) {
+    let paused = false;
+    let raf: number;
+
+    const SPEED = 0.5; // px per frame
+    let pos = 0;
+
+    function tick() {
+      if (!paused) {
+        pos += SPEED;
+        // When we've scrolled one full slide width, reset seamlessly
+        const slide = track!.querySelector('.cs__slide') as HTMLElement | null;
+        const slideW = slide ? slide.offsetWidth + parseInt(getComputedStyle(track!).gap || '0') : 280;
+        const totalW = track!.scrollWidth / 2; // half because we duplicate slides
+        if (pos >= totalW) pos -= totalW;
+        track!.style.transform = `translateX(${-pos}px)`;
+      }
+      raf = requestAnimationFrame(tick);
+    }
+
+    // Duplicate slides for seamless loop
+    const slides = Array.from(track.querySelectorAll('.cs__slide'));
+    slides.forEach((s) => track.appendChild(s.cloneNode(true)));
+
+    // Pause on hover/touch
+    track.addEventListener('mouseenter', () => { paused = true; });
+    track.addEventListener('mouseleave', () => { paused = false; });
+    track.addEventListener('touchstart', () => { paused = true; }, { passive: true });
+    track.addEventListener('touchend', () => { setTimeout(() => { paused = false; }, 2000); }, { passive: true });
+
+    // Disable scroll-snap and overflow while animating (we use transform instead)
+    track.style.overflowX = 'visible';
+    track.style.scrollSnapType = 'none';
+
+    raf = requestAnimationFrame(tick);
+  }
+</script>
