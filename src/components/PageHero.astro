@@ -1,6 +1,8 @@
 ---
 /**
- * Editorial page header for inner pages: asymmetric text + tall image.
+ * Editorial page header for inner pages.
+ * variant="editorial" (default): asymmetric text + tall image.
+ * variant="fullscreen": 100svh full-bleed image with centred title overlay.
  */
 import type { ImageMetadata } from 'astro';
 import type { Crumb } from '@/lib/seo';
@@ -14,30 +16,134 @@ interface Props {
   position?: string;
   crumbs?: Crumb[];
   tone?: 'light' | 'alt';
+  variant?: 'editorial' | 'fullscreen';
 }
-const { eyebrow, image, imageAlt = '', position, crumbs, tone = 'light' } = Astro.props;
+const { eyebrow, image, imageAlt = '', position, crumbs, tone = 'light', variant = 'editorial' } = Astro.props;
 ---
 
-<section class:list={['phero', tone === 'alt' && 'section--alt', !image && 'phero--text']}>
-  <div class="container phero__grid">
-    <div class="phero__text">
-      {crumbs && <Breadcrumbs crumbs={crumbs} />}
-      {eyebrow && <p class="eyebrow phero__eyebrow" data-reveal>{eyebrow}</p>}
-      <div class="phero__title" data-reveal style="--delay:.08s"><slot /></div>
-      <div class="phero__lead" data-reveal style="--delay:.16s"><slot name="lead" /></div>
-      <div class="phero__cta" data-reveal style="--delay:.24s"><slot name="cta" /></div>
+{variant === 'fullscreen' ? (
+  <section class="fhero on-dark">
+    {image && (
+      <div class="fhero__bg">
+        <Img src={image} alt={imageAlt} priority sizes="100vw" position={position} />
+      </div>
+    )}
+    <div class="fhero__overlay" aria-hidden="true"></div>
+    <div class="fhero__content">
+      {eyebrow && <p class="eyebrow fhero__eyebrow" data-reveal>{eyebrow}</p>}
+      <div class="fhero__title" data-reveal style="--delay:.08s"><slot /></div>
+      <div class="fhero__lead" data-reveal style="--delay:.16s"><slot name="lead" /></div>
+      <div class="fhero__cta" data-reveal style="--delay:.24s"><slot name="cta" /></div>
     </div>
-    {
-      image && (
-        <div class="phero__media media" data-reveal="image">
-          <Img src={image} alt={imageAlt} priority sizes="(min-width: 900px) 45vw, 100vw" position={position} />
-        </div>
-      )
-    }
-  </div>
-</section>
+    <div class="fhero__scroll" aria-hidden="true"></div>
+  </section>
+) : (
+  <section class:list={['phero', tone === 'alt' && 'section--alt', !image && 'phero--text']}>
+    <div class="container phero__grid">
+      <div class="phero__text">
+        {crumbs && <Breadcrumbs crumbs={crumbs} />}
+        {eyebrow && <p class="eyebrow phero__eyebrow" data-reveal>{eyebrow}</p>}
+        <div class="phero__title" data-reveal style="--delay:.08s"><slot /></div>
+        <div class="phero__lead" data-reveal style="--delay:.16s"><slot name="lead" /></div>
+        <div class="phero__cta" data-reveal style="--delay:.24s"><slot name="cta" /></div>
+      </div>
+      {
+        image && (
+          <div class="phero__media media" data-reveal="image">
+            <Img src={image} alt={imageAlt} priority sizes="(min-width: 900px) 45vw, 100vw" position={position} />
+          </div>
+        )
+      }
+    </div>
+  </section>
+)}
 
 <style>
+  /* ── Fullscreen variant ── */
+  .fhero {
+    position: relative;
+    height: 80svh;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-align: center;
+  }
+  .fhero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .fhero__bg :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .fhero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      to top,
+      rgba(12, 9, 7, 0.72) 0%,
+      rgba(12, 9, 7, 0.38) 50%,
+      rgba(12, 9, 7, 0.22) 100%
+    );
+  }
+  .fhero__content {
+    position: relative;
+    z-index: 2;
+    padding-inline: var(--space-m);
+    max-width: 56rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-s);
+  }
+  .fhero__eyebrow {
+    color: var(--color-accent-on-dark);
+    letter-spacing: 0.14em;
+  }
+  .fhero__title :global(h1) {
+    font-size: clamp(2.8rem, 5vw + 1rem, 6.5rem);
+    line-height: 1.05;
+    color: #fff;
+    max-width: 18ch;
+  }
+  .fhero__title :global(h1 em) {
+    font-style: italic;
+    color: var(--color-accent-on-dark);
+  }
+  .fhero__lead :global(p) {
+    color: rgba(255 255 255 / 0.78);
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    max-width: 38rem;
+    line-height: 1.65;
+  }
+  .fhero__cta:not(:empty) {
+    margin-top: var(--space-m);
+  }
+  /* scroll hint */
+  .fhero__scroll {
+    position: absolute;
+    bottom: var(--space-l);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.55), rgba(255,255,255,0));
+    animation: scrollhint 2s ease-in-out infinite;
+  }
+  @keyframes scrollhint {
+    0%, 100% { opacity: 0.4; transform: translateX(-50%) scaleY(1); }
+    50%       { opacity: 1;   transform: translateX(-50%) scaleY(1.15); }
+  }
+
+  /* ── Editorial variant ── */
   .phero {
     padding-block: var(--space-xl) var(--section);
   }

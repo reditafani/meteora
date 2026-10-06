@@ -35,8 +35,8 @@ const benefits = it
 const faqs = faqFor('partner');
 ---
 
-<BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('partners')} current="partners" breadcrumbs={crumbs} schema={[faqSchema(faqs, lang)]}>
-  <PageHero eyebrow={it ? 'Per wedding planner, location e catering' : 'For planners, venues and caterers'} image={hall} imageAlt={it ? 'Tavolo imperiale in un salone affrescato' : 'Long table in a frescoed hall'} crumbs={crumbs}>
+<BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('partners')} current="partners" breadcrumbs={crumbs} schema={[faqSchema(faqs, lang)]} headerTheme="overlay">
+  <PageHero variant="fullscreen" eyebrow={it ? 'Per wedding planner, location e catering' : 'For planners, venues and caterers'} image={hall} imageAlt={it ? 'Tavolo imperiale in un salone affrescato' : 'Long table in a frescoed hall'} crumbs={crumbs}>
     <h1>{it ? <>Il vostro partner <em>di fiducia</em> per il bar.</> : <>Your trusted <em>bar catering</em> partner.</>}</h1>
     <p slot="lead" class="lead muted">
       {it

@@ -6,10 +6,8 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import SectionHeading from '@/components/SectionHeading.astro';
 import BarCard from '@/components/BarCard.astro';
-import CTABand from '@/components/CTABand.astro';
 import { bars, barSizes } from '@/data/bars';
 import hero from '@/assets/images/details/champagne-bowl.jpg';
-import band from '@/assets/images/bars/golden-marble-night.jpg';
 
 interface Props {
   lang: Lang;
@@ -32,8 +30,8 @@ const schema = [{
 }];
 ---
 
-<BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('bars')} current="bars" breadcrumbs={crumbs} schema={schema}>
-  <PageHero eyebrow={it ? 'I nostri banchi' : 'The Bar Collection'} image={hero} imageAlt={it ? 'Champagne bowl su banco in marmo dorato' : 'Champagne bowl on a golden marble bar'} crumbs={crumbs}>
+<BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('bars')} current="bars" breadcrumbs={crumbs} schema={schema} headerTheme="overlay">
+  <PageHero variant="fullscreen" eyebrow={it ? 'I nostri banchi' : 'The Bar Collection'} image={hero} imageAlt={it ? 'Champagne bowl su banco in marmo dorato' : 'Champagne bowl on a golden marble bar'} crumbs={crumbs}>
     <h1>{it ? <>Il bar, <em>come scenografia.</em></> : <>The bar, <em>as scenography.</em></>}</h1>
     <p slot="lead" class="lead muted">
       {it
@@ -59,10 +57,7 @@ const schema = [{
     </div>
   </section>
 
-  <CTABand lang={lang} image={band} imageAlt={it ? 'Banco dorato di sera' : 'Golden bar at night'} trackLabel="bars_band">
-    <h2>{it ? <>Quale banco <em>per il vostro evento?</em></> : <>Which bar <em>for your event?</em></>}</h2>
-    <Fragment slot="lead">{it ? 'Vi consigliamo modello e misura in base a location, stile e numero di ospiti.' : 'We recommend the model and size for your venue, style and guest count.'}</Fragment>
-  </CTABand>
+
 </BaseLayout>
 
 <style>
