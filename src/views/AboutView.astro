@@ -5,7 +5,7 @@ import { t } from '@/i18n/ui';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import SectionHeading from '@/components/SectionHeading.astro';
-import EditorialSection from '@/components/EditorialSection.astro';
+import Img from '@/components/Img.astro';
 import { site } from '@/data/site';
 import terrace from '@/assets/images/bars/terrace-panorama.jpg';
 import mint from '@/assets/images/details/mint-coupes.jpg';
@@ -100,20 +100,24 @@ const serves = it
 
   <!-- LA NOSTRA STORIA -->
   <section class="section" aria-labelledby="a-story">
-    <div class="container">
-      <EditorialSection
-        image={terrace}
-        imageAlt={it ? 'Banco bar davanti a una vetrata panoramica' : 'Bar in front of a panoramic window'}
-        secondImage={mint}
-        secondAlt={it ? 'Coppe con menta e frutti rossi' : 'Coupes with mint and red berries'}
-        ratio="landscape"
-      >
+    <div class="container story">
+      <div class="story__heading">
         <p class="eyebrow" data-reveal>{it ? 'La nostra storia' : 'Our story'}</p>
         <h2 id="a-story" data-reveal>
           {it
             ? <>Non offriamo semplicemente <em>un servizio bar.</em></>
             : <>We don't simply offer <em>a bar service.</em></>}
         </h2>
+      </div>
+      <div class="story__media">
+        <div class="media story__img" data-reveal="image">
+          <Img src={terrace} alt={it ? 'Banco bar davanti a una vetrata panoramica' : 'Bar in front of a panoramic window'} sizes="(min-width: 900px) 50vw, 100vw" />
+        </div>
+        <div class="media story__img" data-reveal="image" style="--delay:.08s">
+          <Img src={mint} alt={it ? 'Coppe con menta e frutti rossi' : 'Coupes with mint and red berries'} sizes="(min-width: 900px) 50vw, 100vw" />
+        </div>
+      </div>
+      <div class="story__text">
         <p class="muted" data-reveal>
           {it
             ? "Portiamo professionalità, metodo ed esperienza scenografica con grande attenzione all'aspetto estetico e visivo dell'allestimento. Conosciamo a fondo le dinamiche di matrimoni, eventi corporate e privati, perché le viviamo da anni dall'interno."
@@ -129,7 +133,7 @@ const serves = it
             ? "Realizziamo servizi bar e cocktail experience per privati, aziende e professionisti del settore dalla nostra sede di Montecatini Terme, operando in tutta Italia e all'estero."
             : 'We create bar services and cocktail experiences for private clients, companies and event professionals from our base in Montecatini Terme, operating across Italy and abroad.'}
         </p>
-      </EditorialSection>
+      </div>
     </div>
   </section>
 
@@ -180,6 +184,36 @@ const serves = it
 <style>
   .section--tight :global(.sh) {
     margin-bottom: var(--space-m);
+  }
+
+  /* ── Story ── */
+  .story {
+    display: grid;
+    gap: var(--space-l);
+  }
+  .story__heading h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 1.2rem + 3vw, 4rem);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-top: var(--space-s);
+  }
+  .story__heading h2 em {
+    font-style: italic;
+    color: var(--color-accent-ink);
+  }
+  .story__media {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-m);
+  }
+  .story__img {
+    aspect-ratio: 4 / 3;
+  }
+  .story__text {
+    display: grid;
+    gap: var(--space-m);
+    max-width: 52rem;
   }
 
   .values {
