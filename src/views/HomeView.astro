@@ -15,12 +15,10 @@ import PersonalizationSection from '@/components/PersonalizationSection.astro';
 import TowerSection from '@/components/TowerSection.astro';
 import ExperienceComparison from '@/components/ExperienceComparison.astro';
 import DestinationSection from '@/components/DestinationSection.astro';
-import PortfolioGrid from '@/components/PortfolioGrid.astro';
 import PartnerCTA from '@/components/PartnerCTA.astro';
 import Testimonial from '@/components/Testimonial.astro';
 import InstagramStrip from '@/components/InstagramStrip.astro';
 import CTABand from '@/components/CTABand.astro';
-import { events } from '@/data/events';
 import { serviceSchema } from '@/lib/seo';
 import hero from '@/assets/images/bars/golden-mirror-sunset.jpg';
 import villa from '@/assets/images/bars/pure-white-villa.jpg';
@@ -141,7 +139,7 @@ const schema = [
   <!-- 6 · BAR COLLECTION -->
   <section class="section" aria-labelledby="bars-title">
     <div class="container">
-      <SectionHeading eyebrow={it ? 'I nostri banchi' : 'The Bar Collection'} align="left" id="bars-title">
+      <SectionHeading eyebrow={it ? 'I nostri banchi' : 'The Bar Collection'} align="split" id="bars-title" class="bars-heading">
         {it ? <>La collezione <em>dei banchi.</em></> : <>The bar <em>collection.</em></>}
         <Fragment slot="lead">
           {it
@@ -195,22 +193,6 @@ const schema = [
     </div>
   </section>
 
-  <!-- 12 · PORTFOLIO -->
-  <section class="section section--alt" aria-labelledby="pf-title">
-    <div class="container">
-      <SectionHeading eyebrow={it ? 'Eventi' : 'Events'} align="left" id="pf-title">
-        {it ? <>Ogni evento <em>è unico e irripetibile.</em></> : <>Every event is <em>unique and unrepeatable.</em></>}
-        <Fragment slot="lead">
-          {it ? 'Ciò che realizziamo resta impresso nelle immagini e nei ricordi.' : 'What we create remains in the images, and in the memories.'}
-        </Fragment>
-      </SectionHeading>
-      <PortfolioGrid lang={lang} items={events} limit={3} />
-      <div class="cta-row section-cta">
-        <a class="btn" href={url('events', lang)}>{it ? 'Tutti gli eventi' : 'All events'}</a>
-      </div>
-    </div>
-  </section>
-
   <Testimonial lang={lang} />
 
   <!-- 13 · PARTNERS -->
@@ -224,6 +206,13 @@ const schema = [
 </BaseLayout>
 
 <style>
+  :global(.bars-heading) {
+    margin-bottom: var(--space-m);
+  }
+  :global(.bars-heading .sh__lead) {
+    font-size: var(--fs-body);
+    line-height: 1.65;
+  }
   .home-hero__title {
     font-size: clamp(2.75rem, 1.1rem + 4.6vw, 6.75rem);
     line-height: 0.96;

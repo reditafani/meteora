@@ -1,27 +1,19 @@
 ---
 /**
- * Selected images linking to Instagram — visual proof without an embedded
- * feed (no third-party scripts, no tracking, no performance cost).
+ * Live Instagram feed via Behold.so widget.
+ * Replace BEHOLD_FEED_ID with the real ID from behold.so.
  */
 import type { Lang } from '@/i18n/routes';
 import { site } from '@/data/site';
-import Img from './Img.astro';
-import a from '@/assets/images/towers/espresso-martini-tower.jpg';
-import b from '@/assets/images/bars/golden-mirror.jpg';
-import c from '@/assets/images/details/mint-coupes.jpg';
-import d from '@/assets/images/bars/night-lounge.jpg';
-import e from '@/assets/images/towers/coupe-tower-sunset.jpg';
-import f from '@/assets/images/details/champagne-bowl.jpg';
-import g from '@/assets/images/bars/golden-marble-night.jpg';
-import h from '@/assets/images/team/bartender-pour.jpg';
-import i from '@/assets/images/bars/pure-white-villa.jpg';
+
+/* ─── Replace this placeholder with the feed ID from behold.so ─── */
+const BEHOLD_FEED_ID = 'BEHOLD_FEED_ID';
 
 interface Props {
   lang: Lang;
 }
 const { lang } = Astro.props;
 const it = lang === 'it';
-const imgs = [a, b, c, d, e, f, g, h, i];
 ---
 
 <section class="section ig" aria-labelledby="ig-title">
@@ -35,20 +27,14 @@ const imgs = [a, b, c, d, e, f, g, h, i];
       </div>
       <a class="link" href={site.instagram.url} target="_blank" rel="noopener" data-track="instagram_click" data-track-label="strip_header">{site.instagram.handle}</a>
     </div>
-    <ul class="ig__grid" role="list">
-      {
-        imgs.map((src, i) => (
-          <li data-reveal style={`--delay:${i * 0.05}s`}>
-            <a href={site.instagram.url} target="_blank" rel="noopener" class="media" data-track="instagram_click" data-track-label={`strip_${i + 1}`}>
-              <Img src={src} alt="" sizes="(min-width: 960px) 33vw, 33vw" widths={[360, 540, 720, 1080]} />
-              <span class="visually-hidden">{it ? `Apri Instagram ${site.instagram.handle}` : `Open Instagram ${site.instagram.handle}`}</span>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+
+    <div class="ig__feed">
+      <behold-widget feed-id={BEHOLD_FEED_ID}></behold-widget>
+    </div>
   </div>
 </section>
+
+<script type="module" src="https://w.behold.so/widget.js"></script>
 
 <style>
   .ig__head {
@@ -67,22 +53,7 @@ const imgs = [a, b, c, d, e, f, g, h, i];
     font-style: italic;
     color: var(--color-accent-ink);
   }
-  .ig__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4px;
-  }
-  .ig__grid a {
-    display: block;
-    aspect-ratio: 1;
-  }
-  .ig__grid :global(img) {
-    transition:
-      transform 1.2s var(--ease-out),
-      opacity 0.4s;
-  }
-  .ig__grid a:hover :global(img) {
-    transform: scale(1.05);
-    opacity: 0.9;
+  .ig__feed {
+    width: 100%;
   }
 </style>

@@ -53,7 +53,7 @@
   --space-l: 2.5rem;
   --space-xl: clamp(3rem, 2rem + 4vw, 6rem);
   --space-2xl: clamp(4.5rem, 3rem + 7vw, 10rem);
-  --section: clamp(5rem, 3.5rem + 7vw, 11rem);
+  --section: clamp(3.5rem, 2rem + 4vw, 7rem);
 
   --gutter: clamp(1rem, 0.4rem + 3.2vw, 3.5rem);
   --max: 1440px;
