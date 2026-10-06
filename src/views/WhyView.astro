@@ -8,151 +8,142 @@ import PageHero from '@/components/PageHero.astro';
 import SectionHeading from '@/components/SectionHeading.astro';
 import EditorialSection from '@/components/EditorialSection.astro';
 import WhyGrid from '@/components/WhyGrid.astro';
-import IceSection from '@/components/IceSection.astro';
-import CTABand from '@/components/CTABand.astro';
 import hero from '@/assets/images/bars/golden-marble-night.jpg';
-import terrace from '@/assets/images/bars/terrace-panorama.jpg';
-import mint from '@/assets/images/details/mint-coupes.jpg';
 import villa from '@/assets/images/bars/pure-white-villa.jpg';
 import strain from '@/assets/images/team/bartender-strain.jpg';
-import band from '@/assets/images/bars/silver-reflection.jpg';
 
-interface Props {
-  lang: Lang;
-}
+interface Props { lang: Lang }
 const { lang } = Astro.props;
 const it = lang === 'it';
 const s = t(lang);
 const meta = it
   ? {
-      title: `Perché Meteora Events | Chi Siamo e Come Lavoriamo`,
-      description: `Oltre ${site.yearsExperience} anni di esperienza nel beverage per eventi di alto livello. Bartender qualificati, servizio pulito, autonomia e discrezione. Scopri chi siamo e perché scegliere Meteora Events.`,
+      title: 'Perché Meteora Events | Il Partner Affidabile per il Tuo Evento',
+      description: `Bartender qualificati, pulizia visiva impeccabile, rispetto per le location e massima discrezione. Scopri perché oltre ${site.yearsExperience} anni di eventi ci distinguono.`,
     }
   : {
-      title: 'Why Meteora Events | About Us and How We Work',
-      description: `More than ${site.yearsExperience} years of beverage expertise for high-level events. Qualified bartenders, a clean service, independence and discretion. Discover who we are and why clients choose Meteora Events.`,
+      title: 'Why Meteora Events | Your Reliable Bar Catering Partner',
+      description: `Qualified bartenders, impeccable visual cleanliness, respect for venues and complete discretion. Discover why ${site.yearsExperience}+ years of events set us apart.`,
     };
 const crumbs = [
   { name: s.breadcrumbHome, href: url('home', lang) },
   { name: it ? 'Perché Meteora' : 'Why Meteora', href: url('why', lang) },
 ];
-const values = it
-  ? [
-      ['Esperienza', `Oltre ${site.yearsExperience} anni di esperienza operativa nel settore eventi: matrimoni, corporate ed eventi privati.`],
-      ['Metodo', "Ogni servizio segue un metodo preciso, dall'allestimento allo smontaggio."],
-      ['Cultura visiva', "Grande attenzione all'aspetto estetico e visivo dell'allestimento."],
-      ['Ospitalità', 'Professionalità e discrezione, con ogni ospite.'],
-    ]
-  : [
-      ['Experience', `More than ${site.yearsExperience} years of operational experience in events: weddings, corporate and private.`],
-      ['Method', 'Every service follows a precise method, from setup to load-out.'],
-      ['Visual culture', 'Great attention to the aesthetic and visual side of every setup.'],
-      ['Hospitality', 'Professionalism and discretion, with every guest.'],
-    ];
 ---
 
-<BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('why')} current="why" breadcrumbs={crumbs}>
-  <PageHero eyebrow={it ? 'Perché Meteora' : 'Why Meteora'} image={hero} imageAlt={it ? 'Banco dorato su pavimento chevron' : 'Golden bar on a chevron floor'} crumbs={crumbs}>
-    <h1>{it ? <>Non vi affidate a noi per servire drink. <em>Vi affidate a noi perché il bar diventi parte dell'evento.</em></> : <>You don't hire us to serve drinks. <em>You hire us because the bar becomes part of the event.</em></>}</h1>
+<BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('why')} current="why" breadcrumbs={crumbs} headerTheme="overlay">
+
+  <!-- HERO -->
+  <PageHero
+    variant="fullscreen"
+    eyebrow={it ? 'Perché Meteora' : 'Why Meteora'}
+    image={hero}
+    imageAlt={it ? 'Banco dorato su pavimento chevron in una sala elegante' : 'Golden bar on a chevron floor in an elegant room'}
+    crumbs={crumbs}
+  >
+    <h1>
+      {it
+        ? <>Il tuo partner affidabile. <em>Prima, durante e dopo l'evento.</em></>
+        : <>Your reliable partner. <em>Before, during and after the event.</em></>}
+    </h1>
     <p slot="lead" class="lead muted">
       {it
-        ? `Meteora Events è il partner specializzato nella gestione del servizio beverage per eventi di alto livello. Nasciamo da oltre ${site.yearsExperience} anni di esperienza operativa negli eventi.`
-        : `Meteora Events is the partner specialised in managing beverage services for high-level events. We grew out of more than ${site.yearsExperience} years of operational experience in events.`}
+        ? "Non vi affidate a noi solo per servire drink. Vi affidate a noi perché il bar diventi parte dell'evento: impeccabile nel servizio, preciso nella scenografia, discreto con ogni ospite."
+        : "You don't hire us just to serve drinks. You hire us because the bar becomes part of the event — impeccable in service, precise in scenography, discreet with every guest."}
     </p>
   </PageHero>
 
-  <!-- Chi siamo / La nostra storia -->
-  <section class="section" aria-labelledby="why-story">
+  <!-- I 9 MOTIVI: WhyGrid -->
+  <section class="section" aria-labelledby="why-reasons">
     <div class="container">
-      <EditorialSection image={terrace} imageAlt={it ? 'Banco bar davanti a una vetrata panoramica' : 'Bar in front of a panoramic window'} secondImage={mint} secondAlt={it ? 'Coppe con menta e frutti rossi' : 'Coupes with mint and red berries'} ratio="landscape">
-        <p class="eyebrow" data-reveal>{it ? 'La nostra storia' : 'Our story'}</p>
-        <h2 id="why-story" data-reveal>{it ? <>Non offriamo semplicemente <em>un servizio bar.</em></> : <>We don't simply offer <em>a bar service.</em></>}</h2>
-        <p class="muted" data-reveal>
+      <SectionHeading eyebrow={it ? 'I nostri impegni' : 'Our commitments'} align="split" id="why-reasons">
+        {it
+          ? <>Nove motivi <em>per sceglierci.</em></>
+          : <>Nine reasons <em>to choose us.</em></>}
+        <Fragment slot="lead">
           {it
-            ? "Portiamo professionalità, metodo ed esperienza scenografica, con grande attenzione all'aspetto estetico e visivo dell'allestimento. Conosciamo a fondo le dinamiche di matrimoni, eventi corporate e privati, perché le viviamo da anni dall'interno."
-            : 'We bring professionalism, method and scenographic experience, with great attention to the aesthetic and visual side of the setup. We know the dynamics of weddings, corporate and private events inside out, because we have lived them for years.'}
-        </p>
-        <p class="lead" data-reveal>
-          {it
-            ? "Ogni evento è unico e irripetibile, e ciò che viene realizzato resta impresso nelle immagini e nei ricordi. Per questo puntiamo all'eccellenza, nel servizio e nell'impatto visivo."
-            : "Every event is unique and unrepeatable, and what is created remains in the images and in the memories. That is why we aim for excellence, in service and in visual impact."}
-        </p>
-      </EditorialSection>
-    </div>
-  </section>
-
-  <!-- Come lavoriamo / Valori -->
-  <section class="section section--alt" aria-labelledby="why-values">
-    <div class="container">
-      <SectionHeading eyebrow={it ? 'Come lavoriamo' : 'How we work'} id="why-values">
-        {it ? <>Quattro parole, <em>ogni volta.</em></> : <>Four words, <em>every time.</em></>}
+            ? "Ogni punto nasce da un'esperienza reale sul campo, affinata in oltre 14 anni di eventi."
+            : 'Each point comes from real experience in the field, refined over 14+ years of events.'}
+        </Fragment>
       </SectionHeading>
-      <ol class="values" role="list">
-        {values.map(([k, v], i) => (
-          <li data-reveal style={`--delay:${i * 0.06}s`}>
-            <span class="values__k">{k}</span>
-            <p class="muted">{v}</p>
-          </li>
-        ))}
-      </ol>
-    </div>
-  </section>
-
-  <!-- I motivi: WhyGrid -->
-  <section class="section" aria-label={it ? 'I motivi' : 'The reasons'}>
-    <div class="container">
       <WhyGrid lang={lang} />
     </div>
   </section>
 
-  <!-- Pulizia di servizio -->
+  <!-- PULIZIA DI SERVIZIO -->
   <section class="section section--alt" aria-labelledby="why-clean">
     <div class="container">
-      <EditorialSection image={villa} imageAlt={it ? 'Banco Pure White in giardino, senza nulla a vista' : 'Pure White bar in a garden, nothing out of place'} secondImage={strain} secondAlt={it ? 'Bartender al lavoro' : 'Bartender at work'} ratio="landscape">
+      <EditorialSection
+        image={villa}
+        imageAlt={it ? 'Banco Pure White in giardino, senza nulla a vista' : 'Pure White bar in a garden, nothing out of place'}
+        secondImage={strain}
+        secondAlt={it ? 'Bartender al lavoro con bicchieri impeccabili' : 'Bartender at work with impeccable glassware'}
+        ratio="landscape"
+      >
         <p class="eyebrow" data-reveal>{it ? 'Pulizia di servizio' : 'A clean service'}</p>
-        <h2 id="why-clean" data-reveal>{it ? <>Igienicamente impeccabile. <em>Visivamente raffinato.</em></> : <>Hygienically impeccable. <em>Visually refined.</em></>}</h2>
+        <h2 id="why-clean" data-reveal>
+          {it
+            ? <>Igienicamente impeccabile. <em>Visivamente raffinato.</em></>
+            : <>Hygienically impeccable. <em>Visually refined.</em></>}
+        </h2>
         <p class="muted" data-reveal>
           {it
-            ? 'Chi si avvicina al banco durante il servizio non vedrà contenitori termici, casse o ceste di bicchieri. Ogni rifornimento di scorte, ghiaccio e bicchieri avviene a vassoio, con discrezione.'
-            : 'Guests who approach the bar during service will never see cool boxes, storage crates or glass racks. Every restock of supplies, ice and glassware is carried discreetly by tray.'}
+            ? 'Chi si avvicina al banco durante il servizio non vedrà mai contenitori termici, casse o ceste di bicchieri. Ogni rifornimento di scorte, ghiaccio e bicchieri avviene a vassoio, con discrezione, lontano dagli occhi degli ospiti.'
+            : "Guests who approach the bar will never see cool boxes, storage crates or glass racks. Every restock of supplies, ice and glassware is carried discreetly by tray, well away from guests' eyes."}
+        </p>
+        <p class="muted" data-reveal>
+          {it
+            ? 'Massimo rispetto per ville e location: massima cura di mura, pavimenti, arredi e verde sia in allestimento che a fine servizio. Lasciamo tutto come lo abbiamo trovato — o meglio.'
+            : 'The utmost respect for villas and venues: care for walls, floors, furniture and gardens both during setup and at the end of service. We leave everything as we found it — or better.'}
         </p>
       </EditorialSection>
     </div>
   </section>
 
-  <IceSection lang={lang} showTypes={false} />
-  <CTABand lang={lang} image={band} imageAlt={it ? 'Banco Silver Reflection' : 'Silver Reflection bar'} trackLabel="why_band" />
+  <!-- PER IL CATERING -->
+  <section class="section" aria-labelledby="why-catering">
+    <div class="container">
+      <SectionHeading eyebrow={it ? 'Per il catering' : 'For the catering team'} align="split" id="why-catering">
+        {it
+          ? <>Un pensiero <em>in meno.</em></>
+          : <>One less thing <em>to manage.</em></>}
+        <Fragment slot="lead">
+          {it
+            ? 'Operiamo in completa autonomia: non usiamo cucina, staff o attrezzature del catering. Il catering può chiudere la cena con serenità, caricare il materiale e liberare lo staff senza aspettare la fine del dopocena — decisivo in alta stagione, quando gli eventi si concentrano nel weekend e le ore di riposo sono poche.'
+            : 'We operate completely independently: we don\'t use the caterer\'s kitchen, staff or equipment. The catering team can close dinner service calmly, load out and release their staff without waiting for the after-party to end — decisive in high season, when events concentrate at weekends and rest hours are scarce.'}
+        </Fragment>
+      </SectionHeading>
+      <div class="catering-facts">
+        {(it
+          ? ['Servizio completamente indipendente', 'Staff e attrezzatura propria', 'Coordinamento con gli altri fornitori', 'Pulizia a fine servizio inclusa']
+          : ['Fully independent service', 'Own staff and equipment', 'Coordination with other suppliers', 'End-of-service clean-up included']
+        ).map((f) => <p class="catering-fact" data-reveal>{f}</p>)}
+      </div>
+    </div>
+  </section>
+
+
+
 </BaseLayout>
 
 <style>
-  .values {
+  .catering-facts {
+    margin-top: var(--space-xl);
     display: grid;
-    gap: var(--space-l);
+    gap: 1px;
+    background: var(--color-border);
   }
-  .values li {
-    border-top: 1px solid var(--color-border);
-    padding-top: var(--space-m);
-  }
-  .values__k {
-    display: block;
+  .catering-fact {
+    background: var(--color-background);
+    padding: var(--space-m) var(--space-l);
     font-family: var(--font-display);
+    font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
     font-style: italic;
-    font-size: clamp(2rem, 1.4rem + 2vw, 3rem);
-    line-height: 1.1;
-    margin-bottom: 0.5rem;
+    font-weight: 300;
   }
-  .values p {
-    font-size: var(--fs-small);
-    max-width: 22rem;
-  }
-  @media (min-width: 800px) {
-    .values {
+  @media (min-width: 700px) {
+    .catering-facts {
       grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media (min-width: 1200px) {
-    .values {
-      grid-template-columns: repeat(4, 1fr);
     }
   }
 </style>

@@ -15,6 +15,7 @@ export const site = {
     url: 'https://www.instagram.com/meteoraevents/',
   },
   address: {
+    street: 'Via Nofretti 21',
     locality: 'Montecatini Terme',
     postalCode: '51016',
     province: 'PT',
@@ -34,9 +35,9 @@ export const site = {
    * (ragione sociale, P.IVA, sede legale). Leave empty until supplied.
    */
   legal: {
-    companyName: '',
-    vatNumber: '',
-    registeredOffice: '',
+    companyName: 'Meteora Events',
+    vatNumber: '02132520475',
+    registeredOffice: 'Via Nofretti 21, Montecatini Terme (PT)',
   },
 } as const;
 

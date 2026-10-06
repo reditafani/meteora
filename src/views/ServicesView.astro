@@ -9,12 +9,10 @@ import Img from '@/components/Img.astro';
 import ExperienceComparison from '@/components/ExperienceComparison.astro';
 import TowerSection from '@/components/TowerSection.astro';
 import FAQ from '@/components/FAQ.astro';
-import CTABand from '@/components/CTABand.astro';
 import { services } from '@/data/services';
 import { faqFor } from '@/data/faq';
 import { faqSchema, serviceSchema } from '@/lib/seo';
 import hero from '@/assets/images/bars/golden-marble-night.jpg';
-import band from '@/assets/images/bars/golden-mirror.jpg';
 
 interface Props {
   lang: Lang;
@@ -36,8 +34,8 @@ const schema = [
 ];
 ---
 
-<BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('services')} current="services" breadcrumbs={crumbs} schema={schema}>
-  <PageHero eyebrow={it ? 'Servizi' : 'Services'} image={hero} imageAlt={it ? 'Banco dorato su pavimento chevron' : 'Golden bar on a chevron floor'} crumbs={crumbs}>
+<BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('services')} current="services" breadcrumbs={crumbs} schema={schema} headerTheme="overlay">
+  <PageHero variant="fullscreen" eyebrow={it ? 'Servizi' : 'Services'} image={hero} imageAlt={it ? 'Banco dorato su pavimento chevron' : 'Golden bar on a chevron floor'} crumbs={crumbs}>
     <h1>{it ? <>Dall’aperitivo <em>all’ultimo drink.</em></> : <>From aperitivo <em>to the last drink.</em></>}</h1>
     <p slot="lead" class="lead muted">
       {it
@@ -91,7 +89,7 @@ const schema = [
     </div>
   </section>
 
-  <CTABand lang={lang} image={band} imageAlt={it ? 'Banco Golden Mirror' : 'Golden Mirror bar'} trackLabel="services_band" />
+
 </BaseLayout>
 
 <style>

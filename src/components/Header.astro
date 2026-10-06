@@ -2,10 +2,12 @@
 import type { Alternates, Lang } from '@/i18n/routes';
 import { url } from '@/i18n/routes';
 import { t } from '@/i18n/ui';
+import type { Crumb } from '@/lib/seo';
 import Logo from './Logo.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import MobileMenu from './MobileMenu.astro';
 import Icon from './Icon.astro';
+import Breadcrumbs from './Breadcrumbs.astro';
 
 interface Props {
   lang: Lang;
@@ -13,8 +15,9 @@ interface Props {
   /** 'overlay' = transparent over a dark hero until scrolled */
   theme?: 'overlay' | 'solid';
   current?: string;
+  breadcrumbs?: Crumb[];
 }
-const { lang, alternates, theme = 'solid', current } = Astro.props;
+const { lang, alternates, theme = 'solid', current, breadcrumbs } = Astro.props;
 const s = t(lang);
 ---
 
@@ -36,6 +39,11 @@ const s = t(lang);
       </button>
     </div>
   </div>
+  {breadcrumbs && breadcrumbs.length > 1 && (
+    <div class="container site-header__breadcrumbs">
+      <Breadcrumbs crumbs={breadcrumbs} tone={theme === 'overlay' ? 'dark' : 'light'} />
+    </div>
+  )}
 </header>
 <MobileMenu lang={lang} alternates={alternates} current={current} />
 
@@ -148,6 +156,21 @@ const s = t(lang);
     width: 2.75rem;
     height: 2.75rem;
     margin-right: -0.6rem;
+  }
+  .site-header__breadcrumbs {
+    padding-bottom: 0.55rem;
+    opacity: 1;
+    transition: opacity 0.35s var(--ease);
+  }
+  .site-header[data-scrolled] .site-header__breadcrumbs {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .site-header[data-theme='overlay']:not([data-scrolled]) .site-header__breadcrumbs :global(.crumbs) {
+    color: rgba(255 255 255 / 0.65);
+  }
+  .site-header[data-theme='overlay']:not([data-scrolled]) .site-header__breadcrumbs :global(.crumbs a:hover) {
+    color: rgba(255 255 255 / 0.95);
   }
   @media (min-width: 768px) {
     .site-header__cta {
