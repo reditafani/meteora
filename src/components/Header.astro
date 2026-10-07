@@ -95,7 +95,7 @@ const s = t(lang);
   }
   .site-header__inner {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-between;
     gap: var(--space-m);
     height: var(--header-h);
@@ -161,8 +161,12 @@ const s = t(lang);
   .site-header__crumbs {
     display: none;
     flex: 1;
+    align-items: center;
     overflow: hidden;
     padding-left: var(--space-m);
+  }
+  .site-header__crumbs :global(.crumbs) {
+    line-height: 1;
   }
   .site-header__crumbs :global(.crumbs ol) {
     flex-wrap: nowrap;
@@ -177,7 +181,7 @@ const s = t(lang);
   }
   @media (min-width: 640px) {
     .site-header__crumbs {
-      display: block;
+      display: flex;
     }
   }
   @media (min-width: 768px) {
