@@ -41,7 +41,6 @@ const { eyebrow, image, imageAlt = '', position, crumbs, tone = 'light', variant
   <section class:list={['phero', tone === 'alt' && 'section--alt', !image && 'phero--text']}>
     <div class="container phero__grid">
       <div class="phero__text">
-        {crumbs && <Breadcrumbs crumbs={crumbs} />}
         {eyebrow && <p class="eyebrow phero__eyebrow" data-reveal>{eyebrow}</p>}
         <div class="phero__title" data-reveal style="--delay:.08s"><slot /></div>
         <div class="phero__lead" data-reveal style="--delay:.16s"><slot name="lead" /></div>
@@ -151,9 +150,6 @@ const { eyebrow, image, imageAlt = '', position, crumbs, tone = 'light', variant
     display: grid;
     gap: var(--space-l);
     align-items: end;
-  }
-  .phero__text > :global(.crumbs) {
-    margin-bottom: var(--space-l);
   }
   .phero__eyebrow {
     margin-bottom: var(--space-m);
