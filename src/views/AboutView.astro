@@ -32,20 +32,6 @@ const crumbs = [
   { name: it ? 'Chi siamo' : 'About us', href: url('about', lang) },
 ];
 
-const values = it
-  ? [
-      ['Esperienza', `Oltre ${site.yearsExperience} anni di esperienza operativa: matrimoni, corporate ed eventi privati.`],
-      ['Metodo', "Ogni servizio segue un metodo preciso, dall'allestimento allo smontaggio."],
-      ['Cultura visiva', "Grande attenzione all'aspetto estetico e visivo. Il banco è scenografia."],
-      ['Ospitalità', 'Professionalità e discrezione con ogni ospite, in ogni contesto.'],
-    ]
-  : [
-      ['Experience', `${site.yearsExperience}+ years of operational experience: weddings, corporate and private events.`],
-      ['Method', 'Every service follows a precise method, from setup to load-out.'],
-      ['Visual culture', 'Great attention to aesthetic and visual impact. The bar is scenography.'],
-      ['Hospitality', 'Professionalism and discretion with every guest, in every context.'],
-    ];
-
 const serves = it
   ? [
       {
@@ -221,23 +207,6 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
     </div>
   </section>
 
-  <!-- 4 VALORI -->
-  <section class="section section--alt section--tight" aria-labelledby="a-values">
-    <div class="container">
-      <SectionHeading eyebrow={it ? 'Come lavoriamo' : 'How we work'} id="a-values">
-        {it ? <>Quattro parole, <em>ogni volta.</em></> : <>Four words, <em>every time.</em></>}
-      </SectionHeading>
-      <ol class="values" role="list">
-        {values.map(([k, v], i) => (
-          <li data-reveal style={`--delay:${i * 0.06}s`}>
-            <span class="values__k">{k}</span>
-            <p class="muted">{v}</p>
-          </li>
-        ))}
-      </ol>
-    </div>
-  </section>
-
   <!-- CHI SERVIAMO -->
   <section class="section section--tight" aria-labelledby="a-serves">
     <div class="container">
@@ -314,34 +283,6 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
     .story__media {
       grid-template-columns: repeat(4, 1fr);
     }
-  }
-
-  .values {
-    display: grid;
-    gap: var(--space-l);
-    margin-top: var(--space-s);
-  }
-  .values li {
-    border-top: 1px solid var(--color-border);
-    padding-top: var(--space-m);
-  }
-  .values__k {
-    display: block;
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: clamp(2rem, 1.4rem + 2vw, 3rem);
-    line-height: 1.1;
-    margin-bottom: 0.5rem;
-  }
-  .values p {
-    font-size: var(--fs-small);
-    max-width: 22rem;
-  }
-  @media (min-width: 800px) {
-    .values { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (min-width: 1200px) {
-    .values { grid-template-columns: repeat(4, 1fr); }
   }
 
   .serves {
