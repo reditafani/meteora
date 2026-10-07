@@ -31,7 +31,6 @@ const year = new Date().getFullYear();
     <div class="footer__grid">
       <div class="footer__brand">
         <Logo variant="gold" width={150} />
-        <p class="micro footer__tag">{s.footerTagline}</p>
         <p class="muted footer__addr">
           {site.address.street}<br />
           {site.address.locality}, {it ? site.address.region : site.address.regionEn}<br />
@@ -92,10 +91,6 @@ const year = new Date().getFullYear();
   .footer__brand :global(img) {
     width: 150px;
     height: auto;
-  }
-  .footer__tag {
-    margin-top: var(--space-m);
-    color: var(--color-accent-on-dark);
   }
   .footer__addr,
   .footer__base {

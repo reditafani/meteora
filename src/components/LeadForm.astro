@@ -20,7 +20,6 @@ const s = t(lang);
 const it = lang === 'it';
 const eventTypes = [
   { value: 'wedding', label: it ? 'Matrimonio' : 'Wedding' },
-  { value: 'destination-wedding', label: 'Destination Wedding' },
   { value: 'corporate', label: it ? 'Evento aziendale' : 'Corporate' },
   { value: 'private', label: it ? 'Evento privato' : 'Private event' },
   { value: 'other', label: it ? 'Altro' : 'Other' },
@@ -77,8 +76,7 @@ const messages = {
   <Field lang={lang} name="event_location" label={it ? 'Luogo dell’evento' : 'Event location'} required placeholder={it ? 'Location, città o zona' : 'Venue, town or area'} />
   <Field lang={lang} name="guests" type="number" label={it ? 'Numero di ospiti' : 'Number of guests'} min={10} max={5000} inputmode="numeric" />
   <Field lang={lang} name="service" type="select" label={it ? 'Servizio richiesto' : 'Service requested'} options={servicesOpts} placeholder={it ? 'Seleziona' : 'Select'} span="full" />
-  <Field lang={lang} name="style" label={it ? 'Stile dell’evento / esigenze' : 'Event style / requirements'} span="full" placeholder={it ? 'Es. elegante in villa, banco Golden Mirror, cocktail signature' : 'E.g. elegant villa wedding, Golden Mirror bar, signature cocktails'} />
-  <Field lang={lang} name="message" type="textarea" label={it ? 'Messaggio' : 'Message'} span="full" rows={4} />
+  <Field lang={lang} name="message" type="textarea" label={it ? ‘Messaggio’ : ‘Message’} span="full" rows={4} placeholder={it ? ‘Una breve descrizione della vostra richiesta.’ : ‘A brief description of your request.’} />
 
   <div class="form__full consent-wrap">
     <label class="consent">
