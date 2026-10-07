@@ -93,7 +93,7 @@ const serves = it
     crumbs={crumbs}
   >
     <h1>{it ? <>Esperienza beverage. <em>Esecuzione impeccabile.</em></> : <>Beverage expertise. <em>Flawless execution.</em></>}</h1>
-    <p slot="lead" class="lead muted">
+    <p slot="lead" class="lead muted hero-lead">
       {it
         ? `Meteora Events è il partner specializzato nella gestione del servizio beverage per eventi di alto livello. Nasciamo da oltre ${site.yearsExperience} anni di esperienza operativa nel settore.`
         : `Meteora Events is the partner specialised in managing beverage services for high-level events. We grew from ${site.yearsExperience}+ years of operational experience in the industry.`}
@@ -192,6 +192,12 @@ const serves = it
 <style>
   .section--tight :global(.sh) {
     margin-bottom: var(--space-m);
+  }
+
+  :global(.hero-lead) {
+    text-align: justify;
+    max-width: 34rem;
+    hyphens: auto;
   }
 
   /* ── Story ── */
