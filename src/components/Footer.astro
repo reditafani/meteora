@@ -31,7 +31,6 @@ const year = new Date().getFullYear();
     <div class="footer__grid">
       <div class="footer__brand">
         <Logo variant="gold" width={150} />
-        <p class="micro footer__tag">{s.footerTagline}</p>
         <p class="muted footer__addr">
           {site.address.street}<br />
           {site.address.locality}, {it ? site.address.region : site.address.regionEn}<br />
@@ -53,7 +52,6 @@ const year = new Date().getFullYear();
           <li><a class="footer__contact-link" href={`tel:${site.phoneE164}`} data-track="phone_click"><Icon name="phone" size={14} />{site.phoneDisplay}</a></li>
           <li><a class="footer__ig" href={site.instagram.url} target="_blank" rel="noopener" data-track="instagram_click"><Icon name="instagram" size={14} />{site.instagram.handle}</a></li>
         </ul>
-        <a class="link footer__partner" href={url('partners', lang)}>{s.partnerPricing}</a>
       </div>
     </div>
 
@@ -94,10 +92,6 @@ const year = new Date().getFullYear();
     width: 150px;
     height: auto;
   }
-  .footer__tag {
-    margin-top: var(--space-m);
-    color: var(--color-accent-on-dark);
-  }
   .footer__addr,
   .footer__base {
     margin-top: var(--space-s);
@@ -121,10 +115,6 @@ const year = new Date().getFullYear();
   }
   .footer__nav a:hover,
   .footer__contact a:hover {
-    color: var(--color-accent-on-dark);
-  }
-  .footer__partner {
-    margin-top: var(--space-m);
     color: var(--color-accent-on-dark);
   }
   .footer__bottom {

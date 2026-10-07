@@ -30,8 +30,7 @@ const { eyebrow, image, imageAlt = '', position, crumbs, tone = 'light', variant
     )}
     <div class="fhero__overlay" aria-hidden="true"></div>
     <div class="fhero__content">
-      {eyebrow && <p class="eyebrow fhero__eyebrow" data-reveal>{eyebrow}</p>}
-      <div class="fhero__title" data-reveal style="--delay:.08s"><slot /></div>
+      <div class="fhero__title" data-reveal><slot /></div>
       <div class="fhero__lead" data-reveal style="--delay:.16s"><slot name="lead" /></div>
       <div class="fhero__cta" data-reveal style="--delay:.24s"><slot name="cta" /></div>
     </div>
@@ -41,9 +40,7 @@ const { eyebrow, image, imageAlt = '', position, crumbs, tone = 'light', variant
   <section class:list={['phero', tone === 'alt' && 'section--alt', !image && 'phero--text']}>
     <div class="container phero__grid">
       <div class="phero__text">
-        {crumbs && <Breadcrumbs crumbs={crumbs} />}
-        {eyebrow && <p class="eyebrow phero__eyebrow" data-reveal>{eyebrow}</p>}
-        <div class="phero__title" data-reveal style="--delay:.08s"><slot /></div>
+        <div class="phero__title" data-reveal><slot /></div>
         <div class="phero__lead" data-reveal style="--delay:.16s"><slot name="lead" /></div>
         <div class="phero__cta" data-reveal style="--delay:.24s"><slot name="cta" /></div>
       </div>
@@ -152,13 +149,7 @@ const { eyebrow, image, imageAlt = '', position, crumbs, tone = 'light', variant
     gap: var(--space-l);
     align-items: end;
   }
-  .phero__text > :global(.crumbs) {
-    margin-bottom: var(--space-l);
-  }
-  .phero__eyebrow {
-    margin-bottom: var(--space-m);
-  }
-  .phero__title :global(h1) {
+.phero__title :global(h1) {
     max-width: 14ch;
   }
   .phero--text .phero__title :global(h1) {

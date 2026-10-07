@@ -5,12 +5,13 @@ import { t } from '@/i18n/ui';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import SectionHeading from '@/components/SectionHeading.astro';
-import EditorialSection from '@/components/EditorialSection.astro';
+import Img from '@/components/Img.astro';
 import { site } from '@/data/site';
 import terrace from '@/assets/images/bars/terrace-panorama.jpg';
 import mint from '@/assets/images/details/mint-coupes.jpg';
+import sunset from '@/assets/images/bars/golden-mirror-sunset.jpg';
+import shaker from '@/assets/images/details/shaker.jpg';
 import strain from '@/assets/images/team/bartender-strain.jpg';
-import tower from '@/assets/images/towers/couple-pour.jpg';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -92,7 +93,7 @@ const serves = it
     crumbs={crumbs}
   >
     <h1>{it ? <>Esperienza beverage. <em>Esecuzione impeccabile.</em></> : <>Beverage expertise. <em>Flawless execution.</em></>}</h1>
-    <p slot="lead" class="lead muted">
+    <p slot="lead" class="lead muted hero-lead">
       {it
         ? `Meteora Events è il partner specializzato nella gestione del servizio beverage per eventi di alto livello. Nasciamo da oltre ${site.yearsExperience} anni di esperienza operativa nel settore.`
         : `Meteora Events is the partner specialised in managing beverage services for high-level events. We grew from ${site.yearsExperience}+ years of operational experience in the industry.`}
@@ -101,20 +102,30 @@ const serves = it
 
   <!-- LA NOSTRA STORIA -->
   <section class="section" aria-labelledby="a-story">
-    <div class="container">
-      <EditorialSection
-        image={terrace}
-        imageAlt={it ? 'Banco bar davanti a una vetrata panoramica' : 'Bar in front of a panoramic window'}
-        secondImage={mint}
-        secondAlt={it ? 'Coppe con menta e frutti rossi' : 'Coupes with mint and red berries'}
-        ratio="landscape"
-      >
+    <div class="container story">
+      <div class="story__heading">
         <p class="eyebrow" data-reveal>{it ? 'La nostra storia' : 'Our story'}</p>
         <h2 id="a-story" data-reveal>
           {it
             ? <>Non offriamo semplicemente <em>un servizio bar.</em></>
             : <>We don't simply offer <em>a bar service.</em></>}
         </h2>
+      </div>
+      <div class="story__media">
+        <div class="media story__img" data-reveal="image">
+          <Img src={terrace} alt={it ? 'Banco bar davanti a una vetrata panoramica' : 'Bar in front of a panoramic window'} sizes="(min-width: 900px) 25vw, 50vw" />
+        </div>
+        <div class="media story__img" data-reveal="image" style="--delay:.06s">
+          <Img src={mint} alt={it ? 'Coppe con menta e frutti rossi' : 'Coupes with mint and red berries'} sizes="(min-width: 900px) 25vw, 50vw" />
+        </div>
+        <div class="media story__img" data-reveal="image" style="--delay:.12s">
+          <Img src={sunset} alt={it ? 'Banco Golden Mirror al tramonto su una terrazza' : 'Golden Mirror bar at sunset on a terrace'} sizes="(min-width: 900px) 25vw, 50vw" />
+        </div>
+        <div class="media story__img" data-reveal="image" style="--delay:.18s">
+          <Img src={shaker} alt={it ? 'Shaker professionale sul banco' : 'Professional shaker on the bar'} sizes="(min-width: 900px) 25vw, 50vw" />
+        </div>
+      </div>
+      <div class="story__text">
         <p class="muted" data-reveal>
           {it
             ? "Portiamo professionalità, metodo ed esperienza scenografica con grande attenzione all'aspetto estetico e visivo dell'allestimento. Conosciamo a fondo le dinamiche di matrimoni, eventi corporate e privati, perché le viviamo da anni dall'interno."
@@ -130,7 +141,7 @@ const serves = it
             ? "Realizziamo servizi bar e cocktail experience per privati, aziende e professionisti del settore dalla nostra sede di Montecatini Terme, operando in tutta Italia e all'estero."
             : 'We create bar services and cocktail experiences for private clients, companies and event professionals from our base in Montecatini Terme, operating across Italy and abroad.'}
         </p>
-      </EditorialSection>
+      </div>
     </div>
   </section>
 
@@ -174,34 +185,6 @@ const serves = it
     </div>
   </section>
 
-  <!-- DIVISE: TOTAL BLACK -->
-  <section class="section section--alt" aria-labelledby="a-uniform">
-    <div class="container">
-      <EditorialSection
-        image={tower}
-        imageAlt={it ? 'Sposi versano bollicine su una tower di coppe' : 'Couple pouring sparkling wine over a coupe tower'}
-        ratio="portrait"
-      >
-        <p class="eyebrow" data-reveal>{it ? 'Il nostro staff' : 'Our staff'}</p>
-        <h2 id="a-uniform" data-reveal>
-          {it
-            ? <>Total black. <em>Nessun logo. Nessuna distrazione.</em></>
-            : <>Total black. <em>No logo. No distraction.</em></>}
-        </h2>
-        <p class="muted" data-reveal>
-          {it
-            ? 'La nostra divisa ordinaria è completamente nera: pantalone elegante, camicia, gilet e cravatta nera. Nessun marchio esposto, nessun elemento vistoso. Una linea essenziale che valorizza il banco e non distrae gli ospiti.'
-            : 'Our standard uniform is entirely black: smart trousers, shirt, waistcoat and black tie. No brand visible, no showy element. A clean line that enhances the bar and keeps the focus on your guests.'}
-        </p>
-        <p class="muted" data-reveal>
-          {it
-            ? "Su richiesta è possibile personalizzare la divisa con logo aziendale o dell'evento su camicia, gilet e cravatta — ideale per eventi corporate, lanci prodotto e brand activation."
-            : 'On request, uniforms can be personalised with your company or event logo on shirt, waistcoat and tie — ideal for corporate events, product launches and brand activations.'}
-        </p>
-        <a class="btn btn--outline" href={url('contact', lang)} data-reveal>{s.quote}</a>
-      </EditorialSection>
-    </div>
-  </section>
 
 
 </BaseLayout>
@@ -209,6 +192,52 @@ const serves = it
 <style>
   .section--tight :global(.sh) {
     margin-bottom: var(--space-m);
+  }
+
+  :global(.hero-lead) {
+    text-align: justify;
+    max-width: 34rem;
+    hyphens: auto;
+  }
+
+  /* ── Story ── */
+  .story {
+    display: grid;
+    gap: var(--space-l);
+  }
+  .story__heading h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 1.2rem + 3vw, 4rem);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-top: var(--space-s);
+  }
+  .story__heading h2 em {
+    font-style: italic;
+    color: var(--color-accent-ink);
+  }
+  .story__media {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-s);
+  }
+  .story__img {
+    aspect-ratio: 4 / 3;
+  }
+  .story__text {
+    display: grid;
+    gap: var(--space-m);
+    max-width: 52rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+  .story__text p {
+    font-size: clamp(1rem, 0.9rem + 0.3vw, 1.15rem);
+  }
+  @media (min-width: 700px) {
+    .story__media {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 
   .values {

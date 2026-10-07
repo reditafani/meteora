@@ -27,7 +27,11 @@ const s = t(lang);
       <Logo variant="cream" width={132} class="logo logo--cream" priority />
       <Logo variant="gold" width={132} class="logo logo--gold" priority />
     </a>
-
+    {breadcrumbs && breadcrumbs.length > 1 && (
+      <div class="site-header__crumbs">
+        <Breadcrumbs crumbs={breadcrumbs} tone={theme === 'overlay' ? 'dark' : 'light'} />
+      </div>
+    )}
     <div class="site-header__actions">
       <LanguageSwitcher lang={lang} alternates={alternates} class="site-header__lang" />
       <a class="btn site-header__cta" href={url('contact', lang)} data-track="cta_click" data-track-label="header_quote">
@@ -39,11 +43,6 @@ const s = t(lang);
       </button>
     </div>
   </div>
-  {breadcrumbs && breadcrumbs.length > 1 && (
-    <div class="container site-header__breadcrumbs">
-      <Breadcrumbs crumbs={breadcrumbs} tone={theme === 'overlay' ? 'dark' : 'light'} />
-    </div>
-  )}
 </header>
 <MobileMenu lang={lang} alternates={alternates} current={current} />
 
@@ -157,20 +156,27 @@ const s = t(lang);
     height: 2.75rem;
     margin-right: -0.6rem;
   }
-  .site-header__breadcrumbs {
-    padding-bottom: 0.55rem;
-    opacity: 1;
-    transition: opacity 0.35s var(--ease);
+  .site-header__crumbs {
+    display: none;
+    flex: 1;
+    overflow: hidden;
+    padding-left: var(--space-m);
   }
-  .site-header[data-scrolled] .site-header__breadcrumbs {
-    opacity: 0;
-    pointer-events: none;
+  .site-header__crumbs :global(.crumbs ol) {
+    flex-wrap: nowrap;
+    overflow: hidden;
+    white-space: nowrap;
   }
-  .site-header[data-theme='overlay']:not([data-scrolled]) .site-header__breadcrumbs :global(.crumbs) {
+  .site-header[data-theme='overlay']:not([data-scrolled]) .site-header__crumbs :global(.crumbs) {
     color: rgba(255 255 255 / 0.65);
   }
-  .site-header[data-theme='overlay']:not([data-scrolled]) .site-header__breadcrumbs :global(.crumbs a:hover) {
+  .site-header[data-theme='overlay']:not([data-scrolled]) .site-header__crumbs :global(.crumbs a:hover) {
     color: rgba(255 255 255 / 0.95);
+  }
+  @media (min-width: 640px) {
+    .site-header__crumbs {
+      display: block;
+    }
   }
   @media (min-width: 768px) {
     .site-header__cta {

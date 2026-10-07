@@ -9,21 +9,17 @@ import SectionHeading from '@/components/SectionHeading.astro';
 import ExperienceMosaic from '@/components/ExperienceMosaic.astro';
 import EditorialSection from '@/components/EditorialSection.astro';
 import BarCollection from '@/components/BarCollection.astro';
-import CocktailFamilies from '@/components/CocktailFamilies.astro';
 import IceSection from '@/components/IceSection.astro';
 import PersonalizationSection from '@/components/PersonalizationSection.astro';
 import TowerSection from '@/components/TowerSection.astro';
 import ExperienceComparison from '@/components/ExperienceComparison.astro';
-import DestinationSection from '@/components/DestinationSection.astro';
 import PartnerCTA from '@/components/PartnerCTA.astro';
 import Testimonial from '@/components/Testimonial.astro';
 import InstagramStrip from '@/components/InstagramStrip.astro';
-import CTABand from '@/components/CTABand.astro';
 import { serviceSchema } from '@/lib/seo';
 import hero from '@/assets/images/bars/golden-mirror-sunset.jpg';
 import villa from '@/assets/images/bars/pure-white-villa.jpg';
 import mint from '@/assets/images/details/mint-coupes.jpg';
-import marble from '@/assets/images/bars/golden-marble-night.jpg';
 
 interface Props {
   lang: Lang;
@@ -119,25 +115,8 @@ const schema = [
     </div>
   </section>
 
-  <!-- 5 · DESTINATION -->
-  <section class="section section--alt" aria-labelledby="dest-title">
-    <div class="container dest-home">
-      <div class="dest-home__intro">
-        <p class="eyebrow" data-reveal>Destination Weddings</p>
-        <h2 id="dest-title" data-reveal style="--delay:.08s">{it ? <>Destination wedding <em>in Italia.</em></> : <>Destination weddings <em>in Italy.</em></>}</h2>
-        <p class="lead muted" data-reveal style="--delay:.12s">
-          {it
-            ? 'Base in Toscana, disponibili in tutta Italia. Per le coppie che scelgono l’Italia, siamo il partner bar che conosce le ville, i tempi e le persone.'
-            : 'Based in Tuscany, available throughout Italy. For couples who choose Italy, we are the bar partner who knows the villas, the timings and the people.'}
-        </p>
-        <a class="btn" href={url('destination', lang)} data-reveal>{it ? 'Destination wedding con Meteora' : 'Destination weddings with Meteora'}</a>
-      </div>
-      <DestinationSection lang={lang} compact />
-    </div>
-  </section>
-
   <!-- 6 · BAR COLLECTION -->
-  <section class="section" aria-labelledby="bars-title">
+  <section class="section section--alt" aria-labelledby="bars-title">
     <div class="container">
       <SectionHeading eyebrow={it ? 'I nostri banchi' : 'The Bar Collection'} align="split" id="bars-title" class="bars-heading">
         {it ? <>La collezione <em>dei banchi.</em></> : <>The bar <em>collection.</em></>}
@@ -151,21 +130,6 @@ const schema = [
       <div class="cta-row section-cta">
         <a class="btn" href={url('bars', lang)}>{it ? 'Esplora la collezione' : 'Explore the collection'}</a>
       </div>
-    </div>
-  </section>
-
-  <!-- 7 · COCKTAILS -->
-  <section class="section section--alt" aria-labelledby="ck-title">
-    <div class="container">
-      <SectionHeading eyebrow="Cocktail Experience" align="left" id="ck-title">
-        {it ? <>Dove il cocktail <em>diventa parte dell’evento.</em></> : <>Where cocktails <em>become part of the event.</em></>}
-        <Fragment slot="lead">
-          {it
-            ? 'Una drink list completa ed equilibrata, dai grandi classici all’aperitivo italiano, con varianti su richiesta e signature create per voi.'
-            : 'A complete, balanced drink list, from the great classics to the Italian aperitivo, with variations on request and signatures created for you.'}
-        </Fragment>
-      </SectionHeading>
-      <CocktailFamilies lang={lang} />
     </div>
   </section>
 
@@ -201,8 +165,6 @@ const schema = [
   <!-- 14 · INSTAGRAM -->
   <InstagramStrip lang={lang} />
 
-  <!-- 15 · CLOSING CTA -->
-  <CTABand lang={lang} image={marble} imageAlt={it ? 'Banco dorato illuminato di sera' : 'Golden bar lit up at night'} trackLabel="home_band" />
 </BaseLayout>
 
 <style>
@@ -247,25 +209,5 @@ const schema = [
     content: '·';
     margin-inline: 0.6rem;
     color: var(--color-accent);
-  }
-  .dest-home {
-    display: grid;
-    gap: var(--space-xl);
-  }
-  .dest-home__intro {
-    display: grid;
-    gap: var(--space-m);
-    align-content: start;
-    justify-items: start;
-  }
-  @media (min-width: 960px) {
-    .dest-home {
-      grid-template-columns: 5fr 7fr;
-      gap: clamp(3rem, 8vw, 9rem);
-    }
-    .dest-home__intro {
-      position: sticky;
-      top: calc(var(--header-h-compact) + 2rem);
-    }
   }
 </style>

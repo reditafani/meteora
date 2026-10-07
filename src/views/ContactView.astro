@@ -3,7 +3,6 @@ import type { Lang } from '@/i18n/routes';
 import { url, alternatesFor } from '@/i18n/routes';
 import { t } from '@/i18n/ui';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import LeadForm from '@/components/LeadForm.astro';
 import SectionHeading from '@/components/SectionHeading.astro';
 import FAQ from '@/components/FAQ.astro';
@@ -40,8 +39,6 @@ const contactSchema = {
   <section class="ct">
     <div class="container ct__grid">
       <aside class="ct__side">
-        <Breadcrumbs crumbs={crumbs} />
-        <p class="eyebrow ct__eyebrow">{it ? 'Contatti' : 'Contact'}</p>
         <h1>{it ? <>Richiedete <em>il vostro preventivo.</em></> : <>Request <em>your quote.</em></>}</h1>
         <p class="lead muted">
           {it
