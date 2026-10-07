@@ -106,7 +106,8 @@ const s = t(lang);
   }
   .site-header__brand {
     position: relative;
-    display: block;
+    display: flex;
+    align-items: center;
     flex: none;
     width: 118px;
     transition: width 0.45s var(--ease);
@@ -115,6 +116,7 @@ const s = t(lang);
     width: 96px;
   }
   .site-header__brand :global(.logo) {
+    display: block;
     width: 100%;
     height: auto;
     transition: opacity 0.4s var(--ease);
