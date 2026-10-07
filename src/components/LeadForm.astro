@@ -70,13 +70,13 @@ const messages = {
   <Field lang={lang} name="email" type="email" label="Email" required autocomplete="email" inputmode="email" />
   <Field lang={lang} name="phone" type="tel" label="WhatsApp / Telefono" autocomplete="tel" inputmode="tel" placeholder="+39 …" />
 
-  <p class="micro form__legend">{it ? 'L’evento' : 'The event'}</p>
+  <p class="micro form__legend">{it ? 'L'evento' : 'The event'}</p>
   <Field lang={lang} name="event_type" type="select" label={it ? 'Tipo di evento' : 'Event type'} required options={eventTypes} placeholder={it ? 'Seleziona' : 'Select'} />
-  <Field lang={lang} name="event_date" type="date" label={it ? 'Data dell’evento' : 'Event date'} hint={it ? 'Anche indicativa.' : 'An approximate date is fine.'} />
-  <Field lang={lang} name="event_location" label={it ? 'Luogo dell’evento' : 'Event location'} required placeholder={it ? 'Location, città o zona' : 'Venue, town or area'} />
+  <Field lang={lang} name="event_date" type="date" label={it ? 'Data dell'evento' : 'Event date'} hint={it ? 'Anche indicativa.' : 'An approximate date is fine.'} />
+  <Field lang={lang} name="event_location" label={it ? 'Luogo dell'evento' : 'Event location'} required placeholder={it ? 'Location, città o zona' : 'Venue, town or area'} />
   <Field lang={lang} name="guests" type="number" label={it ? 'Numero di ospiti' : 'Number of guests'} min={10} max={5000} inputmode="numeric" />
   <Field lang={lang} name="service" type="select" label={it ? 'Servizio richiesto' : 'Service requested'} options={servicesOpts} placeholder={it ? 'Seleziona' : 'Select'} span="full" />
-  <Field lang={lang} name="message" type="textarea" label={it ? ‘Messaggio’ : ‘Message’} span="full" rows={4} placeholder={it ? ‘Una breve descrizione della vostra richiesta.’ : ‘A brief description of your request.’} />
+  <Field lang={lang} name="message" type="textarea" label={it ? 'Messaggio' : 'Message'} span="full" rows={4} placeholder={it ? 'Una breve descrizione della vostra richiesta.' : 'A brief description of your request.'} />
 
   <div class="form__full consent-wrap">
     <label class="consent">
