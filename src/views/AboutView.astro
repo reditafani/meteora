@@ -5,13 +5,18 @@ import { t } from '@/i18n/ui';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import SectionHeading from '@/components/SectionHeading.astro';
+import Icon from '@/components/Icon.astro';
 import Img from '@/components/Img.astro';
+import ItalyMap from '@/components/ItalyMap.astro';
 import { site } from '@/data/site';
 import terrace from '@/assets/images/bars/terrace-panorama.jpg';
 import mint from '@/assets/images/details/mint-coupes.jpg';
 import sunset from '@/assets/images/bars/golden-mirror-sunset.jpg';
 import shaker from '@/assets/images/details/shaker.jpg';
 import strain from '@/assets/images/team/bartender-strain.jpg';
+import coupleImg from '@/assets/images/towers/couple-pour.jpg';
+import silverImg from '@/assets/images/bars/silver-reflection.jpg';
+import loungeImg from '@/assets/images/bars/night-lounge.jpg';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -31,55 +36,87 @@ const crumbs = [
   { name: it ? 'Chi siamo' : 'About us', href: url('about', lang) },
 ];
 
-const values = it
+const serveCards = it
   ? [
-      ['Esperienza', `Oltre ${site.yearsExperience} anni di esperienza operativa: matrimoni, corporate ed eventi privati.`],
-      ['Metodo', "Ogni servizio segue un metodo preciso, dall'allestimento allo smontaggio."],
-      ['Cultura visiva', "Grande attenzione all'aspetto estetico e visivo. Il banco è scenografia."],
-      ['Ospitalità', 'Professionalità e discrezione con ogni ospite, in ogni contesto.'],
+      {
+        n: '01', title: 'Matrimoni',
+        subtitle: "Il giorno più fotografato della vostra vita merita un bar all'altezza.",
+        bullets: ['Destination wedding', 'Matrimoni in villa, castelli e cantine', 'Welcome party e after party', 'Brunch del giorno dopo'],
+        href: url('services', lang), cta: 'Scopri',
+      },
+      {
+        n: '02', title: 'Eventi aziendali',
+        subtitle: "La cura di un matrimonio, per l'immagine della vostra azienda.",
+        bullets: ['Logo su divise e banco', 'Cene di gala e lanci di prodotto', 'Convention e team building', 'Viaggi incentive e feste di Natale'],
+        href: url('services', lang), cta: 'Scopri',
+      },
+      {
+        n: '03', title: 'Eventi privati',
+        subtitle: 'Ogni traguardo merita un brindisi fatto bene.',
+        bullets: ['Sfilate ed eventi di moda', 'Vernissage e inaugurazioni', 'Fiere', 'Feste di laurea e compleanni'],
+        href: url('services', lang), cta: 'Scopri',
+      },
     ]
   : [
-      ['Experience', `${site.yearsExperience}+ years of operational experience: weddings, corporate and private events.`],
-      ['Method', 'Every service follows a precise method, from setup to load-out.'],
-      ['Visual culture', 'Great attention to aesthetic and visual impact. The bar is scenography.'],
-      ['Hospitality', 'Professionalism and discretion with every guest, in every context.'],
+      {
+        n: '01', title: 'Weddings',
+        subtitle: 'The most photographed day of your life deserves a bar to match.',
+        bullets: ['Destination weddings', 'Villas, castles and wineries', 'Welcome party and after party', 'Day-after brunch'],
+        href: url('services', lang), cta: 'Discover',
+      },
+      {
+        n: '02', title: 'Corporate events',
+        subtitle: 'The care of a wedding, for the image of your company.',
+        bullets: ['Logo on uniforms and bar', 'Gala dinners and product launches', 'Conventions and team building', 'Incentive trips and Christmas parties'],
+        href: url('services', lang), cta: 'Discover',
+      },
+      {
+        n: '03', title: 'Private events',
+        subtitle: 'Every milestone deserves a well-made toast.',
+        bullets: ['Fashion shows and events', 'Vernissages and openings', 'Trade fairs', 'Graduation parties and birthdays'],
+        href: url('services', lang), cta: 'Discover',
+      },
+    ];
+const serveImgs = [coupleImg, silverImg, loungeImg];
+const serveAlts = it
+  ? ['Coppia che versa champagne da una tower', 'Banco bar con riflessi argentati', 'Lounge notturno con luci soffuse']
+  : ['Couple pouring champagne from a tower', 'Bar counter with silver reflections', 'Night lounge with soft lighting'];
+
+type IconName = 'ice' | 'user' | 'briefcase' | 'cocktail' | 'star' | 'snowflake';
+const included: { icon: IconName; title: string; text: string }[] = it
+  ? [
+      { icon: 'ice',       title: 'Banco bar',                 text: 'Uno dei nostri banchi signature, nella misura scelta.' },
+      { icon: 'user',      title: 'Staff preparato',           text: 'Barman professionisti formati da noi, inclusi nel prezzo.' },
+      { icon: 'briefcase', title: 'Allestimento e smontaggio', text: "Montiamo prima degli ospiti, smontiamo dopo l'ultimo brindisi." },
+      { icon: 'cocktail',  title: 'Bicchieri in vetro',        text: 'Cristalleria professionale.' },
+      { icon: 'star',      title: 'Tutti gli ingredienti',     text: 'Distillati, mixer, frutta fresca, sciroppi e guarnizioni.' },
+      { icon: 'snowflake', title: 'Ghiaccio',                  text: 'Ghiaccio artigianale, in quantita calcolata sui vostri ospiti.' },
+    ]
+  : [
+      { icon: 'ice',       title: 'Bar counter',       text: 'One of our signature bars, in the size you choose.' },
+      { icon: 'user',      title: 'Trained staff',     text: 'Professional bartenders trained by us, included in the price.' },
+      { icon: 'briefcase', title: 'Setup & breakdown', text: 'We set up before your guests arrive, break down after the last toast.' },
+      { icon: 'cocktail',  title: 'Crystal glassware', text: 'Professional glassware throughout.' },
+      { icon: 'star',      title: 'All ingredients',   text: 'Spirits, mixers, fresh fruit, syrups and garnishes.' },
+      { icon: 'snowflake', title: 'Ice',               text: 'Artisan ice, calculated for your guest count.' },
     ];
 
-const serves = it
+const steps: { title: string; text: string; cta?: boolean }[] = it
   ? [
-      {
-        n: '01',
-        title: 'Matrimoni',
-        text: "Dall'aperitivo in giardino all'open bar dopo cena. Il banco diventa scenografia dell'evento e resta nelle fotografie.",
-      },
-      {
-        n: '02',
-        title: 'Eventi aziendali',
-        text: 'Brand activation, lanci di prodotto, cene di gala, team building. Il nostro staff si adatta al registro corporate con divisa personalizzabile.',
-      },
-      {
-        n: '03',
-        title: 'Eventi privati',
-        text: 'Compleanni, anniversari, celebrazioni e rinfreschi. Ogni occasione, piccola o grande, merita il nostro standard di servizio.',
-      },
+      { title: 'Primo contatto',     text: 'Ascoltiamo la vostra richiesta e ci conosciamo.' },
+      { title: 'Il vostro bar',      text: 'Scegliete il banco bar e la cocktail list.' },
+      { title: 'La nostra proposta', text: "Tutto per iscritto: un contratto con ogni dettaglio di cio che e incluso." },
+      { title: 'Il grande giorno',   text: 'Allestimento, servizio e coordinamento in presenza.' },
+      { title: 'Smontaggio',         text: "Lasciamo la location esattamente come l'abbiamo trovata." },
     ]
   : [
-      {
-        n: '01',
-        title: 'Weddings',
-        text: 'From the garden aperitivo to the after-dinner open bar. The bar becomes part of the scenography and stays in the photographs.',
-      },
-      {
-        n: '02',
-        title: 'Corporate events',
-        text: 'Brand activations, product launches, gala dinners, team building. Our staff adapts to the corporate register with customisable uniforms.',
-      },
-      {
-        n: '03',
-        title: 'Private events',
-        text: 'Birthdays, anniversaries, celebrations and receptions. Every occasion, large or small, deserves our service standard.',
-      },
+      { title: 'First contact', text: 'You tell us about your event and we get to know each other.' },
+      { title: 'Your bar',      text: 'Choose your bar counter and cocktail list.' },
+      { title: 'Our proposal',  text: 'Everything in writing: a contract detailing exactly what is included.' },
+      { title: 'The big day',   text: 'Setup, service and on-site coordination.' },
+      { title: 'Breakdown',     text: 'We leave the venue exactly as we found it.' },
     ];
+
 ---
 
 <BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('about')} current="about" breadcrumbs={crumbs} headerTheme="overlay">
@@ -92,19 +129,19 @@ const serves = it
     imageAlt={it ? 'Bartender in gilet nero che filtra un cocktail' : 'Bartender in a black waistcoat straining a cocktail'}
     crumbs={crumbs}
   >
-    <h1>{it ? <>Esperienza beverage. <em>Esecuzione impeccabile.</em></> : <>Beverage expertise. <em>Flawless execution.</em></>}</h1>
+    <h1>Meteora Events</h1>
     <p slot="lead" class="lead muted hero-lead">
       {it
-        ? `Meteora Events è il partner specializzato nella gestione del servizio beverage per eventi di alto livello. Nasciamo da oltre ${site.yearsExperience} anni di esperienza operativa nel settore.`
-        : `Meteora Events is the partner specialised in managing beverage services for high-level events. We grew from ${site.yearsExperience}+ years of operational experience in the industry.`}
+        ? `Il tuo partner specializzato nella gestione del servizio beverage per eventi. Nasciamo da oltre ${site.yearsExperience} anni di esperienza operativa nel settore.`
+        : `Your specialist partner for beverage services at events. Built on ${site.yearsExperience}+ years of operational experience in the industry.`}
     </p>
   </PageHero>
 
-  <!-- LA NOSTRA STORIA -->
+  <!-- LA NOSTRA FILOSOFIA -->
   <section class="section" aria-labelledby="a-story">
     <div class="container story">
       <div class="story__heading">
-        <p class="eyebrow" data-reveal>{it ? 'La nostra storia' : 'Our story'}</p>
+        <p class="eyebrow" data-reveal>{it ? 'La nostra filosofia' : 'Our philosophy'}</p>
         <h2 id="a-story" data-reveal>
           {it
             ? <>Non offriamo semplicemente <em>un servizio bar.</em></>
@@ -145,17 +182,39 @@ const serves = it
     </div>
   </section>
 
-  <!-- 4 VALORI -->
-  <section class="section section--alt section--tight" aria-labelledby="a-values">
+
+  <!-- CHIAVI IN MANO -->
+  <section class="section section--dark section--dark-pair" aria-labelledby="a-included">
     <div class="container">
-      <SectionHeading eyebrow={it ? 'Come lavoriamo' : 'How we work'} id="a-values">
-        {it ? <>Quattro parole, <em>ogni volta.</em></> : <>Four words, <em>every time.</em></>}
+      <SectionHeading eyebrow={it ? 'Chiavi in mano' : 'All-inclusive'} id="a-included">
+        {it ? <>Voi scegliete il pacchetto. <em>Al resto pensiamo noi.</em></> : <>You choose the package. <em>We handle the rest.</em></>}
       </SectionHeading>
-      <ol class="values" role="list">
-        {values.map(([k, v], i) => (
-          <li data-reveal style={`--delay:${i * 0.06}s`}>
-            <span class="values__k">{k}</span>
-            <p class="muted">{v}</p>
+      <ul class="incl" role="list">
+        {included.map((item, i) => (
+          <li data-reveal style={`--delay:${(i % 3) * 0.06}s`}>
+            <Icon name={item.icon} size={26} />
+            <h3>{item.title}</h3>
+            <p class="muted">{item.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- COME FUNZIONA -->
+  <section class="section" aria-labelledby="a-process">
+    <div class="container">
+      <p class="eyebrow" data-reveal>{it ? 'Come funziona' : 'How it works'}</p>
+      <h2 id="a-process" class="process-hdg" data-reveal style="--delay:.04s">
+        {it ? <>Cinque passi. <em>Nessuna sorpresa.</em></> : <>Five steps. <em>No surprises.</em></>}
+      </h2>
+      <ol class="process" role="list">
+        {steps.map((step, i) => (
+          <li data-reveal style={`--delay:${i * 0.07}s`}>
+            <span class="process__n">{i + 1}</span>
+            <h3>{step.title}</h3>
+            <p class="muted">{step.text}</p>
+            {step.cta && <a class="link process__cta" href={url('contact', lang)}>{it ? 'Scriveteci' : 'Get in touch'}</a>}
           </li>
         ))}
       </ol>
@@ -163,37 +222,55 @@ const serves = it
   </section>
 
   <!-- CHI SERVIAMO -->
-  <section class="section section--tight" aria-labelledby="a-serves">
+  <section class="section section--dark section--serves" aria-labelledby="a-serves">
     <div class="container">
-      <SectionHeading eyebrow={it ? 'Chi serviamo' : 'Who we serve'} align="split" id="a-serves">
-        {it
-          ? <>Matrimoni, aziende <em>e privati.</em></>
-          : <>Weddings, corporate <em>and private.</em></>}
-      </SectionHeading>
-      <ol class="serves" role="list">
-        {serves.map((item) => (
-          <li data-reveal>
-            <span class="micro serves__n">{item.n}</span>
-            <h3>{item.title}</h3>
-            <p class="muted">{item.text}</p>
-          </li>
-        ))}
-      </ol>
-      <div class="serves__cta" data-reveal>
-        <a class="btn" href={url('services', lang)}>{it ? 'Scopri i nostri servizi' : 'Discover our services'}</a>
+      <div class="serves-hd">
+        <p class="eyebrow" data-reveal>{it ? 'I nostri eventi' : 'Our events'}</p>
+        <h2 id="a-serves" class="serves-hd__title" data-reveal>
+          {it
+            ? <>Ogni occasione merita <em>il suo brindisi.</em></>
+            : <>Every occasion deserves <em>its toast.</em></>}
+        </h2>
+        <p class="serves-hd__lead muted" data-reveal>
+          {it
+            ? 'Matrimoni, eventi aziendali ed eventi privati, in Toscana e in tutta Italia.'
+            : 'Weddings, corporate and private events, in Tuscany and throughout Italy.'}
+        </p>
       </div>
+    </div>
+    <div class="srv-cards">
+      {serveCards.map((card, i) => (
+        <div class="srv-card" data-reveal style={`--delay:${i * 0.08}s`}>
+          <div class="srv-card__media">
+            <Img src={serveImgs[i]} alt={serveAlts[i]} sizes="(min-width: 700px) 33vw, 90vw" />
+          </div>
+          <span class="srv-card__badge">
+            <span class="srv-card__badge-dot" aria-hidden="true"></span>
+            {it ? 'Foto reale' : 'Real photo'}
+          </span>
+          <div class="srv-card__body">
+            <span class="srv-card__n">{card.n}</span>
+            <h3 class="srv-card__title">{card.title}</h3>
+            <p class="srv-card__sub">{card.subtitle}</p>
+            <hr class="srv-card__rule" />
+            <ul class="srv-card__bullets" role="list">
+              {card.bullets.map(b => <li>— {b}</li>)}
+            </ul>
+            <a class="srv-card__link" href={card.href}>
+              {card.cta} <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      ))}
     </div>
   </section>
 
-
+  <!-- DOVE LAVORIAMO -->
+  <ItalyMap lang={lang} />
 
 </BaseLayout>
 
 <style>
-  .section--tight :global(.sh) {
-    margin-bottom: var(--space-m);
-  }
-
   :global(.hero-lead) {
     text-align: justify;
     max-width: 34rem;
@@ -240,63 +317,295 @@ const serves = it
     }
   }
 
-  .values {
-    display: grid;
-    gap: var(--space-l);
-    margin-top: var(--space-s);
-  }
-  .values li {
-    border-top: 1px solid var(--color-border);
-    padding-top: var(--space-m);
-  }
-  .values__k {
-    display: block;
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: clamp(2rem, 1.4rem + 2vw, 3rem);
-    line-height: 1.1;
-    margin-bottom: 0.5rem;
-  }
-  .values p {
-    font-size: var(--fs-small);
-    max-width: 22rem;
-  }
-  @media (min-width: 800px) {
-    .values { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (min-width: 1200px) {
-    .values { grid-template-columns: repeat(4, 1fr); }
+  /* Collapse gap between the two adjacent linked dark sections */
+  .section--dark-pair + .section--dark-pair {
+    padding-top: 0;
   }
 
-  .serves {
+  /* ── Dark section overrides ── */
+  .section--dark .incl {
+    border-color: rgba(255 255 255 / 0.12);
+  }
+  .section--dark .incl li {
+    border-color: rgba(255 255 255 / 0.12);
+  }
+  .section--dark .incl li :global(svg) {
+    color: var(--color-accent-on-dark);
+  }
+  .section--dark .process li {
+    border-top-color: rgba(255 255 255 / 0.15);
+  }
+  .section--dark .process__n {
+    background: var(--color-dark);
+    border-color: var(--color-accent-on-dark);
+    color: var(--color-accent-on-dark);
+  }
+  @media (min-width: 700px) {
+    .section--dark .process__n {
+      background: var(--color-dark);
+    }
+    .section--dark .process::before {
+      background: rgba(255 255 255 / 0.15);
+    }
+  }
+
+  /* ── Chiavi in mano ── */
+  .incl {
+    display: grid;
+    border-left: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-border);
+    margin-top: var(--space-xl);
+  }
+  .incl li {
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-l) var(--space-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+  }
+  .incl li :global(svg) {
+    color: var(--color-accent-ink);
+    margin-bottom: var(--space-xs, 0.5rem);
+  }
+  .incl h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 0.9rem + 0.5vw, 1.35rem);
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  .incl p {
+    font-size: var(--fs-small);
+    max-width: 26rem;
+  }
+  @media (min-width: 600px) {
+    .incl { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 900px) {
+    .incl { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* ── Come funziona ── */
+  .process-hdg {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 1.2rem + 3vw, 4rem);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-top: var(--space-s);
+    margin-bottom: var(--space-xl);
+  }
+  .process-hdg em {
+    font-style: italic;
+    color: var(--color-accent-ink);
+  }
+  .process {
     display: grid;
     gap: var(--space-l);
-    margin-top: var(--space-s);
+    position: relative;
   }
-  .serves li {
+  .process li {
     border-top: 1px solid var(--color-border);
     padding-top: var(--space-m);
     display: grid;
-    gap: 0.5rem;
+    gap: 0.4rem;
     align-content: start;
   }
-  .serves__n {
+  .process__n {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    border: 1px solid var(--color-accent-ink);
     color: var(--color-accent-ink);
+    font-size: 0.75rem;
+    margin-bottom: var(--space-s);
+    position: relative;
+    z-index: 1;
   }
-  .serves h3 {
+  .process li h3 {
     font-family: var(--font-display);
-    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.2rem);
+    font-size: clamp(1.1rem, 0.9rem + 0.5vw, 1.35rem);
     font-weight: 400;
-    line-height: 1.1;
+    line-height: 1.2;
   }
-  .serves p {
+  .process li p {
     font-size: var(--fs-small);
-    max-width: 28rem;
   }
-  .serves__cta {
-    margin-top: var(--space-l);
+  .process__cta {
+    margin-top: var(--space-xs, 0.5rem);
+    font-size: var(--fs-small);
   }
   @media (min-width: 700px) {
-    .serves { grid-template-columns: repeat(3, 1fr); }
+    .process {
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--space-m);
+    }
+    .process::before {
+      content: '';
+      position: absolute;
+      top: 1.125rem;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--color-border);
+    }
+    .process li {
+      border-top: none;
+      padding-top: 0;
+    }
+    .process__n {
+      background: var(--color-background);
+    }
+  }
+
+  /* ── Chi serviamo ── */
+  .section--serves {
+    padding-bottom: 0;
+  }
+  .serves-hd {
+    text-align: center;
+    padding-bottom: var(--space-xl);
+  }
+  .serves-hd__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 1.2rem + 4.5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-top: var(--space-s);
+  }
+  .serves-hd__title em {
+    font-style: italic;
+    color: var(--color-accent-on-dark);
+  }
+  .serves-hd__lead {
+    margin-top: var(--space-m);
+    font-size: clamp(0.95rem, 0.85rem + 0.3vw, 1.05rem);
+  }
+
+  /* ── Cards ── */
+  .srv-cards {
+    display: grid;
+  }
+  .srv-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .srv-card__media {
+    position: absolute;
+    inset: 0;
+  }
+  .srv-card__media :global(picture),
+  .srv-card__media :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease);
+  }
+  .srv-card:hover .srv-card__media :global(img) {
+    transform: scale(1.04);
+  }
+  .srv-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgb(0 0 0 / 0.9) 0%, rgb(0 0 0 / 0.4) 45%, transparent 100%);
+    pointer-events: none;
+  }
+  .srv-card__badge {
+    position: absolute;
+    top: var(--space-m);
+    left: var(--space-m);
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(0 0 0 / 0.52);
+    padding: 0.3rem 0.65rem;
+    border-radius: 2rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255 255 255 / 0.85);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .srv-card__badge-dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: #5cb85c;
+    flex-shrink: 0;
+  }
+  .srv-card__body {
+    position: relative;
+    z-index: 2;
+    padding: var(--space-m);
+  }
+  .srv-card__n {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: rgba(255 255 255 / 0.5);
+    margin-bottom: 0.25rem;
+  }
+  .srv-card__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 1.4rem + 1.5vw, 3rem);
+    font-weight: 400;
+    line-height: 1.05;
+    color: #fff;
+  }
+  .srv-card__sub {
+    margin-top: 0.45rem;
+    font-size: var(--fs-small);
+    font-style: italic;
+    color: rgba(255 255 255 / 0.65);
+    max-width: 28rem;
+  }
+  .srv-card__rule {
+    border: none;
+    border-top: 1px solid rgba(255 255 255 / 0.2);
+    margin-block: var(--space-s);
+  }
+  .srv-card__bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.25rem;
+  }
+  .srv-card__bullets li {
+    font-size: var(--fs-small);
+    color: rgba(255 255 255 / 0.55);
+  }
+  .srv-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: var(--space-s);
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent-on-dark);
+    text-decoration: none;
+  }
+  .srv-card__link:hover {
+    color: #fff;
+  }
+  @media (min-width: 700px) {
+    .srv-cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .srv-card {
+      aspect-ratio: 3 / 4;
+    }
   }
 </style>

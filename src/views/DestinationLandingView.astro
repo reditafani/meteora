@@ -8,10 +8,8 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import SectionHeading from '@/components/SectionHeading.astro';
 import BarCollection from '@/components/BarCollection.astro';
-import FAQ from '@/components/FAQ.astro';
 import CTABand from '@/components/CTABand.astro';
-import { faqFor } from '@/data/faq';
-import { faqSchema, serviceSchema } from '@/lib/seo';
+import { serviceSchema } from '@/lib/seo';
 import heroImg from '@/assets/images/bars/pure-white-villa.jpg';
 import band from '@/assets/images/bars/golden-mirror-sunset.jpg';
 
@@ -29,10 +27,8 @@ const crumbs = [
   { name: 'Destination Weddings', href: url('destination', lang) },
   { name: d.name[lang], href: path(lang) },
 ];
-const faqs = faqFor('destination');
 const schema = [
   serviceSchema({ name: L.h1[lang], serviceType: 'Wedding bar catering', description: L.description[lang], url: path(lang), lang, area: [d.name[lang]] }),
-  faqSchema(faqs, lang),
 ];
 ---
 
@@ -63,13 +59,6 @@ const schema = [
     <div class="container">
       <SectionHeading eyebrow={it ? 'I nostri banchi' : 'The Bar Collection'} id="l-bars">{it ? <>Il banco <em>per la vostra location.</em></> : <>The bar <em>for your venue.</em></>}</SectionHeading>
       <BarCollection lang={lang} />
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="l-faq">
-    <div class="container container--narrow">
-      <SectionHeading eyebrow="FAQ" id="l-faq">{it ? <>Domande <em>frequenti.</em></> : <>Frequently <em>asked.</em></>}</SectionHeading>
-      <FAQ lang={lang} items={faqs} />
     </div>
   </section>
 

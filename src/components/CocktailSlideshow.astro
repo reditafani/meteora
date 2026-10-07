@@ -10,7 +10,7 @@ const s = t(lang);
 const it = lang === 'it';
 ---
 
-<section class="section section--alt cs" aria-labelledby="cs-title">
+<section class="section section--dark cs" aria-labelledby="cs-title">
   <div class="container cs__head">
     <div>
       <p class="eyebrow" data-reveal>Cocktail Experience</p>
@@ -26,7 +26,7 @@ const it = lang === 'it';
         <li class="cs__slide" data-reveal style={`--delay:${i * 0.04}s`}>
           <div class="cs__media media">
             {c.image
-              ? <Img src={c.image} alt={c.name} sizes="260px" widths={[260, 520]} />
+              ? <Img src={c.image} alt={c.name} sizes="195px" widths={[195, 390]} />
               : <div class="cs__placeholder" aria-hidden="true"></div>
             }
           </div>
@@ -75,7 +75,7 @@ const it = lang === 'it';
   }
   .cs__title em {
     font-style: italic;
-    color: var(--color-accent-ink);
+    color: var(--color-accent-on-dark);
   }
   .cs__link {
     flex-shrink: 0;
@@ -101,12 +101,12 @@ const it = lang === 'it';
   /* ── Slide ── */
   .cs__slide {
     flex-shrink: 0;
-    width: clamp(200px, 22vw, 260px);
+    width: clamp(150px, 16.5vw, 195px);
     scroll-snap-align: start;
   }
   .cs__media {
     aspect-ratio: 4 / 5;
-    background: #e9e6e2;
+    background: rgba(255 255 255 / 0.06);
     overflow: hidden;
   }
   .cs__media :global(img) {
@@ -132,7 +132,7 @@ const it = lang === 'it';
   .cs__variants {
     font-size: var(--fs-micro);
     letter-spacing: 0.08em;
-    color: var(--color-text-muted);
+    color: var(--color-on-dark-muted);
     margin-top: 0.2rem;
   }
   .cs__meta {
@@ -142,7 +142,7 @@ const it = lang === 'it';
     gap: 0.5rem;
     margin-top: 0.5rem;
     font-size: var(--fs-small);
-    color: var(--color-text-muted);
+    color: var(--color-on-dark-muted);
   }
   .cs__abv dd {
     display: flex;
@@ -152,10 +152,10 @@ const it = lang === 'it';
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    border: 1px solid var(--color-accent);
+    border: 1px solid var(--color-accent-on-dark);
   }
   .dot.on {
-    background: var(--color-accent);
+    background: var(--color-accent-on-dark);
   }
 </style>
 

@@ -13,18 +13,17 @@ interface Props {
 const { lang } = Astro.props;
 const s = t(lang);
 const it = lang === 'it';
-const types = [
-  { value: 'wedding-planner', label: 'Wedding Planner' },
-  { value: 'venue', label: it ? 'Location' : 'Venue' },
-  { value: 'caterer', label: 'Catering' },
-  { value: 'event-professional', label: it ? 'Professionista eventi' : 'Event Professional' },
-];
-const volumes = [
-  { value: '1-5', label: it ? '1–5 eventi' : '1–5 events' },
-  { value: '6-15', label: it ? '6–15 eventi' : '6–15 events' },
-  { value: '16-30', label: it ? '16–30 eventi' : '16–30 events' },
-  { value: '30+', label: it ? 'Oltre 30 eventi' : '30+ events' },
-];
+const typeOptions = it
+  ? [
+      { value: 'wedding-planner', label: 'Wedding Planner' },
+      { value: 'location',        label: 'Location' },
+      { value: 'other',           label: 'Altro professionista wedding' },
+    ]
+  : [
+      { value: 'wedding-planner', label: 'Wedding Planner' },
+      { value: 'location',        label: 'Venue' },
+      { value: 'other',           label: 'Other wedding professional' },
+    ];
 const messages = {
   required: s.errRequired,
   email: s.errEmail,
@@ -55,30 +54,15 @@ const messages = {
     <label>Leave empty <input type="text" name="company_fax" tabindex="-1" autocomplete="off" /></label>
   </div>
 
-  <fieldset class="choice form__full">
-    <legend class="choice__legend">{it ? 'Siete' : 'You are'} <span class="req" aria-hidden="true">*</span></legend>
-    <div class="choice__opts">
-      {
-        types.map((o, i) => (
-          <label>
-            <input type="radio" name="partner_type" value={o.value} required={i === 0} />
-            <span>{o.label}</span>
-          </label>
-        ))
-      }
-    </div>
-    <p class="choice__err" aria-live="polite"></p>
-  </fieldset>
-
-  <Field lang={lang} name="first_name" label={it ? 'Nome' : 'Name'} required autocomplete="given-name" />
-  <Field lang={lang} name="last_name" label={it ? 'Cognome' : 'Surname'} required autocomplete="family-name" />
-  <Field lang={lang} name="company" label={it ? 'Azienda' : 'Company'} required autocomplete="organization" />
-  <Field lang={lang} name="role" label={it ? 'Ruolo' : 'Role'} autocomplete="organization-title" />
+  <Field lang={lang} name="first_name" label={it ? 'Nome' : 'First name'} required autocomplete="given-name" />
+  <Field lang={lang} name="last_name" label={it ? 'Cognome' : 'Last name'} required autocomplete="family-name" />
+  <Field lang={lang} name="company" label={it ? 'Nome attività' : 'Business name'} required autocomplete="organization" span="full" />
+  <Field lang={lang} name="type" type="select" label={it ? 'Tipologia' : 'Type'} required options={typeOptions} placeholder={it ? 'Seleziona' : 'Select'} span="full" />
+  <Field lang={lang} name="area" label={it ? 'Area / città' : 'Area / city'} required placeholder={it ? 'Es. Firenze, Chianti' : 'E.g. Florence, Tuscany'} span="full" />
   <Field lang={lang} name="email" type="email" label="Email" required autocomplete="email" inputmode="email" />
   <Field lang={lang} name="phone" type="tel" label="Telefono / WhatsApp" required autocomplete="tel" inputmode="tel" placeholder="+39 …" />
-  <Field lang={lang} name="website" label="Website / Instagram" placeholder="www… / @…" />
-  <Field lang={lang} name="event_location" label={it ? 'Zona in cui lavorate di solito' : 'Typical event location'} required placeholder={it ? 'Es. Firenze e Chianti' : 'E.g. Florence and Chianti'} />
-  <Field lang={lang} name="volume" type="select" label={it ? 'Eventi stimati all’anno' : 'Estimated annual events'} options={volumes} placeholder={it ? 'Seleziona' : 'Select'} span="full" />
+  <Field lang={lang} name="instagram" label="Instagram" placeholder="@handle" />
+  <Field lang={lang} name="website" type="url" label={it ? 'Sito web' : 'Website'} placeholder="https://…" />
   <Field lang={lang} name="message" type="textarea" label={it ? 'Messaggio' : 'Message'} span="full" rows={4} />
 
   <div class="form__full consent-wrap">
@@ -93,15 +77,20 @@ const messages = {
     <button type="submit" class="btn">{s.partnerPricing} <span class="arrow" aria-hidden="true">→</span></button>
     <p class="form__status" role="status" data-form-status></p>
   </div>
+  <p class="form__full form__microcopy muted">
+    {it
+      ? 'Ti ricontatteremo per presentarti Meteora Events e le condizioni dedicate al settore wedding.'
+      : 'We will get back to you to introduce Meteora Events and our dedicated professional terms.'}
+  </p>
 </form>
 
 <div class="form-done" id="partner-done" tabindex="-1" hidden role="status">
   <p class="eyebrow">{it ? 'Richiesta ricevuta' : 'Request received'}</p>
-  <h3>{it ? <>Grazie. <em>Parliamo presto.</em></> : <>Thank you. <em>Let’s talk soon.</em></>}</h3>
+  <h3>{it ? <>Grazie. <em>Vi ricontattiamo presto.</em></> : <>Thank you. <em>We will be in touch soon.</em></>}</h3>
   <p class="muted">
     {it
-      ? 'Vi invieremo il listino riservato ai partner e le condizioni di collaborazione all’indirizzo indicato.'
-      : 'We will send our partner price list and collaboration terms to the address you provided.'}
+      ? 'Verificheremo la vostra realtà e vi presenteremo Meteora Events e le condizioni dedicate.'
+      : 'We will review your details and introduce Meteora Events and our dedicated professional terms.'}
   </p>
 </div>
 
@@ -109,3 +98,10 @@ const messages = {
   import { initForms } from '@/scripts/forms';
   initForms();
 </script>
+
+<style>
+  .form__microcopy {
+    font-size: var(--fs-small);
+    margin-top: var(--space-s);
+  }
+</style>

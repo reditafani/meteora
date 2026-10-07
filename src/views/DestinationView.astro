@@ -8,11 +8,9 @@ import SectionHeading from '@/components/SectionHeading.astro';
 import DestinationSection from '@/components/DestinationSection.astro';
 import VenueShowcase from '@/components/VenueShowcase.astro';
 import EditorialSection from '@/components/EditorialSection.astro';
-import FAQ from '@/components/FAQ.astro';
 import CTABand from '@/components/CTABand.astro';
 import Breadcrumbs from '@/components/Breadcrumbs.astro';
-import { faqFor } from '@/data/faq';
-import { faqSchema, serviceSchema } from '@/lib/seo';
+import { serviceSchema } from '@/lib/seo';
 import hero from '@/assets/images/bars/pure-white-villa.jpg';
 import golden from '@/assets/images/bars/golden-mirror.jpg';
 import tower from '@/assets/images/towers/coupe-tower-sunset.jpg';
@@ -43,8 +41,6 @@ const crumbs = [
   { name: s.breadcrumbHome, href: url('home', lang) },
   { name: 'Destination Weddings', href: url('destination', lang) },
 ];
-const faqs = faqFor('destination');
-
 /** Planning guide for international couples — every answer grounded in the brochure. */
 const guide = it
   ? [
@@ -88,7 +84,6 @@ const venues = [
 
 const schema = [
   serviceSchema({ name: it ? 'Bar catering per destination wedding in Italia' : 'Destination wedding bar catering in Italy', serviceType: 'Wedding bar catering', description: meta.description, url: url('destination', lang), lang, area: it ? ['Toscana', 'Firenze', 'Chianti', 'Siena', 'Lucca', 'Pisa', 'Forte dei Marmi', 'Italia'] : ['Tuscany', 'Florence', 'Chianti', 'Siena', 'Lucca', 'Pisa', 'Forte dei Marmi', 'Italy'] }),
-  faqSchema(faqs, lang),
 ];
 ---
 
@@ -170,13 +165,6 @@ const schema = [
         <a class="link" href={url('services', lang)}>{it ? 'Servizi' : 'Services'}</a>
         <a class="link" href={url('weddings', lang)}>{it ? 'Matrimoni' : 'Weddings'}</a>
       </div>
-    </div>
-  </section>
-
-  <section class="section section--alt" aria-labelledby="d-faq">
-    <div class="container container--narrow">
-      <SectionHeading eyebrow="FAQ" id="d-faq">{it ? <>Domande <em>frequenti.</em></> : <>Frequently <em>asked.</em></>}</SectionHeading>
-      <FAQ lang={lang} items={faqs} />
     </div>
   </section>
 
