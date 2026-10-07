@@ -170,7 +170,7 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
 
 
   <!-- CHIAVI IN MANO -->
-  <section class="section section--alt" aria-labelledby="a-included">
+  <section class="section section--dark" aria-labelledby="a-included">
     <div class="container">
       <SectionHeading eyebrow={it ? 'Chiavi in mano' : 'All-inclusive'} id="a-included">
         {it ? <>Voi scegliete il pacchetto. <em>Al resto pensiamo noi.</em></> : <>You choose the package. <em>We handle the rest.</em></>}
@@ -188,7 +188,7 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
   </section>
 
   <!-- COME FUNZIONA -->
-  <section class="section" aria-labelledby="a-process">
+  <section class="section section--dark" aria-labelledby="a-process">
     <div class="container">
       <p class="eyebrow" data-reveal>{it ? 'Come funziona' : 'How it works'}</p>
       <h2 id="a-process" class="process-hdg" data-reveal style="--delay:.04s">
@@ -315,6 +315,33 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
   }
   @media (min-width: 700px) {
     .serves { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* ── Dark section overrides ── */
+  .section--dark .incl {
+    border-color: rgba(255 255 255 / 0.12);
+  }
+  .section--dark .incl li {
+    border-color: rgba(255 255 255 / 0.12);
+  }
+  .section--dark .incl li :global(svg) {
+    color: var(--color-accent-on-dark);
+  }
+  .section--dark .process li {
+    border-top-color: rgba(255 255 255 / 0.15);
+  }
+  .section--dark .process__n {
+    background: var(--color-dark);
+    border-color: var(--color-accent-on-dark);
+    color: var(--color-accent-on-dark);
+  }
+  @media (min-width: 700px) {
+    .section--dark .process__n {
+      background: var(--color-dark);
+    }
+    .section--dark .process::before {
+      background: rgba(255 255 255 / 0.15);
+    }
   }
 
   /* ── Chiavi in mano ── */
