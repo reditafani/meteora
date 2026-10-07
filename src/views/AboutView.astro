@@ -5,6 +5,7 @@ import { t } from '@/i18n/ui';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import SectionHeading from '@/components/SectionHeading.astro';
+import Icon from '@/components/Icon.astro';
 import Img from '@/components/Img.astro';
 import { site } from '@/data/site';
 import terrace from '@/assets/images/bars/terrace-panorama.jpg';
@@ -80,6 +81,42 @@ const serves = it
         text: 'Birthdays, anniversaries, celebrations and receptions. Every occasion, large or small, deserves our service standard.',
       },
     ];
+
+type IconName = 'ice' | 'user' | 'briefcase' | 'cocktail' | 'star' | 'snowflake';
+const included: { icon: IconName; title: string; text: string }[] = it
+  ? [
+      { icon: 'ice',       title: 'Banco bar',                 text: 'Uno dei nostri banchi signature, nella misura scelta.' },
+      { icon: 'user',      title: 'Staff preparato',           text: 'Barman professionisti formati da noi, inclusi nel prezzo.' },
+      { icon: 'briefcase', title: 'Allestimento e smontaggio', text: "Montiamo prima degli ospiti, smontiamo dopo l'ultimo brindisi." },
+      { icon: 'cocktail',  title: 'Bicchieri in vetro',        text: 'Cristalleria professionale.' },
+      { icon: 'star',      title: 'Tutti gli ingredienti',     text: 'Distillati, mixer, frutta fresca, sciroppi e guarnizioni.' },
+      { icon: 'snowflake', title: 'Ghiaccio',                  text: 'Ghiaccio artigianale, in quantita calcolata sui vostri ospiti.' },
+    ]
+  : [
+      { icon: 'ice',       title: 'Bar counter',       text: 'One of our signature bars, in the size you choose.' },
+      { icon: 'user',      title: 'Trained staff',     text: 'Professional bartenders trained by us, included in the price.' },
+      { icon: 'briefcase', title: 'Setup & breakdown', text: 'We set up before your guests arrive, break down after the last toast.' },
+      { icon: 'cocktail',  title: 'Crystal glassware', text: 'Professional glassware throughout.' },
+      { icon: 'star',      title: 'All ingredients',   text: 'Spirits, mixers, fresh fruit, syrups and garnishes.' },
+      { icon: 'snowflake', title: 'Ice',               text: 'Artisan ice, calculated for your guest count.' },
+    ];
+
+const steps: { title: string; text: string; cta?: boolean }[] = it
+  ? [
+      { title: 'Primo contatto',     text: 'Ascoltiamo la vostra richiesta e ci conosciamo.' },
+      { title: 'Il vostro bar',      text: 'Scegliete il banco bar e la cocktail list.' },
+      { title: 'La nostra proposta', text: "Tutto per iscritto: un contratto con ogni dettaglio di cio che e incluso.", cta: true },
+      { title: 'Il grande giorno',   text: 'Allestimento, servizio e coordinamento in presenza.' },
+      { title: 'Smontaggio',         text: "Lasciamo la location esattamente come l'abbiamo trovata." },
+    ]
+  : [
+      { title: 'First contact', text: 'You tell us about your event and we get to know each other.' },
+      { title: 'Your bar',      text: 'Choose your bar counter and cocktail list.' },
+      { title: 'Our proposal',  text: 'Everything in writing: a contract detailing exactly what is included.', cta: true },
+      { title: 'The big day',   text: 'Setup, service and on-site coordination.' },
+      { title: 'Breakdown',     text: 'We leave the venue exactly as we found it.' },
+    ];
+
 ---
 
 <BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('about')} current="about" breadcrumbs={crumbs} headerTheme="overlay">
@@ -142,6 +179,45 @@ const serves = it
             : 'We create bar services and cocktail experiences for private clients, companies and event professionals from our base in Montecatini Terme, operating across Italy and abroad.'}
         </p>
       </div>
+    </div>
+  </section>
+
+
+  <!-- CHIAVI IN MANO -->
+  <section class="section section--alt" aria-labelledby="a-included">
+    <div class="container">
+      <SectionHeading eyebrow={it ? 'Chiavi in mano' : 'All-inclusive'} id="a-included">
+        {it ? <>Voi scegliete il pacchetto. <em>Al resto pensiamo noi.</em></> : <>You choose the package. <em>We handle the rest.</em></>}
+      </SectionHeading>
+      <ul class="incl" role="list">
+        {included.map((item, i) => (
+          <li data-reveal style={`--delay:${(i % 3) * 0.06}s`}>
+            <Icon name={item.icon} size={26} />
+            <h3>{item.title}</h3>
+            <p class="muted">{item.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- COME FUNZIONA -->
+  <section class="section" aria-labelledby="a-process">
+    <div class="container">
+      <p class="eyebrow" data-reveal>{it ? 'Come funziona' : 'How it works'}</p>
+      <h2 id="a-process" class="process-hdg" data-reveal style="--delay:.04s">
+        {it ? <>Cinque passi. <em>Nessuna sorpresa.</em></> : <>Five steps. <em>No surprises.</em></>}
+      </h2>
+      <ol class="process" role="list">
+        {steps.map((step, i) => (
+          <li data-reveal style={`--delay:${i * 0.07}s`}>
+            <span class="process__n">{i + 1}</span>
+            <h3>{step.title}</h3>
+            <p class="muted">{step.text}</p>
+            {step.cta && <a class="link process__cta" href={url('contact', lang)}>{it ? 'Scriveteci' : 'Get in touch'}</a>}
+          </li>
+        ))}
+      </ol>
     </div>
   </section>
 
@@ -298,5 +374,116 @@ const serves = it
   }
   @media (min-width: 700px) {
     .serves { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* ── Chiavi in mano ── */
+  .incl {
+    display: grid;
+    border-left: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-border);
+    margin-top: var(--space-xl);
+  }
+  .incl li {
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-l) var(--space-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+  }
+  .incl li :global(svg) {
+    color: var(--color-accent-ink);
+    margin-bottom: var(--space-xs, 0.5rem);
+  }
+  .incl h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 0.9rem + 0.5vw, 1.35rem);
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  .incl p {
+    font-size: var(--fs-small);
+    max-width: 26rem;
+  }
+  @media (min-width: 600px) {
+    .incl { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 900px) {
+    .incl { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* ── Come funziona ── */
+  .process-hdg {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 1.2rem + 3vw, 4rem);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-top: var(--space-s);
+    margin-bottom: var(--space-xl);
+  }
+  .process-hdg em {
+    font-style: italic;
+    color: var(--color-accent-ink);
+  }
+  .process {
+    display: grid;
+    gap: var(--space-l);
+    position: relative;
+  }
+  .process li {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-m);
+    display: grid;
+    gap: 0.4rem;
+    align-content: start;
+  }
+  .process__n {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    border: 1px solid var(--color-accent-ink);
+    color: var(--color-accent-ink);
+    font-size: 0.75rem;
+    margin-bottom: var(--space-s);
+    position: relative;
+    z-index: 1;
+  }
+  .process li h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 0.9rem + 0.5vw, 1.35rem);
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  .process li p {
+    font-size: var(--fs-small);
+  }
+  .process__cta {
+    margin-top: var(--space-xs, 0.5rem);
+    font-size: var(--fs-small);
+  }
+  @media (min-width: 700px) {
+    .process {
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--space-m);
+    }
+    .process::before {
+      content: '';
+      position: absolute;
+      top: 1.125rem;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--color-border);
+    }
+    .process li {
+      border-top: none;
+      padding-top: 0;
+    }
+    .process__n {
+      background: var(--color-background);
+    }
   }
 </style>
