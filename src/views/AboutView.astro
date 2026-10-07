@@ -91,14 +91,14 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
   ? [
       { title: 'Primo contatto',     text: 'Ascoltiamo la vostra richiesta e ci conosciamo.' },
       { title: 'Il vostro bar',      text: 'Scegliete il banco bar e la cocktail list.' },
-      { title: 'La nostra proposta', text: "Tutto per iscritto: un contratto con ogni dettaglio di cio che e incluso.", cta: true },
+      { title: 'La nostra proposta', text: "Tutto per iscritto: un contratto con ogni dettaglio di cio che e incluso." },
       { title: 'Il grande giorno',   text: 'Allestimento, servizio e coordinamento in presenza.' },
       { title: 'Smontaggio',         text: "Lasciamo la location esattamente come l'abbiamo trovata." },
     ]
   : [
       { title: 'First contact', text: 'You tell us about your event and we get to know each other.' },
       { title: 'Your bar',      text: 'Choose your bar counter and cocktail list.' },
-      { title: 'Our proposal',  text: 'Everything in writing: a contract detailing exactly what is included.', cta: true },
+      { title: 'Our proposal',  text: 'Everything in writing: a contract detailing exactly what is included.' },
       { title: 'The big day',   text: 'Setup, service and on-site coordination.' },
       { title: 'Breakdown',     text: 'We leave the venue exactly as we found it.' },
     ];
@@ -315,6 +315,11 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
   }
   @media (min-width: 700px) {
     .serves { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* Collapse gap between the two adjacent dark sections */
+  .section--dark + .section--dark {
+    padding-top: 0;
   }
 
   /* ── Dark section overrides ── */
