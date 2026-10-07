@@ -53,7 +53,6 @@ const year = new Date().getFullYear();
           <li><a class="footer__contact-link" href={`tel:${site.phoneE164}`} data-track="phone_click"><Icon name="phone" size={14} />{site.phoneDisplay}</a></li>
           <li><a class="footer__ig" href={site.instagram.url} target="_blank" rel="noopener" data-track="instagram_click"><Icon name="instagram" size={14} />{site.instagram.handle}</a></li>
         </ul>
-        <a class="link footer__partner" href={url('partners', lang)}>{s.partnerPricing}</a>
       </div>
     </div>
 
@@ -121,10 +120,6 @@ const year = new Date().getFullYear();
   }
   .footer__nav a:hover,
   .footer__contact a:hover {
-    color: var(--color-accent-on-dark);
-  }
-  .footer__partner {
-    margin-top: var(--space-m);
     color: var(--color-accent-on-dark);
   }
   .footer__bottom {
