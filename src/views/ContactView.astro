@@ -3,14 +3,11 @@ import type { Lang } from '@/i18n/routes';
 import { url, alternatesFor } from '@/i18n/routes';
 import { t } from '@/i18n/ui';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
 import LeadForm from '@/components/LeadForm.astro';
-import SectionHeading from '@/components/SectionHeading.astro';
-import FAQ from '@/components/FAQ.astro';
 import Icon from '@/components/Icon.astro';
 import Img from '@/components/Img.astro';
 import { site, whatsappLink } from '@/data/site';
-import { faqFor } from '@/data/faq';
-import { faqSchema } from '@/lib/seo';
 import side from '@/assets/images/bars/golden-mirror-sunset.jpg';
 
 interface Props {
@@ -26,7 +23,6 @@ const crumbs = [
   { name: s.breadcrumbHome, href: url('home', lang) },
   { name: it ? 'Contatti' : 'Contact', href: url('contact', lang) },
 ];
-const faqs = faqFor('general').slice(0, 4);
 const contactSchema = {
   '@context': 'https://schema.org',
   '@type': 'ContactPage',
@@ -35,15 +31,28 @@ const contactSchema = {
 };
 ---
 
-<BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('contact')} current="contact" breadcrumbs={crumbs} schema={[contactSchema, faqSchema(faqs, lang)]} showQuoteBar={false}>
-  <section class="ct">
+<BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('contact')} current="contact" breadcrumbs={crumbs} schema={[contactSchema]} showQuoteBar={false} headerTheme="overlay">
+
+  <PageHero variant="fullscreen" image={side} imageAlt={it ? 'Banco Golden Mirror al tramonto' : 'Golden Mirror bar at sunset'} crumbs={crumbs}>
+    <h1>{it ? <>Scriveteci. <em>Vi rispondiamo.</em></> : <>Get in touch. <em>We'll reply.</em></>}</h1>
+    <p slot="lead" class="lead muted">
+      {it
+        ? 'Raccontateci il vostro evento: vi risponderemo con una proposta costruita su misura.'
+        : 'Tell us about your event and we will reply with a proposal built around it.'}
+    </p>
+    <div slot="cta">
+      <a class="btn" href="#contact-form">{it ? 'Compila il modulo' : 'Fill in the form'}</a>
+    </div>
+  </PageHero>
+
+  <section class="ct" id="contact-form">
     <div class="container ct__grid">
       <aside class="ct__side">
-        <h1>{it ? <>Richiedete <em>il vostro preventivo.</em></> : <>Request <em>your quote.</em></>}</h1>
+        <h2 class="ct__side-hd">{it ? <>Richiedete <em>il vostro preventivo.</em></> : <>Request <em>your quote.</em></>}</h2>
         <p class="lead muted">
           {it
-            ? 'Raccontateci il vostro evento: vi risponderemo con una proposta costruita su misura. Più dettagli ci date, più precisa sarà.'
-            : 'Tell us about your event and we will reply with a proposal built around it. The more you share, the more precise it will be.'}
+            ? 'Più dettagli ci date, più precisa sarà la proposta.'
+            : 'The more you share, the more precise our proposal will be.'}
         </p>
         <ul class="ct__links" role="list">
           <li><a href={`mailto:${site.email}`} data-track="email_click"><Icon name="mail" />{site.email}</a></li>
@@ -63,12 +72,6 @@ const contactSchema = {
     </div>
   </section>
 
-  <section class="section section--alt" aria-labelledby="c-faq">
-    <div class="container container--narrow">
-      <SectionHeading eyebrow="FAQ" id="c-faq">{it ? <>Prima di <em>scriverci.</em></> : <>Before <em>you write.</em></>}</SectionHeading>
-      <FAQ lang={lang} items={faqs} />
-    </div>
-  </section>
 </BaseLayout>
 
 <style>
@@ -85,9 +88,15 @@ const contactSchema = {
   .ct__eyebrow {
     margin-top: var(--space-l) !important;
   }
-  .ct__side h1 {
-    font-size: clamp(2.5rem, 1.6rem + 3.5vw, 5rem);
-    max-width: 11ch;
+  .ct__side-hd {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 1.2rem + 2vw, 3rem);
+    font-weight: 300;
+    line-height: 1.1;
+  }
+  .ct__side-hd em {
+    font-style: italic;
+    color: var(--color-accent-ink);
   }
   .ct__links {
     display: grid;

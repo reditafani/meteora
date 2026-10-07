@@ -5,14 +5,13 @@ import { t } from '@/i18n/ui';
 import { site } from '@/data/site';
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
-import LanguageSwitcher from './LanguageSwitcher.astro';
 
 interface Props {
   lang: Lang;
   alternates: Partial<Alternates>;
   current?: string;
 }
-const { lang, alternates, current } = Astro.props;
+const { lang, current } = Astro.props;
 const s = t(lang);
 const it = lang === 'it';
 const primary = [
@@ -21,9 +20,22 @@ const primary = [
   { key: 'bars',     label: it ? 'I nostri banchi bar': 'Our Bar Collection',icon: 'briefcase' },
   { key: 'partners', label: it ? 'Collabora con noi'  : 'Work with us',     icon: 'link'      },
   { key: 'ice',      label: it ? 'Noleggio ghiaccio'  : 'Ice Rental',       icon: 'ice'       },
-  { key: 'why',      label: it ? 'Perché Meteora'     : 'Why Meteora',      icon: 'star'      },
   { key: 'contact',  label: it ? 'Contatti'           : 'Contact',          icon: 'mail'      },
 ] as const;
+
+const aboutSections = it ? [
+  { id: 'a-story',    label: 'La nostra filosofia' },
+  { id: 'a-included', label: 'Chiavi in mano' },
+  { id: 'a-process',  label: 'Come funziona' },
+  { id: 'a-serves',   label: 'I nostri eventi' },
+  { id: 'a-map',      label: 'Dove lavoriamo' },
+] : [
+  { id: 'a-story',    label: 'Our philosophy' },
+  { id: 'a-included', label: 'All-inclusive' },
+  { id: 'a-process',  label: 'How it works' },
+  { id: 'a-serves',   label: 'Our events' },
+  { id: 'a-map',      label: 'Where we work' },
+];
 ---
 
 <div class="mm__backdrop" data-menu-backdrop aria-hidden="true"></div>
@@ -38,24 +50,36 @@ const primary = [
 
   <nav class="mm__body" aria-label={s.mainNav}>
     <ul role="list" class="mm__primary">
-      {
-        primary.map((item, i) => (
+      {primary.map((item, i) => (
+        item.key === 'about' ? (
+          <li class="mm__item--has-sub" style={`--i:${i}`}>
+            <button type="button" class="mm__sub-toggle" aria-expanded="false">
+              <span class="mm__icon"><Icon name="user" size={18} /></span>
+              <span class="mm__label">{item.label}</span>
+              <span class="mm__chevron" aria-hidden="true">›</span>
+            </button>
+            <ul class="mm__sub" role="list">
+              {aboutSections.map(s => (
+                <li><a href={`${url('about', lang)}#${s.id}`}>{s.label}</a></li>
+              ))}
+            </ul>
+          </li>
+        ) : (
           <li style={`--i:${i}`}>
             <a href={url(item.key, lang)} aria-current={current === item.key ? 'page' : undefined}>
               <span class="mm__icon"><Icon name={item.icon as any} size={18} /></span>
               <span class="mm__label">{item.label}</span>
             </a>
           </li>
-        ))
-      }
+        )
+      ))}
     </ul>
 
     <div class="mm__foot">
       <a class="btn btn--light btn--block" href={url('contact', lang)} data-track="cta_click" data-track-label="menu_quote">{s.quote}</a>
       <div class="mm__meta">
-        <LanguageSwitcher lang={lang} alternates={alternates} />
-        <a href={`mailto:${site.email}`} data-track="email_click">{site.email}</a>
-        <a href={site.instagram.url} target="_blank" rel="noopener" data-track="instagram_click">{site.instagram.handle}</a>
+        <a href={`mailto:${site.email}`} data-track="email_click"><Icon name="mail" size={13} />{site.email}</a>
+        <a href={site.instagram.url} target="_blank" rel="noopener" data-track="instagram_click"><Icon name="instagram" size={13} />{site.instagram.handle}</a>
       </div>
     </div>
   </nav>
@@ -65,7 +89,9 @@ const primary = [
   const menu     = document.querySelector<HTMLElement>('[data-menu]');
   const backdrop = document.querySelector<HTMLElement>('[data-menu-backdrop]');
   const openers  = document.querySelectorAll<HTMLButtonElement>('[data-menu-open]');
-  const closer   = menu?.querySelector<HTMLButtonElement>('[data-menu-close]');
+  const closer     = menu?.querySelector<HTMLButtonElement>('[data-menu-close]');
+  const subToggle  = menu?.querySelector<HTMLButtonElement>('.mm__sub-toggle');
+  const subList    = menu?.querySelector<HTMLElement>('.mm__sub');
   let lastFocus: HTMLElement | null = null;
 
   const focusables = () =>
@@ -91,6 +117,8 @@ const primary = [
     backdrop?.classList.remove('is-open');
     document.documentElement.style.overflow = '';
     openers.forEach((b) => b.setAttribute('aria-expanded', 'false'));
+    subToggle?.setAttribute('aria-expanded', 'false');
+    subList?.classList.remove('is-open');
     const done = () => (menu.hidden = true);
     window.matchMedia('(prefers-reduced-motion: reduce)').matches ? done() : setTimeout(done, 420);
     lastFocus?.focus();
@@ -116,6 +144,12 @@ const primary = [
   });
 
   window.matchMedia('(min-width: 1180px)').addEventListener('change', (e) => e.matches && close());
+
+  subToggle?.addEventListener('click', () => {
+    const expanded = subToggle.getAttribute('aria-expanded') === 'true';
+    subToggle.setAttribute('aria-expanded', String(!expanded));
+    subList?.classList.toggle('is-open', !expanded);
+  });
 </script>
 
 <style>
@@ -257,10 +291,79 @@ const primary = [
     color: var(--color-on-dark-muted);
   }
   .mm__meta a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     text-decoration: none;
     transition: color 0.2s;
   }
   .mm__meta a:hover {
     color: var(--color-on-dark);
+  }
+
+  /* ── Sub-menu (Chi siamo) ── */
+  .mm__sub-toggle {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.7rem 0.6rem;
+    border-radius: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--color-on-dark);
+    text-align: left;
+    transition: background 0.2s, color 0.2s;
+  }
+  .mm__sub-toggle:hover {
+    background: rgba(255 255 255 / 0.06);
+    color: var(--color-accent-on-dark);
+  }
+  .mm__sub-toggle[aria-expanded='true'] {
+    color: var(--color-accent-on-dark);
+    background: rgba(184, 158, 114, 0.1);
+  }
+  .mm__sub-toggle[aria-expanded='true'] .mm__label {
+    font-style: italic;
+  }
+  .mm__chevron {
+    margin-left: auto;
+    font-size: 1.1rem;
+    line-height: 1;
+    color: var(--color-accent-on-dark);
+    opacity: 0.8;
+    transition: transform 0.25s var(--ease-out);
+  }
+  .mm__sub-toggle[aria-expanded='true'] .mm__chevron {
+    transform: rotate(90deg);
+  }
+  .mm__sub {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.32s var(--ease-out);
+    padding-left: calc(18px + 0.85rem + 0.6rem);
+  }
+  .mm__sub.is-open {
+    max-height: 320px;
+  }
+  .mm__sub a {
+    display: block;
+    padding: 0.55rem 0.4rem;
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    font-weight: 350;
+    line-height: 1.2;
+    text-decoration: none;
+    color: var(--color-on-dark-muted);
+    border-bottom: 1px solid rgba(255 255 255 / 0.06);
+    transition: color 0.2s;
+  }
+  .mm__sub li:last-child a {
+    border-bottom: none;
+  }
+  .mm__sub a:hover {
+    color: var(--color-accent-on-dark);
   }
 </style>

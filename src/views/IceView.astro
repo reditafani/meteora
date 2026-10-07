@@ -1,0 +1,57 @@
+---
+import type { Lang } from '@/i18n/routes';
+import { url, alternatesFor } from '@/i18n/routes';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const it = lang === 'it';
+---
+
+<BaseLayout
+  lang={lang}
+  title={it ? 'Noleggio Ghiaccio | Meteora Events' : 'Ice Rental | Meteora Events'}
+  description={it ? 'Servizio di noleggio ghiaccio professionale per eventi. Prossimamente.' : 'Professional ice rental for events. Coming soon.'}
+  alternates={alternatesFor('ice')}
+  noindex
+>
+  <section class="section ice-wrap">
+    <div class="container ice-box">
+      <p class="eyebrow">{it ? 'Prossimamente' : 'Coming soon'}</p>
+      <h1>{it ? <>Noleggio <em>ghiaccio.</em></> : <>Ice <em>rental.</em></>}</h1>
+      <p class="lead muted">
+        {it
+          ? 'Stiamo preparando questo servizio. Tornate presto o scriveteci per maggiori informazioni.'
+          : 'We are preparing this service. Check back soon or get in touch for more information.'}
+      </p>
+      <div class="cta-row">
+        <a class="btn" href={url('home', lang)}>{it ? 'Torna alla home' : 'Back to home'}</a>
+        <a class="link" href={url('contact', lang)}>{it ? 'Contattaci' : 'Contact us'}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .ice-wrap {
+    min-height: 60svh;
+    display: flex;
+    align-items: center;
+  }
+  .ice-box {
+    display: grid;
+    gap: var(--space-m);
+    max-width: 36rem;
+  }
+  .ice-box h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 1.5rem + 4vw, 5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    margin: 0;
+  }
+  .ice-box h1 em {
+    font-style: italic;
+    color: var(--color-accent-ink);
+  }
+</style>

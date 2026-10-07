@@ -199,6 +199,15 @@ p {
   color: var(--color-accent-ink);
 }
 
+/* ---------- About section anchors ---------- */
+#a-story,
+#a-included,
+#a-process,
+#a-serves,
+#a-map {
+  scroll-margin-top: calc(var(--header-h-compact) + 2rem);
+}
+
 /* ---------- Layout ---------- */
 .container {
   width: 100%;

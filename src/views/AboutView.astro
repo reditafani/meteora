@@ -7,12 +7,16 @@ import PageHero from '@/components/PageHero.astro';
 import SectionHeading from '@/components/SectionHeading.astro';
 import Icon from '@/components/Icon.astro';
 import Img from '@/components/Img.astro';
+import ItalyMap from '@/components/ItalyMap.astro';
 import { site } from '@/data/site';
 import terrace from '@/assets/images/bars/terrace-panorama.jpg';
 import mint from '@/assets/images/details/mint-coupes.jpg';
 import sunset from '@/assets/images/bars/golden-mirror-sunset.jpg';
 import shaker from '@/assets/images/details/shaker.jpg';
 import strain from '@/assets/images/team/bartender-strain.jpg';
+import coupleImg from '@/assets/images/towers/couple-pour.jpg';
+import silverImg from '@/assets/images/bars/silver-reflection.jpg';
+import loungeImg from '@/assets/images/bars/night-lounge.jpg';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -32,41 +36,51 @@ const crumbs = [
   { name: it ? 'Chi siamo' : 'About us', href: url('about', lang) },
 ];
 
-const serves = it
+const serveCards = it
   ? [
       {
-        n: '01',
-        title: 'Matrimoni',
-        text: "Dall'aperitivo in giardino all'open bar dopo cena. Il banco diventa scenografia dell'evento e resta nelle fotografie.",
+        n: '01', title: 'Matrimoni',
+        subtitle: "Il giorno più fotografato della vostra vita merita un bar all'altezza.",
+        bullets: ['Destination wedding', 'Matrimoni in villa, castelli e cantine', 'Welcome party e after party', 'Brunch del giorno dopo'],
+        href: url('services', lang), cta: 'Scopri',
       },
       {
-        n: '02',
-        title: 'Eventi aziendali',
-        text: 'Brand activation, lanci di prodotto, cene di gala, team building. Il nostro staff si adatta al registro corporate con divisa personalizzabile.',
+        n: '02', title: 'Eventi aziendali',
+        subtitle: "La cura di un matrimonio, per l'immagine della vostra azienda.",
+        bullets: ['Logo su divise e banco', 'Cene di gala e lanci di prodotto', 'Convention e team building', 'Viaggi incentive e feste di Natale'],
+        href: url('services', lang), cta: 'Scopri',
       },
       {
-        n: '03',
-        title: 'Eventi privati',
-        text: 'Compleanni, anniversari, celebrazioni e rinfreschi. Ogni occasione, piccola o grande, merita il nostro standard di servizio.',
+        n: '03', title: 'Eventi privati',
+        subtitle: 'Ogni traguardo merita un brindisi fatto bene.',
+        bullets: ['Sfilate ed eventi di moda', 'Vernissage e inaugurazioni', 'Fiere', 'Feste di laurea e compleanni'],
+        href: url('services', lang), cta: 'Scopri',
       },
     ]
   : [
       {
-        n: '01',
-        title: 'Weddings',
-        text: 'From the garden aperitivo to the after-dinner open bar. The bar becomes part of the scenography and stays in the photographs.',
+        n: '01', title: 'Weddings',
+        subtitle: 'The most photographed day of your life deserves a bar to match.',
+        bullets: ['Destination weddings', 'Villas, castles and wineries', 'Welcome party and after party', 'Day-after brunch'],
+        href: url('services', lang), cta: 'Discover',
       },
       {
-        n: '02',
-        title: 'Corporate events',
-        text: 'Brand activations, product launches, gala dinners, team building. Our staff adapts to the corporate register with customisable uniforms.',
+        n: '02', title: 'Corporate events',
+        subtitle: 'The care of a wedding, for the image of your company.',
+        bullets: ['Logo on uniforms and bar', 'Gala dinners and product launches', 'Conventions and team building', 'Incentive trips and Christmas parties'],
+        href: url('services', lang), cta: 'Discover',
       },
       {
-        n: '03',
-        title: 'Private events',
-        text: 'Birthdays, anniversaries, celebrations and receptions. Every occasion, large or small, deserves our service standard.',
+        n: '03', title: 'Private events',
+        subtitle: 'Every milestone deserves a well-made toast.',
+        bullets: ['Fashion shows and events', 'Vernissages and openings', 'Trade fairs', 'Graduation parties and birthdays'],
+        href: url('services', lang), cta: 'Discover',
       },
     ];
+const serveImgs = [coupleImg, silverImg, loungeImg];
+const serveAlts = it
+  ? ['Coppia che versa champagne da una tower', 'Banco bar con riflessi argentati', 'Lounge notturno con luci soffuse']
+  : ['Couple pouring champagne from a tower', 'Bar counter with silver reflections', 'Night lounge with soft lighting'];
 
 type IconName = 'ice' | 'user' | 'briefcase' | 'cocktail' | 'star' | 'snowflake';
 const included: { icon: IconName; title: string; text: string }[] = it
@@ -123,7 +137,7 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
     </p>
   </PageHero>
 
-  <!-- LA NOSTRA STORIA -->
+  <!-- LA NOSTRA FILOSOFIA -->
   <section class="section" aria-labelledby="a-story">
     <div class="container story">
       <div class="story__heading">
@@ -170,7 +184,7 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
 
 
   <!-- CHIAVI IN MANO -->
-  <section class="section section--dark" aria-labelledby="a-included">
+  <section class="section section--dark section--dark-pair" aria-labelledby="a-included">
     <div class="container">
       <SectionHeading eyebrow={it ? 'Chiavi in mano' : 'All-inclusive'} id="a-included">
         {it ? <>Voi scegliete il pacchetto. <em>Al resto pensiamo noi.</em></> : <>You choose the package. <em>We handle the rest.</em></>}
@@ -188,7 +202,7 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
   </section>
 
   <!-- COME FUNZIONA -->
-  <section class="section section--dark" aria-labelledby="a-process">
+  <section class="section" aria-labelledby="a-process">
     <div class="container">
       <p class="eyebrow" data-reveal>{it ? 'Come funziona' : 'How it works'}</p>
       <h2 id="a-process" class="process-hdg" data-reveal style="--delay:.04s">
@@ -208,37 +222,55 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
   </section>
 
   <!-- CHI SERVIAMO -->
-  <section class="section section--alt section--tight" aria-labelledby="a-serves">
+  <section class="section section--dark section--serves" aria-labelledby="a-serves">
     <div class="container">
-      <SectionHeading eyebrow={it ? 'Chi serviamo' : 'Who we serve'} align="split" id="a-serves">
-        {it
-          ? <>Matrimoni, aziende <em>e privati.</em></>
-          : <>Weddings, corporate <em>and private.</em></>}
-      </SectionHeading>
-      <ol class="serves" role="list">
-        {serves.map((item) => (
-          <li data-reveal>
-            <span class="micro serves__n">{item.n}</span>
-            <h3>{item.title}</h3>
-            <p class="muted">{item.text}</p>
-          </li>
-        ))}
-      </ol>
-      <div class="serves__cta" data-reveal>
-        <a class="btn" href={url('services', lang)}>{it ? 'Scopri i nostri servizi' : 'Discover our services'}</a>
+      <div class="serves-hd">
+        <p class="eyebrow" data-reveal>{it ? 'I nostri eventi' : 'Our events'}</p>
+        <h2 id="a-serves" class="serves-hd__title" data-reveal>
+          {it
+            ? <>Ogni occasione merita <em>il suo brindisi.</em></>
+            : <>Every occasion deserves <em>its toast.</em></>}
+        </h2>
+        <p class="serves-hd__lead muted" data-reveal>
+          {it
+            ? 'Matrimoni, eventi aziendali ed eventi privati, in Toscana e in tutta Italia.'
+            : 'Weddings, corporate and private events, in Tuscany and throughout Italy.'}
+        </p>
       </div>
+    </div>
+    <div class="srv-cards">
+      {serveCards.map((card, i) => (
+        <div class="srv-card" data-reveal style={`--delay:${i * 0.08}s`}>
+          <div class="srv-card__media">
+            <Img src={serveImgs[i]} alt={serveAlts[i]} sizes="(min-width: 700px) 33vw, 90vw" />
+          </div>
+          <span class="srv-card__badge">
+            <span class="srv-card__badge-dot" aria-hidden="true"></span>
+            {it ? 'Foto reale' : 'Real photo'}
+          </span>
+          <div class="srv-card__body">
+            <span class="srv-card__n">{card.n}</span>
+            <h3 class="srv-card__title">{card.title}</h3>
+            <p class="srv-card__sub">{card.subtitle}</p>
+            <hr class="srv-card__rule" />
+            <ul class="srv-card__bullets" role="list">
+              {card.bullets.map(b => <li>— {b}</li>)}
+            </ul>
+            <a class="srv-card__link" href={card.href}>
+              {card.cta} <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      ))}
     </div>
   </section>
 
-
+  <!-- DOVE LAVORIAMO -->
+  <ItalyMap lang={lang} />
 
 </BaseLayout>
 
 <style>
-  .section--tight :global(.sh) {
-    margin-bottom: var(--space-m);
-  }
-
   :global(.hero-lead) {
     text-align: justify;
     max-width: 34rem;
@@ -285,40 +317,8 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
     }
   }
 
-  .serves {
-    display: grid;
-    gap: var(--space-l);
-    margin-top: var(--space-s);
-  }
-  .serves li {
-    border-top: 1px solid var(--color-border);
-    padding-top: var(--space-m);
-    display: grid;
-    gap: 0.5rem;
-    align-content: start;
-  }
-  .serves__n {
-    color: var(--color-accent-ink);
-  }
-  .serves h3 {
-    font-family: var(--font-display);
-    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.2rem);
-    font-weight: 400;
-    line-height: 1.1;
-  }
-  .serves p {
-    font-size: var(--fs-small);
-    max-width: 28rem;
-  }
-  .serves__cta {
-    margin-top: var(--space-l);
-  }
-  @media (min-width: 700px) {
-    .serves { grid-template-columns: repeat(3, 1fr); }
-  }
-
-  /* Collapse gap between the two adjacent dark sections */
-  .section--dark + .section--dark {
+  /* Collapse gap between the two adjacent linked dark sections */
+  .section--dark-pair + .section--dark-pair {
     padding-top: 0;
   }
 
@@ -457,6 +457,155 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
     }
     .process__n {
       background: var(--color-background);
+    }
+  }
+
+  /* ── Chi serviamo ── */
+  .section--serves {
+    padding-bottom: 0;
+  }
+  .serves-hd {
+    text-align: center;
+    padding-bottom: var(--space-xl);
+  }
+  .serves-hd__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 1.2rem + 4.5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-top: var(--space-s);
+  }
+  .serves-hd__title em {
+    font-style: italic;
+    color: var(--color-accent-on-dark);
+  }
+  .serves-hd__lead {
+    margin-top: var(--space-m);
+    font-size: clamp(0.95rem, 0.85rem + 0.3vw, 1.05rem);
+  }
+
+  /* ── Cards ── */
+  .srv-cards {
+    display: grid;
+  }
+  .srv-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .srv-card__media {
+    position: absolute;
+    inset: 0;
+  }
+  .srv-card__media :global(picture),
+  .srv-card__media :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease);
+  }
+  .srv-card:hover .srv-card__media :global(img) {
+    transform: scale(1.04);
+  }
+  .srv-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgb(0 0 0 / 0.9) 0%, rgb(0 0 0 / 0.4) 45%, transparent 100%);
+    pointer-events: none;
+  }
+  .srv-card__badge {
+    position: absolute;
+    top: var(--space-m);
+    left: var(--space-m);
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(0 0 0 / 0.52);
+    padding: 0.3rem 0.65rem;
+    border-radius: 2rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255 255 255 / 0.85);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .srv-card__badge-dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: #5cb85c;
+    flex-shrink: 0;
+  }
+  .srv-card__body {
+    position: relative;
+    z-index: 2;
+    padding: var(--space-m);
+  }
+  .srv-card__n {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: rgba(255 255 255 / 0.5);
+    margin-bottom: 0.25rem;
+  }
+  .srv-card__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 1.4rem + 1.5vw, 3rem);
+    font-weight: 400;
+    line-height: 1.05;
+    color: #fff;
+  }
+  .srv-card__sub {
+    margin-top: 0.45rem;
+    font-size: var(--fs-small);
+    font-style: italic;
+    color: rgba(255 255 255 / 0.65);
+    max-width: 28rem;
+  }
+  .srv-card__rule {
+    border: none;
+    border-top: 1px solid rgba(255 255 255 / 0.2);
+    margin-block: var(--space-s);
+  }
+  .srv-card__bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.25rem;
+  }
+  .srv-card__bullets li {
+    font-size: var(--fs-small);
+    color: rgba(255 255 255 / 0.55);
+  }
+  .srv-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: var(--space-s);
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent-on-dark);
+    text-decoration: none;
+  }
+  .srv-card__link:hover {
+    color: #fff;
+  }
+  @media (min-width: 700px) {
+    .srv-cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .srv-card {
+      aspect-ratio: 3 / 4;
     }
   }
 </style>

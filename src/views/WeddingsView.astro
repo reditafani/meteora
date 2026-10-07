@@ -11,11 +11,9 @@ import TowerSection from '@/components/TowerSection.astro';
 import PersonalizationSection from '@/components/PersonalizationSection.astro';
 import ExperienceComparison from '@/components/ExperienceComparison.astro';
 import WhyGrid from '@/components/WhyGrid.astro';
-import FAQ from '@/components/FAQ.astro';
 import CTABand from '@/components/CTABand.astro';
 import Testimonial from '@/components/Testimonial.astro';
-import { faqFor } from '@/data/faq';
-import { faqSchema, serviceSchema } from '@/lib/seo';
+import { serviceSchema } from '@/lib/seo';
 import couple from '@/assets/images/towers/couple-pour.jpg';
 import villa from '@/assets/images/bars/pure-white-villa.jpg';
 import bowl from '@/assets/images/details/champagne-bowl.jpg';
@@ -42,7 +40,6 @@ const crumbs = [
   { name: s.breadcrumbHome, href: url('home', lang) },
   { name: it ? 'Matrimoni' : 'Weddings', href: url('weddings', lang) },
 ];
-const faqs = faqFor('wedding');
 const day = it
   ? [
       ['Aperitivo', 'Spritz, Bellini, Mimosa, Prosecco e cocktail analcolici, mentre gli sposi sono impegnati con le foto. Integrato nel banco o su tavoli tovagliati.'],
@@ -60,7 +57,6 @@ const day = it
     ];
 const schema = [
   serviceSchema({ name: it ? 'Bar catering per matrimoni' : 'Wedding bar catering', serviceType: 'Wedding bar catering', description: meta.description, url: url('weddings', lang), lang, area: it ? ['Toscana', 'Italia'] : ['Tuscany', 'Italy'] }),
-  faqSchema(faqs, lang),
 ];
 ---
 
@@ -111,7 +107,6 @@ const schema = [
             ? 'Dietro al banco non vedrete contenitori termici o ceste di bicchieri: ogni rifornimento avviene a vassoio. Nelle vostre fotografie resterà solo il bar.'
             : 'Behind the bar you will never see cool boxes or glass racks: every restock is carried by tray. In your photographs, only the bar remains.'}
         </p>
-        <a class="link" href={url('why', lang)} data-reveal>{it ? 'Perché Meteora' : 'Why Meteora'}</a>
       </EditorialSection>
     </div>
   </section>
@@ -148,13 +143,6 @@ const schema = [
   </section>
 
   <Testimonial lang={lang} />
-
-  <section class="section" aria-labelledby="w-faq">
-    <div class="container container--narrow">
-      <SectionHeading eyebrow="FAQ" id="w-faq">{it ? <>Domande <em>frequenti.</em></> : <>Frequently <em>asked.</em></>}</SectionHeading>
-      <FAQ lang={lang} items={faqs} />
-    </div>
-  </section>
 
   <CTABand lang={lang} image={sunset} imageAlt={it ? 'Banco Golden Mirror al tramonto' : 'Golden Mirror bar at sunset'} trackLabel="weddings_band" href={url('contact', lang) + '?type=wedding'}>
     <h2>{it ? <>Raccontateci <em>il vostro giorno.</em></> : <>Tell us about <em>your day.</em></>}</h2>

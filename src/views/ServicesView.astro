@@ -8,10 +8,8 @@ import SectionHeading from '@/components/SectionHeading.astro';
 import Img from '@/components/Img.astro';
 import ExperienceComparison from '@/components/ExperienceComparison.astro';
 import CocktailSlideshow from '@/components/CocktailSlideshow.astro';
-import FAQ from '@/components/FAQ.astro';
 import { services } from '@/data/services';
-import { faqFor } from '@/data/faq';
-import { faqSchema, serviceSchema } from '@/lib/seo';
+import { serviceSchema } from '@/lib/seo';
 import hero from '@/assets/images/bars/golden-marble-night.jpg';
 
 interface Props {
@@ -27,10 +25,8 @@ const crumbs = [
   { name: s.breadcrumbHome, href: url('home', lang) },
   { name: it ? 'Servizi' : 'Services', href: url('services', lang) },
 ];
-const faqs = faqFor('general');
 const schema = [
   ...services.map((sv) => serviceSchema({ name: sv.name[lang], serviceType: 'Bar catering', description: sv.summary[lang], url: url('services', lang, sv.id), lang })),
-  faqSchema(faqs, lang),
 ];
 ---
 
@@ -100,13 +96,6 @@ const schema = [
     <div class="container">
       <SectionHeading eyebrow="Open Bar" align="split" id="s-cmp">{it ? <>Essential <em>e Premium,</em> a confronto.</> : <>Essential <em>and Premium,</em> compared.</>}</SectionHeading>
       <ExperienceComparison lang={lang} />
-    </div>
-  </section>
-
-  <section class="section section--tight" aria-labelledby="s-faq">
-    <div class="container container--narrow">
-      <SectionHeading eyebrow="FAQ" id="s-faq">{it ? <>Domande <em>frequenti.</em></> : <>Frequently <em>asked.</em></>}</SectionHeading>
-      <FAQ lang={lang} items={faqs} />
     </div>
   </section>
 
