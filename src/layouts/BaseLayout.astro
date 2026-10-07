@@ -7,7 +7,6 @@ import { abs, breadcrumbSchema, organizationSchema, websiteSchema, type Crumb } 
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
-import Breadcrumbs from '@/components/Breadcrumbs.astro';
 
 interface Props {
   lang: Lang;
@@ -94,15 +93,8 @@ const s = t(lang);
   </head>
   <body>
     <a class="skip" href="#main">{s.skip}</a>
-    <Header lang={lang} alternates={alternates} theme={headerTheme} current={current} />
-    <main id="main" tabindex="-1" class:list={[headerTheme === 'solid' && 'main--offset', headerTheme === 'overlay' && 'main--rel']}>
-      {breadcrumbs && breadcrumbs.length > 1 && (
-        <div class:list={['bc-bar', headerTheme === 'overlay' ? 'bc-bar--overlay' : 'bc-bar--solid']}>
-          <div class="container">
-            <Breadcrumbs crumbs={breadcrumbs} tone={headerTheme === 'overlay' ? 'dark' : 'light'} />
-          </div>
-        </div>
-      )}
+    <Header lang={lang} alternates={alternates} theme={headerTheme} current={current} breadcrumbs={breadcrumbs} />
+    <main id="main" tabindex="-1" class:list={[headerTheme === 'solid' && 'main--offset']}>
       <slot />
     </main>
     <Footer lang={lang} alternates={alternates} />
@@ -135,20 +127,5 @@ const s = t(lang);
   }
   .main--offset {
     padding-top: var(--header-h);
-  }
-  .main--rel {
-    position: relative;
-  }
-  .bc-bar--solid {
-    padding-block: 0.65rem;
-    border-bottom: 1px solid var(--color-border);
-  }
-  .bc-bar--overlay {
-    position: absolute;
-    top: var(--header-h-compact);
-    left: 0;
-    right: 0;
-    z-index: 10;
-    padding-block: 0.9rem;
   }
 </style>
