@@ -10,7 +10,7 @@ import ExperienceComparison from '@/components/ExperienceComparison.astro';
 import CocktailSlideshow from '@/components/CocktailSlideshow.astro';
 import { services } from '@/data/services';
 import { serviceSchema } from '@/lib/seo';
-import hero from '@/assets/images/bars/golden-marble-night.jpg';
+import hero from '@/assets/images/bars/bartender-event.jpg';
 
 interface Props {
   lang: Lang;
@@ -31,7 +31,7 @@ const schema = [
 ---
 
 <BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('services')} current="services" breadcrumbs={crumbs} schema={schema} headerTheme="overlay">
-  <PageHero variant="fullscreen" eyebrow={it ? 'Servizi' : 'Services'} image={hero} imageAlt={it ? 'Banco dorato su pavimento chevron' : 'Golden bar on a chevron floor'} crumbs={crumbs}>
+  <PageHero variant="fullscreen" eyebrow={it ? 'Servizi' : 'Services'} image={hero} imageAlt={it ? 'Bartender al lavoro dietro il banco durante un evento' : 'Bartender working behind the bar at an event'} crumbs={crumbs}>
     <h1>{it ? <>Dall'aperitivo <em>all'ultimo drink.</em></> : <>From aperitivo <em>to the last drink.</em></>}</h1>
     <p slot="lead" class="lead muted">
       {it
