@@ -116,8 +116,8 @@ export const services: Service[] = [
       en: 'Coupes or glasses arranged in a cascade and filled live by our staff or by the couple. For toasts, cake cutting or opening the party.',
     },
     includes: {
-      it: ['Una coppa o un drink a persona', 'Ingredienti', 'Allestimento e attrezzatura', 'Personale qualificato di assistenza'],
-      en: ['One coupe or drink per person', 'Ingredients', 'Setup and equipment', 'Qualified assistance staff'],
+      it: ['Sparkling towers', 'Spritz tower', 'Espresso Martini tower'],
+      en: ['Sparkling towers', 'Spritz tower', 'Espresso Martini tower'],
     },
     image: coupleTower,
     imageAlt: { it: 'Sposi che versano le bollicine su una tower di coppe', en: 'A couple pouring sparkling wine over a coupe tower' },
