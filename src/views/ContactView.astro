@@ -9,6 +9,7 @@ import Icon from '@/components/Icon.astro';
 import Img from '@/components/Img.astro';
 import { site, whatsappLink } from '@/data/site';
 import side from '@/assets/images/bars/golden-mirror-sunset.jpg';
+import aerial from '@/assets/images/weddings/wedding-aerial.jpg';
 
 interface Props {
   lang: Lang;
@@ -33,8 +34,8 @@ const contactSchema = {
 
 <BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('contact')} current="contact" breadcrumbs={crumbs} schema={[contactSchema]} showQuoteBar={false} headerTheme="overlay">
 
-  <PageHero variant="fullscreen" image={side} imageAlt={it ? 'Banco Golden Mirror al tramonto' : 'Golden Mirror bar at sunset'} crumbs={crumbs}>
-    <h1>{it ? <>Scriveteci. <em>Vi rispondiamo.</em></> : <>Get in touch. <em>We'll reply.</em></>}</h1>
+  <PageHero variant="fullscreen" image={aerial} imageAlt={it ? 'Sposi visti dall\'alto su un prato verde' : 'Couple seen from above on green grass'} crumbs={crumbs}>
+    <h1>{it ? <>Contattaci.</> : <>Contact us.</>}</h1>
     <p slot="lead" class="lead muted">
       {it
         ? 'Raccontateci il vostro evento: vi risponderemo con una proposta costruita su misura.'
