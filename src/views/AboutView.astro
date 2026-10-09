@@ -7,7 +7,6 @@ import PageHero from '@/components/PageHero.astro';
 import SectionHeading from '@/components/SectionHeading.astro';
 import Icon from '@/components/Icon.astro';
 import Img from '@/components/Img.astro';
-import ItalyMap from '@/components/ItalyMap.astro';
 import { site } from '@/data/site';
 import terrace from '@/assets/images/bars/terrace-panorama.jpg';
 import mint from '@/assets/images/details/mint-coupes.jpg';
@@ -124,13 +123,14 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
   <!-- HERO -->
   <PageHero
     variant="fullscreen"
-    eyebrow={it ? 'Chi siamo' : 'About us'}
+    align="left"
+
     image={strain}
     imageAlt={it ? 'Bartender in gilet nero che filtra un cocktail' : 'Bartender in a black waistcoat straining a cocktail'}
     crumbs={crumbs}
   >
     <h1>Meteora Events</h1>
-    <p slot="lead" class="lead muted hero-lead">
+    <p slot="lead" class="lead hero-lead">
       {it
         ? `Il tuo partner specializzato nella gestione del servizio beverage per eventi. Nasciamo da oltre ${site.yearsExperience} anni di esperienza operativa nel settore.`
         : `Your specialist partner for beverage services at events. Built on ${site.yearsExperience}+ years of operational experience in the industry.`}
@@ -261,16 +261,13 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
     </div>
   </section>
 
-  <!-- DOVE LAVORIAMO -->
-  <ItalyMap lang={lang} />
 
 </BaseLayout>
 
 <style>
   :global(.hero-lead) {
-    text-align: justify;
-    max-width: 34rem;
-    hyphens: auto;
+    max-width: 38rem;
+    color: rgba(255 255 255 / 0.78);
   }
 
   /* ── Story ── */
