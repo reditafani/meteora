@@ -57,6 +57,7 @@ const it = lang === 'it';
 <style>
   .cs {
     padding-inline: 0;
+    padding-block: var(--space-l) var(--space-m);
   }
   .cs__head {
     display: flex;
@@ -64,7 +65,7 @@ const it = lang === 'it';
     justify-content: space-between;
     align-items: flex-end;
     gap: var(--space-m);
-    margin-bottom: var(--space-l);
+    margin-bottom: var(--space-m);
   }
   .cs__title {
     font-family: var(--font-display);
@@ -95,6 +96,11 @@ const it = lang === 'it';
     padding-inline: var(--gutter);
     padding-bottom: var(--space-s);
     scrollbar-width: none;
+    cursor: grab;
+    user-select: none;
+  }
+  .cs__track:active {
+    cursor: grabbing;
   }
   .cs__track::-webkit-scrollbar { display: none; }
 
@@ -164,19 +170,26 @@ const it = lang === 'it';
   if (track) {
     let paused = false;
     let raf: number;
-
-    const SPEED = 0.5; // px per frame
+    const SPEED = 0.5;
     let pos = 0;
+    let totalW = 0;
+
+    function getTotal() {
+      return track!.scrollWidth / 2;
+    }
+
+    function applyPos() {
+      if (totalW > 0) {
+        pos = ((pos % totalW) + totalW) % totalW;
+      }
+      track!.style.transform = `translateX(${-pos}px)`;
+    }
 
     function tick() {
       if (!paused) {
         pos += SPEED;
-        // When we've scrolled one full slide width, reset seamlessly
-        const slide = track!.querySelector('.cs__slide') as HTMLElement | null;
-        const slideW = slide ? slide.offsetWidth + parseInt(getComputedStyle(track!).gap || '0') : 280;
-        const totalW = track!.scrollWidth / 2; // half because we duplicate slides
-        if (pos >= totalW) pos -= totalW;
-        track!.style.transform = `translateX(${-pos}px)`;
+        totalW = getTotal();
+        applyPos();
       }
       raf = requestAnimationFrame(tick);
     }
@@ -185,15 +198,56 @@ const it = lang === 'it';
     const slides = Array.from(track.querySelectorAll('.cs__slide'));
     slides.forEach((s) => track.appendChild(s.cloneNode(true)));
 
-    // Pause on hover/touch
-    track.addEventListener('mouseenter', () => { paused = true; });
-    track.addEventListener('mouseleave', () => { paused = false; });
-    track.addEventListener('touchstart', () => { paused = true; }, { passive: true });
-    track.addEventListener('touchend', () => { setTimeout(() => { paused = false; }, 2000); }, { passive: true });
-
-    // Disable scroll-snap and overflow while animating (we use transform instead)
     track.style.overflowX = 'visible';
     track.style.scrollSnapType = 'none';
+
+    totalW = getTotal();
+
+    // ── Drag (mouse) ──
+    let dragging = false;
+    let dragStartX = 0;
+    let posAtDragStart = 0;
+
+    track.addEventListener('mousedown', (e) => {
+      dragging = true;
+      paused = true;
+      dragStartX = e.clientX;
+      posAtDragStart = pos;
+      e.preventDefault();
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (!dragging) return;
+      totalW = getTotal();
+      pos = posAtDragStart + (dragStartX - e.clientX);
+      applyPos();
+    });
+    window.addEventListener('mouseup', () => {
+      if (!dragging) return;
+      dragging = false;
+      setTimeout(() => { paused = false; }, 1200);
+    });
+
+    // ── Drag (touch) ──
+    let touchStartX = 0;
+    let posAtTouchStart = 0;
+
+    track.addEventListener('touchstart', (e) => {
+      paused = true;
+      touchStartX = e.touches[0].clientX;
+      posAtTouchStart = pos;
+    }, { passive: true });
+    track.addEventListener('touchmove', (e) => {
+      totalW = getTotal();
+      pos = posAtTouchStart + (touchStartX - e.touches[0].clientX);
+      applyPos();
+    }, { passive: true });
+    track.addEventListener('touchend', () => {
+      setTimeout(() => { paused = false; }, 1800);
+    }, { passive: true });
+
+    // Pause on hover (when not dragging)
+    track.addEventListener('mouseenter', () => { if (!dragging) paused = true; });
+    track.addEventListener('mouseleave', () => { if (!dragging) paused = false; });
 
     raf = requestAnimationFrame(tick);
   }

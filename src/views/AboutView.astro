@@ -244,10 +244,6 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
           <div class="srv-card__media">
             <Img src={serveImgs[i]} alt={serveAlts[i]} sizes="(min-width: 700px) 33vw, 90vw" />
           </div>
-          <span class="srv-card__badge">
-            <span class="srv-card__badge-dot" aria-hidden="true"></span>
-            {it ? 'Foto reale' : 'Real photo'}
-          </span>
           <div class="srv-card__body">
             <span class="srv-card__n">{card.n}</span>
             <h3 class="srv-card__title">{card.title}</h3>
@@ -517,31 +513,6 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
     inset: 0;
     background: linear-gradient(to top, rgb(0 0 0 / 0.9) 0%, rgb(0 0 0 / 0.4) 45%, transparent 100%);
     pointer-events: none;
-  }
-  .srv-card__badge {
-    position: absolute;
-    top: var(--space-m);
-    left: var(--space-m);
-    z-index: 2;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    background: rgba(0 0 0 / 0.52);
-    padding: 0.3rem 0.65rem;
-    border-radius: 2rem;
-    font-size: 0.62rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255 255 255 / 0.85);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-  }
-  .srv-card__badge-dot {
-    width: 0.45rem;
-    height: 0.45rem;
-    border-radius: 50%;
-    background: #5cb85c;
-    flex-shrink: 0;
   }
   .srv-card__body {
     position: relative;

@@ -42,7 +42,11 @@ const contactSchema = {
         : 'Tell us about your event and we will reply with a proposal built around it.'}
     </p>
     <div slot="cta">
-      <a class="btn" href="#contact-form">{it ? 'Compila il modulo' : 'Fill in the form'}</a>
+      <a class="scroll-arrow" href="#contact-form" aria-label={it ? 'Scorri alla sezione contatti' : 'Scroll to contact section'}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+      </a>
     </div>
   </PageHero>
 
@@ -76,6 +80,28 @@ const contactSchema = {
 </BaseLayout>
 
 <style>
+  .scroll-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid rgba(255 255 255 / 0.45);
+    border-radius: 50%;
+    color: rgba(255 255 255 / 0.8);
+    text-decoration: none;
+    animation: bounce-arrow 2.2s ease-in-out infinite;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .scroll-arrow:hover {
+    border-color: var(--color-accent-on-dark);
+    color: var(--color-accent-on-dark);
+    animation-play-state: paused;
+  }
+  @keyframes bounce-arrow {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(7px); }
+  }
   .ct {
     padding-block: var(--space-xl) var(--section);
   }
