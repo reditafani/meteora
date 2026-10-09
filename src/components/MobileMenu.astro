@@ -53,11 +53,11 @@ const aboutSections = it ? [
       {primary.map((item, i) => (
         item.key === 'about' ? (
           <li class="mm__item--has-sub" style={`--i:${i}`}>
-            <button type="button" class="mm__sub-toggle" aria-expanded="false">
+            <a href={url('about', lang)} class="mm__sub-toggle" aria-current={current === 'about' ? 'page' : undefined}>
               <span class="mm__icon"><Icon name="user" size={18} /></span>
               <span class="mm__label">{item.label}</span>
               <span class="mm__chevron" aria-hidden="true">›</span>
-            </button>
+            </a>
             <ul class="mm__sub" role="list">
               {aboutSections.map(s => (
                 <li><a href={`${url('about', lang)}#${s.id}`}>{s.label}</a></li>
@@ -89,9 +89,8 @@ const aboutSections = it ? [
   const menu     = document.querySelector<HTMLElement>('[data-menu]');
   const backdrop = document.querySelector<HTMLElement>('[data-menu-backdrop]');
   const openers  = document.querySelectorAll<HTMLButtonElement>('[data-menu-open]');
-  const closer     = menu?.querySelector<HTMLButtonElement>('[data-menu-close]');
-  const subToggle  = menu?.querySelector<HTMLButtonElement>('.mm__sub-toggle');
-  const subList    = menu?.querySelector<HTMLElement>('.mm__sub');
+  const closer   = menu?.querySelector<HTMLButtonElement>('[data-menu-close]');
+  const subList  = menu?.querySelector<HTMLElement>('.mm__sub');
   let lastFocus: HTMLElement | null = null;
 
   const focusables = () =>
@@ -117,7 +116,6 @@ const aboutSections = it ? [
     backdrop?.classList.remove('is-open');
     document.documentElement.style.overflow = '';
     openers.forEach((b) => b.setAttribute('aria-expanded', 'false'));
-    subToggle?.setAttribute('aria-expanded', 'false');
     subList?.classList.remove('is-open');
     const done = () => (menu.hidden = true);
     window.matchMedia('(prefers-reduced-motion: reduce)').matches ? done() : setTimeout(done, 420);
@@ -145,10 +143,12 @@ const aboutSections = it ? [
 
   window.matchMedia('(min-width: 1180px)').addEventListener('change', (e) => e.matches && close());
 
-  subToggle?.addEventListener('click', () => {
-    const expanded = subToggle.getAttribute('aria-expanded') === 'true';
-    subToggle.setAttribute('aria-expanded', String(!expanded));
-    subList?.classList.toggle('is-open', !expanded);
+  const subItem = menu?.querySelector<HTMLElement>('.mm__item--has-sub');
+  subItem?.addEventListener('mouseenter', () => {
+    subList?.classList.add('is-open');
+  });
+  subItem?.addEventListener('mouseleave', () => {
+    subList?.classList.remove('is-open');
   });
 </script>
 
@@ -309,23 +309,20 @@ const aboutSections = it ? [
     gap: 0.85rem;
     padding: 0.7rem 0.6rem;
     border-radius: 4px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
     color: var(--color-on-dark);
-    text-align: left;
+    text-decoration: none;
     transition: background 0.2s, color 0.2s;
   }
-  .mm__sub-toggle:hover {
+  .mm__sub-toggle:hover,
+  .mm__item--has-sub:hover > .mm__sub-toggle {
     background: rgba(255 255 255 / 0.06);
     color: var(--color-accent-on-dark);
   }
-  .mm__sub-toggle[aria-expanded='true'] {
+  .mm__sub-toggle[aria-current='page'] {
     color: var(--color-accent-on-dark);
     background: rgba(184, 158, 114, 0.1);
   }
-  .mm__sub-toggle[aria-expanded='true'] .mm__label {
+  .mm__sub-toggle[aria-current='page'] .mm__label {
     font-style: italic;
   }
   .mm__chevron {
@@ -334,19 +331,34 @@ const aboutSections = it ? [
     line-height: 1;
     color: var(--color-accent-on-dark);
     opacity: 0.8;
-    transition: transform 0.25s var(--ease-out);
+    transition: transform 0.3s var(--ease-out);
   }
-  .mm__sub-toggle[aria-expanded='true'] .mm__chevron {
+  .mm__item--has-sub:hover .mm__chevron {
     transform: rotate(90deg);
   }
   .mm__sub {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.32s var(--ease-out);
+    transition: max-height 1.8s var(--ease-out);
     padding-left: calc(18px + 0.85rem + 0.6rem);
   }
+  .mm__item--has-sub:hover .mm__sub,
   .mm__sub.is-open {
     max-height: 320px;
+  }
+  /* stagger each sub-item — fade only, no movement */
+  .mm__sub li {
+    opacity: 0;
+    transition: opacity 0.5s var(--ease-out);
+  }
+  .mm__sub li:nth-child(1) { transition-delay: 0.2s; }
+  .mm__sub li:nth-child(2) { transition-delay: 0.42s; }
+  .mm__sub li:nth-child(3) { transition-delay: 0.64s; }
+  .mm__sub li:nth-child(4) { transition-delay: 0.86s; }
+  .mm__sub li:nth-child(5) { transition-delay: 1.08s; }
+  .mm__item--has-sub:hover .mm__sub li,
+  .mm__sub.is-open li {
+    opacity: 1;
   }
   .mm__sub a {
     display: block;
@@ -358,12 +370,13 @@ const aboutSections = it ? [
     text-decoration: none;
     color: var(--color-on-dark-muted);
     border-bottom: 1px solid rgba(255 255 255 / 0.06);
-    transition: color 0.2s;
+    transition: color 0.2s, padding-left 0.2s;
   }
   .mm__sub li:last-child a {
     border-bottom: none;
   }
   .mm__sub a:hover {
     color: var(--color-accent-on-dark);
+    padding-left: 0.8rem;
   }
 </style>

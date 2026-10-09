@@ -1,7 +1,7 @@
 import type { ImageMetadata } from 'astro';
 import type { Localized } from '@/i18n/ui';
 import goldenSunset from '@/assets/images/bars/golden-mirror-sunset.jpg';
-import pureWhite from '@/assets/images/bars/pure-white-villa.jpg';
+import pureWhite from '@/assets/images/bars/spritz-open-bar.jpg';
 import nightLounge from '@/assets/images/bars/night-lounge.jpg';
 import coupleTower from '@/assets/images/towers/couple-pour.jpg';
 import bartenderPour from '@/assets/images/team/bartender-pour.jpg';
@@ -50,7 +50,7 @@ export const services: Service[] = [
       ],
     },
     image: pureWhite,
-    imageAlt: { it: 'Banco Pure White allestito per un open bar in villa', en: 'Pure White bar set for an open bar at a villa' },
+    imageAlt: { it: 'Cocktail Spritz serviti durante un open bar', en: 'Spritz cocktails served at an open bar' },
     formValue: 'open-bar',
   },
   {

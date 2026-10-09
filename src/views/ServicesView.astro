@@ -4,9 +4,8 @@ import { url, alternatesFor } from '@/i18n/routes';
 import { t } from '@/i18n/ui';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
-import SectionHeading from '@/components/SectionHeading.astro';
 import Img from '@/components/Img.astro';
-import ExperienceComparison from '@/components/ExperienceComparison.astro';
+import TowerSection from '@/components/TowerSection.astro';
 import CocktailSlideshow from '@/components/CocktailSlideshow.astro';
 import { services } from '@/data/services';
 import { serviceSchema } from '@/lib/seo';
@@ -17,6 +16,13 @@ interface Props {
 }
 const { lang } = Astro.props;
 const it = lang === 'it';
+const tabLabels: Record<string, { it: string; en: string }> = {
+  essential: { it: 'Essential', en: 'Essential' },
+  premium:   { it: 'Premium',   en: 'Premium' },
+  aperitivo: { it: 'Aperitivo + Open Bar', en: 'Aperitivo + Open Bar' },
+  tower:     { it: 'Signature Tower', en: 'Signature Tower' },
+  bartender: { it: 'Solo barman', en: 'Bartender only' },
+};
 const s = t(lang);
 const meta = it
   ? { title: 'Servizi di Open Bar e Bar Catering | Meteora Events', description: 'Open Bar Essential e Premium, Aperitivo + Open Bar, Signature Tower Experience e servizio solo barman. Preventivi su misura per matrimoni ed eventi in tutta Italia.' }
@@ -31,15 +37,15 @@ const schema = [
 ---
 
 <BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('services')} current="services" breadcrumbs={crumbs} schema={schema} headerTheme="overlay">
-  <PageHero variant="fullscreen" eyebrow={it ? 'Servizi' : 'Services'} image={hero} imageAlt={it ? 'Bartender al lavoro dietro il banco durante un evento' : 'Bartender working behind the bar at an event'} crumbs={crumbs}>
+  <PageHero variant="fullscreen" align="left" image={hero} imageAlt={it ? 'Bartender al lavoro dietro il banco durante un evento' : 'Bartender working behind the bar at an event'} crumbs={crumbs}>
     <h1>{it ? <>Dall'aperitivo <em>all'ultimo drink.</em></> : <>From aperitivo <em>to the last drink.</em></>}</h1>
     <p slot="lead" class="lead muted">
       {it
         ? 'Formule complete e autonome, coordinate con il catering, oppure solo il nostro staff e il nostro metodo. Ogni proposta è costruita su misura.'
         : 'Complete, independent formulas coordinated with your caterer — or simply our staff and our method. Every proposal is built to measure.'}
     </p>
-    <nav slot="cta" class="svc-index" aria-label={it ? "Indice servizi" : "Services index"}>
-      {services.map((sv) => <a class="link" href={`#${sv.id}`}>{sv.name[lang].replace('Open Bar — ', '')}</a>)}
+    <nav slot="bottombar" class="svc-index" aria-label={it ? "Indice servizi" : "Services index"}>
+      {services.map((sv) => <a href={`#${sv.id}`}>{tabLabels[sv.id][lang]}</a>)}
     </nav>
   </PageHero>
 
@@ -57,7 +63,6 @@ const schema = [
             <ul class="svc__inc" role="list" data-reveal>
               {sv.includes[lang].map((x) => <li>{x}</li>)}
             </ul>
-            <a class="btn btn--outline" href={`${url('contact', lang)}?service=${sv.formValue}`} data-track="cta_click" data-track-label={`service_${sv.id}`}>{s.quote}</a>
           </div>
         </article>
       ))}
@@ -68,19 +73,19 @@ const schema = [
 
   <section class="section section--tight">
     <div class="container svc">
-      {services.slice(3).map((sv, i) => (
-        <article class:list={['svc__item', i % 2 === 1 && 'svc__item--rev']} id={sv.id} aria-labelledby={`${sv.id}-t`}>
+      <TowerSection lang={lang} />
+      {services.slice(4).map((sv, i) => (
+        <article class:list={['svc__item', 'svc__item--rev']} id={sv.id} aria-labelledby={`${sv.id}-t`}>
           <div class="media svc__media" data-reveal="image">
             <Img src={sv.image} alt={sv.imageAlt[lang]} sizes="(min-width: 960px) 45vw, 100vw" />
           </div>
           <div class="svc__text">
-            <p class="micro svc__kicker" data-reveal>{String(i + 4).padStart(2, '0')} · {sv.kicker[lang]}</p>
+            <p class="micro svc__kicker" data-reveal>{String(i + 5).padStart(2, '0')} · {sv.kicker[lang]}</p>
             <h2 id={`${sv.id}-t`} class="h3 svc__title" data-reveal>{sv.name[lang]}</h2>
             <p class="lead muted" data-reveal>{sv.summary[lang]}</p>
             <ul class="svc__inc" role="list" data-reveal>
               {sv.includes[lang].map((x) => <li>{x}</li>)}
             </ul>
-            <a class="btn btn--outline" href={`${url('contact', lang)}?service=${sv.formValue}`} data-track="cta_click" data-track-label={`service_${sv.id}`}>{s.quote}</a>
           </div>
         </article>
       ))}
@@ -92,30 +97,65 @@ const schema = [
     </div>
   </section>
 
-  <section class="section section--alt section--tight" aria-labelledby="s-cmp">
-    <div class="container">
-      <SectionHeading eyebrow="Open Bar" align="split" id="s-cmp">{it ? <>Essential <em>e Premium,</em> a confronto.</> : <>Essential <em>and Premium,</em> compared.</>}</SectionHeading>
-      <ExperienceComparison lang={lang} />
-    </div>
-  </section>
-
 
 </BaseLayout>
 
 <style>
   .svc-index {
     display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    gap: 0 0.75rem;
-    font-size: var(--fs-micro);
+    width: 100%;
+    background: rgba(6, 4, 3, 0.82);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     overflow-x: auto;
-    white-space: nowrap;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .svc-index::-webkit-scrollbar {
+    display: none;
   }
   .svc-index a {
-    white-space: nowrap;
     flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.95rem 1rem;
+    text-decoration: none;
+    font-size: var(--fs-micro);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    transition: color 0.2s, background 0.2s;
+    white-space: nowrap;
+  }
+  .svc-index a::after {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 5px;
+    border-right: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    transform: rotate(45deg);
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+  .svc-index a:last-child {
+    border-right: none;
+  }
+  .svc-index a:hover {
+    color: var(--color-accent-on-dark);
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .svc-index a:hover::after {
+    opacity: 1;
+  }
+  @media (min-width: 900px) {
+    .svc-index a {
+      flex: 1;
+    }
   }
   .svc {
     display: grid;

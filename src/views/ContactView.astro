@@ -8,7 +8,7 @@ import LeadForm from '@/components/LeadForm.astro';
 import Icon from '@/components/Icon.astro';
 import Img from '@/components/Img.astro';
 import { site, whatsappLink } from '@/data/site';
-import side from '@/assets/images/bars/golden-mirror-sunset.jpg';
+import side from '@/assets/images/details/coupes-tray.jpg';
 import aerial from '@/assets/images/weddings/wedding-aerial.jpg';
 
 interface Props {
@@ -34,7 +34,7 @@ const contactSchema = {
 
 <BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('contact')} current="contact" breadcrumbs={crumbs} schema={[contactSchema]} showQuoteBar={false} headerTheme="overlay">
 
-  <PageHero variant="fullscreen" image={aerial} imageAlt={it ? 'Sposi visti dall\'alto su un prato verde' : 'Couple seen from above on green grass'} crumbs={crumbs}>
+  <PageHero variant="fullscreen" align="left" image={aerial} imageAlt={it ? 'Sposi visti dall\'alto su un prato verde' : 'Couple seen from above on green grass'} crumbs={crumbs}>
     <h1>{it ? <>Contattaci.</> : <>Contact us.</>}</h1>
     <p slot="lead" class="lead muted">
       {it
@@ -42,7 +42,11 @@ const contactSchema = {
         : 'Tell us about your event and we will reply with a proposal built around it.'}
     </p>
     <div slot="cta">
-      <a class="btn" href="#contact-form">{it ? 'Compila il modulo' : 'Fill in the form'}</a>
+      <a class="scroll-arrow" href="#contact-form" aria-label={it ? 'Scorri alla sezione contatti' : 'Scroll to contact section'}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+      </a>
     </div>
   </PageHero>
 
@@ -61,7 +65,7 @@ const contactSchema = {
           <li><a href={site.instagram.url} target="_blank" rel="noopener" data-track="instagram_click"><Icon name="instagram" />{site.instagram.handle}</a></li>
           <li><span><Icon name="pin" />{site.address.locality} ({site.address.province}), {it ? 'Toscana — operativi in tutta Italia' : 'Tuscany — serving all of Italy'}</span></li>
         </ul>
-        <div class="media ct__img"><Img src={side} alt={it ? 'Banco Golden Mirror al tramonto' : 'Golden Mirror bar at sunset'} sizes="(min-width: 960px) 30vw, 1px" /></div>
+        <div class="media ct__img"><Img src={side} alt={it ? 'Coppe sul banco durante un evento serale' : 'Coupes on the bar during an evening event'} sizes="(min-width: 960px) 30vw, 1px" /></div>
         <p class="ct__partner muted">
           {it ? 'Siete un wedding planner, una location o un catering?' : 'Are you a wedding planner, venue or caterer?'}
           <a class="link" href={url('partners', lang, 'partner-form')}>{s.partnerPricing}</a>
@@ -76,6 +80,28 @@ const contactSchema = {
 </BaseLayout>
 
 <style>
+  .scroll-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid rgba(255 255 255 / 0.45);
+    border-radius: 50%;
+    color: rgba(255 255 255 / 0.8);
+    text-decoration: none;
+    animation: bounce-arrow 2.2s ease-in-out infinite;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .scroll-arrow:hover {
+    border-color: var(--color-accent-on-dark);
+    color: var(--color-accent-on-dark);
+    animation-play-state: paused;
+  }
+  @keyframes bounce-arrow {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(7px); }
+  }
   .ct {
     padding-block: var(--space-xl) var(--section);
   }

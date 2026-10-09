@@ -17,12 +17,13 @@ interface Props {
   crumbs?: Crumb[];
   tone?: 'light' | 'alt';
   variant?: 'editorial' | 'fullscreen';
+  align?: 'center' | 'left';
 }
-const { eyebrow, image, imageAlt = '', position, crumbs, tone = 'light', variant = 'editorial' } = Astro.props;
+const { eyebrow, image, imageAlt = '', position, crumbs, tone = 'light', variant = 'editorial', align = 'center' } = Astro.props;
 ---
 
 {variant === 'fullscreen' ? (
-  <section class="fhero on-dark">
+  <section class:list={['fhero', 'on-dark', align === 'left' && 'fhero--left']}>
     {image && (
       <div class="fhero__bg">
         <Img src={image} alt={imageAlt} priority sizes="100vw" position={position} />
@@ -30,10 +31,12 @@ const { eyebrow, image, imageAlt = '', position, crumbs, tone = 'light', variant
     )}
     <div class="fhero__overlay" aria-hidden="true"></div>
     <div class="fhero__content">
-      <div class="fhero__title" data-reveal><slot /></div>
-      <div class="fhero__lead" data-reveal style="--delay:.16s"><slot name="lead" /></div>
-      <div class="fhero__cta" data-reveal style="--delay:.24s"><slot name="cta" /></div>
+      {eyebrow && <p class="fhero__eyebrow eyebrow" data-reveal>{eyebrow}</p>}
+      <div class="fhero__title" data-reveal style="--delay:.08s"><slot /></div>
+      <div class="fhero__lead" data-reveal style="--delay:.18s"><slot name="lead" /></div>
+      <div class="fhero__cta" data-reveal style="--delay:.28s"><slot name="cta" /></div>
     </div>
+    <div class="fhero__bottombar"><slot name="bottombar" /></div>
     <div class="fhero__scroll" aria-hidden="true"></div>
   </section>
 ) : (
@@ -123,6 +126,48 @@ const { eyebrow, image, imageAlt = '', position, crumbs, tone = 'light', variant
   .fhero__cta:not(:empty) {
     margin-top: var(--space-m);
   }
+  /* ── Left-aligned variant ── */
+  .fhero--left {
+    align-items: flex-start;
+    justify-content: flex-end;
+    text-align: left;
+    height: 80svh;
+  }
+  .fhero--left .fhero__content {
+    align-items: flex-start;
+    padding-inline: clamp(1.5rem, 6vw, 8rem);
+    padding-bottom: var(--space-xl);
+    max-width: 52rem;
+  }
+  .fhero--left .fhero__title :global(h1)::after {
+    content: '';
+    display: block;
+    width: 42px;
+    height: 2px;
+    background: var(--color-accent-on-dark);
+    margin-top: var(--space-m);
+  }
+  .fhero--left .fhero__overlay {
+    background: linear-gradient(
+      to top,
+      rgba(10, 7, 5, 0.82) 0%,
+      rgba(10, 7, 5, 0.50) 40%,
+      rgba(10, 7, 5, 0.25) 100%
+    );
+  }
+
+  /* bottom bar slot */
+  .fhero__bottombar:not(:empty) {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+  }
+  .fhero__bottombar:not(:empty) ~ .fhero__scroll {
+    display: none;
+  }
+
   /* scroll hint */
   .fhero__scroll {
     position: absolute;
