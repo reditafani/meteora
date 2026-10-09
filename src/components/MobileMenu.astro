@@ -339,7 +339,7 @@ const aboutSections = it ? [
   .mm__sub {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.85s var(--ease-out);
+    transition: max-height 1.4s var(--ease-out);
     padding-left: calc(18px + 0.85rem + 0.6rem);
   }
   .mm__item--has-sub:hover .mm__sub,
@@ -349,16 +349,16 @@ const aboutSections = it ? [
   /* stagger each sub-item */
   .mm__sub li {
     opacity: 0;
-    transform: translateY(-6px);
+    transform: translateY(-8px);
     transition:
-      opacity 0.4s var(--ease-out),
-      transform 0.45s var(--ease-out);
+      opacity 0.7s var(--ease-out),
+      transform 0.75s var(--ease-out);
   }
-  .mm__sub li:nth-child(1) { transition-delay: 0.1s; }
-  .mm__sub li:nth-child(2) { transition-delay: 0.18s; }
-  .mm__sub li:nth-child(3) { transition-delay: 0.26s; }
-  .mm__sub li:nth-child(4) { transition-delay: 0.34s; }
-  .mm__sub li:nth-child(5) { transition-delay: 0.42s; }
+  .mm__sub li:nth-child(1) { transition-delay: 0.15s; }
+  .mm__sub li:nth-child(2) { transition-delay: 0.32s; }
+  .mm__sub li:nth-child(3) { transition-delay: 0.49s; }
+  .mm__sub li:nth-child(4) { transition-delay: 0.66s; }
+  .mm__sub li:nth-child(5) { transition-delay: 0.83s; }
   .mm__item--has-sub:hover .mm__sub li,
   .mm__sub.is-open li {
     opacity: 1;
