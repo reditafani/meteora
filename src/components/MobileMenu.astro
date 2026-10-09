@@ -339,17 +339,28 @@ const aboutSections = it ? [
   .mm__sub {
     max-height: 0;
     overflow: hidden;
-    opacity: 0;
-    transform: translateY(-4px);
-    transition:
-      max-height 0.65s var(--ease-out),
-      opacity 0.55s var(--ease-out),
-      transform 0.6s var(--ease-out);
+    transition: max-height 0.85s var(--ease-out);
     padding-left: calc(18px + 0.85rem + 0.6rem);
   }
   .mm__item--has-sub:hover .mm__sub,
   .mm__sub.is-open {
     max-height: 320px;
+  }
+  /* stagger each sub-item */
+  .mm__sub li {
+    opacity: 0;
+    transform: translateY(-6px);
+    transition:
+      opacity 0.4s var(--ease-out),
+      transform 0.45s var(--ease-out);
+  }
+  .mm__sub li:nth-child(1) { transition-delay: 0.1s; }
+  .mm__sub li:nth-child(2) { transition-delay: 0.18s; }
+  .mm__sub li:nth-child(3) { transition-delay: 0.26s; }
+  .mm__sub li:nth-child(4) { transition-delay: 0.34s; }
+  .mm__sub li:nth-child(5) { transition-delay: 0.42s; }
+  .mm__item--has-sub:hover .mm__sub li,
+  .mm__sub.is-open li {
     opacity: 1;
     transform: translateY(0);
   }
