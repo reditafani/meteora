@@ -18,6 +18,10 @@ interface CircularGalleryProps extends HTMLAttributes<HTMLDivElement> {
   autoRotateSpeed?: number;
 }
 
+// Card dimensions
+const CARD_W = 270;
+const CARD_H = 390;
+
 const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
   ({ items, radius = 420, autoRotateSpeed = 0.12, style, ...props }, ref) => {
     const rotRef = useRef(0);
@@ -78,6 +82,7 @@ const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
     const anglePerItem = 360 / items.length;
 
     return (
+      /* ── Perspective container: fills the wrapper, clipping happens on wrapper ── */
       <div
         ref={ref}
         role="region"
@@ -87,10 +92,8 @@ const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
           position: 'relative',
           width: '100%',
           height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
           perspective: '1800px',
+          perspectiveOrigin: '50% 50%',
           userSelect: 'none',
           cursor: dragRef.current.active ? 'grabbing' : 'grab',
           ...style,
@@ -103,13 +106,21 @@ const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
+        {/*
+          ── Rotating hub: zero-size, pinned to exact centre ──
+          All cards are children of this element and positioned with
+          negative pixel offsets so their visual centre aligns with
+          the hub. This guarantees the 3D pivot is always at 50%/50%.
+        */}
         <div
           style={{
-            position: 'relative',
-            width: '100%',
-            height: '100%',
-            transform: `rotateY(${rotation}deg)`,
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            width: 0,
+            height: 0,
             transformStyle: 'preserve-3d',
+            transform: `rotateY(${rotation}deg)`,
           }}
         >
           {items.map((item, i) => {
@@ -123,13 +134,12 @@ const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
                 key={i}
                 style={{
                   position: 'absolute',
-                  width: '240px',
-                  height: '340px',
+                  width: `${CARD_W}px`,
+                  height: `${CARD_H}px`,
+                  /* Centre the card on the hub */
+                  left: `${-CARD_W / 2}px`,
+                  top: `${-CARD_H / 2}px`,
                   transform: `rotateY(${itemAngle}deg) translateZ(${radius}px)`,
-                  left: '50%',
-                  top: '50%',
-                  marginLeft: '-120px',
-                  marginTop: '-170px',
                   opacity,
                   transition: 'opacity 0.25s linear',
                 }}
@@ -176,7 +186,7 @@ const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
                       style={{
                         fontFamily:
                           '"Cormorant Garamond Variable", "Cormorant Garamond", Georgia, serif',
-                        fontSize: '1.35rem',
+                        fontSize: '1.4rem',
                         fontWeight: 300,
                         lineHeight: 1.2,
                         color: '#fff',
@@ -188,7 +198,7 @@ const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
                     <p
                       style={{
                         fontFamily: '"Jost Variable", Jost, sans-serif',
-                        fontSize: '0.67rem',
+                        fontSize: '0.68rem',
                         color: 'rgba(255,255,255,0.62)',
                         margin: '0 0 0.75rem',
                         letterSpacing: '0.03em',
