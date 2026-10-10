@@ -35,7 +35,7 @@ const nextLabel = it ? 'Successivo' : 'Next';
     <!-- ── Image track ── -->
     <div class="exp-track" role="region" aria-label={it ? 'Slideshow Meteora Experience' : 'Meteora Experience slideshow'}>
       {items.map((item, i) => (
-        <div class:list={['exp-slide', i === 0 && 'is-active']} data-slide={i} aria-hidden={String(i !== 0)}>
+        <div class:list={['exp-slide', i === 0 && 'is-active']} data-slide={i} aria-hidden={i !== 0}>
           <Img src={item.img} alt={item.alt} sizes="(min-width: 700px) 58vw, 100vw" widths={[480, 800, 1200, 1600]} />
         </div>
       ))}
