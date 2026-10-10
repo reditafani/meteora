@@ -6,7 +6,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
 import TrustBar from '@/components/TrustBar.astro';
 import SectionHeading from '@/components/SectionHeading.astro';
-import ExperienceMosaic from '@/components/ExperienceMosaic.astro';
+import ExperienceGallery from '@/components/ExperienceGallery.astro';
 import EditorialSection from '@/components/EditorialSection.astro';
 import BarCollection from '@/components/BarCollection.astro';
 import IceSection from '@/components/IceSection.astro';
@@ -86,7 +86,7 @@ const schema = [
             : 'We design and run the entire beverage experience of your event: from the bar to the ice, from glassware to staff, from setup to the last drink. You think about your guests.'}
         </Fragment>
       </SectionHeading>
-      <ExperienceMosaic lang={lang} />
+      <ExperienceGallery lang={lang} />
       <div class="cta-row exp__cta">
         <a class="btn btn--light" href={url('cocktails', lang)}>{it ? 'Scopri la cocktail experience' : 'Discover the cocktail experience'}</a>
       </div>

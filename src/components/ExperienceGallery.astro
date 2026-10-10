@@ -1,0 +1,83 @@
+---
+import type { Lang } from '@/i18n/routes';
+import { url } from '@/i18n/routes';
+import { CircularGallery, type GalleryItem } from './ui/circular-gallery';
+import bar       from '@/assets/images/bars/golden-marble-night.jpg';
+import cocktails from '@/assets/images/cocktails/espresso-martini.jpg';
+import staff     from '@/assets/images/team/bartender-strain.jpg';
+import glass     from '@/assets/images/details/champagne-bowl.jpg';
+import ice       from '@/assets/images/ice/cube-5cm.jpg';
+import details   from '@/assets/images/details/mint-coupes.jpg';
+import logistics from '@/assets/images/bars/terrace-panorama.jpg';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const it = lang === 'it';
+const cta = it ? 'Scopri' : 'Discover';
+
+const items: GalleryItem[] = [
+  {
+    name:        it ? 'Il banco'   : 'The bar',
+    description: it ? 'Scenografico, modulare, in tre misure.' : 'Scenographic, modular, in three sizes.',
+    photo: { url: bar.src,       alt: it ? 'Banco bar dorato su pavimento chevron' : 'Golden bar on a chevron floor' },
+    href: url('bars', lang), ctaLabel: cta,
+  },
+  {
+    name:        'Cocktail',
+    description: it ? 'Classici con metodo, signature su misura.' : 'Classics with method, bespoke signatures.',
+    photo: { url: cocktails.src, alt: 'Espresso Martini' },
+    href: url('cocktails', lang), ctaLabel: cta,
+  },
+  {
+    name:        'Staff',
+    description: it ? 'Total black, discreto, professionale.' : 'Total black, discreet, professional.',
+    photo: { url: staff.src,     alt: it ? 'Bartender che filtra un cocktail' : 'Bartender straining a cocktail' },
+    href: url('services', lang), ctaLabel: cta,
+  },
+  {
+    name:        it ? 'Bicchieri' : 'Glassware',
+    description: it ? 'Il vetro giusto per ogni drink.'       : 'The right glass for every drink.',
+    photo: { url: glass.src,     alt: it ? 'Champagne bowl e bottigliera' : 'Champagne bowl and back bar', pos: 'center top' },
+    href: url('services', lang), ctaLabel: cta,
+  },
+  {
+    name:        it ? 'Ghiaccio' : 'Ice',
+    description: it ? 'Parte integrante del cocktail.'        : 'An integral part of the cocktail.',
+    photo: { url: ice.src,       alt: it ? 'Cubo di ghiaccio trasparente 5×5 cm' : 'Clear 5×5 cm ice cube' },
+    href: url('services', lang), ctaLabel: cta,
+  },
+  {
+    name:        it ? 'Dettagli' : 'Details',
+    description: it ? 'Frutta, botaniche, garnish.'           : 'Fruit, botanicals, garnish.',
+    photo: { url: details.src,   alt: it ? 'Coppe con menta fresca e frutti rossi' : 'Coupes with fresh mint and red berries' },
+    href: url('services', lang), ctaLabel: cta,
+  },
+  {
+    name:        it ? 'Logistica' : 'Logistics',
+    description: it ? "Autonomi dall'allestimento allo smontaggio." : 'Independent from setup to load-out.',
+    photo: { url: logistics.src, alt: it ? 'Banco davanti a una vetrata panoramica' : 'Bar in front of a panoramic window' },
+    href: url('services', lang), ctaLabel: cta,
+  },
+];
+---
+
+<div class="exp-gallery-wrap" data-reveal>
+  <CircularGallery items={items} client:visible />
+</div>
+
+<style>
+  .exp-gallery-wrap {
+    margin-top: var(--space-xl);
+    /* Break out of container to full section width */
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 460px;
+    overflow: hidden;
+  }
+
+  @media (max-width: 699px) {
+    .exp-gallery-wrap { height: 380px; }
+  }
+</style>
