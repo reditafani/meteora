@@ -1,25 +1,28 @@
 ---
+import '@/styles/forms.css';
 import type { Lang } from '@/i18n/routes';
 import { url, alternatesFor } from '@/i18n/routes';
 import { t } from '@/i18n/ui';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
-import LeadForm from '@/components/LeadForm.astro';
-import Icon from '@/components/Icon.astro';
 import Img from '@/components/Img.astro';
-import { site, whatsappLink } from '@/data/site';
-import side from '@/assets/images/details/table-setting-gold.jpg';
-import aerial from '@/assets/images/weddings/wedding-aerial.jpg';
+import Field from '@/components/Field.astro';
+import { site } from '@/data/site';
+import tableMain  from '@/assets/images/details/table-setting-gold.jpg';
+import mintOver   from '@/assets/images/details/mint-coupes.jpg';
+import venueMain  from '@/assets/images/venues/wedding-table-flowers.jpg';
+import barOver    from '@/assets/images/bars/golden-marble-night.jpg';
+import aerial     from '@/assets/images/weddings/wedding-aerial.jpg';
 
-interface Props {
-  lang: Lang;
-}
+interface Props { lang: Lang }
 const { lang } = Astro.props;
 const it = lang === 'it';
 const s = t(lang);
+
 const meta = it
   ? { title: 'Richiedi un Preventivo | Meteora Events', description: 'Richiedi un preventivo per il bar catering del tuo matrimonio o evento. Rispondiamo con una proposta su misura. Email info@meteoraevents.com, WhatsApp e telefono.' }
   : { title: 'Request a Quote | Meteora Events', description: 'Request a quote for bar catering at your wedding or event in Italy. We reply with a tailored proposal. Email info@meteoraevents.com, WhatsApp or phone.' };
+
 const crumbs = [
   { name: s.breadcrumbHome, href: url('home', lang) },
   { name: it ? 'Contatti' : 'Contact', href: url('contact', lang) },
@@ -30,6 +33,30 @@ const contactSchema = {
   name: meta.title,
   url: new URL(url('contact', lang), site.url + '/').toString(),
 };
+
+const messages = {
+  required: s.errRequired,
+  email: s.errEmail,
+  phone: s.errPhone,
+  date: s.errDate,
+  consent: s.errConsent,
+  invalid: s.formInvalid,
+  sending: s.sending,
+  error: s.formError,
+};
+
+const proTypes = [
+  { value: 'wedding-planner', label: 'Wedding planner' },
+  { value: 'location',        label: it ? 'Location / Villa' : 'Venue / Villa' },
+  { value: 'catering',        label: 'Catering' },
+  { value: 'photographer',    label: it ? 'Fotografo / Videomaker' : 'Photographer / Videographer' },
+  { value: 'florist',         label: it ? 'Fiorista' : 'Florist' },
+  { value: 'other',           label: it ? 'Altro' : 'Other' },
+];
+
+const privacyHref = url('privacy', lang);
+const privacyFull  = s.privacyConsent.replace('{href}', privacyHref);
+const privacyShort = privacyFull.replace(' per ricevere una risposta', '').replace(' to receive a reply', '');
 ---
 
 <BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('contact')} current="contact" breadcrumbs={crumbs} schema={[contactSchema]} showQuoteBar={false} headerTheme="overlay">
@@ -50,36 +77,196 @@ const contactSchema = {
     </div>
   </PageHero>
 
+  <!-- ── Quote section ── -->
   <section class="ct" id="contact-form">
     <div class="container ct__grid">
-      <aside class="ct__side">
-        <h2 class="ct__side-hd">{it ? <>Richiedete <em>il vostro preventivo.</em></> : <>Request <em>your quote.</em></>}</h2>
-        <p class="lead muted">
-          {it
-            ? 'Più dettagli ci date, più precisa sarà la proposta.'
-            : 'The more you share, the more precise our proposal will be.'}
-        </p>
-        <ul class="ct__links" role="list">
-          <li><a href={`mailto:${site.email}`} data-track="email_click"><Icon name="mail" />{site.email}</a></li>
-          <li><a href={`tel:${site.phoneE164}`} data-track="phone_click"><Icon name="phone" />{site.phoneDisplay}</a></li>
-          <li><a href={site.instagram.url} target="_blank" rel="noopener" data-track="instagram_click"><Icon name="instagram" />{site.instagram.handle}</a></li>
-          <li><span><Icon name="pin" />{site.address.locality} ({site.address.province}), {it ? 'Toscana — operativi in tutta Italia' : 'Tuscany — serving all of Italy'}</span></li>
-        </ul>
-        <div class="media ct__img"><Img src={side} alt={it ? 'Tavola elegante con piatti dorati e composizioni floreali bianche' : 'Elegant table setting with gold-rimmed plates and white floral arrangements'} sizes="(min-width: 960px) 30vw, 1px" /></div>
-        <p class="ct__partner muted">
-          {it ? 'Siete un wedding planner, una location o un catering?' : 'Are you a wedding planner, venue or caterer?'}
-          <a class="link" href={url('partners', lang, 'partner-form')}>{s.partnerPricing}</a>
-        </p>
+
+      <!-- ── LEFT: overlapping images + tab-specific text ── -->
+      <aside class="ct__left" aria-hidden="true">
+
+        <!-- Sposi panel (default) -->
+        <div class="ct__panel" data-panel="sposi">
+          <div class="ct__imgs">
+            <div class="ct__img-a">
+              <Img src={tableMain} alt={it ? 'Tavola elegante con piatti dorati e fiori bianchi' : 'Elegant table with gold plates and white flowers'} sizes="(min-width: 960px) 20vw, 45vw" widths={[300, 500, 700]} />
+            </div>
+            <div class="ct__img-b">
+              <Img src={mintOver} alt={it ? 'Coppe con menta fresca' : 'Coupes with fresh mint'} sizes="(min-width: 960px) 13vw, 30vw" widths={[250, 450]} />
+            </div>
+          </div>
+          <p class="ct__quote"><em>{it ? 'Ogni dettaglio, al suo posto.' : 'Every detail, in its place.'}</em></p>
+        </div>
+
+        <!-- Pro panel -->
+        <div class="ct__panel" data-panel="pro" hidden>
+          <div class="ct__imgs">
+            <div class="ct__img-a">
+              <Img src={venueMain} alt={it ? 'Tavola matrimoniale con fiori bianchi' : 'Wedding table with white flowers'} sizes="(min-width: 960px) 20vw, 45vw" widths={[300, 500, 700]} />
+            </div>
+            <div class="ct__img-b">
+              <Img src={barOver} alt={it ? 'Banco bar dorato di notte' : 'Golden bar at night'} sizes="(min-width: 960px) 13vw, 30vw" widths={[250, 450]} />
+            </div>
+          </div>
+          <div class="ct__benefits">
+            <p class="ct__benefits-hd">{it ? 'PER I PROFESSIONISTI' : 'FOR PROFESSIONALS'}</p>
+            <ul role="list">
+              <li>{it ? 'Listino partner riservato'                      : 'Reserved partner pricing'}</li>
+              <li>{it ? 'Un referente unico per ogni evento'             : 'A single point of contact for every event'}</li>
+              <li>{it ? 'Brochure Trade Edition per i vostri clienti'    : 'Trade Edition brochure for your clients'}</li>
+              <li>{it ? 'Priorità sulle date di alta stagione'           : 'Priority on peak season dates'}</li>
+            </ul>
+          </div>
+        </div>
+
       </aside>
-      <div class="ct__form">
-        <LeadForm lang={lang} />
-      </div>
-    </div>
+
+      <!-- ── RIGHT: tab bar + forms ── -->
+      <div class="ct__right">
+
+        <!-- Tab bar -->
+        <div class="ct__tabbar" role="group" aria-label={it ? 'Chi siete?' : 'Who are you?'}>
+          <span class="ct__tabbar-label" aria-hidden="true">{it ? 'CHI SIETE?' : 'WHO ARE YOU?'}</span>
+          <div class="ct__tabs" role="tablist">
+            <button
+              class="ct__tab is-active"
+              role="tab"
+              id="tab-sposi"
+              aria-selected="true"
+              aria-controls="form-sposi"
+              data-tab="sposi"
+            >
+              {it ? 'Sposi, Aziende e Privati' : 'Couples, Businesses & Private'}
+            </button>
+            <button
+              class="ct__tab"
+              role="tab"
+              id="tab-pro"
+              aria-selected="false"
+              aria-controls="form-pro"
+              data-tab="pro"
+            >
+              {it ? 'Wedding Planner e Location' : 'Wedding Planner & Venue'}
+            </button>
+          </div>
+        </div>
+
+        <!-- ── Form 1: Sposi / Aziende / Privati ── -->
+        <form
+          id="form-sposi"
+          class="form"
+          role="tabpanel"
+          aria-labelledby="tab-sposi"
+          action={site.formEndpoint}
+          method="post"
+          data-lead-form
+          data-form="quote"
+          data-event="quote_request"
+          data-done="done-sposi"
+          data-messages={JSON.stringify(messages)}
+        >
+          <input type="hidden" name="form_type"    value="quote" />
+          <input type="hidden" name="form_variant" value="sposi" />
+          <input type="hidden" name="lang"         value={lang} />
+          <input type="hidden" name="_t"           value="" />
+          <input type="hidden" name="redirect"     value={url('thanks', lang)} />
+          <div class="hp" aria-hidden="true">
+            <label>Leave empty <input type="text" name="company_fax" tabindex="-1" autocomplete="off" /></label>
+          </div>
+
+          <Field lang={lang} name="full_name"      label={it ? 'Nome e Cognome'        : 'Full name'}                required  autocomplete="name" />
+          <Field lang={lang} name="email"          label="Email"                        type="email"  required  autocomplete="email" inputmode="email" />
+          <Field lang={lang} name="phone"          label={it ? 'Telefono / WhatsApp'   : 'Phone / WhatsApp'}                    autocomplete="tel"   inputmode="tel"  placeholder="+39 …" />
+          <Field lang={lang} name="event_date"     label={it ? 'Data'                  : 'Date'}                                placeholder={it ? 'gg/mm/aaaa · anche indicativa' : 'dd/mm/yyyy · approximate is fine'} />
+          <Field lang={lang} name="event_location" label="Location"                                               required  placeholder={it ? 'Villa, borgo, città o zona' : 'Villa, town or area'} />
+          <Field lang={lang} name="guests"         label={it ? 'Numero di ospiti'      : 'Number of guests'}      type="number" inputmode="numeric" min={10} max={5000} placeholder="es. 120" />
+          <Field lang={lang} name="message"        label={it ? 'Parla con noi'         : 'Tell us more'}          type="textarea" span="full" rows={4} placeholder={it ? 'Una breve descrizione della richiesta...' : 'A brief description of your request...'} />
+
+          <div class="form__full consent-wrap">
+            <label class="consent">
+              <input type="checkbox" name="privacy" value="1" required aria-describedby="consent-sposi-err" />
+              <span set:html={privacyFull} />
+            </label>
+            <p class="field__err" id="consent-sposi-err" aria-live="polite"></p>
+          </div>
+          <div class="form__full form__actions">
+            <button type="submit" class="btn">
+              {it ? 'Richiedi il tuo preventivo' : 'Request your quote'} <span class="arrow" aria-hidden="true">→</span>
+            </button>
+            <p class="form__status" role="status" data-form-status></p>
+          </div>
+        </form>
+
+        <div class="form-done" id="done-sposi" tabindex="-1" hidden role="status">
+          <p class="eyebrow">{it ? 'Richiesta ricevuta' : 'Request received'}</p>
+          <h3>{it ? <>Grazie. <em>Il vostro evento è in buone mani.</em></> : <>Thank you. <em>Your event is in good hands.</em></>}</h3>
+          <p class="muted">{it ? 'Abbiamo ricevuto la vostra richiesta e vi risponderemo al più presto con una proposta su misura.' : 'We have received your request and will reply as soon as possible with a tailored proposal.'}</p>
+        </div>
+
+        <!-- ── Form 2: Wedding Planner / Location ── -->
+        <form
+          id="form-pro"
+          class="form"
+          role="tabpanel"
+          aria-labelledby="tab-pro"
+          hidden
+          action={site.formEndpoint}
+          method="post"
+          data-lead-form
+          data-form="quote"
+          data-event="partner_request"
+          data-done="done-pro"
+          data-messages={JSON.stringify(messages)}
+        >
+          <input type="hidden" name="form_type"    value="partner" />
+          <input type="hidden" name="lang"         value={lang} />
+          <input type="hidden" name="_t"           value="" />
+          <input type="hidden" name="redirect"     value={url('thanks', lang)} />
+          <div class="hp" aria-hidden="true">
+            <label>Leave empty <input type="text" name="company_fax2" tabindex="-1" autocomplete="off" /></label>
+          </div>
+
+          <Field lang={lang} name="full_name"  label={it ? 'Nome e Cognome'           : 'Full name'}                required autocomplete="name" />
+          <Field lang={lang} name="pro_type"   label={it ? 'Tipo di professionista'   : 'Professional type'}        type="select" required options={proTypes} placeholder={it ? 'Seleziona' : 'Select'} />
+          <Field lang={lang} name="email"      label="Email"                           type="email" required autocomplete="email" inputmode="email" />
+          <Field lang={lang} name="phone"      label="WhatsApp / Telefono"             type="tel"            autocomplete="tel"   inputmode="tel"  placeholder="+39 …" />
+          <Field lang={lang} name="instagram"  label={it ? 'Sito o Instagram'         : 'Website or Instagram'}                                  placeholder="@…" />
+          <Field lang={lang} name="zones"      label={it ? 'Zone in cui lavorate'     : 'Areas you work in'}                                     placeholder={it ? 'Toscana, Umbria…' : 'Tuscany, Umbria…'} />
+          <Field lang={lang} name="message"    label={it ? 'Parla con noi'            : 'Tell us more'}             type="textarea" span="full" rows={4} placeholder={it ? 'Una breve descrizione della richiesta...' : 'A brief description of your request...'} />
+
+          <div class="form__full consent-wrap">
+            <label class="consent">
+              <input type="checkbox" name="listino" value="1" />
+              <span>{it ? 'Inviatemi il listino partner e la brochure Trade Edition' : 'Send me the partner price list and Trade Edition brochure'}</span>
+            </label>
+          </div>
+          <div class="form__full consent-wrap">
+            <label class="consent">
+              <input type="checkbox" name="privacy" value="1" required aria-describedby="consent-pro-err" />
+              <span set:html={privacyShort} />
+            </label>
+            <p class="field__err" id="consent-pro-err" aria-live="polite"></p>
+          </div>
+          <div class="form__full form__actions">
+            <button type="submit" class="btn">
+              {it ? 'Richiedi il listino partner' : 'Request partner pricing'} <span class="arrow" aria-hidden="true">→</span>
+            </button>
+            <p class="form__status" role="status" data-form-status></p>
+          </div>
+        </form>
+
+        <div class="form-done" id="done-pro" tabindex="-1" hidden role="status">
+          <p class="eyebrow">{it ? 'Richiesta ricevuta' : 'Request received'}</p>
+          <h3>{it ? <>Grazie. <em>Vi ricontatteremo al più presto.</em></> : <>Thank you. <em>We will be in touch shortly.</em></>}</h3>
+        </div>
+
+      </div><!-- /ct__right -->
+    </div><!-- /ct__grid -->
   </section>
 
 </BaseLayout>
 
 <style>
+  /* ── Scroll arrow ── */
   .scroll-arrow {
     display: inline-flex;
     align-items: center;
@@ -102,68 +289,202 @@ const contactSchema = {
     0%, 100% { transform: translateY(0); }
     50%       { transform: translateY(7px); }
   }
+
+  /* ── Section ── */
   .ct {
     padding-block: var(--space-xl) var(--section);
   }
+
+  /* ── Two-column grid ── */
   .ct__grid {
     display: grid;
     gap: var(--space-xl);
   }
-  .ct__side > * + * {
-    margin-top: var(--space-m);
-  }
-  .ct__eyebrow {
-    margin-top: var(--space-l) !important;
-  }
-  .ct__side-hd {
-    font-family: var(--font-display);
-    font-size: clamp(1.8rem, 1.2rem + 2vw, 3rem);
-    font-weight: 300;
-    line-height: 1.1;
-  }
-  .ct__side-hd em {
-    font-style: italic;
-    color: var(--color-accent-ink);
-  }
-  .ct__links {
-    display: grid;
-    gap: 0.2rem;
-    padding-top: var(--space-s);
-  }
-  .ct__links a,
-  .ct__links span {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
-    padding-block: 0.45rem;
-    text-decoration: none;
-    font-size: var(--fs-small);
-  }
-  .ct__links a:hover {
-    color: var(--color-accent-ink);
-  }
-  .ct__img {
-    display: none;
-  }
-  .ct__partner {
-    font-size: var(--fs-small);
-    display: grid;
-    gap: 0.4rem;
-    justify-items: start;
-  }
   @media (min-width: 960px) {
     .ct__grid {
-      grid-template-columns: 4fr 6fr;
-      gap: clamp(3rem, 7vw, 8rem);
+      grid-template-columns: 5fr 7fr;
+      gap: clamp(3rem, 6vw, 7rem);
       align-items: start;
     }
-    .ct__img {
-      display: block;
-      aspect-ratio: 4 / 3;
-      margin-top: var(--space-l);
-    }
-    .ct__form {
-      padding-top: calc(var(--space-xl) + 1rem);
-    }
+  }
+
+  /* ── Left panels ── */
+  .ct__panel {
+    display: none;
+  }
+  .ct__panel[data-panel="sposi"],
+  .ct__panel[data-panel="pro"] {
+    /* JS adds/removes hidden attribute; display is block by default */
+  }
+  .ct__panel:not([hidden]) {
+    display: block;
+  }
+
+  /* ── Overlapping images ── */
+  .ct__imgs {
+    position: relative;
+    padding-bottom: 28%;
+  }
+  .ct__img-a {
+    width: 74%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+  }
+  .ct__img-b {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 48%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    outline: 4px solid var(--color-background);
+    outline-offset: -4px;
+  }
+  .ct__img-a :global(picture),
+  .ct__img-a :global(img),
+  .ct__img-b :global(picture),
+  .ct__img-b :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ── Quote tagline (sposi) ── */
+  .ct__quote {
+    margin-top: var(--space-m);
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 0.8rem + 0.7vw, 1.25rem);
+    font-style: italic;
+    color: var(--color-accent-ink);
+    line-height: 1.3;
+  }
+
+  /* ── Pro benefits ── */
+  .ct__benefits {
+    margin-top: var(--space-m);
+  }
+  .ct__benefits-hd {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-s);
+  }
+  .ct__benefits ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.65rem;
+  }
+  .ct__benefits li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    font-size: var(--fs-small);
+    line-height: 1.45;
+  }
+  .ct__benefits li::before {
+    content: '✓';
+    color: var(--color-accent-ink);
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    margin-top: 0.1em;
+  }
+
+  /* ── Tab bar ── */
+  .ct__tabbar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-m);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-l);
+  }
+  .ct__tabbar-label {
+    font-family: var(--font-sans);
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+  .ct__tabs {
+    display: flex;
+    border: 1px solid var(--color-border);
+    border-radius: 9999px;
+    padding: 3px;
+    gap: 2px;
+  }
+  .ct__tab {
+    padding: 0.5rem 1.1rem;
+    border: none;
+    border-radius: 9999px;
+    background: transparent;
+    color: var(--color-text-muted);
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.22s, color 0.22s;
+    white-space: nowrap;
+    line-height: 1.3;
+  }
+  .ct__tab.is-active {
+    background: var(--color-text);
+    color: var(--color-background);
+  }
+  .ct__tab:not(.is-active):hover {
+    color: var(--color-text);
+  }
+
+  /* ── Mobile tweaks ── */
+  @media (max-width: 699px) {
+    .ct__left { display: none; }
+    .ct__tabbar { gap: var(--space-s); }
+    .ct__tabs { flex-direction: column; border-radius: 12px; }
+    .ct__tab { border-radius: 10px; text-align: left; }
+  }
+  @media (max-width: 959px) and (min-width: 700px) {
+    .ct__left { display: none; }
   }
 </style>
+
+<script>
+  import { initForms } from '@/scripts/forms';
+  initForms();
+
+  const tabs   = document.querySelectorAll<HTMLButtonElement>('.ct__tab');
+  const panels = document.querySelectorAll<HTMLElement>('.ct__panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const t = tab.dataset.tab!;
+
+      /* ── Tab active state ── */
+      tabs.forEach(b => {
+        b.classList.toggle('is-active', b === tab);
+        b.setAttribute('aria-selected', String(b === tab));
+      });
+
+      /* ── Left panels ── */
+      panels.forEach(p => {
+        const show = p.dataset.panel === t;
+        if (show) p.removeAttribute('hidden');
+        else       p.setAttribute('hidden', '');
+      });
+
+      /* ── Right forms + done messages ── */
+      (['sposi', 'pro'] as const).forEach(v => {
+        const form = document.getElementById(`form-${v}`);
+        const done = document.getElementById(`done-${v}`);
+        const isTarget = v === t;
+        if (form) form.hidden = !isTarget;
+        if (done) done.hidden = true; // reset done on tab switch
+      });
+    });
+  });
+</script>
