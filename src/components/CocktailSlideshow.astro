@@ -21,6 +21,9 @@ const it = lang === 'it';
   </div>
 
   <div class="cs__track-wrap">
+    <button class="cs__arrow cs__prev" aria-label={it ? 'Precedente' : 'Previous'}>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
     <ul class="cs__track" role="list">
       {featuredCocktails.map((c, i) => (
         <li class="cs__slide" data-reveal style={`--delay:${i * 0.04}s`}>
@@ -51,6 +54,9 @@ const it = lang === 'it';
         </li>
       ))}
     </ul>
+    <button class="cs__arrow cs__next" aria-label={it ? 'Successivo' : 'Next'}>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
   </div>
 </section>
 
@@ -85,7 +91,36 @@ const it = lang === 'it';
   /* ── Track ── */
   .cs__track-wrap {
     overflow: hidden;
+    position: relative;
   }
+
+  /* ── Arrows ── */
+  .cs__arrow {
+    position: absolute;
+    top: calc(clamp(150px, 16.5vw, 195px) * 0.625);
+    transform: translateY(-50%);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    border: 1px solid rgba(255 255 255 / 0.25);
+    background: rgba(0 0 0 / 0.45);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: rgba(255 255 255 / 0.75);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .cs__arrow:hover {
+    border-color: var(--color-accent-on-dark);
+    color: var(--color-accent-on-dark);
+    background: rgba(0 0 0 / 0.65);
+  }
+  .cs__prev { left: calc(var(--gutter, 1.5rem) + 0.5rem); }
+  .cs__next { right: calc(var(--gutter, 1.5rem) + 0.5rem); }
   .cs__track {
     display: flex;
     gap: var(--space-m);
@@ -248,6 +283,44 @@ const it = lang === 'it';
     // Pause on hover (when not dragging)
     track.addEventListener('mouseenter', () => { if (!dragging) paused = true; });
     track.addEventListener('mouseleave', () => { if (!dragging) paused = false; });
+
+    // ── Arrow buttons ──
+    const wrap = track.closest('.cs__track-wrap') as HTMLElement;
+    const slideStep = () => {
+      const slide = track.querySelector<HTMLElement>('.cs__slide');
+      const gap = parseFloat(getComputedStyle(track).gap) || 24;
+      return (slide?.offsetWidth ?? 195) + gap;
+    };
+
+    let animRaf = 0;
+    function easeInOut(t: number) {
+      return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    }
+    function nudge(dir: number) {
+      paused = true;
+      cancelAnimationFrame(animRaf);
+      const startPos = pos;
+      const delta = dir * slideStep();
+      const duration = 480;
+      const start = performance.now();
+      function step(now: number) {
+        const t = Math.min((now - start) / duration, 1);
+        pos = startPos + delta * easeInOut(t);
+        totalW = getTotal();
+        applyPos();
+        if (t < 1) {
+          animRaf = requestAnimationFrame(step);
+        } else {
+          pos = startPos + delta;
+          totalW = getTotal();
+          applyPos();
+          setTimeout(() => { paused = false; }, 500);
+        }
+      }
+      animRaf = requestAnimationFrame(step);
+    }
+    wrap?.querySelector('.cs__prev')?.addEventListener('click', () => nudge(-1));
+    wrap?.querySelector('.cs__next')?.addEventListener('click', () => nudge(1));
 
     raf = requestAnimationFrame(tick);
   }

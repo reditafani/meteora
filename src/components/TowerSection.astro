@@ -1,7 +1,7 @@
 ---
 import type { Lang } from '@/i18n/routes';
 import Img from '@/components/Img.astro';
-import imgDefault  from '@/assets/images/towers/coupe-tower-sunset.jpg';
+import imgDefault  from '@/assets/images/towers/gold-coupe-tower.jpg';
 import imgSparkling from '@/assets/images/towers/couple-pour.jpg';
 import imgSpritz    from '@/assets/images/bars/spritz-open-bar.jpg';
 import imgEspresso  from '@/assets/images/towers/espresso-martini-tower.jpg';
@@ -13,7 +13,7 @@ const it = lang === 'it';
 const sv = services.find(s => s.id === 'tower')!;
 
 const slides = [
-  { key: 'default',   src: imgDefault,   alt: it ? 'Tower di coppe al tramonto'                     : 'Coupe tower at sunset' },
+  { key: 'default',   src: imgDefault,   alt: it ? 'Tower di coppe in cristallo con bordo dorato'    : 'Gold-rimmed crystal coupe tower' },
   { key: 'sparkling', src: imgSparkling, alt: it ? 'Sposi che versano le bollicine su una tower'      : 'Couple pouring sparkling wine over a coupe tower' },
   { key: 'spritz',    src: imgSpritz,    alt: it ? 'Servizio Spritz durante un aperitivo'             : 'Spritz service during an aperitivo' },
   { key: 'espresso',  src: imgEspresso,  alt: it ? 'Tower di Espresso Martini con schiuma cremosa'    : 'Espresso Martini tower with creamy foam' },

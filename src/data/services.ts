@@ -1,9 +1,9 @@
 import type { ImageMetadata } from 'astro';
 import type { Localized } from '@/i18n/ui';
-import goldenSunset from '@/assets/images/bars/golden-mirror-sunset.jpg';
-import pureWhite from '@/assets/images/bars/spritz-open-bar.jpg';
+import goldenSunset from '@/assets/images/bars/back-bar-spirits.jpg';
+import pureWhite from '@/assets/images/bars/bartender-coupe-pour.jpg';
 import nightLounge from '@/assets/images/bars/night-lounge.jpg';
-import coupleTower from '@/assets/images/towers/couple-pour.jpg';
+import coupleTower from '@/assets/images/towers/gold-coupe-tower.jpg';
 import bartenderPour from '@/assets/images/team/bartender-pour.jpg';
 
 /**
@@ -50,7 +50,7 @@ export const services: Service[] = [
       ],
     },
     image: pureWhite,
-    imageAlt: { it: 'Cocktail Spritz serviti durante un open bar', en: 'Spritz cocktails served at an open bar' },
+    imageAlt: { it: 'Bartender che versa un cocktail in una coppa dal tin', en: 'Bartender pouring a cocktail into a coupe from a tin' },
     formValue: 'open-bar',
   },
   {
@@ -78,7 +78,7 @@ export const services: Service[] = [
       ],
     },
     image: goldenSunset,
-    imageAlt: { it: 'Banco Golden Mirror al tramonto', en: 'Golden Mirror bar at sunset' },
+    imageAlt: { it: 'Bottigliera illuminata con distillati premium e calici pronti al servizio', en: 'Illuminated back bar with premium spirits and glassware ready for service' },
     formValue: 'open-bar',
   },
   {
@@ -120,7 +120,7 @@ export const services: Service[] = [
       en: ['Sparkling towers', 'Spritz tower', 'Espresso Martini tower'],
     },
     image: coupleTower,
-    imageAlt: { it: 'Sposi che versano le bollicine su una tower di coppe', en: 'A couple pouring sparkling wine over a coupe tower' },
+    imageAlt: { it: 'Tower di coppe in cristallo con bordo dorato pronte per il brindisi', en: 'Gold-rimmed crystal coupe tower ready for the toast' },
     formValue: 'signature-tower',
   },
   {

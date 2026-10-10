@@ -1,96 +1,289 @@
 ---
-/**
- * "Not just an open bar" — the seven components of the Meteora experience,
- * each tied to a real photograph.
- */
 import type { Lang } from '@/i18n/routes';
+import { url } from '@/i18n/routes';
 import Img from './Img.astro';
-import bar from '@/assets/images/bars/golden-marble-night.jpg';
-import cocktails from '@/assets/images/cocktails/espresso-martini.jpg';
-import staff from '@/assets/images/team/bartender-strain.jpg';
-import glass from '@/assets/images/details/champagne-bowl.jpg';
-import ice from '@/assets/images/ice/cube-5cm.jpg';
-import details from '@/assets/images/details/mint-coupes.jpg';
-import logistics from '@/assets/images/bars/terrace-panorama.jpg';
+import bar        from '@/assets/images/bars/golden-marble-night.jpg';
+import cocktails  from '@/assets/images/cocktails/espresso-martini.jpg';
+import staff      from '@/assets/images/team/bartender-strain.jpg';
+import glass      from '@/assets/images/details/champagne-bowl.jpg';
+import ice        from '@/assets/images/ice/cube-5cm.jpg';
+import details    from '@/assets/images/details/mint-coupes.jpg';
+import logistics  from '@/assets/images/bars/terrace-panorama.jpg';
 
-interface Props {
-  lang: Lang;
-}
+interface Props { lang: Lang }
 const { lang } = Astro.props;
 const it = lang === 'it';
+
 const items = [
-  { img: bar, cls: 'a', n: it ? 'Il banco' : 'The bar', d: it ? 'Scenografico, modulare, in tre misure.' : 'Scenographic, modular, in three sizes.', alt: it ? 'Banco bar dorato su pavimento chevron' : 'Golden bar on a chevron floor' },
-  { img: cocktails, cls: 'b', n: 'Cocktail', d: it ? 'Classici eseguiti con metodo, signature su misura.' : 'Classics made with method, bespoke signatures.', alt: 'Espresso Martini' },
-  { img: staff, cls: 'c', n: 'Staff', d: it ? 'Total black, discreto, professionale.' : 'Total black, discreet, professional.', alt: it ? 'Bartender in divisa nera che filtra un cocktail' : 'Bartender in black uniform straining a cocktail' },
-  { img: glass, cls: 'd', n: it ? 'Bicchieri' : 'Glassware', d: it ? 'Il vetro giusto per ogni drink.' : 'The right glass for every drink.', alt: it ? 'Champagne bowl e bottigliera sul banco' : 'Champagne bowl and back bar' },
-  { img: ice, cls: 'e', n: it ? 'Ghiaccio' : 'Ice', d: it ? 'Parte integrante del cocktail.' : 'An integral part of the cocktail.', alt: it ? 'Cubo di ghiaccio trasparente 5×5 cm in mano' : 'Clear 5×5 cm ice cube held in a hand' },
-  { img: details, cls: 'f', n: it ? 'Dettagli' : 'Details', d: it ? 'Frutta, botaniche, garnish.' : 'Fruit, botanicals, garnish.', alt: it ? 'Coppe con menta fresca e frutti rossi' : 'Coupes with fresh mint and red berries' },
-  { img: logistics, cls: 'g', n: it ? 'Logistica' : 'Logistics', d: it ? 'Autonomi dall’allestimento allo smontaggio.' : 'Independent from setup to load-out.', alt: it ? 'Banco allestito davanti a una vetrata panoramica' : 'Bar set up in front of a panoramic window' },
+  { img: bar,       n: it ? 'Il banco'   : 'The bar',    d: it ? 'Scenografico, modulare, in tre misure.'         : 'Scenographic, modular, in three sizes.',    alt: it ? 'Banco bar dorato su pavimento chevron'     : 'Golden bar on a chevron floor',          href: url('bars', lang) },
+  { img: cocktails, n: 'Cocktail',                        d: it ? 'Classici con metodo, signature su misura.'      : 'Classics with method, bespoke signatures.', alt: 'Espresso Martini',                                                                    href: url('cocktails', lang) },
+  { img: staff,     n: 'Staff',                           d: it ? 'Total black, discreto, professionale.'          : 'Total black, discreet, professional.',      alt: it ? 'Bartender che filtra un cocktail'         : 'Bartender straining a cocktail',         href: url('services', lang) },
+  { img: glass,     n: it ? 'Bicchieri'  : 'Glassware',  d: it ? 'Il vetro giusto per ogni drink.'                : 'The right glass for every drink.',          alt: it ? 'Champagne bowl e bottigliera'             : 'Champagne bowl and back bar',            href: url('services', lang) },
+  { img: ice,       n: it ? 'Ghiaccio'   : 'Ice',        d: it ? 'Parte integrante del cocktail.'                 : 'An integral part of the cocktail.',         alt: it ? 'Cubo di ghiaccio trasparente 5×5 cm'     : 'Clear 5×5 cm ice cube',                 href: url('services', lang) },
+  { img: details,   n: it ? 'Dettagli'   : 'Details',    d: it ? 'Frutta, botaniche, garnish.'                    : 'Fruit, botanicals, garnish.',               alt: it ? 'Coppe con menta fresca e frutti rossi'   : 'Coupes with fresh mint and red berries', href: url('services', lang) },
+  { img: logistics, n: it ? 'Logistica'  : 'Logistics',  d: it ? "Autonomi dall'allestimento allo smontaggio."    : 'Independent from setup to load-out.',       alt: it ? 'Banco davanti a una vetrata panoramica'   : 'Bar in front of a panoramic window',     href: url('services', lang) },
 ];
+
+const ctaLabel  = it ? 'Scopri' : 'Discover';
+const prevLabel = it ? 'Precedente' : 'Previous';
+const nextLabel = it ? 'Successivo' : 'Next';
 ---
 
-<div class="mosaic">
-  {
-    items.map((item, i) => (
-      <figure class:list={['mosaic__item', `mosaic__item--${item.cls}`]} data-reveal style={`--delay:${(i % 3) * 0.08}s`}>
-        <div class="media mosaic__media">
-          <Img src={item.img} alt={item.alt} sizes="(min-width: 960px) 30vw, 50vw" widths={[400, 640, 900, 1200]} />
+<div class="exp-slider" data-reveal>
+  <div class="exp-slider__wrap">
+
+    <!-- ── Image track ── -->
+    <div class="exp-track" role="region" aria-label={it ? 'Slideshow Meteora Experience' : 'Meteora Experience slideshow'}>
+      {items.map((item, i) => (
+        <div class:list={['exp-slide', i === 0 && 'is-active']} data-slide={i} aria-hidden={String(i !== 0)}>
+          <Img src={item.img} alt={item.alt} sizes="(min-width: 700px) 58vw, 100vw" widths={[480, 800, 1200, 1600]} />
         </div>
-        <figcaption>
-          <span class="mosaic__n micro">{String(i + 1).padStart(2, '0')}</span>
-          <span class="mosaic__name">{item.n}</span>
-          <span class="mosaic__d">{item.d}</span>
-        </figcaption>
-      </figure>
-    ))
-  }
+      ))}
+    </div>
+
+    <!-- ── Text panel ── -->
+    <div class="exp-panel">
+
+      <!-- Info items (all stacked, only active is visible) -->
+      <div class="exp-infos">
+        {items.map((item, i) => (
+          <div class:list={['exp-info', i === 0 && 'is-active']} data-info={i}>
+            <span class="exp-n">{String(i + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}</span>
+            <h3 class="exp-name">{item.n}</h3>
+            <p class="exp-d">{item.d}</p>
+            <a class="exp-cta" href={item.href}>{ctaLabel}</a>
+          </div>
+        ))}
+      </div>
+
+      <!-- Navigation -->
+      <div class="exp-nav">
+        <button class="exp-arrow exp-prev" aria-label={prevLabel}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <div class="exp-dots">
+          {items.map((item, i) => (
+            <button
+              class:list={['exp-dot', i === 0 && 'is-active']}
+              data-goto={i}
+              aria-label={`${it ? 'Vai a' : 'Go to'} ${item.n}`}
+            ></button>
+          ))}
+        </div>
+        <button class="exp-arrow exp-next" aria-label={nextLabel}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
 </div>
 
 <style>
-  .mosaic {
+  .exp-slider {
+    margin-top: var(--space-xl);
+  }
+
+  /* ── Two-column layout on desktop ── */
+  .exp-slider__wrap {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-l) var(--space-s);
+    gap: var(--space-xl);
   }
-  .mosaic__media {
-    aspect-ratio: 4 / 5;
+  @media (min-width: 700px) {
+    .exp-slider__wrap {
+      grid-template-columns: 3fr 2fr;
+      align-items: center;
+      gap: clamp(2rem, 5vw, 5rem);
+    }
   }
-  .mosaic__item--a {
-    grid-column: 1 / -1;
+
+  /* ── Image track ── */
+  .exp-track {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 4px;
+    background: rgba(255 255 255 / 0.04);
   }
-  .mosaic__item--a .mosaic__media {
-    aspect-ratio: 3 / 2;
+
+  .exp-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.65s ease;
+    pointer-events: none;
   }
-  figcaption {
+  .exp-slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .exp-slide :global(picture),
+  .exp-slide :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ── Text panel ── */
+  .exp-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-l);
+  }
+
+  /* Stack all info items in the same grid cell */
+  .exp-infos {
     display: grid;
-    gap: 0.25rem;
-    margin-top: 0.9rem;
   }
-  .mosaic__n {
+  .exp-info {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+    pointer-events: none;
+    visibility: hidden;
+  }
+  .exp-info.is-active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  .exp-n {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
     color: var(--color-accent-on-dark);
   }
-  .mosaic__name {
+
+  .exp-name {
     font-family: var(--font-display);
-    font-size: var(--fs-h3);
-    line-height: 1.1;
+    font-size: clamp(2rem, 1rem + 3vw, 3rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: #fff;
+    margin: 0;
   }
-  .mosaic__d {
-    font-size: var(--fs-small);
-    color: var(--color-on-dark-muted);
+
+  .exp-d {
+    font-size: var(--fs-body);
+    color: rgba(255 255 255 / 0.65);
+    line-height: 1.55;
+    margin: 0.2rem 0 0.4rem;
   }
-  .mosaic__media :global(img) {
-    transition: transform 1.4s var(--ease-out);
+
+  .exp-cta {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding: 0.5rem 1.4rem;
+    border: 1px solid var(--color-accent-on-dark);
+    border-radius: 2px;
+    color: var(--color-accent-on-dark);
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    margin-top: 0.4rem;
   }
-  .mosaic__item:hover .mosaic__media :global(img) {
-    transform: scale(1.04);
+  .exp-cta:hover {
+    background: var(--color-accent-on-dark);
+    color: #000;
   }
-  @media (min-width: 960px) {
-    .mosaic {
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--space-xl) var(--space-l);
-    }
-    .mosaic__item--a .mosaic__media {
-      aspect-ratio: 16 / 9;
-    }
+
+  /* ── Navigation ── */
+  .exp-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-m);
+  }
+
+  .exp-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border: 1px solid rgba(255 255 255 / 0.22);
+    border-radius: 50%;
+    background: transparent;
+    color: rgba(255 255 255 / 0.65);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .exp-arrow:hover {
+    border-color: var(--color-accent-on-dark);
+    color: var(--color-accent-on-dark);
+  }
+
+  .exp-dots {
+    display: flex;
+    gap: 0.5rem;
+    flex: 1;
+    flex-wrap: wrap;
+  }
+
+  .exp-dot {
+    width: 0.36rem;
+    height: 0.36rem;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: rgba(255 255 255 / 0.28);
+    cursor: pointer;
+    transition: background 0.25s, transform 0.25s;
+  }
+  .exp-dot.is-active {
+    background: var(--color-accent-on-dark);
+    transform: scale(1.35);
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 699px) {
+    .exp-track { aspect-ratio: 3 / 2; }
   }
 </style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.exp-slider').forEach(slider => {
+    const slides = slider.querySelectorAll<HTMLElement>('.exp-slide');
+    const infos  = slider.querySelectorAll<HTMLElement>('.exp-info');
+    const dots   = slider.querySelectorAll<HTMLElement>('.exp-dot');
+    const prev   = slider.querySelector<HTMLButtonElement>('.exp-prev');
+    const next   = slider.querySelector<HTMLButtonElement>('.exp-next');
+    let cur = 0;
+
+    function goTo(n: number) {
+      slides[cur].classList.remove('is-active');
+      slides[cur].setAttribute('aria-hidden', 'true');
+      infos[cur].classList.remove('is-active');
+      dots[cur].classList.remove('is-active');
+      cur = ((n % slides.length) + slides.length) % slides.length;
+      slides[cur].classList.add('is-active');
+      slides[cur].removeAttribute('aria-hidden');
+      infos[cur].classList.add('is-active');
+      dots[cur].classList.add('is-active');
+    }
+
+    prev?.addEventListener('click', () => goTo(cur - 1));
+    next?.addEventListener('click', () => goTo(cur + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+  });
+</script>
