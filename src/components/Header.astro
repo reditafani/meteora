@@ -173,11 +173,17 @@ const s = t(lang);
     overflow: hidden;
     white-space: nowrap;
   }
+  .site-header__crumbs :global(.crumbs) {
+    transition: color 0.5s var(--ease);
+  }
   .site-header[data-theme='overlay']:not([data-scrolled]) .site-header__crumbs :global(.crumbs) {
     color: rgba(255 255 255 / 0.65);
   }
   .site-header[data-theme='overlay']:not([data-scrolled]) .site-header__crumbs :global(.crumbs a:hover) {
     color: rgba(255 255 255 / 0.95);
+  }
+  .site-header[data-scrolled] .site-header__crumbs :global(.crumbs) {
+    color: var(--color-text-muted);
   }
   @media (min-width: 640px) {
     .site-header__crumbs {

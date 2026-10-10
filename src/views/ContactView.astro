@@ -8,7 +8,7 @@ import LeadForm from '@/components/LeadForm.astro';
 import Icon from '@/components/Icon.astro';
 import Img from '@/components/Img.astro';
 import { site, whatsappLink } from '@/data/site';
-import side from '@/assets/images/details/coupes-tray.jpg';
+import side from '@/assets/images/details/table-setting-gold.jpg';
 import aerial from '@/assets/images/weddings/wedding-aerial.jpg';
 
 interface Props {
@@ -65,7 +65,7 @@ const contactSchema = {
           <li><a href={site.instagram.url} target="_blank" rel="noopener" data-track="instagram_click"><Icon name="instagram" />{site.instagram.handle}</a></li>
           <li><span><Icon name="pin" />{site.address.locality} ({site.address.province}), {it ? 'Toscana — operativi in tutta Italia' : 'Tuscany — serving all of Italy'}</span></li>
         </ul>
-        <div class="media ct__img"><Img src={side} alt={it ? 'Coppe sul banco durante un evento serale' : 'Coupes on the bar during an evening event'} sizes="(min-width: 960px) 30vw, 1px" /></div>
+        <div class="media ct__img"><Img src={side} alt={it ? 'Tavola elegante con piatti dorati e composizioni floreali bianche' : 'Elegant table setting with gold-rimmed plates and white floral arrangements'} sizes="(min-width: 960px) 30vw, 1px" /></div>
         <p class="ct__partner muted">
           {it ? 'Siete un wedding planner, una location o un catering?' : 'Are you a wedding planner, venue or caterer?'}
           <a class="link" href={url('partners', lang, 'partner-form')}>{s.partnerPricing}</a>

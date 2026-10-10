@@ -8,11 +8,12 @@ import SectionHeading from '@/components/SectionHeading.astro';
 import Icon from '@/components/Icon.astro';
 import Img from '@/components/Img.astro';
 import { site } from '@/data/site';
+import ItalyMap from '@/components/ItalyMap.astro';
 import terrace from '@/assets/images/bars/terrace-panorama.jpg';
 import mint from '@/assets/images/details/mint-coupes.jpg';
-import sunset from '@/assets/images/glassware/glasses-orchids.jpg';
-import shaker from '@/assets/images/team/bartender-mixing.jpg';
-import strain from '@/assets/images/team/bartender-strain.jpg';
+import sunset from '@/assets/images/cocktails/old-fashioned-pour.jpg';
+import shaker from '@/assets/images/details/woman-coupe.jpg';
+import strain from '@/assets/images/venues/wedding-table-flowers.jpg';
 import coupleImg from '@/assets/images/towers/couple-pour.jpg';
 import silverImg from '@/assets/images/corporate/corporate-table.jpg';
 import loungeImg from '@/assets/images/bars/night-lounge.jpg';
@@ -126,7 +127,7 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
     align="left"
 
     image={strain}
-    imageAlt={it ? 'Bartender in gilet nero che filtra un cocktail' : 'Bartender in a black waistcoat straining a cocktail'}
+    imageAlt={it ? 'Tavola matrimoniale apparecchiata con fiori freschi e tovaglioli a quadretti' : 'Wedding table set with fresh flowers and gingham napkins'}
     crumbs={crumbs}
   >
     <h1>Meteora Events</h1>
@@ -156,10 +157,10 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
           <Img src={mint} alt={it ? 'Coppe con menta e frutti rossi' : 'Coupes with mint and red berries'} sizes="(min-width: 900px) 25vw, 50vw" />
         </div>
         <div class="media story__img" data-reveal="image" style="--delay:.12s">
-          <Img src={sunset} alt={it ? 'Bicchieri da champagne con orchidee bianche' : 'Champagne glasses with white orchids'} sizes="(min-width: 900px) 25vw, 50vw" />
+          <Img src={sunset} alt={it ? 'Old Fashioned versato attraverso uno strainer su ghiaccio' : 'Old Fashioned being strained over ice'} sizes="(min-width: 900px) 25vw, 50vw" />
         </div>
         <div class="media story__img" data-reveal="image" style="--delay:.18s">
-          <Img src={shaker} alt={it ? 'Bartender che mescola un cocktail sul banco in marmo' : 'Bartender mixing a cocktail on a marble bar'} sizes="(min-width: 900px) 25vw, 50vw" />
+          <Img src={shaker} alt={it ? 'Donna con cappello che assaggia un cocktail rosa in una coppa' : 'Woman in a hat sipping a pink cocktail in a coupe glass'} sizes="(min-width: 900px) 25vw, 50vw" />
         </div>
       </div>
       <div class="story__text">
@@ -261,6 +262,7 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
     </div>
   </section>
 
+  <ItalyMap lang={lang} />
 
 </BaseLayout>
 
@@ -302,7 +304,7 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
     text-align: center;
   }
   .story__text p {
-    font-size: clamp(1rem, 0.9rem + 0.3vw, 1.15rem);
+    font-size: var(--fs-body);
   }
   @media (min-width: 700px) {
     .story__media {
@@ -368,7 +370,7 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
     line-height: 1.2;
   }
   .incl p {
-    font-size: var(--fs-small);
+    font-size: var(--fs-body);
     max-width: 26rem;
   }
   @media (min-width: 600px) {
@@ -424,7 +426,7 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
     line-height: 1.2;
   }
   .process li p {
-    font-size: var(--fs-small);
+    font-size: var(--fs-body);
   }
   .process__cta {
     margin-top: var(--space-xs, 0.5rem);
@@ -474,7 +476,7 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
   }
   .serves-hd__lead {
     margin-top: var(--space-m);
-    font-size: clamp(0.95rem, 0.85rem + 0.3vw, 1.05rem);
+    font-size: var(--fs-body);
   }
 
   /* ── Cards ── */
@@ -532,7 +534,7 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
   }
   .srv-card__sub {
     margin-top: 0.45rem;
-    font-size: var(--fs-small);
+    font-size: var(--fs-body);
     font-style: italic;
     color: rgba(255 255 255 / 0.65);
     max-width: 28rem;
@@ -550,7 +552,7 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
     gap: 0.25rem;
   }
   .srv-card__bullets li {
-    font-size: var(--fs-small);
+    font-size: var(--fs-body);
     color: rgba(255 255 255 / 0.55);
   }
   .srv-card__link {

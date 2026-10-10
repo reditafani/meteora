@@ -136,10 +136,10 @@ const schema = [
     display: block;
     width: 5px;
     height: 5px;
-    border-right: 1px solid currentColor;
-    border-bottom: 1px solid currentColor;
+    border-right: 1px solid var(--color-accent-on-dark);
+    border-bottom: 1px solid var(--color-accent-on-dark);
     transform: rotate(45deg);
-    opacity: 0.5;
+    opacity: 1;
     flex-shrink: 0;
   }
   .svc-index a:last-child {
@@ -148,9 +148,6 @@ const schema = [
   .svc-index a:hover {
     color: var(--color-accent-on-dark);
     background: rgba(255, 255, 255, 0.04);
-  }
-  .svc-index a:hover::after {
-    opacity: 1;
   }
   @media (min-width: 900px) {
     .svc-index a {

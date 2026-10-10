@@ -3,11 +3,11 @@ import type { Lang } from '@/i18n/routes';
 import { url, alternatesFor } from '@/i18n/routes';
 import { t } from '@/i18n/ui';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import PageHero from '@/components/PageHero.astro';
 import SectionHeading from '@/components/SectionHeading.astro';
 import BarCard from '@/components/BarCard.astro';
-import { bars, barSizes } from '@/data/bars';
-import hero from '@/assets/images/details/champagne-bowl.jpg';
+import Img from '@/components/Img.astro';
+import { bars } from '@/data/bars';
+import hero from '@/assets/images/bars/cocktails-lineup.jpg';
 
 interface Props {
   lang: Lang;
@@ -28,21 +28,59 @@ const schema = [{
   name: it ? 'Collezione banchi bar Meteora Events' : 'Meteora Events bar collection',
   itemListElement: bars.map((b, i) => ({ '@type': 'ListItem', position: i + 1, name: b.name })),
 }];
+
+const sizes = [
+  { key: 'SLIM',   size: it ? '1,5 metri' : '1.5 metres', note: it ? 'fino a 60 ospiti'  : 'up to 60 guests'  },
+  { key: 'MEDIUM', size: it ? '3 metri' : '3 metres', note: it ? 'fino a 150 ospiti' : 'up to 150 guests' },
+  { key: 'LARGE',  size: it ? '6 metri' : '6 metres', note: it ? '250+ ospiti'       : '250+ guests'      },
+];
 ---
 
 <BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('bars')} current="bars" breadcrumbs={crumbs} schema={schema} headerTheme="overlay">
-  <PageHero variant="fullscreen" align="left" image={hero} imageAlt={it ? 'Champagne bowl su banco in marmo dorato' : 'Champagne bowl on a golden marble bar'} crumbs={crumbs}>
-    <h1>{it ? <>Il bar, <em>come scenografia.</em></> : <>The bar, <em>as scenography.</em></>}</h1>
-    <p slot="lead" class="lead muted">
-      {it
-        ? 'Banchi bar modulari, professionali e scenografici, scelti in base al carattere dell’evento. Una collezione in continuo ampliamento.'
-        : 'Modular, professional, scenographic bars, chosen to match the character of your event. A collection that keeps growing.'}
-    </p>
-    <dl slot="cta" class="sizes">
-      {barSizes.map((z) => (<div><dt class="micro">{z.name}</dt><dd>{it ? z.length : z.lengthEn}</dd></div>))}
-    </dl>
-  </PageHero>
 
+  <!-- ── Full-bleed hero ── -->
+  <section class="bh on-dark" aria-labelledby="bh-title">
+
+    <!-- Background image (full width) -->
+    <div class="bh__bg">
+      <Img src={hero} alt={it ? 'Selezione di cocktail premium sul banco bar' : 'Selection of premium cocktails on the bar counter'} priority sizes="100vw" widths={[800, 1280, 1920]} />
+    </div>
+    <!-- Gradient overlay: dark left → transparent right -->
+    <div class="bh__overlay" aria-hidden="true"></div>
+
+    <!-- Text content -->
+    <div class="bh__content">
+      <div class="bh__text" data-reveal>
+        <h1 id="bh-title">
+          {it ? <>Il bar, <em>come scenografia.</em></> : <>The bar, <em>as scenography.</em></>}
+        </h1>
+        <p class="lead bh__lead" data-reveal style="--delay:.14s">
+          {it
+            ? "Banchi bar modulari, professionali e scenografici, scelti in base al carattere dell'evento. Una collezione in continuo ampliamento."
+            : 'Modular, professional, scenographic bars, chosen to match the character of your event. A collection that keeps growing.'}
+        </p>
+      </div>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="bh__stats">
+      {sizes.map(z => (
+        <div class="bh__stat">
+          <span class="bh__stat-label">{z.key}</span>
+          <span class="bh__stat-size">{z.size}</span>
+          <span class="bh__stat-note">{z.note}</span>
+        </div>
+      ))}
+      <a class="bh__stat bh__stat--cta" href={url('contact', lang)}>
+        <span class="bh__stat-label">{it ? 'SU MISURA' : 'BESPOKE'}</span>
+        <em class="bh__stat-custom">{it ? 'Contattaci per altre forme e misure' : 'Contact us for other sizes and shapes'}</em>
+        <span class="bh__stat-arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+
+  </section>
+
+  <!-- ── Bar collection ── -->
   <section class="section" aria-labelledby="bars-list">
     <div class="container">
       <SectionHeading eyebrow={it ? 'Collezione' : 'Collection'} id="bars-list">{it ? <>Sei caratteri, <em>tre misure.</em></> : <>Six characters, <em>three sizes.</em></>}</SectionHeading>
@@ -57,30 +95,183 @@ const schema = [{
     </div>
   </section>
 
-
 </BaseLayout>
 
 <style>
-  .sizes {
+  /* ── Hero ── */
+  .bh {
+    position: relative;
+    height: 80svh;
+    min-height: 520px;
     display: flex;
-    gap: var(--space-l);
+    flex-direction: column;
+    overflow: hidden;
   }
-  .sizes dt {
-    color: var(--color-accent-ink);
+
+  /* Full-bleed background image */
+  .bh__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
   }
-  .sizes dd {
+  .bh__bg :global(picture),
+  .bh__bg :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Gradient: very dark on left for text, fades right */
+  .bh__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      to right,
+      rgba(10, 7, 5, 0.95) 0%,
+      rgba(10, 7, 5, 0.80) 30%,
+      rgba(10, 7, 5, 0.38) 60%,
+      rgba(10, 7, 5, 0.12) 100%
+    );
+  }
+
+  /* Text content */
+  .bh__content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    padding: calc(var(--header-h, 5rem) + var(--space-l)) clamp(2rem, 6vw, 7rem) 7rem;
+    max-width: 52rem;
+  }
+
+  .bh__text :global(h1) {
     font-family: var(--font-display);
-    font-size: 2rem;
-    line-height: 1.1;
+    font-size: clamp(2.8rem, 4vw + 0.5rem, 6rem);
+    font-weight: 300;
+    line-height: 1.03;
+    color: #fff;
   }
+  .bh__text :global(h1)::after {
+    content: '';
+    display: block;
+    width: 42px;
+    height: 2px;
+    background: var(--color-accent-on-dark);
+    margin-top: var(--space-m);
+    margin-bottom: var(--space-m);
+  }
+  .bh__text :global(h1 em) {
+    font-style: italic;
+    color: var(--color-accent-on-dark);
+    display: block;
+  }
+  .bh__lead {
+    color: rgba(255 255 255 / 0.72);
+    max-width: 32rem;
+  }
+
+  /* Stats bar — anchored to hero bottom */
+  .bh__stats {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: rgba(8, 5, 3, 0.88);
+    border-top: 1px solid rgba(255 255 255 / 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .bh__stat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.2rem;
+    padding: 0.6rem clamp(1.2rem, 2.5vw, 2.5rem);
+    border-right: 1px solid rgba(255 255 255 / 0.08);
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+  }
+  .bh__stat:last-child { border-right: none; }
+
+  .bh__stat-label {
+    font-family: var(--font-sans);
+    font-size: 0.55rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    color: rgba(255 255 255 / 0.45);
+    margin-bottom: 0.1rem;
+  }
+  .bh__stat-size {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 1.6vw, 1.8rem);
+    font-weight: 300;
+    color: #fff;
+    line-height: 1;
+  }
+  .bh__stat-note {
+    font-size: 0.65rem;
+    color: rgba(255 255 255 / 0.4);
+    letter-spacing: 0.02em;
+    margin-top: 0.1rem;
+  }
+
+  /* SU MISURA column */
+  .bh__stat--cta { transition: background 0.2s; }
+  .bh__stat--cta:hover { background: rgba(255 255 255 / 0.04); }
+  .bh__stat-custom {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 1.3vw, 1.3rem);
+    font-style: italic;
+    color: var(--color-accent-on-dark);
+    line-height: 1.25;
+  }
+  .bh__stat-arrow {
+    font-size: 0.75rem;
+    color: rgba(255 255 255 / 0.4);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 699px) {
+    .bh {
+      height: auto;
+      min-height: unset;
+    }
+    .bh__overlay {
+      background: linear-gradient(
+        to top,
+        rgba(10, 7, 5, 0.90) 0%,
+        rgba(10, 7, 5, 0.55) 50%,
+        rgba(10, 7, 5, 0.30) 100%
+      );
+    }
+    .bh__content {
+      min-height: 60svh;
+      padding: calc(var(--header-h, 4rem) + 1rem) var(--gutter) var(--space-xl);
+    }
+    .bh__stats {
+      grid-template-columns: 1fr 1fr;
+    }
+    .bh__stat:nth-child(2) { border-right: 1px solid rgba(255 255 255 / 0.08); }
+    .bh__stat:nth-child(3) { border-right: none; }
+    .bh__stat--cta { grid-column: 1 / -1; border-top: 1px solid rgba(255 255 255 / 0.08); }
+  }
+
+  /* ── Bar list ── */
   .bars {
     display: grid;
     gap: var(--space-xl) var(--space-l);
   }
   @media (min-width: 900px) {
-    .bars {
-      grid-template-columns: 1fr 1fr;
-    }
+    .bars { grid-template-columns: 1fr 1fr; }
   }
   .bars__note {
     margin-top: var(--space-xl);
