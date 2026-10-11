@@ -58,7 +58,11 @@ const schema = [
           </div>
           <div class="svc__text">
             <p class="micro svc__kicker" data-reveal>{String(i + 1).padStart(2, '0')} · {sv.kicker[lang]}</p>
-            <h2 id={`${sv.id}-t`} class="h3 svc__title" data-reveal>{sv.name[lang]}</h2>
+            <h2 id={`${sv.id}-t`} class="h3 svc__title" data-reveal>
+              {sv.name[lang].includes(' — ')
+                ? <>{sv.name[lang].split(' — ')[0]} —<br /><em>{sv.name[lang].split(' — ')[1]}</em></>
+                : sv.name[lang]}
+            </h2>
             <p class="lead muted" data-reveal>{sv.summary[lang]}</p>
             <ul class="svc__inc" role="list" data-reveal>
               {sv.includes[lang].map((x) => <li>{x}</li>)}
@@ -81,7 +85,11 @@ const schema = [
           </div>
           <div class="svc__text">
             <p class="micro svc__kicker" data-reveal>{String(i + 5).padStart(2, '0')} · {sv.kicker[lang]}</p>
-            <h2 id={`${sv.id}-t`} class="h3 svc__title" data-reveal>{sv.name[lang]}</h2>
+            <h2 id={`${sv.id}-t`} class="h3 svc__title" data-reveal>
+              {sv.name[lang].includes(' — ')
+                ? <>{sv.name[lang].split(' — ')[0]} —<br /><em>{sv.name[lang].split(' — ')[1]}</em></>
+                : sv.name[lang]}
+            </h2>
             <p class="lead muted" data-reveal>{sv.summary[lang]}</p>
             <ul class="svc__inc" role="list" data-reveal>
               {sv.includes[lang].map((x) => <li>{x}</li>)}
@@ -165,7 +173,8 @@ const schema = [
     scroll-margin-top: calc(var(--header-h-compact) + 1rem);
   }
   .svc__media {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
   }
   .svc__text > * + * {
     margin-top: var(--space-m);
@@ -176,13 +185,28 @@ const schema = [
   .svc__title {
     font-size: clamp(1.9rem, 1.4rem + 1.8vw, 3rem);
   }
+  .svc__title em {
+    font-style: italic;
+    color: var(--color-accent-ink);
+    display: block;
+  }
   .svc__inc {
     border-top: 1px solid var(--color-border);
   }
   .svc__inc li {
-    padding-block: 0.6rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    padding-block: 0.75rem;
     border-bottom: 1px solid var(--color-border);
     font-size: var(--fs-small);
+  }
+  .svc__inc li::before {
+    content: '·';
+    color: var(--color-accent-ink);
+    flex-shrink: 0;
+    font-size: 1rem;
+    line-height: 1;
   }
   .svc__note {
     max-width: 44rem;
@@ -194,14 +218,52 @@ const schema = [
   }
   @media (min-width: 960px) {
     .svc__item {
-      grid-template-columns: 6fr 5fr;
-      gap: clamp(3rem, 7vw, 8rem);
+      display: block;
+      position: relative;
+      padding-left: 30%;
     }
-    .svc__item--rev .svc__media {
-      order: 2;
+    .svc__media {
+      position: absolute;
+      left: 0;
+      top: 20px;
+      bottom: 20px;
+      width: 34%;
+      aspect-ratio: auto;
+      z-index: 2;
+    }
+    .svc__media :global(picture),
+    .svc__media :global(img) {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .svc__text {
+      background: #fff;
+      border: 1px solid rgba(184, 158, 114, 0.4);
+      padding: 2.5rem 2.5rem 3rem 6rem;
+      position: relative;
+      z-index: 1;
+    }
+    .svc__text::before {
+      content: '';
+      position: absolute;
+      inset: -7px;
+      border: 1px solid rgba(184, 158, 114, 0.55);
+      pointer-events: none;
+      z-index: -1;
     }
     .svc__item--rev {
-      grid-template-columns: 5fr 6fr;
+      padding-left: 0;
+      padding-right: 30%;
+    }
+    .svc__item--rev .svc__media {
+      left: auto;
+      right: 0;
+    }
+    .svc__item--rev .svc__text {
+      padding-left: 2.5rem;
+      padding-right: 6rem;
     }
   }
 </style>

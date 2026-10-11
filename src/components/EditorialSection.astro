@@ -68,6 +68,11 @@ const { image, imageAlt, secondImage, secondAlt = '', reverse = false, ratio = '
     --stack: var(--space-m);
     max-width: 34rem;
   }
+  @media (max-width: 759px) {
+    .ed__second {
+      right: 0;
+    }
+  }
   @media (min-width: 960px) {
     .ed {
       grid-template-columns: 6fr 5fr;

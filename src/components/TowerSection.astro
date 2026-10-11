@@ -58,7 +58,7 @@ const rows = [
   <!-- RIGHT: text + expandable rows -->
   <div class="tw__text">
     <p class="micro svc__kicker" data-reveal>04 · {sv.kicker[lang]}</p>
-    <h2 id="tower-t" class="h3 svc__title" data-reveal>{sv.name[lang]}</h2>
+    <h2 id="tower-t" class="h3 svc__title" data-reveal>Signature Tower <em>Experience</em></h2>
     <p class="lead muted" data-reveal>{sv.summary[lang]}</p>
     <ul class="tw__list" role="list" data-reveal>
       {rows.map(row => (
@@ -121,11 +121,12 @@ const rows = [
     align-items: center;
     scroll-margin-top: calc(var(--header-h-compact) + 1rem);
   }
-  @media (min-width: 960px) {
-    .tw {
-      grid-template-columns: 6fr 5fr;
-      gap: clamp(3rem, 7vw, 8rem);
-    }
+
+  /* ── Title em (gold italic) ── */
+  .svc__title em {
+    font-style: italic;
+    color: var(--color-accent-ink);
+    display: block;
   }
 
   /* ── Left: stacked images ── */
@@ -207,5 +208,38 @@ const rows = [
     max-height: 120px;
     opacity: 1;
     margin-top: 0.45rem;
+  }
+
+  /* ── Desktop: white-box layout (same as svc__item) ── */
+  @media (min-width: 960px) {
+    .tw {
+      display: block;
+      position: relative;
+      padding-left: 30%;
+    }
+    .tw__media {
+      position: absolute;
+      left: 0;
+      top: 20px;
+      bottom: 20px;
+      width: 34%;
+      aspect-ratio: auto;
+      z-index: 2;
+    }
+    .tw__text {
+      background: #fff;
+      border: 1px solid rgba(184, 158, 114, 0.4);
+      padding: 2.5rem 2.5rem 3rem 6rem;
+      position: relative;
+      z-index: 1;
+    }
+    .tw__text::before {
+      content: '';
+      position: absolute;
+      inset: -7px;
+      border: 1px solid rgba(184, 158, 114, 0.55);
+      pointer-events: none;
+      z-index: -1;
+    }
   }
 </style>

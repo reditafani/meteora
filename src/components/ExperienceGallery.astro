@@ -1,0 +1,209 @@
+---
+import type { Lang } from '@/i18n/routes';
+import Img from './Img.astro';
+import bar       from '@/assets/images/bars/golden-marble-night.jpg';
+import cocktails from '@/assets/images/cocktails/espresso-martini.jpg';
+import staff     from '@/assets/images/team/bartender-strain.jpg';
+import glass     from '@/assets/images/details/champagne-bowl.jpg';
+import ice       from '@/assets/images/ice/cube-5cm.jpg';
+import details   from '@/assets/images/details/mint-coupes.jpg';
+import logistics from '@/assets/images/bars/terrace-panorama.jpg';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const it = lang === 'it';
+
+const slides = [
+  { name: it ? 'Il banco'   : 'The bar',    desc: it ? 'Scenografico, modulare, in tre misure.'              : 'Scenographic, modular, in three sizes.',     image: bar,       alt: it ? 'Banco bar dorato su pavimento chevron'   : 'Golden bar on a chevron floor' },
+  { name: 'Cocktail',                        desc: it ? 'Classici con metodo, signature su misura.'          : 'Classics with method, bespoke signatures.',  image: cocktails, alt: 'Espresso Martini' },
+  { name: 'Staff',                           desc: it ? 'Total black, discreto, professionale.'              : 'Total black, discreet, professional.',        image: staff,     alt: it ? 'Bartender che filtra un cocktail'        : 'Bartender straining a cocktail' },
+  { name: it ? 'Bicchieri'  : 'Glassware',  desc: it ? 'Il vetro giusto per ogni drink.'                    : 'The right glass for every drink.',            image: glass,     alt: it ? 'Champagne bowl e bottigliera'            : 'Champagne bowl and back bar' },
+  { name: it ? 'Ghiaccio'   : 'Ice',        desc: it ? 'Parte integrante del cocktail.'                     : 'An integral part of the cocktail.',           image: ice,       alt: it ? 'Cubo di ghiaccio trasparente 5×5 cm'    : 'Clear 5×5 cm ice cube' },
+  { name: it ? 'Dettagli'   : 'Details',    desc: it ? 'Frutta, botaniche, garnish.'                        : 'Fruit, botanicals, garnish.',                 image: details,   alt: it ? 'Coppe con menta fresca e frutti rossi'  : 'Coupes with fresh mint and red berries' },
+  { name: it ? 'Logistica'  : 'Logistics',  desc: it ? "Autonomi dall'allestimento allo smontaggio."        : 'Independent from setup to load-out.',         image: logistics, alt: it ? 'Banco davanti a una vetrata panoramica' : 'Bar in front of a panoramic window' },
+];
+const total = String(slides.length).padStart(2, '0');
+---
+
+<div class="eg" data-reveal>
+
+  <!-- Left: stacked images (CSS grid stacking) -->
+  <div class="eg__media">
+    {slides.map((s, i) => (
+      <div class:list={['eg__img', i === 0 && 'is-active']} data-idx={i}>
+        <Img src={s.image} alt={s.alt} sizes="(min-width: 760px) 55vw, 100vw" widths={[600, 900, 1200]} />
+      </div>
+    ))}
+  </div>
+
+  <!-- Right: text panels + arrows -->
+  <div class="eg__side">
+    <p class="eg__lead">
+      {it
+        ? 'Progettiamo e gestiamo l\'intera esperienza beverage dell\'evento: dal banco al ghiaccio, dai bicchieri allo staff, dall\'allestimento all\'ultimo drink. Voi pensate agli ospiti.'
+        : 'We design and run the entire beverage experience of your event: from the bar to the ice, from glassware to staff, from setup to the last drink. You think about your guests.'}
+    </p>
+    <div class="eg__texts">
+      {slides.map((s, i) => (
+        <div class:list={['eg__panel', i === 0 && 'is-active']} data-idx={i} aria-hidden={i !== 0 ? 'true' : undefined}>
+          <p class="eg__count">
+            <span class="eg__n">{String(i + 1).padStart(2, '0')}</span>
+            <span aria-hidden="true"> / {total}</span>
+          </p>
+          <h3 class="eg__name">{s.name}</h3>
+          <p class="eg__desc">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="eg__nav">
+      <button class="eg__arrow eg__prev" aria-label={it ? 'Precedente' : 'Previous'}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="eg__arrow eg__next" aria-label={it ? 'Successivo' : 'Next'}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  .eg {
+    display: grid;
+    gap: var(--space-l);
+    margin-top: var(--space-xl);
+  }
+
+  /* ── Images: CSS grid stacking (avoids height-collapse of absolute children) ── */
+  .eg__media {
+    display: grid;
+    overflow: hidden;
+  }
+  .eg__img {
+    grid-area: 1 / 1;
+    opacity: 0;
+    transition: opacity 0.65s ease;
+  }
+  .eg__img.is-active {
+    opacity: 1;
+  }
+  .eg__img :global(picture),
+  .eg__img :global(img) {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  /* ── Right side ── */
+  .eg__side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-l);
+  }
+
+  /* Text panels: CSS grid stacking */
+  .eg__texts {
+    display: grid;
+  }
+  .eg__panel {
+    grid-area: 1 / 1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+  .eg__panel.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .eg__count {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    color: rgba(255, 255, 255, 0.35);
+    margin-bottom: var(--space-s);
+  }
+  .eg__n { color: var(--color-accent-on-dark); }
+
+  .eg__name {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 1.8rem + 2.5vw, 4.2rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: #fff;
+    margin-bottom: var(--space-s);
+  }
+  .eg__desc {
+    font-size: var(--fs-small);
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.65;
+  }
+
+  /* ── Arrows ── */
+  .eg__nav {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .eg__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .eg__arrow:hover {
+    border-color: var(--color-accent-on-dark);
+    color: var(--color-accent-on-dark);
+  }
+
+  .eg__lead {
+    font-size: var(--fs-small);
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.65;
+    margin-bottom: var(--space-m);
+  }
+
+  /* ── Desktop: side by side ── */
+  @media (min-width: 760px) {
+    .eg {
+      grid-template-columns: 28fr 72fr;
+      align-items: center;
+    }
+    .eg__img :global(picture),
+    .eg__img :global(img) {
+      aspect-ratio: 4 / 5;
+    }
+  }
+</style>
+
+<script>
+  const eg = document.querySelector<HTMLElement>('.eg');
+  if (eg) {
+    const imgs   = Array.from(eg.querySelectorAll<HTMLElement>('.eg__img'));
+    const panels = Array.from(eg.querySelectorAll<HTMLElement>('.eg__panel'));
+    let cur = 0;
+
+    function go(next: number) {
+      const n = ((next % imgs.length) + imgs.length) % imgs.length;
+      imgs[cur].classList.remove('is-active');
+      panels[cur].classList.remove('is-active');
+      panels[cur].setAttribute('aria-hidden', 'true');
+      cur = n;
+      imgs[cur].classList.add('is-active');
+      panels[cur].classList.add('is-active');
+      panels[cur].removeAttribute('aria-hidden');
+    }
+
+    eg.querySelector('.eg__prev')?.addEventListener('click', () => go(cur - 1));
+    eg.querySelector('.eg__next')?.addEventListener('click', () => go(cur + 1));
+  }
+</script>
