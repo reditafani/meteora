@@ -127,6 +127,13 @@ const privacyShort = privacyFull.replace(' per ricevere una risposta', '').repla
               </div>
             </div>
             <p class="ct__quote"><em>{it ? 'Ogni dettaglio, al suo posto.' : 'Every detail, in its place.'}</em></p>
+            <div class="ct__direct">
+              <p class="ct__direct-lbl">{it ? 'Preferite scriverci direttamente?' : 'Prefer to write to us directly?'}</p>
+              <a class="ct__direct-email" href={`mailto:${site.email}`}>{site.email}</a>
+              <ul class="ct__direct-list" role="list">
+                <li>{it ? 'Rispondiamo a ogni richiesta entro 24 ore.' : 'We respond to every request within 24 hours.'}</li>
+              </ul>
+            </div>
           </div>
 
           <!-- Pro panel -->
@@ -424,6 +431,42 @@ const privacyShort = privacyFull.replace(' per ricevere una risposta', '').repla
     font-style: italic;
     color: var(--color-accent-ink);
     line-height: 1.3;
+  }
+
+  /* ── Direct contact block ── */
+  .ct__direct {
+    margin-top: var(--space-m);
+    padding-top: var(--space-m);
+    border-top: 1px solid var(--color-border);
+  }
+  .ct__direct-lbl {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+  }
+  .ct__direct-email {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 0.85rem + 0.6vw, 1.3rem);
+    font-weight: 400;
+    color: var(--color-text);
+    text-decoration: none;
+    margin-bottom: var(--space-s);
+    transition: color 0.2s;
+  }
+  .ct__direct-email:hover {
+    color: var(--color-accent-ink);
+  }
+  .ct__direct-list {
+    list-style: disc;
+    padding-left: 1.2rem;
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+    line-height: 1.6;
   }
 
   /* ── Pro benefits ── */
