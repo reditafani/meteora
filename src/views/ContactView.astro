@@ -157,6 +157,13 @@ const privacyShort = privacyFull.replace(' per ricevere una risposta', '').repla
                 <li>{it ? 'Priorità sulle date di alta stagione'           : 'Priority on peak season dates'}</li>
               </ul>
             </div>
+            <div class="ct__direct">
+              <p class="ct__direct-lbl">{it ? 'Preferite scriverci direttamente?' : 'Prefer to write to us directly?'}</p>
+              <a class="ct__direct-email" href={`mailto:${site.email}`}>{site.email}</a>
+              <ul class="ct__direct-list" role="list">
+                <li>{it ? 'Rispondiamo a ogni richiesta entro 24 ore.' : 'We respond to every request within 24 hours.'}</li>
+              </ul>
+            </div>
           </div>
 
         </aside>
