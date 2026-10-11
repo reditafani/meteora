@@ -42,7 +42,7 @@ const families = cocktailCategories.map((c) => {
     {
       families.map((f, i) => (
         <li class:list={[i === 0 && 'is-active']} data-cf-item={f.id}>
-          <a href={url('cocktails', lang, f.id === 'signature' ? 'signature' : f.id)}>
+          <a href={url('services', lang)}>
             <span class="cf__name">{f.label[lang]}</span>
             <span class="cf__blurb">{f.blurb[lang]}</span>
           </a>

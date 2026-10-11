@@ -12,7 +12,6 @@ import BarCollection from '@/components/BarCollection.astro';
 import IceSection from '@/components/IceSection.astro';
 import PersonalizationSection from '@/components/PersonalizationSection.astro';
 import TowerSection from '@/components/TowerSection.astro';
-import ExperienceComparison from '@/components/ExperienceComparison.astro';
 import PartnerCTA from '@/components/PartnerCTA.astro';
 import Testimonial from '@/components/Testimonial.astro';
 import InstagramStrip from '@/components/InstagramStrip.astro';
@@ -80,15 +79,10 @@ const schema = [
     <div class="container">
       <SectionHeading eyebrow="Meteora Experience" align="split" id="exp-title">
         {it ? <>Non è solo <em>un open bar.</em></> : <>Not just <em>an open bar.</em></>}
-        <Fragment slot="lead">
-          {it
-            ? 'Progettiamo e gestiamo l’intera esperienza beverage dell’evento: dal banco al ghiaccio, dai bicchieri allo staff, dall’allestimento all’ultimo drink. Voi pensate agli ospiti.'
-            : 'We design and run the entire beverage experience of your event: from the bar to the ice, from glassware to staff, from setup to the last drink. You think about your guests.'}
-        </Fragment>
       </SectionHeading>
       <ExperienceGallery lang={lang} />
       <div class="cta-row exp__cta">
-        <a class="btn btn--light" href={url('cocktails', lang)}>{it ? 'Scopri la cocktail experience' : 'Discover the cocktail experience'}</a>
+        <a class="btn btn--light" href={url('about', lang)}>{it ? 'Scopri perché Meteora' : 'Discover why Meteora'}</a>
       </div>
     </div>
   </section>
@@ -141,20 +135,6 @@ const schema = [
   <!-- 10 · TOWER -->
   <TowerSection lang={lang} />
 
-  <!-- 11 · ESSENTIAL vs PREMIUM -->
-  <section class="section" aria-labelledby="cmp-title">
-    <div class="container">
-      <SectionHeading eyebrow="Open Bar" align="left" id="cmp-title">
-        {it ? <>Due esperienze, <em>uno stesso standard.</em></> : <>Two experiences, <em>one standard.</em></>}
-        <Fragment slot="lead">
-          {it
-            ? 'Essential e Premium condividono servizio, staff e cura. Cambiano la selezione delle etichette, i mixer e la presentazione.'
-            : 'Essential and Premium share the same service, staff and care. What changes is the label selection, the mixers and the presentation.'}
-        </Fragment>
-      </SectionHeading>
-      <ExperienceComparison lang={lang} />
-    </div>
-  </section>
 
   <Testimonial lang={lang} />
 
@@ -203,7 +183,7 @@ const schema = [
     gap: 0.35rem 0;
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 1.3rem;
+    font-size: clamp(0.95rem, 2.5vw, 1.3rem);
   }
   .moments li:not(:last-child)::after {
     content: '·';

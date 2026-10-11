@@ -12,7 +12,6 @@ export const routes = {
   weddings: { it: '/matrimoni/', en: '/en/weddings/' },
   destination: { it: '/destination-wedding-italia/', en: '/en/destination-weddings-italy/' },
   bars: { it: '/banchi-bar/', en: '/en/bars/' },
-  cocktails: { it: '/cocktail-experience/', en: '/en/cocktail-experience/' },
   services: { it: '/servizi/', en: '/en/services/' },
   corporate: { it: '/eventi-aziendali-privati/', en: '/en/corporate-private-events/' },
   partners: { it: '/wedding-planner-location/', en: '/en/wedding-planners-venues/' },

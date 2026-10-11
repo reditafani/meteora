@@ -59,6 +59,8 @@ export interface Cocktail {
   profile: Localized;
   /** 1–5, as printed in the brochure */
   alcohol: 1 | 2 | 3 | 4 | 5;
+  /** 1 = very sweet (dolce), 5 = very dry (secco) */
+  sweetness: 1 | 2 | 3 | 4 | 5;
   variants?: string;
   image?: ImageMetadata;
   /** Show in the curated homepage/teaser gallery */
@@ -76,36 +78,36 @@ function img(slug: string): ImageMetadata | undefined {
 const P = (it: string, en: string): Localized => ({ it, en });
 
 const list: Omit<Cocktail, 'image'>[] = [
-  { slug: 'spritz', name: 'Spritz', categories: ['spritz', 'aperitivo'], profile: P('Fresco, agrumato', 'Fresh, citrusy'), alcohol: 2, variants: 'Aperol · Campari · Hugo · Limoncello', featured: true },
-  { slug: 'negroni', name: 'Negroni', categories: ['aperitivo', 'classics'], profile: P('Intenso, strutturato', 'Intense, structured'), alcohol: 5, featured: true },
-  { slug: 'espresso-martini', name: 'Espresso Martini', categories: ['martini'], profile: P('Intenso, morbido', 'Intense, smooth'), alcohol: 4, featured: true },
-  { slug: 'pornstar-martini', name: 'Pornstar Martini', categories: ['martini'], profile: P('Fruttato, dolce', 'Fruity, sweet'), alcohol: 3, featured: true },
-  { slug: 'dry-martini', name: 'Cocktail Martini (Dry)', categories: ['martini', 'classics'], profile: P('Secco, intenso', 'Dry, intense'), alcohol: 5 },
-  { slug: 'margarita', name: 'Margarita / Tommy’s', categories: ['sour'], profile: P('Secco, intenso', 'Dry, intense'), alcohol: 4, featured: true },
-  { slug: 'sour', name: 'Whiskey · Vodka · Gin · Tequila Sour', categories: ['sour'], profile: P('Agrumato', 'Citrusy'), alcohol: 4, featured: true },
-  { slug: 'daiquiri', name: 'Daiquiri', categories: ['sour', 'tropical'], profile: P('Fresco, bilanciato', 'Fresh, balanced'), alcohol: 4, variants: 'Classic · Strawberry · Passion · Mango' },
-  { slug: 'cosmopolitan', name: 'Cosmopolitan', categories: ['martini', 'sour'], profile: P('Agrumato, fruttato', 'Citrusy, fruity'), alcohol: 3 },
-  { slug: 'gin-fizz', name: 'Gin Fizz', categories: ['sour', 'classics'], profile: P('Fresco, agrumato', 'Fresh, citrusy'), alcohol: 3 },
-  { slug: 'mojito', name: 'Mojito', categories: ['tropical'], profile: P('Fresco, agrumato, mentolato', 'Fresh, citrusy, minty'), alcohol: 2, variants: 'Classic · Passion · Fragola · Mango', featured: true },
-  { slug: 'caipirinha', name: 'Caipirinha', categories: ['tropical'], profile: P('Fresco, intenso', 'Fresh, intense'), alcohol: 4, variants: 'Caipiroska · Caipirissima · Caipirita' },
-  { slug: 'pina-colada', name: 'Piña Colada', categories: ['tropical'], profile: P('Dolce, tropicale', 'Sweet, tropical'), alcohol: 3 },
-  { slug: 'paloma', name: 'Paloma', categories: ['tropical'], profile: P('Fresco, agrumato', 'Fresh, citrusy'), alcohol: 3 },
-  { slug: 'cuba-libre', name: 'Cuba Libre', categories: ['tropical', 'classics'], profile: P('Fresco, dissetante', 'Fresh, thirst-quenching'), alcohol: 3 },
-  { slug: 'americano', name: 'Americano', categories: ['aperitivo'], profile: P('Leggero, amaro', 'Light, bitter'), alcohol: 2 },
-  { slug: 'americano-sbagliato', name: 'Americano Sbagliato', categories: ['aperitivo'], profile: P('Leggero, amaro', 'Light, bitter'), alcohol: 2 },
-  { slug: 'garibaldi', name: 'Garibaldi', categories: ['aperitivo'], profile: P('Morbido, amaro', 'Soft, bitter'), alcohol: 2 },
-  { slug: 'bellini', name: 'Bellini', categories: ['aperitivo'], profile: P('Fruttato, leggero', 'Fruity, light'), alcohol: 2, featured: true },
-  { slug: 'rossini', name: 'Rossini', categories: ['aperitivo'], profile: P('Fruttato, leggero', 'Fruity, light'), alcohol: 2 },
-  { slug: 'mimosa', name: 'Mimosa', categories: ['aperitivo', 'classics'], profile: P('Agrumato, leggero', 'Citrusy, light'), alcohol: 2 },
-  { slug: 'french-75', name: 'French 75', categories: ['classics', 'sour'], profile: P('Fresco, agrumato', 'Fresh, citrusy'), alcohol: 3 },
-  { slug: 'gin-tonic', name: 'Gin Tonic · Lemon · Soda', categories: ['classics'], profile: P('Fresco, secco, dissetante', 'Fresh, dry, thirst-quenching'), alcohol: 3, featured: true },
-  { slug: 'vodka-tonic', name: 'Vodka Tonic · Lemon · Soda', categories: ['classics'], profile: P('Neutro, dissetante', 'Neutral, thirst-quenching'), alcohol: 3 },
-  { slug: 'moscow-mule', name: 'Moscow Mule', categories: ['classics'], profile: P('Fresco, speziato', 'Fresh, spiced'), alcohol: 3, variants: 'London · Jalisco · Kentucky' },
-  { slug: 'old-fashioned', name: 'Old Fashioned', categories: ['classics'], profile: P('Intenso, strutturato', 'Intense, structured'), alcohol: 5, featured: true },
-  { slug: 'manhattan', name: 'Manhattan', categories: ['classics'], profile: P('Intenso, secco', 'Intense, dry'), alcohol: 5 },
-  { slug: 'long-island', name: 'Long Island Iced Tea', categories: ['classics'], profile: P('Fresco, dolce', 'Fresh, sweet'), alcohol: 5 },
-  { slug: 'black-russian', name: 'Black Russian', categories: ['classics'], profile: P('Intenso, morbido', 'Intense, smooth'), alcohol: 4 },
-  { slug: 'screwdriver', name: 'Screwdriver', categories: ['classics'], profile: P('Fresco, agrumato', 'Fresh, citrusy'), alcohol: 3 },
+  { slug: 'spritz',              name: 'Spritz',                              categories: ['spritz', 'aperitivo'],    profile: P('Fresco, agrumato', 'Fresh, citrusy'),               alcohol: 2, sweetness: 3, variants: 'Aperol · Campari · Hugo · Limoncello', featured: true },
+  { slug: 'negroni',             name: 'Negroni',                             categories: ['aperitivo', 'classics'],  profile: P('Intenso, strutturato', 'Intense, structured'),        alcohol: 5, sweetness: 4, featured: true },
+  { slug: 'espresso-martini',    name: 'Espresso Martini',                    categories: ['martini'],                profile: P('Intenso, morbido', 'Intense, smooth'),                alcohol: 4, sweetness: 2, featured: true },
+  { slug: 'pornstar-martini',    name: 'Pornstar Martini',                    categories: ['martini'],                profile: P('Fruttato, dolce', 'Fruity, sweet'),                   alcohol: 3, sweetness: 1, featured: true },
+  { slug: 'dry-martini',         name: 'Cocktail Martini (Dry)',              categories: ['martini', 'classics'],    profile: P('Secco, intenso', 'Dry, intense'),                     alcohol: 5, sweetness: 5 },
+  { slug: 'margarita',           name: 'Margarita / Tommy’s',           categories: ['sour'],                   profile: P('Secco, intenso', 'Dry, intense'),                     alcohol: 4, sweetness: 4, featured: true },
+  { slug: 'sour',                name: 'Whiskey · Vodka · Gin · Tequila Sour', categories: ['sour'], profile: P('Agrumato', 'Citrusy'),                               alcohol: 4, sweetness: 3, featured: true },
+  { slug: 'daiquiri',            name: 'Daiquiri',                            categories: ['sour', 'tropical'],       profile: P('Fresco, bilanciato', 'Fresh, balanced'),              alcohol: 4, sweetness: 3, variants: 'Classic · Strawberry · Passion · Mango' },
+  { slug: 'cosmopolitan',        name: 'Cosmopolitan',                        categories: ['martini', 'sour'],        profile: P('Agrumato, fruttato', 'Citrusy, fruity'),               alcohol: 3, sweetness: 3 },
+  { slug: 'gin-fizz',            name: 'Gin Fizz',                            categories: ['sour', 'classics'],       profile: P('Fresco, agrumato', 'Fresh, citrusy'),                 alcohol: 3, sweetness: 3 },
+  { slug: 'mojito',              name: 'Mojito',                              categories: ['tropical'],               profile: P('Fresco, agrumato, mentolato', 'Fresh, citrusy, minty'), alcohol: 2, sweetness: 3, variants: 'Classic · Passion · Fragola · Mango', featured: true },
+  { slug: 'caipirinha',          name: 'Caipirinha',                          categories: ['tropical'],               profile: P('Fresco, intenso', 'Fresh, intense'),                  alcohol: 4, sweetness: 3, variants: 'Caipiroska · Caipirissima · Caipirita' },
+  { slug: 'pina-colada',         name: 'Piña Colada',                   categories: ['tropical'],               profile: P('Dolce, tropicale', 'Sweet, tropical'),                alcohol: 3, sweetness: 1 },
+  { slug: 'paloma',              name: 'Paloma',                              categories: ['tropical'],               profile: P('Fresco, agrumato', 'Fresh, citrusy'),                 alcohol: 3, sweetness: 3 },
+  { slug: 'cuba-libre',          name: 'Cuba Libre',                          categories: ['tropical', 'classics'],   profile: P('Fresco, dissetante', 'Fresh, thirst-quenching'),      alcohol: 3, sweetness: 3 },
+  { slug: 'americano',           name: 'Americano',                           categories: ['aperitivo'],              profile: P('Leggero, amaro', 'Light, bitter'),                    alcohol: 2, sweetness: 4 },
+  { slug: 'americano-sbagliato', name: 'Americano Sbagliato',                categories: ['aperitivo'],              profile: P('Leggero, amaro', 'Light, bitter'),                    alcohol: 2, sweetness: 4 },
+  { slug: 'garibaldi',           name: 'Garibaldi',                           categories: ['aperitivo'],              profile: P('Morbido, amaro', 'Soft, bitter'),                     alcohol: 2, sweetness: 4 },
+  { slug: 'bellini',             name: 'Bellini',                             categories: ['aperitivo'],              profile: P('Fruttato, leggero', 'Fruity, light'),                 alcohol: 2, sweetness: 2, featured: true },
+  { slug: 'rossini',             name: 'Rossini',                             categories: ['aperitivo'],              profile: P('Fruttato, leggero', 'Fruity, light'),                 alcohol: 2, sweetness: 2 },
+  { slug: 'mimosa',              name: 'Mimosa',                              categories: ['aperitivo', 'classics'],  profile: P('Agrumato, leggero', 'Citrusy, light'),                alcohol: 2, sweetness: 3 },
+  { slug: 'french-75',           name: 'French 75',                           categories: ['classics', 'sour'],       profile: P('Fresco, agrumato', 'Fresh, citrusy'),                 alcohol: 3, sweetness: 3 },
+  { slug: 'gin-tonic',           name: 'Gin Tonic · Lemon · Soda', categories: ['classics'],               profile: P('Fresco, secco, dissetante', 'Fresh, dry, thirst-quenching'), alcohol: 3, sweetness: 5, featured: true },
+  { slug: 'vodka-tonic',         name: 'Vodka Tonic · Lemon · Soda', categories: ['classics'],             profile: P('Neutro, dissetante', 'Neutral, thirst-quenching'),    alcohol: 3, sweetness: 4 },
+  { slug: 'moscow-mule',         name: 'Moscow Mule',                         categories: ['classics'],               profile: P('Fresco, speziato', 'Fresh, spiced'),                  alcohol: 3, sweetness: 3, variants: 'London · Jalisco · Kentucky' },
+  { slug: 'old-fashioned',       name: 'Old Fashioned',                       categories: ['classics'],               profile: P('Intenso, strutturato', 'Intense, structured'),        alcohol: 5, sweetness: 4, featured: true },
+  { slug: 'manhattan',           name: 'Manhattan',                           categories: ['classics'],               profile: P('Intenso, secco', 'Intense, dry'),                     alcohol: 5, sweetness: 5 },
+  { slug: 'long-island',         name: 'Long Island Iced Tea',                categories: ['classics'],               profile: P('Fresco, dolce', 'Fresh, sweet'),                      alcohol: 5, sweetness: 2 },
+  { slug: 'black-russian',       name: 'Black Russian',                       categories: ['classics'],               profile: P('Intenso, morbido', 'Intense, smooth'),                alcohol: 4, sweetness: 2 },
+  { slug: 'screwdriver',         name: 'Screwdriver',                         categories: ['classics'],               profile: P('Fresco, agrumato', 'Fresh, citrusy'),                 alcohol: 3, sweetness: 3 },
 ];
 
 export const cocktails: Cocktail[] = list.map((c) => ({ ...c, image: img(c.slug) }));

@@ -4,32 +4,23 @@ import { url, alternatesFor } from '@/i18n/routes';
 import { t } from '@/i18n/ui';
 import { site } from '@/data/site';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import PageHero from '@/components/PageHero.astro';
-import PartnerForm from '@/components/PartnerForm.astro';
-import NetworkCard from '@/components/NetworkCard.astro';
-import { byRegion, regionLabels } from '@/data/network';
-import hall from '@/assets/images/venues/fresco-hall.jpg';
+import Img from '@/components/Img.astro';
+import SupplierCard from '@/components/SupplierCard.astro';
+import { professionalsOfType, typeLabels } from '@/data/network';
+import hero from '@/assets/images/venues/ballroom-chandelier.jpg';
 
-interface Props {
-  lang: Lang;
-}
+interface Props { lang: Lang }
 const { lang } = Astro.props;
 const it = lang === 'it';
 const s = t(lang);
 
 const meta = it
-  ? {
-      title: 'Wedding Planner e Location in Toscana e in Italia | Meteora Events',
-      description: 'Una selezione curata di Wedding Planner e Location in Toscana e in Italia. Meteora Events offre anche condizioni dedicate ai professionisti del settore wedding.',
-    }
-  : {
-      title: 'Wedding Planners & Venues in Tuscany and Italy | Meteora Events',
-      description: 'A curated selection of wedding planners and venues in Tuscany and Italy. Meteora Events also offers dedicated terms for wedding industry professionals.',
-    };
+  ? { title: 'Wedding Planner, Location e Catering in Italia | Meteora Events', description: 'Una selezione curata di wedding planner, location e catering in Italia. I professionisti che consigliamo alle coppie che scelgono Meteora Events per il bar del loro matrimonio.' }
+  : { title: 'Wedding Planners, Venues & Catering in Italy | Meteora Events', description: 'A curated selection of wedding planners, venues and catering in Italy. The professionals we recommend to couples choosing Meteora Events for their wedding bar.' };
 
 const crumbs = [
   { name: s.breadcrumbHome, href: url('home', lang) },
-  { name: it ? 'Collabora con noi' : 'Work with us', href: url('partners', lang) },
+  { name: 'Meteora Partners', href: url('partners', lang) },
 ];
 
 const schema = [{
@@ -39,355 +30,792 @@ const schema = [{
   url: new URL(url('partners', lang), site.url + '/').toString(),
 }];
 
-const wpGroups = byRegion('wedding-planner');
-const locGroups = byRegion('location');
+const weddingPlanners = professionalsOfType('wedding-planner');
+const locations       = professionalsOfType('location');
+const caterings       = professionalsOfType('catering');
 
-const benefitsList = it
-  ? [
-      { num: '01', title: 'Condizioni dedicate',         body: 'Un listino riservato al professionista, con condizioni studiate per il settore wedding.' },
-      { num: '02', title: 'Libertà commerciale',         body: 'La libertà di costruire la propria proposta economica al cliente finale.' },
-      { num: '03', title: 'Un servizio premium',         body: 'Cocktail bar, open bar, personale e hospitality pensati per eventi di alto livello.' },
-      { num: '04', title: 'Un interlocutore professionale', body: 'Meteora Events come partner operativo affidabile per il servizio bar.' },
-    ]
-  : [
-      { num: '01', title: 'Dedicated pricing',    body: 'A professional price list with terms designed for the wedding industry.' },
-      { num: '02', title: 'Commercial freedom',   body: 'The freedom to build your own commercial proposal to the end client.' },
-      { num: '03', title: 'A premium service',    body: 'Cocktail bar, open bar, staff and hospitality designed for high-end events.' },
-      { num: '04', title: 'A professional partner', body: 'Meteora Events as a reliable operational partner for bar service.' },
-    ];
+const sections = [
+  {
+    id: 'wedding-planner',
+    titleId: 'pf-wp-title',
+    num: '01',
+    eyebrow: 'Wedding Planner',
+    subtitle: it ? 'Chi organizza il vostro giorno.' : 'Who organises your day.',
+    desc: it
+      ? 'Professioniste che lavorano con coppie italiane e internazionali. Ogni scheda per conoscerle e leggere il nostro consiglio.'
+      : 'Professionals working with Italian and international couples. Each profile to get to know them and read our recommendation.',
+    items: weddingPlanners,
+    count: it ? `${weddingPlanners.length} wedding planner selezionati da Meteora` : `${weddingPlanners.length} wedding planners selected by Meteora`,
+    tags: [...new Set(weddingPlanners.flatMap(p => p.tags ?? []))],
+  },
+  {
+    id: 'location',
+    titleId: 'pf-loc-title',
+    num: '02',
+    eyebrow: 'Location',
+    subtitle: it ? 'Dove dire sì.' : 'Where to say yes.',
+    desc: it
+      ? 'Ville, castelli e tenute che conosciamo dal vivo: sappiamo dove monterai il vostro bar, come è il suolo e quanto tempo serve per allestire.'
+      : 'Villas, castles and estates we know in person: we know where your bar will go, what the ground is like and how long setup takes.',
+    items: locations,
+    count: it ? `${locations.length} location selezionate da Meteora` : `${locations.length} venues selected by Meteora`,
+    tags: [...new Set(locations.flatMap(p => p.tags ?? []))],
+  },
+  {
+    id: 'catering',
+    titleId: 'pf-cat-title',
+    num: '03',
+    eyebrow: 'Catering',
+    subtitle: it ? 'Il gusto della festa.' : 'The flavour of the party.',
+    desc: it
+      ? 'Cucine che conosciamo bene: capiamo come lavorano, cosa ci si può aspettare e quanto tempo serve per portare in tavola per gli ospiti.'
+      : 'Kitchens we know well: we understand how they work, what to expect and how long it takes to bring every dish to the date.',
+    items: caterings,
+    count: it ? `${caterings.length} catering selezionati da Meteora` : `${caterings.length} catering services selected by Meteora`,
+    tags: [...new Set(caterings.flatMap(p => p.tags ?? []))],
+  },
+];
 
-const joinSteps = it
-  ? [
-      { num: '01', body: 'Meteora individua le realtà che ritiene interessanti per qualità, estetica e professionalità.' },
-      { num: '02', body: 'Contatta personalmente il professionista o la struttura.' },
-      { num: '03', body: 'Se accetti, raccogliamo le informazioni e costruiamo il profilo.' },
-      { num: '04', body: 'Il profilo viene pubblicato gratuitamente sul sito Meteora Events.' },
-    ]
-  : [
-      { num: '01', body: 'Meteora identifies professionals it considers outstanding in quality, aesthetics and service.' },
-      { num: '02', body: 'We reach out directly to the professional or venue.' },
-      { num: '03', body: 'If you accept, we collect your details and build your profile.' },
-      { num: '04', body: 'Your profile is published for free on the Meteora Events website.' },
-    ];
+const allPros = [...weddingPlanners, ...locations, ...caterings];
+const prosData: Record<string, object> = {};
+for (const p of allPros) {
+  prosData[p.id] = {
+    id: p.id,
+    type: p.type,
+    typeLabel: typeLabels[p.type][lang],
+    area: p.area[lang],
+    name: p.name,
+    tagline: p.tagline[lang],
+    description: p.description[lang],
+    tags: p.tags ?? [],
+    budget: p.budget ?? null,
+    languages: p.languages ?? [],
+    bookingLead: p.bookingLead?.[lang] ?? null,
+    advice: p.advice?.[lang] ?? null,
+    website: p.website ?? null,
+    instagram: p.instagram ?? null,
+    featured: p.featured ?? false,
+    imageSrc: p.image?.src ?? null,
+    imageAlt: p.imageAlt?.[lang] ?? p.name,
+  };
+}
+const contactUrl = url('contact', lang);
+const langCode = lang;
 ---
 
-<BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('partners')} current="partners" breadcrumbs={crumbs} schema={schema} showQuoteBar={false} headerTheme="overlay">
+<BaseLayout
+  lang={lang}
+  title={meta.title}
+  description={meta.description}
+  alternates={alternatesFor('partners')}
+  current="partners"
+  breadcrumbs={crumbs}
+  schema={schema}
+  headerTheme="overlay"
+>
 
-  <!-- 1 · HERO -->
-  <PageHero variant="fullscreen" align="left" image={hall} imageAlt={it ? 'Tavolo imperiale in un salone affrescato' : 'Long table in a frescoed hall'} crumbs={crumbs}>
-    <h1>{it ? <>Professionisti con cui <em>condividiamo la visione.</em></> : <>Professionals who <em>share our vision.</em></>}</h1>
-    <p slot="lead" class="lead muted">
-      {it
-        ? 'Wedding Planner, Location e professionisti selezionati con cui Meteora Events condivide una visione fatta di qualità, estetica e attenzione all\'esperienza.'
-        : 'Wedding planners, venues and selected professionals who share Meteora Events\' commitment to quality, aesthetics and experience.'}
-    </p>
-    <div slot="cta" class="cta-row">
-      <a class="btn btn--light" href="#partner-form">{it ? 'Richiedi il listino partner' : 'Request partner pricing'}</a>
-      <a class="link" href="#selezione">{it ? 'Scopri la selezione' : 'Discover the selection'}</a>
+  <!-- ── Hero ── -->
+  <section class="ph on-dark" aria-labelledby="ph-title">
+    <div class="ph__bg">
+      <Img src={hero} alt={it ? 'Salone con lampadari dorati apparecchiato per un matrimonio' : 'Ballroom with golden chandeliers set for a wedding'} priority sizes="100vw" widths={[800, 1280, 1920]} />
     </div>
-  </PageHero>
-
-  <!-- 2 · INTRO NETWORK -->
-  <section class="section section--alt">
-    <div class="container container--narrow net-intro">
-      <p class="eyebrow" data-reveal>{it ? 'Il network Meteora' : 'The Meteora network'}</p>
-      <h2 data-reveal style="--delay:.08s">{it ? <>Una rete costruita <em>intorno alla qualità.</em></> : <>A network built <em>around quality.</em></>}</h2>
-      <p data-reveal style="--delay:.12s">
+    <div class="ph__overlay" aria-hidden="true"></div>
+    <div class="ph__content container">
+      <h1 id="ph-title" data-reveal>
+        {it ? <>Le persone giuste<em>per il vostro giorno.</em></> : <>The right people<em>for your day.</em></>}
+      </h1>
+      <div class="ph__rule" aria-hidden="true" data-reveal style="--delay:.08s"></div>
+      <p class="lead ph__lead" data-reveal style="--delay:.14s">
         {it
-          ? 'Meteora Events non lavora isolata. Nel corso degli anni abbiamo costruito relazioni con Wedding Planner, Location e professionisti che condividono la nostra attenzione alla qualità, all\'estetica e all\'esperienza ospite.'
-          : 'Meteora Events doesn\'t work in isolation. Over the years we have built relationships with wedding planners, venues and professionals who share our commitment to quality, aesthetics and the guest experience.'}
-      </p>
-      <p data-reveal style="--delay:.16s">
-        {it
-          ? 'Non una lista infinita di fornitori. Una selezione curata di realtà che sentiamo vicine per sensibilità e approccio.'
-          : 'Not an endless supplier list. A curated selection of people and places we consider close to us in sensibility and approach.'}
+          ? 'Dietro ogni matrimonio riuscito c\'è una squadra affiatata. Queste sono le wedding planner, le location e i catering che consigliamo alle vostre coppie.'
+          : 'Behind every successful wedding is a cohesive team. These are the wedding planners, venues and caterers we recommend to couples.'}
       </p>
     </div>
+    <nav class="ph__tabs" aria-label={it ? 'Categorie fornitori' : 'Supplier categories'}>
+      {sections.map(s => (
+        <a href={`#${s.id}`}>{s.eyebrow}</a>
+      ))}
+    </nav>
   </section>
 
-  <!-- 3 · DIRECTORY WEDDING PLANNER -->
-  <section class="section" id="selezione" aria-labelledby="a-wp">
-    <div class="container">
-      <p class="eyebrow" data-reveal>{it ? 'La selezione Meteora' : 'The Meteora Selection'}</p>
-      <h2 id="a-wp" data-reveal style="--delay:.08s">{it ? <>Wedding <em>Planner.</em></> : <>Wedding <em>Planners.</em></>}</h2>
-      <p class="dir-intro muted" data-reveal style="--delay:.12s">
-        {it
-          ? 'Una selezione di Wedding Planner con cui siamo in contatto o che riteniamo realtà interessanti nel panorama italiano.'
-          : 'A curated selection of wedding planners we know or consider outstanding in their field.'}
-      </p>
-      {wpGroups.map(group => (
-        <div class="dir-region">
-          <p class="dir-region__label micro">{regionLabels[group.region][lang]}</p>
-          <div class="dir-grid">
-            {group.items.map(p => <NetworkCard professional={p} lang={lang} />)}
+  <!-- ── Category sections ── -->
+  {sections.map(sec => (
+    <section class="section section--alt pf" id={sec.id} aria-labelledby={sec.titleId}>
+      <div class="container pf__head">
+        <div class="pf__num-row" data-reveal>
+          <span class="pf__line" aria-hidden="true"></span>
+          <span class="pf__num">{sec.num}</span>
+          <span class="pf__line" aria-hidden="true"></span>
+        </div>
+        <h2 id={sec.titleId} class="pf__title" data-reveal style="--delay:.05s">{sec.eyebrow}</h2>
+        <p class="pf__subtitle" data-reveal style="--delay:.08s"><em>{sec.subtitle}</em></p>
+        <p class="pf__desc" data-reveal style="--delay:.1s">{sec.desc}</p>
+        <div class="pf__meta" data-reveal style="--delay:.12s">
+          <span class="pf__count-txt">{sec.count}</span>
+          <div class="pf__filters" role="group" aria-label={it ? 'Filtra per tipo' : 'Filter by type'}>
+            <button class="pf__pill is-active" data-tag="">{it ? 'Tutte' : 'All'}</button>
+            {sec.tags.map(tag => <button class="pf__pill" data-tag={tag}>{tag}</button>)}
           </div>
         </div>
-      ))}
-      {wpGroups.length === 0 && (
-        <div class="dir-empty" data-reveal>
-          <p class="muted">
-            {it ? 'La selezione è in fase di cura. Tornate presto.' : 'Our selection is being curated. Check back soon.'}
-          </p>
+      </div>
+
+      <div class="pf__grid">
+        {sec.items.map(pro => <SupplierCard pro={pro} lang={lang} />)}
+      </div>
+      <div class="pf__detail" data-section-detail={sec.id}>
+        <div class="pf__detail-inner">
+          <!-- populated by JS -->
         </div>
-      )}
-    </div>
-  </section>
+      </div>
 
-  <!-- 4 · DIRECTORY LOCATION -->
-  <section class="section section--alt" aria-labelledby="a-loc">
-    <div class="container">
-      <p class="eyebrow" data-reveal>{it ? 'La selezione Meteora' : 'The Meteora Selection'}</p>
-      <h2 id="a-loc" data-reveal style="--delay:.08s">{it ? <>Location <em>selezionate.</em></> : <>Selected <em>venues.</em></>}</h2>
-      <p class="dir-intro muted" data-reveal style="--delay:.12s">
+      <div class="container pf__more">
+        <a class="btn btn--outline" href={url('contact', lang)}>
+          {it ? 'Parliamo del vostro evento' : 'Talk about your event'} <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+  ))}
+
+  <!-- ── Bottom CTA ── -->
+  <section class="section section--dark pf__cta-band" aria-labelledby="pf-cta-title">
+    <div class="container pf__cta-inner">
+      <p class="eyebrow pf__cta-eyebrow">{it ? 'Sei un professionista del wedding?' : 'Are you a wedding professional?'}</p>
+      <h2 id="pf-cta-title" class="pf__cta-title">
         {it
-          ? 'Location di qualità con cui siamo in contatto o che consideriamo realtà di riferimento nel panorama del matrimonio in Italia.'
-          : 'Quality venues we know or consider outstanding references in the Italian wedding landscape.'}
-      </p>
-      {locGroups.map(group => (
-        <div class="dir-region">
-          <p class="dir-region__label micro">{regionLabels[group.region][lang]}</p>
-          <div class="dir-grid">
-            {group.items.map(p => <NetworkCard professional={p} lang={lang} />)}
-          </div>
-        </div>
-      ))}
-      {locGroups.length === 0 && (
-        <div class="dir-empty" data-reveal>
-          <p class="muted">
-            {it ? 'La selezione è in fase di cura. Tornate presto.' : 'Our selection is being curated. Check back soon.'}
-          </p>
-        </div>
-      )}
-    </div>
-  </section>
-
-  <!-- 5 · B2B CTA + FORM -->
-  <section class="section section--dark" id="partner-form" aria-labelledby="a-b2b">
-    <div class="container pf">
-      <div class="pf__intro">
-        <p class="eyebrow" data-reveal>{it ? 'Per i professionisti' : 'For professionals'}</p>
-        <h2 id="a-b2b" data-reveal style="--delay:.08s">
-          {it
-            ? <>Sei una Wedding Planner <em>o rappresenti una Location?</em></>
-            : <>Are you a wedding planner <em>or do you represent a venue?</em></>}
-        </h2>
-        <p class="lead muted" data-reveal style="--delay:.12s">
-          {it
-            ? 'Meteora Events riserva ai professionisti del settore condizioni dedicate per integrare cocktail bar, open bar e servizi di hospitality nelle proprie proposte. Il listino partner non è pubblico: richiedi di riceverlo.'
-            : 'Meteora Events offers dedicated terms to wedding professionals who want to integrate cocktail bar, open bar and hospitality services into their proposals. Partner pricing is not public: request it here.'}
-        </p>
-        <ol class="ben__list" role="list">
-          {benefitsList.map((b, i) => (
-            <li data-reveal style={`--delay:${(i * 0.06 + 0.16).toFixed(2)}s`}>
-              <span class="micro ben__num">{b.num}</span>
-              <div class="ben__content">
-                <p class="ben__title">{b.title}</p>
-                <p class="muted ben__body">{b.body}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </div>
-      <div class="pf__form-wrap">
-        <PartnerForm lang={lang} />
-      </div>
-    </div>
-  </section>
-
-  <!-- 6 · COME ENTRARE NELLA SELEZIONE -->
-  <section class="section section--alt" aria-labelledby="a-join">
-    <div class="container container--narrow">
-      <p class="eyebrow" data-reveal>{it ? 'La selezione Meteora' : 'The Meteora selection'}</p>
-      <h2 id="a-join" data-reveal style="--delay:.08s">{it ? <>Vuoi entrare <em>nella selezione?</em></> : <>Want to join <em>the selection?</em></>}</h2>
-      <ol class="join-steps" role="list">
-        {joinSteps.map((step, i) => (
-          <li data-reveal style={`--delay:${(i * 0.07).toFixed(2)}s`}>
-            <span class="micro join-num">{step.num}</span>
-            <p class="join-body">{step.body}</p>
-          </li>
-        ))}
-      </ol>
-      <div class="join-foot" data-reveal>
-        <a class="link" href="#partner-form">{it ? 'Segnala la tua realtà' : 'Put your business forward'}</a>
-        <p class="join-note muted">
-          {it
-            ? 'La presenza nella selezione è gratuita e subordinata alla valutazione di Meteora Events.'
-            : "Inclusion in the selection is free and subject to Meteora Events' approval."}
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7 · CHIUSURA B2C -->
-  <section class="section section--dark" aria-labelledby="a-b2c">
-    <div class="container b2c">
-      <p class="eyebrow" data-reveal>{it ? 'Per gli sposi' : 'For couples'}</p>
-      <h2 id="a-b2c" data-reveal style="--delay:.08s">{it ? <>Stai organizzando <em>il tuo matrimonio?</em></> : <>Planning <em>your wedding?</em></>}</h2>
-      <p class="lead muted" data-reveal style="--delay:.12s">
+          ? <>Siete una location, un planner<em>o un catering? Parliamone.</em></>
+          : <>Are you a venue, a planner<em>or a caterer? Let's talk.</em></>}
+      </h2>
+      <p class="lead pf__cta-lead">
         {it
-          ? 'Scopri la selezione di Wedding Planner e Location oppure parla direttamente con noi per progettare il servizio bar del tuo evento.'
-          : 'Discover our selection of wedding planners and venues, or speak directly with us to design the bar service for your event.'}
+          ? 'Lavoriamo con professionisti selezionati e siamo sempre aperti a nuove collaborazioni.'
+          : 'We work with selected professionals and are always open to new collaborations.'}
       </p>
-      <div class="cta-row" data-reveal style="--delay:.16s">
-        <a class="btn btn--light" href="#selezione">{it ? 'Scopri la selezione' : 'Discover the selection'}</a>
-        <a class="link" href={url('contact', lang)}>{it ? 'Parla con Meteora' : 'Talk to Meteora'}</a>
-      </div>
-      <p class="b2c__note muted" data-reveal style="--delay:.2s">
-        {it
-          ? 'La scelta di una Wedding Planner o di una Location presente nella nostra selezione è del tutto indipendente dalla possibilità di affidare a Meteora Events il servizio bar del tuo matrimonio.'
-          : 'Choosing a wedding planner or venue from our selection is entirely independent of your decision to hire Meteora Events for your wedding bar service.'}
-      </p>
+      <a class="btn btn--light" href={url('contact', lang)}>
+        {it ? 'Scrivici' : 'Get in touch'} <span aria-hidden="true">→</span>
+      </a>
     </div>
   </section>
 
 </BaseLayout>
 
 <style>
-  /* ── Intro network ── */
-  .net-intro {
-    text-align: center;
+  /* ── Hero ── */
+  .ph {
+    position: relative;
+    height: 85svh;
+    min-height: 560px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
-  .net-intro > * + * {
+  .ph__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .ph__bg :global(picture),
+  .ph__bg :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .ph__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      to bottom,
+      rgba(10, 7, 5, 0.45) 0%,
+      rgba(10, 7, 5, 0.65) 60%,
+      rgba(10, 7, 5, 0.80) 100%
+    );
+  }
+  .ph__content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: calc(var(--header-h, 5rem) + var(--space-l));
+    padding-bottom: var(--space-xl);
+  }
+  .ph__rule {
+    width: 2.5rem;
+    height: 3px;
+    background: var(--color-accent-on-dark);
+    margin-block: var(--space-m);
+  }
+  .ph__content :global(h1) {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 2rem + 2.5vw, 5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: #fff;
+  }
+  .ph__content :global(h1 em) {
+    display: block;
+    font-style: italic;
+    color: var(--color-accent-on-dark);
+  }
+  .ph__lead {
+    color: rgba(255, 255, 255, 0.65);
+    max-width: 38rem;
     margin-top: var(--space-m);
   }
-  .net-intro p:not(.eyebrow) {
+
+  /* ── Hero tab bar (same pattern as svc-index) ── */
+  .ph__tabs {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    width: 100%;
+    background: rgba(6, 4, 3, 0.82);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .ph__tabs::-webkit-scrollbar { display: none; }
+  .ph__tabs a {
+    flex: 1;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.95rem 1rem;
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-size: var(--fs-micro);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    transition: color 0.2s, background 0.2s;
+    white-space: nowrap;
+  }
+  .ph__tabs a::after {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 5px;
+    border-right: 1px solid var(--color-accent-on-dark);
+    border-bottom: 1px solid var(--color-accent-on-dark);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+  .ph__tabs a:last-child { border-right: none; }
+  .ph__tabs a:hover {
+    color: var(--color-accent-on-dark);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  /* ── Section shared ── */
+  .pf {
+    scroll-margin-top: calc(var(--header-h-compact) + 1rem);
+  }
+  .pf__head {
+    text-align: center;
+    padding-bottom: var(--space-m);
+  }
+  .pf__num-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: var(--space-s);
+  }
+  .pf__line {
+    flex: 1;
+    height: 1px;
+    background: var(--color-accent-ink);
+    opacity: 0.4;
+  }
+  .pf__num {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--color-accent-ink);
+    flex-shrink: 0;
+  }
+  .pf__title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 2.2rem + 3.5vw, 6rem);
+    font-weight: 300;
+    line-height: 1.0;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+  }
+  .pf__subtitle {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 1.2rem + 1.3vw, 2.3rem);
+    font-weight: 300;
+    margin-bottom: var(--space-s);
+  }
+  .pf__subtitle em {
+    font-style: italic;
+    color: var(--color-accent-ink);
+  }
+  .pf__desc {
+    font-size: clamp(1rem, 0.9rem + 0.4vw, 1.2rem);
+    color: var(--color-text-muted);
+    line-height: 1.65;
     max-width: 38rem;
     margin-inline: auto;
-  }
-
-  /* ── Directory shared ── */
-  .dir-intro {
-    font-size: var(--fs-small);
-    margin-top: var(--space-m);
-    margin-bottom: var(--space-xl);
-    max-width: 44rem;
-  }
-  .dir-region {
-    margin-top: var(--space-xl);
-  }
-  .dir-region__label {
-    letter-spacing: var(--tracking-micro);
-    color: var(--color-text-muted);
-    border-bottom: 1px solid var(--color-border);
-    padding-bottom: var(--space-s);
     margin-bottom: var(--space-m);
   }
-  .dir-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: var(--space-l);
-  }
-  .dir-empty {
-    padding-block: var(--space-xl);
-    text-align: center;
-    border: 1px solid var(--color-border);
-    margin-top: var(--space-l);
-  }
-
-  /* ── B2B section ── */
-  .pf {
-    display: grid;
-    gap: var(--space-xl);
-  }
-  .pf__intro > * + * {
-    margin-top: var(--space-m);
-  }
-  .pf__form-wrap {
-    background: var(--color-background);
-    color: var(--color-text);
-    padding: clamp(1.5rem, 4vw, 3rem);
-  }
-  .ben__list {
-    margin-top: var(--space-l);
-    list-style: none;
-    padding: 0;
-  }
-  .ben__list li {
+  .pf__meta {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: var(--space-m);
-    align-items: baseline;
-    padding-block: 1.1rem;
-    border-bottom: 1px solid rgba(255 255 255 / 0.14);
-  }
-  .ben__num {
-    color: var(--color-accent-on-dark);
-    flex: none;
-    min-width: 2ch;
-  }
-  .ben__title {
-    font-family: var(--font-display);
-    font-size: clamp(1.2rem, 0.9rem + 0.8vw, 1.6rem);
-    font-weight: 300;
-    line-height: 1.2;
-  }
-  .ben__body {
-    font-size: var(--fs-small);
-    margin-top: 0.3rem;
-  }
-  @media (min-width: 960px) {
-    .pf {
-      grid-template-columns: 5fr 7fr;
-      gap: clamp(3rem, 7vw, 8rem);
-      align-items: start;
-    }
-  }
-
-  /* ── Join section ── */
-  .join-steps {
-    display: grid;
-    gap: var(--space-l);
-    margin-top: var(--space-xl);
-    list-style: none;
-    padding: 0;
-  }
-  .join-steps li {
+    text-align: left;
+    flex-wrap: wrap;
+    padding-top: var(--space-s);
     border-top: 1px solid var(--color-border);
-    padding-top: var(--space-m);
   }
-  .join-num {
-    color: var(--color-accent-ink);
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-  .join-body {
-    font-size: var(--fs-small);
+  .pf__count-txt {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     color: var(--color-text-muted);
   }
-  .join-foot {
-    margin-top: var(--space-xl);
+  .pf__filters {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .pf__pill {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .pf__pill:hover {
+    border-color: var(--color-accent-ink);
+    color: var(--color-accent-ink);
+  }
+  .pf__pill.is-active {
+    border-color: var(--color-accent-ink);
+    background: var(--color-accent-ink);
+    color: #fff;
+  }
+
+  /* ── Grid ── */
+  .pf__grid {
     display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-m);
+    padding-inline: var(--gutter);
+    margin-top: var(--space-l);
+  }
+
+  /* ── Detail panel ── */
+  .pf__detail {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s ease;
+    overflow: hidden;
+    margin-inline: var(--gutter);
+    margin-top: var(--space-m);
+    scroll-margin-top: calc(var(--header-h-compact) + 1rem);
+  }
+  .pf__detail.is-open {
+    grid-template-rows: 1fr;
+  }
+  .pf__detail-inner {
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg, #fdfaf6);
+  }
+
+  /* ── Detail panel content (pd = professional detail) ── */
+  .pd {
+    display: grid;
+    gap: 0;
+    padding: 0;
+  }
+  .pd__media {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: rgba(184,158,114,0.06);
+    position: relative;
+  }
+  .pd__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .pd__img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(184,158,114,0.08) 0%, rgba(184,158,114,0.03) 100%);
+  }
+  .pd__img-placeholder span {
+    font-family: var(--font-display);
+    font-size: 5rem;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(184,158,114,0.25);
+  }
+  .pd__body {
+    position: relative;
+    padding: var(--space-l);
+    display: flex;
+    flex-direction: column;
     gap: var(--space-s);
   }
-  .join-note {
-    font-size: var(--fs-small);
+  .pd__close {
+    position: absolute;
+    top: var(--space-m);
+    right: var(--space-m);
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-border);
+    background: transparent;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .pd__close:hover {
+    color: var(--color-text);
+    border-color: var(--color-text);
+  }
+  .pd__eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-accent-ink);
+  }
+  .pd__name {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 1.4rem + 1.5vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--color-text);
+    margin-bottom: 0.1rem;
+  }
+  .pd__tagline {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 0.85rem + 0.6vw, 1.3rem);
+    color: var(--color-accent-ink);
     font-style: italic;
+    margin-bottom: var(--space-s);
   }
-  @media (min-width: 640px) {
-    .join-steps {
-      grid-template-columns: repeat(2, 1fr);
+  .pd__desc {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: var(--space-m);
+  }
+  .pd__info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: var(--space-m) var(--space-s);
+    padding-block: var(--space-m);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-m);
+  }
+  .pd__info-label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.55rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 0.25rem;
+  }
+  .pd__info-val {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--color-text);
+  }
+  .pd__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: var(--space-m);
+  }
+  .pd__tag {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+  }
+  .pd__advice {
+    background: rgba(184,158,114,0.08);
+    border-left: 2px solid var(--color-accent-ink);
+    padding: var(--space-m);
+    margin-bottom: var(--space-m);
+  }
+  .pd__advice-label {
+    font-family: var(--font-sans);
+    font-size: 0.55rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent-ink);
+    margin-bottom: 0.5rem;
+  }
+  .pd__advice-quote {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+  .pd__links {
+    display: flex;
+    gap: var(--space-m);
+    padding-top: var(--space-m);
+    border-top: 1px solid var(--color-border);
+    flex-wrap: wrap;
+  }
+  .pd__link {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .pd__link:hover { color: var(--color-accent-ink); }
+
+  @media (min-width: 760px) {
+    .pd {
+      grid-template-columns: 42% 1fr;
     }
-  }
-  @media (min-width: 960px) {
-    .join-steps {
-      grid-template-columns: repeat(4, 1fr);
+    .pd__media {
+      aspect-ratio: unset;
     }
   }
 
-  /* ── B2C closing ── */
-  .b2c {
-    max-width: 52rem;
-  }
-  .b2c > * + * {
-    margin-top: var(--space-m);
-  }
-  .b2c .cta-row {
+  /* ── More button ── */
+  .pf__more {
     margin-top: var(--space-l);
+    display: flex;
+    justify-content: center;
   }
-  .b2c__note {
-    font-size: var(--fs-small);
-    max-width: 42rem;
-    margin-top: var(--space-l);
+
+  /* ── Bottom CTA ── */
+  .pf__cta-band {
+    text-align: center;
+  }
+  .pf__cta-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-m);
+    max-width: 44rem;
+    margin-inline: auto;
+  }
+  .pf__cta-eyebrow {
+    color: var(--color-accent-on-dark);
+  }
+  .pf__cta-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 1.3rem + 2vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: #fff;
+  }
+  .pf__cta-title em {
+    display: block;
     font-style: italic;
-    color: var(--color-on-dark-muted);
+    color: var(--color-accent-on-dark);
+  }
+  .pf__cta-lead {
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 32rem;
+  }
+
+  @media (max-width: 600px) {
+    .pf__title { font-size: clamp(2.2rem, 1.4rem + 3.5vw, 6rem); }
+    .pf__meta { flex-direction: column; align-items: flex-start; gap: var(--space-s); }
+    .pf__filters { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 0.5rem; }
+    .pd__body { padding: var(--space-m); }
   }
 </style>
+
+<script define:vars={{ prosData, contactUrl, langCode }}>
+  const it = langCode === 'it';
+
+  function buildPanel(pro) {
+    const infoItems = [
+      { label: it ? 'BASE' : 'BASE', value: pro.area },
+      pro.languages?.length ? { label: it ? 'LINGUE' : 'LANGUAGES', value: pro.languages.join(' · ') } : null,
+      pro.budget ? { label: it ? 'BUDGET' : 'BUDGET', value: pro.budget } : null,
+      pro.bookingLead ? { label: it ? 'PRENOTARE' : 'BOOK', value: pro.bookingLead } : null,
+    ].filter(Boolean);
+
+    return `
+      <div class="pd">
+        <div class="pd__media">
+          ${pro.imageSrc
+            ? `<img src="${pro.imageSrc}" alt="${pro.imageAlt}" class="pd__img" loading="lazy" />`
+            : `<div class="pd__img-placeholder"><span>${pro.name.slice(0,1)}</span></div>`
+          }
+        </div>
+        <div class="pd__body">
+          <button class="pd__close" aria-label="${it ? 'Chiudi' : 'Close'}">×</button>
+          <p class="pd__eyebrow">${pro.area} · ${pro.typeLabel}</p>
+          <h3 class="pd__name">${pro.name}</h3>
+          <p class="pd__tagline">${pro.tagline}</p>
+          <p class="pd__desc">${pro.description}</p>
+          ${infoItems.length ? `
+            <div class="pd__info-grid">
+              ${infoItems.map(item => `
+                <div>
+                  <span class="pd__info-label">${item.label}</span>
+                  <strong class="pd__info-val">${item.value}</strong>
+                </div>
+              `).join('')}
+            </div>
+          ` : ''}
+          ${pro.tags?.length ? `
+            <div class="pd__tags">
+              ${pro.tags.map(t => `<span class="pd__tag">${t}</span>`).join('')}
+            </div>
+          ` : ''}
+          ${pro.advice ? `
+            <div class="pd__advice">
+              <p class="pd__advice-label">${it ? 'IL CONSIGLIO DI METEORA' : "METEORA'S ADVICE"}</p>
+              <p class="pd__advice-quote">"${pro.advice}"</p>
+            </div>
+          ` : ''}
+          <div class="pd__links">
+            ${pro.website ? `<a href="${pro.website}" target="_blank" rel="noopener" class="pd__link">${it ? 'SITO WEB' : 'WEBSITE'} ↗</a>` : ''}
+            ${pro.instagram ? `<a href="${pro.instagram}" target="_blank" rel="noopener" class="pd__link">INSTAGRAM ↗</a>` : ''}
+            <a href="${contactUrl}" class="pd__link">${it ? 'CONTATTA' : 'CONTACT'}</a>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Detail panel logic
+  document.querySelectorAll('.pf__grid').forEach(grid => {
+    const section = grid.closest('.pf');
+    const detail = section?.querySelector('.pf__detail');
+    const detailInner = detail?.querySelector('.pf__detail-inner');
+    if (!detail || !detailInner) return;
+
+    let openId = null;
+
+    function openPanel(proId, toggleBtn) {
+      const pro = prosData[proId];
+      if (!pro) return;
+      detailInner.innerHTML = buildPanel(pro);
+      detail.classList.add('is-open');
+
+      // Close button
+      detailInner.querySelector('.pd__close')?.addEventListener('click', () => closePanel());
+
+      // Scroll into view after panel expansion completes
+      setTimeout(() => detail.scrollIntoView({ behavior: 'smooth', block: 'start' }), 450);
+    }
+
+    function closePanel() {
+      detail.classList.remove('is-open');
+      if (openId) {
+        const prevBtn = grid.querySelector(`.sc__toggle[data-pro-id="${openId}"]`);
+        if (prevBtn) {
+          prevBtn.setAttribute('aria-expanded', 'false');
+          const lblOpen = prevBtn.querySelector('.sc__lbl-open');
+          const lblClose = prevBtn.querySelector('.sc__lbl-close');
+          if (lblOpen) lblOpen.style.display = '';
+          if (lblClose) lblClose.style.display = 'none';
+        }
+        openId = null;
+      }
+    }
+
+    grid.querySelectorAll('.sc__toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const proId = btn.dataset.proId;
+        const isOpen = openId === proId;
+
+        // Reset previous toggle
+        if (openId && openId !== proId) {
+          const prevBtn = grid.querySelector(`.sc__toggle[data-pro-id="${openId}"]`);
+          if (prevBtn) {
+            prevBtn.setAttribute('aria-expanded', 'false');
+            const lblOpen = prevBtn.querySelector('.sc__lbl-open');
+            const lblClose = prevBtn.querySelector('.sc__lbl-close');
+            if (lblOpen) lblOpen.style.display = '';
+            if (lblClose) lblClose.style.display = 'none';
+          }
+        }
+
+        if (isOpen) {
+          closePanel();
+        } else {
+          openId = proId;
+          btn.setAttribute('aria-expanded', 'true');
+          const lblOpen = btn.querySelector('.sc__lbl-open');
+          const lblClose = btn.querySelector('.sc__lbl-close');
+          if (lblOpen) lblOpen.style.display = 'none';
+          if (lblClose) lblClose.style.display = '';
+          openPanel(proId, btn);
+        }
+      });
+    });
+  });
+
+  // Filter pills
+  document.querySelectorAll('.pf__filters').forEach(filters => {
+    const section = filters.closest('.pf');
+    const grid = section?.querySelector('.pf__grid');
+    if (!grid) return;
+
+    filters.querySelectorAll('.pf__pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        filters.querySelectorAll('.pf__pill').forEach(p => p.classList.remove('is-active'));
+        pill.classList.add('is-active');
+        const tag = pill.dataset.tag;
+        grid.querySelectorAll('.sc').forEach(card => {
+          if (!tag) {
+            card.style.display = '';
+          } else {
+            const tags = (card.dataset.tags || '').split(',');
+            card.style.display = tags.includes(tag) ? '' : 'none';
+          }
+        });
+      });
+    });
+  });
+</script>

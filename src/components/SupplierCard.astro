@@ -1,0 +1,165 @@
+---
+import type { Lang } from '@/i18n/routes';
+import type { Professional } from '@/data/network';
+import { typeLabels } from '@/data/network';
+import Img from './Img.astro';
+
+interface Props {
+  pro: Professional;
+  lang: Lang;
+}
+const { pro, lang } = Astro.props;
+const it = lang === 'it';
+---
+
+<article class="sc" data-pro-id={pro.id} data-tags={pro.tags?.join(',') ?? ''}>
+  <div class="sc__media">
+    {pro.image
+      ? <Img src={pro.image} alt={pro.imageAlt?.[lang] ?? pro.name} sizes="320px" widths={[320, 640]} />
+      : <div class="sc__placeholder" aria-hidden="true">
+          <span class="sc__initials">{pro.name.slice(0, 1)}</span>
+        </div>
+    }
+    {pro.budget && <span class="sc__budget-badge">{pro.budget}</span>}
+  </div>
+  <div class="sc__body">
+    <p class="sc__badge">{pro.area[lang]} <span aria-hidden="true">·</span> {typeLabels[pro.type][lang]}</p>
+    <h3 class="sc__name">{pro.name}</h3>
+    <p class="sc__tagline"><em>{pro.tagline[lang]}</em></p>
+    <p class="sc__desc">{pro.description[lang]}</p>
+    <div class="sc__footer">
+      <button class="sc__toggle" data-pro-id={pro.id} aria-expanded="false">
+        <span class="sc__lbl-open">{it ? 'Scopri' : 'Explore'} <span aria-hidden="true">▼</span></span>
+        <span class="sc__lbl-close" style="display:none">{it ? 'Chiudi' : 'Close'} <span aria-hidden="true">▲</span></span>
+      </button>
+    </div>
+  </div>
+</article>
+
+<style>
+  .sc {
+    flex-shrink: 0;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.25s ease;
+  }
+  .sc:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  }
+
+  /* ── Media ── */
+  .sc__media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: rgba(184, 158, 114, 0.06);
+    flex-shrink: 0;
+  }
+  .sc__media :global(picture),
+  .sc__media :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s ease;
+  }
+  .sc:hover .sc__media :global(img) {
+    transform: scale(1.04);
+  }
+  .sc__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(184, 158, 114, 0.08) 0%, rgba(184, 158, 114, 0.03) 100%);
+  }
+  .sc__initials {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 300;
+    color: rgba(184, 158, 114, 0.3);
+    font-style: italic;
+  }
+  .sc__budget-badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--color-accent-ink);
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(184, 158, 114, 0.4);
+    padding: 0.2rem 0.5rem;
+  }
+
+  /* ── Body ── */
+  .sc__body {
+    padding: 1rem 1.1rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    flex: 1;
+  }
+  .sc__badge {
+    font-family: var(--font-sans);
+    font-size: 0.55rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent-ink);
+  }
+  .sc__name {
+    font-family: var(--font-display);
+    font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.2rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--color-text);
+    margin-top: 0.1rem;
+  }
+  .sc__tagline {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+  }
+  .sc__desc {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-top: 0.2rem;
+  }
+  .sc__footer {
+    margin-top: auto;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .sc__toggle {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .sc__toggle:hover { color: var(--color-accent-ink); }
+  .sc__toggle[aria-expanded="true"] { color: var(--color-accent-ink); }
+</style>
