@@ -42,7 +42,7 @@ export interface EventStory {
   /** Path under /public, e.g. '/videos/events/slug.mp4' */
   video?: { mp4?: string; webm?: string; poster?: ImageMetadata };
   /** Links the story to the relevant service page */
-  relatedService: 'weddings' | 'corporate' | 'destination' | 'bars' | 'cocktails';
+  relatedService: 'weddings' | 'corporate' | 'destination' | 'bars';
 }
 
 export const events: EventStory[] = [
