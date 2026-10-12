@@ -14,11 +14,12 @@ interface Props {
   video?: { mp4?: string; webm?: string };
   eyebrow?: string;
   size?: 'full' | 'tall';
+  style?: string;
 }
-const { image, imageAlt, position = 'center', video, eyebrow, size = 'full' } = Astro.props;
+const { image, imageAlt, position = 'center', video, eyebrow, size = 'full', style } = Astro.props;
 ---
 
-<section class:list={['hero on-dark', `hero--${size}`]}>
+<section class:list={['hero on-dark', `hero--${size}`]} style={style}>
   <div class="hero__media">
     <Img src={image} alt={imageAlt} priority sizes="100vw" position={position} class="hero__img" />
     {
@@ -111,7 +112,7 @@ const { image, imageAlt, position = 'center', video, eyebrow, size = 'full' } = 
   }
   .hero__content {
     position: relative;
-    padding-block: calc(var(--header-h) + var(--space-l)) clamp(5rem, 10vh, 8rem);
+    padding-block: calc(var(--header-h) + var(--space-l)) var(--hero-content-pb, clamp(7rem, 11vh, 10rem));
   }
   .hero--tall .hero__content {
     padding-bottom: var(--space-xl);
