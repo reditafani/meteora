@@ -69,8 +69,8 @@ const desktopNav: NavItem[] = [
               aria-current={current === item.key ? 'page' : undefined}
             >{item.label}</a>
             <div class="site-header__dropdown">
-              {item.children.map(child => (
-                <a href={child.href} class="site-header__drop-link">{child.label}</a>
+              {item.children.map((child, i) => (
+                <a href={child.href} class="site-header__drop-link" style={`--i:${i}`}>{child.label}</a>
               ))}
             </div>
           </div>
@@ -292,7 +292,7 @@ const desktopNav: NavItem[] = [
     position: absolute;
     top: 100%;
     left: 50%;
-    transform: translateX(-50%) translateY(6px);
+    transform: translateX(-50%);
     min-width: 220px;
     background: var(--color-background);
     border: 1px solid var(--color-border);
@@ -300,7 +300,7 @@ const desktopNav: NavItem[] = [
     padding: 0.3rem 0;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.18s ease, transform 0.18s ease;
+    transition: opacity 0.15s ease;
     z-index: 10;
   }
   /* Invisible bridge so mouse can reach dropdown */
@@ -315,7 +315,12 @@ const desktopNav: NavItem[] = [
   .site-header__nav-item:hover .site-header__dropdown {
     opacity: 1;
     pointer-events: auto;
-    transform: translateX(-50%) translateY(0);
+  }
+
+  /* Staggered cascade animation for each item */
+  @keyframes nav-drop-in {
+    from { opacity: 0; transform: translateY(-7px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
   .site-header__drop-link {
     display: block;
@@ -327,8 +332,13 @@ const desktopNav: NavItem[] = [
     text-transform: uppercase;
     text-decoration: none;
     color: var(--color-text-muted);
-    transition: color 0.15s, background 0.15s;
     white-space: nowrap;
+    opacity: 0;
+    transition: color 0.15s, background 0.15s;
+  }
+  .site-header__nav-item:hover .site-header__drop-link {
+    animation: nav-drop-in 0.42s ease forwards;
+    animation-delay: calc(var(--i, 0) * 0.09s + 0.06s);
   }
   .site-header__drop-link:hover {
     color: var(--color-accent-ink);
