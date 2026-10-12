@@ -144,16 +144,12 @@ const hasSlider = bar.images.length > 1;
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     transition: background 0.2s, opacity 0.2s;
-    opacity: 0;
+    opacity: 0.55;
   }
   .barcard__arrow--prev { left: 0.75rem; }
   .barcard__arrow--next { right: 0.75rem; }
-  .barcard__arrow:hover { background: rgba(8, 5, 3, 0.78); }
-  .barcard:hover .barcard__arrow { opacity: 1; }
-  /* Always visible on touch screens */
-  @media (hover: none) {
-    .barcard__arrow { opacity: 1; }
-  }
+  .barcard__arrow:hover,
+  .barcard:hover .barcard__arrow { opacity: 1; background: rgba(8, 5, 3, 0.78); }
 
   /* ── Dot indicators ── */
   .barcard__dots {
