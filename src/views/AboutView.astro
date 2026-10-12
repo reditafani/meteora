@@ -18,6 +18,8 @@ import coupleImg from '@/assets/images/towers/couple-pour.jpg';
 import silverImg from '@/assets/images/corporate/corporate-table.jpg';
 import loungeImg from '@/assets/images/bars/night-lounge.jpg';
 import cimBg from '@/assets/images/venues/wedding-table-candles.jpg';
+import bartenderStrain from '@/assets/images/team/bartender-strain.jpg';
+import processBg from '@/assets/images/bars/bartender-event.jpg';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -43,19 +45,19 @@ const serveCards = it
         n: '01', title: 'Matrimoni',
         subtitle: "Il giorno più fotografato della vostra vita merita un bar all'altezza.",
         bullets: ['Destination wedding', 'Matrimoni in villa, castelli e cantine', 'Welcome party e after party', 'Brunch del giorno dopo'],
-        href: url('services', lang), cta: 'Scopri',
+        href: url('services', lang), cta: 'Scopri i nostri servizi',
       },
       {
         n: '02', title: 'Eventi aziendali',
         subtitle: "La cura di un matrimonio, per l'immagine della vostra azienda.",
         bullets: ['Logo su divise e banco', 'Cene di gala e lanci di prodotto', 'Convention e team building', 'Viaggi incentive e feste di Natale'],
-        href: url('services', lang), cta: 'Scopri',
+        href: url('services', lang), cta: 'Scopri i nostri servizi',
       },
       {
         n: '03', title: 'Eventi privati',
         subtitle: 'Ogni traguardo merita un brindisi fatto bene.',
         bullets: ['Sfilate ed eventi di moda', 'Vernissage e inaugurazioni', 'Fiere', 'Feste di laurea e compleanni'],
-        href: url('services', lang), cta: 'Scopri',
+        href: url('services', lang), cta: 'Scopri i nostri servizi',
       },
     ]
   : [
@@ -63,19 +65,19 @@ const serveCards = it
         n: '01', title: 'Weddings',
         subtitle: 'The most photographed day of your life deserves a bar to match.',
         bullets: ['Destination weddings', 'Villas, castles and wineries', 'Welcome party and after party', 'Day-after brunch'],
-        href: url('services', lang), cta: 'Discover',
+        href: url('services', lang), cta: 'Discover our services',
       },
       {
         n: '02', title: 'Corporate events',
         subtitle: 'The care of a wedding, for the image of your company.',
         bullets: ['Logo on uniforms and bar', 'Gala dinners and product launches', 'Conventions and team building', 'Incentive trips and Christmas parties'],
-        href: url('services', lang), cta: 'Discover',
+        href: url('services', lang), cta: 'Discover our services',
       },
       {
         n: '03', title: 'Private events',
         subtitle: 'Every milestone deserves a well-made toast.',
         bullets: ['Fashion shows and events', 'Vernissages and openings', 'Trade fairs', 'Graduation parties and birthdays'],
-        href: url('services', lang), cta: 'Discover',
+        href: url('services', lang), cta: 'Discover our services',
       },
     ];
 const serveImgs = [coupleImg, silverImg, loungeImg];
@@ -83,38 +85,38 @@ const serveAlts = it
   ? ['Coppia che versa champagne da una tower', 'Tavola imperiale allestita sotto un portico', 'Lounge notturno con luci soffuse']
   : ['Couple pouring champagne from a tower', 'Imperial table set under a portico', 'Night lounge with soft lighting'];
 
-const included: { title: string }[] = it
+const included: { title: string; sub: string }[] = it
   ? [
-      { title: 'Banco bar' },
-      { title: 'Staff preparato' },
-      { title: 'Allestimento e smontaggio' },
-      { title: 'Bicchieri in vetro' },
-      { title: 'Tutti gli ingredienti' },
-      { title: 'Ghiaccio' },
+      { title: 'Banco bar scenografico',                       sub: 'a scelta dalla nostra collezione' },
+      { title: 'Bartender professionisti',                     sub: 'staff qualificato, in total black' },
+      { title: 'Drink list signature',                         sub: '40 drink, personalizzabili per voi' },
+      { title: 'Distillati selezionati e ingredienti freschi', sub: 'frutta fresca, disidratata, odori e spezie' },
+      { title: 'Ghiaccio professionale',                       sub: 'scelto per ogni tipo di cocktail' },
+      { title: 'Solo bicchieri in vetro',                      sub: 'mai plastica' },
+      { title: 'Allestimento e smontaggio',                    sub: "la location torna come l'abbiamo trovata" },
     ]
   : [
-      { title: 'Bar counter' },
-      { title: 'Trained staff' },
-      { title: 'Setup & breakdown' },
-      { title: 'Crystal glassware' },
-      { title: 'All ingredients' },
-      { title: 'Ice' },
+      { title: 'Scenic bar counter',                    sub: 'chosen from our collection' },
+      { title: 'Professional bartenders',               sub: 'qualified staff, in total black' },
+      { title: 'Signature drink list',                  sub: '40 drinks, customisable for you' },
+      { title: 'Selected spirits & fresh ingredients',  sub: 'fresh fruit, dried, herbs and spices' },
+      { title: 'Professional ice',                      sub: 'chosen for each cocktail type' },
+      { title: 'Crystal glassware only',                sub: 'no plastic, ever' },
+      { title: 'Setup & breakdown',                     sub: 'venue left exactly as we found it' },
     ];
 
-const steps: { title: string; text: string; cta?: boolean }[] = it
+const steps: { title: string; text: string }[] = it
   ? [
-      { title: 'Primo contatto',     text: 'Ascoltiamo la vostra richiesta e ci conosciamo.' },
-      { title: 'Il vostro bar',      text: 'Scegliete il banco bar e la cocktail list.' },
-      { title: 'La nostra proposta', text: "Tutto per iscritto: un contratto con ogni dettaglio di cio che e incluso." },
-      { title: 'Il grande giorno',   text: 'Allestimento, servizio e coordinamento in presenza.' },
-      { title: 'Smontaggio',         text: "Lasciamo la location esattamente come l'abbiamo trovata." },
+      { title: 'Raccontateci il vostro giorno',     text: 'Basta una email con data, location e numero di ospiti.' },
+      { title: 'Costruiamo la vostra offerta',       text: 'Scegliete banco, formula e cocktail list, con le personalizzazioni che desiderate.' },
+      { title: 'Tutto per iscritto',                 text: 'Una proposta e un contratto con ogni dettaglio incluso. Confermate con un acconto.' },
+      { title: "Il giorno dell'evento",              text: 'Quel giorno l\'unica cosa a cui dovrete pensare sarete voi due. Al bar penseremo noi, esattamente come lo abbiamo costruito insieme.' },
     ]
   : [
-      { title: 'First contact', text: 'You tell us about your event and we get to know each other.' },
-      { title: 'Your bar',      text: 'Choose your bar counter and cocktail list.' },
-      { title: 'Our proposal',  text: 'Everything in writing: a contract detailing exactly what is included.' },
-      { title: 'The big day',   text: 'Setup, service and on-site coordination.' },
-      { title: 'Breakdown',     text: 'We leave the venue exactly as we found it.' },
+      { title: 'Tell us about your day',   text: 'Just send us an email with your date, venue and number of guests.' },
+      { title: 'We build your offer',      text: 'Choose your bar, package and cocktail list, with any customisations you want.' },
+      { title: 'Everything in writing',    text: 'A proposal and a contract with every detail included. Confirmed with a deposit.' },
+      { title: 'The day of your event',    text: 'That day, the only thing you need to think about is each other. We\'ll take care of the bar, exactly as we built it together.' },
     ];
 
 ---
@@ -165,31 +167,21 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
       </div>
       <div class="story__bottom">
 
-        <!-- Dark stats box -->
-        <div class="story__stats" data-reveal>
-          <div class="story__stats-top">
-            <span class="story__big-n">14+</span>
-            <span class="story__big-label">
-              {it ? 'ANNI DI ESPERIENZA OPERATIVA NEL SETTORE' : 'YEARS OF OPERATIONAL EXPERIENCE IN THE INDUSTRY'}
-            </span>
-          </div>
-          <div class="story__stats-grid">
-            <div class="story__stat">
-              <span class="story__stat-n">5</span>
-              <span class="story__stat-l">{it ? "formule di servizio, dall'aperitivo al solo barman" : 'service packages, from aperitivo to bartender only'}</span>
-            </div>
-            <div class="story__stat">
-              <span class="story__stat-n">3</span>
-              <span class="story__stat-l">{it ? 'misure di banco, da 1,5 a 6 metri' : 'bar sizes, from 1.5 to 6 metres'}</span>
-            </div>
-            <div class="story__stat">
-              <span class="story__stat-n">250+</span>
-              <span class="story__stat-l">{it ? 'ospiti serviti con un unico banco Large' : 'guests served with a single Large bar'}</span>
-            </div>
-            <div class="story__stat">
-              <span class="story__stat-n">100%</span>
-              <span class="story__stat-l">{it ? 'bicchieri in vetro e allestimento di nostra proprietà' : 'glassware and equipment owned by us'}</span>
-            </div>
+        <!-- Photo card -->
+        <div class="story__card" data-reveal>
+          <Img src={bartenderStrain} alt={it ? 'Barman che filtra un cocktail in coppa' : 'Bartender straining a cocktail into a coupe'} sizes="(min-width: 760px) 45vw, 90vw" />
+          <div class="story__card-overlay">
+            <p class="story__card-exp">
+              {it
+                ? <><em>Da oltre</em><strong class="story__card-n">14</strong><em>anni</em></>
+                : <><em>Over</em><strong class="story__card-n">14</strong><em>years</em></>}
+            </p>
+            <p class="story__card-sub">{it ? 'DI ESPERIENZA NEL SETTORE EVENTI' : 'OF EXPERIENCE IN THE EVENTS INDUSTRY'}</p>
+            <p class="story__card-tags">
+              <span aria-hidden="true"></span>
+              {it ? 'MATRIMONI · EVENTI AZIENDALI · EVENTI PRIVATI' : 'WEDDINGS · CORPORATE · PRIVATE EVENTS'}
+              <span aria-hidden="true"></span>
+            </p>
           </div>
         </div>
 
@@ -210,8 +202,8 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
               ? "Ogni evento è unico e irripetibile, e ciò che viene realizzato resta impresso nelle immagini e nei ricordi. Per questo puntiamo all'eccellenza, nel servizio e nell'impatto visivo."
               : 'Every event is unique and unrepeatable, and what is created lives on in the images and memories. That is why we aim for excellence — in service and in visual impact.'}
           </p>
-          <a class="link story__cta" href={url('services', lang)}>
-            {it ? 'Scopri i nostri servizi' : 'Discover our services'} →
+          <a class="btn story__cta" href={url('services', lang)}>
+            {it ? 'Scopri i nostri servizi' : 'Discover our services'}
           </a>
         </div>
 
@@ -230,17 +222,16 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
       <div class="cim__text">
         <p class="cim__eyebrow" data-reveal>
           <span class="cim__eyebrow-line" aria-hidden="true"></span>
-          {it ? 'Chiavi in mano' : 'All-inclusive'}
+          {it ? 'Pacchetti all inclusive' : 'All inclusive packages'}
         </p>
-        <p class="cim__sub" data-reveal style="--delay:.04s">
-          <em>{it ? 'Al resto pensiamo noi.' : 'We handle the rest.'}</em>
-        </p>
-        <h2 id="cim-title" class="cim__title" data-reveal style="--delay:.09s">
-          {it ? 'Voi scegliete il pacchetto.' : 'You choose the package.'}
+        <h2 id="cim-title" class="cim__title" data-reveal style="--delay:.04s">
+          {it ? 'Voi scegliete il pacchetto!' : 'You choose the package!'}
         </h2>
+        <p class="cim__sub" data-reveal style="--delay:.09s">
+          <em>{it ? 'Noi pensiamo al resto.' : 'We handle the rest.'}</em>
+        </p>
       </div>
       <div class="cim__card" data-reveal style="--delay:.14s">
-        <p class="cim__card-label">{it ? 'TUTTO INCLUSO' : 'ALL INCLUDED'}</p>
         <ul class="cim__list" role="list">
           {included.map(item => (
             <li class="cim__item">
@@ -248,31 +239,62 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
                 <circle cx="11" cy="11" r="9.5" stroke="currentColor" stroke-width="1.2"/>
                 <path d="M7 11.5l2.8 2.8 5.2-5.8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              <span>{item.title}</span>
+              <span class="cim__item-body">
+                <span class="cim__item-title">{item.title}</span>
+                <span class="cim__item-sub">{item.sub}</span>
+              </span>
             </li>
           ))}
         </ul>
+        <div class="cim__footer">
+          <em>{it ? 'Ogni dettaglio, nero su bianco nel contratto.' : 'Every detail, in writing, in the contract.'}</em>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- COME FUNZIONA -->
-  <section class="section" aria-labelledby="a-process">
-    <div class="container">
-      <p class="eyebrow" data-reveal>{it ? 'Come funziona' : 'How it works'}</p>
-      <h2 id="a-process" class="process-hdg" data-reveal style="--delay:.04s">
-        {it ? <>Cinque passi. <em>Nessuna sorpresa.</em></> : <>Five steps. <em>No surprises.</em></>}
-      </h2>
-      <ol class="process" role="list">
+  <section class="section proc" id="a-process" aria-labelledby="proc-title">
+    <div class="container proc__grid">
+
+      <!-- Left photo card -->
+      <div class="proc__card" data-reveal>
+        <Img src={processBg} alt={it ? 'Allestimento bar serale in una location elegante' : 'Evening bar setup at an elegant venue'} sizes="(min-width: 900px) 38vw, 90vw" />
+        <div class="proc__card-overlay">
+          <p class="proc__card-eyebrow">
+            <span class="proc__card-line" aria-hidden="true"></span>
+            {it ? 'COME FUNZIONA' : 'HOW IT WORKS'}
+          </p>
+          <h2 id="proc-title" class="proc__card-title">
+            {it
+              ? <>Dal primo contatto <em>al grande giorno.</em></>
+              : <>From first contact <em>to the big day.</em></>}
+          </h2>
+          <p class="proc__card-sub">
+            {it
+              ? 'Organizzare da lontano non è mai stato così semplice: quattro passaggi chiari, nessuna incertezza.'
+              : 'Organising from afar has never been this simple: four clear steps, no uncertainty.'}
+          </p>
+          <a class="btn proc__card-btn" href={url('contact', lang)}>
+            {it ? 'Raccontateci il vostro evento' : 'Tell us about your event'} <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right vertical steps -->
+      <ol class="proc__steps" role="list" data-reveal style="--delay:.1s">
         {steps.map((step, i) => (
-          <li data-reveal style={`--delay:${i * 0.07}s`}>
-            <span class="process__n">{i + 1}</span>
-            <h3>{step.title}</h3>
-            <p class="muted">{step.text}</p>
-            {step.cta && <a class="link process__cta" href={url('contact', lang)}>{it ? 'Scriveteci' : 'Get in touch'}</a>}
+          <li class="proc__step">
+            <div class="proc__step-dot" aria-hidden="true"></div>
+            <div class="proc__step-body">
+              <p class="proc__step-label">{`PASSO ${['I','II','III','IV'][i]}`}</p>
+              <h3 class="proc__step-title">{step.title}</h3>
+              <p class="proc__step-text muted">{step.text}</p>
+            </div>
           </li>
         ))}
       </ol>
+
     </div>
   </section>
 
@@ -357,8 +379,14 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
   }
   .story__img {
     aspect-ratio: 4 / 3;
-    outline: 3px solid #fff;
-    outline-offset: 0;
+  }
+  .story__img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 0 1px var(--color-accent-on-dark), inset 0 0 0 8px #fff;
+    pointer-events: none;
+    z-index: 2;
   }
   /* Two-column block below photos */
   .story__bottom {
@@ -369,75 +397,87 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
     .story__bottom {
       grid-template-columns: 1fr 1fr;
       gap: var(--space-xl);
-      align-items: start;
+      align-items: stretch;
     }
   }
 
-  /* Dark stats box */
-  .story__stats {
-    background: #0d0b09;
-    color: #fff;
-    padding: var(--space-l);
+  /* Photo card (experience) */
+  .story__card {
+    position: relative;
+    overflow: hidden;
   }
-  .story__stats-top {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-m);
-    padding-bottom: var(--space-m);
-    border-bottom: 1px solid rgba(255 255 255 / 0.1);
-    margin-bottom: var(--space-m);
-  }
-  .story__big-n {
-    font-family: var(--font-display);
-    font-size: clamp(3.5rem, 5vw, 5.5rem);
-    font-weight: 300;
-    color: var(--color-accent-on-dark);
-    line-height: 0.9;
-    flex-shrink: 0;
-  }
-  .story__big-label {
-    font-family: var(--font-sans);
-    font-size: 0.58rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(255 255 255 / 0.48);
-    padding-top: 0.5rem;
-    line-height: 1.7;
-  }
-  .story__stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-  .story__stat {
-    padding: var(--space-m) var(--space-m) var(--space-m) 0;
-    border-bottom: 1px solid rgba(255 255 255 / 0.08);
-  }
-  .story__stat:nth-child(odd) {
-    border-right: 1px solid rgba(255 255 255 / 0.08);
-  }
-  .story__stat:nth-child(even) {
-    padding-left: var(--space-m);
-  }
-  .story__stat:nth-child(3),
-  .story__stat:nth-child(4) {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
-  .story__stat-n {
+  .story__card :global(picture) { display: contents; }
+  .story__card :global(img) {
     display: block;
-    font-family: var(--font-display);
-    font-size: clamp(1.8rem, 2.5vw, 2.6rem);
-    font-weight: 300;
-    color: var(--color-accent-on-dark);
-    line-height: 1;
-    margin-bottom: 0.35rem;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
-  .story__stat-l {
+  .story__card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 0 1px var(--color-accent-on-dark), inset 0 0 0 8px #fff;
+    pointer-events: none;
+    z-index: 3;
+  }
+  .story__card-overlay {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.2rem, 2.5vw, 2rem);
+    background: linear-gradient(to top, rgba(0 0 0 / 0.88) 0%, rgba(0 0 0 / 0.65) 50%, transparent 100%);
+    text-align: center;
+    color: #fff;
+    z-index: 2;
+  }
+  .story__card-exp {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.92rem, 3.36vw, 2.88rem);
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.4em;
+    margin-bottom: 1.4rem;
+    line-height: 1;
+  }
+  .story__card-n {
+    font-family: var(--font-display);
+    font-style: normal;
+    font-weight: 300;
+    font-size: clamp(7.2rem, 12vw, 10.8rem);
+    color: var(--color-accent-on-dark);
+    line-height: 0.85;
+    letter-spacing: -0.03em;
+  }
+  .story__card-sub {
     font-family: var(--font-sans);
-    font-size: 0.63rem;
-    color: rgba(255 255 255 / 0.42);
-    line-height: 1.55;
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255 255 255 / 0.65);
+    margin-bottom: 1rem;
+  }
+  .story__card-tags {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--color-accent-on-dark);
+  }
+  .story__card-tags span {
+    flex: 1;
+    max-width: 2.5rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.6;
+    display: block;
   }
 
   /* Right text column */
@@ -462,13 +502,8 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
     display: block;
   }
   .story__cta {
-    display: inline-block;
     margin-top: var(--space-s);
-    font-family: var(--font-sans);
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    width: fit-content;
   }
 
   @media (min-width: 700px) {
@@ -492,23 +527,6 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
   .section--dark .incl li :global(svg) {
     color: var(--color-accent-on-dark);
   }
-  .section--dark .process li {
-    border-top-color: rgba(255 255 255 / 0.15);
-  }
-  .section--dark .process__n {
-    background: var(--color-dark);
-    border-color: var(--color-accent-on-dark);
-    color: var(--color-accent-on-dark);
-  }
-  @media (min-width: 700px) {
-    .section--dark .process__n {
-      background: var(--color-dark);
-    }
-    .section--dark .process::before {
-      background: rgba(255 255 255 / 0.15);
-    }
-  }
-
   /* ── Chiavi in mano ── */
   .cim {
     position: relative;
@@ -589,15 +607,7 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
   .cim__card {
     background: #0d0b09;
     padding: var(--space-l);
-  }
-  .cim__card-label {
-    font-family: var(--font-sans);
-    font-size: 0.55rem;
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--color-accent-on-dark);
-    margin-bottom: var(--space-m);
+    border: 1px solid rgba(207, 182, 138, 0.45);
   }
   .cim__list {
     padding: 0;
@@ -606,22 +616,45 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
   }
   .cim__item {
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding-block: 0.9rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    font-family: var(--font-display);
-    font-size: clamp(1.05rem, 0.92rem + 0.4vw, 1.3rem);
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.88);
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding-block: 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
   .cim__item:last-child {
     border-bottom: none;
-    padding-bottom: 0;
   }
   .cim__check {
     color: var(--color-accent-on-dark);
     flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+  .cim__item-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .cim__item-title {
+    font-family: var(--font-display);
+    font-size: clamp(0.95rem, 0.85rem + 0.35vw, 1.15rem);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.3;
+  }
+  .cim__item-sub {
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    color: rgba(255, 255, 255, 0.42);
+    line-height: 1.4;
+  }
+  .cim__footer {
+    margin-top: var(--space-m);
+    padding-top: var(--space-m);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(0.9rem, 0.8rem + 0.3vw, 1.05rem);
+    color: var(--color-accent-on-dark);
   }
   @media (max-width: 759px) {
     .cim__card { padding: var(--space-m); }
@@ -634,88 +667,151 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
     }
     .cim__text { flex: 1; }
     .cim__card {
-      width: 42%;
+      width: 38%;
       flex-shrink: 0;
     }
   }
 
   /* ── Come funziona ── */
-  .process-hdg {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 1.2rem + 3vw, 4rem);
-    font-weight: 300;
-    line-height: 1.05;
-    margin-top: var(--space-s);
-    margin-bottom: var(--space-xl);
-  }
-  .process-hdg em {
-    font-style: italic;
-    color: var(--color-accent-ink);
-  }
-  .process {
+  /* ── Come funziona ── */
+  .proc { padding-block: clamp(3rem, 6vw, 5rem); }
+  .proc__grid {
     display: grid;
-    gap: var(--space-l);
+    gap: var(--space-xl);
+  }
+  @media (min-width: 900px) {
+    .proc__grid {
+      grid-template-columns: 5fr 6fr;
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: stretch;
+    }
+  }
+
+  /* Photo card */
+  .proc__card {
     position: relative;
+    overflow: hidden;
   }
-  .process li {
-    border-top: 1px solid var(--color-border);
-    padding-top: var(--space-m);
-    display: grid;
-    gap: 0.4rem;
-    align-content: start;
+  .proc__card :global(picture) { display: contents; }
+  .proc__card :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
-  .process__n {
+  .proc__card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0 0 0 / 0.9) 0%, rgba(0 0 0 / 0.6) 55%, rgba(0 0 0 / 0.25) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    color: #fff;
+  }
+  .proc__card-eyebrow {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 2.25rem;
-    height: 2.25rem;
+    gap: 0.8rem;
+    font-family: var(--font-sans);
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: rgba(255 255 255 / 0.55);
+    margin-bottom: var(--space-m);
+  }
+  .proc__card-line {
+    display: block;
+    width: 1.8rem;
+    height: 1px;
+    background: rgba(255 255 255 / 0.4);
+    flex-shrink: 0;
+  }
+  .proc__card-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 1.2rem + 2.5vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.08;
+    margin-bottom: var(--space-m);
+    color: #fff;
+  }
+  .proc__card-title em {
+    font-style: italic;
+    color: var(--color-accent-on-dark);
+    display: block;
+  }
+  .proc__card-sub {
+    font-size: var(--fs-body);
+    color: rgba(255 255 255 / 0.7);
+    margin-bottom: var(--space-l);
+    line-height: 1.55;
+  }
+  .proc__card-btn {
+    align-self: flex-start;
+    --btn-bg: transparent;
+    --btn-fg: #fff;
+    --btn-bd: rgba(255 255 255 / 0.6);
+  }
+  .proc__card-btn:hover {
+    --btn-bg: #fff;
+    --btn-fg: #0c0907;
+    --btn-bd: #fff;
+  }
+
+  /* Vertical steps */
+  .proc__steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+  }
+  .proc__steps::before {
+    content: '';
+    position: absolute;
+    left: 0.4rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 1px;
+    background: var(--color-border);
+  }
+  .proc__step {
+    display: grid;
+    grid-template-columns: 1.25rem 1fr;
+    gap: 0 1.5rem;
+    padding-bottom: var(--space-l);
+  }
+  .proc__step:last-child { padding-bottom: 0; }
+  .proc__step-dot {
+    width: 0.9rem;
+    height: 0.9rem;
     border-radius: 50%;
-    border: 1px solid var(--color-accent-ink);
-    color: var(--color-accent-ink);
-    font-size: 0.75rem;
-    margin-bottom: var(--space-s);
+    border: 1.5px solid var(--color-accent-ink);
+    background: var(--color-background);
     position: relative;
     z-index: 1;
+    margin-top: 0.1rem;
   }
-  .process li h3 {
-    font-family: var(--font-display);
-    font-size: clamp(1.1rem, 0.9rem + 0.5vw, 1.35rem);
-    font-weight: 400;
-    line-height: 1.2;
-  }
-  .process li p {
-    font-size: var(--fs-body);
-  }
-  .process__cta {
-    margin-top: var(--space-xs, 0.5rem);
-    font-size: var(--fs-small);
-  }
-  @media (min-width: 700px) {
-    .process {
-      grid-template-columns: repeat(5, 1fr);
-      gap: var(--space-m);
-    }
-    .process::before {
-      content: '';
-      position: absolute;
-      top: 1.125rem;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: var(--color-border);
-    }
-    .process li {
-      border-top: none;
-      padding-top: 0;
-    }
-    .process__n {
-      background: var(--color-background);
-    }
-  }
-  .process li:nth-child(3) .process__n {
+  .proc__step:last-child .proc__step-dot {
     background: var(--color-accent-ink);
-    color: var(--color-background);
+  }
+  .proc__step-body { display: grid; gap: 0.3rem; }
+  .proc__step-label {
+    font-family: var(--font-sans);
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    color: var(--color-accent-ink);
+    margin-bottom: 0.15rem;
+  }
+  .proc__step-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 1rem + 0.8vw, 1.7rem);
+    font-weight: 400;
+    line-height: 1.15;
+  }
+  .proc__step-text {
+    font-size: var(--fs-body);
+    line-height: 1.6;
   }
 
   /* ── Chi serviamo ── */

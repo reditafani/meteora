@@ -168,11 +168,6 @@ const langCode = lang;
         </div>
       </div>
 
-      <div class="container pf__more">
-        <a class="btn btn--outline" href={url('contact', lang)}>
-          {it ? 'Parliamo del vostro evento' : 'Talk about your event'} <span aria-hidden="true">→</span>
-        </a>
-      </div>
     </section>
   ))}
 
@@ -420,8 +415,10 @@ const langCode = lang;
   .pf__detail-inner {
     min-height: 0;
     overflow: hidden;
-    border: 1px solid var(--color-border);
     background: var(--color-bg, #fdfaf6);
+  }
+  .pf__detail.is-open .pf__detail-inner {
+    border: 1px solid var(--color-border);
   }
 
   /* ── Detail panel content (pd = professional detail) ── */
@@ -605,11 +602,6 @@ const langCode = lang;
   }
 
   /* ── More button ── */
-  .pf__more {
-    margin-top: var(--space-l);
-    display: flex;
-    justify-content: center;
-  }
 
   @media (max-width: 600px) {
     .pf__title { font-size: clamp(2.2rem, 1.4rem + 3.5vw, 6rem); }

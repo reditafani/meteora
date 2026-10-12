@@ -23,7 +23,7 @@ const it = lang === 'it';
 const aboutUrl    = url('about', lang);
 const servicesUrl = url('services', lang);
 type NavChild = { label: string; href: string };
-type NavItem  = { key: 'about' | 'services' | 'bars' | 'partners' | 'contact'; label: string; children?: NavChild[] };
+type NavItem  = { key: 'about' | 'services' | 'bars' | 'partners' | 'ice' | 'contact'; label: string; children?: NavChild[] };
 const desktopNav: NavItem[] = [
   {
     key: 'about',
@@ -48,7 +48,8 @@ const desktopNav: NavItem[] = [
     ],
   },
   { key: 'bars',     label: it ? 'Banchi bar' : 'Bar Collection' },
-  { key: 'partners', label: 'Partners'                           },
+  { key: 'partners', label: it ? 'Fornitori consigliati' : 'Recommended Suppliers' },
+  { key: 'ice',      label: it ? 'Noleggio ghiaccio' : 'Ice Rental' },
   { key: 'contact',  label: it ? 'Contatti'   : 'Contact'        },
 ];
 ---
