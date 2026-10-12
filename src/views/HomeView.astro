@@ -66,10 +66,12 @@ const schema = [
         ? 'Bar catering premium per matrimoni, destination wedding, eventi aziendali e privati. Base in Toscana, in tutta Italia.'
         : 'Premium bar catering for weddings, destination weddings, corporate and private events. Based in Tuscany, throughout Italy.'}
     </p>
-    <div class="cta-row home-hero__cta">
+  <div slot="after" class="home-hero__bar">
+    <div class="container home-hero__bar-inner">
       <a class="btn btn--ghost-light" href={url('contact', lang)} data-track="cta_click" data-track-label="hero_quote">{s.quote} →</a>
       <a class="link" href={url('services', lang)} data-track="cta_click" data-track-label="hero_services">{it ? 'Scopri i servizi' : 'Explore services'}</a>
     </div>
+  </div>
   </Hero>
 
   <!-- 2 · TRUST -->
@@ -171,8 +173,18 @@ const schema = [
     max-width: 34rem;
     color: var(--color-on-dark);
   }
-  .home-hero__cta {
-    margin-top: var(--space-l);
+  .home-hero__bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-block: var(--space-m) var(--space-l);
+  }
+  .home-hero__bar-inner {
+    display: flex;
+    align-items: center;
+    gap: clamp(var(--space-s), 3vw, var(--space-l));
+    flex-wrap: wrap;
   }
   .exp__cta,
   .section-cta {
