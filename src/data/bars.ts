@@ -2,8 +2,13 @@ import type { ImageMetadata } from 'astro';
 import type { Localized } from '@/i18n/ui';
 import goldenMirror from '@/assets/images/bars/golden-mirror.jpg';
 import goldenMirrorSunset from '@/assets/images/bars/golden-mirror-sunset.jpg';
+import goldenMarbleNight from '@/assets/images/bars/golden-marble-night.jpg';
 import silverReflection from '@/assets/images/bars/silver-reflection.jpg';
+import nightLounge from '@/assets/images/bars/night-lounge.jpg';
+import backBarSpirits from '@/assets/images/bars/back-bar-spirits.jpg';
 import pureWhiteVilla from '@/assets/images/bars/pure-white-villa.jpg';
+import bartenderCoupePour from '@/assets/images/bars/bartender-coupe-pour.jpg';
+import terracePanorama from '@/assets/images/bars/terrace-panorama.jpg';
 
 /**
  * THE BAR COLLECTION
@@ -50,6 +55,13 @@ export const bars: Bar[] = [
           en: 'Front view of the Golden Mirror bar with a full back bar and glassware ready',
         },
       },
+      {
+        src: goldenMarbleNight,
+        alt: {
+          it: 'Banco Golden Mirror illuminato di notte con riflessi dorati',
+          en: 'Golden Mirror bar lit up at night with golden reflections',
+        },
+      },
     ],
     mood: { it: 'Impatto scenico, carattere deciso.', en: 'Scenic impact, strong character.' },
     description: {
@@ -74,6 +86,20 @@ export const bars: Bar[] = [
           en: 'Silver Reflection bar in a large hall set for a gala dinner',
         },
       },
+      {
+        src: nightLounge,
+        alt: {
+          it: 'Allestimento serale lounge con il banco Silver Reflection',
+          en: 'Evening lounge setup with the Silver Reflection bar',
+        },
+      },
+      {
+        src: backBarSpirits,
+        alt: {
+          it: 'Bottigliera del banco Silver Reflection con spirits premium in vista',
+          en: 'Silver Reflection back bar displaying premium spirits',
+        },
+      },
     ],
     mood: { it: 'Moderno, brillante, sofisticato.', en: 'Modern, brilliant, sophisticated.' },
     description: {
@@ -96,6 +122,20 @@ export const bars: Bar[] = [
         alt: {
           it: 'Banco bar Pure White nel giardino di una villa in pietra al tramonto',
           en: 'Pure White bar in the garden of a stone villa at sunset',
+        },
+      },
+      {
+        src: bartenderCoupePour,
+        alt: {
+          it: 'Barista che versa un cocktail in coppa davanti al banco Pure White',
+          en: 'Bartender pouring a coupe cocktail in front of the Pure White bar',
+        },
+      },
+      {
+        src: terracePanorama,
+        alt: {
+          it: 'Banco Pure White su una terrazza con vista panoramica sulle colline',
+          en: 'Pure White bar on a terrace with panoramic views over the hills',
         },
       },
     ],

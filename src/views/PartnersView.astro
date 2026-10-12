@@ -168,33 +168,9 @@ const langCode = lang;
         </div>
       </div>
 
-      <div class="container pf__more">
-        <a class="btn btn--outline" href={url('contact', lang)}>
-          {it ? 'Parliamo del vostro evento' : 'Talk about your event'} <span aria-hidden="true">→</span>
-        </a>
-      </div>
     </section>
   ))}
 
-  <!-- ── Bottom CTA ── -->
-  <section class="section section--dark pf__cta-band" aria-labelledby="pf-cta-title">
-    <div class="container pf__cta-inner">
-      <p class="eyebrow pf__cta-eyebrow">{it ? 'Sei un professionista del wedding?' : 'Are you a wedding professional?'}</p>
-      <h2 id="pf-cta-title" class="pf__cta-title">
-        {it
-          ? <>Siete una location, un planner<em>o un catering? Parliamone.</em></>
-          : <>Are you a venue, a planner<em>or a caterer? Let's talk.</em></>}
-      </h2>
-      <p class="lead pf__cta-lead">
-        {it
-          ? 'Lavoriamo con professionisti selezionati e siamo sempre aperti a nuove collaborazioni.'
-          : 'We work with selected professionals and are always open to new collaborations.'}
-      </p>
-      <a class="btn btn--light" href={url('contact', lang)}>
-        {it ? 'Scrivici' : 'Get in touch'} <span aria-hidden="true">→</span>
-      </a>
-    </div>
-  </section>
 
 </BaseLayout>
 
@@ -202,8 +178,7 @@ const langCode = lang;
   /* ── Hero ── */
   .ph {
     position: relative;
-    height: 85svh;
-    min-height: 560px;
+    min-height: 100svh;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -440,8 +415,10 @@ const langCode = lang;
   .pf__detail-inner {
     min-height: 0;
     overflow: hidden;
-    border: 1px solid var(--color-border);
     background: var(--color-bg, #fdfaf6);
+  }
+  .pf__detail.is-open .pf__detail-inner {
+    border: 1px solid var(--color-border);
   }
 
   /* ── Detail panel content (pd = professional detail) ── */
@@ -625,43 +602,6 @@ const langCode = lang;
   }
 
   /* ── More button ── */
-  .pf__more {
-    margin-top: var(--space-l);
-    display: flex;
-    justify-content: center;
-  }
-
-  /* ── Bottom CTA ── */
-  .pf__cta-band {
-    text-align: center;
-  }
-  .pf__cta-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-m);
-    max-width: 44rem;
-    margin-inline: auto;
-  }
-  .pf__cta-eyebrow {
-    color: var(--color-accent-on-dark);
-  }
-  .pf__cta-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.8rem, 1.3rem + 2vw, 3.2rem);
-    font-weight: 300;
-    line-height: 1.1;
-    color: #fff;
-  }
-  .pf__cta-title em {
-    display: block;
-    font-style: italic;
-    color: var(--color-accent-on-dark);
-  }
-  .pf__cta-lead {
-    color: rgba(255, 255, 255, 0.6);
-    max-width: 32rem;
-  }
 
   @media (max-width: 600px) {
     .pf__title { font-size: clamp(2.2rem, 1.4rem + 3.5vw, 6rem); }

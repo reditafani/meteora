@@ -57,7 +57,7 @@ const schema = [
 
 <BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('home')} headerTheme="overlay" current="home" schema={schema}>
   <!-- 1 · HERO -->
-  <Hero image={hero} imageAlt={it ? 'Banco bar Golden Mirror al tramonto su una terrazza affacciata sulle colline' : 'Golden Mirror bar at sunset on a terrace overlooking the hills'} position="50% 60%" eyebrow={it ? 'Matrimoni · Eventi aziendali · Eventi privati' : 'Weddings · Corporate events · Private events'}>
+  <Hero image={hero} imageAlt={it ? 'Banco bar Golden Mirror al tramonto su una terrazza affacciata sulle colline' : 'Golden Mirror bar at sunset on a terrace overlooking the hills'} position="50% 60%" eyebrow={it ? 'Matrimoni · Eventi aziendali · Eventi privati' : 'Weddings · Corporate events · Private events'} style="--hero-content-pb: clamp(9rem, 14vh, 12rem)">
     <h1 class="home-hero__title">
       {it ? 'Immaginate il bar al vostro evento.' : 'Picture the bar at your event.'}
     </h1>
@@ -67,7 +67,21 @@ const schema = [
         : 'Premium bar catering for weddings, destination weddings, corporate and private events. Based in Tuscany, throughout Italy.'}
     </p>
     <div class="cta-row home-hero__cta">
-      <a class="btn btn--ghost-light" href="#experience" data-track="cta_click" data-track-label="hero_explore">{s.explore}</a>
+      <a class="btn btn--ghost-light" href={url('contact', lang)} data-track="cta_click" data-track-label="hero_quote">{s.quote} →</a>
+      <a class="link" href={url('services', lang)} data-track="cta_click" data-track-label="hero_services">{it ? 'Scopri i servizi' : 'Explore services'}</a>
+    </div>
+    <div slot="after" class="home-hero__stats">
+      {[
+        { n: it ? '14+ anni'          : '14+ years',           s: it ? 'di esperienza operativa'       : 'of operational experience' },
+        { n: it ? 'Chiavi in mano'    : 'All-inclusive',       s: it ? 'banco, staff, vetro, ghiaccio' : 'bar, staff, glassware, ice' },
+        { n: it ? 'Tutto per iscritto': 'Everything in writing',s: it ? 'un contratto con ogni dettaglio': 'a contract for every detail' },
+        { n: it ? 'Toscana e Italia'  : 'Tuscany & Italy',     s: it ? 'destination wedding ovunque'   : 'destination weddings everywhere' },
+      ].map(item => (
+        <div class="home-hero__stat">
+          <strong class="home-hero__stat-n">{item.n}</strong>
+          <span class="home-hero__stat-s">{item.s}</span>
+        </div>
+      ))}
     </div>
   </Hero>
 
@@ -172,6 +186,57 @@ const schema = [
   }
   .home-hero__cta {
     margin-top: var(--space-l);
+  }
+
+  /* ── Stats bar anchored to hero bottom ── */
+  .home-hero__stats {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: rgba(8, 5, 3, 0.85);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .home-hero__stat {
+    padding: 1.2rem var(--gutter);
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .home-hero__stat:last-child {
+    border-right: none;
+  }
+  .home-hero__stat-n {
+    font-family: var(--font-display);
+    font-size: clamp(0.95rem, 0.8rem + 0.6vw, 1.3rem);
+    font-weight: 300;
+    color: var(--color-on-dark);
+  }
+  .home-hero__stat-s {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.45);
+  }
+  @media (max-width: 600px) {
+    .home-hero__stats {
+      grid-template-columns: 1fr 1fr;
+    }
+    .home-hero__stat {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .home-hero__stat:nth-child(2n) {
+      border-right: none;
+    }
+    .home-hero__stat:nth-child(3),
+    .home-hero__stat:nth-child(4) {
+      border-bottom: none;
+    }
   }
   .exp__cta,
   .section-cta {

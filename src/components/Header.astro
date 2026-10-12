@@ -19,6 +19,39 @@ interface Props {
 }
 const { lang, alternates, theme = 'solid', current, breadcrumbs } = Astro.props;
 const s = t(lang);
+const it = lang === 'it';
+const aboutUrl    = url('about', lang);
+const servicesUrl = url('services', lang);
+type NavChild = { label: string; href: string };
+type NavItem  = { key: 'about' | 'services' | 'bars' | 'partners' | 'ice' | 'contact'; label: string; children?: NavChild[] };
+const desktopNav: NavItem[] = [
+  {
+    key: 'about',
+    label: it ? 'Chi siamo' : 'About',
+    children: [
+      { label: it ? 'La nostra filosofia' : 'Our philosophy',       href: `${aboutUrl}#a-story`    },
+      { label: it ? 'Chiavi in mano'       : 'All-inclusive',        href: `${aboutUrl}#a-included` },
+      { label: it ? 'Come funziona'         : 'How it works',         href: `${aboutUrl}#a-process`  },
+      { label: it ? 'I nostri eventi'       : 'Our events',           href: `${aboutUrl}#a-serves`   },
+      { label: it ? 'Dove lavoriamo'        : 'Where we work',        href: `${aboutUrl}#a-map`      },
+    ],
+  },
+  {
+    key: 'services',
+    label: it ? 'Servizi' : 'Services',
+    children: [
+      { label: 'Essential experience',       href: `${servicesUrl}#essential`  },
+      { label: 'Premium experience',         href: `${servicesUrl}#premium`    },
+      { label: 'Aperitivo + open bar',       href: `${servicesUrl}#aperitivo`  },
+      { label: 'Signature Tower Experience', href: `${servicesUrl}#tower`      },
+      { label: it ? 'Servizio solo barman' : 'Bartender-only service', href: `${servicesUrl}#bartender` },
+    ],
+  },
+  { key: 'bars',     label: it ? 'Banchi bar' : 'Bar Collection' },
+  { key: 'partners', label: it ? 'Fornitori consigliati' : 'Recommended Suppliers' },
+  { key: 'ice',      label: it ? 'Noleggio ghiaccio' : 'Ice Rental' },
+  { key: 'contact',  label: it ? 'Contatti'   : 'Contact'        },
+];
 ---
 
 <header class="site-header" data-theme={theme} data-header>
@@ -27,6 +60,30 @@ const s = t(lang);
       <Logo variant="cream" width={132} class="logo logo--cream" priority />
       <Logo variant="gold" width={132} class="logo logo--gold" priority />
     </a>
+    <nav class="site-header__nav" aria-label={s.mainNav}>
+      {desktopNav.map(item =>
+        item.children ? (
+          <div class="site-header__nav-item">
+            <a
+              href={url(item.key, lang)}
+              class:list={['site-header__nav-link', current === item.key && 'is-current']}
+              aria-current={current === item.key ? 'page' : undefined}
+            >{item.label}</a>
+            <div class="site-header__dropdown">
+              {item.children.map((child, i) => (
+                <a href={child.href} class="site-header__drop-link" style={`--i:${i}`}>{child.label}</a>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <a
+            href={url(item.key, lang)}
+            class:list={['site-header__nav-link', current === item.key && 'is-current']}
+            aria-current={current === item.key ? 'page' : undefined}
+          >{item.label}</a>
+        )
+      )}
+    </nav>
     {breadcrumbs && breadcrumbs.length > 1 && (
       <div class="site-header__crumbs">
         <Breadcrumbs crumbs={breadcrumbs} tone={theme === 'overlay' ? 'dark' : 'light'} />
@@ -193,6 +250,115 @@ const s = t(lang);
   @media (min-width: 768px) {
     .site-header__cta {
       display: inline-flex;
+    }
+  }
+
+  /* ── Desktop nav ── */
+  .site-header__nav {
+    display: none;
+  }
+  .site-header__nav-link {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--fg);
+    opacity: 0.75;
+    transition: opacity 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .site-header__nav-link:hover { opacity: 1; }
+  .site-header__nav-link.is-current {
+    opacity: 1;
+    color: var(--color-accent-ink);
+    text-decoration: underline;
+    text-underline-offset: 7px;
+    text-decoration-thickness: 2px;
+  }
+  .site-header[data-theme='overlay']:not([data-scrolled]) .site-header__nav-link:hover,
+  .site-header[data-theme='overlay']:not([data-scrolled]) .site-header__nav-link.is-current {
+    color: var(--color-accent-on-dark);
+  }
+
+  /* ── Dropdown ── */
+  .site-header__nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+  }
+  .site-header__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 220px;
+    background: rgb(8 5 3);
+    border: 1px solid rgba(255 255 255 / 0.1);
+    box-shadow: 0 8px 28px rgba(0 0 0 / 0.35);
+    padding: 0.3rem 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+    z-index: 10;
+  }
+  /* Invisible bridge so mouse can reach dropdown */
+  .site-header__dropdown::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 0;
+    right: 0;
+    height: 8px;
+  }
+  .site-header__nav-item:hover .site-header__dropdown {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Staggered cascade animation for each item */
+  @keyframes nav-drop-in {
+    from { opacity: 0; transform: translateY(-7px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .site-header__drop-link {
+    display: block;
+    padding: 0.62rem 1.2rem;
+    font-family: var(--font-sans);
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: rgba(255 255 255 / 0.6);
+    white-space: nowrap;
+    opacity: 0;
+    transition: color 0.15s, background 0.15s;
+  }
+  .site-header__nav-item:hover .site-header__drop-link {
+    animation: nav-drop-in 0.42s ease forwards;
+    animation-delay: calc(var(--i, 0) * 0.09s + 0.06s);
+  }
+  .site-header__drop-link:hover {
+    color: var(--color-accent-on-dark);
+    background: rgba(255 255 255 / 0.05);
+  }
+
+  @media (min-width: 1180px) {
+    .site-header__nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(1.5rem, 2.6vw, 2.8rem);
+      flex: 1;
+      padding-inline: clamp(var(--space-m), 3vw, var(--space-l));
+    }
+    .site-header__toggle {
+      display: none;
+    }
+    .site-header__crumbs {
+      display: none;
     }
   }
 </style>

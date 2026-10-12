@@ -8,9 +8,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import Img from '@/components/Img.astro';
 import BarCard from '@/components/BarCard.astro';
-import CTABand from '@/components/CTABand.astro';
 import { abs } from '@/lib/seo';
-import band from '@/assets/images/bars/terrace-panorama.jpg';
 
 interface Props {
   lang: Lang;
@@ -83,7 +81,6 @@ const schema = [{
     </section>
   )}
 
-  <CTABand lang={lang} image={band} imageAlt={it ? 'Banco bar davanti a una vetrata panoramica' : 'Bar in front of a panoramic window'} trackLabel={`bar_${bar.slug}_band`} />
 </BaseLayout>
 
 <style>
