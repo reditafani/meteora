@@ -164,22 +164,58 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
           <Img src={shaker} alt={it ? 'Donna con cappello che assaggia un cocktail rosa in una coppa' : 'Woman in a hat sipping a pink cocktail in a coupe glass'} sizes="(min-width: 900px) 25vw, 50vw" />
         </div>
       </div>
-      <div class="story__text">
-        <p class="muted" data-reveal>
-          {it
-            ? "Portiamo professionalità, metodo ed esperienza scenografica con grande attenzione all'aspetto estetico e visivo dell'allestimento. Conosciamo a fondo le dinamiche di matrimoni, eventi corporate e privati, perché le viviamo da anni dall'interno."
-            : 'We bring professionalism, method and scenographic experience with great attention to the aesthetic and visual impact of every setup. We know the dynamics of weddings, corporate and private events inside out, because we have lived them for years.'}
-        </p>
-        <p class="lead" data-reveal>
-          {it
-            ? "Ogni evento è unico e irripetibile, e ciò che viene realizzato resta impresso nelle immagini e nei ricordi. Per questo puntiamo all'eccellenza, nel servizio e nell'impatto visivo."
-            : 'Every event is unique and unrepeatable, and what is created lives on in the images and memories. That is why we aim for excellence — in service and in visual impact.'}
-        </p>
-        <p class="muted" data-reveal>
-          {it
-            ? "Realizziamo servizi bar e cocktail experience per privati, aziende e professionisti del settore dalla nostra sede di Montecatini Terme, operando in tutta Italia e all'estero."
-            : 'We create bar services and cocktail experiences for private clients, companies and event professionals from our base in Montecatini Terme, operating across Italy and abroad.'}
-        </p>
+      <div class="story__bottom">
+
+        <!-- Dark stats box -->
+        <div class="story__stats" data-reveal>
+          <div class="story__stats-top">
+            <span class="story__big-n">14+</span>
+            <span class="story__big-label">
+              {it ? 'ANNI DI ESPERIENZA OPERATIVA NEL SETTORE' : 'YEARS OF OPERATIONAL EXPERIENCE IN THE INDUSTRY'}
+            </span>
+          </div>
+          <div class="story__stats-grid">
+            <div class="story__stat">
+              <span class="story__stat-n">5</span>
+              <span class="story__stat-l">{it ? "formule di servizio, dall'aperitivo al solo barman" : 'service packages, from aperitivo to bartender only'}</span>
+            </div>
+            <div class="story__stat">
+              <span class="story__stat-n">3</span>
+              <span class="story__stat-l">{it ? 'misure di banco, da 1,5 a 6 metri' : 'bar sizes, from 1.5 to 6 metres'}</span>
+            </div>
+            <div class="story__stat">
+              <span class="story__stat-n">250+</span>
+              <span class="story__stat-l">{it ? 'ospiti serviti con un unico banco Large' : 'guests served with a single Large bar'}</span>
+            </div>
+            <div class="story__stat">
+              <span class="story__stat-n">100%</span>
+              <span class="story__stat-l">{it ? 'bicchieri in vetro e allestimento di nostra proprietà' : 'glassware and equipment owned by us'}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: sub-heading + text + CTA -->
+        <div class="story__text" data-reveal style="--delay:.08s">
+          <h3 class="story__sub">
+            {it
+              ? <>Professionalità, metodo <em>ed esperienza scenografica.</em></>
+              : <>Professionalism, method <em>and scenographic experience.</em></>}
+          </h3>
+          <p class="muted">
+            {it
+              ? "Portiamo professionalità, metodo ed esperienza scenografica con grande attenzione all'aspetto estetico e visivo dell'allestimento. Conosciamo a fondo le dinamiche di matrimoni, eventi corporate e privati, perché le viviamo da anni dall'interno."
+              : 'We bring professionalism, method and scenographic experience with great attention to the aesthetic and visual impact of every setup. We know the dynamics of weddings, corporate and private events inside out, because we have lived them for years.'}
+          </p>
+          <p class="muted">
+            {it
+              ? "Ogni evento è unico e irripetibile, e ciò che viene realizzato resta impresso nelle immagini e nei ricordi. Per questo puntiamo all'eccellenza, nel servizio e nell'impatto visivo."
+              : 'Every event is unique and unrepeatable, and what is created lives on in the images and memories. That is why we aim for excellence — in service and in visual impact.'}
+          </p>
+          <a class="link story__cta" href={url('services', lang)}>
+            {it ? 'Scopri i nostri servizi' : 'Discover our services'} →
+          </a>
+        </div>
+
       </div>
     </div>
   </section>
@@ -312,16 +348,117 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
   .story__img {
     aspect-ratio: 4 / 3;
   }
+  /* Two-column block below photos */
+  .story__bottom {
+    display: grid;
+    gap: var(--space-l);
+  }
+  @media (min-width: 760px) {
+    .story__bottom {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: start;
+    }
+  }
+
+  /* Dark stats box */
+  .story__stats {
+    background: #0d0b09;
+    color: #fff;
+    padding: var(--space-l);
+  }
+  .story__stats-top {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-m);
+    padding-bottom: var(--space-m);
+    border-bottom: 1px solid rgba(255 255 255 / 0.1);
+    margin-bottom: var(--space-m);
+  }
+  .story__big-n {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 5vw, 5.5rem);
+    font-weight: 300;
+    color: var(--color-accent-on-dark);
+    line-height: 0.9;
+    flex-shrink: 0;
+  }
+  .story__big-label {
+    font-family: var(--font-sans);
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255 255 255 / 0.48);
+    padding-top: 0.5rem;
+    line-height: 1.7;
+  }
+  .story__stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .story__stat {
+    padding: var(--space-m) var(--space-m) var(--space-m) 0;
+    border-bottom: 1px solid rgba(255 255 255 / 0.08);
+  }
+  .story__stat:nth-child(odd) {
+    border-right: 1px solid rgba(255 255 255 / 0.08);
+  }
+  .story__stat:nth-child(even) {
+    padding-left: var(--space-m);
+  }
+  .story__stat:nth-child(3),
+  .story__stat:nth-child(4) {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .story__stat-n {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+    font-weight: 300;
+    color: var(--color-accent-on-dark);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+  .story__stat-l {
+    font-family: var(--font-sans);
+    font-size: 0.63rem;
+    color: rgba(255 255 255 / 0.42);
+    line-height: 1.55;
+  }
+
+  /* Right text column */
   .story__text {
     display: grid;
     gap: var(--space-m);
-    max-width: 52rem;
-    margin-inline: auto;
-    text-align: center;
+    align-content: start;
+    padding-top: var(--space-s);
   }
   .story__text p {
     font-size: var(--fs-body);
   }
+  .story__sub {
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 1rem + 1.3vw, 2.1rem);
+    font-weight: 300;
+    line-height: 1.2;
+  }
+  .story__sub em {
+    font-style: italic;
+    color: var(--color-accent-ink);
+    display: block;
+  }
+  .story__cta {
+    display: inline-block;
+    margin-top: var(--space-s);
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
   @media (min-width: 700px) {
     .story__media {
       grid-template-columns: repeat(4, 1fr);
