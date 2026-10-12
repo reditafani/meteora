@@ -326,6 +326,14 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
     color: rgba(255 255 255 / 0.78);
   }
 
+  /* Offset for fixed header on anchor links from nav dropdown */
+  section[id] {
+    scroll-margin-top: calc(var(--header-h-compact, 4rem) + 1rem);
+  }
+  .cim {
+    scroll-margin-top: calc(var(--header-h-compact, 4rem) + 1rem);
+  }
+
   /* ── Story ── */
   .story {
     display: grid;
