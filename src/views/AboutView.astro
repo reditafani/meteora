@@ -5,7 +5,7 @@ import { t } from '@/i18n/ui';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import SectionHeading from '@/components/SectionHeading.astro';
-import Icon from '@/components/Icon.astro';
+
 import Img from '@/components/Img.astro';
 import { site } from '@/data/site';
 import ItalyMap from '@/components/ItalyMap.astro';
@@ -83,23 +83,22 @@ const serveAlts = it
   ? ['Coppia che versa champagne da una tower', 'Tavola imperiale allestita sotto un portico', 'Lounge notturno con luci soffuse']
   : ['Couple pouring champagne from a tower', 'Imperial table set under a portico', 'Night lounge with soft lighting'];
 
-type IconName = 'ice' | 'user' | 'briefcase' | 'cocktail' | 'star' | 'snowflake';
-const included: { icon: IconName; title: string; text: string }[] = it
+const included: { title: string }[] = it
   ? [
-      { icon: 'ice',       title: 'Banco bar',                 text: 'Uno dei nostri banchi signature, nella misura scelta.' },
-      { icon: 'user',      title: 'Staff preparato',           text: 'Barman professionisti formati da noi, inclusi nel prezzo.' },
-      { icon: 'briefcase', title: 'Allestimento e smontaggio', text: "Montiamo prima degli ospiti, smontiamo dopo l'ultimo brindisi." },
-      { icon: 'cocktail',  title: 'Bicchieri in vetro',        text: 'Cristalleria professionale.' },
-      { icon: 'star',      title: 'Tutti gli ingredienti',     text: 'Distillati, mixer, frutta fresca, sciroppi e guarnizioni.' },
-      { icon: 'snowflake', title: 'Ghiaccio',                  text: 'Ghiaccio artigianale, in quantita calcolata sui vostri ospiti.' },
+      { title: 'Banco bar' },
+      { title: 'Staff preparato' },
+      { title: 'Allestimento e smontaggio' },
+      { title: 'Bicchieri in vetro' },
+      { title: 'Tutti gli ingredienti' },
+      { title: 'Ghiaccio' },
     ]
   : [
-      { icon: 'ice',       title: 'Bar counter',       text: 'One of our signature bars, in the size you choose.' },
-      { icon: 'user',      title: 'Trained staff',     text: 'Professional bartenders trained by us, included in the price.' },
-      { icon: 'briefcase', title: 'Setup & breakdown', text: 'We set up before your guests arrive, break down after the last toast.' },
-      { icon: 'cocktail',  title: 'Crystal glassware', text: 'Professional glassware throughout.' },
-      { icon: 'star',      title: 'All ingredients',   text: 'Spirits, mixers, fresh fruit, syrups and garnishes.' },
-      { icon: 'snowflake', title: 'Ice',               text: 'Artisan ice, calculated for your guest count.' },
+      { title: 'Bar counter' },
+      { title: 'Trained staff' },
+      { title: 'Setup & breakdown' },
+      { title: 'Crystal glassware' },
+      { title: 'All ingredients' },
+      { title: 'Ice' },
     ];
 
 const steps: { title: string; text: string; cta?: boolean }[] = it
@@ -245,7 +244,10 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
         <ul class="cim__list" role="list">
           {included.map(item => (
             <li class="cim__item">
-              <Icon name={item.icon} size={20} />
+              <svg class="cim__check" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                <circle cx="11" cy="11" r="9.5" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M7 11.5l2.8 2.8 5.2-5.8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
               <span>{item.title}</span>
             </li>
           ))}
@@ -607,7 +609,7 @@ const steps: { title: string; text: string; cta?: boolean }[] = it
     border-bottom: none;
     padding-bottom: 0;
   }
-  .cim__item :global(svg) {
+  .cim__check {
     color: var(--color-accent-on-dark);
     flex-shrink: 0;
   }
