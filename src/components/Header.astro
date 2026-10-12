@@ -19,6 +19,14 @@ interface Props {
 }
 const { lang, alternates, theme = 'solid', current, breadcrumbs } = Astro.props;
 const s = t(lang);
+const it = lang === 'it';
+const desktopNav = [
+  { key: 'about',    label: it ? 'Chi siamo'  : 'About'          },
+  { key: 'services', label: it ? 'Servizi'    : 'Services'       },
+  { key: 'bars',     label: it ? 'Banchi bar' : 'Bar Collection' },
+  { key: 'partners', label: 'Partners'                           },
+  { key: 'contact',  label: it ? 'Contatti'   : 'Contact'        },
+] as const;
 ---
 
 <header class="site-header" data-theme={theme} data-header>
@@ -27,6 +35,15 @@ const s = t(lang);
       <Logo variant="cream" width={132} class="logo logo--cream" priority />
       <Logo variant="gold" width={132} class="logo logo--gold" priority />
     </a>
+    <nav class="site-header__nav" aria-label={s.mainNav}>
+      {desktopNav.map(item => (
+        <a
+          href={url(item.key, lang)}
+          class:list={['site-header__nav-link', current === item.key && 'is-current']}
+          aria-current={current === item.key ? 'page' : undefined}
+        >{item.label}</a>
+      ))}
+    </nav>
     {breadcrumbs && breadcrumbs.length > 1 && (
       <div class="site-header__crumbs">
         <Breadcrumbs crumbs={breadcrumbs} tone={theme === 'overlay' ? 'dark' : 'light'} />
@@ -193,6 +210,47 @@ const s = t(lang);
   @media (min-width: 768px) {
     .site-header__cta {
       display: inline-flex;
+    }
+  }
+
+  /* ── Desktop nav ── */
+  .site-header__nav {
+    display: none;
+  }
+  .site-header__nav-link {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--fg);
+    opacity: 0.75;
+    transition: opacity 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .site-header__nav-link:hover,
+  .site-header__nav-link.is-current {
+    opacity: 1;
+    color: var(--color-accent-ink);
+  }
+  .site-header[data-theme='overlay']:not([data-scrolled]) .site-header__nav-link:hover,
+  .site-header[data-theme='overlay']:not([data-scrolled]) .site-header__nav-link.is-current {
+    color: var(--color-accent-on-dark);
+  }
+  @media (min-width: 1180px) {
+    .site-header__nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(1.25rem, 2.4vw, 2.5rem);
+      flex: 1;
+      padding-inline: clamp(var(--space-m), 3vw, var(--space-l));
+    }
+    .site-header__toggle {
+      display: none;
+    }
+    .site-header__crumbs {
+      display: none;
     }
   }
 </style>

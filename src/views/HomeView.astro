@@ -67,7 +67,8 @@ const schema = [
         : 'Premium bar catering for weddings, destination weddings, corporate and private events. Based in Tuscany, throughout Italy.'}
     </p>
     <div class="cta-row home-hero__cta">
-      <a class="btn btn--ghost-light" href="#experience" data-track="cta_click" data-track-label="hero_explore">{s.explore}</a>
+      <a class="btn" href={url('contact', lang)} data-track="cta_click" data-track-label="hero_quote">{s.quote} →</a>
+      <a class="link" href={url('services', lang)} data-track="cta_click" data-track-label="hero_services">{it ? 'Scopri i servizi' : 'Explore services'}</a>
     </div>
   </Hero>
 
