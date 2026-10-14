@@ -4,255 +4,1648 @@ import { url, alternatesFor } from '@/i18n/routes';
 import { t } from '@/i18n/ui';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
-import TrustBar from '@/components/TrustBar.astro';
-import SectionHeading from '@/components/SectionHeading.astro';
-import ExperienceGallery from '@/components/ExperienceGallery.astro';
-import EditorialSection from '@/components/EditorialSection.astro';
-import BarCollection from '@/components/BarCollection.astro';
-import IceSection from '@/components/IceSection.astro';
-import PersonalizationSection from '@/components/PersonalizationSection.astro';
-import TowerSection from '@/components/TowerSection.astro';
-import PartnerCTA from '@/components/PartnerCTA.astro';
-import Testimonial from '@/components/Testimonial.astro';
-import InstagramStrip from '@/components/InstagramStrip.astro';
+import { bars } from '@/data/bars';
+import CocktailSlideshow from '@/components/CocktailSlideshow.astro';
+import Img from '@/components/Img.astro';
+import { services } from '@/data/services';
 import { serviceSchema } from '@/lib/seo';
-import hero from '@/assets/images/bars/golden-mirror-sunset.jpg';
-import villa from '@/assets/images/bars/pure-white-villa.jpg';
-import mint from '@/assets/images/details/mint-coupes.jpg';
+import { site } from '@/data/site';
 
-interface Props {
-  lang: Lang;
-}
+import hero    from '@/assets/images/weddings/sumatra-weddings-hero.jpg';
+import introImg from '@/assets/images/bars/pure-white-villa.jpg';
+import weddImg from '@/assets/images/towers/couple-pour.jpg';
+import corpImg from '@/assets/images/bars/golden-marble-night.jpg';
+import privImg from '@/assets/images/bars/spritz-open-bar.jpg';
+import procBg  from '@/assets/images/bars/bartender-event.jpg';
+import pkgBg   from '@/assets/images/bars/golden-mirror-sunset.jpg';
+
+interface Props { lang: Lang }
 const { lang } = Astro.props;
 const it = lang === 'it';
 const s = t(lang);
 
 const meta = it
-  ? {
-      title: 'Meteora Events | Open Bar Catering di lusso in Toscana e in Italia',
-      description:
-        'Luxury open bar catering per matrimoni, destination wedding, eventi aziendali e privati. Banchi scenografici, cocktail, ghiaccio e bicchieri professionali. Base in Toscana, in tutta Italia.',
-    }
-  : {
-      title: 'Meteora Events | Luxury Open Bar Catering in Tuscany & Italy',
-      description:
-        'Luxury open bar catering for weddings, destination weddings, corporate and private events. Scenographic bars, cocktails, premium ice and professional glassware. Based in Tuscany, serving all of Italy.',
-    };
+  ? { title: 'Meteora Events | Open Bar Catering di lusso in Toscana e in Italia', description: 'Luxury open bar catering per matrimoni, destination wedding, eventi aziendali e privati. Banchi scenografici, cocktail, ghiaccio e bicchieri professionali. Base in Toscana, in tutta Italia.' }
+  : { title: 'Meteora Events | Luxury Open Bar Catering in Tuscany & Italy', description: 'Luxury open bar catering for weddings, destination weddings, corporate and private events. Scenographic bars, cocktails, premium ice and professional glassware. Based in Tuscany, serving all of Italy.' };
 
-const weddingMoments = it
-  ? ['Aperitivo', 'Open bar', 'Cocktail', 'Momenti signature', 'Tower', 'Personalizzazione', 'Servizio']
-  : ['Aperitivo', 'Open bar', 'Cocktails', 'Signature moments', 'Towers', 'Customisation', 'Service'];
+const schema = [serviceSchema({ name: it ? 'Open bar catering per eventi' : 'Open bar catering for events', serviceType: 'Bar catering', description: meta.description, url: url('home', lang), lang, area: it ? ['Toscana', 'Italia'] : ['Tuscany', 'Italy'] })];
 
-const schema = [
-  serviceSchema({
-    name: it ? 'Open bar catering per eventi' : 'Open bar catering for events',
-    serviceType: it ? 'Bar catering' : 'Bar catering',
-    description: meta.description,
-    url: url('home', lang),
-    lang,
-    area: it ? ['Toscana', 'Italia'] : ['Tuscany', 'Italy'],
-  }),
+const steps = it
+  ? [
+      { title: 'Raccontateci il vostro giorno',  text: 'Basta una email con data, location e numero di ospiti.' },
+      { title: 'Costruiamo la vostra offerta',    text: 'Scegliete banco, formula e cocktail list, con le personalizzazioni che desiderate.' },
+      { title: 'Tutto per iscritto',              text: 'Una proposta e un contratto con ogni dettaglio incluso. Confermate con un acconto.' },
+      { title: "Il giorno dell'evento",           text: "Quel giorno l'unica cosa a cui dovrete pensare sarete voi due. Al bar penseremo noi, esattamente come lo abbiamo costruito insieme." },
+    ]
+  : [
+      { title: 'Tell us about your day',          text: 'All it takes is an email with the date, venue and guest count.' },
+      { title: 'We build your offer',             text: 'Choose your bar, package and cocktail list, with whatever customisations you want.' },
+      { title: 'Everything in writing',           text: 'A proposal and a contract with every detail included. Confirmed with a deposit.' },
+      { title: 'The day of the event',            text: "That day, the only thing you'll need to think about is each other. We'll handle the bar, exactly as we built it together." },
+    ];
+
+const packageItems = it
+  ? [
+      { title: 'Banco bar scenografico',                       sub: 'a scelta dalla nostra collezione'          },
+      { title: 'Bartender professionisti',                     sub: 'staff qualificato, in total black'          },
+      { title: 'Drink list signature',                         sub: '40 drink, personalizzabili per voi'         },
+      { title: 'Distillati selezionati e ingredienti freschi', sub: 'frutta fresca, disidratata, odori e spezie' },
+      { title: 'Ghiaccio professionale',                       sub: 'scelto per ogni tipo di cocktail'           },
+      { title: 'Solo bicchieri in vetro',                      sub: 'mai plastica'                               },
+      { title: 'Allestimento e smontaggio',                    sub: "la location torna come l'abbiamo trovata"   },
+    ]
+  : [
+      { title: 'Scenographic bar counter',                     sub: 'your choice from our collection'            },
+      { title: 'Professional bartenders',                      sub: 'qualified staff, in total black'            },
+      { title: 'Signature drink list',                         sub: '40 drinks, personalised for you'            },
+      { title: 'Selected spirits and fresh ingredients',       sub: 'fresh fruit, dried fruit, herbs and spices' },
+      { title: 'Professional ice',                             sub: 'chosen for each type of cocktail'           },
+      { title: 'Glassware only',                               sub: 'no plastic, ever'                           },
+      { title: 'Setup and breakdown',                          sub: 'we leave the venue as we found it'          },
+    ];
+
+const eventTypes = [
+  {
+    label: it ? 'Matrimoni'         : 'Weddings',
+    sub:   it ? 'Il giorno più fotografato della vostra vita merita un bar all\'altezza.' : 'The most photographed day of your life deserves a bar to match.',
+    img: weddImg, alt: it ? 'Sposi che versano champagne su una tower di coppe' : 'Couple pouring champagne over a coupe tower',
+    href: url('weddings', lang),
+  },
+  {
+    label: it ? 'Events aziendali' : 'Corporate events',
+    sub:   it ? 'La cura di un matrimonio, per l\'immagine della vostra azienda.' : 'Wedding-level care, for your company\'s image.',
+    img: corpImg, alt: it ? 'Banco bar dorato durante un grande evento notturno' : 'Golden bar at a large evening event',
+    href: url('corporate', lang),
+  },
+  {
+    label: it ? 'Events privati'   : 'Private events',
+    sub:   it ? 'Ogni traguardo merita un brindisi fatto bene.' : 'Every milestone deserves a proper toast.',
+    img: privImg, alt: it ? 'Banco bar Spritz durante un aperitivo privato' : 'Spritz bar at a private aperitivo',
+    href: url('corporate', lang),
+  },
+];
+
+const partnerCats = [
+  { label: 'Wedding Planner', sub: it ? 'Chi organizza il vostro giorno.'                   : 'Who organises your day.',                          href: `${url('partners', lang)}#wedding-planner` },
+  { label: 'Location',         sub: it ? 'Ville, castelli e tenute che conosciamo dal vivo.' : 'Villas, castles and estates we know first-hand.',  href: `${url('partners', lang)}#location`         },
+  { label: 'Catering',          sub: it ? 'Cucine che conosciamo bene.'                      : 'Kitchens we know well.',                           href: `${url('partners', lang)}#catering`         },
+];
+
+const svcDisplay = [
+  { kicker: it ? 'Open bar · 3 ore'     : 'Open bar · 3 hours',  line1: 'Open Bar —',              line2: 'Essential Experience'                   },
+  { kicker: it ? 'Open bar · 3 ore'     : 'Open bar · 3 hours',  line1: 'Open Bar —',              line2: 'Premium Experience'                     },
+  { kicker: it ? '1h30 + 3 ore'         : '1h30 + 3 hours',      line1: it ? 'Aperitivo +' : 'Aperitivo +', line2: 'Open Bar'                     },
+  { kicker: it ? 'Momento scenografico' : 'Scenographic moment', line1: 'Signature Tower',          line2: 'Experience'                             },
+  { kicker: it ? 'Staff e metodo'       : 'Staff and method',    line1: it ? 'Servizio' : 'Bartender-only', line2: it ? 'solo barman' : 'service'   },
 ];
 ---
 
 <BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('home')} headerTheme="overlay" current="home" schema={schema}>
+
   <!-- 1 · HERO -->
-  <Hero image={hero} imageAlt={it ? 'Banco bar Golden Mirror al tramonto su una terrazza affacciata sulle colline' : 'Golden Mirror bar at sunset on a terrace overlooking the hills'} position="50% 60%" eyebrow={it ? 'Matrimoni · Eventi aziendali · Eventi privati' : 'Weddings · Corporate events · Private events'} style="--hero-content-pb: clamp(9rem, 14vh, 12rem)">
+  <Hero image={hero} imageAlt={it ? 'Cerimonia nuziale serale con fiori e luci' : 'Evening wedding ceremony with flowers and lights'} position="50% 50%" eyebrow={it ? 'Matrimoni · Events aziendali · Events privati' : 'Weddings · Corporate events · Private events'}>
     <h1 class="home-hero__title">
-      {it ? 'Immaginate il bar al vostro evento.' : 'Picture the bar at your event.'}
+      {it ? <>Ogni occasione<em>merita il suo brindisi.</em></> : <>Every occasion<em>deserves a toast.</em></>}
     </h1>
     <p class="lead home-hero__lead">
       {it
-        ? 'Bar catering premium per matrimoni, destination wedding, eventi aziendali e privati. Base in Toscana, in tutta Italia.'
-        : 'Premium bar catering for weddings, destination weddings, corporate and private events. Based in Tuscany, throughout Italy.'}
+        ? 'Open bar catering premium per matrimoni, eventi aziendali e privati. Base in Toscana, in tutta Italia.'
+        : 'Premium open bar catering for weddings, destination weddings, corporate and private events. Based in Tuscany, throughout Italy.'}
     </p>
     <div class="cta-row home-hero__cta">
-      <a class="btn btn--ghost-light" href={url('contact', lang)} data-track="cta_click" data-track-label="hero_quote">{s.quote} →</a>
-      <a class="link" href={url('services', lang)} data-track="cta_click" data-track-label="hero_services">{it ? 'Scopri i servizi' : 'Explore services'}</a>
+      <a class="btn btn--ghost-light" href={url('services', lang)} data-track="cta_click" data-track-label="hero_services">{it ? 'Scopri i nostri servizi' : 'Explore our services'} →</a>
     </div>
     <div slot="after" class="home-hero__stats">
       {[
-        { n: it ? '14+ anni'          : '14+ years',           s: it ? 'di esperienza operativa'       : 'of operational experience' },
-        { n: it ? 'Chiavi in mano'    : 'All-inclusive',       s: it ? 'banco, staff, vetro, ghiaccio' : 'bar, staff, glassware, ice' },
-        { n: it ? 'Tutto per iscritto': 'Everything in writing',s: it ? 'un contratto con ogni dettaglio': 'a contract for every detail' },
-        { n: it ? 'Toscana e Italia'  : 'Tuscany & Italy',     s: it ? 'destination wedding ovunque'   : 'destination weddings everywhere' },
+        { n: it ? 'Da oltre 14 anni'      : '14+ years',              sub: it ? 'di esperienza operativa'         : 'of operational experience'      },
+        { n: it ? 'All inclusive package' : 'All-inclusive',          sub: it ? 'banco, staff, vetro, ghiaccio'   : 'bar, staff, glassware, ice'      },
+        { n: it ? 'Tutto per iscritto'    : 'Everything in writing',  sub: it ? 'un contratto con ogni dettaglio' : 'a contract for every detail'     },
+        { n: it ? 'Toscana e tutta Italia': 'Tuscany & Italy',        sub: it ? 'destination wedding ovunque'     : 'destination weddings everywhere'  },
       ].map(item => (
         <div class="home-hero__stat">
           <strong class="home-hero__stat-n">{item.n}</strong>
-          <span class="home-hero__stat-s">{item.s}</span>
+          <span class="home-hero__stat-s">{item.sub}</span>
         </div>
       ))}
     </div>
   </Hero>
 
-  <!-- 2 · TRUST -->
-  <TrustBar lang={lang} />
-
-  <!-- 3 · NOT JUST AN OPEN BAR -->
-  <section class="section section--dark" id="experience" aria-labelledby="exp-title">
+  <!-- 2 · INTRO -->
+  <section class="section section--alt hm-intro" aria-labelledby="hm-intro-title">
     <div class="container">
-      <SectionHeading eyebrow="Meteora Experience" align="split" id="exp-title">
-        {it ? <>Non è solo <em>un open bar.</em></> : <>Not just <em>an open bar.</em></>}
-      </SectionHeading>
-      <ExperienceGallery lang={lang} />
-      <div class="cta-row exp__cta">
-        <a class="btn btn--light" href={url('about', lang)}>{it ? 'Scopri perché Meteora' : 'Discover why Meteora'}</a>
+      <!-- Framed photo -->
+      <div class="hm-intro__frame" data-reveal>
+        <Img src={introImg} alt={it ? 'Banco bar Pure White nel giardino di una villa in pietra' : 'Pure White bar in the garden of a stone villa'} sizes="100vw" widths={[800, 1400, 1920]} />
       </div>
-    </div>
-  </section>
-
-  <!-- 4 · WEDDINGS -->
-  <section class="section" aria-labelledby="wed-title">
-    <div class="container">
-      <EditorialSection image={villa} imageAlt={it ? 'Banco Pure White nel giardino di una villa in pietra' : 'Pure White bar in the garden of a stone villa'} secondImage={mint} secondAlt={it ? 'Coppe con menta fresca e frutti rossi sul banco' : 'Coupes with fresh mint and red berries on the bar'} ratio="landscape">
-        <p class="eyebrow" data-reveal>{it ? 'Matrimoni' : 'Weddings'}</p>
-        <h2 id="wed-title" data-reveal style="--delay:.08s">{it ? <>Il vostro matrimonio. <em>La vostra bar experience.</em></> : <>Your wedding. <em>Your bar experience.</em></>}</h2>
-        <p class="lead muted" data-reveal style="--delay:.12s">
-          {it
-            ? 'Dall’aperitivo in giardino all’ultimo brindisi dopo cena, il bar accompagna ogni momento della giornata — e resta nelle fotografie.'
-            : 'From the garden aperitivo to the last toast after dinner, the bar accompanies every moment of the day — and stays in the photographs.'}
-        </p>
-        <ul class="moments" role="list" data-reveal style="--delay:.16s">
-          {weddingMoments.map((m) => <li>{m}</li>)}
-        </ul>
-        <div class="cta-row" data-reveal style="--delay:.2s">
-          <a class="btn" href={url('weddings', lang)}>{it ? 'Scopri i servizi per matrimoni' : 'Discover wedding services'}</a>
+      <!-- 3-column info row -->
+      <div class="hm-intro__row">
+        <!-- Left: years -->
+        <div class="hm-intro__years" data-reveal>
+          <p class="hm-intro__da">{it ? 'Da oltre' : 'Over'}</p>
+          <p class="hm-intro__n" aria-hidden="true">14</p>
+          <p class="hm-intro__lbl">{it ? 'ANNI DI ESPERIENZA\nNEL SETTORE EVENTI' : 'YEARS OF EXPERIENCE\nIN THE EVENTS SECTOR'}</p>
         </div>
-      </EditorialSection>
-    </div>
-  </section>
-
-  <!-- 6 · BAR COLLECTION -->
-  <section class="section section--alt" aria-labelledby="bars-title">
-    <div class="container">
-      <SectionHeading eyebrow={it ? 'I nostri banchi' : 'The Bar Collection'} align="split" id="bars-title" class="bars-heading">
-        {it ? <>La collezione <em>dei banchi.</em></> : <>The bar <em>collection.</em></>}
-        <Fragment slot="lead">
-          {it
-            ? 'Banchi modulari e scenografici, ciascuno in tre misure — Slim 1,5 m, Medium 3,5 m, Large 5,5 m. Una collezione in continuo ampliamento.'
-            : 'Modular, scenographic bars, each in three sizes — Slim 1.5 m, Medium 3.5 m, Large 5.5 m. A collection that keeps growing.'}
-        </Fragment>
-      </SectionHeading>
-      <BarCollection lang={lang} />
-      <div class="cta-row section-cta">
-        <a class="btn" href={url('bars', lang)}>{it ? 'Esplora la collezione' : 'Explore the collection'}</a>
+        <!-- Center: title -->
+        <div class="hm-intro__center" data-reveal style="--delay:.06s">
+          <p class="hm-intro__eyebrow">Meteora Events</p>
+          <h2 id="hm-intro-title" class="hm-intro__title">
+            {it
+              ? <>Non un semplice bar. <em>Il cuore della vostra festa.</em></>
+              : <>Not just a bar. <em>The heart of your celebration.</em></>}
+          </h2>
+        </div>
+        <!-- Right: desc + cta -->
+        <div class="hm-intro__right" data-reveal style="--delay:.1s">
+          <p class="hm-intro__desc">
+            {it
+              ? "Professionalità, metodo ed esperienza scenografica, con una cura speciale per l'estetica dell'allestimento. Ogni dinamica dei vostri eventi la conosciamo dall'interno."
+              : 'Professionalism, method and scenographic experience, with special care for the aesthetics of the setup. We know the dynamics of your events from the inside.'}
+          </p>
+          <p class="hm-intro__types">
+            {it ? 'Matrimoni · Events aziendali · Events privati' : 'Weddings · Corporate events · Private events'}
+          </p>
+          <a class="hm-intro__cta" href={url('about', lang)}>
+            {it ? 'Chi siamo →' : 'About us →'}
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 8 · ICE -->
-  <IceSection lang={lang} showTypes={false} />
+  <!-- 3 · EVENT TYPES -->
+  <section class="section section--dark hm-ev" aria-labelledby="hm-ev-title">
+    <div class="container">
+      <div class="hm-ev__head">
+        <p class="hm-ev__eyebrow" data-reveal>{it ? 'Per ogni occasione' : 'For every occasion'}</p>
+        <h2 id="hm-ev-title" class="hm-ev__title" data-reveal style="--delay:.06s">
+          {it ? <>Matrimoni, aziende <em>ed eventi privati.</em></> : <>Weddings, corporate <em>and private events.</em></>}
+        </h2>
+      </div>
+      <p class="hm-ev__lead" data-reveal style="--delay:.1s">
+        {it
+          ? 'Lo stesso standard, ovunque: dal destination wedding in villa alla cena di gala aziendale.'
+          : 'The same standard, everywhere: from the destination wedding at a villa to the corporate gala dinner.'}
+      </p>
+      <div class="hm-ev__grid">
+        {eventTypes.map((ev, i) => (
+          <a class="hm-ev__card" href={ev.href} data-reveal style={`--delay:${i * 0.07}s`}>
+            <div class="hm-ev__card-img">
+              <Img src={ev.img} alt={ev.alt} sizes="(min-width: 900px) 33vw, 90vw" />
+            </div>
+            <div class="hm-ev__card-overlay">
+              <span class="hm-ev__card-num">0{i + 1}</span>
+              <h3 class="hm-ev__card-name">{ev.label}</h3>
+              <p class="hm-ev__card-sub">{ev.sub}</p>
+              <span class="hm-ev__card-cta">{it ? 'SCOPRI →' : 'DISCOVER →'}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
 
-  <!-- 9 · PERSONALISATION -->
-  <PersonalizationSection lang={lang} />
+  <!-- 4 · BAR COLLECTION -->
+  <section class="section section--alt hm-bc" aria-labelledby="hm-bc-title">
+    <div class="container">
+      <div class="hm-bc__header" data-reveal>
+        <div>
+          <p class="hm-bc__eyebrow">{it ? 'La collezione' : 'The collection'}</p>
+          <h2 id="hm-bc-title" class="hm-bc__title">
+            {it ? <>Il bar, <em>come scenografia.</em></> : <>The bar, <em>as scenography.</em></>}
+          </h2>
+        </div>
+        <div class="hm-bc__arrows">
+          <button class="hm-bc__arrow" type="button" aria-label={it ? 'Precedente' : 'Previous'} data-bc-prev>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="hm-bc__arrow" type="button" aria-label={it ? 'Successivo' : 'Next'} data-bc-next>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="hm-bc__stage" data-bc-root>
+        <div class="hm-bc__main">
+          {bars.map((bar, i) => (
+            <div class:list={['hm-bc__main-slide', i === 0 && 'is-active']} data-bc-slide={i}>
+              {bar.images.length > 0 ? (
+                bar.images.map((img, j) => (
+                  <div class:list={['hm-bc__sub-slide', j === 0 && 'is-active']} data-bc-sub={j}>
+                    <Img src={img.src} alt={img.alt[lang]} sizes="(min-width: 900px) 55vw, 100vw" />
+                  </div>
+                ))
+              ) : (
+                <div class="hm-bc__item-swatch" style={`--swatch:${bar.swatch}`}></div>
+              )}
+              <div class="hm-bc__main-overlay">
+                <h3 class="hm-bc__main-name">{bar.name}</h3>
+                <p class="hm-bc__main-mood">{bar.mood[lang]}</p>
+              </div>
+            </div>
+          ))}
+          <button class="hm-bc__img-prev" type="button" aria-label={it ? 'Immagine precedente' : 'Previous image'} data-bc-img-prev>
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="hm-bc__img-next" type="button" aria-label={it ? 'Immagine successiva' : 'Next image'} data-bc-img-next>
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+        <ol class="hm-bc__list" role="list">
+          {bars.map((bar, i) => (
+            <li class:list={['hm-bc__item', i === 0 && 'is-active']} data-bc-row={i}>
+              <button class="hm-bc__item-btn" type="button">
+                <div class="hm-bc__item-thumb">
+                  {bar.images[0] ? (
+                    <Img src={bar.images[0].src} alt="" sizes="80px" />
+                  ) : (
+                    <div class="hm-bc__item-swatch" style={`--swatch:${bar.swatch}`}></div>
+                  )}
+                </div>
+                <div class="hm-bc__item-info">
+                  <p class="hm-bc__item-name">{bar.name}</p>
+                  {bar.status === 'coming-soon'
+                    ? <p class="hm-bc__item-soon">{it ? 'Prossimamente' : 'Coming soon'}</p>
+                    : <p class="hm-bc__item-mood">{bar.mood[lang]}</p>
+                  }
+                </div>
+              </button>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div class="hm-bc__stats">
+        {[
+          { key: 'SLIM',   size: it ? '1,5 metri' : '1.5 metres', note: it ? 'fino a 60 ospiti'  : 'up to 60 guests'  },
+          { key: 'MEDIUM', size: it ? '3 metri'   : '3 metres',   note: it ? 'fino a 150 ospiti' : 'up to 150 guests' },
+          { key: 'LARGE',  size: it ? '6 metri'   : '6 metres',   note: it ? '250+ ospiti'       : '250+ guests'      },
+        ].map(z => (
+          <div class="hm-bc__stat">
+            <span class="hm-bc__stat-label">{z.key}</span>
+            <span class="hm-bc__stat-size">{z.size}</span>
+            <span class="hm-bc__stat-note">{z.note}</span>
+          </div>
+        ))}
+        <a class="hm-bc__stat-cta" href={url('bars', lang)}>
+          {it ? 'SCOPRI LA COLLEZIONE →' : 'EXPLORE THE COLLECTION →'}
+        </a>
+      </div>
+    </div>
+  </section>
 
-  <!-- 10 · TOWER -->
-  <TowerSection lang={lang} />
+  <!-- 5 · COCKTAIL LIST -->
+  <CocktailSlideshow lang={lang} />
 
+  <!-- 6 · SERVICES -->
+  <section class="section section--alt hm-svc" aria-labelledby="hm-svc-title">
+    <div class="container">
+      <!-- Header: title left + intro right -->
+      <div class="hm-svc__header">
+        <p class="hm-svc__eyebrow" data-reveal>{it ? 'I nostri servizi' : 'Our services'}</p>
+        <h2 id="hm-svc-title" class="hm-svc__title" data-reveal style="--delay:.06s">
+          {it ? <>Dall'aperitivo <em>all'ultimo drink.</em></> : <>From aperitivo <em>to the last drink.</em></>}
+        </h2>
+      </div>
+      <p class="hm-svc__intro" data-reveal style="--delay:.08s">
+        {it
+          ? 'Formule complete e autonome, coordinate con il catering, oppure solo il nostro staff e il nostro metodo.'
+          : 'Complete, independent packages coordinated with catering, or just our staff and our method.'}
+      </p>
+      <!-- Row 1: 3 cards -->
+      <div class="hm-svc__row1">
+        {svcDisplay.slice(0, 3).map((d, i) => (
+          <a class="hm-svc__card" href={`${url('services', lang)}#${services[i].id}`} data-reveal style={`--delay:${i * 0.07}s`}>
+            <div class="hm-svc__card-img">
+              <Img src={services[i].image} alt={services[i].imageAlt[lang]} sizes="(min-width: 900px) 30vw, 100vw" />
+            </div>
+            <div class="hm-svc__card-body">
+              <p class="hm-svc__card-kicker">
+                <span>{String(i + 1).padStart(2, '0')} · {d.kicker.toUpperCase()}</span>
+              </p>
+              <h3 class="hm-svc__card-name">{d.line1}<em>{d.line2}</em></h3>
+              <p class="hm-svc__card-desc">{services[i].summary[lang]}</p>
+              <span class="hm-svc__card-cta">{it ? 'SCOPRI →' : 'DISCOVER →'}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+      <!-- Row 2: 2 wide cards (image left) -->
+      <div class="hm-svc__row2">
+        {svcDisplay.slice(3).map((d, i) => (
+          <a class="hm-svc__card hm-svc__card--wide" href={`${url('services', lang)}#${services[i + 3].id}`} data-reveal style={`--delay:${i * 0.07}s`}>
+            <div class="hm-svc__card-img">
+              <Img src={services[i + 3].image} alt={services[i + 3].imageAlt[lang]} sizes="(min-width: 900px) 20vw, 50vw" />
+            </div>
+            <div class="hm-svc__card-body">
+              <p class="hm-svc__card-kicker">
+                <span>{String(i + 4).padStart(2, '0')} · {d.kicker.toUpperCase()}</span>
+              </p>
+              <h3 class="hm-svc__card-name">{d.line1}<em>{d.line2}</em></h3>
+              <p class="hm-svc__card-desc">{services[i + 3].summary[lang]}</p>
+              <span class="hm-svc__card-cta">{it ? 'SCOPRI →' : 'DISCOVER →'}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
 
-  <Testimonial lang={lang} />
+  <!-- 5 · PACKAGE -->
+  <section class="section hm-pkg on-dark" aria-labelledby="hm-pkg-title">
+    <div class="hm-pkg__bg">
+      <Img src={pkgBg} alt="" sizes="100vw" widths={[800, 1400, 1920]} priority={false} />
+    </div>
+    <div class="hm-pkg__overlay" aria-hidden="true"></div>
+    <div class="container hm-pkg__inner">
+      <!-- Left: eyebrow + title -->
+      <div class="hm-pkg__text" data-reveal>
+        <p class="hm-pkg__eyebrow">All inclusive packages</p>
+        <h2 id="hm-pkg-title" class="hm-pkg__title">
+          {it
+            ? <>Voi scegliete<br/>il pacchetto!<em>Noi pensiamo al resto.</em></>
+            : <>You choose<br/>the package!<em>We handle the rest.</em></>}
+        </h2>
+      </div>
+      <!-- Right: dark checklist panel -->
+      <div class="hm-pkg__panel" data-reveal style="--delay:.1s">
+        <ul class="hm-pkg__list" role="list">
+          {packageItems.map(item => (
+            <li class="hm-pkg__item">
+              <span class="hm-pkg__check" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+              </span>
+              <div class="hm-pkg__item-body">
+                <p class="hm-pkg__item-title">{item.title}</p>
+                <p class="hm-pkg__item-sub">{item.sub}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <p class="hm-pkg__footer">
+          <em>{it ? 'Ogni dettaglio, nero su bianco nel contratto.' : 'Every detail, in black and white in the contract.'}</em>
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <!-- 13 · PARTNERS -->
-  <PartnerCTA lang={lang} />
+  <!-- 7 · PROCESS -->
+  <section class="section section--alt hm-proc" id="come-funziona" aria-labelledby="hm-proc-title">
+    <div class="container hm-proc__inner">
 
-  <!-- 14 · INSTAGRAM -->
-  <InstagramStrip lang={lang} />
+      <!-- Left column -->
+      <div class="hm-proc__left" data-reveal>
+        <p class="hm-proc__eyebrow">{it ? 'Come funziona' : 'How it works'}</p>
+        <h2 id="hm-proc-title" class="hm-proc__title">
+          {it ? <>Dal primo contatto <em>al grande giorno.</em></> : <>From first contact <em>to the big day.</em></>}
+        </h2>
+        <p class="hm-proc__desc">
+          {it
+            ? 'Organizzare da lontano non è mai stato così semplice: quattro passaggi chiari, nessuna incertezza.'
+            : 'Organising from a distance has never been this simple: four clear steps, no uncertainty.'}
+        </p>
+        <div class="hm-proc__always">
+          <p class="hm-proc__always-label">{it ? 'CON NOI, SEMPRE' : 'WITH US, ALWAYS'}</p>
+          <ul class="hm-proc__always-list" role="list">
+            {(it
+              ? [
+                  'Coordinamento diretto con planner, location e catering',
+                  'Ogni dettaglio scritto nel contratto',
+                  'In Toscana e in tutta Italia',
+                  "Tutto via email, anche dall'estero",
+                ]
+              : [
+                  'Direct coordination with planner, venue and catering',
+                  'Every detail written in the contract',
+                  'In Tuscany and throughout Italy',
+                  'Everything by email, even from abroad',
+                ]
+            ).map(item => (
+              <li class="hm-proc__always-item">
+                <span class="hm-proc__always-check" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <a class="hm-proc__cta" href={url('contact', lang)}>
+          {it ? 'RACCONTATECI IL VOSTRO EVENTO →' : 'TELL US ABOUT YOUR EVENT →'}
+        </a>
+      </div>
+
+      <!-- Right column: timeline -->
+      <ol class="hm-proc__steps">
+        {steps.map((step, i) => (
+          <li class:list={['hm-proc__step', i === steps.length - 1 && 'hm-proc__step--last']} data-reveal style={`--delay:${i * 0.07}s`}>
+            <div class="hm-proc__step-dot"></div>
+            <div class="hm-proc__step-body">
+              <p class="hm-proc__step-label">PASSO {(['I','II','III','IV'])[i]}</p>
+              <h3 class="hm-proc__step-title">{step.title}</h3>
+              <p class="hm-proc__step-text">{step.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- 9 · PARTNERS -->
+  <section class="section section--dark hm-ptn on-dark" aria-labelledby="hm-ptn-title">
+    <div class="container">
+
+      <!-- Header: title + intro stacked -->
+      <div class="hm-ptn__head" data-reveal>
+        <p class="hm-ptn__eyebrow">{it ? 'Fornitori consigliati' : 'Recommended suppliers'}</p>
+        <h2 id="hm-ptn-title" class="hm-ptn__title">
+          {it ? <>Le persone giuste <em>per il vostro giorno.</em></> : <>The right people <em>for your day.</em></>}
+        </h2>
+      </div>
+      <p class="hm-ptn__intro" data-reveal style="--delay:.08s">
+        {it
+          ? 'Wedding planner, location e catering con cui lavoriamo e che consigliamo alle nostre coppie.'
+          : 'Wedding planners, venues and caterers we work with and recommend to our couples.'}
+      </p>
+
+      <div class="hm-ptn__divider" aria-hidden="true"></div>
+
+      <!-- 3 columns -->
+      <div class="hm-ptn__grid">
+        {partnerCats.map((cat, i) => (
+          <div class="hm-ptn__col" data-reveal style={`--delay:${i * 0.06}s`}>
+            <p class="hm-ptn__num">0{i + 1}</p>
+            <h3 class="hm-ptn__col-label">{cat.label}</h3>
+            <p class="hm-ptn__col-sub">{cat.sub}</p>
+            <a class="hm-ptn__col-link" href={cat.href}>{it ? 'SCOPRI →' : 'DISCOVER →'}</a>
+          </div>
+        ))}
+      </div>
+
+      <div class="hm-ptn__divider" aria-hidden="true"></div>
+
+      <!-- Footer row -->
+      <div class="hm-ptn__footer" data-reveal>
+        <p class="hm-ptn__footer-text">
+          <em>{it ? 'Siete un wedding planner o una location?' : 'Are you a wedding planner or a venue?'}</em>
+        </p>
+        <a class="hm-ptn__footer-link" href={url('contact', lang)}>
+          {it ? 'SCRIVETECI →' : 'CONTACT US →'}
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 10 · GALLERY / INSTAGRAM -->
+  <section class="section section--alt hm-ig" aria-labelledby="hm-ig-title">
+    <div class="container">
+
+      <!-- Header -->
+      <div class="hm-ig__head" data-reveal>
+        <div>
+          <p class="hm-ig__eyebrow">Instagram</p>
+          <h2 id="hm-ig-title" class="hm-ig__title">
+            {it ? <>Dettagli che <em>si raccontano.</em></> : <>Details that <em>tell the story.</em></>}
+          </h2>
+        </div>
+        <a class="hm-ig__cta" href={site.instagram.url} target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.7" fill="currentColor" stroke="none"/></svg>
+          {it ? 'SEGUITECI SU INSTAGRAM' : 'FOLLOW ON INSTAGRAM'}
+        </a>
+      </div>
+
+      <!-- Photo grid -->
+      <div class="hm-ig__grid">
+
+        {[
+          { src: weddImg,  date: '8 OTTOBRE 2026'    },
+          { src: corpImg,  date: '2 OTTOBRE 2026'    },
+          { src: pkgBg,    date: '27 SETTEMBRE 2026' },
+          { src: privImg,  date: '20 SETTEMBRE 2026' },
+          { src: introImg, date: '5 SETTEMBRE 2026'  },
+        ].map(({ src, date }) => (
+          <a class="hm-ig__item" href={site.instagram.url} target="_blank" rel="noopener" aria-label="Instagram">
+            <Img src={src} alt="" sizes="(min-width: 900px) 17vw, 33vw" />
+            <div class="hm-ig__item-inner">
+              <span class="hm-ig__ig-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/></svg></span>
+              <span class="hm-ig__date">{date}</span>
+            </div>
+          </a>
+        ))}
+
+        <!-- Cell 9: VEDI DI PIÙ -->
+        <a class="hm-ig__item hm-ig__item--more" href={site.instagram.url} target="_blank" rel="noopener" aria-label={it ? 'Vedi di più su Instagram' : 'See more on Instagram'}>
+          <Img src={procBg} alt="" sizes="(min-width: 900px) 17vw, 33vw" />
+          <div class="hm-ig__item-inner hm-ig__item-inner--more">
+            <span class="hm-ig__ig-icon hm-ig__ig-icon--lg" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.65" fill="currentColor" stroke="none"/></svg></span>
+            <span class="hm-ig__more-label">{it ? 'VEDI DI PIÙ' : 'SEE MORE'}</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
 
 </BaseLayout>
 
 <style>
-  :global(.bars-heading) {
-    margin-bottom: var(--space-m);
-  }
-  :global(.bars-heading .sh__lead) {
-    font-size: var(--fs-body);
-    line-height: 1.65;
-  }
+  /* ── Hero ── */
   .home-hero__title {
     font-size: clamp(2.75rem, 1.1rem + 4.6vw, 6.75rem);
     line-height: 0.96;
     font-weight: 300;
-    max-width: 13ch;
-    color: var(--color-accent-on-dark);
+    max-width: 14ch;
+    color: #fff;
   }
   .home-hero__title em {
     display: block;
+    font-style: italic;
     color: var(--color-accent-on-dark);
+    white-space: nowrap;
   }
   .home-hero__lead {
     margin-top: var(--space-m);
     max-width: 34rem;
-    color: var(--color-on-dark);
+    color: rgba(255,255,255,0.75);
   }
-  .home-hero__cta {
-    margin-top: var(--space-l);
-  }
-
-  /* ── Stats bar anchored to hero bottom ── */
+  .home-hero__cta { margin-top: var(--space-l); }
   .home-hero__stats {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 0; left: 0; right: 0;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    background: rgba(8, 5, 3, 0.85);
+    background: rgba(8,5,3,0.85);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255,255,255,0.08);
   }
   .home-hero__stat {
     padding: 1.2rem var(--gutter);
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex; flex-direction: column; gap: 0.3rem;
+    border-right: 1px solid rgba(255,255,255,0.08);
   }
-  .home-hero__stat:last-child {
-    border-right: none;
-  }
+  .home-hero__stat:last-child { border-right: none; }
   .home-hero__stat-n {
     font-family: var(--font-display);
-    font-size: clamp(0.95rem, 0.8rem + 0.6vw, 1.3rem);
+    font-size: clamp(0.85rem, 0.7rem + 0.55vw, 1.15rem);
     font-weight: 300;
     color: var(--color-on-dark);
   }
   .home-hero__stat-s {
     font-family: var(--font-sans);
-    font-size: 0.6rem;
+    font-size: 0.55rem;
     letter-spacing: 0.08em;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(255,255,255,0.4);
   }
   @media (max-width: 600px) {
-    .home-hero__stats {
-      grid-template-columns: 1fr 1fr;
-    }
-    .home-hero__stat {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .home-hero__stat:nth-child(2n) {
-      border-right: none;
-    }
-    .home-hero__stat:nth-child(3),
-    .home-hero__stat:nth-child(4) {
-      border-bottom: none;
-    }
+    .home-hero__stats { grid-template-columns: 1fr 1fr; }
+    .home-hero__stat { border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .home-hero__stat:nth-child(2n) { border-right: none; }
+    .home-hero__stat:nth-child(3), .home-hero__stat:nth-child(4) { border-bottom: none; }
   }
-  .exp__cta,
-  .section-cta {
-    margin-top: var(--space-xl);
+
+  /* ── Intro section ── */
+  .hm-intro__frame {
+    background: #fff;
+    padding: 7px;
+    margin-bottom: var(--space-l);
   }
-  .moments {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem 0;
+  .hm-intro__frame :global(picture),
+  .hm-intro__frame :global(img) {
+    display: block;
+    width: 100%;
+    aspect-ratio: 21 / 8;
+    object-fit: cover;
+    object-position: 50% 45%;
+  }
+  .hm-intro__row {
+    display: grid;
+    gap: var(--space-l);
+    padding-top: var(--space-m);
+  }
+  @media (min-width: 700px) {
+    .hm-intro__row { grid-template-columns: 1fr 2fr 2fr; gap: var(--space-xl); }
+  }
+  /* Left: years */
+  .hm-intro__da {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: clamp(0.95rem, 2.5vw, 1.3rem);
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.1rem;
   }
-  .moments li:not(:last-child)::after {
-    content: '·';
-    margin-inline: 0.6rem;
-    color: var(--color-accent);
+  .hm-intro__n {
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 2rem + 5vw, 6.5rem);
+    font-weight: 300;
+    line-height: 0.88;
+    color: var(--color-accent-ink);
+    margin-bottom: 0.5rem;
+  }
+  .hm-intro__lbl {
+    font-family: var(--font-sans);
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    white-space: pre-line;
+  }
+  /* Center: title */
+  .hm-intro__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-accent-ink);
+    margin-bottom: var(--space-m);
+  }
+  .hm-intro__eyebrow::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--color-accent-ink);
+    flex-shrink: 0;
+  }
+  .hm-intro__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 0.8rem + 2.5vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--color-text);
+  }
+  .hm-intro__title em {
+    font-style: italic;
+    color: var(--color-accent-ink);
+  }
+  /* Right: desc + cta */
+  .hm-intro__desc {
+    font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.2rem);
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: var(--space-m);
+  }
+  .hm-intro__types {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--color-accent-ink);
+    margin-bottom: var(--space-m);
+  }
+  .hm-intro__cta {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-text);
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+  .hm-intro__cta:hover { color: var(--color-accent-ink); }
+
+  /* ── Event types (dark) ── */
+  .hm-ev { padding-top: var(--space-l); }
+  .hm-ev__head {
+    margin-bottom: var(--space-s);
+  }
+  .hm-ev__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-accent-on-dark);
+    margin-bottom: var(--space-s);
+  }
+  .hm-ev__eyebrow::before {
+    content: '';
+    display: block;
+    width: 2rem; height: 1px;
+    background: var(--color-accent-on-dark);
+    flex-shrink: 0;
+  }
+  .hm-ev__title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 1rem + 3vw, 4rem);
+    font-weight: 300;
+    line-height: 1.04;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .hm-ev__title em { font-style: italic; color: var(--color-accent-on-dark); }
+  .hm-ev__lead {
+    font-size: 23px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.65;
+    white-space: nowrap;
+    margin-bottom: var(--space-l);
+  }
+  .hm-ev__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-m);
+  }
+  @media (min-width: 700px) {
+    .hm-ev__grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  /* Card */
+  .hm-ev__card {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.18);
+  }
+  .hm-ev__card-img {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+  }
+  .hm-ev__card-img :global(picture),
+  .hm-ev__card-img :global(img) {
+    display: block; width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.9s var(--ease-out);
+  }
+  .hm-ev__card:hover .hm-ev__card-img :global(img) { transform: scale(1.05); }
+  .hm-ev__card-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 1.8rem 1.4rem 1.4rem;
+    background: linear-gradient(to top, rgba(8,5,3,0.92) 0%, rgba(8,5,3,0.6) 50%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .hm-ev__card-num {
+    font-family: var(--font-sans);
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 0.2rem;
+  }
+  .hm-ev__card-name {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.4rem);
+    font-weight: 300;
+    color: #fff;
+    line-height: 1.1;
+  }
+  .hm-ev__card-sub {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(0.82rem, 0.72rem + 0.3vw, 0.95rem);
+    color: var(--color-accent-on-dark);
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+  }
+  .hm-ev__card-cta {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    color: rgba(255,255,255,0.65);
+    transition: color 0.2s;
+  }
+  .hm-ev__card:hover .hm-ev__card-cta { color: var(--color-accent-on-dark); }
+
+  /* ── Services ── */
+  .hm-svc { padding-top: var(--space-l); }
+  .hm-svc__header {
+    margin-bottom: var(--space-s);
+  }
+  .hm-svc__eyebrow {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--color-accent-ink);
+    margin-bottom: var(--space-s);
+  }
+  .hm-svc__eyebrow::before {
+    content: ''; display: block;
+    width: 2rem; height: 1px;
+    background: var(--color-accent-ink); flex-shrink: 0;
+  }
+  .hm-svc__title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 1rem + 3vw, 4rem);
+    font-weight: 300;
+    line-height: 1.08;
+    color: var(--color-text);
+    white-space: nowrap;
+  }
+  .hm-svc__title em { font-style: italic; color: var(--color-accent-ink); }
+  .hm-svc__intro {
+    font-size: 23px;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    white-space: nowrap;
+    margin-bottom: var(--space-l);
+  }
+  .hm-svc__row1 {
+    display: grid;
+    gap: var(--space-m);
+    margin-bottom: var(--space-m);
+  }
+  @media (min-width: 700px) {
+    .hm-svc__row1 { grid-template-columns: repeat(3, 1fr); }
+  }
+  .hm-svc__row2 { display: grid; gap: var(--space-m); }
+  @media (min-width: 700px) {
+    .hm-svc__row2 { grid-template-columns: repeat(2, 1fr); }
+  }
+  /* Card base */
+  .hm-svc__card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+    text-decoration: none;
+    color: inherit;
+    background: var(--color-background);
+    transition: box-shadow 0.25s;
+  }
+  .hm-svc__card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.07); }
+  /* Row-1 image: 4:3 on top */
+  .hm-svc__row1 .hm-svc__card-img {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .hm-svc__row1 .hm-svc__card-img :global(picture),
+  .hm-svc__row1 .hm-svc__card-img :global(img) {
+    display: block; width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.8s var(--ease-out);
+  }
+  .hm-svc__row1 .hm-svc__card:hover .hm-svc__card-img :global(img) { transform: scale(1.04); }
+  /* Row-2 card: horizontal layout */
+  .hm-svc__card--wide { flex-direction: row; }
+  .hm-svc__card--wide .hm-svc__card-img {
+    width: 38%; flex-shrink: 0;
+    overflow: hidden;
+  }
+  .hm-svc__card--wide .hm-svc__card-img :global(picture),
+  .hm-svc__card--wide .hm-svc__card-img :global(img) {
+    display: block; width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.8s var(--ease-out);
+  }
+  .hm-svc__card--wide:hover .hm-svc__card-img :global(img) { transform: scale(1.04); }
+  @media (max-width: 699px) {
+    .hm-svc__card--wide { flex-direction: column; }
+    .hm-svc__card--wide .hm-svc__card-img { width: 100%; aspect-ratio: 4/3; }
+  }
+  /* Card body */
+  .hm-svc__card-body {
+    padding: var(--space-m);
+    display: flex; flex-direction: column; gap: var(--space-s);
+    flex: 1;
+  }
+  .hm-svc__card-kicker {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-family: var(--font-sans);
+    font-size: 0.52rem; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--color-accent-ink);
+  }
+  .hm-svc__card-kicker::before {
+    content: ''; display: block;
+    width: 1.4rem; height: 1px;
+    background: var(--color-accent-ink); flex-shrink: 0;
+  }
+  .hm-svc__card-name {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 1rem + 1vw, 1.9rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--color-text);
+  }
+  .hm-svc__card-name em { font-style: italic; color: var(--color-accent-ink); display: block; }
+  .hm-svc__card-desc {
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    flex: 1;
+  }
+  .hm-svc__card-cta {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.58rem; font-weight: 500; letter-spacing: 0.12em;
+    color: var(--color-text);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 2px;
+    text-decoration: none;
+    margin-top: var(--space-s);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .hm-svc__card:hover .hm-svc__card-cta { color: var(--color-accent-ink); border-color: var(--color-accent-ink); }
+
+  /* ── Package ── */
+  .hm-pkg {
+    position: relative;
+    overflow: hidden;
+  }
+  .hm-pkg__bg {
+    position: absolute; inset: 0; z-index: 0;
+  }
+  .hm-pkg__bg :global(picture),
+  .hm-pkg__bg :global(img) {
+    display: block; width: 100%; height: 100%; object-fit: cover; object-position: center;
+  }
+  .hm-pkg__overlay {
+    position: absolute; inset: 0; z-index: 1;
+    background: rgba(8,5,3,0.78);
+  }
+  .hm-pkg__inner {
+    position: relative; z-index: 2;
+    display: grid;
+    gap: clamp(1.2rem, 3.2vw, 4rem);
+    align-items: center;
+    padding-block: clamp(1rem, 2.5vw, 2.5rem);
+  }
+  @media (min-width: 900px) {
+    .hm-pkg__inner { grid-template-columns: 1fr 0.7fr; }
+  }
+  .hm-pkg__text { display: flex; flex-direction: column; }
+  .hm-pkg__eyebrow {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.58rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--color-accent-on-dark);
+    margin-bottom: var(--space-s);
+  }
+  .hm-pkg__eyebrow::before {
+    content: ''; display: block;
+    width: 2rem; height: 1px;
+    background: var(--color-accent-on-dark); flex-shrink: 0;
+  }
+  .hm-pkg__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.76rem, 0.96rem + 2.8vw, 3.84rem);
+    font-weight: 300;
+    line-height: 1.04;
+    color: #fff;
+  }
+  .hm-pkg__title em { display: block; font-style: italic; color: var(--color-accent-on-dark); margin-top: 0.1rem; }
+  .hm-pkg__panel {
+    background: rgba(8,5,3,0.84);
+    border: 1px solid var(--color-accent-on-dark);
+    padding-inline: clamp(1.2rem, 2vw, 2rem);
+    padding-block: clamp(0.6rem, 1vw, 1rem);
+  }
+  .hm-pkg__list { list-style: none; padding: 0; margin: 0; }
+  .hm-pkg__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding-block: 0.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .hm-pkg__item:last-child { border-bottom: none; }
+  .hm-pkg__check {
+    flex-shrink: 0;
+    color: var(--color-accent-on-dark);
+    margin-top: 0.2rem;
+  }
+  .hm-pkg__item-body { display: flex; flex-direction: column; gap: 0.25rem; }
+  .hm-pkg__item-title {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 0.88rem + 0.5vw, 1.2rem);
+    font-weight: 300;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.3;
+  }
+  .hm-pkg__item-sub {
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.42);
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+  }
+  .hm-pkg__footer {
+    margin-top: var(--space-l);
+    padding-top: var(--space-m);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(0.95rem, 0.88rem + 0.35vw, 1.1rem);
+    color: var(--color-accent-on-dark);
+    line-height: 1.5;
+  }
+
+  /* ── Bar Collection ── */
+  .hm-bc { padding-top: var(--space-l); }
+  .hm-bc__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--space-m);
+    margin-bottom: var(--space-l);
+  }
+  .hm-bc__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent-ink);
+    margin-bottom: var(--space-s);
+  }
+  .hm-bc__eyebrow::before {
+    content: '';
+    display: block;
+    width: 2rem; height: 1px;
+    background: var(--color-accent-ink);
+    flex-shrink: 0;
+  }
+  .hm-bc__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 1rem + 4vw, 5rem);
+    font-weight: 300;
+    line-height: 1.04;
+    color: var(--color-text);
+  }
+  .hm-bc__title em { font-style: italic; color: var(--color-accent-ink); }
+  .hm-bc__arrows { display: flex; gap: 0.5rem; flex-shrink: 0; padding-bottom: 0.4rem; }
+  .hm-bc__arrow {
+    display: flex; align-items: center; justify-content: center;
+    width: 2.4rem; height: 2.4rem;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .hm-bc__arrow:hover { border-color: var(--color-accent-ink); color: var(--color-accent-ink); }
+  .hm-bc__stage {
+    display: grid;
+    gap: var(--space-l);
+    margin-bottom: var(--space-l);
+  }
+  @media (min-width: 900px) {
+    .hm-bc__stage { grid-template-columns: 3fr 2fr; gap: clamp(1.5rem, 3vw, 3rem); align-items: start; }
+  }
+  .hm-bc__main {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: var(--color-background-secondary);
+  }
+  .hm-bc__main-slide {
+    position: absolute; inset: 0;
+    opacity: 0;
+    transition: opacity 0.75s var(--ease);
+  }
+  .hm-bc__main-slide.is-active { opacity: 1; }
+  .hm-bc__sub-slide {
+    position: absolute; inset: 0;
+    opacity: 0;
+    transition: opacity 0.6s var(--ease);
+  }
+  .hm-bc__sub-slide.is-active { opacity: 1; }
+  .hm-bc__sub-slide :global(picture),
+  .hm-bc__sub-slide :global(img) { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .hm-bc__item-swatch { width: 100%; height: 100%; background: var(--swatch); }
+  .hm-bc__img-prev,
+  .hm-bc__img-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 4;
+    display: flex; align-items: center; justify-content: center;
+    width: 1.8rem; height: 1.8rem;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.4);
+    color: #fff;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: background 0.2s, opacity 0.3s;
+  }
+  .hm-bc__img-prev:hover,
+  .hm-bc__img-next:hover { background: rgba(255,255,255,0.28); }
+  .hm-bc__img-prev { left: 0.7rem; }
+  .hm-bc__img-next { right: 0.7rem; }
+  .hm-bc__main-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 1.4rem;
+    background: linear-gradient(to top, rgba(8,5,3,0.7) 0%, transparent 100%);
+  }
+  .hm-bc__main-name {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 1rem + 1.5vw, 2rem);
+    font-weight: 300; font-style: italic;
+    color: #fff; line-height: 1.1;
+  }
+  .hm-bc__main-mood {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--color-accent-on-dark);
+    margin-top: 0.25rem;
+  }
+  .hm-bc__list { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--color-border); }
+  .hm-bc__item { border-bottom: 1px solid var(--color-border); }
+  .hm-bc__item-btn {
+    display: flex; align-items: center; gap: 1rem;
+    width: 100%; padding: 0.75rem 0;
+    background: transparent; border: none; cursor: pointer; text-align: left;
+    transition: background 0.15s;
+  }
+  .hm-bc__item-btn:hover { background: rgba(0,0,0,0.025); }
+  .hm-bc__item.is-active .hm-bc__item-btn { background: rgba(0,0,0,0.018); }
+  .hm-bc__item-thumb {
+    width: 64px; height: 64px; flex-shrink: 0;
+    overflow: hidden; background: var(--color-background-secondary);
+  }
+  .hm-bc__item-thumb :global(picture),
+  .hm-bc__item-thumb :global(img) { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .hm-bc__item-info { flex: 1; min-width: 0; }
+  .hm-bc__item-name {
+    font-family: var(--font-display);
+    font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.15rem);
+    font-weight: 400; color: var(--color-accent-ink);
+    line-height: 1.2; margin-bottom: 0.2rem;
+  }
+  .hm-bc__item-mood { font-size: 0.7rem; color: var(--color-text-muted); line-height: 1.4; }
+  .hm-bc__item-soon { font-size: 0.7rem; font-style: italic; color: var(--color-text-muted); }
+  .hm-bc__stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--color-border);
+  }
+  @media (max-width: 699px) {
+    .hm-bc__stats { grid-template-columns: 1fr 1fr; }
+    .hm-bc__stat:nth-child(2) { border-right: none; }
+    .hm-bc__stat-cta { grid-column: 1 / -1; border-top: 1px solid var(--color-border); border-right: none; }
+  }
+  .hm-bc__stat {
+    display: flex; flex-direction: column; gap: 0.2rem;
+    padding: 1.1rem clamp(0.75rem, 2vw, 1.5rem);
+    border-right: 1px solid var(--color-border);
+  }
+  .hm-bc__stat-label {
+    font-family: var(--font-sans);
+    font-size: 0.52rem; font-weight: 500;
+    letter-spacing: 0.14em;
+    color: var(--color-text-muted);
+  }
+  .hm-bc__stat-size {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 1rem + 1vw, 2rem);
+    font-weight: 300; color: var(--color-text); line-height: 1;
+  }
+  .hm-bc__stat-note { font-size: 0.62rem; color: var(--color-text-muted); }
+  .hm-bc__stat-cta {
+    display: flex; align-items: center; justify-content: center;
+    padding: 1.1rem clamp(0.75rem, 2vw, 1.5rem);
+    font-family: var(--font-sans);
+    font-size: 0.6rem; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    text-decoration: none; color: var(--color-text);
+    transition: color 0.2s, background 0.2s;
+    text-align: center;
+  }
+  .hm-bc__stat-cta:hover { color: var(--color-accent-ink); background: rgba(0,0,0,0.02); }
+
+  /* ── Process ── */
+  .hm-proc { padding-top: var(--space-l); }
+  .hm-proc__inner {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+  @media (min-width: 960px) {
+    .hm-proc__inner { grid-template-columns: 5fr 6fr; gap: clamp(2rem, 5vw, 6rem); }
+  }
+  .hm-proc__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.6rem; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--color-accent-ink);
+    margin-bottom: var(--space-m);
+  }
+  .hm-proc__eyebrow::before {
+    content: ''; display: block;
+    width: 2rem; height: 1px;
+    background: var(--color-accent-ink); flex-shrink: 0;
+  }
+  .hm-proc__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 1rem + 2.5vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.06;
+    color: var(--color-text);
+    margin-bottom: var(--space-m);
+  }
+  .hm-proc__title em { display: block; font-style: italic; color: var(--color-accent-ink); }
+  .hm-proc__desc {
+    font-size: var(--fs-body);
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    max-width: 34rem;
+    margin-bottom: var(--space-l);
+  }
+  .hm-proc__always {
+    border: 1px solid var(--color-border);
+    background: #fff;
+    padding: var(--space-m);
+    margin-bottom: var(--space-l);
+  }
+  .hm-proc__always-label {
+    font-family: var(--font-sans);
+    font-size: 0.55rem; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-s);
+  }
+  .hm-proc__always-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.65rem; }
+  .hm-proc__always-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+  .hm-proc__always-check { flex-shrink: 0; color: var(--color-accent-ink); margin-top: 0.07rem; }
+  .hm-proc__cta {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.62rem; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.85rem 1.5rem;
+    background: var(--color-text);
+    color: var(--color-background);
+    border: 1px solid var(--color-text);
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .hm-proc__cta:hover {
+    background: var(--color-accent-ink);
+    border-color: var(--color-accent-ink);
+    color: var(--color-background);
+  }
+
+  .hm-proc__steps {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column;
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--color-border);
+  }
+  @media (min-width: 960px) {
+    .hm-proc__steps { padding-top: calc(var(--space-m) + 1.2rem); }
+  }
+  .hm-proc__step {
+    position: relative;
+    padding-bottom: var(--space-l);
+  }
+  .hm-proc__step:last-child { padding-bottom: 0; }
+  .hm-proc__step-dot {
+    position: absolute;
+    left: calc(-1.5rem - 5px);
+    top: 0.3rem;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--color-background);
+    border: 2px solid var(--color-border);
+    flex-shrink: 0;
+  }
+  .hm-proc__step--last .hm-proc__step-dot {
+    background: var(--color-accent-ink);
+    border-color: var(--color-accent-ink);
+  }
+  .hm-proc__step-label {
+    font-family: var(--font-sans);
+    font-size: 0.55rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent-ink);
+    margin-bottom: 0.4rem;
+  }
+  .hm-proc__step-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 0.85rem + 0.8vw, 1.5rem);
+    font-weight: 300;
+    color: var(--color-text);
+    line-height: 1.15;
+    margin-bottom: var(--space-s);
+  }
+  .hm-proc__step-text {
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+    line-height: 1.65;
+  }
+
+  /* ── Partners ── */
+  .hm-ptn { padding-top: var(--space-l); }
+  .hm-ptn__head {
+    margin-bottom: var(--space-s);
+  }
+  .hm-ptn__eyebrow {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.6rem; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--color-accent-on-dark);
+    margin-bottom: var(--space-s);
+  }
+  .hm-ptn__eyebrow::before {
+    content: ''; display: block;
+    width: 2rem; height: 1px;
+    background: var(--color-accent-on-dark); flex-shrink: 0;
+  }
+  .hm-ptn__title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 1rem + 3vw, 4rem);
+    font-weight: 300;
+    line-height: 1.04;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .hm-ptn__title em { font-style: italic; color: var(--color-accent-on-dark); }
+  .hm-ptn__intro {
+    font-size: 23px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.65;
+    white-space: nowrap;
+    margin-bottom: var(--space-l);
+  }
+  .hm-ptn__divider {
+    height: 1px;
+    background: rgba(255,255,255,0.12);
+    margin-block: var(--space-l);
+  }
+  .hm-ptn__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+  @media (min-width: 640px) {
+    .hm-ptn__grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .hm-ptn__num {
+    font-family: var(--font-sans);
+    font-size: 0.7rem; font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--color-accent-on-dark);
+    margin-bottom: var(--space-m);
+  }
+  .hm-ptn__col-label {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.6rem);
+    font-weight: 300;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: var(--space-s);
+  }
+  .hm-ptn__col-sub {
+    font-size: var(--fs-small);
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+    margin-bottom: var(--space-m);
+  }
+  .hm-ptn__col-link {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.62rem; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    text-decoration: none;
+    color: rgba(255,255,255,0.6);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 3px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .hm-ptn__col-link:hover { color: var(--color-accent-on-dark); border-color: var(--color-accent-on-dark); }
+  .hm-ptn__footer {
+    display: flex;
+    align-items: center;
+    gap: var(--space-l);
+    flex-wrap: wrap;
+  }
+  .hm-ptn__footer-text {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1rem, 0.8rem + 0.8vw, 1.4rem);
+    color: rgba(255,255,255,0.65);
+  }
+  .hm-ptn__footer-link {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.62rem; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    text-decoration: none;
+    color: rgba(255,255,255,0.6);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 3px;
+    flex-shrink: 0;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .hm-ptn__footer-link:hover { color: var(--color-accent-on-dark); border-color: var(--color-accent-on-dark); }
+
+  /* ── Instagram ── */
+  .hm-ig { padding-top: var(--space-l); }
+  .hm-ig__head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-s);
+    margin-bottom: var(--space-m);
+  }
+  .hm-ig__eyebrow {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.6rem; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--color-accent-ink);
+    margin-bottom: calc(var(--space-s) * 0.7);
+  }
+  .hm-ig__eyebrow::before {
+    content: ''; display: block;
+    width: 2rem; height: 1px;
+    background: var(--color-accent-ink); flex-shrink: 0;
+  }
+  .hm-ig__title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 1rem + 3vw, 4rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--color-text);
+  }
+  .hm-ig__title em { font-style: italic; color: var(--color-accent-ink); }
+  .hm-ig__handle {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    margin-top: 0.28rem;
+  }
+  .hm-ig__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-family: var(--font-sans);
+    font-size: 0.62rem; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.63rem 1.05rem;
+    background: var(--color-text);
+    color: var(--color-background);
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: calc(0.6rem * 1.5 + 0.7rem + 1.5rem);
+    transition: background 0.2s;
+  }
+  .hm-ig__cta:hover { background: var(--color-accent-ink); }
+
+  /* Grid */
+  .hm-ig__grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr;
+    gap: 4px;
+  }
+  .hm-ig__item {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 1;
+    text-decoration: none;
+  }
+  .hm-ig__item :global(picture),
+  .hm-ig__item :global(img) {
+    display: block; width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.8s var(--ease-out);
+  }
+  .hm-ig__item:hover :global(img) { transform: scale(1.04); }
+
+  /* Overlay for each cell */
+  .hm-ig__item-inner {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.42) 0%, transparent 45%);
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 0.7rem;
+    color: #fff;
+    transition: background 0.3s;
+  }
+  .hm-ig__item:hover .hm-ig__item-inner {
+    background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 55%);
+  }
+  .hm-ig__ig-icon {
+    position: absolute;
+    top: 0.65rem; right: 0.65rem;
+    color: rgba(255,255,255,0.88);
+  }
+  .hm-ig__date {
+    font-family: var(--font-sans);
+    font-size: 0.5rem; font-weight: 400;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.72);
+  }
+
+  /* "VEDI DI PIÙ" cell */
+  .hm-ig__item-inner--more {
+    background: rgba(8,5,3,0.58);
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    text-align: center;
+    transition: background 0.3s;
+  }
+  .hm-ig__item--more:hover .hm-ig__item-inner--more { background: rgba(8,5,3,0.68); }
+  .hm-ig__ig-icon--lg { position: static; }
+  .hm-ig__more-label {
+    font-family: var(--font-sans);
+    font-size: 0.62rem; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: #fff;
+  }
+  .hm-ig__date--abs {
+    position: absolute;
+    bottom: 0.7rem; left: 0.7rem;
+  }
+
+  /* Mobile */
+  @media (max-width: 699px) {
+    .hm-ig__grid {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+    }
   }
 </style>
+
+<script>
+  const bcRoot = document.querySelector<HTMLElement>('[data-bc-root]');
+  if (bcRoot) {
+    const bcRows   = Array.from(bcRoot.querySelectorAll<HTMLElement>('[data-bc-row]'));
+    const bcSlides = Array.from(bcRoot.querySelectorAll<HTMLElement>('[data-bc-slide]'));
+    const imgPrev  = bcRoot.querySelector<HTMLElement>('[data-bc-img-prev]');
+    const imgNext  = bcRoot.querySelector<HTMLElement>('[data-bc-img-next]');
+    let bcCurrent = 0;
+    const subIdx  = new Array(bcSlides.length).fill(0);
+
+    const getSubSlides = (i: number) =>
+      Array.from(bcSlides[i]?.querySelectorAll<HTMLElement>('[data-bc-sub]') ?? []);
+
+    const setSubSlide = (barI: number, delta: number) => {
+      const subs = getSubSlides(barI);
+      if (!subs.length) return;
+      subIdx[barI] = (subIdx[barI] + delta + subs.length) % subs.length;
+      subs.forEach((s, j) => s.classList.toggle('is-active', j === subIdx[barI]));
+    };
+
+    const syncImgArrows = (barI: number) => {
+      const show = getSubSlides(barI).length > 1;
+      [imgPrev, imgNext].forEach(btn => {
+        if (!btn) return;
+        btn.style.opacity = show ? '1' : '0';
+        btn.style.pointerEvents = show ? '' : 'none';
+      });
+    };
+
+    const bcActivate = (i: number) => {
+      bcCurrent = i;
+      bcRows.forEach((r, idx) => r.classList.toggle('is-active', idx === i));
+      bcSlides.forEach((s, idx) => s.classList.toggle('is-active', idx === i));
+      // Reset sub-image to first
+      const subs = getSubSlides(i);
+      subIdx[i] = 0;
+      subs.forEach((s, j) => s.classList.toggle('is-active', j === 0));
+      syncImgArrows(i);
+    };
+
+    // Hover and click on list items
+    bcRows.forEach((row, i) => {
+      row.addEventListener('mouseenter', () => bcActivate(i));
+      row.addEventListener('click',      () => bcActivate(i));
+    });
+
+    // Bar prev/next arrows (top-right header)
+    document.querySelector('[data-bc-prev]')?.addEventListener('click', () =>
+      bcActivate((bcCurrent - 1 + bcRows.length) % bcRows.length));
+    document.querySelector('[data-bc-next]')?.addEventListener('click', () =>
+      bcActivate((bcCurrent + 1) % bcRows.length));
+
+    // Image prev/next arrows (inside the photo)
+    imgPrev?.addEventListener('click', () => setSubSlide(bcCurrent, -1));
+    imgNext?.addEventListener('click', () => setSubSlide(bcCurrent, +1));
+
+    // Init
+    syncImgArrows(0);
+  }
+</script>

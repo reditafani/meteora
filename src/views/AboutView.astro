@@ -132,7 +132,7 @@ const steps: { title: string; text: string }[] = it
     imageAlt={it ? 'Tavola matrimoniale apparecchiata con fiori freschi e tovaglioli a quadretti' : 'Wedding table set with fresh flowers and gingham napkins'}
     crumbs={crumbs}
   >
-    <h1>Meteora Events</h1>
+    <h1>Meteora <em>Events</em></h1>
     <p slot="lead" class="lead hero-lead">
       {it
         ? `Il tuo partner specializzato nella gestione del servizio beverage per eventi. Nasciamo da oltre ${site.yearsExperience} anni di esperienza operativa nel settore.`
@@ -351,6 +351,12 @@ const steps: { title: string; text: string }[] = it
   /* Offset for fixed header on anchor links from nav dropdown */
   section[id] {
     scroll-margin-top: calc(var(--header-h-compact, 4rem) + 1rem);
+  }
+
+  /* Riduzione padding superiore eyebrow — stessa logica homepage */
+  section[aria-labelledby="a-story"],
+  section[aria-labelledby="a-serves"] {
+    padding-top: var(--space-l);
   }
   .cim {
     scroll-margin-top: calc(var(--header-h-compact, 4rem) + 1rem);

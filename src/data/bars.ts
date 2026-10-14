@@ -30,8 +30,8 @@ export interface Bar {
 
 export const barSizes = [
   { name: 'Slim', length: '1,5 m', lengthEn: '1.5 m' },
-  { name: 'Medium', length: '3,5 m', lengthEn: '3.5 m' },
-  { name: 'Large', length: '5,5 m', lengthEn: '5.5 m' },
+  { name: 'Medium', length: '3 m', lengthEn: '3 m' },
+  { name: 'Large', length: '6 m', lengthEn: '6 m' },
 ];
 
 export const bars: Bar[] = [

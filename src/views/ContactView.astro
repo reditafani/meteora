@@ -68,13 +68,6 @@ const privacyShort = privacyFull.replace(' per ricevere una risposta', '').repla
         ? 'Raccontateci il vostro evento: vi risponderemo con una proposta costruita su misura.'
         : 'Tell us about your event and we will reply with a proposal built around it.'}
     </p>
-    <div slot="cta">
-      <a class="scroll-arrow" href="#contact-form" aria-label={it ? 'Scorri alla sezione contatti' : 'Scroll to contact section'}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 5v14M5 12l7 7 7-7"/>
-        </svg>
-      </a>
-    </div>
   </PageHero>
 
   <!-- ── Quote section ── -->
@@ -550,8 +543,8 @@ const privacyShort = privacyFull.replace(' per ricevere una risposta', '').repla
   .form--boxed .field {
     border: 1px solid var(--color-border);
     background: #fff;
-    padding: 0.65rem 0.9rem 0.7rem;
-    gap: 0.2rem;
+    padding: 0.45rem 0.75rem 0.5rem;
+    gap: 0.15rem;
     transition: border-color 0.2s;
   }
   .form--boxed .field:focus-within {
