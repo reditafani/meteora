@@ -45,6 +45,7 @@ const desktopNav: NavItem[] = [
       { label: 'Aperitivo + open bar',       href: `${servicesUrl}#aperitivo`  },
       { label: 'Signature Tower Experience', href: `${servicesUrl}#tower`      },
       { label: it ? 'Servizio solo barman' : 'Bartender-only service', href: `${servicesUrl}#bartender` },
+      { label: it ? 'Personalizzazioni' : 'Bespoke add-ons',          href: `${servicesUrl}#personalizzazioni` },
     ],
   },
   { key: 'bars',     label: it ? 'Banchi bar' : 'Bar Collection' },
@@ -68,7 +69,7 @@ const desktopNav: NavItem[] = [
               href={url(item.key, lang)}
               class:list={['site-header__nav-link', current === item.key && 'is-current']}
               aria-current={current === item.key ? 'page' : undefined}
-            >{item.label}</a>
+            >{item.label}<svg class="site-header__caret" xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
             <div class="site-header__dropdown">
               {item.children.map((child, i) => (
                 <a href={child.href} class="site-header__drop-link" style={`--i:${i}`}>{child.label}</a>
@@ -198,6 +199,7 @@ const desktopNav: NavItem[] = [
     display: none;
     min-height: 2.75rem;
     padding: 0.7rem 1.25rem;
+    font-size: 0.62rem;
   }
   .site-header[data-theme='overlay']:not([data-scrolled]) .site-header__cta {
     --btn-bg: transparent;
@@ -270,6 +272,15 @@ const desktopNav: NavItem[] = [
     white-space: nowrap;
   }
   .site-header__nav-link:hover { opacity: 1; }
+  .site-header__caret {
+    display: inline-block;
+    margin-left: 0.25rem;
+    vertical-align: middle;
+    transition: transform 0.2s;
+  }
+  .site-header__nav-item:hover .site-header__caret {
+    transform: rotate(180deg);
+  }
   .site-header__nav-link.is-current {
     opacity: 1;
     color: var(--color-accent-ink);

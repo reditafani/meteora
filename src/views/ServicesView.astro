@@ -9,7 +9,13 @@ import TowerSection from '@/components/TowerSection.astro';
 import CocktailSlideshow from '@/components/CocktailSlideshow.astro';
 import { services } from '@/data/services';
 import { serviceSchema } from '@/lib/seo';
-import hero from '@/assets/images/bars/bartender-event.jpg';
+import hero      from '@/assets/images/bars/bartender-event.jpg';
+import iceHoshi  from '@/assets/images/ice/hoshizaki.jpg';
+import iceSphere from '@/assets/images/ice/sphere.jpg';
+import iceCube   from '@/assets/images/ice/compact-cube.jpg';
+import iceNugget from '@/assets/images/ice/nugget.jpg';
+import iceCube5  from '@/assets/images/ice/cube-5cm.jpg';
+import iceLong   from '@/assets/images/ice/long-drink.jpg';
 
 interface Props {
   lang: Lang;
@@ -31,6 +37,15 @@ const crumbs = [
   { name: s.breadcrumbHome, href: url('home', lang) },
   { name: it ? 'Servizi' : 'Services', href: url('services', lang) },
 ];
+const iceTypes = [
+  { src: iceCube,   labelIt: 'Cubo compatto', labelEn: 'Compact cube' },
+  { src: iceNugget, labelIt: 'Nugget',        labelEn: 'Nugget'       },
+  { src: iceCube5,  labelIt: 'Cubo 5×5',     labelEn: '5×5 cube'     },
+  { src: iceLong,   labelIt: 'Long drink',    labelEn: 'Long drink'   },
+  { src: iceSphere, labelIt: 'Sfera',         labelEn: 'Sphere'       },
+  { src: iceHoshi,  labelIt: 'Inciso',        labelEn: 'Engraved'     },
+];
+
 const schema = [
   ...services.map((sv) => serviceSchema({ name: sv.name[lang], serviceType: 'Bar catering', description: sv.summary[lang], url: url('services', lang, sv.id), lang })),
 ];
@@ -75,6 +90,51 @@ const schema = [
 
   <CocktailSlideshow lang={lang} />
 
+  <!-- ── Ice light section ── -->
+  <section class="section section--alt ice-lt" aria-labelledby="ice-lt-title">
+    <div class="container ice-lt__grid">
+
+      <!-- Left: framed image -->
+      <div class="ice-lt__img-wrap" data-reveal>
+        <div class="ice-lt__img">
+          <Img src={iceSphere} alt={it ? 'Sfera di ghiaccio premium' : 'Premium ice sphere'} sizes="(min-width: 900px) 18vw, 80vw" widths={[300, 500, 700]} />
+        </div>
+      </div>
+
+      <!-- Centre: text -->
+      <div class="ice-lt__text">
+        <p class="ice-lt__eyebrow" data-reveal>{it ? 'Il dettaglio invisibile' : 'The invisible detail'}</p>
+        <h2 id="ice-lt-title" class="ice-lt__title" data-reveal>
+          {it ? <>Tutto inizia <em>dal ghiaccio.</em></> : <>Everything begins <em>with ice.</em></>}
+        </h2>
+        <p class="ice-lt__desc muted" data-reveal>
+          {it
+            ? "Il ghiaccio non serve solo a raffreddare: controlla la diluizione e definisce l'equilibrio di ogni drink. Per noi è un ingrediente."
+            : "Ice doesn't just chill — it controls dilution and defines the balance of every drink. For us it's an ingredient."}
+        </p>
+        <p class="ice-lt__tagline" data-reveal>
+          <em>{it ? 'Formati da mixology e persino il vostro nome, inciso nel ghiaccio.' : 'Crafted by mixology — and even your name engraved in the ice.'}</em>
+        </p>
+        <a class="ice-lt__cta" href={url('ice', lang)} data-reveal>
+          {it ? 'CHIEDETECI DI PIÙ →' : 'ASK US MORE →'}
+        </a>
+      </div>
+
+      <!-- Right: 3×2 ice grid -->
+      <div class="ice-lt__types" data-reveal>
+        {iceTypes.map((tp) => (
+          <div class="ice-lt__type">
+            <div class="ice-lt__type-img">
+              <Img src={tp.src} alt={it ? tp.labelIt : tp.labelEn} sizes="(min-width: 900px) 10vw, 30vw" widths={[180, 320]} />
+            </div>
+            <p class="ice-lt__type-label">{it ? tp.labelIt : tp.labelEn}</p>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
   <section class="section section--tight">
     <div class="container svc">
       <TowerSection lang={lang} />
@@ -97,6 +157,42 @@ const schema = [
           </div>
         </article>
       ))}
+
+      <!-- 06 · Personalizzazioni su richiesta -->
+      <article class="svc__item" id="personalizzazioni" aria-labelledby="personalizzazioni-t">
+        <div class="media svc__media" data-reveal="image">
+          <Img src={iceHoshi} alt={it ? 'Cubo di ghiaccio con iniziali incise' : 'Ice cube with engraved initials'} sizes="(min-width: 960px) 34vw, 100vw" />
+        </div>
+        <div class="svc__text">
+          <p class="micro svc__kicker" data-reveal>06 · {it ? 'Personalizzazioni su richiesta' : 'Bespoke add-ons'}</p>
+          <h2 id="personalizzazioni-t" class="h3 svc__title" data-reveal>
+            {it ? <>Il vostro bar, <em>su misura.</em></> : <>Your bar, <em>to measure.</em></>}
+          </h2>
+          <p class="lead muted" data-reveal>
+            {it
+              ? "Ogni evento può diventare unico attraverso dettagli studiati su misura, coerenti con la vostra storia o con l'identità del vostro brand."
+              : 'Every event can become unique through bespoke details, coherent with your story or your brand identity.'}
+          </p>
+          <ul class="svc__inc" role="list" data-reveal>
+            {(it ? [
+              'Cocktail creati e nominati per voi',
+              'Le vostre iniziali incise nel ghiaccio',
+              'Frontale del banco bar con i vostri nomi o il logo',
+              'Tovaglioli personalizzati',
+              'Frutta decorativa incisa',
+              'Divise brandizzate per gli eventi aziendali',
+            ] : [
+              'Cocktails created and named for you',
+              'Your initials engraved in the ice',
+              'Bar front with your names or logo',
+              'Personalised napkins',
+              'Decorative engraved fruit',
+              'Branded uniforms for corporate events',
+            ]).map(item => <li>{item}</li>)}
+          </ul>
+        </div>
+      </article>
+
       <p class="muted svc__note">
         {it
           ? "Su richiesta: tempo extra, bartender e camerieri aggiuntivi, moduli bar extra. Nei momenti di maggiore affluenza il personale di supporto rende il servizio più rapido e fluido. Servizi realizzabili anche fuori regione e all'estero; eventuali costi di logistica si definiscono nel preventivo."
@@ -208,6 +304,30 @@ const schema = [
     font-size: 1rem;
     line-height: 1;
   }
+  .svc__tagline {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 0.85rem + 0.5vw, 1.2rem);
+    font-style: italic;
+    color: var(--color-accent-ink);
+    line-height: 1.5;
+  }
+  .svc__textcta {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-text-muted);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 3px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .svc__textcta:hover {
+    color: var(--color-accent-ink);
+    border-color: var(--color-accent-ink);
+  }
   .svc__note {
     max-width: 44rem;
     font-size: var(--fs-small);
@@ -266,4 +386,127 @@ const schema = [
       padding-right: 6rem;
     }
   }
+
+  /* ── Ice light section ── */
+  .ice-lt {
+    padding-block: clamp(3rem, 6vw, 5rem);
+  }
+  .ice-lt__grid {
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .ice-lt__grid {
+      grid-template-columns: 1.4fr 2.6fr 2.6fr;
+      gap: clamp(2rem, 4vw, 5rem);
+    }
+  }
+
+  /* Left image with frame */
+  .ice-lt__img-wrap {
+    position: relative;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+  }
+  .ice-lt__img-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 1rem 0 0 1rem;
+    border: 1px solid rgba(184, 158, 114, 0.5);
+    pointer-events: none;
+  }
+  .ice-lt__img {
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+  }
+  .ice-lt__img :global(picture),
+  .ice-lt__img :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Centre text */
+  .ice-lt__eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent-ink);
+    margin-bottom: var(--space-s);
+  }
+  .ice-lt__title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 1.2rem + 2.5vw, 4rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--color-text);
+    margin-bottom: var(--space-m);
+  }
+  .ice-lt__title em {
+    font-style: italic;
+    color: var(--color-accent-ink);
+  }
+  .ice-lt__desc {
+    font-size: var(--fs-body);
+    line-height: 1.7;
+    margin-bottom: var(--space-m);
+  }
+  .ice-lt__tagline {
+    font-family: var(--font-display);
+    font-size: clamp(0.95rem, 0.8rem + 0.5vw, 1.15rem);
+    font-style: italic;
+    color: var(--color-accent-ink);
+    line-height: 1.5;
+    margin-bottom: var(--space-m);
+  }
+  .ice-lt__cta {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-text-muted);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 3px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .ice-lt__cta:hover {
+    color: var(--color-accent-ink);
+    border-color: var(--color-accent-ink);
+  }
+
+  /* Right: 3×2 ice grid */
+  .ice-lt__types {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem 0.75rem;
+    align-self: center;
+  }
+  .ice-lt__type-img {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--color-border);
+    margin-bottom: 0.35rem;
+  }
+  .ice-lt__type-img :global(picture),
+  .ice-lt__type-img :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .ice-lt__type:hover .ice-lt__type-img :global(img) { transform: scale(1.04); }
+  .ice-lt__type-label {
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    line-height: 1.3;
+  }
+
 </style>

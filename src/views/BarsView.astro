@@ -81,9 +81,9 @@ const sizes = [
   </section>
 
   <!-- ── Bar collection ── -->
-  <section class="section" aria-labelledby="bars-list">
+  <section class="section" style="padding-top: var(--space-l)">
     <div class="container">
-      <SectionHeading eyebrow={it ? 'Collezione' : 'Collection'} id="bars-list">{it ? <>Sei caratteri, <em>tre misure.</em></> : <>Six characters, <em>three sizes.</em></>}</SectionHeading>
+      <SectionHeading eyebrow={it ? 'La nostra collezione' : 'Our collection'} class="bars-collection-head">{it ? <>Il banco giusto <em>per ogni evento.</em></> : <>The right bar <em>for every event.</em></>}</SectionHeading>
       <ul class="bars" role="list">
         {bars.map((b, i) => <li data-reveal style={`--delay:${(i % 2) * 0.08}s`}><BarCard bar={b} lang={lang} index={i} sizes="(min-width: 900px) 45vw, 100vw" /></li>)}
       </ul>
@@ -120,7 +120,7 @@ const sizes = [
   /* ── Hero ── */
   .bh {
     position: relative;
-    min-height: 100svh;
+    min-height: 80svh;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -272,7 +272,7 @@ const sizes = [
       );
     }
     .bh__content {
-      min-height: 60svh;
+      min-height: 48svh;
       padding: calc(var(--header-h, 4rem) + 1rem) var(--gutter) var(--space-xl);
     }
     .bh__stats {
@@ -281,6 +281,15 @@ const sizes = [
     .bh__stat:nth-child(2) { border-right: 1px solid rgba(255 255 255 / 0.08); }
     .bh__stat:nth-child(3) { border-right: none; }
     .bh__stat--cta { grid-column: 1 / -1; border-top: 1px solid rgba(255 255 255 / 0.08); }
+  }
+
+  /* ── Collection heading: single-line title, less gap before photos ── */
+  :global(.bars-collection-head) {
+    margin-bottom: 2.8rem !important;
+  }
+  :global(.bars-collection-head .sh__title) {
+    max-width: none;
+    white-space: nowrap;
   }
 
   /* ── Bar list ── */

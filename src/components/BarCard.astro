@@ -1,7 +1,6 @@
 ---
 import type { Bar } from '@/data/bars';
 import type { Lang } from '@/i18n/routes';
-import { routes } from '@/i18n/routes';
 import { t } from '@/i18n/ui';
 import Img from './Img.astro';
 
@@ -13,7 +12,6 @@ interface Props {
 }
 const { bar, lang, index, sizes = '(min-width: 1024px) 50vw, 85vw' } = Astro.props;
 const s = t(lang);
-const href = bar.status === 'available' ? `${routes.bars[lang]}${bar.slug}/` : undefined;
 const hasSlider = bar.images.length > 1;
 ---
 
@@ -56,11 +54,10 @@ const hasSlider = bar.images.length > 1;
   </div>
   <div class="barcard__body">
     <p class="micro barcard__n">{String(index + 1).padStart(2, '0')}{bar.status === 'coming-soon' && <> · {s.comingSoon}</>}</p>
-    <h3 class="barcard__name">{href ? <a href={href}>{bar.name}</a> : bar.name}</h3>
+    <h3 class="barcard__name">{bar.name}</h3>
     <p class="barcard__mood">{bar.mood[lang]}</p>
     <p class="barcard__desc muted">{bar.description[lang]}</p>
     <p class="barcard__ideal"><span class="micro">{s.idealFor}</span> {bar.idealFor[lang].join(' · ')}</p>
-    {href && <span class="link barcard__cta" aria-hidden="true">{s.discover} {bar.name}</span>}
   </div>
 </article>
 
@@ -200,14 +197,6 @@ const hasSlider = bar.images.length > 1;
     font-size: var(--fs-h3);
     margin-top: 0.35rem;
   }
-  .barcard__name a {
-    text-decoration: none;
-  }
-  .barcard__name a::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-  }
   .barcard__mood {
     font-family: var(--font-display);
     font-style: italic;
@@ -226,9 +215,6 @@ const hasSlider = bar.images.length > 1;
     display: block;
     color: var(--color-text-muted);
     margin-bottom: 0.2rem;
-  }
-  .barcard__cta {
-    margin-top: var(--space-s);
   }
   .barcard--soon .barcard__name {
     color: var(--color-text-muted);

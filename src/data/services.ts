@@ -28,7 +28,7 @@ export const services: Service[] = [
     name: { it: 'Open Bar — Essential Experience', en: 'Open Bar — Essential Experience' },
     kicker: { it: 'Open bar · 3 ore', en: 'Open bar · 3 hours' },
     summary: {
-      it: 'Tre ore di open bar gestite interamente dal nostro team, in modo autonomo e coordinato con il catering.',
+      it: `L'esperienza Meteora, completa: una selezione di cocktail e distillati, un banco della collezione e i nostri cristalli.`,
       en: 'Three hours of open bar run entirely by our team, independently and in step with the catering.',
     },
     includes: {
@@ -58,7 +58,7 @@ export const services: Service[] = [
     name: { it: 'Open Bar — Premium Experience', en: 'Open Bar — Premium Experience' },
     kicker: { it: 'Open bar · 3 ore', en: 'Open bar · 3 hours' },
     summary: {
-      it: 'La stessa cura del servizio, con una selezione di etichette premium e mixer serviti in vetro.',
+      it: `Tutto l'Essential, con distillati premium dalla nostra selezione stagionale e mixer premium in bottiglie di vetro.`,
       en: 'The same standard of service, with a premium label selection and mixers served from glass bottles.',
     },
     includes: {
@@ -86,7 +86,7 @@ export const services: Service[] = [
     name: { it: 'Aperitivo + Open Bar', en: 'Aperitivo + Open Bar' },
     kicker: { it: '1h30 aperitivo + 3h open bar', en: '1h30 aperitivo + 3h open bar' },
     summary: {
-      it: 'Un servizio chiavi in mano, dall’aperitivo all’open bar dopo cena. Se le aree coincidono l’aperitivo si integra nel banco bar; altrimenti viene allestito su tavoli tovagliati.',
+      it: `La nostra formula combinata: aperitivo e open bar, per accompagnare tutta la serata, dal primo brindisi all’ultimo drink.`,
       en: 'A turnkey service, from the aperitivo to the after-dinner open bar. If both happen in the same area the aperitivo is integrated into the bar counter; otherwise it is set up on draped tables.',
     },
     includes: {
@@ -112,7 +112,7 @@ export const services: Service[] = [
     name: { it: 'Signature Tower Experience', en: 'Signature Tower Experience' },
     kicker: { it: 'Un momento scenografico', en: 'A scenographic moment' },
     summary: {
-      it: 'Coppe o calici disposti a cascata e riempiti dal vivo dal nostro staff o dagli sposi. Per brindisi, taglio torta o apertura della festa.',
+      it: `Il momento che tutti fotografano: una torre di coppe riempita dal vivo con bollicine, Spritz o Espresso Martini. Per il brindisi, il taglio della torta o l'apertura della festa.`,
       en: 'Coupes or glasses arranged in a cascade and filled live by our staff or by the couple. For toasts, cake cutting or opening the party.',
     },
     includes: {
@@ -128,7 +128,7 @@ export const services: Service[] = [
     name: { it: 'Servizio solo barman', en: 'Bartender-only service' },
     kicker: { it: 'Staff e metodo Meteora', en: 'Meteora staff and method' },
     summary: {
-      it: 'Per chi dispone già di prodotti e attrezzature — banco, bicchieri, ghiaccio, utensileria — e cerca personale qualificato con il nostro metodo di lavoro.',
+      it: `Il nostro metodo, anche senza il nostro bar. Per chi dispone già di banco, bicchieri, ghiaccio e attrezzatura, e cerca bartender qualificati con i nostri standard di servizio.`,
       en: 'For clients who already have products and equipment — bar counter, glassware, ice, tools — and need qualified staff working to our method.',
     },
     includes: {
