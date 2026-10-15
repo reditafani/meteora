@@ -94,10 +94,17 @@ const schema = [
   <section class="section section--alt ice-lt" aria-labelledby="ice-lt-title">
     <div class="container ice-lt__grid">
 
-      <!-- Left: framed image -->
+      <!-- Left: framed image gallery -->
       <div class="ice-lt__img-wrap" data-reveal>
-        <div class="ice-lt__img">
-          <Img src={iceSphere} alt={it ? 'Sfera di ghiaccio premium' : 'Premium ice sphere'} sizes="(min-width: 900px) 18vw, 80vw" widths={[300, 500, 700]} />
+        <div class="ice-lt__img" data-ice-lt-gallery>
+          <div class="ice-lt__slide is-active" data-ice-lt-slide="0">
+            <Img src={iceSphere} alt={it ? 'Sfera di ghiaccio premium' : 'Premium ice sphere'} sizes="(min-width: 900px) 18vw, 80vw" widths={[300, 500, 700]} />
+          </div>
+          {iceTypes.map((tp, i) => (
+            <div class="ice-lt__slide" data-ice-lt-slide={i + 1}>
+              <Img src={tp.src} alt={it ? tp.labelIt : tp.labelEn} sizes="(min-width: 900px) 18vw, 80vw" widths={[300, 500, 700]} />
+            </div>
+          ))}
         </div>
       </div>
 
@@ -122,8 +129,8 @@ const schema = [
 
       <!-- Right: 3×2 ice grid -->
       <div class="ice-lt__types" data-reveal>
-        {iceTypes.map((tp) => (
-          <div class="ice-lt__type">
+        {iceTypes.map((tp, i) => (
+          <div class="ice-lt__type" data-ice-lt-target={i + 1}>
             <div class="ice-lt__type-img">
               <Img src={tp.src} alt={it ? tp.labelIt : tp.labelEn} sizes="(min-width: 900px) 10vw, 30vw" widths={[180, 320]} />
             </div>
@@ -419,9 +426,19 @@ const schema = [
   .ice-lt__img {
     aspect-ratio: 3 / 4;
     overflow: hidden;
+    position: relative;
   }
-  .ice-lt__img :global(picture),
-  .ice-lt__img :global(img) {
+  .ice-lt__slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+  }
+  .ice-lt__slide.is-active {
+    opacity: 1;
+  }
+  .ice-lt__slide :global(picture),
+  .ice-lt__slide :global(img) {
     display: block;
     width: 100%;
     height: 100%;
@@ -510,3 +527,21 @@ const schema = [
   }
 
 </style>
+
+<script>
+  const gallery = document.querySelector<HTMLElement>('[data-ice-lt-gallery]');
+  if (gallery) {
+    const slides = gallery.querySelectorAll<HTMLElement>('[data-ice-lt-slide]');
+    const items  = document.querySelectorAll<HTMLElement>('[data-ice-lt-target]');
+
+    function show(idx: number) {
+      slides.forEach(s => s.classList.toggle('is-active', s.dataset.iceLtSlide === String(idx)));
+    }
+
+    items.forEach(item => {
+      const target = Number(item.dataset.iceLtTarget);
+      item.addEventListener('mouseenter', () => show(target));
+      item.addEventListener('mouseleave', () => show(0));
+    });
+  }
+</script>
