@@ -32,8 +32,17 @@ const principles = it
 <section class="ice section section--dark" id={id} aria-labelledby={`${id}-title`}>
   <div class="container">
     <div class="ice__grid">
-      <div class="ice__media media drift" data-reveal="image">
-        <Img src={pour} alt={it ? 'Ghiaccio tritato che cade in una coppa da cocktail' : 'Crushed ice falling into a cocktail coupe'} sizes="(min-width: 960px) 40vw, 100vw" />
+      <div class="ice__media media drift" data-reveal="image" data-ice-gallery>
+        <!-- slide 0: default -->
+        <div class="ice__slide is-active" data-ice-slide="0">
+          <Img src={pour} alt={it ? 'Ghiaccio tritato che cade in una coppa da cocktail' : 'Crushed ice falling into a cocktail coupe'} sizes="(min-width: 960px) 40vw, 100vw" />
+        </div>
+        <!-- slides 1-N: one per ice type -->
+        {iceTypes.map((ice, i) => (
+          <div class="ice__slide" data-ice-slide={i + 1}>
+            <Img src={ice.image} alt={ice.name[lang]} sizes="(min-width: 960px) 40vw, 100vw" />
+          </div>
+        ))}
       </div>
       <div class="ice__text">
         <p class="eyebrow" data-reveal>{it ? 'Il nostro ghiaccio' : 'The ice we use'}</p>
@@ -58,8 +67,8 @@ const principles = it
       showTypes && (
         <div class="ice__types">
           <ul role="list" class="ice__rail">
-            {iceTypes.map((ice) => (
-              <li data-reveal>
+            {iceTypes.map((ice, i) => (
+              <li data-reveal data-ice-target={i + 1}>
                 <div class="media ice__thumb">
                   <Img src={ice.image} alt={ice.name[lang]} sizes="(min-width: 960px) 16vw, 60vw" widths={[320, 480, 711]} />
                 </div>
@@ -70,7 +79,7 @@ const principles = it
           </ul>
           <p class="micro muted ice__note">
             {it
-              ? 'La disponibilità delle tipologie premium viene confermata in fase di definizione dell’evento.'
+              ? `La disponibilità delle tipologie premium viene confermata in fase di definizione dell'evento.`
               : 'Availability of premium formats is confirmed during the event definition phase.'}
           </p>
         </div>
@@ -78,6 +87,24 @@ const principles = it
     }
   </div>
 </section>
+
+<script>
+  const gallery = document.querySelector<HTMLElement>('[data-ice-gallery]');
+  if (gallery) {
+    const slides = gallery.querySelectorAll<HTMLElement>('[data-ice-slide]');
+    const items  = document.querySelectorAll<HTMLElement>('[data-ice-target]');
+
+    function show(idx: number) {
+      slides.forEach(s => s.classList.toggle('is-active', s.dataset.iceSlide === String(idx)));
+    }
+
+    items.forEach(item => {
+      const target = Number(item.dataset.iceTarget);
+      item.addEventListener('mouseenter', () => show(target));
+      item.addEventListener('mouseleave', () => show(0));
+    });
+  }
+</script>
 
 <style>
   .ice__grid {
@@ -87,6 +114,23 @@ const principles = it
   .ice__media {
     aspect-ratio: 3 / 4.2;
     max-height: 90svh;
+    position: relative;
+  }
+  .ice__slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+  }
+  .ice__slide.is-active {
+    opacity: 1;
+  }
+  .ice__slide :global(picture),
+  .ice__slide :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   .ice__title {
     margin-top: var(--space-m);
@@ -132,6 +176,7 @@ const principles = it
   }
   .ice__rail li {
     scroll-snap-align: start;
+    cursor: default;
   }
   .ice__thumb {
     aspect-ratio: 1;
