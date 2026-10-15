@@ -81,9 +81,9 @@ const sizes = [
   </section>
 
   <!-- ── Bar collection ── -->
-  <section class="section" aria-labelledby="bars-list" style="padding-top: var(--space-l)">
+  <section class="section" style="padding-top: var(--space-l)">
     <div class="container">
-      <SectionHeading eyebrow={it ? 'Collezione' : 'Collection'} id="bars-list" class="bars-collection-head">{it ? <>Sei caratteri, <em>tre misure.</em></> : <>Six characters, <em>three sizes.</em></>}</SectionHeading>
+      <SectionHeading eyebrow={it ? 'La nostra collezione' : 'Our collection'} class="bars-collection-head">{it ? <>Il banco giusto <em>per ogni evento.</em></> : <>The right bar <em>for every event.</em></>}</SectionHeading>
       <ul class="bars" role="list">
         {bars.map((b, i) => <li data-reveal style={`--delay:${(i % 2) * 0.08}s`}><BarCard bar={b} lang={lang} index={i} sizes="(min-width: 900px) 45vw, 100vw" /></li>)}
       </ul>

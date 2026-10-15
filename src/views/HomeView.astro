@@ -35,8 +35,8 @@ const steps = it
   ? [
       { title: 'Raccontateci il vostro giorno',  text: 'Basta una email con data, location e numero di ospiti.' },
       { title: 'Costruiamo la vostra offerta',    text: 'Scegliete banco, formula e cocktail list, con le personalizzazioni che desiderate.' },
-      { title: 'Tutto per iscritto',              text: 'Una proposta e un contratto con ogni dettaglio incluso. Confermate con un acconto.' },
-      { title: "Il giorno dell'evento",           text: "Quel giorno l'unica cosa a cui dovrete pensare sarete voi due. Al bar penseremo noi, esattamente come lo abbiamo costruito insieme." },
+      { title: 'Tutto per iscritto',              text: 'Una proposta e un contratto con ogni dettaglio incluso.' },
+      { title: "Il giorno dell'evento",           text: "Quel giorno l'unica cosa a cui dovrete pensare sarete voi due.<br>Al bar penseremo noi, esattamente come lo abbiamo costruito insieme." },
     ]
   : [
       { title: 'Tell us about your day',          text: 'All it takes is an email with the date, venue and guest count.' },
@@ -48,11 +48,11 @@ const steps = it
 const packageItems = it
   ? [
       { title: 'Banco bar scenografico',                       sub: 'a scelta dalla nostra collezione'          },
-      { title: 'Bartender professionisti',                     sub: 'staff qualificato, in total black'          },
-      { title: 'Drink list signature',                         sub: '40 drink, personalizzabili per voi'         },
+      { title: 'Bartender professionisti',                     sub: 'staff qualificato, in divisa elegante'      },
+      { title: 'La vostra drink list',                         sub: 'Scegliete i vostri drink preferiti, al resto pensiamo noi.' },
       { title: 'Distillati selezionati e ingredienti freschi', sub: 'frutta fresca, disidratata, odori e spezie' },
       { title: 'Ghiaccio professionale',                       sub: 'scelto per ogni tipo di cocktail'           },
-      { title: 'Solo bicchieri in vetro',                      sub: 'mai plastica'                               },
+      { title: 'Il bicchiere giusto per ogni drink',            sub: 'serviamo drink in vetro, perché anche l\'occhio vuole la sua parte' },
       { title: 'Allestimento e smontaggio',                    sub: "la location torna come l'abbiamo trovata"   },
     ]
   : [
@@ -80,7 +80,7 @@ const eventTypes = [
   },
   {
     label: it ? 'Events privati'   : 'Private events',
-    sub:   it ? 'Ogni traguardo merita un brindisi fatto bene.' : 'Every milestone deserves a proper toast.',
+    sub:   it ? 'Ogni occasione merita un brindisi fatto bene.' : 'Every milestone deserves a proper toast.',
     img: privImg, alt: it ? 'Banco bar Spritz durante un aperitivo privato' : 'Spritz bar at a private aperitivo',
     href: url('corporate', lang),
   },
@@ -105,7 +105,7 @@ const svcDisplay = [
     </h1>
     <p class="lead home-hero__lead">
       {it
-        ? 'Open bar catering premium per matrimoni, eventi aziendali e privati. Base in Toscana, in tutta Italia.'
+        ? 'Open bar, mixology e banchi bar scenografici per matrimoni, eventi aziendali e privati. In Toscana e in tutta Italia.'
         : 'Premium open bar catering for weddings, destination weddings, corporate and private events. Based in Tuscany, throughout Italy.'}
     </p>
     <div class="cta-row home-hero__cta">
@@ -113,10 +113,10 @@ const svcDisplay = [
     </div>
     <div slot="after" class="home-hero__stats">
       {[
-        { n: it ? 'Da oltre 14 anni'      : '14+ years',              sub: it ? 'di esperienza operativa'         : 'of operational experience'      },
-        { n: it ? 'All inclusive package' : 'All-inclusive',          sub: it ? 'banco, staff, vetro, ghiaccio'   : 'bar, staff, glassware, ice'      },
-        { n: it ? 'Tutto per iscritto'    : 'Everything in writing',  sub: it ? 'un contratto con ogni dettaglio' : 'a contract for every detail'     },
-        { n: it ? 'Toscana e tutta Italia': 'Tuscany & Italy',        sub: it ? 'destination wedding ovunque'     : 'destination weddings everywhere'  },
+        { n: it ? '14 anni di esperienza'  : '14+ years',              sub: it ? 'nel settore eventi'              : 'of operational experience'      },
+        { n: it ? 'Drink illimitati'      : 'All-inclusive',          sub: it ? 'inclusi nel pacchetto acquistato': 'bar, staff, glassware, ice'      },
+        { n: it ? 'Drink list su misura'  : 'Everything in writing',  sub: it ? 'scegliete tra i nostri 40 drink' : 'a contract for every detail'     },
+        { n: it ? 'Base in Toscana'       : 'Tuscany & Italy',        sub: it ? 'trasferte in tutta Italia'       : 'destination weddings everywhere'  },
       ].map(item => (
         <div class="home-hero__stat">
           <strong class="home-hero__stat-n">{item.n}</strong>
@@ -154,7 +154,7 @@ const svcDisplay = [
         <div class="hm-intro__right" data-reveal style="--delay:.1s">
           <p class="hm-intro__desc">
             {it
-              ? "Professionalità, metodo ed esperienza scenografica, con una cura speciale per l'estetica dell'allestimento. Ogni dinamica dei vostri eventi la conosciamo dall'interno."
+              ? "Lavoriamo con metodo e con un'attenzione particolare all'estetica dell'allestimento. Gli eventi li conosciamo dall'interno, in ogni loro dinamica."
               : 'Professionalism, method and scenographic experience, with special care for the aesthetics of the setup. We know the dynamics of your events from the inside.'}
           </p>
           <p class="hm-intro__types">
@@ -174,12 +174,12 @@ const svcDisplay = [
       <div class="hm-ev__head">
         <p class="hm-ev__eyebrow" data-reveal>{it ? 'Per ogni occasione' : 'For every occasion'}</p>
         <h2 id="hm-ev-title" class="hm-ev__title" data-reveal style="--delay:.06s">
-          {it ? <>Matrimoni, aziende <em>ed eventi privati.</em></> : <>Weddings, corporate <em>and private events.</em></>}
+          {it ? <>Matrimoni, eventi aziendali <em>e privati</em></> : <>Weddings, corporate <em>and private events.</em></>}
         </h2>
       </div>
       <p class="hm-ev__lead" data-reveal style="--delay:.1s">
         {it
-          ? 'Lo stesso standard, ovunque: dal destination wedding in villa alla cena di gala aziendale.'
+          ? 'La stessa cura in ogni contesto, dal matrimonio in villa alla cena di gala aziendale.'
           : 'The same standard, everywhere: from the destination wedding at a villa to the corporate gala dinner.'}
       </p>
       <div class="hm-ev__grid">
@@ -270,7 +270,7 @@ const svcDisplay = [
       </div>
       <div class="hm-bc__stats">
         {[
-          { key: 'SLIM',   size: it ? '1,5 metri' : '1.5 metres', note: it ? 'fino a 60 ospiti'  : 'up to 60 guests'  },
+          { key: 'SLIM',   size: it ? '1,5 metri' : '1.5 metres', note: it ? 'fino a 45 ospiti'  : 'up to 45 guests'  },
           { key: 'MEDIUM', size: it ? '3 metri'   : '3 metres',   note: it ? 'fino a 150 ospiti' : 'up to 150 guests' },
           { key: 'LARGE',  size: it ? '6 metri'   : '6 metres',   note: it ? '250+ ospiti'       : '250+ guests'      },
         ].map(z => (
@@ -302,7 +302,7 @@ const svcDisplay = [
       </div>
       <p class="hm-svc__intro" data-reveal style="--delay:.08s">
         {it
-          ? 'Formule complete e autonome, coordinate con il catering, oppure solo il nostro staff e il nostro metodo.'
+          ? 'Ogni pacchetto include banco, staff, bicchieri, ghiaccio, allestimento e logistica. I drink sono illimitati per tutte le ore prenotate.'
           : 'Complete, independent packages coordinated with catering, or just our staff and our method.'}
       </p>
       <!-- Row 1: 3 cards -->
@@ -352,7 +352,7 @@ const svcDisplay = [
             <h3 class="hm-svc__card-name">{it ? <>Il vostro bar,<em>su misura.</em></> : <>Your bar,<em>to measure.</em></>}</h3>
             <p class="hm-svc__card-desc">
               {it
-                ? "Ogni evento può diventare unico attraverso dettagli studiati su misura, coerenti con la vostra storia o con l'identità del vostro brand."
+                ? "Ogni evento diventa unico grazie a dettagli su misura, pensati attorno alla vostra storia o all'identità del vostro brand."
                 : 'Every event can become unique through bespoke details, coherent with your story or your brand identity.'}
             </p>
             <span class="hm-svc__card-cta">{it ? 'SCOPRI →' : 'DISCOVER →'}</span>
@@ -420,10 +420,10 @@ const svcDisplay = [
           <ul class="hm-proc__always-list" role="list">
             {(it
               ? [
-                  'Coordinamento diretto con planner, location e catering',
-                  'Ogni dettaglio scritto nel contratto',
-                  'In Toscana e in tutta Italia',
-                  "Tutto via email, anche dall'estero",
+                  'Coordinamento diretto con planner, location e catering.',
+                  'Ogni dettaglio scritto nel contratto.',
+                  'In Toscana e in tutta Italia.',
+                  "Tutto via email, anche dall'estero.",
                 ]
               : [
                   'Direct coordination with planner, venue and catering',
@@ -454,7 +454,7 @@ const svcDisplay = [
             <div class="hm-proc__step-body">
               <p class="hm-proc__step-label">PASSO {(['I','II','III','IV'])[i]}</p>
               <h3 class="hm-proc__step-title">{step.title}</h3>
-              <p class="hm-proc__step-text">{step.text}</p>
+              <p class="hm-proc__step-text" set:html={step.text} />
             </div>
           </li>
         ))}
