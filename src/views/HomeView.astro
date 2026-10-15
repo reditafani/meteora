@@ -18,6 +18,7 @@ import corpImg from '@/assets/images/bars/golden-marble-night.jpg';
 import privImg from '@/assets/images/bars/spritz-open-bar.jpg';
 import procBg  from '@/assets/images/bars/bartender-event.jpg';
 import pkgBg   from '@/assets/images/bars/golden-mirror-sunset.jpg';
+import iceHoshi from '@/assets/images/ice/hoshizaki.jpg';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -85,11 +86,6 @@ const eventTypes = [
   },
 ];
 
-const partnerCats = [
-  { label: 'Wedding Planner', sub: it ? 'Chi organizza il vostro giorno.'                   : 'Who organises your day.',                          href: `${url('partners', lang)}#wedding-planner` },
-  { label: 'Location',         sub: it ? 'Ville, castelli e tenute che conosciamo dal vivo.' : 'Villas, castles and estates we know first-hand.',  href: `${url('partners', lang)}#location`         },
-  { label: 'Catering',          sub: it ? 'Cucine che conosciamo bene.'                      : 'Kitchens we know well.',                           href: `${url('partners', lang)}#catering`         },
-];
 
 const svcDisplay = [
   { kicker: it ? 'Open bar · 3 ore'     : 'Open bar · 3 hours',  line1: 'Open Bar —',              line2: 'Essential Experience'                   },
@@ -344,6 +340,24 @@ const svcDisplay = [
             </div>
           </a>
         ))}
+        <!-- 06 · Personalizzazioni su richiesta -->
+        <a class="hm-svc__card hm-svc__card--wide" href={`${url('services', lang)}#personalizzazioni`} data-reveal style="--delay:0.14s">
+          <div class="hm-svc__card-img">
+            <Img src={iceHoshi} alt={it ? 'Cubo di ghiaccio con iniziali incise' : 'Ice cube with engraved initials'} sizes="(min-width: 900px) 20vw, 50vw" />
+          </div>
+          <div class="hm-svc__card-body">
+            <p class="hm-svc__card-kicker">
+              <span>06 · {it ? 'PERSONALIZZAZIONI SU RICHIESTA' : 'BESPOKE ADD-ONS'}</span>
+            </p>
+            <h3 class="hm-svc__card-name">{it ? <>Il vostro bar,<em>su misura.</em></> : <>Your bar,<em>to measure.</em></>}</h3>
+            <p class="hm-svc__card-desc">
+              {it
+                ? "Ogni evento può diventare unico attraverso dettagli studiati su misura, coerenti con la vostra storia o con l'identità del vostro brand."
+                : 'Every event can become unique through bespoke details, coherent with your story or your brand identity.'}
+            </p>
+            <span class="hm-svc__card-cta">{it ? 'SCOPRI →' : 'DISCOVER →'}</span>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -450,50 +464,6 @@ const svcDisplay = [
   </section>
 
   <!-- 9 · PARTNERS -->
-  <section class="section section--dark hm-ptn on-dark" aria-labelledby="hm-ptn-title">
-    <div class="container">
-
-      <!-- Header: title + intro stacked -->
-      <div class="hm-ptn__head" data-reveal>
-        <p class="hm-ptn__eyebrow">{it ? 'Fornitori consigliati' : 'Recommended suppliers'}</p>
-        <h2 id="hm-ptn-title" class="hm-ptn__title">
-          {it ? <>Le persone giuste <em>per il vostro giorno.</em></> : <>The right people <em>for your day.</em></>}
-        </h2>
-      </div>
-      <p class="hm-ptn__intro" data-reveal style="--delay:.08s">
-        {it
-          ? 'Wedding planner, location e catering con cui lavoriamo e che consigliamo alle nostre coppie.'
-          : 'Wedding planners, venues and caterers we work with and recommend to our couples.'}
-      </p>
-
-      <div class="hm-ptn__divider" aria-hidden="true"></div>
-
-      <!-- 3 columns -->
-      <div class="hm-ptn__grid">
-        {partnerCats.map((cat, i) => (
-          <div class="hm-ptn__col" data-reveal style={`--delay:${i * 0.06}s`}>
-            <p class="hm-ptn__num">0{i + 1}</p>
-            <h3 class="hm-ptn__col-label">{cat.label}</h3>
-            <p class="hm-ptn__col-sub">{cat.sub}</p>
-            <a class="hm-ptn__col-link" href={cat.href}>{it ? 'SCOPRI →' : 'DISCOVER →'}</a>
-          </div>
-        ))}
-      </div>
-
-      <div class="hm-ptn__divider" aria-hidden="true"></div>
-
-      <!-- Footer row -->
-      <div class="hm-ptn__footer" data-reveal>
-        <p class="hm-ptn__footer-text">
-          <em>{it ? 'Siete un wedding planner o una location?' : 'Are you a wedding planner or a venue?'}</em>
-        </p>
-        <a class="hm-ptn__footer-link" href={url('contact', lang)}>
-          {it ? 'SCRIVETECI →' : 'CONTACT US →'}
-        </a>
-      </div>
-
-    </div>
-  </section>
 
   <!-- 10 · GALLERY / INSTAGRAM -->
   <section class="section section--alt hm-ig" aria-labelledby="hm-ig-title">
@@ -860,6 +830,9 @@ const svcDisplay = [
   .hm-svc__row2 { display: grid; gap: var(--space-m); }
   @media (min-width: 700px) {
     .hm-svc__row2 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 960px) {
+    .hm-svc__row2 { grid-template-columns: repeat(3, 1fr); }
   }
   /* Card base */
   .hm-svc__card {
@@ -1349,112 +1322,6 @@ const svcDisplay = [
     color: var(--color-text-muted);
     line-height: 1.65;
   }
-
-  /* ── Partners ── */
-  .hm-ptn { padding-top: var(--space-l); }
-  .hm-ptn__head {
-    margin-bottom: var(--space-s);
-  }
-  .hm-ptn__eyebrow {
-    display: flex; align-items: center; gap: 0.75rem;
-    font-family: var(--font-sans);
-    font-size: 0.6rem; font-weight: 500;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--color-accent-on-dark);
-    margin-bottom: var(--space-s);
-  }
-  .hm-ptn__eyebrow::before {
-    content: ''; display: block;
-    width: 2rem; height: 1px;
-    background: var(--color-accent-on-dark); flex-shrink: 0;
-  }
-  .hm-ptn__title {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 1rem + 3vw, 4rem);
-    font-weight: 300;
-    line-height: 1.04;
-    color: #fff;
-    white-space: nowrap;
-  }
-  .hm-ptn__title em { font-style: italic; color: var(--color-accent-on-dark); }
-  .hm-ptn__intro {
-    font-size: 23px;
-    color: rgba(255,255,255,0.55);
-    line-height: 1.65;
-    white-space: nowrap;
-    margin-bottom: var(--space-l);
-  }
-  .hm-ptn__divider {
-    height: 1px;
-    background: rgba(255,255,255,0.12);
-    margin-block: var(--space-l);
-  }
-  .hm-ptn__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-xl);
-  }
-  @media (min-width: 640px) {
-    .hm-ptn__grid { grid-template-columns: repeat(3, 1fr); }
-  }
-  .hm-ptn__num {
-    font-family: var(--font-sans);
-    font-size: 0.7rem; font-weight: 400;
-    letter-spacing: 0.06em;
-    color: var(--color-accent-on-dark);
-    margin-bottom: var(--space-m);
-  }
-  .hm-ptn__col-label {
-    font-family: var(--font-display);
-    font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.6rem);
-    font-weight: 300;
-    color: #fff;
-    line-height: 1.1;
-    margin-bottom: var(--space-s);
-  }
-  .hm-ptn__col-sub {
-    font-size: var(--fs-small);
-    color: rgba(255,255,255,0.5);
-    line-height: 1.6;
-    margin-bottom: var(--space-m);
-  }
-  .hm-ptn__col-link {
-    display: inline-block;
-    font-family: var(--font-sans);
-    font-size: 0.62rem; font-weight: 500;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    text-decoration: none;
-    color: rgba(255,255,255,0.6);
-    border-bottom: 1px solid rgba(255,255,255,0.3);
-    padding-bottom: 3px;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .hm-ptn__col-link:hover { color: var(--color-accent-on-dark); border-color: var(--color-accent-on-dark); }
-  .hm-ptn__footer {
-    display: flex;
-    align-items: center;
-    gap: var(--space-l);
-    flex-wrap: wrap;
-  }
-  .hm-ptn__footer-text {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: clamp(1rem, 0.8rem + 0.8vw, 1.4rem);
-    color: rgba(255,255,255,0.65);
-  }
-  .hm-ptn__footer-link {
-    display: inline-block;
-    font-family: var(--font-sans);
-    font-size: 0.62rem; font-weight: 500;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    text-decoration: none;
-    color: rgba(255,255,255,0.6);
-    border-bottom: 1px solid rgba(255,255,255,0.3);
-    padding-bottom: 3px;
-    flex-shrink: 0;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .hm-ptn__footer-link:hover { color: var(--color-accent-on-dark); border-color: var(--color-accent-on-dark); }
 
   /* ── Instagram ── */
   .hm-ig { padding-top: var(--space-l); }
