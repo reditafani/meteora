@@ -12,7 +12,7 @@ export const ui = {
     mainNav: 'Navigazione principale',
     langLabel: 'Lingua',
     langSwitchTo: 'Passa alla versione inglese',
-    quote: 'Richiedi un preventivo',
+    quote: 'Richiedi preventivo',
     quoteShort: 'Preventivo',
     quoteYour: 'Richiedi il tuo preventivo',
     partnerArea: 'Area partner',

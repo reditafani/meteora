@@ -75,9 +75,11 @@ const schema = [
           <div class="svc__text">
             <p class="micro svc__kicker" data-reveal>{String(i + 1).padStart(2, '0')} · {sv.kicker[lang]}</p>
             <h2 id={`${sv.id}-t`} class="h3 svc__title" data-reveal>
-              {sv.name[lang].includes(' — ')
-                ? <>{sv.name[lang].split(' — ')[0]} —<br /><em>{sv.name[lang].split(' — ')[1]}</em></>
-                : sv.name[lang]}
+              {sv.id === 'aperitivo'
+                ? <>{it ? 'Aperitivo +' : 'Aperitivo +'}<em>{it ? 'Open Bar' : 'Open Bar'}</em></>
+                : sv.name[lang].includes(' — ')
+                  ? <>{sv.name[lang].split(' — ')[0]} —<br /><em>{sv.name[lang].split(' — ')[1]}</em></>
+                  : sv.name[lang]}
             </h2>
             <p class="lead muted" data-reveal>
               {sv.id === 'essential' && it
@@ -167,9 +169,11 @@ const schema = [
           <div class="svc__text">
             <p class="micro svc__kicker" data-reveal>{String(i + 5).padStart(2, '0')} · {sv.kicker[lang]}</p>
             <h2 id={`${sv.id}-t`} class="h3 svc__title" data-reveal>
-              {sv.name[lang].includes(' — ')
-                ? <>{sv.name[lang].split(' — ')[0]} —<br /><em>{sv.name[lang].split(' — ')[1]}</em></>
-                : sv.name[lang]}
+              {sv.id === 'bartender'
+                ? <>Bartender<em>Service</em></>
+                : sv.name[lang].includes(' — ')
+                  ? <>{sv.name[lang].split(' — ')[0]} —<br /><em>{sv.name[lang].split(' — ')[1]}</em></>
+                  : sv.name[lang]}
             </h2>
             <p class="lead muted" data-reveal>
               {sv.id === 'bartender' && it
@@ -192,12 +196,12 @@ const schema = [
         <div class="svc__text">
           <p class="micro svc__kicker" data-reveal>06 · {it ? 'Personalizzazioni su richiesta' : 'Bespoke add-ons'}</p>
           <h2 id="personalizzazioni-t" class="h3 svc__title" data-reveal>
-            {it ? <>Il vostro bar, <em>su misura.</em></> : <>Your bar, <em>to measure.</em></>}
+            {it ? <>Un bar <em>che parla di voi</em></> : <>A bar <em>that speaks of you</em></>}
           </h2>
           <p class="lead muted" data-reveal>
             {it
-              ? "Ogni evento può diventare unico attraverso dettagli studiati su misura, coerenti con la vostra storia o con l'identità del vostro brand."
-              : 'Every event can become unique through bespoke details, coherent with your story or your brand identity.'}
+              ? "Dettagli su misura che raccontano la vostra storia o l'identità del vostro brand, e rendono il bar inconfondibilmente vostro."
+              : 'Bespoke details that tell your story or your brand identity, making the bar unmistakably yours.'}
           </p>
           <ul class="svc__inc" role="list" data-reveal>
             {(it ? [
