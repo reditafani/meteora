@@ -56,11 +56,12 @@ const schema = [
     <h1>{it ? <>Dall'aperitivo <em>all'ultimo drink.</em></> : <>From aperitivo <em>to the last drink.</em></>}</h1>
     <p slot="lead" class="lead muted">
       {it
-        ? 'Formule complete e autonome, coordinate con il catering, oppure solo il nostro staff e il nostro metodo. Ogni proposta è costruita su misura.'
+        ? 'Un servizio bar completo: metodo nel servizio, effetto scenico nell\'allestimento. Ogni proposta è costruita su misura.'
         : 'Complete, independent formulas coordinated with your caterer — or simply our staff and our method. Every proposal is built to measure.'}
     </p>
     <nav slot="bottombar" class="svc-index" aria-label={it ? "Indice servizi" : "Services index"}>
       {services.map((sv) => <a href={`#${sv.id}`}>{tabLabels[sv.id][lang]}</a>)}
+      <a href="#personalizzazioni">{it ? 'Personalizzazioni' : 'Bespoke add-ons'}</a>
     </nav>
   </PageHero>
 
@@ -78,9 +79,22 @@ const schema = [
                 ? <>{sv.name[lang].split(' — ')[0]} —<br /><em>{sv.name[lang].split(' — ')[1]}</em></>
                 : sv.name[lang]}
             </h2>
-            <p class="lead muted" data-reveal>{sv.summary[lang]}</p>
+            <p class="lead muted" data-reveal>
+              {sv.id === 'essential' && it
+                ? 'Arriva il momento che tutti aspettano: la festa. Le luci si abbassano, la musica sale e il bar diventa il cuore della serata. Voi pensate solo a divertirvi, al resto pensiamo noi: dall\'allestimento all\'ultimo drink.'
+                : sv.id === 'premium' && it
+                  ? 'Per chi vuole offrire ai propri ospiti il meglio. Le etichette più ricercate e prodotti premium: un open bar di un altro livello, drink dopo drink.'
+                  : sv.id === 'aperitivo' && it
+                    ? 'Una formula completa, pensata per accompagnare ogni momento. Un aperitivo con la sua drink list e il suo allestimento, poi l\'open bar per la festa. Due momenti diversi, la stessa attenzione ai dettagli.'
+                    : sv.summary[lang]}
+            </p>
+            {(sv.id === 'essential' || sv.id === 'premium') && (
+              <p class="svc__inc-label" data-reveal>{it ? 'Il servizio include:' : 'The service includes:'}</p>
+            )}
             <ul class="svc__inc" role="list" data-reveal>
-              {sv.includes[lang].map((x) => <li>{x}</li>)}
+              {sv.includes[lang].map((x, idx) => (
+                <li class:list={[sv.id === 'premium' && idx === 4 && 'svc__inc--highlight']}>{x}</li>
+              ))}
             </ul>
           </div>
         </article>
@@ -293,8 +307,19 @@ const schema = [
     color: var(--color-accent-ink);
     display: block;
   }
+  .svc__inc-label {
+    font-size: var(--fs-small);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-top: var(--space-m);
+    margin-bottom: 0.25rem;
+  }
   .svc__inc {
     border-top: 1px solid var(--color-border);
+  }
+  .svc__inc--highlight {
+    font-weight: 600;
+    color: var(--color-accent-ink);
   }
   .svc__inc li {
     display: flex;
