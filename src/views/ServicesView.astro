@@ -76,7 +76,7 @@ const schema = [
             <p class="micro svc__kicker" data-reveal>{String(i + 1).padStart(2, '0')} · {sv.kicker[lang]}</p>
             <h2 id={`${sv.id}-t`} class="h3 svc__title" data-reveal>
               {sv.id === 'aperitivo'
-                ? <>{it ? 'Aperitivo +' : 'Aperitivo +'}<em>{it ? 'Open Bar' : 'Open Bar'}</em></>
+                ? <>{it ? 'Aperitivo + ' : 'Aperitivo + '}<em>{it ? 'Open Bar' : 'Open Bar'}</em></>
                 : sv.name[lang].includes(' — ')
                   ? <>{sv.name[lang].split(' — ')[0]} — <em>{sv.name[lang].split(' — ')[1]}</em></>
                   : sv.name[lang]}
@@ -170,7 +170,7 @@ const schema = [
             <p class="micro svc__kicker" data-reveal>{String(i + 5).padStart(2, '0')} · {sv.kicker[lang]}</p>
             <h2 id={`${sv.id}-t`} class="h3 svc__title" data-reveal>
               {sv.id === 'bartender'
-                ? <>Bartender<em>Service</em></>
+                ? <>Bartender <em>Service</em></>
                 : sv.name[lang].includes(' — ')
                   ? <>{sv.name[lang].split(' — ')[0]} — <em>{sv.name[lang].split(' — ')[1]}</em></>
                   : sv.name[lang]}
@@ -223,11 +223,17 @@ const schema = [
         </div>
       </article>
 
-      <p class="muted svc__note">
-        {it
-          ? "Su richiesta: tempo extra, bartender e camerieri aggiuntivi, moduli bar extra. Nei momenti di maggiore affluenza il personale di supporto rende il servizio più rapido e fluido. Servizi realizzabili anche fuori regione e all'estero; eventuali costi di logistica si definiscono nel preventivo."
-          : "On request: extra time, additional bartenders and waiters, extra bar modules. At peak moments, support staff keep service fast and fluid. Services can also be delivered outside the region and abroad; any logistics costs are defined in the quote."}
+    </div>
+  </section>
+
+  <section class="svc-outro on-dark">
+    <div class="container svc-outro__inner">
+      <p class="svc-outro__text" data-reveal>
+        {it ? 'Avete in mente qualcosa di diverso? Raccontatecelo, lo realizziamo per voi.' : 'Have something different in mind? Tell us about it — we will make it happen.'}
       </p>
+      <a class="btn btn--ghost-light svc-outro__btn" href={url('contact', lang)} data-reveal style="--delay:.08s">
+        {it ? 'Contattaci' : 'Contact us'}
+      </a>
     </div>
   </section>
 
@@ -529,6 +535,29 @@ const schema = [
   .ice-lt__cta:hover {
     color: var(--color-accent-ink);
     border-color: var(--color-accent-ink);
+  }
+
+  /* ── svc-outro dark closer ── */
+  .svc-outro {
+    background: var(--color-bg-dark, #0d0d0d);
+    padding-block: var(--space-xl);
+    text-align: center;
+  }
+  .svc-outro__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-m);
+    max-width: 42rem;
+    margin-inline: auto;
+  }
+  .svc-outro__text {
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 1rem + 0.8vw, 1.5rem);
+    font-style: italic;
+    color: #fff;
+    line-height: 1.5;
+    margin: 0;
   }
 
   /* Right: 3×2 ice grid */
