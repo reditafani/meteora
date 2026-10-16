@@ -78,7 +78,7 @@ const schema = [
               {sv.id === 'aperitivo'
                 ? <>{it ? 'Aperitivo +' : 'Aperitivo +'}<em>{it ? 'Open Bar' : 'Open Bar'}</em></>
                 : sv.name[lang].includes(' — ')
-                  ? <>{sv.name[lang].split(' — ')[0]} —<br /><em>{sv.name[lang].split(' — ')[1]}</em></>
+                  ? <>{sv.name[lang].split(' — ')[0]} — <em>{sv.name[lang].split(' — ')[1]}</em></>
                   : sv.name[lang]}
             </h2>
             <p class="lead muted" data-reveal>
@@ -172,7 +172,7 @@ const schema = [
               {sv.id === 'bartender'
                 ? <>Bartender<em>Service</em></>
                 : sv.name[lang].includes(' — ')
-                  ? <>{sv.name[lang].split(' — ')[0]} —<br /><em>{sv.name[lang].split(' — ')[1]}</em></>
+                  ? <>{sv.name[lang].split(' — ')[0]} — <em>{sv.name[lang].split(' — ')[1]}</em></>
                   : sv.name[lang]}
             </h2>
             <p class="lead muted" data-reveal>
@@ -314,7 +314,6 @@ const schema = [
   .svc__title em {
     font-style: italic;
     color: var(--color-accent-ink);
-    display: block;
   }
   .svc__inc-label {
     font-size: var(--fs-small);
