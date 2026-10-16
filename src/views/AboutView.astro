@@ -246,9 +246,6 @@ const steps: { title: string; text: string }[] = it
             </li>
           ))}
         </ul>
-        <div class="cim__footer">
-          <em>{it ? 'Ogni dettaglio, nero su bianco nel contratto.' : 'Every detail, in writing, in the contract.'}</em>
-        </div>
       </div>
     </div>
   </section>
@@ -652,15 +649,6 @@ const steps: { title: string; text: string }[] = it
     font-size: 0.68rem;
     color: rgba(255, 255, 255, 0.42);
     line-height: 1.4;
-  }
-  .cim__footer {
-    margin-top: var(--space-m);
-    padding-top: var(--space-m);
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: clamp(0.9rem, 0.8rem + 0.3vw, 1.05rem);
-    color: var(--color-accent-on-dark);
   }
   @media (max-width: 759px) {
     .cim__card { padding: var(--space-m); }

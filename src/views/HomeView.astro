@@ -393,9 +393,6 @@ const svcDisplay = [
             </li>
           ))}
         </ul>
-        <p class="hm-pkg__footer">
-          <em>{it ? 'Ogni dettaglio, nero su bianco nel contratto.' : 'Every detail, in black and white in the contract.'}</em>
-        </p>
       </div>
     </div>
   </section>
@@ -967,7 +964,7 @@ const svcDisplay = [
   .hm-pkg__title em { display: block; font-style: italic; color: var(--color-accent-on-dark); margin-top: 0.1rem; }
   .hm-pkg__panel {
     background: rgba(8,5,3,0.84);
-    border: 1px solid var(--color-accent-on-dark);
+    border: 1px solid rgba(207,182,138,0.4);
     padding-inline: clamp(1.2rem, 2vw, 2rem);
     padding-block: clamp(0.6rem, 1vw, 1rem);
   }
@@ -999,16 +996,6 @@ const svcDisplay = [
     color: rgba(255,255,255,0.42);
     line-height: 1.4;
     letter-spacing: 0.01em;
-  }
-  .hm-pkg__footer {
-    margin-top: var(--space-l);
-    padding-top: var(--space-m);
-    border-top: 1px solid rgba(255,255,255,0.1);
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: clamp(0.95rem, 0.88rem + 0.35vw, 1.1rem);
-    color: var(--color-accent-on-dark);
-    line-height: 1.5;
   }
 
   /* ── Bar Collection ── */
