@@ -129,7 +129,7 @@ export const services: Service[] = [
   },
   {
     id: 'bartender',
-    name: { it: 'Servizio solo barman', en: 'Bartender-only service' },
+    name: { it: 'Bartender Service', en: 'Bartender Service' },
     kicker: { it: 'Staff e metodo Meteora', en: 'Meteora staff and method' },
     summary: {
       it: `Il nostro metodo, anche senza il nostro bar. Per chi dispone già di banco, bicchieri, ghiaccio e attrezzatura, e cerca bartender qualificati con i nostri standard di servizio.`,
@@ -137,14 +137,18 @@ export const services: Service[] = [
     },
     includes: {
       it: [
-        'Preparazione e servizio secondo standard professionali di mixology',
-        'Possibile integrazione con un cameriere',
-        'Ideale per eventi privati, aziendali, di piccole dimensioni e rinfreschi',
+        'Bartender professionisti del nostro team',
+        'Preparazione e servizio dei cocktail a regola d\'arte',
+        'Allestimento e riordino della postazione',
+        'Consulenza su drink list, prodotti, quantità e attrezzatura',
+        'Staff di sala su richiesta',
       ],
       en: [
-        'Preparation and service to professional mixology standards',
-        'Can be combined with a waiter for order handling',
-        'Designed for private, corporate and smaller events and receptions',
+        'Professional bartenders from our team',
+        'Cocktail preparation and service to the highest standard',
+        'Setup and breakdown of the bar station',
+        'Consultation on drink list, products, quantities and equipment',
+        'Floor staff available on request',
       ],
     },
     image: bartenderPour,

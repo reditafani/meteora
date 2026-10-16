@@ -88,7 +88,7 @@ const schema = [
                     ? 'Una formula completa, pensata per accompagnare ogni momento. Un aperitivo con la sua drink list e il suo allestimento, poi l\'open bar per la festa. Due momenti diversi, la stessa attenzione ai dettagli.'
                     : sv.summary[lang]}
             </p>
-            {(sv.id === 'essential' || sv.id === 'premium') && (
+            {(sv.id === 'essential' || sv.id === 'premium' || sv.id === 'aperitivo') && (
               <p class="svc__inc-label" data-reveal>{it ? 'Il servizio include:' : 'The service includes:'}</p>
             )}
             <ul class="svc__inc" role="list" data-reveal>
@@ -171,7 +171,12 @@ const schema = [
                 ? <>{sv.name[lang].split(' — ')[0]} —<br /><em>{sv.name[lang].split(' — ')[1]}</em></>
                 : sv.name[lang]}
             </h2>
-            <p class="lead muted" data-reveal>{sv.summary[lang]}</p>
+            <p class="lead muted" data-reveal>
+              {sv.id === 'bartender' && it
+                ? 'Il nostro metodo, anche senza il nostro bar. Una soluzione per chi cerca bartender qualificati, con i nostri standard di servizio e la nostra consulenza.'
+                : sv.summary[lang]}
+            </p>
+            <p class="svc__inc-label" data-reveal>{it ? 'Il servizio include:' : 'The service includes:'}</p>
             <ul class="svc__inc" role="list" data-reveal>
               {sv.includes[lang].map((x) => <li>{x}</li>)}
             </ul>
