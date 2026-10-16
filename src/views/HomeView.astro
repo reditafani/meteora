@@ -92,7 +92,7 @@ const svcDisplay = [
   { kicker: it ? 'Open bar · 3 ore'     : 'Open bar · 3 hours',  line1: 'Open Bar —',              line2: 'Premium Experience'                     },
   { kicker: it ? '1h30 + 3 ore'         : '1h30 + 3 hours',      line1: it ? 'Aperitivo +' : 'Aperitivo +', line2: 'Open Bar'                     },
   { kicker: it ? 'Momento scenografico' : 'Scenographic moment', line1: 'Signature Tower',          line2: 'Experience'                             },
-  { kicker: it ? 'Staff e metodo'       : 'Staff and method',    line1: it ? 'Servizio' : 'Bartender-only', line2: it ? 'solo barman' : 'service'   },
+  { kicker: it ? 'Staff e metodo'       : 'Staff and method',    line1: 'Bartender',                        line2: 'Service'                        },
 ];
 ---
 
@@ -349,7 +349,7 @@ const svcDisplay = [
             <p class="hm-svc__card-kicker">
               <span>06 · {it ? 'PERSONALIZZAZIONI SU RICHIESTA' : 'BESPOKE ADD-ONS'}</span>
             </p>
-            <h3 class="hm-svc__card-name">{it ? <>Il vostro bar,<em>su misura.</em></> : <>Your bar,<em>to measure.</em></>}</h3>
+            <h3 class="hm-svc__card-name">{it ? <>Un bar <em>che parla di voi</em></> : <>A bar <em>that speaks of you</em></>}</h3>
             <p class="hm-svc__card-desc">
               {it
                 ? "Ogni evento diventa unico grazie a dettagli su misura, pensati attorno alla vostra storia o all'identità del vostro brand."
