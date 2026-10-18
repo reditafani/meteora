@@ -99,9 +99,23 @@ const s = t(lang);
     </main>
     <Footer lang={lang} alternates={alternates} />
     <CookieConsent lang={lang} />
+    <button class="btt" id="btt" aria-label={lang === 'it' ? 'Torna in cima' : 'Back to top'}>
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+    </button>
     <script>
       import { initReveal } from '@/scripts/reveal';
       initReveal();
+    </script>
+    <script>
+      const btt = document.getElementById('btt');
+      if (btt) {
+        window.addEventListener('scroll', () => {
+          btt.classList.toggle('is-visible', window.scrollY > 400);
+        }, { passive: true });
+        btt.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
     </script>
   </body>
 </html>
@@ -127,5 +141,35 @@ const s = t(lang);
   }
   .main--offset {
     padding-top: var(--header-h);
+  }
+
+  /* ── Back to top ── */
+  .btt {
+    position: fixed;
+    bottom: 1.75rem;
+    right: 1.75rem;
+    z-index: 60;
+    width: 2.4rem;
+    height: 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(8, 5, 3, 0.82);
+    border: 1px solid rgba(207, 182, 138, 0.45);
+    color: rgba(207, 182, 138, 0.85);
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s, background 0.2s, border-color 0.2s, color 0.2s;
+    backdrop-filter: blur(6px);
+  }
+  .btt.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .btt:hover {
+    background: rgba(8, 5, 3, 0.96);
+    border-color: rgba(207, 182, 138, 0.8);
+    color: rgba(207, 182, 138, 1);
   }
 </style>
