@@ -337,6 +337,18 @@ const steps: { title: string; text: string }[] = it
 
   <ItalyMap lang={lang} />
 
+  <!-- ── About CTA ── -->
+  <section class="abt-cta on-dark">
+    <div class="container abt-cta__inner">
+      <h2 class="abt-cta__title" data-reveal>
+        {it ? 'Dove sarà il vostro brindisi?' : 'Where will your toast be?'}
+      </h2>
+      <a class="btn btn--ghost-light abt-cta__btn" href={url('contact', lang)} data-reveal style="--delay:.1s">
+        {it ? 'Verifica disponibilità →' : 'Check availability →'}
+      </a>
+    </div>
+  </section>
+
 </BaseLayout>
 
 <style>
@@ -925,4 +937,29 @@ const steps: { title: string; text: string }[] = it
     transition: color 0.2s;
   }
   .srv-card__link:hover { color: #fff; }
+
+  /* ── About CTA ── */
+  .abt-cta {
+    background: rgb(8 5 3);
+    padding: clamp(2.5rem, 5vw, 4rem) 0;
+  }
+  .abt-cta__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-l);
+    flex-wrap: wrap;
+  }
+  .abt-cta__title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3vw + 0.5rem, 4rem);
+    font-weight: 300;
+    font-style: italic;
+    color: #fff;
+    line-height: 1.05;
+  }
+  .abt-cta__btn { flex-shrink: 0; letter-spacing: 0.1em; }
+  @media (max-width: 699px) {
+    .abt-cta__inner { flex-direction: column; align-items: flex-start; }
+  }
 </style>
