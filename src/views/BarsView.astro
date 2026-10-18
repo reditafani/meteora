@@ -98,18 +98,11 @@ const sizes = [
   <!-- ── CTA Band ── -->
   <section class="bars-cta on-dark">
     <div class="container bars-cta__inner">
-      <div class="bars-cta__text" data-reveal>
-        <h2 class="bars-cta__title">
-          {it ? 'Scegliete il vostro banco.' : 'Choose your bar.'}
-        </h2>
-        <p class="bars-cta__sub">
-          {it
-            ? 'Vi aiutiamo a trovare carattere e misura giusti per la vostra location.'
-            : "We'll help you find the right character and size for your venue."}
-        </p>
-      </div>
+      <h2 class="bars-cta__title" data-reveal>
+        {it ? 'Scegliete il vostro banco.' : 'Choose your bar.'}
+      </h2>
       <a class="btn btn--ghost-light bars-cta__btn" href={url('contact', lang)} data-reveal style="--delay:.1s">
-        {it ? 'Richiedi un preventivo' : 'Request a quote'} →
+        {it ? 'Contattaci' : 'Contact us'} →
       </a>
     </div>
   </section>
@@ -309,28 +302,22 @@ const sizes = [
   /* ── CTA Band ── */
   .bars-cta {
     background: rgb(8 5 3);
-    padding: clamp(4rem, 8vw, 7rem) 0;
+    padding: clamp(2.5rem, 5vw, 4rem) 0;
   }
   .bars-cta__inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--space-xl);
+    gap: var(--space-l);
     flex-wrap: wrap;
   }
   .bars-cta__title {
     font-family: var(--font-display);
-    font-size: clamp(2.4rem, 3.5vw + 0.5rem, 5rem);
+    font-size: clamp(2rem, 3vw + 0.5rem, 4rem);
     font-weight: 300;
     font-style: italic;
     color: #fff;
     line-height: 1.05;
-  }
-  .bars-cta__sub {
-    margin-top: 0.75rem;
-    color: rgba(255 255 255 / 0.55);
-    font-size: clamp(0.9rem, 1.4vw, 1.05rem);
-    max-width: 36rem;
   }
   .bars-cta__btn {
     flex-shrink: 0;

@@ -106,8 +106,8 @@ const schema = [
 
   <CocktailSlideshow lang={lang} />
 
-  <!-- ── Ice light section ── -->
-  <section class="section section--alt ice-lt" aria-labelledby="ice-lt-title">
+  <!-- ── Ice section (dark) ── -->
+  <section class="section section--dark ice-lt" aria-labelledby="ice-lt-title">
     <div class="container ice-lt__grid">
 
       <!-- Left: framed image gallery -->
@@ -436,6 +436,7 @@ const schema = [
   /* ── Ice light section ── */
   .ice-lt {
     padding-block: clamp(3rem, 6vw, 5rem);
+    border-top: 1px solid rgba(207, 182, 138, 0.4);
   }
   .ice-lt__grid {
     display: grid;
@@ -491,7 +492,7 @@ const schema = [
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--color-accent-ink);
+    color: var(--color-accent-on-dark);
     margin-bottom: var(--space-s);
   }
   .ice-lt__title {
@@ -499,12 +500,12 @@ const schema = [
     font-size: clamp(2rem, 1.2rem + 2.5vw, 4rem);
     font-weight: 300;
     line-height: 1.05;
-    color: var(--color-text);
+    color: #fff;
     margin-bottom: var(--space-m);
   }
   .ice-lt__title em {
     font-style: italic;
-    color: var(--color-accent-ink);
+    color: var(--color-accent-on-dark);
   }
   .ice-lt__desc {
     font-size: var(--fs-body);
@@ -515,7 +516,7 @@ const schema = [
     font-family: var(--font-display);
     font-size: clamp(0.95rem, 0.8rem + 0.5vw, 1.15rem);
     font-style: italic;
-    color: var(--color-accent-ink);
+    color: var(--color-accent-on-dark);
     line-height: 1.5;
     margin-bottom: var(--space-m);
   }
@@ -527,14 +528,14 @@ const schema = [
     letter-spacing: 0.14em;
     text-transform: uppercase;
     text-decoration: none;
-    color: var(--color-text-muted);
-    border-bottom: 1px solid var(--color-border);
+    color: rgba(255, 255, 255, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
     padding-bottom: 3px;
     transition: color 0.2s, border-color 0.2s;
   }
   .ice-lt__cta:hover {
-    color: var(--color-accent-ink);
-    border-color: var(--color-accent-ink);
+    color: var(--color-accent-on-dark);
+    border-color: var(--color-accent-on-dark);
   }
 
   /* ── svc-outro dark closer ── */
@@ -584,7 +585,7 @@ const schema = [
   .ice-lt__type:hover .ice-lt__type-img :global(img) { transform: scale(1.04); }
   .ice-lt__type-label {
     font-size: 0.72rem;
-    color: var(--color-text-muted);
+    color: rgba(255, 255, 255, 0.45);
     line-height: 1.3;
   }
 
