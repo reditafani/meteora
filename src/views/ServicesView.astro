@@ -69,8 +69,10 @@ const schema = [
     <div class="container svc">
       {services.slice(0, 3).map((sv, i) => (
         <article class:list={['svc__item', i % 2 === 1 && 'svc__item--rev']} id={sv.id} aria-labelledby={`${sv.id}-t`}>
-          <div class="media svc__media" data-reveal="image">
-            <Img src={sv.image} alt={sv.imageAlt[lang]} sizes="(min-width: 960px) 45vw, 100vw" />
+          <div class="svc__frame" data-reveal="image">
+            <div class="media svc__media">
+              <Img src={sv.image} alt={sv.imageAlt[lang]} sizes="(min-width: 960px) 45vw, 100vw" />
+            </div>
           </div>
           <div class="svc__text">
             <p class="micro svc__kicker" data-reveal>{String(i + 1).padStart(2, '0')} · {sv.kicker[lang]}</p>
@@ -163,8 +165,10 @@ const schema = [
       <TowerSection lang={lang} />
       {services.slice(4).map((sv, i) => (
         <article class:list={['svc__item', 'svc__item--rev']} id={sv.id} aria-labelledby={`${sv.id}-t`}>
-          <div class="media svc__media" data-reveal="image">
-            <Img src={sv.image} alt={sv.imageAlt[lang]} sizes="(min-width: 960px) 45vw, 100vw" />
+          <div class="svc__frame" data-reveal="image">
+            <div class="media svc__media">
+              <Img src={sv.image} alt={sv.imageAlt[lang]} sizes="(min-width: 960px) 45vw, 100vw" />
+            </div>
           </div>
           <div class="svc__text">
             <p class="micro svc__kicker" data-reveal>{String(i + 5).padStart(2, '0')} · {sv.kicker[lang]}</p>
@@ -190,8 +194,10 @@ const schema = [
 
       <!-- 06 · Personalizzazioni su richiesta -->
       <article class="svc__item" id="personalizzazioni" aria-labelledby="personalizzazioni-t">
-        <div class="media svc__media" data-reveal="image">
-          <Img src={iceHoshi} alt={it ? 'Cubo di ghiaccio con iniziali incise' : 'Ice cube with engraved initials'} sizes="(min-width: 960px) 34vw, 100vw" />
+        <div class="svc__frame" data-reveal="image">
+          <div class="media svc__media">
+            <Img src={iceHoshi} alt={it ? 'Cubo di ghiaccio con iniziali incise' : 'Ice cube with engraved initials'} sizes="(min-width: 960px) 34vw, 100vw" />
+          </div>
         </div>
         <div class="svc__text">
           <p class="micro svc__kicker" data-reveal>06 · {it ? 'Personalizzazioni su richiesta' : 'Bespoke add-ons'}</p>
@@ -304,6 +310,11 @@ const schema = [
     align-items: center;
     scroll-margin-top: calc(var(--header-h-compact) + 1rem);
   }
+  .svc__frame {
+    padding: 6px;
+    background: #fff;
+    border: 1px solid rgba(184, 158, 114, 0.45);
+  }
   .svc__media {
     aspect-ratio: 4 / 5;
     overflow: hidden;
@@ -388,14 +399,22 @@ const schema = [
       position: relative;
       padding-left: 30%;
     }
-    .svc__media {
+    .svc__frame {
       position: absolute;
       left: 0;
       top: 20px;
       bottom: 20px;
       width: 34%;
-      aspect-ratio: auto;
       z-index: 2;
+      padding: 6px;
+      background: #fff;
+      border: 1px solid rgba(184, 158, 114, 0.45);
+    }
+    .svc__media {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: auto;
+      overflow: hidden;
     }
     .svc__media :global(picture),
     .svc__media :global(img) {
@@ -423,7 +442,7 @@ const schema = [
       padding-left: 0;
       padding-right: 30%;
     }
-    .svc__item--rev .svc__media {
+    .svc__item--rev .svc__frame {
       left: auto;
       right: 0;
     }
