@@ -462,11 +462,13 @@ const schema = [
     inset: 1rem 0 0 1rem;
     border: 1px solid rgba(184, 158, 114, 0.5);
     pointer-events: none;
+    z-index: 0;
   }
   .ice-lt__img {
     aspect-ratio: 3 / 4;
     overflow: hidden;
     position: relative;
+    z-index: 1;
   }
   .ice-lt__slide {
     position: absolute;
@@ -573,6 +575,7 @@ const schema = [
     overflow: hidden;
     background: var(--color-border);
     margin-bottom: 0.35rem;
+    border: 1px solid rgba(184, 158, 114, 0.45);
   }
   .ice-lt__type-img :global(picture),
   .ice-lt__type-img :global(img) {
