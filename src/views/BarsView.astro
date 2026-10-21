@@ -87,11 +87,6 @@ const sizes = [
       <ul class="bars" role="list">
         {bars.map((b, i) => <li data-reveal style={`--delay:${(i % 2) * 0.08}s`}><BarCard bar={b} lang={lang} index={i} sizes="(min-width: 900px) 45vw, 100vw" /></li>)}
       </ul>
-      <p class="muted bars__note">
-        {it
-          ? 'Ogni banco è disponibile in versione Slim (1,5 m), Medium (3,5 m) e Large (5,5 m), anche in estensione continua. Moduli bar aggiuntivi su richiesta.'
-          : 'Every bar comes in Slim (1.5 m), Medium (3.5 m) and Large (5.5 m), and can run in continuous extension. Extra bar modules on request.'}
-      </p>
     </div>
   </section>
 
@@ -265,15 +260,21 @@ const sizes = [
       );
     }
     .bh__content {
-      min-height: 48svh;
-      padding: calc(var(--header-h, 4rem) + 1rem) var(--gutter) var(--space-xl);
+      min-height: 68svh;
+      padding: calc(var(--header-h, 4rem) + 1rem) var(--gutter) calc(var(--space-xl) + 1.5rem);
     }
     .bh__stats {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(4, 1fr);
     }
-    .bh__stat:nth-child(2) { border-right: 1px solid rgba(255 255 255 / 0.08); }
-    .bh__stat:nth-child(3) { border-right: none; }
-    .bh__stat--cta { grid-column: 1 / -1; border-top: 1px solid rgba(255 255 255 / 0.08); }
+    .bh__stat {
+      padding: 0.12rem 0.35rem;
+      gap: 0;
+    }
+    .bh__stat-label { font-size: 0.34rem; }
+    .bh__stat-size  { font-size: 0.68rem; line-height: 1; }
+    .bh__stat-note  { font-size: 0.34rem; margin-top: 0; }
+    .bh__stat-custom { font-size: 0.6rem; line-height: 1.1; }
+    .bh__stat-arrow { font-size: 0.42rem; }
   }
 
   /* ── Collection heading: single-line title, less gap before photos ── */
@@ -328,5 +329,6 @@ const sizes = [
       flex-direction: column;
       align-items: flex-start;
     }
+    :global(.bars-collection-head .sh__title) { white-space: normal; }
   }
 </style>

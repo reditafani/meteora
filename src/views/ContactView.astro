@@ -205,7 +205,7 @@ const privacyShort = privacyFull.replace(' per ricevere una risposta', '').repla
             </div>
             <div class="form__full form__actions">
               <button type="submit" class="btn">
-                {it ? 'Richiedi il tuo preventivo' : 'Request your quote'} <span class="arrow" aria-hidden="true">→</span>
+                {it ? 'Invia' : 'Send'} <span class="arrow" aria-hidden="true">→</span>
               </button>
               <p class="form__status" role="status" data-form-status></p>
             </div>
@@ -262,7 +262,7 @@ const privacyShort = privacyFull.replace(' per ricevere una risposta', '').repla
             </div>
             <div class="form__full form__actions">
               <button type="submit" class="btn">
-                {it ? 'Richiedi il listino partner' : 'Request partner pricing'} <span class="arrow" aria-hidden="true">→</span>
+                {it ? 'Invia' : 'Send'} <span class="arrow" aria-hidden="true">→</span>
               </button>
               <p class="form__status" role="status" data-form-status></p>
             </div>
@@ -584,28 +584,28 @@ const privacyShort = privacyFull.replace(' per ricevere una risposta', '').repla
   const tabs   = document.querySelectorAll<HTMLButtonElement>('.ct__tab');
   const panels = document.querySelectorAll<HTMLElement>('.ct__panel');
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const t = tab.dataset.tab!;
-
-      tabs.forEach(b => {
-        b.classList.toggle('is-active', b === tab);
-        b.setAttribute('aria-selected', String(b === tab));
-      });
-
-      panels.forEach(p => {
-        const show = p.dataset.panel === t;
-        if (show) p.removeAttribute('hidden');
-        else       p.setAttribute('hidden', '');
-      });
-
-      (['sposi', 'pro'] as const).forEach(v => {
-        const form = document.getElementById(`form-${v}`);
-        const done = document.getElementById(`done-${v}`);
-        const isTarget = v === t;
-        if (form) form.hidden = !isTarget;
-        if (done) done.hidden = true;
-      });
+  function activateTab(t: string) {
+    tabs.forEach(b => {
+      b.classList.toggle('is-active', b.dataset.tab === t);
+      b.setAttribute('aria-selected', String(b.dataset.tab === t));
     });
+    panels.forEach(p => {
+      const show = p.dataset.panel === t;
+      if (show) p.removeAttribute('hidden');
+      else p.setAttribute('hidden', '');
+    });
+    (['sposi', 'pro'] as const).forEach(v => {
+      const form = document.getElementById(`form-${v}`);
+      const done = document.getElementById(`done-${v}`);
+      if (form) form.hidden = v !== t;
+      if (done) done.hidden = true;
+    });
+  }
+
+  const initialTab = new URLSearchParams(window.location.search).get('tab');
+  if (initialTab === 'pro') activateTab('pro');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => activateTab(tab.dataset.tab!));
   });
 </script>

@@ -22,6 +22,7 @@ export interface Professional {
   languages?: string[];
   bookingLead?: { it: string; en: string };
   advice?: { it: string; en: string };
+  locationDetails?: { capacity?: string; rooms?: string; ceremony?: string };
 }
 
 export const regionLabels: Record<RegionKey, { it: string; en: string }> = {
@@ -47,7 +48,7 @@ export const professionals: Professional[] = [
     name: 'Studio Fiori Weddings',
     tagline: { it: 'Matrimoni italiani e destination wedding.', en: 'Italian weddings and destination weddings.' },
     description: { it: 'Organizzazione completa per coppie italiane e internazionali, con profonda conoscenza del territorio toscano e delle sue ville storiche.', en: 'Full-service planning for Italian and international couples, with deep knowledge of Tuscany and its historic villas.' },
-    tags: ['Nazionale', 'Coordinamento completo', 'Destination wedding'],
+    tags: ['Destination wedding', 'Ville storiche'],
     budget: '€€€',
     featured: true,
     languages: ['IT', 'EN', 'FR'],
@@ -62,7 +63,7 @@ export const professionals: Professional[] = [
     name: 'Bianchi & Rossi Weddings',
     tagline: { it: 'Relazione, eleganza, ogni dettaglio al suo posto.', en: 'Relationship, elegance, every detail in its place.' },
     description: { it: 'Studio milanese specializzato in matrimoni di lusso per coppie internazionali. Coordinamento completo con rete di fornitori selezionati.', en: 'Milan-based studio specialised in luxury weddings for international couples. Full coordination with a curated supplier network.' },
-    tags: ['Destination wedding', 'Luxury', 'Coordinamento completo'],
+    tags: ['Luxury', 'Grandi eventi'],
     budget: '€€€€',
     languages: ['IT', 'EN', 'DE'],
     bookingLead: { it: '14 mesi prima', en: '14 months ahead' },
@@ -76,7 +77,7 @@ export const professionals: Professional[] = [
     name: 'Atelier del Giorno',
     tagline: { it: 'Il design al servizio del vostro giorno.', en: 'Design in service of your day.' },
     description: { it: 'Wedding design e coordinamento per eventi raffinati tra Roma e il Lazio. Specializzate in elopement e piccoli matrimoni con grande cura estetica.', en: 'Wedding design and coordination for refined events in Rome and Lazio. Specialised in elopements and small weddings with great aesthetic care.' },
-    tags: ['Coordinamento completo', 'Elopement'],
+    tags: ['Elopement', 'Matrimoni intimi'],
     budget: '€€',
     languages: ['IT', 'EN'],
     bookingLead: { it: '6–8 mesi prima', en: '6–8 months ahead' },
@@ -90,7 +91,7 @@ export const professionals: Professional[] = [
     name: 'Verde Wedding Studio',
     tagline: { it: 'Spontanei, precisi, appassionati.', en: 'Spontaneous, precise, passionate.' },
     description: { it: 'Organizzazione completa e matrimoni elopement in Toscana, con vocazione per i dettagli artigianali e la scenografia naturale dei borghi.', en: 'Full planning and elopement weddings in Tuscany, with a focus on artisan details and the natural scenography of Tuscan villages.' },
-    tags: ['Elopement', 'Coordinamento completo'],
+    tags: ['Destination wedding', 'Matrimoni in campagna'],
     budget: '€€',
     languages: ['IT', 'EN'],
     bookingLead: { it: '8–10 mesi prima', en: '8–10 months ahead' },
@@ -104,7 +105,7 @@ export const professionals: Professional[] = [
     name: 'Luxury Events Italia',
     tagline: { it: 'Standard internazionale, cuore italiano.', en: 'International standards, Italian heart.' },
     description: { it: 'Luxury wedding planning per ospiti internazionali che scelgono l\'Italia. Esperienze su misura, coordinamento dal Nord al Sud.', en: 'Luxury wedding planning for international guests choosing Italy. Tailored experiences, coordination from North to South.' },
-    tags: ['Nazionale', 'Destination wedding', 'Luxury'],
+    tags: ['Luxury', 'Lago di Como'],
     budget: '€€€€',
     languages: ['IT', 'EN', 'DE', 'FR'],
     bookingLead: { it: '18 mesi prima', en: '18 months ahead' },
@@ -118,7 +119,7 @@ export const professionals: Professional[] = [
     name: 'Esperia Events',
     tagline: { it: 'Il Sud Italia come non lo avete mai visto.', en: 'Southern Italy as you\'ve never seen it.' },
     description: { it: 'Specializzate in matrimoni in Puglia, Sicilia e Calabria. Reti locali solide, conoscenza profonda delle tradizioni e dei luoghi più esclusivi del meridione.', en: 'Specialised in weddings in Puglia, Sicily and Calabria. Strong local networks and deep knowledge of the South\'s most exclusive venues.' },
-    tags: ['Nazionale', 'Destination wedding'],
+    tags: ['Tradizioni del Sud', 'Matrimoni sul mare'],
     budget: '€€€',
     languages: ['IT', 'EN'],
     bookingLead: { it: '10–12 mesi prima', en: '10–12 months ahead' },
@@ -138,6 +139,7 @@ export const professionals: Professional[] = [
     featured: true,
     bookingLead: { it: '12–18 mesi prima', en: '12–18 months ahead' },
     advice: { it: "Prenotate in anticipo per giugno e settembre: la vista sulla Val d'Orcia è insuperabile e le date si esauriscono presto.", en: "Book well in advance for June and September: the Val d'Orcia view is unbeatable and dates sell out early." },
+    locationDetails: { capacity: 'Fino a 200', rooms: '40 camere', ceremony: 'Civile e simbolica' },
   },
   {
     id: 'loc-002',
@@ -151,6 +153,7 @@ export const professionals: Professional[] = [
     budget: '€€€',
     bookingLead: { it: '10–12 mesi prima', en: '10–12 months ahead' },
     advice: { it: 'La cantina storica è lo spazio più suggestivo per il ricevimento serale quando il castello si illumina.', en: 'The historic wine cellar is the most evocative space for the evening reception when the castle is lit up.' },
+    locationDetails: { capacity: 'Fino a 150', rooms: '15 camere', ceremony: 'Simbolica' },
   },
   {
     id: 'loc-003',
@@ -164,6 +167,7 @@ export const professionals: Professional[] = [
     budget: '€€',
     bookingLead: { it: '8–10 mesi prima', en: '8–10 months ahead' },
     advice: { it: 'La primavera è la stagione ideale: i vigneti in fiore e le temperature miti rendono tutto naturalmente scenografico.', en: 'Spring is the ideal season: flowering vineyards and mild temperatures make everything naturally scenic.' },
+    locationDetails: { capacity: 'Fino a 100', rooms: '20 camere', ceremony: 'Solo simbolica' },
   },
   {
     id: 'loc-004',
@@ -177,6 +181,7 @@ export const professionals: Professional[] = [
     budget: '€€€€',
     bookingLead: { it: '14–18 mesi prima', en: '14–18 months ahead' },
     advice: { it: "L'esclusiva del borgo vale ogni euro: nessun ospite estraneo, nessuna sovrapposizione, solo voi.", en: 'The exclusive hire of the hamlet is worth every euro: no other guests, no overlap, just you.' },
+    locationDetails: { capacity: 'Fino a 250', rooms: '80 camere', ceremony: 'Civile e simbolica' },
   },
   {
     id: 'loc-005',
@@ -190,6 +195,7 @@ export const professionals: Professional[] = [
     budget: '€€€€',
     bookingLead: { it: '12 mesi prima', en: '12 months ahead' },
     advice: { it: 'Le autorizzazioni per gli eventi in centro storico richiedono tempo: affidate la pratica al palazzo, hanno già tutto strutturato.', en: 'Permits for events in the historic centre take time: let the palazzo handle the paperwork, they have everything in place.' },
+    locationDetails: { capacity: 'Fino a 100', rooms: 'Nessuna', ceremony: 'Civile' },
   },
   {
     id: 'loc-006',
@@ -203,6 +209,7 @@ export const professionals: Professional[] = [
     budget: '€€€€',
     bookingLead: { it: '18 mesi prima', en: '18 months ahead' },
     advice: { it: "Se volete privacy assoluta evitate agosto: luglio o settembre garantiscono la stessa bellezza con meno affollamento.", en: 'For total privacy avoid August: July or September offer the same beauty with far fewer visitors.' },
+    locationDetails: { capacity: 'Fino a 80', rooms: '12 suite', ceremony: 'Solo simbolica' },
   },
   /* ── Catering ── */
   {

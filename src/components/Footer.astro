@@ -37,7 +37,7 @@ const year = new Date().getFullYear();
         </p>
       </div>
 
-      <nav aria-label={s.footerNav}>
+      <nav class="footer__explore" aria-label={s.footerNav}>
         <h2 class="micro footer__h">{s.footerNav}</h2>
         <ul role="list" class="footer__nav">
           {nav.map((n) => <li><a href={url(n.key, lang)}>{n.label}</a></li>)}
@@ -173,5 +173,26 @@ const year = new Date().getFullYear();
     font-size: var(--fs-small);
     color: var(--color-on-dark-muted);
     padding-block: 0.3rem;
+  }
+
+  @media (max-width: 767px) {
+    .footer {
+      padding-block: var(--space-m) calc(var(--space-s) + 4.5rem);
+    }
+    .footer__explore {
+      display: none;
+    }
+    .footer__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-m);
+      padding-block: var(--space-s);
+    }
+    .footer__brand {
+      grid-column: 1 / -1;
+    }
+    .footer__bottom {
+      gap: var(--space-xs, 0.5rem) var(--space-m);
+      padding-top: var(--space-s);
+    }
   }
 </style>

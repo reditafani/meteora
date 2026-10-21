@@ -16,16 +16,16 @@ const s = t(lang);
 const it = lang === 'it';
 const primary = [
   { key: 'about',    label: it ? 'Chi siamo'          : 'About us',         icon: 'user'      },
-  { key: 'services', label: it ? 'I nostri servizi'   : 'Our Services',     icon: 'cocktail'  },
-  { key: 'bars',     label: it ? 'I nostri banchi bar': 'Our Bar Collection',icon: 'briefcase' },
-  { key: 'partners', label: 'Meteora Partners',                              icon: 'link'      },
+  { key: 'services', label: it ? 'Servizi'             : 'Services',         icon: 'cocktail'  },
+  { key: 'bars',     label: it ? 'Banchi bar'         : 'Bar Collection',   icon: 'briefcase' },
+  { key: 'partners', label: it ? 'Fornitori consigliati' : 'Recommended suppliers', icon: 'link' },
   { key: 'ice',      label: it ? 'Noleggio ghiaccio'  : 'Ice Rental',       icon: 'ice'       },
   { key: 'contact',  label: it ? 'Contatti'           : 'Contact',          icon: 'mail'      },
 ] as const;
 
 const aboutSections = it ? [
   { id: 'a-story',    label: 'La nostra filosofia' },
-  { id: 'a-included', label: 'Chiavi in mano' },
+  { id: 'a-included', label: 'Pacchetti all inclusive' },
   { id: 'a-process',  label: 'Come funziona' },
   { id: 'a-serves',   label: 'I nostri eventi' },
   { id: 'a-map',      label: 'Dove lavoriamo' },
@@ -76,7 +76,7 @@ const aboutSections = it ? [
     </ul>
 
     <div class="mm__foot">
-      <a class="btn btn--light btn--block" href={url('contact', lang)} data-track="cta_click" data-track-label="menu_quote">{s.quote}</a>
+      <a class="btn btn--light btn--block" href={url('contact', lang)} data-track="cta_click" data-track-label="menu_quote">{it ? 'Verifica la disponibilità' : 'Check availability'}</a>
       <div class="mm__meta">
         <a href={`mailto:${site.email}`} data-track="email_click"><Icon name="mail" size={13} />{site.email}</a>
         <a href={site.instagram.url} target="_blank" rel="noopener" data-track="instagram_click"><Icon name="instagram" size={13} />{site.instagram.handle}</a>

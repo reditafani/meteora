@@ -16,10 +16,10 @@ import shaker from '@/assets/images/details/woman-coupe.jpg';
 import strain from '@/assets/images/venues/wedding-table-flowers.jpg';
 import coupleImg from '@/assets/images/towers/couple-pour.jpg';
 import silverImg from '@/assets/images/corporate/corporate-table.jpg';
-import loungeImg from '@/assets/images/bars/night-lounge.jpg';
+import loungeImg from '@/assets/images/bars/private-bar-night.jpg';
 import cimBg from '@/assets/images/venues/wedding-table-candles.jpg';
 import bartenderStrain from '@/assets/images/team/bartender-strain.jpg';
-import processBg from '@/assets/images/bars/bartender-event.jpg';
+import processBg from '@/assets/images/bars/bartender-pour-night.jpg';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -43,40 +43,40 @@ const serveCards = it
   ? [
       {
         n: '01', title: 'Matrimoni',
-        subtitle: "Il giorno più fotografato della vostra vita merita un bar all'altezza.",
-        bullets: ['Destination wedding', 'Matrimoni in villa, castelli e cantine', 'Welcome party e after party', 'Brunch del giorno dopo'],
+        subtitle: 'Il bar di tutto il vostro weekend, dalla sera prima all\'ultimo ballo.',
+        bullets: ['Destination wedding', 'Matrimoni in villa, castelli e cantine', 'Welcome party, pool party e pizza party', 'Fughe d\'amore e matrimoni intimi', 'Rinnovo delle promesse', 'Addii al nubilato e al celibato'],
         href: url('services', lang), cta: 'Scopri i nostri servizi',
       },
       {
         n: '02', title: 'Eventi aziendali',
-        subtitle: "La cura di un matrimonio, per l'immagine della vostra azienda.",
-        bullets: ['Logo su divise e banco', 'Cene di gala e lanci di prodotto', 'Convention e team building', 'Viaggi incentive e feste di Natale'],
+        subtitle: 'Ospitalità impeccabile, per clienti, partner e collaboratori.',
+        bullets: ['Convention, congressi e cene di gala', 'Lanci di prodotto e inaugurazioni', 'Eventi di moda e lusso', 'Eventi artistici, vernissage e mostre', 'Feste aziendali', 'Fiere e stand'],
         href: url('services', lang), cta: 'Scopri i nostri servizi',
       },
       {
         n: '03', title: 'Eventi privati',
         subtitle: 'Ogni traguardo merita un brindisi fatto bene.',
-        bullets: ['Sfilate ed eventi di moda', 'Vernissage e inaugurazioni', 'Fiere', 'Feste di laurea e compleanni'],
+        bullets: ['Compleanni, anniversari e ricorrenze', 'Feste di laurea', 'Feste di fidanzamento', 'Pool party e pizza party', 'Cene con chef a domicilio', 'Degustazioni e corsi di cucina'],
         href: url('services', lang), cta: 'Scopri i nostri servizi',
       },
     ]
   : [
       {
         n: '01', title: 'Weddings',
-        subtitle: 'The most photographed day of your life deserves a bar to match.',
-        bullets: ['Destination weddings', 'Villas, castles and wineries', 'Welcome party and after party', 'Day-after brunch'],
+        subtitle: 'The bar for your whole wedding weekend, from the eve to the last dance.',
+        bullets: ['Destination weddings', 'Villas, castles and wineries', 'Welcome party, pool party and pizza party', 'Elopements and intimate weddings', 'Vow renewals', 'Hen and stag parties'],
         href: url('services', lang), cta: 'Discover our services',
       },
       {
         n: '02', title: 'Corporate events',
-        subtitle: 'The care of a wedding, for the image of your company.',
-        bullets: ['Logo on uniforms and bar', 'Gala dinners and product launches', 'Conventions and team building', 'Incentive trips and Christmas parties'],
+        subtitle: 'Impeccable hospitality, for clients, partners and colleagues.',
+        bullets: ['Conventions, congresses and gala dinners', 'Product launches and openings', 'Fashion and luxury events', 'Art events, vernissages and exhibitions', 'Company parties', 'Trade fairs and stands'],
         href: url('services', lang), cta: 'Discover our services',
       },
       {
         n: '03', title: 'Private events',
         subtitle: 'Every milestone deserves a well-made toast.',
-        bullets: ['Fashion shows and events', 'Vernissages and openings', 'Trade fairs', 'Graduation parties and birthdays'],
+        bullets: ['Birthdays, anniversaries and celebrations', 'Graduation parties', 'Engagement parties', 'Pool parties and pizza parties', 'Private chef dinners', 'Tastings and cooking classes'],
         href: url('services', lang), cta: 'Discover our services',
       },
     ];
@@ -93,29 +93,29 @@ const included: { title: string; sub: string }[] = it
       { title: 'Distillati selezionati e ingredienti freschi', sub: 'frutta fresca, disidratata, odori e spezie'                     },
       { title: 'Ghiaccio professionale',                       sub: 'scelto per ogni tipo di cocktail'                               },
       { title: 'Il bicchiere giusto per ogni drink',           sub: "serviamo drink in vetro, perché anche l'occhio vuole la sua parte" },
-      { title: 'Allestimento e smontaggio',                    sub: "la location torna come l'abbiamo trovata"                       },
+      { title: 'Allestimento e smontaggio',                    sub: 'pensiamo noi a tutto'                                           },
     ]
   : [
       { title: 'Scenic bar counter',                    sub: 'chosen from our collection' },
-      { title: 'Professional bartenders',               sub: 'qualified staff, in total black' },
-      { title: 'Signature drink list',                  sub: '40 drinks, customisable for you' },
+      { title: 'Professional bartenders',               sub: 'qualified staff, in elegant uniform' },
+      { title: 'Your drink list',                       sub: 'choose your favourite drinks, we handle the rest.' },
       { title: 'Selected spirits & fresh ingredients',  sub: 'fresh fruit, dried, herbs and spices' },
       { title: 'Professional ice',                      sub: 'chosen for each cocktail type' },
-      { title: 'Crystal glassware only',                sub: 'no plastic, ever' },
-      { title: 'Setup & breakdown',                     sub: 'venue left exactly as we found it' },
+      { title: 'The right glass for every drink',       sub: 'no plastic, ever' },
+      { title: 'Setup & breakdown',                     sub: 'we take care of everything' },
     ];
 
 const steps: { title: string; text: string }[] = it
   ? [
       { title: 'Raccontateci il vostro giorno',     text: 'Basta una email con data, location e numero di ospiti.' },
       { title: 'Costruiamo la vostra offerta',       text: 'Scegliete banco, formula e cocktail list, con le personalizzazioni che desiderate.' },
-      { title: 'Tutto per iscritto',                 text: 'Una proposta e un contratto con ogni dettaglio incluso. Confermate con un acconto.' },
-      { title: "Il giorno dell'evento",              text: 'Quel giorno l\'unica cosa a cui dovrete pensare sarete voi due. Al bar penseremo noi, esattamente come lo abbiamo costruito insieme.' },
+      { title: 'Tutto per iscritto',                 text: 'Una proposta e un contratto con ogni dettaglio incluso.' },
+      { title: "Il giorno dell'evento",              text: 'Quel giorno l\'unica cosa a cui dovrete pensare sarete voi. Al bar penseremo noi, esattamente come lo abbiamo costruito insieme.' },
     ]
   : [
       { title: 'Tell us about your day',   text: 'Just send us an email with your date, venue and number of guests.' },
       { title: 'We build your offer',      text: 'Choose your bar, package and cocktail list, with any customisations you want.' },
-      { title: 'Everything in writing',    text: 'A proposal and a contract with every detail included. Confirmed with a deposit.' },
+      { title: 'Everything in writing',    text: 'A proposal and a contract with every detail included.' },
       { title: 'The day of your event',    text: 'That day, the only thing you need to think about is each other. We\'ll take care of the bar, exactly as we built it together.' },
     ];
 
@@ -135,8 +135,8 @@ const steps: { title: string; text: string }[] = it
     <h1>Meteora <em>Events</em></h1>
     <p slot="lead" class="lead hero-lead">
       {it
-        ? `Il tuo partner specializzato nella gestione del servizio beverage per eventi. Nasciamo da oltre ${site.yearsExperience} anni di esperienza operativa nel settore.`
-        : `Your specialist partner for beverage services at events. Built on ${site.yearsExperience}+ years of operational experience in the industry.`}
+        ? `Il bar dei vostri eventi, pensato e curato in ogni dettaglio da un team che vive il settore da oltre ${site.yearsExperience} anni.`
+        : `The bar for your events, designed and crafted in every detail by a team that has lived the industry for over ${site.yearsExperience} years.`}
     </p>
   </PageHero>
 
@@ -199,8 +199,8 @@ const steps: { title: string; text: string }[] = it
           </p>
           <p class="muted">
             {it
-              ? "Ogni evento è unico e irripetibile, e ciò che viene realizzato resta impresso nelle immagini e nei ricordi. Per questo puntiamo all'eccellenza, nel servizio e nell'impatto visivo."
-              : 'Every event is unique and unrepeatable, and what is created lives on in the images and memories. That is why we aim for excellence — in service and in visual impact.'}
+              ? "Ogni evento è unico e irripetibile, e le emozioni di quel giorno resteranno impresse nelle foto e nei ricordi. Per questo ogni dettaglio, dal banco all'ultimo drink, è pensato per renderlo indimenticabile."
+              : 'Every event is unique and unrepeatable, and the emotions of that day will live on in photographs and memories. That is why every detail — from the bar to the last drink — is designed to make it unforgettable.'}
           </p>
           <a class="btn story__cta" href={url('services', lang)}>
             {it ? 'Scopri i nostri servizi' : 'Discover our services'}
@@ -307,31 +307,44 @@ const steps: { title: string; text: string }[] = it
         </h2>
         <p class="serves-hd__lead muted" data-reveal>
           {it
-            ? 'Matrimoni, eventi aziendali ed eventi privati, in Toscana e in tutta Italia.'
-            : 'Weddings, corporate and private events, in Tuscany and throughout Italy.'}
+            ? 'Dal grande giorno alla festa in piscina, dalla cena di gala al compleanno: siamo il bar di ogni vostra occasione. Dal benvenuto a fine serata, pensiamo noi a tutto il servizio, perché voi possiate pensare solo a festeggiare.'
+            : 'From the big day to the pool party, from the gala dinner to the birthday: we are the bar for every occasion. From the welcome drink to the last round, we handle the full service so you can focus on celebrating.'}
         </p>
       </div>
     </div>
-    <div class="srv-cards">
-      {serveCards.map((card, i) => (
-        <div class="srv-card" data-reveal style={`--delay:${i * 0.08}s`}>
-          <div class="srv-card__media">
-            <Img src={serveImgs[i]} alt={serveAlts[i]} sizes="(min-width: 700px) 33vw, 90vw" />
+    <div class="srv-carousel">
+      <div class="srv-cards" data-srv-grid>
+        {serveCards.map((card, i) => (
+          <div class="srv-card" data-reveal style={`--delay:${i * 0.08}s`}>
+            <div class="srv-card__media">
+              <Img src={serveImgs[i]} alt={serveAlts[i]} sizes="(min-width: 700px) 33vw, 90vw" />
+            </div>
+            <div class="srv-card__body">
+              <span class="srv-card__n">{card.n}</span>
+              <h3 class="srv-card__title">{card.title}</h3>
+              <p class="srv-card__sub">{card.subtitle}</p>
+              <hr class="srv-card__rule" />
+              <ul class="srv-card__bullets" role="list">
+                {card.bullets.map(b => <li>— {b}</li>)}
+              </ul>
+              <a class="srv-card__link" href={card.href}>
+                {card.cta} <span aria-hidden="true">→</span>
+              </a>
+            </div>
           </div>
-          <div class="srv-card__body">
-            <span class="srv-card__n">{card.n}</span>
-            <h3 class="srv-card__title">{card.title}</h3>
-            <p class="srv-card__sub">{card.subtitle}</p>
-            <hr class="srv-card__rule" />
-            <ul class="srv-card__bullets" role="list">
-              {card.bullets.map(b => <li>— {b}</li>)}
-            </ul>
-            <a class="srv-card__link" href={card.href}>
-              {card.cta} <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
+      <button type="button" class="srv-arrow srv-arrow--prev" data-srv-prev aria-label={it ? 'Precedente' : 'Previous'}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button type="button" class="srv-arrow srv-arrow--next" data-srv-next aria-label={it ? 'Successivo' : 'Next'}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+      <div class="srv-dots" role="list">
+        {serveCards.map((_, i) => (
+          <button class:list={['srv-dot', i === 0 && 'is-active']} type="button" data-srv-dot={i} aria-label={`Slide ${i + 1}`}></button>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -460,7 +473,7 @@ const steps: { title: string; text: string }[] = it
     font-family: var(--font-display);
     font-style: normal;
     font-weight: 300;
-    font-size: clamp(7.2rem, 12vw, 10.8rem);
+    font-size: clamp(4.5rem, 12vw, 10.8rem);
     color: var(--color-accent-on-dark);
     line-height: 0.85;
     letter-spacing: -0.03em;
@@ -697,6 +710,7 @@ const steps: { title: string; text: string }[] = it
   .proc__card {
     position: relative;
     overflow: hidden;
+    box-shadow: inset 0 0 0 7px #fff;
   }
   .proc__card :global(picture) { display: contents; }
   .proc__card :global(img) {
@@ -838,7 +852,9 @@ const steps: { title: string; text: string }[] = it
   }
   .serves-hd__lead {
     margin-top: var(--space-m);
-    font-size: var(--fs-body);
+    font-size: clamp(0.95rem, 0.55rem + 1vw, 1.3rem);
+    max-width: none;
+    line-height: 1.65;
   }
 
   /* ── Event cards ── */
@@ -855,6 +871,7 @@ const steps: { title: string; text: string }[] = it
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    border: 1px solid rgba(184, 158, 114, 0.45);
   }
 
   /* Image sits at the top */
@@ -862,6 +879,11 @@ const steps: { title: string; text: string }[] = it
     aspect-ratio: 16 / 10;
     overflow: hidden;
     flex-shrink: 0;
+    padding: 8px;
+    background: rgba(255 255 255 / 0.05);
+  }
+  .srv-card__media :global(picture) {
+    border: 1px solid rgba(184, 158, 114, 0.45);
   }
   .srv-card__media :global(picture),
   .srv-card__media :global(img) {
@@ -936,7 +958,7 @@ const steps: { title: string; text: string }[] = it
     text-decoration: none;
     transition: color 0.2s;
   }
-  .srv-card__link:hover { color: #fff; }
+  .srv-card__link:hover { color: var(--color-accent-on-dark); }
 
   /* ── About CTA ── */
   .abt-cta {
@@ -962,4 +984,109 @@ const steps: { title: string; text: string }[] = it
   @media (max-width: 699px) {
     .abt-cta__inner { flex-direction: column; align-items: flex-start; }
   }
+  /* Below 760px both columns stack; give cards an explicit aspect ratio */
+  @media (max-width: 759px) {
+    .story__card { aspect-ratio: 4/3; }
+    .proc__card { aspect-ratio: unset; min-height: 65svh; }
+  }
+
+  /* ── Srv carousel controls — hidden on desktop ── */
+  .srv-arrow { display: none; }
+  .srv-dots  { display: none; }
+
+  @media (max-width: 699px) {
+    .srv-carousel { position: relative; }
+    .srv-cards {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      gap: 0;
+      scrollbar-width: none;
+      padding-inline: 0;
+    }
+    .srv-cards::-webkit-scrollbar { display: none; }
+    .srv-card {
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+    }
+    .srv-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 18%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      background: rgba(10, 7, 5, 0.55);
+      border: 1px solid rgba(184, 158, 114, 0.4);
+      color: var(--color-accent-on-dark);
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      transition: background 0.2s, opacity 0.2s;
+    }
+    .srv-arrow:hover { background: rgba(10, 7, 5, 0.82); }
+    .srv-arrow--prev { left: 0.75rem; }
+    .srv-arrow--next { right: 0.75rem; }
+    .srv-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: var(--space-s) 0;
+    }
+    .srv-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.28);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .srv-dot.is-active {
+      background: var(--color-accent-on-dark);
+      transform: scale(1.4);
+    }
+  }
 </style>
+
+<script>
+  const srvGrid = document.querySelector<HTMLElement>('[data-srv-grid]');
+  if (srvGrid) {
+    const srvPrev = document.querySelector<HTMLButtonElement>('[data-srv-prev]');
+    const srvNext = document.querySelector<HTMLButtonElement>('[data-srv-next]');
+    const srvDots = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-srv-dot]'));
+    const srvCount = srvDots.length;
+    let srvCurrent = 0;
+    let srvTimer = 0;
+
+    const srvGo = (i: number) => {
+      srvCurrent = Math.max(0, Math.min(i, srvCount - 1));
+      srvGrid.scrollTo({ left: srvCurrent * srvGrid.offsetWidth, behavior: 'smooth' });
+      srvDots.forEach((d, j) => d.classList.toggle('is-active', j === srvCurrent));
+      if (srvPrev) srvPrev.style.opacity = srvCurrent === 0 ? '0.35' : '1';
+      if (srvNext) srvNext.style.opacity = srvCurrent === srvCount - 1 ? '0.35' : '1';
+    };
+
+    srvPrev?.addEventListener('click', () => srvGo(srvCurrent - 1));
+    srvNext?.addEventListener('click', () => srvGo(srvCurrent + 1));
+    srvDots.forEach((d, i) => d.addEventListener('click', () => srvGo(i)));
+
+    srvGrid.addEventListener('scroll', () => {
+      clearTimeout(srvTimer);
+      srvTimer = window.setTimeout(() => {
+        const w = srvGrid.offsetWidth;
+        if (!w) return;
+        const idx = Math.round(srvGrid.scrollLeft / w);
+        if (idx !== srvCurrent) srvGo(idx);
+      }, 60);
+    });
+
+    if (srvPrev) srvPrev.style.opacity = '0.35';
+  }
+</script>

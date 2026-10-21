@@ -7,38 +7,84 @@ import Img from './Img.astro';
 interface Props {
   pro: Professional;
   lang: Lang;
+  contactUrl: string;
 }
-const { pro, lang } = Astro.props;
+const { pro, lang, contactUrl } = Astro.props;
 const it = lang === 'it';
+const isWP = pro.type === 'wedding-planner';
+const isLoc = pro.type === 'location';
 ---
 
 <article class="sc" data-pro-id={pro.id} data-tags={pro.tags?.join(',') ?? ''}>
   <div class="sc__media">
     {pro.image
-      ? <Img src={pro.image} alt={pro.imageAlt?.[lang] ?? pro.name} sizes="320px" widths={[320, 640]} />
+      ? <Img src={pro.image} alt={pro.imageAlt?.[lang] ?? pro.name} sizes="(min-width: 900px) 33vw, 90vw" widths={[480, 800]} />
       : <div class="sc__placeholder" aria-hidden="true">
           <span class="sc__initials">{pro.name.slice(0, 1)}</span>
         </div>
     }
-    {pro.budget && <span class="sc__budget-badge">{pro.budget}</span>}
+    <span class="sc__type-badge">{pro.area[lang]} · {typeLabels[pro.type][lang]}</span>
+    {pro.featured && (
+      <span class="sc__featured-badge">{it ? 'Consigliato' : 'Recommended'}</span>
+    )}
   </div>
   <div class="sc__body">
-    <p class="sc__badge">{pro.area[lang]} <span aria-hidden="true">·</span> {typeLabels[pro.type][lang]}</p>
     <h3 class="sc__name">{pro.name}</h3>
-    <p class="sc__tagline"><em>{pro.tagline[lang]}</em></p>
     <p class="sc__desc">{pro.description[lang]}</p>
+
+    {isWP && (
+      <div class="sc__meta">
+        {pro.tags && pro.tags.length > 0 && (
+          <div class="sc__meta-row">
+            <span class="sc__meta-label">{it ? 'Specialità' : 'Speciality'}</span>
+            <span class="sc__meta-value">{pro.tags.join(' · ')}</span>
+          </div>
+        )}
+        {pro.languages && pro.languages.length > 0 && (
+          <div class="sc__meta-row">
+            <span class="sc__meta-label">{it ? 'Lingue' : 'Languages'}</span>
+            <span class="sc__meta-value">{pro.languages.join(' · ')}</span>
+          </div>
+        )}
+      </div>
+    )}
+
+    {isLoc && pro.locationDetails && (
+      <div class="sc__meta">
+        {pro.locationDetails.capacity && (
+          <div class="sc__meta-row">
+            <span class="sc__meta-label">{it ? 'Capienza' : 'Capacity'}</span>
+            <span class="sc__meta-value">{pro.locationDetails.capacity}</span>
+          </div>
+        )}
+        {pro.locationDetails.rooms && (
+          <div class="sc__meta-row">
+            <span class="sc__meta-label">{it ? 'Camere' : 'Rooms'}</span>
+            <span class="sc__meta-value">{pro.locationDetails.rooms}</span>
+          </div>
+        )}
+        {pro.locationDetails.ceremony && (
+          <div class="sc__meta-row">
+            <span class="sc__meta-label">{it ? 'Cerimonia' : 'Ceremony'}</span>
+            <span class="sc__meta-value">{pro.locationDetails.ceremony}</span>
+          </div>
+        )}
+      </div>
+    )}
+
     <div class="sc__footer">
-      <button class="sc__toggle" data-pro-id={pro.id} aria-expanded="false">
-        <span class="sc__lbl-open">{it ? 'Scopri' : 'Explore'} <span aria-hidden="true">▼</span></span>
-        <span class="sc__lbl-close" style="display:none">{it ? 'Chiudi' : 'Close'} <span aria-hidden="true">▲</span></span>
-      </button>
+      {pro.budget && <span class="sc__budget">{pro.budget}</span>}
+      <a class="sc__cta" href={contactUrl}>
+        {isLoc
+          ? (it ? 'Vedi la location →' : 'View venue →')
+          : (it ? 'Vedi il profilo →' : 'View profile →')}
+      </a>
     </div>
   </div>
 </article>
 
 <style>
   .sc {
-    flex-shrink: 0;
     background: #fff;
     border: 1px solid var(--color-border);
     display: flex;
@@ -46,7 +92,7 @@ const it = lang === 'it';
     transition: box-shadow 0.25s ease;
   }
   .sc:hover {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
   }
 
   /* ── Media ── */
@@ -83,83 +129,120 @@ const it = lang === 'it';
     color: rgba(184, 158, 114, 0.3);
     font-style: italic;
   }
-  .sc__budget-badge {
+  .sc__type-badge {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.52rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #fff;
+    background: rgba(10, 7, 5, 0.65);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    padding: 0.25rem 0.6rem;
+  }
+  .sc__featured-badge {
     position: absolute;
     top: 0.75rem;
     right: 0.75rem;
     font-family: var(--font-sans);
-    font-size: 0.6rem;
+    font-size: 0.52rem;
     font-weight: 500;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     color: var(--color-accent-ink);
     background: rgba(255, 255, 255, 0.92);
-    border: 1px solid rgba(184, 158, 114, 0.4);
-    padding: 0.2rem 0.5rem;
+    border: 1px solid rgba(184, 158, 114, 0.5);
+    padding: 0.25rem 0.6rem;
   }
 
   /* ── Body ── */
   .sc__body {
-    padding: 1rem 1.1rem 1.1rem;
+    padding: 1.1rem 1.2rem 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.5rem;
     flex: 1;
-  }
-  .sc__badge {
-    font-family: var(--font-sans);
-    font-size: 0.55rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-accent-ink);
   }
   .sc__name {
     font-family: var(--font-display);
-    font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.2rem);
+    font-size: clamp(1rem, 0.85rem + 0.5vw, 1.25rem);
     font-weight: 300;
     line-height: 1.2;
     color: var(--color-text);
-    margin-top: 0.1rem;
-  }
-  .sc__tagline {
-    font-family: var(--font-display);
-    font-size: 0.8rem;
-    font-style: italic;
-    color: var(--color-text-muted);
-    line-height: 1.4;
   }
   .sc__desc {
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     color: var(--color-text-muted);
-    line-height: 1.6;
+    line-height: 1.65;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  /* ── Meta rows ── */
+  .sc__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
     margin-top: 0.2rem;
   }
+  .sc__meta-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+  .sc__meta-label {
+    font-family: var(--font-sans);
+    font-size: 0.52rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    flex-shrink: 0;
+    min-width: 5rem;
+  }
+  .sc__meta-value {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    color: var(--color-text);
+    line-height: 1.4;
+  }
+
+  /* ── Footer ── */
   .sc__footer {
     margin-top: auto;
-    padding-top: 0.8rem;
+    padding-top: 0.85rem;
     border-top: 1px solid var(--color-border);
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
+    gap: 0.5rem;
   }
-  .sc__toggle {
+  .sc__budget {
     font-family: var(--font-sans);
     font-size: 0.65rem;
     font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+  }
+  .sc__cta {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--color-text);
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
+    color: var(--color-text-muted);
+    text-decoration: none;
     transition: color 0.2s;
+    margin-left: auto;
     white-space: nowrap;
   }
-  .sc__toggle:hover { color: var(--color-accent-ink); }
-  .sc__toggle[aria-expanded="true"] { color: var(--color-accent-ink); }
+  .sc__cta:hover {
+    color: var(--color-accent-ink);
+  }
 </style>

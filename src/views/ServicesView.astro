@@ -11,6 +11,7 @@ import { services } from '@/data/services';
 import { serviceSchema } from '@/lib/seo';
 import hero      from '@/assets/images/bars/bartender-event.jpg';
 import iceHoshi  from '@/assets/images/ice/hoshizaki.jpg';
+import personalizImg from '@/assets/images/cocktails/rosemary-cocktail.jpg';
 import iceSphere from '@/assets/images/ice/sphere.jpg';
 import iceCube   from '@/assets/images/ice/compact-cube.jpg';
 import iceNugget from '@/assets/images/ice/nugget.jpg';
@@ -57,7 +58,7 @@ const schema = [
     <p slot="lead" class="lead muted">
       {it
         ? 'Un servizio bar completo: metodo nel servizio, effetto scenico nell\'allestimento. Ogni proposta è costruita su misura.'
-        : 'Complete, independent formulas coordinated with your caterer — or simply our staff and our method. Every proposal is built to measure.'}
+        : 'A complete bar service: method in delivery, scenic effect in the setup. Every proposal is built to measure.'}
     </p>
     <nav slot="bottombar" class="svc-index" aria-label={it ? "Indice servizi" : "Services index"}>
       {services.map((sv) => <a href={`#${sv.id}`}>{tabLabels[sv.id][lang]}</a>)}
@@ -137,12 +138,6 @@ const schema = [
             ? "Il ghiaccio non serve solo a raffreddare: controlla la diluizione e definisce l'equilibrio di ogni drink. Per noi è un ingrediente."
             : "Ice doesn't just chill — it controls dilution and defines the balance of every drink. For us it's an ingredient."}
         </p>
-        <p class="ice-lt__tagline" data-reveal>
-          <em>{it ? 'Formati da mixology e persino il vostro nome, inciso nel ghiaccio.' : 'Crafted by mixology — and even your name engraved in the ice.'}</em>
-        </p>
-        <a class="ice-lt__cta" href={url('ice', lang)} data-reveal>
-          {it ? 'CHIEDETECI DI PIÙ →' : 'ASK US MORE →'}
-        </a>
       </div>
 
       <!-- Right: 3×2 ice grid -->
@@ -196,7 +191,7 @@ const schema = [
       <article class="svc__item" id="personalizzazioni" aria-labelledby="personalizzazioni-t">
         <div class="svc__frame" data-reveal="image">
           <div class="media svc__media">
-            <Img src={iceHoshi} alt={it ? 'Cubo di ghiaccio con iniziali incise' : 'Ice cube with engraved initials'} sizes="(min-width: 960px) 34vw, 100vw" />
+            <Img src={personalizImg} alt={it ? 'Cocktail con rosmarino e lime su marmo chiaro' : 'Cocktail with rosemary and lime on light marble'} sizes="(min-width: 960px) 34vw, 100vw" />
           </div>
         </div>
         <div class="svc__text">
@@ -267,7 +262,7 @@ const schema = [
     align-items: center;
     justify-content: center;
     gap: 0.45rem;
-    padding: 0.95rem 1rem;
+    padding: 0.65rem 1rem;
     text-decoration: none;
     font-size: var(--fs-micro);
     letter-spacing: 0.1em;
@@ -575,6 +570,8 @@ const schema = [
   @media (max-width: 699px) {
     .svc-outro__inner { flex-direction: column; align-items: flex-start; }
     .svc-outro__text { white-space: normal; }
+    /* Ice section: landscape ratio on mobile (prevents very tall portrait image) */
+    .ice-lt__img { aspect-ratio: 16/9; }
   }
 
   /* Right: 3×2 ice grid */
