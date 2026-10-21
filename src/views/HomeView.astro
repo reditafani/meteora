@@ -14,11 +14,11 @@ import { site } from '@/data/site';
 import hero    from '@/assets/images/weddings/sumatra-weddings-hero.jpg';
 import introImg from '@/assets/images/bars/pure-white-villa.jpg';
 import weddImg from '@/assets/images/towers/couple-pour.jpg';
-import corpImg from '@/assets/images/bars/golden-marble-night.jpg';
-import privImg from '@/assets/images/bars/spritz-open-bar.jpg';
+import corpImg from '@/assets/images/corporate/corporate-table.jpg';
+import privImg from '@/assets/images/bars/private-bar-night.jpg';
 import procBg  from '@/assets/images/bars/bartender-event.jpg';
-import pkgBg   from '@/assets/images/bars/golden-mirror-sunset.jpg';
-import iceHoshi from '@/assets/images/ice/hoshizaki.jpg';
+import pkgBg   from '@/assets/images/venues/tuscany-window-view.jpg';
+import iceHoshi from '@/assets/images/cocktails/rosemary-cocktail.jpg';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -36,7 +36,7 @@ const steps = it
       { title: 'Raccontateci il vostro giorno',  text: 'Basta una email con data, location e numero di ospiti.' },
       { title: 'Costruiamo la vostra offerta',    text: 'Scegliete banco, formula e cocktail list, con le personalizzazioni che desiderate.' },
       { title: 'Tutto per iscritto',              text: 'Una proposta e un contratto con ogni dettaglio incluso.' },
-      { title: "Il giorno dell'evento",           text: "Quel giorno l'unica cosa a cui dovrete pensare sarete voi due.<br>Al bar penseremo noi, esattamente come lo abbiamo costruito insieme." },
+      { title: "Il giorno dell'evento",           text: "Quel giorno l'unica cosa a cui dovrete pensare sarete voi.<br>Al bar penseremo noi, esattamente come lo abbiamo costruito insieme." },
     ]
   : [
       { title: 'Tell us about your day',          text: 'All it takes is an email with the date, venue and guest count.' },
@@ -53,16 +53,16 @@ const packageItems = it
       { title: 'Distillati selezionati e ingredienti freschi', sub: 'frutta fresca, disidratata, odori e spezie' },
       { title: 'Ghiaccio professionale',                       sub: 'scelto per ogni tipo di cocktail'           },
       { title: 'Il bicchiere giusto per ogni drink',            sub: 'serviamo drink in vetro, perché anche l\'occhio vuole la sua parte' },
-      { title: 'Allestimento e smontaggio',                    sub: "la location torna come l'abbiamo trovata"   },
+      { title: 'Allestimento e smontaggio',                    sub: 'pensiamo noi a tutto'                       },
     ]
   : [
       { title: 'Scenographic bar counter',                     sub: 'your choice from our collection'            },
-      { title: 'Professional bartenders',                      sub: 'qualified staff, in total black'            },
-      { title: 'Signature drink list',                         sub: '40 drinks, personalised for you'            },
+      { title: 'Professional bartenders',                      sub: 'qualified staff, in elegant uniform'        },
+      { title: 'Your drink list',                              sub: 'choose your favourite drinks, we handle the rest.' },
       { title: 'Selected spirits and fresh ingredients',       sub: 'fresh fruit, dried fruit, herbs and spices' },
       { title: 'Professional ice',                             sub: 'chosen for each type of cocktail'           },
-      { title: 'Glassware only',                               sub: 'no plastic, ever'                           },
-      { title: 'Setup and breakdown',                          sub: 'we leave the venue as we found it'          },
+      { title: 'The right glass for every drink',              sub: 'no plastic, ever'                           },
+      { title: 'Setup and breakdown',                          sub: 'we take care of everything'                 },
     ];
 
 const eventTypes = [
@@ -70,36 +70,36 @@ const eventTypes = [
     label: it ? 'Matrimoni'         : 'Weddings',
     sub:   it ? 'Il giorno più fotografato della vostra vita merita un bar all\'altezza.' : 'The most photographed day of your life deserves a bar to match.',
     img: weddImg, alt: it ? 'Sposi che versano champagne su una tower di coppe' : 'Couple pouring champagne over a coupe tower',
-    href: url('weddings', lang),
+    href: url('services', lang),
   },
   {
-    label: it ? 'Events aziendali' : 'Corporate events',
+    label: it ? 'Eventi aziendali' : 'Corporate events',
     sub:   it ? 'La cura di un matrimonio, per l\'immagine della vostra azienda.' : 'Wedding-level care, for your company\'s image.',
-    img: corpImg, alt: it ? 'Banco bar dorato durante un grande evento notturno' : 'Golden bar at a large evening event',
-    href: url('corporate', lang),
+    img: corpImg, alt: it ? 'Tavolo elegante per un evento aziendale' : 'Elegant table at a corporate event',
+    href: url('services', lang),
   },
   {
-    label: it ? 'Events privati'   : 'Private events',
+    label: it ? 'Eventi privati'   : 'Private events',
     sub:   it ? 'Ogni occasione merita un brindisi fatto bene.' : 'Every milestone deserves a proper toast.',
-    img: privImg, alt: it ? 'Banco bar Spritz durante un aperitivo privato' : 'Spritz bar at a private aperitivo',
-    href: url('corporate', lang),
+    img: privImg, alt: it ? 'Back bar illuminato durante un evento privato serale' : 'Illuminated back bar at a private evening event',
+    href: url('services', lang),
   },
 ];
 
 
 const svcDisplay = [
-  { kicker: it ? 'Open bar · 3 ore'     : 'Open bar · 3 hours',  line1: 'Open Bar —',              line2: 'Essential Experience'                   },
-  { kicker: it ? 'Open bar · 3 ore'     : 'Open bar · 3 hours',  line1: 'Open Bar —',              line2: 'Premium Experience'                     },
-  { kicker: it ? '1h30 + 3 ore'         : '1h30 + 3 hours',      line1: it ? 'Aperitivo +' : 'Aperitivo +', line2: 'Open Bar'                     },
+  { kicker: it ? 'Open bar'              : 'Open bar',            line1: 'Open Bar —',              line2: 'Essential Experience'                   },
+  { kicker: it ? 'Open bar'             : 'Open bar',            line1: 'Open Bar —',              line2: 'Premium Experience'                     },
+  { kicker: it ? 'Aperitivo + open bar' : 'Aperitivo + open bar', line1: it ? 'Aperitivo +' : 'Aperitivo +', line2: 'Open Bar'                    },
   { kicker: it ? 'Momento scenografico' : 'Scenographic moment', line1: 'Signature Tower',          line2: 'Experience'                             },
-  { kicker: it ? 'Staff e metodo'       : 'Staff and method',    line1: it ? 'Servizio' : 'Bartender-only', line2: it ? 'solo barman' : 'service'   },
+  { kicker: it ? 'Staff e metodo'       : 'Staff and method',    line1: 'Bartender',                        line2: 'Service'                        },
 ];
 ---
 
 <BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('home')} headerTheme="overlay" current="home" schema={schema}>
 
   <!-- 1 · HERO -->
-  <Hero image={hero} imageAlt={it ? 'Cerimonia nuziale serale con fiori e luci' : 'Evening wedding ceremony with flowers and lights'} position="50% 50%" eyebrow={it ? 'Matrimoni · Events aziendali · Events privati' : 'Weddings · Corporate events · Private events'}>
+  <Hero image={hero} imageAlt={it ? 'Cerimonia nuziale serale con fiori e luci' : 'Evening wedding ceremony with flowers and lights'} position="50% 50%" eyebrow={it ? 'Matrimoni · Eventi aziendali · Eventi privati' : 'Weddings · Corporate events · Private events'}>
     <h1 class="home-hero__title">
       {it ? <>Ogni occasione<em>merita il suo brindisi.</em></> : <>Every occasion<em>deserves a toast.</em></>}
     </h1>
@@ -114,9 +114,9 @@ const svcDisplay = [
     <div slot="after" class="home-hero__stats">
       {[
         { n: it ? '14 anni di esperienza'  : '14+ years',              sub: it ? 'nel settore eventi'              : 'of operational experience'      },
-        { n: it ? 'Drink illimitati'      : 'All-inclusive',          sub: it ? 'inclusi nel pacchetto acquistato': 'bar, staff, glassware, ice'      },
-        { n: it ? 'Drink list su misura'  : 'Everything in writing',  sub: it ? 'scegliete tra i nostri 40 drink' : 'a contract for every detail'     },
-        { n: it ? 'Base in Toscana'       : 'Tuscany & Italy',        sub: it ? 'trasferte in tutta Italia'       : 'destination weddings everywhere'  },
+        { n: it ? 'Drink illimitati'      : 'Unlimited drinks',        sub: it ? 'inclusi nel pacchetto acquistato': 'included in the chosen package'  },
+        { n: it ? 'Drink list su misura'  : 'Bespoke drink list',     sub: it ? 'scegliete tra i nostri 40 drink' : 'choose from our 40 drinks'        },
+        { n: it ? 'Base in Toscana'       : 'Tuscany & Italy',        sub: it ? 'trasferte in tutta Italia'       : 'travel throughout Italy'           },
       ].map(item => (
         <div class="home-hero__stat">
           <strong class="home-hero__stat-n">{item.n}</strong>
@@ -182,20 +182,33 @@ const svcDisplay = [
           ? 'La stessa cura in ogni contesto, dal matrimonio in villa alla cena di gala aziendale.'
           : 'The same standard, everywhere: from the destination wedding at a villa to the corporate gala dinner.'}
       </p>
-      <div class="hm-ev__grid">
-        {eventTypes.map((ev, i) => (
-          <a class="hm-ev__card" href={ev.href} data-reveal style={`--delay:${i * 0.07}s`}>
-            <div class="hm-ev__card-img">
-              <Img src={ev.img} alt={ev.alt} sizes="(min-width: 900px) 33vw, 90vw" />
-            </div>
-            <div class="hm-ev__card-overlay">
-              <span class="hm-ev__card-num">0{i + 1}</span>
-              <h3 class="hm-ev__card-name">{ev.label}</h3>
-              <p class="hm-ev__card-sub">{ev.sub}</p>
-              <span class="hm-ev__card-cta">{it ? 'SCOPRI →' : 'DISCOVER →'}</span>
-            </div>
-          </a>
-        ))}
+      <div class="hm-ev__carousel">
+        <div class="hm-ev__grid" data-ev-grid>
+          {eventTypes.map((ev, i) => (
+            <a class="hm-ev__card" href={ev.href} data-reveal style={`--delay:${i * 0.07}s`}>
+              <div class="hm-ev__card-img">
+                <Img src={ev.img} alt={ev.alt} sizes="(min-width: 900px) 33vw, 90vw" />
+              </div>
+              <div class="hm-ev__card-overlay">
+                <span class="hm-ev__card-num">0{i + 1}</span>
+                <h3 class="hm-ev__card-name">{ev.label}</h3>
+                <p class="hm-ev__card-sub">{ev.sub}</p>
+                <span class="hm-ev__card-cta">{it ? 'SCOPRI →' : 'DISCOVER →'}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+        <button type="button" class="hm-ev__arrow hm-ev__arrow--prev" data-ev-prev aria-label={it ? 'Precedente' : 'Previous'}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button type="button" class="hm-ev__arrow hm-ev__arrow--next" data-ev-next aria-label={it ? 'Successivo' : 'Next'}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+        <div class="hm-ev__dots" role="list">
+          {eventTypes.map((_, i) => (
+            <button class:list={['hm-ev__dot', i === 0 && 'is-active']} type="button" data-ev-dot={i} aria-label={`Slide ${i + 1}`}></button>
+          ))}
+        </div>
       </div>
     </div>
   </section>
@@ -209,14 +222,6 @@ const svcDisplay = [
           <h2 id="hm-bc-title" class="hm-bc__title">
             {it ? <>Il bar, <em>come scenografia.</em></> : <>The bar, <em>as scenography.</em></>}
           </h2>
-        </div>
-        <div class="hm-bc__arrows">
-          <button class="hm-bc__arrow" type="button" aria-label={it ? 'Precedente' : 'Previous'} data-bc-prev>
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <button class="hm-bc__arrow" type="button" aria-label={it ? 'Successivo' : 'Next'} data-bc-next>
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
         </div>
       </div>
       <div class="hm-bc__stage" data-bc-root>
@@ -270,7 +275,7 @@ const svcDisplay = [
       </div>
       <div class="hm-bc__stats">
         {[
-          { key: 'SLIM',   size: it ? '1,5 metri' : '1.5 metres', note: it ? 'fino a 45 ospiti'  : 'up to 45 guests'  },
+          { key: 'SLIM',   size: it ? '1,5 metri' : '1.5 metres', note: it ? 'fino a 40 ospiti'  : 'up to 40 guests'  },
           { key: 'MEDIUM', size: it ? '3 metri'   : '3 metres',   note: it ? 'fino a 150 ospiti' : 'up to 150 guests' },
           { key: 'LARGE',  size: it ? '6 metri'   : '6 metres',   note: it ? '250+ ospiti'       : '250+ guests'      },
         ].map(z => (
@@ -303,7 +308,7 @@ const svcDisplay = [
       <p class="hm-svc__intro" data-reveal style="--delay:.08s">
         {it
           ? 'Ogni pacchetto include banco, staff, bicchieri, ghiaccio, allestimento e logistica. I drink sono illimitati per tutte le ore prenotate.'
-          : 'Complete, independent packages coordinated with catering, or just our staff and our method.'}
+          : 'Every package includes bar, staff, glassware, ice, setup and logistics. Drinks are unlimited for all booked hours.'}
       </p>
       <!-- Row 1: 3 cards -->
       <div class="hm-svc__row1">
@@ -343,13 +348,13 @@ const svcDisplay = [
         <!-- 06 · Personalizzazioni su richiesta -->
         <a class="hm-svc__card hm-svc__card--wide" href={`${url('services', lang)}#personalizzazioni`} data-reveal style="--delay:0.14s">
           <div class="hm-svc__card-img">
-            <Img src={iceHoshi} alt={it ? 'Cubo di ghiaccio con iniziali incise' : 'Ice cube with engraved initials'} sizes="(min-width: 900px) 20vw, 50vw" />
+            <Img src={iceHoshi} alt={it ? 'Cocktail con rosmarino e lime su marmo chiaro' : 'Cocktail with rosemary and lime on light marble'} sizes="(min-width: 900px) 20vw, 50vw" />
           </div>
           <div class="hm-svc__card-body">
             <p class="hm-svc__card-kicker">
               <span>06 · {it ? 'PERSONALIZZAZIONI SU RICHIESTA' : 'BESPOKE ADD-ONS'}</span>
             </p>
-            <h3 class="hm-svc__card-name">{it ? <>Il vostro bar,<em>su misura.</em></> : <>Your bar,<em>to measure.</em></>}</h3>
+            <h3 class="hm-svc__card-name">{it ? <>Un bar <em>che parla di voi</em></> : <>A bar <em>that speaks of you</em></>}</h3>
             <p class="hm-svc__card-desc">
               {it
                 ? "Ogni evento diventa unico grazie a dettagli su misura, pensati attorno alla vostra storia o all'identità del vostro brand."
@@ -393,9 +398,6 @@ const svcDisplay = [
             </li>
           ))}
         </ul>
-        <p class="hm-pkg__footer">
-          <em>{it ? 'Ogni dettaglio, nero su bianco nel contratto.' : 'Every detail, in black and white in the contract.'}</em>
-        </p>
       </div>
     </div>
   </section>
@@ -515,6 +517,25 @@ const svcDisplay = [
     </div>
   </section>
 
+  <!-- ── Home CTA ── -->
+  <section class="hm-cta on-dark">
+    <div class="container hm-cta__inner">
+      <div class="hm-cta__text" data-reveal>
+        <h2 class="hm-cta__title">
+          {it ? 'Brindiamo insieme?' : 'Shall we raise a glass?'}
+        </h2>
+        <p class="hm-cta__sub">
+          {it
+            ? 'Data, location e numero di ospiti: è tutto ciò che ci serve per verificare la disponibilità e prepararvi una proposta su misura.'
+            : 'Date, venue and guest count: that\'s all we need to check availability and put together a tailored proposal.'}
+        </p>
+      </div>
+      <a class="btn btn--ghost-light hm-cta__btn" href={url('contact', lang)} data-reveal style="--delay:.1s">
+        {it ? 'Verifica disponibilità →' : 'Check availability →'}
+      </a>
+    </div>
+  </section>
+
 </BaseLayout>
 
 <style>
@@ -567,10 +588,15 @@ const svcDisplay = [
     color: rgba(255,255,255,0.4);
   }
   @media (max-width: 600px) {
-    .home-hero__stats { grid-template-columns: 1fr 1fr; }
-    .home-hero__stat { border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .home-hero__stat:nth-child(2n) { border-right: none; }
-    .home-hero__stat:nth-child(3), .home-hero__stat:nth-child(4) { border-bottom: none; }
+    .home-hero__stats { grid-template-columns: repeat(4, 1fr); }
+    .home-hero__stat {
+      padding: 0.6rem 0.35rem;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      border-bottom: none;
+    }
+    .home-hero__stat:last-child { border-right: none; }
+    .home-hero__stat-n { font-size: 0.58rem; line-height: 1.25; }
+    .home-hero__stat-s { font-size: 0.4rem; }
   }
 
   /* ── Intro section ── */
@@ -709,14 +735,12 @@ const svcDisplay = [
     font-weight: 300;
     line-height: 1.04;
     color: #fff;
-    white-space: nowrap;
   }
   .hm-ev__title em { font-style: italic; color: var(--color-accent-on-dark); }
   .hm-ev__lead {
-    font-size: 23px;
+    font-size: clamp(0.95rem, 1.5vw + 0.4rem, 1.45rem);
     color: rgba(255,255,255,0.5);
     line-height: 1.65;
-    white-space: nowrap;
     margin-bottom: var(--space-l);
   }
   .hm-ev__grid {
@@ -786,6 +810,10 @@ const svcDisplay = [
   }
   .hm-ev__card:hover .hm-ev__card-cta { color: var(--color-accent-on-dark); }
 
+  /* Carousel controls: hidden by default (desktop), activated on mobile */
+  .hm-ev__arrow { display: none; }
+  .hm-ev__dots  { display: none; }
+
   /* ── Services ── */
   .hm-svc { padding-top: var(--space-l); }
   .hm-svc__header {
@@ -809,14 +837,12 @@ const svcDisplay = [
     font-weight: 300;
     line-height: 1.08;
     color: var(--color-text);
-    white-space: nowrap;
   }
   .hm-svc__title em { font-style: italic; color: var(--color-accent-ink); }
   .hm-svc__intro {
-    font-size: 23px;
+    font-size: clamp(0.95rem, 1.5vw + 0.4rem, 1.45rem);
     color: var(--color-text-muted);
     line-height: 1.65;
-    white-space: nowrap;
     margin-bottom: var(--space-l);
   }
   .hm-svc__row1 {
@@ -865,7 +891,7 @@ const svcDisplay = [
   }
   .hm-svc__card--wide .hm-svc__card-img :global(picture),
   .hm-svc__card--wide .hm-svc__card-img :global(img) {
-    display: block; width: 100%; height: 100%; object-fit: cover;
+    display: block; width: 100%; height: 100%; object-fit: cover; object-position: 45% 75%;
     transition: transform 0.8s var(--ease-out);
   }
   .hm-svc__card--wide:hover .hm-svc__card-img :global(img) { transform: scale(1.04); }
@@ -967,7 +993,7 @@ const svcDisplay = [
   .hm-pkg__title em { display: block; font-style: italic; color: var(--color-accent-on-dark); margin-top: 0.1rem; }
   .hm-pkg__panel {
     background: rgba(8,5,3,0.84);
-    border: 1px solid var(--color-accent-on-dark);
+    border: 1px solid rgba(207,182,138,0.4);
     padding-inline: clamp(1.2rem, 2vw, 2rem);
     padding-block: clamp(0.6rem, 1vw, 1rem);
   }
@@ -999,16 +1025,6 @@ const svcDisplay = [
     color: rgba(255,255,255,0.42);
     line-height: 1.4;
     letter-spacing: 0.01em;
-  }
-  .hm-pkg__footer {
-    margin-top: var(--space-l);
-    padding-top: var(--space-m);
-    border-top: 1px solid rgba(255,255,255,0.1);
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: clamp(0.95rem, 0.88rem + 0.35vw, 1.1rem);
-    color: var(--color-accent-on-dark);
-    line-height: 1.5;
   }
 
   /* ── Bar Collection ── */
@@ -1046,18 +1062,6 @@ const svcDisplay = [
     color: var(--color-text);
   }
   .hm-bc__title em { font-style: italic; color: var(--color-accent-ink); }
-  .hm-bc__arrows { display: flex; gap: 0.5rem; flex-shrink: 0; padding-bottom: 0.4rem; }
-  .hm-bc__arrow {
-    display: flex; align-items: center; justify-content: center;
-    width: 2.4rem; height: 2.4rem;
-    border-radius: 50%;
-    border: 1px solid var(--color-border);
-    background: transparent;
-    color: var(--color-text-muted);
-    cursor: pointer;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .hm-bc__arrow:hover { border-color: var(--color-accent-ink); color: var(--color-accent-ink); }
   .hm-bc__stage {
     display: grid;
     gap: var(--space-l);
@@ -1151,47 +1155,79 @@ const svcDisplay = [
   }
   .hm-bc__item-mood { font-size: 0.7rem; color: var(--color-text-muted); line-height: 1.4; }
   .hm-bc__item-soon { font-size: 0.7rem; font-style: italic; color: var(--color-text-muted); }
+  /* ── Sizes strip ── */
   .hm-bc__stats {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border: 1px solid var(--color-border);
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--color-border);
+    margin-top: var(--space-s);
   }
-  @media (max-width: 699px) {
-    .hm-bc__stats { grid-template-columns: 1fr 1fr; }
-    .hm-bc__stat:nth-child(2) { border-right: none; }
-    .hm-bc__stat-cta { grid-column: 1 / -1; border-top: 1px solid var(--color-border); border-right: none; }
+  @media (min-width: 700px) {
+    .hm-bc__stats { grid-template-columns: repeat(3, 1fr) auto; }
   }
   .hm-bc__stat {
-    display: flex; flex-direction: column; gap: 0.2rem;
-    padding: 1.1rem clamp(0.75rem, 2vw, 1.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1.1rem clamp(0.5rem, 1.6vw, 1.4rem);
     border-right: 1px solid var(--color-border);
+  }
+  /* On mobile last stat has no right border (nothing after it in that row) */
+  .hm-bc__stat:last-of-type { border-right: none; }
+  /* On desktop, restore right border so it separates from the CTA */
+  @media (min-width: 700px) {
+    .hm-bc__stat:last-of-type { border-right: 1px solid var(--color-border); }
   }
   .hm-bc__stat-label {
     font-family: var(--font-sans);
-    font-size: 0.52rem; font-weight: 500;
-    letter-spacing: 0.14em;
-    color: var(--color-text-muted);
+    font-size: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-accent-ink);
   }
   .hm-bc__stat-size {
     font-family: var(--font-display);
-    font-size: clamp(1.3rem, 1rem + 1vw, 2rem);
-    font-weight: 300; color: var(--color-text); line-height: 1;
+    font-size: clamp(1.35rem, 1rem + 1.1vw, 2rem);
+    font-weight: 300;
+    color: var(--color-text);
+    line-height: 1;
   }
-  .hm-bc__stat-note { font-size: 0.62rem; color: var(--color-text-muted); }
+  .hm-bc__stat-note {
+    font-size: 0.58rem;
+    color: var(--color-text-muted);
+    margin-top: 0.1rem;
+  }
+  /* CTA: full-width button below stats on mobile, inline on desktop */
   .hm-bc__stat-cta {
-    display: flex; align-items: center; justify-content: center;
-    padding: 1.1rem clamp(0.75rem, 2vw, 1.5rem);
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9rem clamp(0.75rem, 2vw, 1.5rem);
     font-family: var(--font-sans);
-    font-size: 0.6rem; font-weight: 500;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    text-decoration: none; color: var(--color-text);
-    transition: color 0.2s, background 0.2s;
-    text-align: center;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-background);
+    background: var(--color-text);
+    border-top: 1px solid var(--color-border);
+    transition: background 0.2s;
   }
-  .hm-bc__stat-cta:hover { color: var(--color-accent-ink); background: rgba(0,0,0,0.02); }
+  .hm-bc__stat-cta:hover { background: var(--color-accent-ink); }
+  @media (min-width: 700px) {
+    .hm-bc__stat-cta {
+      grid-column: auto;
+      border-top: none;
+      border-left: 1px solid var(--color-border);
+      padding-inline: clamp(1.2rem, 2.5vw, 2.5rem);
+    }
+  }
 
   /* ── Process ── */
-  .hm-proc { padding-top: var(--space-l); }
+  .hm-proc { padding-top: var(--space-l); padding-bottom: var(--space-m); }
   .hm-proc__inner {
     display: grid;
     gap: var(--space-xl);
@@ -1283,7 +1319,7 @@ const svcDisplay = [
   }
   .hm-proc__step {
     position: relative;
-    padding-bottom: var(--space-l);
+    padding-bottom: var(--space-m);
   }
   .hm-proc__step:last-child { padding-bottom: 0; }
   .hm-proc__step-dot {
@@ -1324,7 +1360,7 @@ const svcDisplay = [
   }
 
   /* ── Instagram ── */
-  .hm-ig { padding-top: var(--space-l); }
+  .hm-ig { padding-top: var(--space-m); }
   .hm-ig__head {
     display: flex;
     flex-wrap: wrap;
@@ -1454,6 +1490,105 @@ const svcDisplay = [
       grid-template-rows: repeat(2, 1fr);
     }
   }
+
+  /* ── Home CTA ── */
+  .hm-cta {
+    background: rgb(8 5 3);
+    padding: clamp(2.5rem, 5vw, 4rem) 0;
+  }
+  .hm-cta__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-l);
+    flex-wrap: wrap;
+  }
+  .hm-cta__text { display: flex; flex-direction: column; gap: 0.6rem; }
+  .hm-cta__title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3vw + 0.5rem, 4rem);
+    font-weight: 300;
+    font-style: italic;
+    color: #fff;
+    line-height: 1.05;
+  }
+  .hm-cta__sub {
+    font-size: clamp(0.8rem, 1vw, 0.95rem);
+    color: rgba(255, 255, 255, 0.5);
+    max-width: 52rem;
+    line-height: 1.6;
+  }
+  .hm-cta__btn { flex-shrink: 0; letter-spacing: 0.1em; }
+  @media (max-width: 699px) {
+    .hm-cta__inner { flex-direction: column; align-items: flex-start; }
+    /* Instagram CTA: remove desktop alignment offset */
+    .hm-ig__cta { margin-top: 0; }
+    /* Process CTA button: full width */
+    .hm-proc__cta { display: block; text-align: center; }
+    /* Intro section: tighter spacing between stacked columns */
+    .hm-intro__frame { margin-bottom: var(--space-m); }
+    .hm-intro__row { gap: var(--space-s); padding-top: var(--space-xs, 0.5rem); }
+    .hm-intro__eyebrow { margin-bottom: var(--space-s); }
+    .hm-intro__desc { margin-bottom: 0.5rem; }
+    .hm-intro__types { margin-bottom: 0.5rem; }
+    /* Event types: scroll-snap carousel */
+    .hm-ev__carousel { position: relative; }
+    .hm-ev__grid {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      gap: 0;
+      scrollbar-width: none;
+    }
+    .hm-ev__grid::-webkit-scrollbar { display: none; }
+    .hm-ev__card {
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+    }
+    .hm-ev__arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 40%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      background: rgba(10, 7, 5, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fff;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      transition: background 0.2s, opacity 0.2s;
+    }
+    .hm-ev__arrow:hover { background: rgba(10, 7, 5, 0.82); }
+    .hm-ev__arrow--prev { left: 0.75rem; }
+    .hm-ev__arrow--next { right: 0.75rem; }
+    .hm-ev__dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      padding-top: var(--space-s);
+    }
+    .hm-ev__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.28);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .hm-ev__dot.is-active {
+      background: var(--color-accent-on-dark);
+      transform: scale(1.4);
+    }
+  }
 </style>
 
 <script>
@@ -1502,17 +1637,58 @@ const svcDisplay = [
       row.addEventListener('click',      () => bcActivate(i));
     });
 
-    // Bar prev/next arrows (top-right header)
-    document.querySelector('[data-bc-prev]')?.addEventListener('click', () =>
-      bcActivate((bcCurrent - 1 + bcRows.length) % bcRows.length));
-    document.querySelector('[data-bc-next]')?.addEventListener('click', () =>
-      bcActivate((bcCurrent + 1) % bcRows.length));
-
     // Image prev/next arrows (inside the photo)
     imgPrev?.addEventListener('click', () => setSubSlide(bcCurrent, -1));
     imgNext?.addEventListener('click', () => setSubSlide(bcCurrent, +1));
 
+    // Touch swipe on the main photo to navigate sub-images
+    const bcMain = bcRoot.querySelector<HTMLElement>('.hm-bc__main');
+    let bcTouchX = 0;
+    bcMain?.addEventListener('touchstart', (e) => {
+      bcTouchX = e.touches[0].clientX;
+    }, { passive: true });
+    bcMain?.addEventListener('touchend', (e) => {
+      const dx = bcTouchX - e.changedTouches[0].clientX;
+      if (Math.abs(dx) > 40) setSubSlide(bcCurrent, dx > 0 ? 1 : -1);
+    }, { passive: true });
+
     // Init
     syncImgArrows(0);
+  }
+
+  // ── Event types carousel (mobile) ──────────────────────────────────────
+  const evGrid = document.querySelector<HTMLElement>('[data-ev-grid]');
+  if (evGrid) {
+    const evPrev = document.querySelector<HTMLButtonElement>('[data-ev-prev]');
+    const evNext = document.querySelector<HTMLButtonElement>('[data-ev-next]');
+    const evDots = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-ev-dot]'));
+    const evCount = evDots.length;
+    let evCurrent = 0;
+    let evTimer = 0;
+
+    const evGo = (i: number) => {
+      evCurrent = Math.max(0, Math.min(i, evCount - 1));
+      evGrid.scrollTo({ left: evCurrent * evGrid.offsetWidth, behavior: 'smooth' });
+      evDots.forEach((d, j) => d.classList.toggle('is-active', j === evCurrent));
+      if (evPrev) evPrev.style.opacity = evCurrent === 0 ? '0.35' : '1';
+      if (evNext) evNext.style.opacity = evCurrent === evCount - 1 ? '0.35' : '1';
+    };
+
+    evPrev?.addEventListener('click', () => evGo(evCurrent - 1));
+    evNext?.addEventListener('click', () => evGo(evCurrent + 1));
+    evDots.forEach((d, i) => d.addEventListener('click', () => evGo(i)));
+
+    evGrid.addEventListener('scroll', () => {
+      clearTimeout(evTimer);
+      evTimer = window.setTimeout(() => {
+        const w = evGrid.offsetWidth;
+        if (!w) return;
+        const idx = Math.round(evGrid.scrollLeft / w);
+        if (idx !== evCurrent) evGo(idx);
+      }, 60);
+    });
+
+    // Initial arrow state (prev dimmed at slide 0)
+    if (evPrev) evPrev.style.opacity = '0.35';
   }
 </script>

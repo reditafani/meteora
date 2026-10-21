@@ -7,7 +7,13 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Img from '@/components/Img.astro';
 import SupplierCard from '@/components/SupplierCard.astro';
 import { professionalsOfType, typeLabels } from '@/data/network';
-import hero from '@/assets/images/venues/ballroom-chandelier.jpg';
+import hero           from '@/assets/images/weddings/sumatra-weddings-hero.jpg';
+import howImg1        from '@/assets/images/venues/wedding-table-candles.jpg';
+import howImg2        from '@/assets/images/destinations/tuscany-villa-aerial.jpg';
+import howImg3        from '@/assets/images/bars/bartender-event.jpg';
+import ctaBg          from '@/assets/images/venues/wedding-hall-chandeliers.jpg';
+import wpSectionImg   from '@/assets/images/weddings/couple-holding-hands.jpg';
+import locSectionImg  from '@/assets/images/destinations/tuscany-hills.jpg';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -15,12 +21,12 @@ const it = lang === 'it';
 const s = t(lang);
 
 const meta = it
-  ? { title: 'Wedding Planner, Location e Catering in Italia | Meteora Events', description: 'Una selezione curata di wedding planner, location e catering in Italia. I professionisti che consigliamo alle coppie che scelgono Meteora Events per il bar del loro matrimonio.' }
-  : { title: 'Wedding Planners, Venues & Catering in Italy | Meteora Events', description: 'A curated selection of wedding planners, venues and catering in Italy. The professionals we recommend to couples choosing Meteora Events for their wedding bar.' };
+  ? { title: 'Wedding Planner e Location in Italia | Meteora Events', description: 'Una selezione curata di wedding planner e location in Italia. I professionisti che consigliamo alle coppie che scelgono Meteora Events per il bar del loro matrimonio.' }
+  : { title: 'Wedding Planners & Venues in Italy | Meteora Events', description: 'A curated selection of wedding planners and venues in Italy. The professionals we recommend to couples choosing Meteora Events for their wedding bar.' };
 
 const crumbs = [
   { name: s.breadcrumbHome, href: url('home', lang) },
-  { name: 'Meteora Partners', href: url('partners', lang) },
+  { name: it ? 'Fornitori consigliati' : 'Recommended suppliers', href: url('partners', lang) },
 ];
 
 const schema = [{
@@ -32,51 +38,38 @@ const schema = [{
 
 const weddingPlanners = professionalsOfType('wedding-planner');
 const locations       = professionalsOfType('location');
-const caterings       = professionalsOfType('catering');
+const contactUrl      = url('contact', lang);
+const langCode        = lang;
 
-const sections = [
-  {
-    id: 'wedding-planner',
-    titleId: 'pf-wp-title',
-    num: '01',
-    eyebrow: 'Wedding Planner',
-    subtitle: it ? 'Chi organizza il vostro giorno.' : 'Who organises your day.',
-    desc: it
-      ? 'Professioniste che lavorano con coppie italiane e internazionali. Ogni scheda per conoscerle e leggere il nostro consiglio.'
-      : 'Professionals working with Italian and international couples. Each profile to get to know them and read our recommendation.',
-    items: weddingPlanners,
-    count: it ? `${weddingPlanners.length} wedding planner selezionati da Meteora` : `${weddingPlanners.length} wedding planners selected by Meteora`,
-    tags: [...new Set(weddingPlanners.flatMap(p => p.tags ?? []))],
-  },
-  {
-    id: 'location',
-    titleId: 'pf-loc-title',
-    num: '02',
-    eyebrow: 'Location',
-    subtitle: it ? 'Dove dire sì.' : 'Where to say yes.',
-    desc: it
-      ? 'Ville, castelli e tenute che conosciamo dal vivo: sappiamo dove monterai il vostro bar, come è il suolo e quanto tempo serve per allestire.'
-      : 'Villas, castles and estates we know in person: we know where your bar will go, what the ground is like and how long setup takes.',
-    items: locations,
-    count: it ? `${locations.length} location selezionate da Meteora` : `${locations.length} venues selected by Meteora`,
-    tags: [...new Set(locations.flatMap(p => p.tags ?? []))],
-  },
-  {
-    id: 'catering',
-    titleId: 'pf-cat-title',
-    num: '03',
-    eyebrow: 'Catering',
-    subtitle: it ? 'Il gusto della festa.' : 'The flavour of the party.',
-    desc: it
-      ? 'Cucine che conosciamo bene: capiamo come lavorano, cosa ci si può aspettare e quanto tempo serve per portare in tavola per gli ospiti.'
-      : 'Kitchens we know well: we understand how they work, what to expect and how long it takes to bring every dish to the date.',
-    items: caterings,
-    count: it ? `${caterings.length} catering selezionati da Meteora` : `${caterings.length} catering services selected by Meteora`,
-    tags: [...new Set(caterings.flatMap(p => p.tags ?? []))],
-  },
-];
+const howSteps = it
+  ? [
+      { img: howImg1, alt: 'Tavolo nuziale allestito con fiori', num: '1', title: 'Scegliete la vostra planner.', desc: 'È la regista del vostro giorno. Darà forma alle vostre idee, vi consiglierà sul budget e gestirà ogni imprevisto, perché voi possiate viverlo senza pensieri.', cta: 'LE PLANNER', href: '#wedding-planner' },
+      { img: howImg2, alt: 'Paesaggio toscano con villa', num: '2', title: 'Trovate la vostra location.', desc: 'È la cornice del vostro giorno: il luogo dove i vostri ricordi più belli prenderanno vita.', cta: 'LE LOCATION', href: '#location' },
+      { img: howImg3, alt: 'Dettaglio tableau de mariage', num: '3', title: "Raccontateci com'è andata.", desc: "La vostra esperienza sarà preziosa per altre coppie come voi, e ci aiuterà a mantenere questa lista all'altezza, stagione dopo stagione.", cta: 'INIZIA DA QUI', href: contactUrl },
+    ]
+  : [
+      { img: howImg1, alt: 'Wedding table set with flowers', num: '1', title: 'Choose your planner.', desc: "She is the director of your day. She will shape your ideas, advise on budget and handle every surprise, so you can live it without a worry.", cta: 'THE PLANNERS', href: '#wedding-planner' },
+      { img: howImg2, alt: 'Tuscan landscape with villa', num: '2', title: 'Find your venue.', desc: "It is the frame of your day: the place where your most beautiful memories will come to life.", cta: 'THE VENUES', href: '#location' },
+      { img: howImg3, alt: 'Wedding place card detail', num: '3', title: "Get in touch and tell us how it went.", desc: "Your experience will be precious for other couples like you, and will help us keep this list at its best, season after season.", cta: 'START HERE', href: contactUrl },
+    ];
 
-const allPros = [...weddingPlanners, ...locations, ...caterings];
+const faqItems = it
+  ? [
+      { q: 'Possiamo scegliere i fornitori liberamente?', a: 'Sì: questa è la vostra lista personale di suggerimenti. Siete liberi di scegliere qualsiasi professionista, con o senza il nostro bar.' },
+      { q: "Qual è il piano B se piove?", a: 'Parlatene con location e planner prima di firmare: ogni scelta dipende dagli spazi coperti disponibili nella struttura.' },
+      { q: 'Cosa è incluso nel contratto con la location?', a: 'Ogni voce deve essere scritta in nero su bianco: cosa è incluso, cosa non lo è, e cosa costa extra.' },
+      { q: "Fino a che ora possiamo fare musica all'aperto?", a: 'I limiti variano per ogni location e comune. Verificateli prima di firmare il contratto.' },
+      { q: 'Come ottimizzare gli ospiti a fine serata?', a: 'Organizzate il transfer in anticipo: è il dettaglio che fa la differenza quando la festa finisce.' },
+    ]
+  : [
+      { q: 'Can we choose our own suppliers freely?', a: 'Yes: this is your personal list of recommendations. You are free to choose any professional, with or without our bar.' },
+      { q: 'What is plan B if it rains?', a: 'Discuss this with the venue and planner before signing: every decision depends on the covered spaces available.' },
+      { q: 'What is included in the venue contract?', a: 'Every item must be in black and white: what is included, what is not, and what costs extra.' },
+      { q: 'Until what time can we have outdoor music?', a: 'Limits vary by venue and municipality. Check them before signing the contract.' },
+      { q: 'How to manage guests at the end of the evening?', a: 'Arrange the transfer in advance: it is the detail that makes the difference when the party ends.' },
+    ];
+
+const allPros = [...weddingPlanners, ...locations];
 const prosData: Record<string, object> = {};
 for (const p of allPros) {
   prosData[p.id] = {
@@ -99,8 +92,6 @@ for (const p of allPros) {
     imageAlt: p.imageAlt?.[lang] ?? p.name,
   };
 }
-const contactUrl = url('contact', lang);
-const langCode = lang;
 ---
 
 <BaseLayout
@@ -117,60 +108,184 @@ const langCode = lang;
   <!-- ── Hero ── -->
   <section class="ph on-dark" aria-labelledby="ph-title">
     <div class="ph__bg">
-      <Img src={hero} alt={it ? 'Salone con lampadari dorati apparecchiato per un matrimonio' : 'Ballroom with golden chandeliers set for a wedding'} priority sizes="100vw" widths={[800, 1280, 1920]} />
+      <Img src={hero} alt={it ? 'Matrimonio in un giardino fiorito' : 'Wedding in a flower garden'} priority sizes="100vw" widths={[800, 1280, 1920]} />
     </div>
     <div class="ph__overlay" aria-hidden="true"></div>
-    <div class="ph__content container">
+    <div class="ph__content">
       <h1 id="ph-title" data-reveal>
-        {it ? <>Le persone giuste<em>per il vostro giorno.</em></> : <>The right people<em>for your day.</em></>}
-      </h1>
-      <div class="ph__rule" aria-hidden="true" data-reveal style="--delay:.08s"></div>
-      <p class="lead ph__lead" data-reveal style="--delay:.14s">
         {it
-          ? 'Dietro ogni matrimonio riuscito c\'è una squadra affiatata. Queste sono le wedding planner, le location e i catering che consigliamo alle vostre coppie.'
-          : 'Behind every successful wedding is a cohesive team. These are the wedding planners, venues and caterers we recommend to couples.'}
+          ? <>Le persone giuste <em>per il vostro giorno.</em></>
+          : <>The right people <em>for your day.</em></>}
+      </h1>
+      <p class="lead ph__lead" data-reveal style="--delay:.1s">
+        {it
+          ? `Wedding planner e location selezionati, per aiutarvi a organizzare il vostro matrimonio in Italia con chi sa davvero farlo. Li abbiamo scelti per la loro professionalità, serietà e affidabilità.`
+          : `Selected wedding planners and venues, to help you plan your wedding in Italy with people who truly know how. We chose them for their professionalism, seriousness and reliability.`}
       </p>
+      <div class="ph__badge" data-reveal style="--delay:.18s">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        <span>{it ? 'Selezione indipendente. Nessuno paga per essere in questa pagina.' : 'Independent selection. No one pays to be on this page.'}</span>
+      </div>
     </div>
     <nav class="ph__tabs" aria-label={it ? 'Categorie fornitori' : 'Supplier categories'}>
-      {sections.map(s => (
-        <a href={`#${s.id}`}>{s.eyebrow}</a>
-      ))}
+      <a href="#wedding-planner">Wedding Planner</a>
+      <a href="#location">Location</a>
+      <a href="#pf-faq">FAQ</a>
     </nav>
   </section>
 
-  <!-- ── Category sections ── -->
-  {sections.map(sec => (
-    <section class="section section--alt pf" id={sec.id} aria-labelledby={sec.titleId}>
-      <div class="container pf__head">
-        <div class="pf__num-row" data-reveal>
-          <span class="pf__line" aria-hidden="true"></span>
-          <span class="pf__num">{sec.num}</span>
-          <span class="pf__line" aria-hidden="true"></span>
+  <!-- ── Come funziona ── -->
+  <section class="section pf-how">
+    <div class="container">
+      <p class="eyebrow pf-how__eyebrow" data-reveal>{it ? 'Come funziona' : 'How it works'}</p>
+      <div class="pf-how__carousel">
+        <button class="pf-how__arrow pf-how__arrow--prev" data-how-prev aria-label={it ? 'Passo precedente' : 'Previous step'}>
+          <svg width="9" height="16" viewBox="0 0 9 16" fill="none" aria-hidden="true"><path d="M8 1 1 8l7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="pf-how__arrow pf-how__arrow--next" data-how-next aria-label={it ? 'Passo successivo' : 'Next step'}>
+          <svg width="9" height="16" viewBox="0 0 9 16" fill="none" aria-hidden="true"><path d="M1 1l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="pf-how__grid" data-how-grid>
+          {howSteps.map((step, i) => (
+            <div class="pf-how__col" data-reveal style={`--delay:${i * 0.07}s`}>
+              <div class="pf-how__img">
+                <Img src={step.img} alt={step.alt} sizes="(min-width: 900px) 30vw, 90vw" widths={[480, 800]} />
+              </div>
+              <div class="pf-how__body">
+                <h3 class="pf-how__title">{step.title}</h3>
+                <p class="pf-how__desc">{step.desc}</p>
+                <a class="pf-how__cta" href={step.href}>{step.cta} →</a>
+              </div>
+            </div>
+          ))}
         </div>
-        <h2 id={sec.titleId} class="pf__title" data-reveal style="--delay:.05s">{sec.eyebrow}</h2>
-        <p class="pf__subtitle" data-reveal style="--delay:.08s"><em>{sec.subtitle}</em></p>
-        <p class="pf__desc" data-reveal style="--delay:.1s">{sec.desc}</p>
-        <div class="pf__meta" data-reveal style="--delay:.12s">
-          <span class="pf__count-txt">{sec.count}</span>
-          <div class="pf__filters" role="group" aria-label={it ? 'Filtra per tipo' : 'Filter by type'}>
-            <button class="pf__pill is-active" data-tag="">{it ? 'Tutte' : 'All'}</button>
-            {sec.tags.map(tag => <button class="pf__pill" data-tag={tag}>{tag}</button>)}
+        <div class="pf-how__dots" aria-hidden="true">
+          {howSteps.map((_, i) => (
+            <span class:list={['pf-how__dot', i === 0 && 'is-active']} data-how-dot={i}></span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Wedding Planner ── -->
+  <section class="section--alt pf-section" id="wedding-planner" aria-labelledby="pf-wp-title">
+    <div class="pf-section__intro">
+      <div class="pf-section__intro-text">
+        <p class="eyebrow" data-reveal>{it ? 'IL RAGGIO DEL VOSTRO GIORNO' : 'THE GUIDING LIGHT OF YOUR DAY'}</p>
+        <h2 id="pf-wp-title" class="pf-section__title" data-reveal>Wedding Planner</h2>
+        <p class="pf-section__desc" data-reveal>
+          {it
+            ? 'Dietro ogni matrimonio riuscito c\'è una connessione profonda tra la coppia e la sua planner. Leggete le loro storie e lasciatevi guidare dall\'istinto.'
+            : "Behind every successful wedding is a deep connection between the couple and their planner. Read their stories and let your instincts guide you."}
+        </p>
+      </div>
+      <div class="pf-section__intro-img">
+        <Img src={wpSectionImg} alt={it ? 'Coppia durante il matrimonio' : 'Couple at their wedding'} sizes="(min-width: 900px) 58vw, 100vw" widths={[600, 1000]} />
+      </div>
+    </div>
+    <div class="pf-section__grid container">
+      {weddingPlanners.map((pro, i) => (
+        <div data-reveal style={`--delay:${(i % 3) * 0.06}s`}>
+          <SupplierCard pro={pro} lang={lang} contactUrl={contactUrl} />
+        </div>
+      ))}
+    </div>
+    <div class="pf__detail" data-section-detail="wedding-planner">
+      <div class="pf__detail-inner"></div>
+    </div>
+  </section>
+
+  <!-- ── Location ── -->
+  <section class="section pf-section" id="location" aria-labelledby="pf-loc-title">
+    <div class="pf-section__intro">
+      <div class="pf-section__intro-text">
+        <p class="eyebrow" data-reveal>{it ? 'LA CORNICE DEL VOSTRO GIORNO' : "YOUR DAY'S BACKDROP"}</p>
+        <h2 id="pf-loc-title" class="pf-section__title" data-reveal>Location</h2>
+        <p class="pf-section__desc" data-reveal>
+          {it
+            ? 'Ogni luogo ha un\'anima, e il vostro si sta già aspettando. Quando lo vedrete, lo saprete: è lì che la vostra storia diventerà un ricordo per sempre.'
+            : "Every venue has a soul, and yours is already waiting. When you find it, you'll know: it's where your story will become a memory forever."}
+        </p>
+      </div>
+      <div class="pf-section__intro-img">
+        <Img src={locSectionImg} alt={it ? 'Colline toscane con villa' : 'Tuscan hills with villa'} sizes="(min-width: 900px) 58vw, 100vw" widths={[600, 1000]} />
+      </div>
+    </div>
+    <div class="pf-section__grid container">
+      {locations.map((pro, i) => (
+        <div data-reveal style={`--delay:${(i % 3) * 0.06}s`}>
+          <SupplierCard pro={pro} lang={lang} contactUrl={contactUrl} />
+        </div>
+      ))}
+    </div>
+    <div class="pf__detail" data-section-detail="location">
+      <div class="pf__detail-inner"></div>
+    </div>
+  </section>
+
+  <!-- ── Le domande giuste ── -->
+  <section class="section pf-faq" id="pf-faq" aria-labelledby="pf-faq-title">
+    <div class="container">
+      <h2 id="pf-faq-title" class="pf-faq__title" data-reveal>
+        {it ? <>Le domande giuste <em>prima di firmare</em></> : <>The right questions <em>before signing</em></>}
+      </h2>
+      <div class="pf-faq__grid">
+        {faqItems.map((item, i) => (
+          <div class="pf-faq__item" data-reveal style={`--delay:${i * 0.06}s`}>
+            <span class="pf-faq__n">0{i + 1}</span>
+            <h3 class="pf-faq__q">{item.q}</h3>
+            <p class="pf-faq__a">{item.a}</p>
           </div>
-        </div>
+        ))}
       </div>
-
-      <div class="pf__grid">
-        {sec.items.map(pro => <SupplierCard pro={pro} lang={lang} />)}
+      <div class="pf-faq__dl" data-reveal>
+        <p class="pf-faq__dl-text muted">
+          {it
+            ? 'Scarica la lista completa delle domande da fare prima di firmare'
+            : 'Download the full list of questions to ask before signing'}
+        </p>
+        <a class="btn pf-faq__dl-btn" href={contactUrl}>
+          {it ? 'SCARICA LA LISTA' : 'DOWNLOAD THE LIST'}
+        </a>
       </div>
-      <div class="pf__detail" data-section-detail={sec.id}>
-        <div class="pf__detail-inner">
-          <!-- populated by JS -->
-        </div>
-      </div>
+    </div>
+  </section>
 
-    </section>
-  ))}
+  <!-- ── CTA ── -->
+  <section class="pf-cta on-dark" aria-labelledby="pf-cta-title">
+    <div class="pf-cta__bg">
+      <Img src={ctaBg} alt={it ? 'Salone nuziale' : 'Wedding hall'} sizes="100vw" widths={[800, 1440]} />
+    </div>
+    <div class="pf-cta__overlay" aria-hidden="true"></div>
+    <div class="container pf-cta__inner">
+      <h2 id="pf-cta-title" class="pf-cta__title" data-reveal>
+        {it
+          ? <>Non sapete da dove iniziare? <em>Lasciatevi consigliare.</em></>
+          : <>Not sure where to start? <em>Let us guide you.</em></>}
+      </h2>
+      <p class="pf-cta__sub" data-reveal style="--delay:.08s">
+        {it
+          ? 'Raccontateci la vostra idea: vi guidiamo tra planner, location e tutto il resto, con o senza il nostro bar.'
+          : "Tell us your idea: we'll guide you through planners, venues and everything else, with or without our bar."}
+      </p>
+      <a class="btn btn--ghost-light pf-cta__btn" href={contactUrl} data-reveal style="--delay:.14s">
+        {it ? 'CONTATTACI PER CONOSCERCI' : 'GET IN TOUCH WITH US'}
+      </a>
+    </div>
+  </section>
 
+  <!-- ── Footer bar ── -->
+  <div class="pf-bar">
+    <span class="pf-bar__msg">
+      {it
+        ? 'Le coppie si fidano di noi perché conosciamo il settore dall\'interno.'
+        : 'Couples trust us because we know the industry from the inside.'}
+    </span>
+    <a class="pf-bar__link" href={`${contactUrl}?tab=pro#contact-form`}>
+      {it ? 'Siete wedding planner o location? Entriamo in contatto →' : "Are you a wedding planner or venue? Let's connect →"}
+    </a>
+  </div>
 
 </BaseLayout>
 
@@ -194,16 +309,18 @@ const langCode = lang;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 40%;
   }
   .ph__overlay {
     position: absolute;
     inset: 0;
     z-index: 1;
     background: linear-gradient(
-      to bottom,
-      rgba(10, 7, 5, 0.45) 0%,
-      rgba(10, 7, 5, 0.65) 60%,
-      rgba(10, 7, 5, 0.80) 100%
+      to right,
+      rgba(10, 7, 5, 0.92) 0%,
+      rgba(10, 7, 5, 0.75) 35%,
+      rgba(10, 7, 5, 0.38) 65%,
+      rgba(10, 7, 5, 0.12) 100%
     );
   }
   .ph__content {
@@ -213,21 +330,24 @@ const langCode = lang;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding-top: calc(var(--header-h, 5rem) + var(--space-l));
-    padding-bottom: var(--space-xl);
-  }
-  .ph__rule {
-    width: 2.5rem;
-    height: 3px;
-    background: var(--color-accent-on-dark);
-    margin-block: var(--space-m);
+    padding: calc(var(--header-h, 5rem) + var(--space-l)) clamp(2rem, 6vw, 7rem) 5rem;
+    max-width: 52rem;
   }
   .ph__content :global(h1) {
     font-family: var(--font-display);
-    font-size: clamp(2.6rem, 2rem + 2.5vw, 5rem);
+    font-size: clamp(2.8rem, 4vw + 0.5rem, 6rem);
     font-weight: 300;
-    line-height: 1.05;
+    line-height: 1.03;
     color: #fff;
+  }
+  .ph__content :global(h1)::after {
+    content: '';
+    display: block;
+    width: 42px;
+    height: 2px;
+    background: var(--color-accent-on-dark);
+    margin-top: var(--space-m);
+    margin-bottom: var(--space-m);
   }
   .ph__content :global(h1 em) {
     display: block;
@@ -235,18 +355,39 @@ const langCode = lang;
     color: var(--color-accent-on-dark);
   }
   .ph__lead {
-    color: rgba(255, 255, 255, 0.65);
-    max-width: 38rem;
-    margin-top: var(--space-m);
+    color: rgba(255 255 255 / 0.72);
+    max-width: 32rem;
+    margin-bottom: var(--space-m);
+  }
+  .ph__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    align-self: flex-start;
+  }
+  .ph__badge svg {
+    flex-shrink: 0;
+    color: var(--color-accent-on-dark);
+  }
+  .ph__badge span {
+    font-family: var(--font-sans);
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent-on-dark);
   }
 
-  /* ── Hero tab bar (same pattern as svc-index) ── */
+  /* Tabs bar */
   .ph__tabs {
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     z-index: 2;
     display: flex;
     width: 100%;
-    background: rgba(6, 4, 3, 0.82);
+    background: rgba(6, 4, 3, 0.88);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     overflow-x: auto;
@@ -262,22 +403,21 @@ const langCode = lang;
     align-items: center;
     justify-content: center;
     gap: 0.45rem;
-    padding: 0.95rem 1rem;
+    padding: 1rem 1rem;
     text-decoration: none;
     font-family: var(--font-sans);
-    font-size: var(--fs-micro);
-    letter-spacing: 0.1em;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.6);
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255 255 255 / 0.55);
+    border-right: 1px solid rgba(255 255 255 / 0.08);
     transition: color 0.2s, background 0.2s;
     white-space: nowrap;
   }
   .ph__tabs a::after {
     content: '';
     display: block;
-    width: 5px;
-    height: 5px;
+    width: 4px; height: 4px;
     border-right: 1px solid var(--color-accent-on-dark);
     border-bottom: 1px solid var(--color-accent-on-dark);
     transform: rotate(45deg);
@@ -286,117 +426,146 @@ const langCode = lang;
   .ph__tabs a:last-child { border-right: none; }
   .ph__tabs a:hover {
     color: var(--color-accent-on-dark);
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(255 255 255 / 0.03);
   }
 
-  /* ── Section shared ── */
-  .pf {
-    scroll-margin-top: calc(var(--header-h-compact) + 1rem);
-  }
-  .pf__head {
+  /* ── Come funziona ── */
+  .pf-how { padding-top: var(--space-l); padding-bottom: var(--space-l); }
+  .pf-how__eyebrow {
     text-align: center;
-    padding-bottom: var(--space-m);
+    margin-bottom: var(--space-l);
   }
-  .pf__num-row {
+  .pf-how__carousel { position: relative; }
+  .pf-how__arrow { display: none; }
+  .pf-how__dots  { display: none; }
+  .pf-how__grid {
+    display: grid;
+    gap: var(--space-l);
+  }
+  @media (min-width: 700px) {
+    .pf-how__grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-m); }
+  }
+  .pf-how__col {
+    background: #fff;
+    border: 1px solid var(--color-border);
     display: flex;
-    align-items: center;
-    gap: 1rem;
+    flex-direction: column;
+  }
+  .pf-how__img {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .pf-how__img :global(picture),
+  .pf-how__img :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+  }
+  .pf-how__col:hover .pf-how__img :global(img) {
+    transform: scale(1.03);
+  }
+  .pf-how__body {
+    padding: var(--space-s) var(--space-m) var(--space-s);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .pf-how__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 1rem + 1vw, 1.8rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--color-text);
     margin-bottom: var(--space-s);
   }
-  .pf__line {
-    flex: 1;
-    height: 1px;
-    background: var(--color-accent-ink);
-    opacity: 0.4;
+  .pf-how__desc {
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: var(--space-m);
   }
-  .pf__num {
+  .pf-how__cta {
+    display: inline-block;
+    margin-top: auto;
     font-family: var(--font-sans);
     font-size: 0.6rem;
     font-weight: 500;
-    letter-spacing: 0.2em;
-    color: var(--color-accent-ink);
-    flex-shrink: 0;
-  }
-  .pf__title {
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 2.2rem + 3.5vw, 6rem);
-    font-weight: 300;
-    line-height: 1.0;
-    color: var(--color-text);
-    margin-bottom: 0.25rem;
-  }
-  .pf__subtitle {
-    font-family: var(--font-display);
-    font-size: clamp(1.5rem, 1.2rem + 1.3vw, 2.3rem);
-    font-weight: 300;
-    margin-bottom: var(--space-s);
-  }
-  .pf__subtitle em {
-    font-style: italic;
-    color: var(--color-accent-ink);
-  }
-  .pf__desc {
-    font-size: clamp(1rem, 0.9rem + 0.4vw, 1.2rem);
-    color: var(--color-text-muted);
-    line-height: 1.65;
-    max-width: 38rem;
-    margin-inline: auto;
-    margin-bottom: var(--space-m);
-  }
-  .pf__meta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-m);
-    text-align: left;
-    flex-wrap: wrap;
-    padding-top: var(--space-s);
-    border-top: 1px solid var(--color-border);
-  }
-  .pf__count-txt {
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
   }
-  .pf__filters {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-  }
-  .pf__pill {
-    font-family: var(--font-sans);
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.4rem 1rem;
-    border: 1px solid var(--color-border);
-    background: transparent;
-    color: var(--color-text-muted);
-    cursor: pointer;
-    transition: border-color 0.2s, color 0.2s, background 0.2s;
-  }
-  .pf__pill:hover {
-    border-color: var(--color-accent-ink);
+  .pf-how__cta:hover {
     color: var(--color-accent-ink);
-  }
-  .pf__pill.is-active {
-    border-color: var(--color-accent-ink);
-    background: var(--color-accent-ink);
-    color: #fff;
   }
 
-  /* ── Grid ── */
-  .pf__grid {
+  /* ── Supplier sections ── */
+  .pf-section {
+    scroll-margin-top: calc(var(--header-h-compact) + 1rem);
+    padding-block: 0;
+  }
+  .pf-section__intro {
+    position: relative;
+    min-height: 35vh;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: flex-end;
+  }
+  .pf-section__intro-img {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .pf-section__intro-img :global(picture),
+  .pf-section__intro-img :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .pf-section__intro-text {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: var(--space-xl) clamp(1.5rem, 5vw, 6rem) var(--space-l);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    background: linear-gradient(to top, rgba(10,7,5,0.78) 0%, rgba(10,7,5,0.45) 55%, rgba(10,7,5,0) 100%);
+  }
+  .pf-section__intro-text .eyebrow {
+    color: var(--color-accent-on-dark);
+  }
+  .pf-section__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 1.6rem + 4vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.0;
+    color: #fff;
+  }
+  .pf-section__desc {
+    font-size: clamp(0.9rem, 0.8rem + 0.35vw, 1.05rem);
+    line-height: 1.65;
+    color: rgba(255 255 255 / 0.72);
+    max-width: 44rem;
+  }
+  .pf-section__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: var(--space-m);
-    padding-inline: var(--gutter);
-    margin-top: var(--space-l);
+    padding-top: var(--space-l);
+    padding-bottom: var(--space-xl);
+  }
+  @media (min-width: 700px) {
+    .pf-section__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1000px) {
+    .pf-section__grid { grid-template-columns: repeat(3, 1fr); }
   }
 
   /* ── Detail panel ── */
@@ -409,9 +578,7 @@ const langCode = lang;
     margin-top: var(--space-m);
     scroll-margin-top: calc(var(--header-h-compact) + 1rem);
   }
-  .pf__detail.is-open {
-    grid-template-rows: 1fr;
-  }
+  .pf__detail.is-open { grid-template-rows: 1fr; }
   .pf__detail-inner {
     min-height: 0;
     overflow: hidden;
@@ -421,11 +588,10 @@ const langCode = lang;
     border: 1px solid var(--color-border);
   }
 
-  /* ── Detail panel content (pd = professional detail) ── */
+  /* Detail panel content */
   .pd {
     display: grid;
     gap: 0;
-    padding: 0;
   }
   .pd__media {
     aspect-ratio: 4 / 3;
@@ -477,10 +643,7 @@ const langCode = lang;
     color: var(--color-text-muted);
     transition: color 0.2s, border-color 0.2s;
   }
-  .pd__close:hover {
-    color: var(--color-text);
-    border-color: var(--color-text);
-  }
+  .pd__close:hover { color: var(--color-text); border-color: var(--color-text); }
   .pd__eyebrow {
     font-family: var(--font-sans);
     font-size: 0.6rem;
@@ -495,20 +658,18 @@ const langCode = lang;
     font-weight: 300;
     line-height: 1.1;
     color: var(--color-text);
-    margin-bottom: 0.1rem;
   }
   .pd__tagline {
     font-family: var(--font-display);
     font-size: clamp(1rem, 0.85rem + 0.6vw, 1.3rem);
     color: var(--color-accent-ink);
     font-style: italic;
-    margin-bottom: var(--space-s);
   }
   .pd__desc {
     font-size: 0.9rem;
     color: var(--color-text-muted);
     line-height: 1.7;
-    margin-bottom: var(--space-m);
+    margin-bottom: var(--space-s);
   }
   .pd__info-grid {
     display: grid;
@@ -517,7 +678,7 @@ const langCode = lang;
     padding-block: var(--space-m);
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
-    margin-bottom: var(--space-m);
+    margin-bottom: var(--space-s);
   }
   .pd__info-label {
     display: block;
@@ -539,7 +700,7 @@ const langCode = lang;
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
-    margin-bottom: var(--space-m);
+    margin-bottom: var(--space-s);
   }
   .pd__tag {
     font-family: var(--font-sans);
@@ -555,7 +716,7 @@ const langCode = lang;
     background: rgba(184,158,114,0.08);
     border-left: 2px solid var(--color-accent-ink);
     padding: var(--space-m);
-    margin-bottom: var(--space-m);
+    margin-bottom: var(--space-s);
   }
   .pd__advice-label {
     font-family: var(--font-sans);
@@ -591,23 +752,269 @@ const langCode = lang;
     transition: color 0.2s;
   }
   .pd__link:hover { color: var(--color-accent-ink); }
-
   @media (min-width: 760px) {
-    .pd {
-      grid-template-columns: 42% 1fr;
-    }
-    .pd__media {
-      aspect-ratio: unset;
-    }
+    .pd { grid-template-columns: 42% 1fr; }
+    .pd__media { aspect-ratio: unset; }
   }
 
-  /* ── More button ── */
+  /* ── FAQ ── */
+  .pf-faq {
+    padding-top: var(--space-l);
+    padding-bottom: var(--space-l);
+  }
+  .pf-faq__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 1.2rem + 2.5vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--color-text);
+    margin-bottom: var(--space-l);
+  }
+  .pf-faq__title em {
+    font-style: italic;
+    color: var(--color-accent-ink);
+    display: block;
+  }
+  .pf-faq__grid {
+    display: grid;
+    gap: var(--space-l);
+    margin-bottom: var(--space-xl);
+  }
+  @media (min-width: 600px) {
+    .pf-faq__grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, auto);
+      gap: var(--space-m) var(--space-l);
+    }
+    .pf-faq__item {
+      display: grid;
+      grid-template-rows: subgrid;
+      grid-row: span 3;
+    }
+  }
+  @media (min-width: 1000px) {
+    .pf-faq__grid {
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--space-m);
+    }
+  }
+  .pf-faq__n {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.55rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: var(--color-accent-ink);
+    align-self: start;
+  }
+  .pf-faq__q {
+    font-family: var(--font-display);
+    font-size: clamp(0.95rem, 0.85rem + 0.3vw, 1.1rem);
+    font-weight: 300;
+    color: var(--color-text);
+    line-height: 1.3;
+    padding-bottom: var(--space-s);
+    border-bottom: 1px solid var(--color-border);
+    align-self: end;
+  }
+  .pf-faq__a {
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    align-self: start;
+  }
+  .pf-faq__dl {
+    display: flex;
+    align-items: center;
+    gap: var(--space-l);
+    flex-wrap: wrap;
+    padding-top: var(--space-l);
+    border-top: 1px solid var(--color-border);
+  }
+  .pf-faq__dl-text {
+    flex: 1;
+    font-size: var(--fs-body);
+    min-width: 16rem;
+  }
+  .pf-faq__dl-btn {
+    flex-shrink: 0;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+  }
 
-  @media (max-width: 600px) {
-    .pf__title { font-size: clamp(2.2rem, 1.4rem + 3.5vw, 6rem); }
-    .pf__meta { flex-direction: column; align-items: flex-start; gap: var(--space-s); }
-    .pf__filters { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 0.5rem; }
-    .pd__body { padding: var(--space-m); }
+  /* ── CTA ── */
+  .pf-cta {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(3.2rem, 6.4vw, 5.6rem) 0;
+  }
+  .pf-cta__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .pf-cta__bg :global(picture),
+  .pf-cta__bg :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+  }
+  .pf-cta__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(10, 7, 5, 0.72);
+  }
+  .pf-cta__inner {
+    position: relative;
+    z-index: 2;
+    max-width: 44rem;
+    margin-left: 0;
+  }
+  .pf-cta__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 1.12rem + 2.4vw, 3.6rem);
+    font-weight: 300;
+    line-height: 1.06;
+    color: #fff;
+    margin-bottom: var(--space-m);
+  }
+  .pf-cta__title em {
+    display: block;
+    font-style: italic;
+    color: var(--color-accent-on-dark);
+  }
+  .pf-cta__sub {
+    font-size: var(--fs-body);
+    color: rgba(255 255 255 / 0.62);
+    max-width: 34rem;
+    line-height: 1.65;
+    margin-bottom: var(--space-l);
+  }
+  .pf-cta__btn {
+    letter-spacing: 0.1em;
+    font-size: 0.65rem;
+  }
+
+  /* ── Footer bar ── */
+  .pf-bar {
+    background: #fff;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+    padding: 1.6rem clamp(1.5rem, 5vw, 4rem);
+  }
+  .pf-bar__msg {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--color-text);
+  }
+  .pf-bar__link {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--color-accent-ink);
+    text-decoration: none;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .pf-bar__link:hover { color: var(--color-text); }
+
+  /* ── Mobile ── */
+  @media (max-width: 699px) {
+    .ph { min-height: 65svh; }
+    .ph__content { max-width: none; padding-inline: var(--gutter); }
+    .pf-faq__dl { flex-direction: column; align-items: flex-start; }
+    .pf-bar {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.25rem;
+      padding: 0.75rem var(--gutter);
+    }
+    .pf-bar__msg {
+      font-size: 0.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+    .pf-bar__link {
+      font-size: 0.52rem;
+    }
+    .pf-faq__item {
+      display: flex;
+      flex-direction: column;
+    }
+    .pf-faq__n {
+      min-height: 1.8rem;
+      display: flex;
+      align-items: flex-start;
+    }
+    .pf-faq__q {
+      margin-top: auto;
+      align-self: stretch;
+    }
+
+    /* How-it-works carousel */
+    .pf-how__grid {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      gap: 0;
+    }
+    .pf-how__grid::-webkit-scrollbar { display: none; }
+    .pf-how__col {
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+    }
+    .pf-how__arrow {
+      display: flex;
+      position: absolute;
+      top: 30%;
+      transform: translateY(-50%);
+      z-index: 4;
+      width: 2.4rem;
+      height: 2.4rem;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    .pf-how__arrow--prev { left: 0.75rem; }
+    .pf-how__arrow--next { right: 0.75rem; }
+    .pf-how__dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.4rem;
+      padding-top: var(--space-s);
+    }
+    .pf-how__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-border);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .pf-how__dot.is-active {
+      background: var(--color-accent-ink);
+      transform: scale(1.25);
+    }
   }
 </style>
 
@@ -618,7 +1025,7 @@ const langCode = lang;
     const infoItems = [
       { label: it ? 'BASE' : 'BASE', value: pro.area },
       pro.languages?.length ? { label: it ? 'LINGUE' : 'LANGUAGES', value: pro.languages.join(' · ') } : null,
-      pro.budget ? { label: it ? 'BUDGET' : 'BUDGET', value: pro.budget } : null,
+      pro.budget ? { label: 'BUDGET', value: pro.budget } : null,
       pro.bookingLead ? { label: it ? 'PRENOTARE' : 'BOOK', value: pro.bookingLead } : null,
     ].filter(Boolean);
 
@@ -660,34 +1067,20 @@ const langCode = lang;
           <div class="pd__links">
             ${pro.website ? `<a href="${pro.website}" target="_blank" rel="noopener" class="pd__link">${it ? 'SITO WEB' : 'WEBSITE'} ↗</a>` : ''}
             ${pro.instagram ? `<a href="${pro.instagram}" target="_blank" rel="noopener" class="pd__link">INSTAGRAM ↗</a>` : ''}
-            <a href="${contactUrl}" class="pd__link">${it ? 'CONTATTA' : 'CONTACT'}</a>
+            <a href="${contactUrl}" class="pd__link">${it ? 'CONTATTACI' : 'CONTACT US'}</a>
           </div>
         </div>
       </div>
     `;
   }
 
-  // Detail panel logic
-  document.querySelectorAll('.pf__grid').forEach(grid => {
-    const section = grid.closest('.pf');
-    const detail = section?.querySelector('.pf__detail');
+  document.querySelectorAll('.pf-section').forEach(section => {
+    const grid = section.querySelector('.pf-section__grid');
+    const detail = section.querySelector('.pf__detail');
     const detailInner = detail?.querySelector('.pf__detail-inner');
-    if (!detail || !detailInner) return;
+    if (!grid || !detail || !detailInner) return;
 
     let openId = null;
-
-    function openPanel(proId, toggleBtn) {
-      const pro = prosData[proId];
-      if (!pro) return;
-      detailInner.innerHTML = buildPanel(pro);
-      detail.classList.add('is-open');
-
-      // Close button
-      detailInner.querySelector('.pd__close')?.addEventListener('click', () => closePanel());
-
-      // Scroll into view after panel expansion completes
-      setTimeout(() => detail.scrollIntoView({ behavior: 'smooth', block: 'start' }), 450);
-    }
 
     function closePanel() {
       detail.classList.remove('is-open');
@@ -695,13 +1088,20 @@ const langCode = lang;
         const prevBtn = grid.querySelector(`.sc__toggle[data-pro-id="${openId}"]`);
         if (prevBtn) {
           prevBtn.setAttribute('aria-expanded', 'false');
-          const lblOpen = prevBtn.querySelector('.sc__lbl-open');
-          const lblClose = prevBtn.querySelector('.sc__lbl-close');
-          if (lblOpen) lblOpen.style.display = '';
-          if (lblClose) lblClose.style.display = 'none';
+          prevBtn.querySelector('.sc__lbl-open').style.display = '';
+          prevBtn.querySelector('.sc__lbl-close').style.display = 'none';
         }
         openId = null;
       }
+    }
+
+    function openPanel(proId) {
+      const pro = prosData[proId];
+      if (!pro) return;
+      detailInner.innerHTML = buildPanel(pro);
+      detail.classList.add('is-open');
+      detailInner.querySelector('.pd__close')?.addEventListener('click', () => closePanel());
+      setTimeout(() => detail.scrollIntoView({ behavior: 'smooth', block: 'start' }), 450);
     }
 
     grid.querySelectorAll('.sc__toggle').forEach(btn => {
@@ -709,15 +1109,12 @@ const langCode = lang;
         const proId = btn.dataset.proId;
         const isOpen = openId === proId;
 
-        // Reset previous toggle
         if (openId && openId !== proId) {
           const prevBtn = grid.querySelector(`.sc__toggle[data-pro-id="${openId}"]`);
           if (prevBtn) {
             prevBtn.setAttribute('aria-expanded', 'false');
-            const lblOpen = prevBtn.querySelector('.sc__lbl-open');
-            const lblClose = prevBtn.querySelector('.sc__lbl-close');
-            if (lblOpen) lblOpen.style.display = '';
-            if (lblClose) lblClose.style.display = 'none';
+            prevBtn.querySelector('.sc__lbl-open').style.display = '';
+            prevBtn.querySelector('.sc__lbl-close').style.display = 'none';
           }
         }
 
@@ -726,36 +1123,50 @@ const langCode = lang;
         } else {
           openId = proId;
           btn.setAttribute('aria-expanded', 'true');
-          const lblOpen = btn.querySelector('.sc__lbl-open');
-          const lblClose = btn.querySelector('.sc__lbl-close');
-          if (lblOpen) lblOpen.style.display = 'none';
-          if (lblClose) lblClose.style.display = '';
-          openPanel(proId, btn);
+          btn.querySelector('.sc__lbl-open').style.display = 'none';
+          btn.querySelector('.sc__lbl-close').style.display = '';
+          openPanel(proId);
         }
       });
     });
   });
+</script>
 
-  // Filter pills
-  document.querySelectorAll('.pf__filters').forEach(filters => {
-    const section = filters.closest('.pf');
-    const grid = section?.querySelector('.pf__grid');
-    if (!grid) return;
+<script>
+  const howGrid = document.querySelector<HTMLElement>('[data-how-grid]');
+  const howPrev = document.querySelector<HTMLButtonElement>('[data-how-prev]');
+  const howNext = document.querySelector<HTMLButtonElement>('[data-how-next]');
+  const howDots = document.querySelectorAll<HTMLElement>('[data-how-dot]');
+  let howCurrent = 0;
 
-    filters.querySelectorAll('.pf__pill').forEach(pill => {
-      pill.addEventListener('click', () => {
-        filters.querySelectorAll('.pf__pill').forEach(p => p.classList.remove('is-active'));
-        pill.classList.add('is-active');
-        const tag = pill.dataset.tag;
-        grid.querySelectorAll('.sc').forEach(card => {
-          if (!tag) {
-            card.style.display = '';
-          } else {
-            const tags = (card.dataset.tags || '').split(',');
-            card.style.display = tags.includes(tag) ? '' : 'none';
-          }
-        });
-      });
-    });
-  });
+  function howGo(to: number) {
+    const total = howDots.length || 3;
+    howCurrent = ((to % total) + total) % total;
+    howGrid?.scrollTo({ left: howCurrent * (howGrid.offsetWidth), behavior: 'smooth' });
+    howDots.forEach((d, i) => d.classList.toggle('is-active', i === howCurrent));
+  }
+
+  howPrev?.addEventListener('click', () => howGo(howCurrent - 1));
+  howNext?.addEventListener('click', () => howGo(howCurrent + 1));
+  howDots.forEach((d, i) => d.addEventListener('click', () => howGo(i)));
+
+  let howScrollTimer: ReturnType<typeof setTimeout>;
+  howGrid?.addEventListener('scroll', () => {
+    clearTimeout(howScrollTimer);
+    howScrollTimer = setTimeout(() => {
+      if (!howGrid) return;
+      const idx = Math.round(howGrid.scrollLeft / howGrid.offsetWidth);
+      if (idx !== howCurrent) {
+        howCurrent = idx;
+        howDots.forEach((d, i) => d.classList.toggle('is-active', i === howCurrent));
+      }
+    }, 80);
+  }, { passive: true });
+
+  let howTouchX = 0;
+  howGrid?.addEventListener('touchstart', (e) => { howTouchX = e.touches[0].clientX; }, { passive: true });
+  howGrid?.addEventListener('touchend', (e) => {
+    const dx = howTouchX - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 40) howGo(howCurrent + (dx > 0 ? 1 : -1));
+  }, { passive: true });
 </script>
