@@ -94,6 +94,19 @@ const svcDisplay = [
   { kicker: it ? 'Momento scenografico' : 'Scenographic moment', line1: 'Signature Tower',          line2: 'Experience'                             },
   { kicker: it ? 'Staff e metodo'       : 'Staff and method',    line1: 'Bartender',                        line2: 'Service'                        },
 ];
+
+const perksIcons = {
+  infinity: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12c-2-2.5-4-4-6-4a4 4 0 0 0 0 8c2 0 4-1.5 6-4z"/><path d="M12 12c2 2.5 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.5-6 4z"/></svg>`,
+  award:    `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="5.5"/><path d="M9.5 14.3l-1.8 6.2 4.3-2.5 4.3 2.5-1.8-6.2"/></svg>`,
+  cocktail: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h14l-6.5 9H11.5L5 3z"/><line x1="12" y1="12" x2="12" y2="19"/><line x1="8" y1="19" x2="16" y2="19"/></svg>`,
+  pin:      `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-6.2-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 14.8 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.3"/></svg>`,
+};
+const perks = [
+  { icon: perksIcons.infinity, title: it ? 'Drink illimitati'     : 'Unlimited drinks',   sub: it ? 'inclusi nel pacchetto acquistato' : 'included in the chosen package' },
+  { icon: perksIcons.award,   title: it ? '14 anni'              : '14+ years',           sub: it ? 'di esperienza nel settore eventi' : 'of operational experience'      },
+  { icon: perksIcons.cocktail,title: it ? 'Drink list su misura' : 'Bespoke drink list',  sub: it ? 'scegliete tra i nostri 40 drink'  : 'choose from our 40 drinks'      },
+  { icon: perksIcons.pin,     title: it ? 'Base in Toscana'      : 'Tuscany & Italy',     sub: it ? 'trasferte in tutta Italia'        : 'travel throughout Italy'        },
+];
 ---
 
 <BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('home')} headerTheme="overlay" current="home" schema={schema}>
@@ -113,8 +126,8 @@ const svcDisplay = [
     </div>
     <div slot="after" class="home-hero__stats">
       {[
-        { n: it ? '14 anni di esperienza'  : '14+ years',              sub: it ? 'nel settore eventi'              : 'of operational experience'      },
         { n: it ? 'Drink illimitati'      : 'Unlimited drinks',        sub: it ? 'inclusi nel pacchetto acquistato': 'included in the chosen package'  },
+        { n: it ? '14 anni di esperienza'  : '14+ years',              sub: it ? 'nel settore eventi'              : 'of operational experience'      },
         { n: it ? 'Drink list su misura'  : 'Bespoke drink list',     sub: it ? 'scegliete tra i nostri 40 drink' : 'choose from our 40 drinks'        },
         { n: it ? 'Base in Toscana'       : 'Tuscany & Italy',        sub: it ? 'trasferte in tutta Italia'       : 'travel throughout Italy'           },
       ].map(item => (
@@ -125,6 +138,24 @@ const svcDisplay = [
       ))}
     </div>
   </Hero>
+
+  <!-- 1b · PERKS (mobile only) -->
+  <section class="hm-perks on-dark" aria-label={it ? 'I nostri punti di forza' : 'Our key strengths'}>
+    <div class="hm-perks__track" data-perks-track>
+      {perks.map((p, i) => (
+        <div class="hm-perks__card" data-perks-card={i}>
+          <div class="hm-perks__icon" set:html={p.icon}></div>
+          <p class="hm-perks__title">{p.title}</p>
+          <p class="hm-perks__sub">{p.sub}</p>
+        </div>
+      ))}
+    </div>
+    <div class="hm-perks__dots" role="list">
+      {perks.map((_, i) => (
+        <button class:list={['hm-perks__dot', i === 0 && 'is-active']} type="button" data-perks-dot={i} aria-label={`Card ${i + 1}`}></button>
+      ))}
+    </div>
+  </section>
 
   <!-- 2 · INTRO -->
   <section class="section section--alt hm-intro" aria-labelledby="hm-intro-title">
@@ -273,18 +304,48 @@ const svcDisplay = [
           ))}
         </ol>
       </div>
-      <div class="hm-bc__stats">
-        {[
-          { key: 'SLIM',   size: it ? '1,5 metri' : '1.5 metres', note: it ? 'fino a 40 ospiti'  : 'up to 40 guests'  },
-          { key: 'MEDIUM', size: it ? '3 metri'   : '3 metres',   note: it ? 'fino a 150 ospiti' : 'up to 150 guests' },
-          { key: 'LARGE',  size: it ? '6 metri'   : '6 metres',   note: it ? '250+ ospiti'       : '250+ guests'      },
-        ].map(z => (
-          <div class="hm-bc__stat">
-            <span class="hm-bc__stat-label">{z.key}</span>
-            <span class="hm-bc__stat-size">{z.size}</span>
-            <span class="hm-bc__stat-note">{z.note}</span>
-          </div>
-        ))}
+
+      <!-- Mobile-only scroll-snap carousel -->
+      <div class="hm-bc__mob-carousel">
+        <div class="hm-bc__mob-track" data-bc-mob-track>
+          {bars.map((bar, i) => (
+            <div class="hm-bc__mob-card" data-bc-mob-card={i}>
+              <div class="hm-bc__mob-img">
+                {bar.images[0] ? (
+                  <Img src={bar.images[0].src} alt={bar.images[0].alt[lang]} sizes="(max-width: 699px) 82vw, 0px" />
+                ) : (
+                  <div class="hm-bc__item-swatch" style={`--swatch:${bar.swatch}`}></div>
+                )}
+              </div>
+              <h3 class="hm-bc__mob-name">{bar.name}</h3>
+              {bar.status === 'coming-soon'
+                ? <p class="hm-bc__mob-mood hm-bc__mob-soon">{it ? 'Prossimamente' : 'Coming soon'}</p>
+                : <p class="hm-bc__mob-mood">{bar.mood[lang]}</p>
+              }
+            </div>
+          ))}
+        </div>
+        <div class="hm-bc__mob-dots" role="list">
+          {bars.map((_, i) => (
+            <button class:list={['hm-bc__mob-dot', i === 0 && 'is-active']} type="button" data-bc-mob-dot={i} aria-label={`Bar ${i + 1}`}></button>
+          ))}
+        </div>
+      </div>
+
+      <div class="hm-bc__stat-bar">
+        <div class="hm-bc__stats">
+          {[
+            { key: 'SLIM',   size: it ? '1,5 m' : '1.5 m', note: it ? 'fino a 40 ospiti'  : 'up to 40 guests'  },
+            { key: 'MEDIUM', size: it ? '3 m'   : '3 m',   note: it ? 'fino a 150 ospiti' : 'up to 150 guests' },
+            { key: 'LARGE',  size: it ? '6 m'   : '6 m',   note: it ? '250+ ospiti'       : '250+ guests'      },
+          ].map(z => (
+            <div class="hm-bc__stat">
+              <span class="hm-bc__stat-label">{z.key}</span>
+              <span class="hm-bc__stat-size">{z.size}</span>
+              <span class="hm-bc__stat-note">{z.note}</span>
+            </div>
+          ))}
+        </div>
         <a class="hm-bc__stat-cta" href={url('bars', lang)}>
           {it ? 'SCOPRI LA COLLEZIONE →' : 'EXPLORE THE COLLECTION →'}
         </a>
@@ -376,12 +437,18 @@ const svcDisplay = [
     <div class="container hm-pkg__inner">
       <!-- Left: eyebrow + title -->
       <div class="hm-pkg__text" data-reveal>
-        <p class="hm-pkg__eyebrow">All inclusive packages</p>
+        <p class="hm-pkg__eyebrow">{it ? 'Pacchetti All inclusive' : 'All-inclusive packages'}</p>
         <h2 id="hm-pkg-title" class="hm-pkg__title">
           {it
             ? <>Voi scegliete<br/>il pacchetto!<em>Noi pensiamo al resto.</em></>
             : <>You choose<br/>the package!<em>We handle the rest.</em></>}
         </h2>
+        <a href={it ? '/it/servizi#pacchetti' : '/en/services#packages'} class="hm-pkg__cta btn btn--ghost-light">
+          {it ? 'Scopri i nostri pacchetti' : 'Discover our packages'}
+          <svg class="hm-pkg__cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
       </div>
       <!-- Right: dark checklist panel -->
       <div class="hm-pkg__panel" data-reveal style="--delay:.1s">
@@ -406,7 +473,7 @@ const svcDisplay = [
   <section class="section section--alt hm-proc" id="come-funziona" aria-labelledby="hm-proc-title">
     <div class="container hm-proc__inner">
 
-      <!-- Left column -->
+      <!-- Header -->
       <div class="hm-proc__left" data-reveal>
         <p class="hm-proc__eyebrow">{it ? 'Come funziona' : 'How it works'}</p>
         <h2 id="hm-proc-title" class="hm-proc__title">
@@ -417,50 +484,54 @@ const svcDisplay = [
             ? 'Organizzare da lontano non è mai stato così semplice: quattro passaggi chiari, nessuna incertezza.'
             : 'Organising from a distance has never been this simple: four clear steps, no uncertainty.'}
         </p>
-        <div class="hm-proc__always">
-          <p class="hm-proc__always-label">{it ? 'CON NOI, SEMPRE' : 'WITH US, ALWAYS'}</p>
-          <ul class="hm-proc__always-list" role="list">
-            {(it
-              ? [
-                  'Coordinamento diretto con planner, location e catering.',
-                  'Ogni dettaglio scritto nel contratto.',
-                  'In Toscana e in tutta Italia.',
-                  "Tutto via email, anche dall'estero.",
-                ]
-              : [
-                  'Direct coordination with planner, venue and catering',
-                  'Every detail written in the contract',
-                  'In Tuscany and throughout Italy',
-                  'Everything by email, even from abroad',
-                ]
-            ).map(item => (
-              <li class="hm-proc__always-item">
-                <span class="hm-proc__always-check" aria-hidden="true">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-                </span>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <a class="hm-proc__cta" href={url('contact', lang)}>
-          {it ? 'RACCONTATECI IL VOSTRO EVENTO →' : 'TELL US ABOUT YOUR EVENT →'}
-        </a>
       </div>
 
-      <!-- Right column: timeline -->
+      <!-- Steps: 2×2 card grid on mobile, vertical timeline on desktop -->
       <ol class="hm-proc__steps">
         {steps.map((step, i) => (
           <li class:list={['hm-proc__step', i === steps.length - 1 && 'hm-proc__step--last']} data-reveal style={`--delay:${i * 0.07}s`}>
             <div class="hm-proc__step-dot"></div>
             <div class="hm-proc__step-body">
-              <p class="hm-proc__step-label">PASSO {(['I','II','III','IV'])[i]}</p>
+              <p class="hm-proc__step-label"><span class="hm-proc__step-prefix">{it ? 'PASSO ' : 'STEP '}</span>{(['I','II','III','IV'])[i]}</p>
               <h3 class="hm-proc__step-title">{step.title}</h3>
               <p class="hm-proc__step-text" set:html={step.text} />
             </div>
           </li>
         ))}
       </ol>
+
+      <!-- Always box -->
+      <div class="hm-proc__always">
+        <p class="hm-proc__always-label">{it ? 'CON NOI, SEMPRE' : 'WITH US, ALWAYS'}</p>
+        <ul class="hm-proc__always-list" role="list">
+          {(it
+            ? [
+                'Coordinamento diretto con planner, location e catering.',
+                'Ogni dettaglio scritto nel contratto.',
+                'In Toscana e in tutta Italia.',
+                "Tutto via email, anche dall'estero.",
+              ]
+            : [
+                'Direct coordination with planner, venue and catering',
+                'Every detail written in the contract',
+                'In Tuscany and throughout Italy',
+                'Everything by email, even from abroad',
+              ]
+          ).map(item => (
+            <li class="hm-proc__always-item">
+              <span class="hm-proc__always-check" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+              </span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- CTA -->
+      <a class="hm-proc__cta" href={url('contact', lang)}>
+        {it ? 'RACCONTATECI IL VOSTRO EVENTO →' : 'TELL US ABOUT YOUR EVENT →'}
+      </a>
 
     </div>
   </section>
@@ -473,20 +544,25 @@ const svcDisplay = [
 
       <!-- Header -->
       <div class="hm-ig__head" data-reveal>
-        <div>
-          <p class="hm-ig__eyebrow">Instagram</p>
+        <p class="hm-ig__eyebrow">Instagram</p>
+        <div class="hm-ig__title-row">
           <h2 id="hm-ig-title" class="hm-ig__title">
             {it ? <>Dettagli che <em>si raccontano.</em></> : <>Details that <em>tell the story.</em></>}
           </h2>
+          <a class="hm-ig__cta" href={site.instagram.url} target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.7" fill="currentColor" stroke="none"/></svg>
+            <span class="hm-ig__cta-full">{it ? 'SEGUITECI SU INSTAGRAM' : 'FOLLOW ON INSTAGRAM'}</span>
+            <span class="hm-ig__cta-short">{it ? 'SEGUI' : 'FOLLOW'}</span>
+          </a>
         </div>
-        <a class="hm-ig__cta" href={site.instagram.url} target="_blank" rel="noopener">
-          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.7" fill="currentColor" stroke="none"/></svg>
-          {it ? 'SEGUITECI SU INSTAGRAM' : 'FOLLOW ON INSTAGRAM'}
-        </a>
       </div>
 
       <!-- Photo grid -->
-      <div class="hm-ig__grid">
+      <div class="hm-ig__carousel-wrap">
+        <button class="hm-ig__carr-btn hm-ig__carr-prev" aria-label={it ? 'Scorri a sinistra' : 'Scroll left'}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="hm-ig__grid">
 
         {[
           { src: weddImg,  date: '8 OTTOBRE 2026'    },
@@ -513,14 +589,34 @@ const svcDisplay = [
           </div>
         </a>
 
+        </div>
+        <button class="hm-ig__carr-btn hm-ig__carr-next" aria-label={it ? 'Scorri a destra' : 'Scroll right'}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
       </div>
     </div>
   </section>
+
+  <script>
+    const igGrid = document.querySelector<HTMLElement>('.hm-ig__grid');
+    const igPrev = document.querySelector<HTMLButtonElement>('.hm-ig__carr-prev');
+    const igNext = document.querySelector<HTMLButtonElement>('.hm-ig__carr-next');
+    if (igGrid && igPrev && igNext) {
+      const scroll = (dir: number) => {
+        const item = igGrid.querySelector<HTMLElement>('.hm-ig__item');
+        const step = item ? (item.offsetWidth + 4) * 3 : window.innerWidth;
+        igGrid.scrollBy({ left: dir * step, behavior: 'smooth' });
+      };
+      igPrev.addEventListener('click', () => scroll(-1));
+      igNext.addEventListener('click', () => scroll(1));
+    }
+  </script>
 
   <!-- ── Home CTA ── -->
   <section class="hm-cta on-dark">
     <div class="container hm-cta__inner">
       <div class="hm-cta__text" data-reveal>
+        <p class="hm-cta__eyebrow">{it ? 'PARLIAMONE' : "LET'S TALK"}</p>
         <h2 class="hm-cta__title">
           {it ? 'Brindiamo insieme?' : 'Shall we raise a glass?'}
         </h2>
@@ -532,6 +628,10 @@ const svcDisplay = [
       </div>
       <a class="btn btn--ghost-light hm-cta__btn" href={url('contact', lang)} data-reveal style="--delay:.1s">
         {it ? 'Verifica disponibilità →' : 'Check availability →'}
+      </a>
+      <a class="hm-cta__pill" href={url('contact', lang)}>
+        <em>{it ? 'Brindiamo insieme?' : 'Shall we raise a glass?'}</em>
+        <span aria-hidden="true"> →</span>
       </a>
     </div>
   </section>
@@ -587,16 +687,98 @@ const svcDisplay = [
     letter-spacing: 0.08em;
     color: rgba(255,255,255,0.4);
   }
-  @media (max-width: 600px) {
-    .home-hero__stats { grid-template-columns: repeat(4, 1fr); }
-    .home-hero__stat {
-      padding: 0.6rem 0.35rem;
-      border-right: 1px solid rgba(255,255,255,0.08);
-      border-bottom: none;
+  @media (max-width: 699px) {
+    .home-hero__stats { display: none; }
+    .home-hero__title {
+      font-size: clamp(3.2rem, 9vw, 4.5rem);
+      text-align: center;
+      max-width: none;
     }
-    .home-hero__stat:last-child { border-right: none; }
-    .home-hero__stat-n { font-size: 0.58rem; line-height: 1.25; }
-    .home-hero__stat-s { font-size: 0.4rem; }
+    .home-hero__title em { white-space: normal; }
+    .home-hero__lead {
+      margin-top: var(--space-s);
+      text-align: center;
+      max-width: none;
+    }
+    .home-hero__lead::before {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 2rem;
+      background: rgba(207 182 138 / 0.55);
+      margin: 0 auto var(--space-s);
+    }
+    .home-hero__cta { margin-top: var(--space-l); display: block; }
+    .home-hero__cta .btn { display: block; width: 100%; text-align: center; padding-block: 1.15rem; }
+  }
+
+  /* ── Perks strip (mobile only) ── */
+  .hm-perks { display: none; }
+  @media (max-width: 699px) {
+    .hm-perks {
+      display: block;
+      background: rgb(8 5 3);
+      overflow-x: hidden;
+      padding-block: var(--space-m) var(--space-l);
+    }
+    .hm-perks__track {
+      display: flex;
+      gap: 0.75rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-inline: var(--gutter);
+    }
+    .hm-perks__track::-webkit-scrollbar { display: none; }
+    .hm-perks__card {
+      flex: 0 0 44%;
+      scroll-snap-align: start;
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 1.4rem 1.1rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .hm-perks__icon { color: rgba(207 182 138 / 0.65); }
+    .hm-perks__icon :global(svg) { display: block; }
+    .hm-perks__title {
+      font-family: var(--font-display);
+      font-size: clamp(0.95rem, 4vw, 1.25rem);
+      font-weight: 300;
+      color: var(--color-on-dark);
+      line-height: 1.25;
+    }
+    .hm-perks__sub {
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.38);
+      line-height: 1.55;
+      margin-top: auto;
+    }
+    .hm-perks__dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding-top: var(--space-s);
+    }
+    .hm-perks__dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50px;
+      background: color-mix(in srgb, var(--color-accent-on-dark) 28%, transparent);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      flex-shrink: 0;
+      transition: width 0.35s var(--ease), background 0.25s;
+    }
+    .hm-perks__dot.is-active {
+      width: 22px;
+      background: var(--color-accent-on-dark);
+    }
   }
 
   /* ── Intro section ── */
@@ -769,6 +951,10 @@ const svcDisplay = [
     transition: transform 0.9s var(--ease-out);
   }
   .hm-ev__card:hover .hm-ev__card-img :global(img) { transform: scale(1.05); }
+  @media (hover: none) {
+    .hm-ev__card .hm-ev__card-img :global(img) { transition: none; }
+    .hm-ev__card:hover .hm-ev__card-img :global(img) { transform: none; }
+  }
   .hm-ev__card-overlay {
     position: absolute;
     bottom: 0; left: 0; right: 0;
@@ -968,7 +1154,7 @@ const svcDisplay = [
     padding-block: clamp(1rem, 2.5vw, 2.5rem);
   }
   @media (min-width: 900px) {
-    .hm-pkg__inner { grid-template-columns: 1fr 0.7fr; }
+    .hm-pkg__inner { grid-template-columns: 1fr 0.7fr; align-items: stretch; }
   }
   .hm-pkg__text { display: flex; flex-direction: column; }
   .hm-pkg__eyebrow {
@@ -998,6 +1184,9 @@ const svcDisplay = [
     padding-block: clamp(0.6rem, 1vw, 1rem);
   }
   .hm-pkg__list { list-style: none; padding: 0; margin: 0; }
+  .hm-pkg__cta { margin-top: auto; display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem; align-self: flex-start; line-height: 1; }
+  .hm-pkg__cta-arrow { transition: transform 0.25s var(--ease-out); }
+  .hm-pkg__cta:hover .hm-pkg__cta-arrow { transform: translateX(4px); }
   .hm-pkg__item {
     display: flex;
     align-items: flex-start;
@@ -1155,15 +1344,49 @@ const svcDisplay = [
   }
   .hm-bc__item-mood { font-size: 0.7rem; color: var(--color-text-muted); line-height: 1.4; }
   .hm-bc__item-soon { font-size: 0.7rem; font-style: italic; color: var(--color-text-muted); }
+  /* ── Mobile carousel (hidden on desktop) ── */
+  .hm-bc__mob-carousel { display: none; }
+  .hm-bc__mob-name {
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 4.5vw, 1.7rem);
+    font-weight: 300;
+    color: var(--color-text);
+    line-height: 1.15;
+    margin-top: var(--space-s);
+    margin-bottom: 0.2rem;
+  }
+  .hm-bc__mob-mood {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+  }
+  .hm-bc__mob-soon { color: var(--color-accent-ink); }
+  .hm-bc__mob-dot {
+    width: 7px; height: 7px;
+    border-radius: 50px;
+    background: color-mix(in srgb, var(--color-accent-ink) 28%, transparent);
+    border: none; cursor: pointer; padding: 0;
+    flex-shrink: 0;
+    transition: width 0.35s var(--ease), background 0.25s;
+  }
+  .hm-bc__mob-dot.is-active {
+    width: 22px;
+    background: var(--color-accent-ink);
+  }
+
   /* ── Sizes strip ── */
+  /* Desktop: stats + CTA in one bordered flex row */
+  .hm-bc__stat-bar {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--color-border);
+    margin-top: var(--space-s);
+  }
   .hm-bc__stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    border-top: 1px solid var(--color-border);
-    margin-top: var(--space-s);
-  }
-  @media (min-width: 700px) {
-    .hm-bc__stats { grid-template-columns: repeat(3, 1fr) auto; }
+    flex: 1;
   }
   .hm-bc__stat {
     display: flex;
@@ -1172,12 +1395,7 @@ const svcDisplay = [
     padding: 1.1rem clamp(0.5rem, 1.6vw, 1.4rem);
     border-right: 1px solid var(--color-border);
   }
-  /* On mobile last stat has no right border (nothing after it in that row) */
-  .hm-bc__stat:last-of-type { border-right: none; }
-  /* On desktop, restore right border so it separates from the CTA */
-  @media (min-width: 700px) {
-    .hm-bc__stat:last-of-type { border-right: 1px solid var(--color-border); }
-  }
+  .hm-bc__stat:last-of-type { border-right: 1px solid var(--color-border); }
   .hm-bc__stat-label {
     font-family: var(--font-sans);
     font-size: 0.5rem;
@@ -1198,13 +1416,11 @@ const svcDisplay = [
     color: var(--color-text-muted);
     margin-top: 0.1rem;
   }
-  /* CTA: full-width button below stats on mobile, inline on desktop */
   .hm-bc__stat-cta {
-    grid-column: 1 / -1;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.9rem clamp(0.75rem, 2vw, 1.5rem);
+    padding: 0.9rem clamp(1.2rem, 2.5vw, 2.5rem);
     font-family: var(--font-sans);
     font-size: 0.6rem;
     font-weight: 500;
@@ -1213,28 +1429,29 @@ const svcDisplay = [
     text-decoration: none;
     color: var(--color-background);
     background: var(--color-text);
-    border-top: 1px solid var(--color-border);
+    border-left: 1px solid var(--color-border);
     transition: background 0.2s;
   }
   .hm-bc__stat-cta:hover { background: var(--color-accent-ink); }
-  @media (min-width: 700px) {
-    .hm-bc__stat-cta {
-      grid-column: auto;
-      border-top: none;
-      border-left: 1px solid var(--color-border);
-      padding-inline: clamp(1.2rem, 2.5vw, 2.5rem);
-    }
-  }
 
   /* ── Process ── */
-  .hm-proc { padding-top: var(--space-l); padding-bottom: var(--space-m); }
+  .hm-proc { padding-top: var(--space-l); padding-bottom: var(--space-m); background: var(--color-background); }
   .hm-proc__inner {
     display: grid;
-    gap: var(--space-xl);
+    gap: var(--space-m);
     align-items: start;
   }
   @media (min-width: 960px) {
-    .hm-proc__inner { grid-template-columns: 5fr 6fr; gap: clamp(2rem, 5vw, 6rem); }
+    .hm-proc__inner {
+      grid-template-columns: 5fr 6fr;
+      grid-template-rows: auto auto 1fr;
+      row-gap: var(--space-l);
+      column-gap: clamp(2rem, 5vw, 6rem);
+    }
+    .hm-proc__left   { grid-column: 1; grid-row: 1; }
+    .hm-proc__steps  { grid-column: 2; grid-row: 1 / 4; padding-top: calc(var(--space-m) + 1.2rem); }
+    .hm-proc__always { grid-column: 1; grid-row: 2; }
+    .hm-proc__cta    { grid-column: 1; grid-row: 3; align-self: start; justify-self: start; }
   }
   .hm-proc__eyebrow {
     display: flex;
@@ -1265,13 +1482,11 @@ const svcDisplay = [
     color: var(--color-text-muted);
     line-height: 1.7;
     max-width: 34rem;
-    margin-bottom: var(--space-l);
   }
   .hm-proc__always {
     border: 1px solid var(--color-border);
     background: #fff;
     padding: var(--space-m);
-    margin-bottom: var(--space-l);
   }
   .hm-proc__always-label {
     font-family: var(--font-sans);
@@ -1291,7 +1506,7 @@ const svcDisplay = [
   }
   .hm-proc__always-check { flex-shrink: 0; color: var(--color-accent-ink); margin-top: 0.07rem; }
   .hm-proc__cta {
-    display: inline-block;
+    display: block;
     font-family: var(--font-sans);
     font-size: 0.62rem; font-weight: 500;
     letter-spacing: 0.14em; text-transform: uppercase;
@@ -1300,6 +1515,7 @@ const svcDisplay = [
     background: var(--color-text);
     color: var(--color-background);
     border: 1px solid var(--color-text);
+    text-align: center;
     transition: background 0.2s, border-color 0.2s, color 0.2s;
   }
   .hm-proc__cta:hover {
@@ -1308,66 +1524,119 @@ const svcDisplay = [
     color: var(--color-background);
   }
 
+  /* Steps: mobile = 2×2 card grid */
   .hm-proc__steps {
     list-style: none; padding: 0; margin: 0;
-    display: flex; flex-direction: column;
-    padding-left: 1.5rem;
-    border-left: 1px solid var(--color-border);
-  }
-  @media (min-width: 960px) {
-    .hm-proc__steps { padding-top: calc(var(--space-m) + 1.2rem); }
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
   }
   .hm-proc__step {
     position: relative;
-    padding-bottom: var(--space-m);
+    border: 1px solid var(--color-border);
+    background: #fff;
+    padding: 1.1rem 1rem 1.25rem;
   }
-  .hm-proc__step:last-child { padding-bottom: 0; }
-  .hm-proc__step-dot {
-    position: absolute;
-    left: calc(-1.5rem - 5px);
-    top: 0.3rem;
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: var(--color-background);
-    border: 2px solid var(--color-border);
-    flex-shrink: 0;
-  }
-  .hm-proc__step--last .hm-proc__step-dot {
-    background: var(--color-accent-ink);
-    border-color: var(--color-accent-ink);
-  }
+  .hm-proc__step-dot { display: none; }
+  .hm-proc__step-prefix { display: none; }
   .hm-proc__step-label {
-    font-family: var(--font-sans);
-    font-size: 0.55rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.6rem;
+    font-weight: 300;
+    letter-spacing: normal;
+    text-transform: none;
     color: var(--color-accent-ink);
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.55rem;
+    line-height: 1;
   }
   .hm-proc__step-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.1rem, 0.85rem + 0.8vw, 1.5rem);
-    font-weight: 300;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
     color: var(--color-text);
-    line-height: 1.15;
-    margin-bottom: var(--space-s);
+    letter-spacing: 0.02em;
+    line-height: 1.35;
+    margin-bottom: 0.45rem;
   }
   .hm-proc__step-text {
-    font-size: var(--fs-small);
+    font-size: 0.7rem;
     color: var(--color-text-muted);
-    line-height: 1.65;
+    line-height: 1.6;
+  }
+
+  /* Steps: desktop = vertical timeline */
+  @media (min-width: 960px) {
+    .hm-proc__steps {
+      display: flex; flex-direction: column;
+      grid-template-columns: unset;
+      gap: 0;
+      padding-left: 1.5rem;
+      border-left: 1px solid var(--color-border);
+    }
+    .hm-proc__step {
+      border: none;
+      background: transparent;
+      padding: 0;
+      padding-bottom: var(--space-m);
+    }
+    .hm-proc__step:last-child { padding-bottom: 0; }
+    .hm-proc__step-dot {
+      display: block;
+      position: absolute;
+      left: calc(-1.5rem - 5px);
+      top: 0.3rem;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--color-background);
+      border: 2px solid var(--color-border);
+      flex-shrink: 0;
+    }
+    .hm-proc__step--last .hm-proc__step-dot {
+      background: var(--color-accent-ink);
+      border-color: var(--color-accent-ink);
+    }
+    .hm-proc__step-prefix { display: inline; }
+    .hm-proc__step-label {
+      font-family: var(--font-sans);
+      font-size: 0.55rem;
+      font-weight: 500;
+      font-style: normal;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-accent-ink);
+      margin-bottom: 0.4rem;
+      line-height: inherit;
+    }
+    .hm-proc__step-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 0.85rem + 0.8vw, 1.5rem);
+      font-weight: 300;
+      color: var(--color-text);
+      letter-spacing: normal;
+      line-height: 1.15;
+      margin-bottom: var(--space-s);
+    }
+    .hm-proc__step-text {
+      font-size: var(--fs-small);
+      color: var(--color-text-muted);
+      line-height: 1.65;
+    }
   }
 
   /* ── Instagram ── */
   .hm-ig { padding-top: var(--space-m); }
   .hm-ig__head {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: var(--space-s);
+    flex-direction: column;
+    gap: calc(var(--space-s) * 0.7);
     margin-bottom: var(--space-m);
+  }
+  .hm-ig__title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-s);
   }
   .hm-ig__eyebrow {
     display: flex; align-items: center; gap: 0.75rem;
@@ -1409,11 +1678,14 @@ const svcDisplay = [
     background: var(--color-text);
     color: var(--color-background);
     flex-shrink: 0;
-    align-self: flex-start;
-    margin-top: calc(0.6rem * 1.5 + 0.7rem + 1.5rem);
+    align-self: center;
     transition: background 0.2s;
   }
   .hm-ig__cta:hover { background: var(--color-accent-ink); }
+
+  .hm-ig__cta-short { display: none; }
+  .hm-ig__carousel-wrap { position: relative; }
+  .hm-ig__carr-btn { display: none; }
 
   /* Grid */
   .hm-ig__grid {
@@ -1485,15 +1757,59 @@ const svcDisplay = [
 
   /* Mobile */
   @media (max-width: 699px) {
-    .hm-ig__grid {
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(2, 1fr);
+    .hm-ig { overflow-x: hidden; }
+
+    /* Head */
+    .hm-ig__title { font-size: clamp(1.65rem, 6vw, 2rem); }
+    .hm-ig__cta { white-space: nowrap; }
+    .hm-ig__cta-full { display: none; }
+    .hm-ig__cta-short { display: inline; }
+
+    /* Carousel */
+    .hm-ig__carousel-wrap {
+      margin-inline: calc(var(--gutter) * -1);
     }
+    .hm-ig__grid {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: 4px;
+    }
+    .hm-ig__grid::-webkit-scrollbar { display: none; }
+    .hm-ig__item {
+      flex: 0 0 calc(33.333vw - 2.67px);
+      scroll-snap-align: start;
+    }
+
+    /* Arrows */
+    .hm-ig__carr-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      width: 2rem;
+      height: 2rem;
+      background: rgba(8 5 3 / 0.62);
+      color: rgba(255 255 255 / 0.9);
+      border: none;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+      transition: background 0.2s;
+    }
+    .hm-ig__carr-btn:hover { background: rgba(8 5 3 / 0.88); }
+    .hm-ig__carr-prev { left: 0.4rem; }
+    .hm-ig__carr-next { right: 0.4rem; }
   }
 
   /* ── Home CTA ── */
   .hm-cta {
-    background: rgb(8 5 3);
+    background: var(--color-dark);
     padding: clamp(2.5rem, 5vw, 4rem) 0;
   }
   .hm-cta__inner {
@@ -1504,6 +1820,7 @@ const svcDisplay = [
     flex-wrap: wrap;
   }
   .hm-cta__text { display: flex; flex-direction: column; gap: 0.6rem; }
+  .hm-cta__eyebrow { display: none; }
   .hm-cta__title {
     font-family: var(--font-display);
     font-size: clamp(2rem, 3vw + 0.5rem, 4rem);
@@ -1519,12 +1836,115 @@ const svcDisplay = [
     line-height: 1.6;
   }
   .hm-cta__btn { flex-shrink: 0; letter-spacing: 0.1em; }
+  .hm-cta__pill { display: none; }
   @media (max-width: 699px) {
-    .hm-cta__inner { flex-direction: column; align-items: flex-start; }
+    .hm-cta__inner {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-m);
+    }
+    .hm-cta__eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      font-family: var(--font-sans);
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      color: rgba(255 255 255 / 0.45);
+      width: 100%;
+    }
+    .hm-cta__eyebrow::before,
+    .hm-cta__eyebrow::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255 255 255 / 0.18);
+    }
+    .hm-cta__title { display: none; }
+    .hm-cta__sub {
+      font-size: 0.92rem;
+      color: rgba(255 255 255 / 0.75);
+    }
+    .hm-cta__btn { display: none; }
+    .hm-cta__pill {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 1.05rem 1.8rem;
+      border-radius: 50px;
+      background: var(--color-accent-on-dark);
+      color: var(--color-dark);
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      font-weight: 300;
+      text-decoration: none;
+      gap: 0.3rem;
+      transition: filter 0.25s;
+    }
+    .hm-cta__pill:hover { filter: brightness(1.08); }
+    .hm-cta__pill em { font-style: italic; }
     /* Instagram CTA: remove desktop alignment offset */
     .hm-ig__cta { margin-top: 0; }
-    /* Process CTA button: full width */
-    .hm-proc__cta { display: block; text-align: center; }
+    /* Process CTA button: full width on desktop revert handled by justify-self: start */
+    /* Bar collection: hide desktop stage, show mobile carousel */
+    .hm-bc { overflow-x: hidden; }
+    .hm-bc__stage { display: none; }
+    .hm-bc__mob-carousel {
+      display: block;
+      margin-bottom: var(--space-m);
+    }
+    .hm-bc__mob-track {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: 0.75rem;
+    }
+    .hm-bc__mob-track::-webkit-scrollbar { display: none; }
+    .hm-bc__mob-card {
+      flex: 0 0 82%;
+      scroll-snap-align: start;
+      padding-right: 0.75rem;
+    }
+    .hm-bc__mob-img {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      border: 1.5px solid var(--color-border);
+      background: var(--color-background-secondary);
+    }
+    .hm-bc__mob-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 0 5px var(--color-background);
+      z-index: 2;
+      pointer-events: none;
+    }
+    .hm-bc__mob-img :global(picture),
+    .hm-bc__mob-img :global(img) { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .hm-bc__mob-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding-top: var(--space-s);
+    }
+    /* Stats box + CTA: separate on mobile */
+    .hm-bc__stat-bar { flex-direction: column; border: none; }
+    .hm-bc__stats { border: 1px solid var(--color-border); }
+    .hm-bc__stat:last-of-type { border-right: none; }
+    .hm-bc__stat-cta {
+      border-left: none;
+      border-top: none;
+      margin-top: var(--space-m);
+    }
+    /* Bar collection: reduce gap between title and carousel */
+    .hm-bc__header { margin-bottom: var(--space-s); }
     /* Intro section: tighter spacing between stacked columns */
     .hm-intro__frame { margin-bottom: var(--space-m); }
     .hm-intro__row { gap: var(--space-s); padding-top: var(--space-xs, 0.5rem); }
@@ -1690,5 +2110,61 @@ const svcDisplay = [
 
     // Initial arrow state (prev dimmed at slide 0)
     if (evPrev) evPrev.style.opacity = '0.35';
+  }
+
+  // ── Bar collection mobile carousel dots ────────────────────────────────
+  const mobTrack = document.querySelector<HTMLElement>('[data-bc-mob-track]');
+  if (mobTrack) {
+    const mobDots = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-bc-mob-dot]'));
+    const mobCards = Array.from(mobTrack.querySelectorAll<HTMLElement>('[data-bc-mob-card]'));
+    let mobTimer = 0;
+
+    const mobActiveDot = (i: number) => mobDots.forEach((d, j) => d.classList.toggle('is-active', j === i));
+
+    mobDots.forEach((d, i) => d.addEventListener('click', () => {
+      const card = mobCards[i];
+      if (card) mobTrack.scrollTo({ left: card.offsetLeft - mobTrack.offsetLeft, behavior: 'smooth' });
+      mobActiveDot(i);
+    }));
+
+    mobTrack.addEventListener('scroll', () => {
+      clearTimeout(mobTimer);
+      mobTimer = window.setTimeout(() => {
+        let closest = 0, minDist = Infinity;
+        mobCards.forEach((c, i) => {
+          const dist = Math.abs(c.offsetLeft - mobTrack.offsetLeft - mobTrack.scrollLeft);
+          if (dist < minDist) { minDist = dist; closest = i; }
+        });
+        mobActiveDot(closest);
+      }, 60);
+    }, { passive: true });
+  }
+
+  // ── Perks strip dots ───────────────────────────────────────────────────────
+  const perksTrack = document.querySelector<HTMLElement>('[data-perks-track]');
+  if (perksTrack) {
+    const perksDots = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-perks-dot]'));
+    const perksCards = Array.from(perksTrack.querySelectorAll<HTMLElement>('[data-perks-card]'));
+    let perksTimer = 0;
+
+    const perksActiveDot = (i: number) => perksDots.forEach((d, j) => d.classList.toggle('is-active', j === i));
+
+    perksDots.forEach((d, i) => d.addEventListener('click', () => {
+      const card = perksCards[i];
+      if (card) perksTrack.scrollTo({ left: card.offsetLeft - perksTrack.offsetLeft, behavior: 'smooth' });
+      perksActiveDot(i);
+    }));
+
+    perksTrack.addEventListener('scroll', () => {
+      clearTimeout(perksTimer);
+      perksTimer = window.setTimeout(() => {
+        let closest = 0, minDist = Infinity;
+        perksCards.forEach((c, i) => {
+          const dist = Math.abs(c.offsetLeft - perksTrack.offsetLeft - perksTrack.scrollLeft);
+          if (dist < minDist) { minDist = dist; closest = i; }
+        });
+        perksActiveDot(closest);
+      }, 60);
+    }, { passive: true });
   }
 </script>
