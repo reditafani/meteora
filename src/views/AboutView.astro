@@ -230,6 +230,12 @@ const steps: { title: string; text: string }[] = it
         <p class="cim__sub" data-reveal style="--delay:.09s">
           <em>{it ? 'Noi pensiamo al resto.' : 'We handle the rest.'}</em>
         </p>
+        <a href={it ? '/it/servizi#pacchetti' : '/en/services#packages'} class="cim__cta btn btn--ghost-light" data-reveal style="--delay:.12s">
+          {it ? 'Scopri i nostri pacchetti' : 'Discover our packages'}
+          <svg class="cim__cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
       </div>
       <div class="cim__card" data-reveal style="--delay:.14s">
         <ul class="cim__list" role="list">
@@ -642,6 +648,9 @@ const steps: { title: string; text: string }[] = it
     margin: 0;
     list-style: none;
   }
+  .cim__cta { display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem; align-self: flex-start; line-height: 1; }
+  .cim__cta-arrow { transition: transform 0.25s var(--ease-out); }
+  .cim__cta:hover .cim__cta-arrow { transform: translateX(4px); }
   .cim__item {
     display: flex;
     align-items: flex-start;
@@ -682,9 +691,10 @@ const steps: { title: string; text: string }[] = it
   @media (min-width: 760px) {
     .cim__inner {
       flex-direction: row;
-      align-items: center;
+      align-items: stretch;
     }
-    .cim__text { flex: 1; }
+    .cim__text { flex: 1; display: flex; flex-direction: column; }
+    .cim__cta { margin-top: auto; }
     .cim__card {
       width: 38%;
       flex-shrink: 0;
@@ -895,6 +905,10 @@ const steps: { title: string; text: string }[] = it
   }
   .srv-card:hover .srv-card__media :global(img) {
     transform: scale(1.04);
+  }
+  @media (hover: none) {
+    .srv-card .srv-card__media :global(img) { transition: none; }
+    .srv-card:hover .srv-card__media :global(img) { transform: none; }
   }
 
   /* Dark body below image */

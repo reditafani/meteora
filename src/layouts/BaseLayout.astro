@@ -149,8 +149,8 @@ const s = t(lang);
     bottom: 1.75rem;
     right: 1.75rem;
     z-index: 60;
-    width: 2.4rem;
-    height: 2.4rem;
+    width: 2.65rem;
+    height: 2.65rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -171,5 +171,17 @@ const s = t(lang);
     background: rgba(8, 5, 3, 0.96);
     border-color: rgba(207, 182, 138, 0.8);
     color: rgba(207, 182, 138, 1);
+  }
+  @media (max-width: 767px) {
+    .btt {
+      width: 3.2rem;
+      height: 3.2rem;
+      bottom: 1.25rem;
+      right: 1.25rem;
+    }
+    .btt :global(svg) {
+      width: 17px;
+      height: 17px;
+    }
   }
 </style>

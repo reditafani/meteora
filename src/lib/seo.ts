@@ -19,7 +19,6 @@ export function organizationSchema(lang: Lang) {
     logo: abs('/images/logo-meteora-events.png'),
     image: abs('/images/og/meteora-events.jpg'),
     email: site.email,
-    telephone: site.phoneE164,
     address: {
       '@type': 'PostalAddress',
       addressLocality: site.address.locality,

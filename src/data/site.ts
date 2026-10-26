@@ -35,7 +35,7 @@ export const site = {
    * (ragione sociale, P.IVA, sede legale). Leave empty until supplied.
    */
   legal: {
-    companyName: 'Meteora Events',
+    companyName: 'Meteora Events S.R.L.S.',
     vatNumber: '02132520475',
     registeredOffice: 'Via Nofretti 21, Montecatini Terme (PT)',
   },

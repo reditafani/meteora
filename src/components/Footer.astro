@@ -15,18 +15,38 @@ const { lang, alternates } = Astro.props;
 const s = t(lang);
 const it = lang === 'it';
 const nav = [
-  { key: 'about',    label: it ? 'Chi siamo'          : 'About us'           },
-  { key: 'services', label: it ? 'I nostri servizi'   : 'Our Services'       },
-  { key: 'bars',     label: it ? 'I nostri banchi bar': 'Our Bar Collection'  },
-  { key: 'partners', label: it ? 'Fornitori consigliati' : 'Recommended suppliers' },
-  { key: 'ice',      label: it ? 'Noleggio ghiaccio'  : 'Ice Rental'         },
-  { key: 'contact',  label: it ? 'Contatti'           : 'Contact'            },
+  { key: 'about',    label: it ? 'Chi siamo'             : 'About us'               },
+  { key: 'services', label: it ? 'I nostri servizi'      : 'Our Services'           },
+  { key: 'bars',     label: it ? 'I nostri banchi bar'   : 'Our Bar Collection'     },
+  { key: 'partners', label: it ? 'Fornitori consigliati' : 'Recommended suppliers'  },
+  { key: 'ice',      label: it ? 'Noleggio ghiaccio'     : 'Ice Rental'            },
+  { key: 'contact',  label: it ? 'Contatti'              : 'Contact'               },
 ] as const;
 const year = new Date().getFullYear();
 ---
 
 <footer class="footer on-dark">
   <div class="container">
+
+    <!-- ── Mobile top bar (logo + icons + lang) ── -->
+    <div class="footer__m-top">
+      <a href={url('home', lang)} class="footer__m-logo" aria-label={site.name}>
+        <Logo variant="gold" width={110} />
+      </a>
+      <div class="footer__m-actions">
+        <a class="footer__m-btn" href={url('contact', lang)} aria-label="Email" data-track="email_click">
+          <Icon name="mail" size={19} />
+        </a>
+        <a class="footer__m-btn" href={site.instagram.url} target="_blank" rel="noopener" aria-label="Instagram" data-track="instagram_click">
+          <Icon name="instagram" size={19} />
+        </a>
+        <div class="footer__m-lang">
+          <LanguageSwitcher lang={lang} alternates={alternates} />
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Desktop grid ── -->
     <div class="footer__grid">
       <div class="footer__brand">
         <Logo variant="gold" width={150} />
@@ -48,16 +68,14 @@ const year = new Date().getFullYear();
         <h2 class="micro footer__h">{s.footerContact}</h2>
         <ul role="list" class="footer__contact">
           <li><a class="footer__contact-link" href={`mailto:${site.email}`} data-track="email_click"><Icon name="mail" size={14} />{site.email}</a></li>
-          <li><a class="footer__contact-link" href={`tel:${site.phoneE164}`} data-track="phone_click"><Icon name="phone" size={14} />{site.phoneDisplay}</a></li>
           <li><a class="footer__ig" href={site.instagram.url} target="_blank" rel="noopener" data-track="instagram_click"><Icon name="instagram" size={14} />{site.instagram.handle}</a></li>
         </ul>
       </div>
     </div>
 
+    <!-- ── Desktop bottom ── -->
     <div class="footer__bottom">
-      <p class="muted">
-        © {year} {site.legal.companyName || site.name}. {s.rights}
-      </p>
+      <p class="muted">© {year} {site.legal.companyName || site.name}. {s.rights}</p>
       <ul role="list" class="footer__legal" aria-label={s.footerLegal}>
         <li><a href={url('privacy', lang)}>{s.privacy}</a></li>
         <li><a href={url('cookies', lang)}>{s.cookiePolicy}</a></li>
@@ -65,28 +83,45 @@ const year = new Date().getFullYear();
       </ul>
       <LanguageSwitcher lang={lang} alternates={alternates} />
     </div>
+
+    <!-- ── Mobile bottom info ── -->
+    <div class="footer__m-body">
+      <p class="footer__m-copy">© {year} {site.legal.companyName || site.name} · P.IVA {site.legal.vatNumber}</p>
+      <p class="footer__m-addr-line">
+        {site.address.street}, {site.address.postalCode} {site.address.locality} ({site.address.province})
+      </p>
+      <ul role="list" class="footer__m-legal">
+        <li><a href={url('privacy', lang)}>{s.privacy}</a></li>
+        <li><a href={url('cookies', lang)}>{s.cookiePolicy}</a></li>
+        <li><button type="button" data-cookie-open>{s.cookieSettings}</button></li>
+      </ul>
+    </div>
+
   </div>
 </footer>
 
 <style>
+  /* ── Base ── */
   .footer {
     padding-block: var(--space-l) calc(var(--space-m) + 4.5rem);
+    background: rgb(8 5 3);
   }
   @media (min-width: 768px) {
-    .footer {
-      padding-bottom: var(--space-m);
-    }
+    .footer { padding-bottom: var(--space-m); }
   }
+
+  /* ── Hide mobile elements on desktop ── */
+  .footer__m-top,
+  .footer__m-body { display: none; }
+
+  /* ── Desktop grid ── */
   .footer__grid {
     display: grid;
     gap: var(--space-l);
     padding-block: var(--space-m);
   }
   @media (min-width: 900px) {
-    .footer__grid {
-      grid-template-columns: 1.3fr 1fr 1fr;
-      align-items: start;
-    }
+    .footer__grid { grid-template-columns: 1.3fr 1fr 1fr; align-items: start; }
   }
   .footer__brand :global(img) {
     width: 150px;
@@ -102,10 +137,7 @@ const year = new Date().getFullYear();
     color: var(--color-on-dark-muted);
     margin-bottom: var(--space-s);
   }
-  .footer__nav {
-    columns: 2;
-    column-gap: var(--space-m);
-  }
+  .footer__nav { columns: 2; column-gap: var(--space-m); }
   .footer__nav a,
   .footer__contact a {
     display: inline-block;
@@ -115,9 +147,9 @@ const year = new Date().getFullYear();
     transition: color 0.3s;
   }
   .footer__nav a:hover,
-  .footer__contact a:hover {
-    color: var(--color-accent-on-dark);
-  }
+  .footer__contact a:hover { color: var(--color-accent-on-dark); }
+
+  /* ── Desktop bottom bar ── */
   .footer__bottom {
     display: flex;
     flex-wrap: wrap;
@@ -154,9 +186,7 @@ const year = new Date().getFullYear();
     padding-inline: 0;
   }
   .footer__legal a:hover,
-  .footer__legal button:hover {
-    color: var(--color-on-dark);
-  }
+  .footer__legal button:hover { color: var(--color-on-dark); }
   .footer__contact a.footer__ig,
   .footer__contact a.footer__contact-link {
     display: inline-flex;
@@ -169,30 +199,98 @@ const year = new Date().getFullYear();
     flex-shrink: 0;
     opacity: 0.7;
   }
-  .footer__vat {
-    font-size: var(--fs-small);
-    color: var(--color-on-dark-muted);
-    padding-block: 0.3rem;
-  }
 
+  /* ── Mobile layout ── */
   @media (max-width: 767px) {
     .footer {
-      padding-block: var(--space-m) calc(var(--space-s) + 4.5rem);
+      padding-block: var(--space-s) 1.25rem;
     }
-    .footer__explore {
-      display: none;
+    .footer__grid,
+    .footer__bottom { display: none; }
+
+    /* Mobile top bar */
+    .footer__m-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: var(--space-m);
+      border-bottom: 1px solid rgba(255 255 255 / 0.1);
     }
-    .footer__grid {
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-m);
-      padding-block: var(--space-s);
+    .footer__m-logo :global(img) {
+      width: 110px;
+      height: auto;
+      margin-top: -16px;
     }
-    .footer__brand {
-      grid-column: 1 / -1;
+    .footer__m-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
     }
-    .footer__bottom {
-      gap: var(--space-xs, 0.5rem) var(--space-m);
-      padding-top: var(--space-s);
+    .footer__m-btn {
+      display: grid;
+      place-items: center;
+      width: 2.7rem;
+      height: 2.7rem;
+      border: 1px solid rgba(207 182 138 / 0.38);
+      color: rgba(207 182 138 / 0.75);
+      text-decoration: none;
+      transition: color 0.2s, border-color 0.2s;
+      flex-shrink: 0;
     }
+    .footer__m-btn:hover {
+      color: var(--color-accent-on-dark);
+      border-color: rgba(207 182 138 / 0.7);
+    }
+    .footer__m-lang {
+      display: flex;
+      align-items: center;
+      height: 2.7rem;
+      border: 1px solid rgba(207 182 138 / 0.38);
+      padding-inline: 0.65rem;
+    }
+
+    /* Mobile body */
+    .footer__m-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.3rem;
+      padding-block: 0.9rem 0.25rem;
+    }
+    .footer__m-copy {
+      font-size: 0.7rem;
+      color: rgba(207 182 138 / 0.65);
+      line-height: 1.5;
+    }
+    .footer__m-addr-line,
+    .footer__m-vat {
+      font-size: 0.7rem;
+      color: rgba(207 182 138 / 0.45);
+      line-height: 1.5;
+    }
+    .footer__m-legal {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.2rem 1rem;
+      margin-top: 0.4rem;
+      list-style: none;
+      padding: 0;
+    }
+    .footer__m-legal a,
+    .footer__m-legal button {
+      font-size: 0.72rem;
+      color: rgba(207 182 138 / 0.5);
+      text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 0;
+      transition: color 0.2s;
+    }
+    .footer__m-legal a:hover,
+    .footer__m-legal button:hover { color: var(--color-accent-on-dark); }
   }
 </style>

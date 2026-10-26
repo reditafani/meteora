@@ -467,6 +467,10 @@ for (const p of allPros) {
   .pf-how__col:hover .pf-how__img :global(img) {
     transform: scale(1.03);
   }
+  @media (hover: none) {
+    .pf-how__col .pf-how__img :global(img) { transition: none; }
+    .pf-how__col:hover .pf-how__img :global(img) { transform: none; }
+  }
   .pf-how__body {
     padding: var(--space-s) var(--space-m) var(--space-s);
     flex: 1;
@@ -560,7 +564,10 @@ for (const p of allPros) {
     gap: var(--space-m);
     padding-top: var(--space-l);
     padding-bottom: var(--space-xl);
+    align-items: stretch;
   }
+  .pf-section__grid > div { display: flex; }
+  .pf-section__grid :global(.sc) { flex: 1; }
   @media (min-width: 700px) {
     .pf-section__grid { grid-template-columns: repeat(2, 1fr); }
   }
@@ -911,14 +918,14 @@ for (const p of allPros) {
   }
   .pf-bar__msg {
     font-family: var(--font-sans);
-    font-size: 0.65rem;
+    font-size: 0.82rem;
     font-weight: 500;
     letter-spacing: 0.06em;
     color: var(--color-text);
   }
   .pf-bar__link {
     font-family: var(--font-sans);
-    font-size: 0.65rem;
+    font-size: 0.82rem;
     font-weight: 500;
     letter-spacing: 0.06em;
     color: var(--color-accent-ink);
@@ -941,14 +948,14 @@ for (const p of allPros) {
       padding: 0.75rem var(--gutter);
     }
     .pf-bar__msg {
-      font-size: 0.5rem;
+      font-size: 0.72rem;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       max-width: 100%;
     }
     .pf-bar__link {
-      font-size: 0.52rem;
+      font-size: 0.72rem;
     }
     .pf-faq__item {
       display: flex;
