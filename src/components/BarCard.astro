@@ -227,4 +227,8 @@ const hasSlider = bar.images.length > 1;
   .barcard--soon .barcard__name {
     color: var(--color-text-muted);
   }
+  @media (hover: none) {
+    .barcard__slide :global(img) { transition: none; }
+    .barcard:hover .barcard__slide.is-active :global(img) { transform: none; }
+  }
 </style>

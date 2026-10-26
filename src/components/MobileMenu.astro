@@ -11,16 +11,17 @@ interface Props {
   alternates: Partial<Alternates>;
   current?: string;
 }
-const { lang, current } = Astro.props;
+const { lang, alternates, current } = Astro.props;
 const s = t(lang);
 const it = lang === 'it';
+
 const primary = [
-  { key: 'about',    label: it ? 'Chi siamo'          : 'About us',         icon: 'user'      },
-  { key: 'services', label: it ? 'Servizi'             : 'Services',         icon: 'cocktail'  },
-  { key: 'bars',     label: it ? 'Banchi bar'         : 'Bar Collection',   icon: 'briefcase' },
-  { key: 'partners', label: it ? 'Fornitori consigliati' : 'Recommended suppliers', icon: 'link' },
-  { key: 'ice',      label: it ? 'Noleggio ghiaccio'  : 'Ice Rental',       icon: 'ice'       },
-  { key: 'contact',  label: it ? 'Contatti'           : 'Contact',          icon: 'mail'      },
+  { key: 'about',    label: it ? 'Chi siamo'             : 'About us',              icon: 'user'      },
+  { key: 'services', label: it ? 'Servizi'                : 'Services',              icon: 'cocktail'  },
+  { key: 'bars',     label: it ? 'Banchi bar'            : 'Bar Collection',         icon: 'briefcase' },
+  { key: 'partners', label: it ? 'Fornitori consigliati' : 'Recommended suppliers', icon: 'link'      },
+  { key: 'ice',      label: it ? 'Noleggio ghiaccio'     : 'Ice Rental',            icon: 'ice'       },
+  { key: 'contact',  label: it ? 'Contatti'              : 'Contact',               icon: 'mail'      },
 ] as const;
 
 const aboutSections = it ? [
@@ -31,72 +32,163 @@ const aboutSections = it ? [
   { id: 'a-map',      label: 'Dove lavoriamo' },
 ] : [
   { id: 'a-story',    label: 'Our philosophy' },
-  { id: 'a-included', label: 'All-inclusive' },
+  { id: 'a-included', label: 'All-inclusive packages' },
   { id: 'a-process',  label: 'How it works' },
   { id: 'a-serves',   label: 'Our events' },
   { id: 'a-map',      label: 'Where we work' },
 ];
+
+const servicesSections = it ? [
+  { id: 'essential',         label: 'Essential' },
+  { id: 'premium',           label: 'Premium' },
+  { id: 'aperitivo',         label: 'Aperitivo + Open Bar' },
+  { id: 'tower',             label: 'Signature Tower' },
+  { id: 'bartender',         label: 'Bartender service' },
+  { id: 'personalizzazioni', label: 'Personalizzazioni' },
+] : [
+  { id: 'essential',         label: 'Essential' },
+  { id: 'premium',           label: 'Premium' },
+  { id: 'aperitivo',         label: 'Aperitivo + Open Bar' },
+  { id: 'tower',             label: 'Signature Tower' },
+  { id: 'bartender',         label: 'Bartender service' },
+  { id: 'personalizzazioni', label: 'Bespoke add-ons' },
+];
+
+const itUrl = alternates.it ?? url('home', 'it');
+const enUrl = alternates.en ?? url('home', 'en');
 ---
 
 <div class="mm__backdrop" data-menu-backdrop aria-hidden="true"></div>
 
 <aside class="mm on-dark" id="mobile-menu" role="dialog" aria-modal="true" aria-label={s.menu} hidden data-menu>
+
+  <!-- Top bar -->
   <div class="mm__bar">
-    <a href={url('home', lang)} class="mm__logo"><Logo variant="cream" width={100} /></a>
+    <a href={url('home', lang)} class="mm__logo"><Logo variant="gold" width={100} /></a>
     <button type="button" class="mm__close" data-menu-close aria-label={s.closeMenu}>
-      <Icon name="close" size={22} />
+      <Icon name="close" size={20} />
     </button>
   </div>
 
+  <!-- Nav -->
   <nav class="mm__body" aria-label={s.mainNav}>
     <ul role="list" class="mm__primary">
       {primary.map((item, i) => (
         item.key === 'about' ? (
-          <li class="mm__item--has-sub" style={`--i:${i}`}>
-            <a href={url('about', lang)} class="mm__sub-toggle" aria-current={current === 'about' ? 'page' : undefined}>
-              <span class="mm__icon"><Icon name="user" size={18} /></span>
-              <span class="mm__label">{item.label}</span>
-              <span class="mm__chevron" aria-hidden="true">›</span>
-            </a>
+          <li class="mm__item mm__item--has-sub" style={`--i:${i}`}>
+            <div class="mm__row--split">
+              <a href={url('about', lang)} class="mm__row-link" aria-current={current === 'about' ? 'page' : undefined}>
+                <span class="mm__icon"><Icon name="user" size={20} /></span>
+                <span class="mm__label">{item.label}</span>
+              </a>
+              <button type="button" class="mm__toggle-btn" data-sub-toggle aria-expanded="false" aria-label={it ? 'Espandi sezioni' : 'Expand sections'}>
+                <span class="mm__vsep" aria-hidden="true"></span>
+                <span class="mm__chevron" aria-hidden="true">
+                  <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                    <path d="M1.5 4.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </button>
+            </div>
             <ul class="mm__sub" role="list">
-              {aboutSections.map(s => (
-                <li><a href={`${url('about', lang)}#${s.id}`}>{s.label}</a></li>
+              {aboutSections.map(sec => (
+                <li>
+                  <a href={`${url('about', lang)}#${sec.id}`}>
+                    <span>{sec.label}</span>
+                    <span class="mm__sub-arrow" aria-hidden="true">→</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ) : item.key === 'services' ? (
+          <li class="mm__item mm__item--has-sub" style={`--i:${i}`}>
+            <div class="mm__row--split">
+              <a href={url('services', lang)} class="mm__row-link" aria-current={current === 'services' ? 'page' : undefined}>
+                <span class="mm__icon"><Icon name="cocktail" size={20} /></span>
+                <span class="mm__label">{item.label}</span>
+              </a>
+              <button type="button" class="mm__toggle-btn" data-sub-toggle aria-expanded="false" aria-label={it ? 'Espandi sezioni' : 'Expand sections'}>
+                <span class="mm__vsep" aria-hidden="true"></span>
+                <span class="mm__chevron" aria-hidden="true">
+                  <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                    <path d="M1.5 4.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </button>
+            </div>
+            <ul class="mm__sub" role="list">
+              {servicesSections.map(sec => (
+                <li>
+                  <a href={`${url('services', lang)}#${sec.id}`}>
+                    <span>{sec.label}</span>
+                    <span class="mm__sub-arrow" aria-hidden="true">→</span>
+                  </a>
+                </li>
               ))}
             </ul>
           </li>
         ) : (
-          <li style={`--i:${i}`}>
-            <a href={url(item.key, lang)} aria-current={current === item.key ? 'page' : undefined}>
-              <span class="mm__icon"><Icon name={item.icon as any} size={18} /></span>
+          <li class="mm__item" style={`--i:${i}`}>
+            <a href={url(item.key, lang)} class="mm__row" aria-current={current === item.key ? 'page' : undefined}>
+              <span class="mm__icon"><Icon name={item.icon as any} size={20} /></span>
               <span class="mm__label">{item.label}</span>
+              <span class="mm__arrow" aria-hidden="true">→</span>
             </a>
           </li>
         )
       ))}
     </ul>
 
+    <!-- Footer -->
     <div class="mm__foot">
-      <a class="btn btn--light btn--block" href={url('contact', lang)} data-track="cta_click" data-track-label="menu_quote">{it ? 'Verifica la disponibilità' : 'Check availability'}</a>
-      <div class="mm__meta">
-        <a href={`mailto:${site.email}`} data-track="email_click"><Icon name="mail" size={13} />{site.email}</a>
-        <a href={site.instagram.url} target="_blank" rel="noopener" data-track="instagram_click"><Icon name="instagram" size={13} />{site.instagram.handle}</a>
+      <a class="mm__cta" href={url('contact', lang)} data-track="cta_click" data-track-label="menu_quote">
+        {it ? 'Verifica la disponibilità' : 'Check availability'}
+        <span aria-hidden="true"> →</span>
+      </a>
+      <p class="mm__cta-sub">
+        {it
+          ? 'Data, location, ospiti. Vi rispondiamo in italiano e in inglese.'
+          : 'Date, venue, guests. We reply in English and Italian.'}
+      </p>
+      <div class="mm__foot-bar">
+        <div class="mm__lang">
+          <a href={itUrl} class:list={['mm__lang-opt', lang === 'it' && 'is-active']}>IT</a>
+          <span class="mm__lang-sep">/</span>
+          <a href={enUrl} class:list={['mm__lang-opt', lang === 'en' && 'is-active']}>EN</a>
+        </div>
+        <div class="mm__socials">
+          <a class="mm__social-btn" href={url('contact', lang)} aria-label="Email" data-track="email_click">
+            <Icon name="mail" size={19} />
+          </a>
+          <a class="mm__social-btn" href={site.instagram.url} target="_blank" rel="noopener" aria-label="Instagram" data-track="instagram_click">
+            <Icon name="instagram" size={19} />
+          </a>
+        </div>
       </div>
     </div>
   </nav>
 </aside>
 
 <script>
-  const menu     = document.querySelector<HTMLElement>('[data-menu]');
+  const menu    = document.querySelector<HTMLElement>('[data-menu]');
   const backdrop = document.querySelector<HTMLElement>('[data-menu-backdrop]');
   const openers  = document.querySelectorAll<HTMLButtonElement>('[data-menu-open]');
   const closer   = menu?.querySelector<HTMLButtonElement>('[data-menu-close]');
-  const subList  = menu?.querySelector<HTMLElement>('.mm__sub');
   let lastFocus: HTMLElement | null = null;
 
   const focusables = () =>
     Array.from(menu?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])') ?? []).filter(
-      (el) => el.offsetParent !== null
+      el => el.offsetParent !== null
     );
+
+  function closeAllSubs() {
+    menu?.querySelectorAll<HTMLElement>('.mm__item--has-sub').forEach(item => {
+      item.querySelector<HTMLElement>('.mm__sub')?.classList.remove('is-open');
+      item.classList.remove('is-open');
+      item.querySelector<HTMLButtonElement>('[data-sub-toggle]')?.setAttribute('aria-expanded', 'false');
+    });
+  }
 
   function open() {
     if (!menu) return;
@@ -107,32 +199,48 @@ const aboutSections = it ? [
       backdrop?.classList.add('is-open');
     });
     document.documentElement.style.overflow = 'hidden';
-    openers.forEach((b) => b.setAttribute('aria-expanded', 'true'));
+    openers.forEach(b => b.setAttribute('aria-expanded', 'true'));
     closer?.focus();
   }
+
   function close() {
     if (!menu || menu.hidden) return;
     menu.classList.remove('is-open');
     backdrop?.classList.remove('is-open');
     document.documentElement.style.overflow = '';
-    openers.forEach((b) => b.setAttribute('aria-expanded', 'false'));
-    subList?.classList.remove('is-open');
+    openers.forEach(b => b.setAttribute('aria-expanded', 'false'));
+    closeAllSubs();
     const done = () => (menu.hidden = true);
     window.matchMedia('(prefers-reduced-motion: reduce)').matches ? done() : setTimeout(done, 420);
     lastFocus?.focus();
   }
 
-  openers.forEach((b) => b.addEventListener('click', open));
+  openers.forEach(b => b.addEventListener('click', open));
   closer?.addEventListener('click', close);
   backdrop?.addEventListener('click', close);
 
-  menu?.addEventListener('keydown', (e) => {
+  // Sub-menu toggles — click-based, one open at a time
+  menu?.querySelectorAll<HTMLButtonElement>('[data-sub-toggle]').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const item = toggle.closest<HTMLElement>('.mm__item--has-sub');
+      const sub  = item?.querySelector<HTMLElement>('.mm__sub');
+      const willOpen = !sub?.classList.contains('is-open');
+      closeAllSubs();
+      if (willOpen && item && sub) {
+        sub.classList.add('is-open');
+        item.classList.add('is-open');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  menu?.addEventListener('keydown', e => {
     if (e.key === 'Escape') close();
     if (e.key === 'Tab') {
       const f = focusables();
       if (!f.length) return;
       const first = f[0];
-      const last = f[f.length - 1];
+      const last  = f[f.length - 1];
       if (e.shiftKey && document.activeElement === first) {
         e.preventDefault(); last.focus();
       } else if (!e.shiftKey && document.activeElement === last) {
@@ -141,15 +249,12 @@ const aboutSections = it ? [
     }
   });
 
-  window.matchMedia('(min-width: 1180px)').addEventListener('change', (e) => e.matches && close());
+  // Close menu when any nav link is clicked (handles same-page anchors)
+  menu?.querySelectorAll<HTMLAnchorElement>('.mm__body a[href]').forEach(link => {
+    link.addEventListener('click', () => close());
+  });
 
-  const subItem = menu?.querySelector<HTMLElement>('.mm__item--has-sub');
-  subItem?.addEventListener('mouseenter', () => {
-    subList?.classList.add('is-open');
-  });
-  subItem?.addEventListener('mouseleave', () => {
-    subList?.classList.remove('is-open');
-  });
+  window.matchMedia('(min-width: 1180px)').addEventListener('change', e => e.matches && close());
 </script>
 
 <style>
@@ -171,11 +276,8 @@ const aboutSections = it ? [
   /* ── Panel ── */
   .mm {
     position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: auto;
-    width: min(400px, 88vw);
+    inset: 0;
+    width: 100%;
     z-index: 80;
     display: flex;
     flex-direction: column;
@@ -183,7 +285,6 @@ const aboutSections = it ? [
     transform: translateX(100%);
     transition: transform 0.42s var(--ease);
     background: var(--color-dark);
-    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.35);
   }
   .mm.is-open {
     transform: translateX(0);
@@ -196,187 +297,296 @@ const aboutSections = it ? [
     justify-content: space-between;
     padding: 0 var(--space-m);
     min-height: var(--header-h);
-    border-bottom: 1px solid rgba(255 255 255 / 0.08);
+    border-bottom: 1px solid rgba(255 255 255 / 0.1);
     flex-shrink: 0;
   }
-  .mm__logo {
-    width: 90px;
-  }
+  .mm__logo { width: 90px; }
   .mm__close {
     display: grid;
     place-items: center;
     width: 2.5rem;
     height: 2.5rem;
-    margin-right: -0.4rem;
     color: var(--color-on-dark-muted);
     transition: color 0.2s;
   }
-  .mm__close:hover {
-    color: var(--color-on-dark);
-  }
+  .mm__close:hover { color: var(--color-on-dark); }
 
   /* ── Nav body ── */
   .mm__body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: var(--space-l);
-    padding: var(--space-m) var(--space-m) var(--space-l);
+    padding: 0 var(--space-m) var(--space-l);
   }
 
-  /* ── Nav items ── */
+  /* ── Primary list ── */
   .mm__primary {
     display: flex;
     flex-direction: column;
-    gap: 0.1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
-  .mm__primary li {
+  .mm__item {
+    border-bottom: 1px solid rgba(255 255 255 / 0.1);
     opacity: 0;
-    transform: translateX(16px);
+    transform: translateX(14px);
     transition:
-      opacity 0.5s var(--ease-out),
-      transform 0.55s var(--ease-out);
-    transition-delay: calc(0.045s * var(--i) + 0.08s);
+      opacity 0.45s var(--ease-out),
+      transform 0.5s var(--ease-out);
+    transition-delay: calc(0.05s * var(--i) + 0.07s);
   }
-  .mm.is-open .mm__primary li {
+  .mm.is-open .mm__item {
     opacity: 1;
     transform: none;
   }
-  .mm__primary a {
+
+  /* ── Row (<a> direct links) ── */
+  .mm__row {
     display: flex;
     align-items: center;
-    gap: 0.85rem;
-    padding: 0.7rem 0.6rem;
-    border-radius: 4px;
+    gap: 1rem;
+    width: 100%;
+    padding: 1.05rem 0;
+    color: var(--color-on-dark);
+    background: none;
+    border: none;
     text-decoration: none;
-    transition: background 0.2s, color 0.2s;
+    cursor: pointer;
+    text-align: left;
   }
-  .mm__primary a:hover {
-    background: rgba(255 255 255 / 0.06);
+  .mm__row:hover .mm__label,
+  .mm__row[aria-current='page'] .mm__label {
     color: var(--color-accent-on-dark);
   }
-  .mm__primary a[aria-current='page'] {
-    color: var(--color-accent-on-dark);
-    background: rgba(184, 158, 114, 0.1);
+  .mm__row[aria-current='page'] .mm__label {
+    font-style: italic;
   }
+
+  /* ── Split row (link + chevron button) ── */
+  .mm__row--split {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+  }
+  .mm__row-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+    padding: 1.05rem 0;
+    color: var(--color-on-dark);
+    text-decoration: none;
+  }
+  .mm__row-link:hover .mm__label,
+  .mm__row-link[aria-current='page'] .mm__label {
+    color: var(--color-accent-on-dark);
+  }
+  .mm__row-link[aria-current='page'] .mm__label {
+    font-style: italic;
+  }
+  .mm__toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    padding: 0 0 0 0.75rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-on-dark);
+    align-self: stretch;
+  }
+
   .mm__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 1.5rem;
+    color: var(--color-accent-on-dark);
+    opacity: 0.85;
+  }
+  .mm__label {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 5vw, 1.75rem);
+    font-weight: 300;
+    line-height: 1.1;
+    flex: 1;
+  }
+  .mm__arrow {
+    font-size: 1rem;
+    color: var(--color-on-dark-muted);
+    flex-shrink: 0;
+  }
+
+  /* ── Chevron + vertical separator ── */
+  .mm__vsep {
+    width: 1px;
+    align-self: stretch;
+    margin-block: 0.55rem;
+    background: rgba(255 255 255 / 0.18);
+    flex-shrink: 0;
+    opacity: 1;
+  }
+  .mm__chevron {
     display: flex;
     align-items: center;
     flex-shrink: 0;
     color: var(--color-accent-on-dark);
     opacity: 0.8;
+    transition: transform 0.3s var(--ease-out);
   }
-  .mm__label {
+  .mm__item--has-sub.is-open .mm__chevron {
+    transform: rotate(180deg);
+  }
+
+  /* ── Sub-menu ── */
+  .mm__sub {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.65s var(--ease-out);
+    padding: 0;
+    padding-left: calc(1.5rem + 1rem);
+    list-style: none;
+    margin: 0;
+  }
+  .mm__sub.is-open {
+    max-height: 320px;
+  }
+  .mm__sub li {
+    border-bottom: 1px solid rgba(255 255 255 / 0.07);
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: opacity 0.32s var(--ease-out), transform 0.32s var(--ease-out);
+  }
+  .mm__sub.is-open li:nth-child(1) { transition-delay: 0.12s; }
+  .mm__sub.is-open li:nth-child(2) { transition-delay: 0.21s; }
+  .mm__sub.is-open li:nth-child(3) { transition-delay: 0.30s; }
+  .mm__sub.is-open li:nth-child(4) { transition-delay: 0.39s; }
+  .mm__sub.is-open li:nth-child(5) { transition-delay: 0.48s; }
+  .mm__sub.is-open li:nth-child(6) { transition-delay: 0.57s; }
+  .mm__sub.is-open li {
+    opacity: 1;
+    transform: none;
+  }
+  .mm__sub li:last-child {
+    border-bottom: none;
+    margin-bottom: 0.5rem;
+  }
+  .mm__sub a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.7rem 0;
     font-family: var(--font-display);
-    font-size: clamp(1.35rem, 4vw, 1.65rem);
-    font-weight: 350;
-    line-height: 1.15;
+    font-size: clamp(1rem, 3.5vw, 1.15rem);
+    font-weight: 300;
+    color: rgba(255 255 255 / 0.6);
+    text-decoration: none;
+    transition: color 0.2s;
   }
-  .mm__primary a[aria-current='page'] .mm__label {
-    font-style: italic;
+  .mm__sub a:hover {
+    color: var(--color-on-dark);
+  }
+  .mm__sub-first {
+    color: var(--color-accent-on-dark) !important;
+  }
+  .mm__sub-arrow {
+    font-size: 0.85rem;
+    opacity: 0.55;
+    flex-shrink: 0;
   }
 
   /* ── Footer ── */
   .mm__foot {
     margin-top: auto;
-    display: grid;
-    gap: var(--space-m);
-  }
-  .mm__meta {
+    padding-top: var(--space-l);
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.4rem 1rem;
-    font-size: var(--fs-small);
-    color: var(--color-on-dark-muted);
+    flex-direction: column;
+    gap: 0.65rem;
   }
-  .mm__meta a {
-    display: inline-flex;
+  .mm__cta {
+    display: flex;
     align-items: center;
-    gap: 0.4rem;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 1rem 1.8rem;
+    border-radius: 50px;
+    background: var(--color-accent-on-dark);
+    color: var(--color-dark);
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: filter 0.25s;
+  }
+  .mm__cta:hover {
+    filter: brightness(1.08);
+  }
+  .mm__cta-sub {
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    color: rgba(255 255 255 / 0.6);
+    text-align: center;
+    line-height: 1.55;
+    margin-top: 0.1rem;
+  }
+
+  /* ── Bottom bar ── */
+  .mm__foot-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--space-s);
+    margin-top: 0.2rem;
+    border-top: 1px solid rgba(255 255 255 / 0.1);
+  }
+  .mm__lang {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    height: 2.7rem;
+    border: 1px solid rgba(207 182 138 / 0.38);
+    padding-inline: 0.65rem;
+  }
+  .mm__lang-opt {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: rgba(207 182 138 / 0.55);
     text-decoration: none;
     transition: color 0.2s;
   }
-  .mm__meta a:hover {
-    color: var(--color-on-dark);
+  .mm__lang-opt.is-active {
+    color: var(--color-accent-on-dark);
   }
-
-  /* ── Sub-menu (Chi siamo) ── */
-  .mm__sub-toggle {
+  .mm__lang-opt:hover {
+    color: var(--color-accent-on-dark);
+  }
+  .mm__lang-sep {
+    font-size: 0.72rem;
+    color: rgba(207 182 138 / 0.3);
+    padding: 0 0.1rem;
+  }
+  .mm__socials {
     display: flex;
-    width: 100%;
-    align-items: center;
-    gap: 0.85rem;
-    padding: 0.7rem 0.6rem;
-    border-radius: 4px;
-    color: var(--color-on-dark);
+    gap: 0.4rem;
+  }
+  .mm__social-btn {
+    display: grid;
+    place-items: center;
+    width: 2.7rem;
+    height: 2.7rem;
+    border: 1px solid rgba(207 182 138 / 0.38);
+    color: rgba(207 182 138 / 0.75);
     text-decoration: none;
-    transition: background 0.2s, color 0.2s;
+    transition: color 0.2s, border-color 0.2s;
   }
-  .mm__sub-toggle:hover,
-  .mm__item--has-sub:hover > .mm__sub-toggle {
-    background: rgba(255 255 255 / 0.06);
+  .mm__social-btn:hover {
     color: var(--color-accent-on-dark);
-  }
-  .mm__sub-toggle[aria-current='page'] {
-    color: var(--color-accent-on-dark);
-    background: rgba(184, 158, 114, 0.1);
-  }
-  .mm__sub-toggle[aria-current='page'] .mm__label {
-    font-style: italic;
-  }
-  .mm__chevron {
-    margin-left: auto;
-    font-size: 1.1rem;
-    line-height: 1;
-    color: var(--color-accent-on-dark);
-    opacity: 0.8;
-    transition: transform 0.3s var(--ease-out);
-  }
-  .mm__item--has-sub:hover .mm__chevron {
-    transform: rotate(90deg);
-  }
-  .mm__sub {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 1.8s var(--ease-out);
-    padding-left: calc(18px + 0.85rem + 0.6rem);
-  }
-  .mm__item--has-sub:hover .mm__sub,
-  .mm__sub.is-open {
-    max-height: 320px;
-  }
-  /* stagger each sub-item — fade only, no movement */
-  .mm__sub li {
-    opacity: 0;
-    transition: opacity 0.5s var(--ease-out);
-  }
-  .mm__sub li:nth-child(1) { transition-delay: 0.2s; }
-  .mm__sub li:nth-child(2) { transition-delay: 0.42s; }
-  .mm__sub li:nth-child(3) { transition-delay: 0.64s; }
-  .mm__sub li:nth-child(4) { transition-delay: 0.86s; }
-  .mm__sub li:nth-child(5) { transition-delay: 1.08s; }
-  .mm__item--has-sub:hover .mm__sub li,
-  .mm__sub.is-open li {
-    opacity: 1;
-  }
-  .mm__sub a {
-    display: block;
-    padding: 0.55rem 0.4rem;
-    font-family: var(--font-display);
-    font-size: clamp(1rem, 3vw, 1.2rem);
-    font-weight: 350;
-    line-height: 1.2;
-    text-decoration: none;
-    color: var(--color-on-dark-muted);
-    border-bottom: 1px solid rgba(255 255 255 / 0.06);
-    transition: color 0.2s, padding-left 0.2s;
-  }
-  .mm__sub li:last-child a {
-    border-bottom: none;
-  }
-  .mm__sub a:hover {
-    color: var(--color-accent-on-dark);
-    padding-left: 0.8rem;
+    border-color: rgba(207 182 138 / 0.7);
   }
 </style>

@@ -170,6 +170,10 @@ const desktopNav: NavItem[] = [
     width: 118px;
     transition: width 0.45s var(--ease);
   }
+  .site-header:not([data-scrolled]) .site-header__brand {
+    align-self: center;
+    margin-bottom: 1.1rem;
+  }
   .site-header[data-scrolled] .site-header__brand {
     width: 96px;
   }
@@ -194,6 +198,9 @@ const desktopNav: NavItem[] = [
     display: flex;
     align-items: center;
     gap: clamp(0.75rem, 1.6vw, 1.5rem);
+  }
+  :global(.site-header__lang) {
+    font-size: 1rem !important;
   }
   .site-header__cta {
     display: none;
