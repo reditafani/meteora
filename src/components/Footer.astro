@@ -121,7 +121,10 @@ const year = new Date().getFullYear();
     padding-block: var(--space-m);
   }
   @media (min-width: 900px) {
-    .footer__grid { grid-template-columns: 1.3fr 1fr 1fr; align-items: start; }
+    /* content-sized columns spread edge to edge → equal empty space left and right */
+    .footer__grid { grid-template-columns: repeat(4, auto); justify-content: space-between; align-items: start; }
+    /* logo and address become two separate columns of the row */
+    .footer__brand { display: contents; }
   }
   .footer__brand :global(img) {
     width: 150px;
@@ -133,11 +136,28 @@ const year = new Date().getFullYear();
     margin-top: var(--space-s);
     font-size: var(--fs-small);
   }
+  @media (min-width: 900px) {
+    /* bottom-aligned so the P.IVA line sits level with the last Explore row
+       (padding matches the nav links' padding-block) */
+    .footer__addr { margin-top: 0; line-height: 1.55; align-self: end; padding-bottom: 0.3rem; }
+    /* logo centred on the address block's horizontal axis */
+    .footer__brand :global(img) { margin-top: 0; align-self: end; margin-bottom: 0.25rem; transform: translateY(-30%); }
+  }
   .footer__h {
     color: var(--color-on-dark-muted);
     margin-bottom: var(--space-s);
   }
   .footer__nav { columns: 2; column-gap: var(--space-m); }
+  @media (min-width: 900px) {
+    /* 3 content-sized columns × 2 links, filled top-to-bottom */
+    .footer__nav {
+      columns: auto;
+      display: grid;
+      grid-template-rows: repeat(2, auto);
+      grid-auto-flow: column;
+      column-gap: var(--space-l);
+    }
+  }
   .footer__nav a,
   .footer__contact a {
     display: inline-block;

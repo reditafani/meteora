@@ -120,4 +120,12 @@ const { image, imageAlt, position = 'center', video, eyebrow, size = 'full', sty
   @media (max-width: 699px) {
     .hero--tall { min-height: min(55svh, 32rem); }
   }
+  /* desktop: same 80% height as the fullscreen page heroes */
+  @media (min-width: 900px) {
+    .hero--tall { min-height: 80svh; }
+    .hero--tall .hero__content {
+      padding-top: calc(var(--header-h) + var(--space-s));
+      padding-bottom: var(--space-l);
+    }
+  }
 </style>

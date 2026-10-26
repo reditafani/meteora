@@ -38,6 +38,10 @@ const it = lang === 'it';
     display: flex;
     align-items: center;
   }
+  /* desktop: bottom edge at 80% of the screen, like the other page heroes */
+  @media (min-width: 900px) {
+    .ice-wrap { min-height: calc(80svh - var(--header-h)); }
+  }
   .ice-box {
     display: grid;
     gap: var(--space-m);

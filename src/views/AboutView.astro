@@ -135,8 +135,8 @@ const steps: { title: string; text: string }[] = it
     <h1>Meteora <em>Events</em></h1>
     <p slot="lead" class="lead hero-lead">
       {it
-        ? `Il bar dei vostri eventi, pensato e curato in ogni dettaglio da un team che vive il settore da oltre ${site.yearsExperience} anni.`
-        : `The bar for your events, designed and crafted in every detail by a team that has lived the industry for over ${site.yearsExperience} years.`}
+        ? <>Il bar dei vostri eventi, pensato e curato in ogni dettaglio<br />da un team che vive il settore da oltre {site.yearsExperience} anni.</>
+        : <>The bar for your events, designed and crafted in every detail<br />by a team that has lived the industry for over {site.yearsExperience} years.</>}
     </p>
   </PageHero>
 
@@ -313,8 +313,12 @@ const steps: { title: string; text: string }[] = it
         </h2>
         <p class="serves-hd__lead muted" data-reveal>
           {it
-            ? 'Dal grande giorno alla festa in piscina, dalla cena di gala al compleanno: siamo il bar di ogni vostra occasione. Dal benvenuto a fine serata, pensiamo noi a tutto il servizio, perché voi possiate pensare solo a festeggiare.'
-            : 'From the big day to the pool party, from the gala dinner to the birthday: we are the bar for every occasion. From the welcome drink to the last round, we handle the full service so you can focus on celebrating.'}
+            ? 'Dal grande giorno alla festa in piscina, dalla cena di gala al compleanno: siamo il bar di ogni vostra occasione.'
+            : 'From the big day to the pool party, from the gala dinner to the birthday: we are the bar for every occasion.'}
+          <br class="serves-hd__br" />
+          {it
+            ? 'Dal benvenuto a fine serata, pensiamo noi a tutto il servizio, perché voi possiate pensare solo a festeggiare.'
+            : 'From the welcome drink to the last round, we handle the full service so you can focus on celebrating.'}
         </p>
       </div>
     </div>
@@ -849,6 +853,9 @@ const steps: { title: string; text: string }[] = it
     text-align: center;
     padding-bottom: var(--space-xl);
   }
+  @media (min-width: 768px) {
+    .serves-hd { padding-bottom: var(--space-l); }
+  }
   .serves-hd__title {
     font-family: var(--font-display);
     font-size: clamp(2.4rem, 1.2rem + 4.5vw, 5.5rem);
@@ -865,6 +872,11 @@ const steps: { title: string; text: string }[] = it
     font-size: clamp(0.95rem, 0.55rem + 1vw, 1.3rem);
     max-width: none;
     line-height: 1.65;
+  }
+  /* line break after "occasione." on desktop only */
+  .serves-hd__br { display: none; }
+  @media (min-width: 768px) {
+    .serves-hd__br { display: inline; }
   }
 
   /* ── Event cards ── */
@@ -976,7 +988,7 @@ const steps: { title: string; text: string }[] = it
 
   /* ── About CTA ── */
   .abt-cta {
-    background: rgb(8 5 3);
+    background: var(--color-dark);
     padding: clamp(2.5rem, 5vw, 4rem) 0;
   }
   .abt-cta__inner {

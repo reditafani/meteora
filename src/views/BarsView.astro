@@ -56,8 +56,8 @@ const sizes = [
         </h1>
         <p class="lead bh__lead" data-reveal style="--delay:.14s">
           {it
-            ? "Banchi bar modulari, professionali e scenografici, scelti in base al carattere dell'evento. Una collezione in continuo ampliamento."
-            : 'Modular, professional, scenographic bars, chosen to match the character of your event. A collection that keeps growing.'}
+            ? <>Banchi bar modulari, professionali e scenografici<br />scelti in base al carattere dell'evento.<br />Una collezione in continuo ampliamento.</>
+            : <>Modular, professional, scenographic bars<br />chosen to match the character of your event.<br />A collection that keeps growing.</>}
         </p>
       </div>
     </div>
@@ -302,7 +302,7 @@ const sizes = [
 
   /* ── CTA Band ── */
   .bars-cta {
-    background: rgb(8 5 3);
+    background: var(--color-dark);
     padding: clamp(2.5rem, 5vw, 4rem) 0;
   }
   .bars-cta__inner {

@@ -109,9 +109,23 @@ const s = t(lang);
     <script>
       const btt = document.getElementById('btt');
       if (btt) {
-        window.addEventListener('scroll', () => {
+        // Desktop: keep the button above the footer's bottom bar so it never covers IT / EN.
+        const footerBar = document.querySelector('.footer__bottom');
+        const desktop = window.matchMedia('(min-width: 768px)');
+        const GAP = 16; // px above the bar's top line, then lowered by 80% of the button height
+        const update = () => {
           btt.classList.toggle('is-visible', window.scrollY > 400);
-        }, { passive: true });
+          let lift = 0;
+          if (footerBar && desktop.matches) {
+            const bttBottom = window.innerHeight - parseFloat(getComputedStyle(btt).bottom);
+            const gap = GAP - btt.offsetHeight * 0.8;
+            lift = Math.max(0, bttBottom - (footerBar.getBoundingClientRect().top - gap));
+          }
+          btt.style.transform = lift ? `translateY(${-lift}px)` : '';
+        };
+        window.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('resize', update, { passive: true });
+        update();
         btt.addEventListener('click', () => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         });

@@ -59,10 +59,10 @@ const privacyShort = privacyFull.replace(' per ricevere una risposta', '').repla
 
   <PageHero variant="fullscreen" align="left" image={aerial} imageAlt={it ? 'Sposi visti dall\'alto su un prato verde' : 'Couple seen from above on green grass'} crumbs={crumbs}>
     <h1>{it ? <>Contattaci.</> : <>Contact us.</>}</h1>
-    <p slot="lead" class="lead muted">
+    <p slot="lead" class="lead muted contact-lead">
       {it
-        ? 'Raccontateci il vostro evento: vi risponderemo con una proposta costruita su misura.'
-        : 'Tell us about your event and we will reply with a proposal built around it.'}
+        ? <>Raccontateci il vostro evento.<br />Vi risponderemo con una proposta costruita su misura.</>
+        : <>Tell us about your event.<br />We will reply with a proposal built around it.</>}
     </p>
   </PageHero>
 
@@ -281,6 +281,12 @@ const privacyShort = privacyFull.replace(' per ricevere una risposta', '').repla
 </BaseLayout>
 
 <style is:global>
+  /* ── Hero lead: a little larger than the shared fullscreen-hero default ── */
+  .fhero .fhero__lead p.contact-lead {
+    font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+    max-width: 44rem;
+  }
+
   /* ── Scroll arrow ── */
   .scroll-arrow {
     display: inline-flex;

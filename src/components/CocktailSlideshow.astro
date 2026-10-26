@@ -141,10 +141,14 @@ const it = lang === 'it';
   .cs__track::-webkit-scrollbar { display: none; }
 
   /* ── Slide ── */
+  /* slides stretch to the tallest one; indicators are pushed to the bottom so
+     they line up across all cocktails, whatever the name length */
   .cs__slide {
     flex-shrink: 0;
     width: clamp(110px, 12.4vw, 159px);
     scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
   }
   .cs__frame {
     border: 1px solid var(--color-accent-on-dark);
@@ -168,6 +172,9 @@ const it = lang === 'it';
 
   /* ── Info area ── */
   .cs__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     padding-top: 0.61rem;
     border-top: 1px solid rgba(255, 255, 255, 0.12);
   }
@@ -177,7 +184,8 @@ const it = lang === 'it';
     font-weight: 400;
     line-height: 1.25;
     color: #fff;
-    margin-bottom: 0.58rem;
+    padding-bottom: 0.58rem;
+    margin-bottom: auto;
     white-space: normal;
     overflow-wrap: break-word;
   }
