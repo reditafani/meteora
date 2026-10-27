@@ -14,7 +14,7 @@ import terracePanorama from '@/assets/images/bars/terrace-panorama.jpg';
  * THE BAR COLLECTION
  * Names, descriptions and sizes come from the brochure ("I nostri banchi").
  * To add a bar: add an image to src/assets/images/bars/, import it above and
- * append an entry. Set `status: 'available'` to publish its detail page.
+ * append an entry. `status: 'coming-soon'` shows it as "Prossimamente".
  */
 export interface Bar {
   slug: string;
@@ -198,5 +198,3 @@ export const bars: Bar[] = [
     },
   },
 ];
-
-export const availableBars = bars.filter((b) => b.status === 'available');

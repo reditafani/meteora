@@ -37,7 +37,6 @@ const { eyebrow, image, imageAlt = '', position, crumbs, tone = 'light', variant
       <div class="fhero__cta" data-reveal style="--delay:.28s"><slot name="cta" /></div>
     </div>
     <div class="fhero__bottombar"><slot name="bottombar" /></div>
-    <div class="fhero__scroll" aria-hidden="true"></div>
   </section>
 ) : (
   <section class:list={['phero', tone === 'alt' && 'section--alt', !image && 'phero--text']}>
@@ -135,7 +134,7 @@ const { eyebrow, image, imageAlt = '', position, crumbs, tone = 'light', variant
     min-height: 80svh;
   }
   @media (max-width: 699px) {
-    .fhero--left { min-height: 65svh; }
+    .fhero--left { min-height: 80svh; }
   }
   .fhero--left .fhero__content {
     align-items: flex-start;
@@ -164,26 +163,6 @@ const { eyebrow, image, imageAlt = '', position, crumbs, tone = 'light', variant
     left: 0;
     right: 0;
     z-index: 3;
-  }
-  .fhero__bottombar:not(:empty) ~ .fhero__scroll {
-    display: none;
-  }
-
-  /* scroll hint */
-  .fhero__scroll {
-    position: absolute;
-    bottom: var(--space-l);
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    width: 1px;
-    height: 48px;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.55), rgba(255,255,255,0));
-    animation: scrollhint 2s ease-in-out infinite;
-  }
-  @keyframes scrollhint {
-    0%, 100% { opacity: 0.4; transform: translateX(-50%) scaleY(1); }
-    50%       { opacity: 1;   transform: translateX(-50%) scaleY(1.15); }
   }
 
   /* ── Editorial variant ── */
@@ -222,6 +201,25 @@ const { eyebrow, image, imageAlt = '', position, crumbs, tone = 'light', variant
     }
     .phero__media {
       margin-bottom: calc(var(--section) * -0.35);
+    }
+    /* desktop: bottom edge at 80% of the screen, like the fullscreen heroes
+       (this hero starts below the header, so subtract it) */
+    .phero {
+      display: flex;
+      flex-direction: column;
+      min-height: calc(80svh - var(--header-h));
+      padding-block: var(--space-s) var(--space-m);
+    }
+    .phero__grid {
+      flex: 1;
+      width: 100%;
+    }
+    .phero__media {
+      align-self: stretch;
+      height: auto;
+      max-height: none;
+      aspect-ratio: auto;
+      margin-bottom: 0;
     }
   }
 </style>

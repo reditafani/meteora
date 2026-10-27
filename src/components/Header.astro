@@ -93,7 +93,7 @@ const desktopNav: NavItem[] = [
     <div class="site-header__actions">
       <LanguageSwitcher lang={lang} alternates={alternates} class="site-header__lang" />
       <a class="btn site-header__cta" href={url('contact', lang)} data-track="cta_click" data-track-label="header_quote">
-        {s.quote}
+        {it ? 'Verifica disponibilità' : 'Check availability'}
       </a>
       <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-open>
         <Icon name="menu" size={24} />
@@ -365,10 +365,13 @@ const desktopNav: NavItem[] = [
   }
 
   @media (min-width: 1180px) {
+    /* links spread over the free space; the small min gap lets the nav tighten on
+       narrower desktops so the CTA keeps its side margin instead of hitting the edge */
     .site-header__nav {
       display: flex;
       align-items: center;
-      gap: clamp(1.5rem, 2.6vw, 2.8rem);
+      justify-content: space-between;
+      gap: 0.75rem;
       flex: 1;
       padding-inline: clamp(var(--space-m), 3vw, var(--space-l));
     }
@@ -377,6 +380,18 @@ const desktopNav: NavItem[] = [
     }
     .site-header__crumbs {
       display: none;
+    }
+    :global(.site-header__lang) {
+      font-size: 0.85rem !important;
+    }
+    /* narrower side margins: logo and CTA sit closer to the screen edges, giving the nav more room */
+    .site-header__inner {
+      padding-inline: calc(var(--gutter) * 0.6);
+    }
+  }
+  @media (min-width: 1180px) and (max-width: 1439px) {
+    .site-header__nav {
+      padding-inline: var(--space-s);
     }
   }
 </style>

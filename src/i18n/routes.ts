@@ -9,15 +9,10 @@ export const DEFAULT_LANG: Lang = 'it';
 
 export const routes = {
   home: { it: '/', en: '/en/' },
-  weddings: { it: '/matrimoni/', en: '/en/weddings/' },
-  destination: { it: '/destination-wedding-italia/', en: '/en/destination-weddings-italy/' },
   bars: { it: '/banchi-bar/', en: '/en/bars/' },
   services: { it: '/servizi/', en: '/en/services/' },
-  corporate: { it: '/eventi-aziendali-privati/', en: '/en/corporate-private-events/' },
   partners: { it: '/wedding-planner-location/', en: '/en/wedding-planners-venues/' },
-  events: { it: '/eventi/', en: '/en/events/' },
   about: { it: '/chi-siamo/', en: '/en/about/' },
-  why: { it: '/perche-meteora/', en: '/en/why-meteora/' },
   ice: { it: '/noleggio-ghiaccio/', en: '/en/ice-rental/' },
   contact: { it: '/contatti/', en: '/en/contact/' },
   thanks: { it: '/grazie/', en: '/en/thank-you/' },
@@ -31,12 +26,6 @@ export type RouteKey = keyof typeof routes;
 export function url(key: RouteKey, lang: Lang, hash?: string): string {
   return routes[key][lang] + (hash ? `#${hash}` : '');
 }
-
-/** Detail-page bases for data-driven collections. */
-export const collectionBase = {
-  bars: routes.bars,
-  events: routes.events,
-} as const;
 
 export type Alternates = Record<Lang, string>;
 

@@ -33,8 +33,10 @@ const it = lang === 'it';
 </BaseLayout>
 
 <style>
+  /* bottom edge at 80% of the screen on every device, like the other page
+     heroes (this block starts below the header, so subtract it) */
   .ice-wrap {
-    min-height: 60svh;
+    min-height: calc(80svh - var(--header-h));
     display: flex;
     align-items: center;
   }
