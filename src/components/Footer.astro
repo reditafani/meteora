@@ -75,7 +75,7 @@ const year = new Date().getFullYear();
 
     <!-- ── Desktop bottom ── -->
     <div class="footer__bottom">
-      <p class="muted">© {year} {site.legal.companyName || site.name}. {s.rights}</p>
+      <p class="muted">© {year} {(site.legal.companyName || site.name).replace(/\.?$/, '.')} {s.rights}</p>
       <ul role="list" class="footer__legal" aria-label={s.footerLegal}>
         <li><a href={url('privacy', lang)}>{s.privacy}</a></li>
         <li><a href={url('cookies', lang)}>{s.cookiePolicy}</a></li>

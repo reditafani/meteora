@@ -689,20 +689,21 @@ const perks = [
     border-top: 1px solid rgba(255,255,255,0.08);
   }
   .home-hero__stat {
-    padding: 1.2rem var(--gutter);
-    display: flex; flex-direction: column; gap: 0.3rem;
+    padding: 0.7rem var(--gutter);
+    display: flex; flex-direction: column; gap: 0.15rem;
     border-right: 1px solid rgba(255,255,255,0.08);
   }
   .home-hero__stat:last-child { border-right: none; }
   .home-hero__stat-n {
     font-family: var(--font-display);
-    font-size: clamp(0.85rem, 0.7rem + 0.55vw, 1.15rem);
+    font-size: clamp(0.92rem, 0.76rem + 0.6vw, 1.28rem);
     font-weight: 300;
+    line-height: 1.2;
     color: var(--color-on-dark);
   }
   .home-hero__stat-s {
     font-family: var(--font-sans);
-    font-size: 0.55rem;
+    font-size: 0.6rem;
     letter-spacing: 0.08em;
     color: rgba(255,255,255,0.4);
   }
@@ -884,20 +885,106 @@ const perks = [
     color: var(--color-accent-ink);
     margin-bottom: var(--space-m);
   }
+  /* "Chi siamo" as a button: same look and size as the header's
+     "Verifica disponibilità" (.btn on a light background) */
   .hm-intro__cta {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    padding: 0.7rem 1.25rem;
+    background: var(--color-text);
+    color: var(--color-background);
+    border: 1px solid var(--color-text);
     font-family: var(--font-sans);
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    line-height: 1.2;
     text-transform: uppercase;
     text-decoration: none;
-    color: var(--color-text);
-    border-bottom: 1px solid currentColor;
-    padding-bottom: 2px;
-    transition: color 0.2s;
+    transition: background-color 0.35s var(--ease), color 0.35s var(--ease), border-color 0.35s var(--ease);
   }
-  .hm-intro__cta:hover { color: var(--color-accent-ink); }
+  .hm-intro__cta:hover {
+    background: var(--color-dark-2);
+    border-color: var(--color-dark-2);
+    color: var(--color-accent-soft);
+  }
+
+  /* Desktop redesign: framed panel, years | divider | title | text */
+  @media (min-width: 960px) {
+    .hm-intro { padding-block: calc(var(--section) * 0.5); }
+    .hm-intro__row {
+      grid-template-columns: 255fr 648fr 397fr;
+      gap: 0;
+      align-items: center;
+      /* vertical spacing = the section's standard padding (no extra inner space) */
+      padding: var(--space-m) clamp(2.5rem, 4.9vw, 4.4rem) 0;
+      background: var(--color-background-secondary);
+    }
+    /* Left: years, with the vertical divider on its right */
+    .hm-intro__years {
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid var(--color-border);
+    }
+    .hm-intro__da {
+      font-size: 1.1rem;
+      color: var(--color-accent-ink);
+      margin-bottom: 0.4rem;
+    }
+    .hm-intro__n {
+      font-size: clamp(6rem, 3rem + 5vw, 8.4rem);
+      font-weight: 400;
+      font-variant-numeric: lining-nums; /* tall, even digits instead of old-style */
+      line-height: 0.85;
+      margin-bottom: 1.2rem;
+    }
+    .hm-intro__lbl {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      line-height: 1.75;
+    }
+    /* Centre: eyebrow + title */
+    .hm-intro__center { padding-left: clamp(2rem, 4vw, 3.6rem); padding-right: clamp(1.5rem, 3vw, 2.8rem); }
+    .hm-intro__eyebrow {
+      font-size: 0.72rem;
+      line-height: 1.5;
+      letter-spacing: 0.22em;
+      gap: 0.9rem;
+      margin-bottom: 1.25rem;
+    }
+    /* centre and right columns start together; the right one drops by the
+       eyebrow's height so the description lines up with the title */
+    .hm-intro__center,
+    .hm-intro__right { align-self: start; }
+    .hm-intro__right { padding-top: calc(0.72rem * 1.5 + 1.25rem); }
+    .hm-intro__eyebrow::before { width: 2.75rem; }
+    .hm-intro__title {
+      font-size: clamp(2.6rem, 1.4rem + 2.2vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.06;
+    }
+    .hm-intro__title em { font-weight: 400; }
+    /* Right: description, event types, link */
+    .hm-intro__desc {
+      font-size: 1rem;
+      line-height: 1.85;
+      margin-bottom: 0.9rem;
+    }
+    .hm-intro__types {
+      font-size: 1.05rem;
+      margin-bottom: 1.9rem;
+    }
+    /* button aligned to the right edge of the text column */
+    .hm-intro__cta {
+      display: flex;
+      width: fit-content;
+      margin-left: auto;
+    }
+  }
 
   /* ── Event types (dark) ── */
   .hm-ev { padding-top: var(--space-l); }
@@ -1297,6 +1384,11 @@ const perks = [
     line-height: 1.4;
     letter-spacing: 0.01em;
   }
+  /* desktop: larger list items and descriptions */
+  @media (min-width: 700px) {
+    .hm-pkg__item-title { font-size: clamp(1.2rem, 1rem + 0.6vw, 1.5rem); }
+    .hm-pkg__item-sub   { font-size: 0.82rem; }
+  }
 
   /* ── Bar Collection ── */
   .hm-bc { padding-top: var(--space-l); }
@@ -1582,7 +1674,7 @@ const perks = [
     display: flex;
     align-items: flex-start;
     gap: 0.65rem;
-    font-size: var(--fs-small);
+    font-size: 0.96rem;
     color: var(--color-text-muted);
     line-height: 1.5;
   }
@@ -2051,10 +2143,9 @@ const perks = [
     /* less space before the next section ("Per ogni occasione") */
     .hm-intro { padding-bottom: var(--space-l); }
     .hm-intro__cta {
-      display: table; /* keeps its own width, so margin-left: auto pushes it right */
+      display: flex;
+      width: fit-content; /* keeps its own width, so margin-left: auto pushes it right */
       margin-left: auto;
-      border-bottom-color: var(--color-accent-ink);
-      padding-bottom: 6px;
     }
     /* Event types: scroll-snap carousel */
     .hm-ev__carousel { position: relative; }

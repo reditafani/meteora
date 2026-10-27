@@ -233,7 +233,9 @@ for (const p of allPros) {
   <section class="section pf-faq" id="pf-faq" aria-labelledby="pf-faq-title">
     <div class="container">
       <h2 id="pf-faq-title" class="pf-faq__title" data-reveal>
-        {it ? <>Le domande giuste <em>prima di firmare</em></> : <>The right questions <em>before signing</em></>}
+        {it
+          ? <>Le domande giuste <em>prima di firmare<span class="pf-faq__more"> un contratto:</span></em></>
+          : <>The right questions <em>before signing<span class="pf-faq__more"> a contract:</span></em></>}
       </h2>
       <div class="pf-faq__grid">
         {faqItems.map((item, i) => (
@@ -247,8 +249,8 @@ for (const p of allPros) {
       <div class="pf-faq__dl" data-reveal>
         <p class="pf-faq__dl-text muted">
           {it
-            ? 'Scarica la lista completa delle domande da fare prima di firmare'
-            : 'Download the full list of questions to ask before signing'}
+            ? <>Scarica la lista completa delle domande da fare prima di firmare<span class="pf-faq__dl-more"> un contratto <span class="pf-faq__dl-arrow" aria-hidden="true">→</span></span></>
+            : <>Download the full list of questions to ask before signing<span class="pf-faq__dl-more"> a contract <span class="pf-faq__dl-arrow" aria-hidden="true">→</span></span></>}
         </p>
         <a class="btn pf-faq__dl-btn" href={contactUrl}>
           {it ? 'SCARICA LA LISTA' : 'DOWNLOAD THE LIST'}
@@ -364,6 +366,10 @@ for (const p of allPros) {
     max-width: 32rem;
     margin-bottom: var(--space-m);
   }
+  @media (min-width: 700px) {
+    /* desktop: slightly smaller than the standard lead */
+    .ph__lead { font-size: clamp(1.02rem, 0.95rem + 0.36vw, 1.18rem); }
+  }
   .ph__badge {
     display: inline-flex;
     align-items: center;
@@ -432,6 +438,15 @@ for (const p of allPros) {
   .ph__tabs a:hover {
     color: var(--color-accent-on-dark);
     background: rgba(255 255 255 / 0.03);
+  }
+  /* desktop: slightly larger labels, lower bar */
+  @media (min-width: 700px) {
+    .ph__tabs a {
+      padding-block: 0.7rem;
+      gap: 0.3rem;
+      font-size: 0.72rem;
+      min-height: 52px; /* same height as the services index bar */
+    }
   }
   /* "Wedding / Planner" on two lines on mobile only */
   .ph__br { display: none; }
@@ -801,6 +816,16 @@ for (const p of allPros) {
     color: var(--color-accent-ink);
     display: block;
   }
+  .pf-faq__more { display: none; }
+  /* desktop: "Le domande giuste prima di firmare un contratto:" on one line */
+  @media (min-width: 700px) {
+    .pf-faq__title {
+      font-size: min(clamp(1.8rem, 1.2rem + 2.5vw, 3.5rem), 4.4vw);
+      white-space: nowrap;
+    }
+    .pf-faq__title em { display: inline; }
+    .pf-faq__more { display: inline; }
+  }
   .pf-faq__grid {
     display: grid;
     gap: var(--space-l);
@@ -866,6 +891,12 @@ for (const p of allPros) {
     flex-shrink: 0;
     font-size: 0.62rem;
     letter-spacing: 0.12em;
+  }
+  /* desktop: "...prima di firmare un contratto →" pointing at the button on its right */
+  .pf-faq__dl-more { display: none; }
+  @media (min-width: 700px) {
+    .pf-faq__dl-more { display: inline; }
+    .pf-faq__dl-arrow { color: var(--color-accent-ink); }
   }
 
   /* ── CTA ── */
@@ -956,7 +987,7 @@ for (const p of allPros) {
 
   /* ── Mobile ── */
   @media (max-width: 699px) {
-    .ph { min-height: 65svh; }
+    .ph { min-height: 80svh; }
     .ph__content { max-width: none; padding-inline: var(--gutter); }
     .pf-faq__dl { flex-direction: column; align-items: flex-start; }
     .pf-bar {

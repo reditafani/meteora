@@ -330,7 +330,7 @@ const schema = [
       min-height: 0;
     }
     :global(.fhero.fhero--left:has(.fhero__bottombar .svc-index-wrap) .fhero__content) {
-      min-height: 68svh;
+      min-height: 80svh;
       justify-content: flex-end;
       padding: calc(var(--header-h, 4rem) + 1rem) var(--gutter) var(--space-l);
     }
@@ -434,7 +434,7 @@ const schema = [
     gap: 0.6rem;
     padding-block: 0.75rem;
     border-bottom: 1px solid var(--color-border);
-    font-size: var(--fs-small);
+    font-size: 0.96rem;
   }
   .svc__inc li::before {
     content: '·';
@@ -549,6 +549,49 @@ const schema = [
     .ice-lt__grid {
       grid-template-columns: 1.25fr 2.6fr 2.6fr;
       gap: clamp(2rem, 4vw, 5rem);
+    }
+    /* Desktop: left photo and right grid span exactly from the top of the
+       title ("Tutto inizia") to the last line of the description */
+    .ice-lt__grid {
+      grid-template-rows: auto auto auto;
+      align-items: stretch;
+      row-gap: 0;
+    }
+    .ice-lt__text { display: contents; }
+    .ice-lt__eyebrow { grid-column: 2; grid-row: 1; }
+    .ice-lt__title   { grid-column: 2; grid-row: 2; }
+    /* .ice-lt__grid raises specificity over the base margin declared below */
+    .ice-lt__grid .ice-lt__desc { grid-column: 2; grid-row: 3; margin-bottom: 0; }
+    /* the photo columns take the text's height and never push it:
+       height 0 + min-height 100% = fill the grid area without sizing it */
+    .ice-lt__img-wrap,
+    .ice-lt__grid .ice-lt__types {
+      height: 0;
+      min-height: 100%;
+    }
+    .ice-lt__img-wrap {
+      grid-column: 1;
+      grid-row: 2 / 4;
+      display: flex;
+    }
+    .ice-lt__img-wrap .ice-lt__img { flex: 1; aspect-ratio: auto; }
+    .ice-lt__grid .ice-lt__types {
+      grid-column: 3;
+      grid-row: 2 / 4;
+      align-self: stretch;
+      grid-template-rows: 1fr 1fr;
+    }
+    .ice-lt__type { display: flex; flex-direction: column; min-height: 0; }
+    .ice-lt__types .ice-lt__type-img {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      aspect-ratio: auto;
+    }
+    .ice-lt__types .ice-lt__type-img :global(picture),
+    .ice-lt__types .ice-lt__type-img :global(img) {
+      position: absolute;
+      inset: 0;
     }
   }
 
@@ -732,7 +775,7 @@ const schema = [
       padding: 4px;
       border: 1px solid rgba(184, 158, 114, 0.6);
     }
-    .ice-lt__img { aspect-ratio: 4 / 5; border: none; }
+    .ice-lt__img { aspect-ratio: 1 / 1; border: none; } /* square: less vertical space */
     .ice-lt__desc {
       grid-area: desc;
       margin-top: var(--space-m);

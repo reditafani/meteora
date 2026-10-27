@@ -129,12 +129,27 @@ const slides = [
     display: grid;
     gap: var(--space-xl);
   }
+  /* Desktop: eyebrow + one-line title across both columns; below, the text
+     column on the left and the gallery on the right, its top aligned with
+     the "BASE IN TOSCANA · IN TUTTA ITALIA" tagline */
   @media (min-width: 900px) {
     .map-grid {
       grid-template-columns: 5fr 7fr;
-      align-items: center;
-      gap: clamp(2rem, 6vw, 6rem);
+      grid-template-rows: auto auto auto auto 1fr;
+      align-items: start;
+      column-gap: clamp(2rem, 6vw, 6rem);
+      row-gap: 0;
     }
+    .map-left { display: contents; }
+    .map-left > .eyebrow,
+    .map-title { grid-column: 1 / -1; }
+    .map-grid .map-title { white-space: nowrap; }
+    /* .map-grid raises specificity over the base `.map-title em { display: block }` below */
+    .map-grid .map-title em { display: inline; }
+    .map-tagline { grid-column: 1; grid-row: 3; }
+    .map-desc    { grid-column: 1; grid-row: 4; }
+    .map-lists   { grid-column: 1; grid-row: 5; }
+    .map-right   { grid-column: 2; grid-row: 3 / 6; }
   }
   /* Single column: gallery right after the intro text, before the lists */
   @media (max-width: 899px) {
@@ -206,7 +221,7 @@ const slides = [
   }
   .dest-item {
     font-family: var(--font-display);
-    font-size: clamp(0.9rem, 0.78rem + 0.4vw, 1.05rem);
+    font-size: clamp(1rem, 0.86rem + 0.45vw, 1.16rem);
     font-weight: 400;
     padding-block: 0.35rem;
     border-bottom: 1px solid var(--color-border);
@@ -323,8 +338,45 @@ const slides = [
       dots[cur].classList.add('is-active');
     }
 
-    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
-    show.querySelector('.map-prev')?.addEventListener('click', () => goTo(cur - 1));
-    show.querySelector('.map-next')?.addEventListener('click', () => goTo(cur + 1));
+    // ── Autoplay (mobile + desktop): restarts after every user interaction ──
+    const AUTOPLAY_MS = 3000;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let timer = 0;
+    let hovering = false;
+    const stop = () => { clearInterval(timer); timer = 0; };
+    const start = () => {
+      stop();
+      if (reduceMotion.matches || hovering || document.hidden || slides.length < 2) return;
+      timer = window.setInterval(() => goTo(cur + 1), AUTOPLAY_MS);
+    };
+    const userGo = (n: number) => { goTo(n); start(); };
+
+    dots.forEach((dot, i) => dot.addEventListener('click', () => userGo(i)));
+    show.querySelector('.map-prev')?.addEventListener('click', () => userGo(cur - 1));
+    show.querySelector('.map-next')?.addEventListener('click', () => userGo(cur + 1));
+
+    // pause while the pointer is over the gallery (desktop) or the tab is hidden
+    show.addEventListener('mouseenter', () => { hovering = true; stop(); });
+    show.addEventListener('mouseleave', () => { hovering = false; start(); });
+    document.addEventListener('visibilitychange', start);
+
+    // ── Swipe (mobile only: single-column layout below 900px) ──
+    const mobile = window.matchMedia('(max-width: 899px)');
+    const frame = show.querySelector<HTMLElement>('.map-slides');
+    let startX = 0;
+    let startY = 0;
+    frame?.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+    frame?.addEventListener('touchend', (e) => {
+      if (!mobile.matches) return;
+      const dx = e.changedTouches[0].clientX - startX;
+      const dy = e.changedTouches[0].clientY - startY;
+      // horizontal swipe only; vertical moves keep scrolling the page
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) userGo(dx < 0 ? cur + 1 : cur - 1);
+    }, { passive: true });
+
+    start();
   });
 </script>

@@ -75,8 +75,8 @@ const sizes = [
       <a class="bh__stat bh__stat--cta" href={url('contact', lang)}>
         <span class="bh__stat-label">{it ? 'SU MISURA' : 'BESPOKE'}</span>
         <em class="bh__stat-custom">{it
-          ? <>Contattaci <br class="bh__stat-br" />per altre forme <br />e misure</>
-          : <>Contact us <br class="bh__stat-br" />for other sizes <br />and shapes</>}<span class="bh__stat-arrow-inline" aria-hidden="true"> →</span></em>
+          ? <>Contattaci <br class="bh__stat-br" />per altre forme <br class="bh__stat-br" />e misure</>
+          : <>Contact us <br class="bh__stat-br" />for other sizes <br class="bh__stat-br" />and shapes</>}<span class="bh__stat-arrow-inline" aria-hidden="true"> →</span></em>
       </a>
     </div>
     <CarouselProgress lang={lang} for="bh-stats" variant="dark" />
@@ -258,7 +258,7 @@ const sizes = [
       );
     }
     .bh__content {
-      min-height: 68svh;
+      min-height: 80svh;
       padding: calc(var(--header-h, 4rem) + 1rem) var(--gutter) var(--space-l);
     }
     /* Stats: scroll-snap carousel of square cards below the hero text */
@@ -306,9 +306,40 @@ const sizes = [
     .bh__stat-note  { font-size: 0.78rem; margin-top: 0; white-space: nowrap; }
     .bh__stat-custom { font-size: clamp(0.95rem, 4.1vw, 1.15rem); line-height: 1.15; white-space: nowrap; }
   }
-  /* desktop: "Contattaci per altre forme" / "e misure →" */
+  /* desktop: "Contattaci per altre forme e misure →" on one line when it fits */
   @media (min-width: 700px) {
     .bh__stat-br { display: none; }
+    /* two lines: label, then "3 Metri | Fino a 150 ospiti" */
+    .bh__stat:not(.bh__stat--cta) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: flex-start;
+      align-content: center;
+      column-gap: 0.55rem;
+    }
+    .bh__stat:not(.bh__stat--cta) .bh__stat-label { flex-basis: 100%; }
+    .bh__stat-unit { display: inline-block; }
+    .bh__stat-unit::first-letter,
+    .bh__stat-note::first-letter { text-transform: uppercase; }
+    .bh__stat-note { margin-top: 0; }
+    .bh__stat-note::before {
+      content: '|';
+      margin-right: 0.55rem;
+      color: rgba(255 255 255 / 0.25);
+    }
+    /* compact bar, same height as the services index bar */
+    .bh__stat {
+      padding-block: 0.35rem;
+      row-gap: 0.1rem;
+      min-height: 52px;
+    }
+    .bh__stat-label { margin-bottom: 0; }
+    /* "Contattaci per altre forme e misure →" stays on one line */
+    .bh__stat-custom {
+      font-size: clamp(0.8rem, 1.25vw, 1.3rem);
+      white-space: nowrap;
+    }
   }
 
   /* ── Collection heading: single-line title, less gap before photos ── */
