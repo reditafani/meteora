@@ -136,6 +136,17 @@ const slides = [
       gap: clamp(2rem, 6vw, 6rem);
     }
   }
+  /* Single column: gallery right after the intro text, before the lists */
+  @media (max-width: 899px) {
+    .map-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .map-left { display: contents; }
+    .map-right { order: 1; margin-bottom: var(--space-l); }
+    .map-lists { order: 2; }
+  }
 
   /* ── Left panel ── */
   .map-title {

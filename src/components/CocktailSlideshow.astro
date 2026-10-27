@@ -136,6 +136,9 @@ const it = lang === 'it';
     scrollbar-width: none;
     cursor: grab;
     user-select: none;
+    /* JS drives the horizontal motion; vertical swipes still scroll the page */
+    touch-action: pan-y;
+    will-change: transform;
   }
   .cs__track:active { cursor: grabbing; }
   .cs__track::-webkit-scrollbar { display: none; }
@@ -230,123 +233,131 @@ const it = lang === 'it';
 <script>
   const track = document.querySelector('.cs__track') as HTMLElement | null;
   if (track) {
-    let paused = false;
-    let raf: number;
-    const SPEED = 0.5;
+    // Time-based marquee with inertia: auto-scrolls, can be dragged or flicked,
+    // and always eases back to the auto speed instead of jumping.
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const AUTO = 0.03;      // px per ms (≈ 0.5px per frame at 60fps)
+    const EASE_MS = 650;    // time constant for easing towards the target speed
+    const FLICK = 0.6375;   // share of the finger's speed kept as glide after release
+    const MAX_FLICK = 1.59; // px per ms, cap on release velocity
+
     let pos = 0;
+    let vel = AUTO;
     let totalW = 0;
+    let hovering = false;
+    let holdUntil = 0;      // keep still for a moment after a drag/nudge
+    let last = performance.now();
 
-    function getTotal() {
-      return track!.scrollWidth / 2;
-    }
-
-    function applyPos() {
-      if (totalW > 0) {
-        pos = ((pos % totalW) + totalW) % totalW;
-      }
-      track!.style.transform = `translateX(${-pos}px)`;
-    }
-
-    function tick() {
-      if (!paused) {
-        pos += SPEED;
-        totalW = getTotal();
-        applyPos();
-      }
-      raf = requestAnimationFrame(tick);
-    }
-
-    // Duplicate slides for seamless loop
-    const slides = Array.from(track.querySelectorAll('.cs__slide'));
+    // Duplicate slides for a seamless loop
+    const slides = Array.from(track.querySelectorAll<HTMLElement>('.cs__slide'));
     slides.forEach((s) => track.appendChild(s.cloneNode(true)));
+    const allSlides = Array.from(track.querySelectorAll<HTMLElement>('.cs__slide'));
+
+    // Reveal every slide together when the strip enters the viewport, so
+    // slides don't fade in one by one while they move (clones included).
+    const revealIo = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) {
+        allSlides.forEach((s) => s.classList.add('is-visible'));
+        revealIo.disconnect();
+      }
+    });
+    revealIo.observe(track);
 
     track.style.overflowX = 'visible';
     track.style.scrollSnapType = 'none';
 
-    totalW = getTotal();
+    // Width of one set of slides, cached (reading scrollWidth every frame forces layout)
+    const measure = () => { totalW = track.scrollWidth / 2; };
+    measure();
+    new ResizeObserver(measure).observe(track);
 
-    // ── Drag (mouse) ──
+    const render = () => {
+      if (totalW > 0) pos = ((pos % totalW) + totalW) % totalW;
+      track.style.transform = `translate3d(${-pos}px, 0, 0)`;
+    };
+
+    // ── Drag (pointer: mouse, touch, pen) ──
     let dragging = false;
-    let dragStartX = 0;
-    let posAtDragStart = 0;
+    let startX = 0;
+    let posAtStart = 0;
+    let lastX = 0;
+    let lastT = 0;
+    let dragVel = 0;
 
-    track.addEventListener('mousedown', (e) => {
+    track.addEventListener('pointerdown', (e) => {
       dragging = true;
-      paused = true;
-      dragStartX = e.clientX;
-      posAtDragStart = pos;
-      e.preventDefault();
+      startX = lastX = e.clientX;
+      lastT = e.timeStamp;
+      posAtStart = pos;
+      dragVel = 0;
+      vel = 0;
+      track.setPointerCapture(e.pointerId);
+      if (e.pointerType === 'mouse') e.preventDefault();
     });
-    window.addEventListener('mousemove', (e) => {
+    track.addEventListener('pointermove', (e) => {
       if (!dragging) return;
-      totalW = getTotal();
-      pos = posAtDragStart + (dragStartX - e.clientX);
-      applyPos();
+      pos = posAtStart + (startX - e.clientX);
+      const dt = e.timeStamp - lastT;
+      if (dt > 0) {
+        // smoothed release velocity (px/ms)
+        dragVel = 0.8 * ((lastX - e.clientX) / dt) + 0.2 * dragVel;
+        lastX = e.clientX;
+        lastT = e.timeStamp;
+      }
     });
-    window.addEventListener('mouseup', () => {
+    const endDrag = (e: PointerEvent) => {
       if (!dragging) return;
       dragging = false;
-      setTimeout(() => { paused = false; }, 1200);
-    });
+      // ignore a stale velocity if the finger rested before lifting
+      const fresh = e.timeStamp - lastT < 80;
+      vel = fresh ? Math.max(-MAX_FLICK, Math.min(MAX_FLICK, dragVel * FLICK)) : 0;
+      holdUntil = performance.now() + 900;
+    };
+    track.addEventListener('dragstart', (e) => e.preventDefault()); // no native image drag
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
 
-    // ── Drag (touch) ──
-    let touchStartX = 0;
-    let posAtTouchStart = 0;
+    // Ease to a stop on hover (desktop), resume smoothly on leave
+    track.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') hovering = true; });
+    track.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') hovering = false; });
 
-    track.addEventListener('touchstart', (e) => {
-      paused = true;
-      touchStartX = e.touches[0].clientX;
-      posAtTouchStart = pos;
-    }, { passive: true });
-    track.addEventListener('touchmove', (e) => {
-      totalW = getTotal();
-      pos = posAtTouchStart + (touchStartX - e.touches[0].clientX);
-      applyPos();
-    }, { passive: true });
-    track.addEventListener('touchend', () => {
-      setTimeout(() => { paused = false; }, 1800);
-    }, { passive: true });
-
-    // Pause on hover (when not dragging)
-    track.addEventListener('mouseenter', () => { if (!dragging) paused = true; });
-    track.addEventListener('mouseleave', () => { if (!dragging) paused = false; });
-
-    // ── Arrow buttons (now in section header, not track-wrap) ──
+    // ── Arrow buttons (section header) ──
     const section = track.closest('.cs') as HTMLElement;
+    let nudgeFrom = 0;
+    let nudgeTo = 0;
+    let nudgeStart = -1;
+    const NUDGE_MS = 520;
+    const easeInOut = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
-    let animRaf = 0;
-    function easeInOut(t: number) {
-      return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-    }
     function nudge(dir: number) {
-      paused = true;
-      cancelAnimationFrame(animRaf);
       const slide = track!.querySelector<HTMLElement>('.cs__slide');
-      const gap = parseFloat(getComputedStyle(track!).gap) || 2;
-      const delta = dir * ((slide?.offsetWidth ?? 280) + gap);
-      const startPos = pos;
-      const duration = 480;
-      const start = performance.now();
-      function step(now: number) {
-        const t = Math.min((now - start) / duration, 1);
-        pos = startPos + delta * easeInOut(t);
-        totalW = getTotal();
-        applyPos();
-        if (t < 1) {
-          animRaf = requestAnimationFrame(step);
-        } else {
-          pos = startPos + delta;
-          totalW = getTotal();
-          applyPos();
-          setTimeout(() => { paused = false; }, 500);
-        }
-      }
-      animRaf = requestAnimationFrame(step);
+      const gap = parseFloat(getComputedStyle(track!).columnGap) || 0;
+      nudgeFrom = pos;
+      nudgeTo = pos + dir * ((slide?.offsetWidth ?? 280) + gap);
+      nudgeStart = performance.now();
+      vel = 0;
     }
-
     section?.querySelector('.cs__prev')?.addEventListener('click', () => nudge(-1));
     section?.querySelector('.cs__next')?.addEventListener('click', () => nudge(1));
 
-    raf = requestAnimationFrame(tick);
+    // ── Frame loop ──
+    function tick(now: number) {
+      const dt = Math.min(now - last, 64); // clamp after tab switches / long frames
+      last = now;
+
+      if (nudgeStart >= 0) {
+        const t = Math.min((now - nudgeStart) / (reduceMotion.matches ? 1 : NUDGE_MS), 1);
+        pos = nudgeFrom + (nudgeTo - nudgeFrom) * easeInOut(t);
+        if (t >= 1) { nudgeStart = -1; holdUntil = now + 700; }
+      } else if (!dragging) {
+        const auto = hovering || reduceMotion.matches || now < holdUntil ? 0 : AUTO;
+        // exponential easing towards the target speed: flicks glide out, autoplay ramps in
+        vel += (auto - vel) * (1 - Math.exp(-dt / EASE_MS));
+        pos += vel * dt;
+      }
+      render();
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
   }
 </script>

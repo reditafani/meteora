@@ -24,7 +24,6 @@ const s = t(lang);
 const path = (l: Lang) => `${l === 'it' ? '/' : '/en/'}${L.slug[l]}/`;
 const crumbs = [
   { name: s.breadcrumbHome, href: url('home', lang) },
-  { name: 'Destination Weddings', href: url('destination', lang) },
   { name: d.name[lang], href: path(lang) },
 ];
 const schema = [
@@ -48,8 +47,6 @@ const schema = [
         {sec.body[lang].map((p) => <p>{p}</p>)}
       </>))}
       <p>
-        <a href={url('weddings', lang)}>{it ? 'Servizi per matrimoni' : 'Wedding services'}</a> ·
-        <a href={url('destination', lang)}>Destination weddings</a> ·
         <a href={url('services', lang)}>{it ? 'Cocktail & Servizi' : 'Cocktails & Services'}</a>
       </p>
     </div>

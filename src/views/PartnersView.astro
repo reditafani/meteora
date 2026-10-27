@@ -124,11 +124,16 @@ for (const p of allPros) {
       </p>
       <div class="ph__badge" data-reveal style="--delay:.18s">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-        <span>{it ? 'Selezione indipendente. Nessuno paga per essere in questa pagina.' : 'Independent selection. No one pays to be on this page.'}</span>
+        <span>
+          <span class="ph__badge-desk">{it ? 'Selezione indipendente. Nessuno paga per essere in questa pagina.' : 'Independent selection. No one pays to be on this page.'}</span>
+          <span class="ph__badge-mob">{it
+            ? <>Selezione indipendente.<br />Nessuno paga per essere in questa lista.</>
+            : <>Independent selection.<br />No one pays to be on this list.</>}</span>
+        </span>
       </div>
     </div>
     <nav class="ph__tabs" aria-label={it ? 'Categorie fornitori' : 'Supplier categories'}>
-      <a href="#wedding-planner">Wedding Planner</a>
+      <a href="#wedding-planner">Wedding <br class="ph__br" />Planner</a>
       <a href="#location">Location</a>
       <a href="#pf-faq">FAQ</a>
     </nav>
@@ -427,6 +432,20 @@ for (const p of allPros) {
   .ph__tabs a:hover {
     color: var(--color-accent-on-dark);
     background: rgba(255 255 255 / 0.03);
+  }
+  /* "Wedding / Planner" on two lines on mobile only */
+  .ph__br { display: none; }
+  /* badge text: two-line version on mobile only */
+  .ph__badge-mob { display: none; }
+  @media (max-width: 699px) {
+    .ph__badge-desk { display: none; }
+    .ph__badge-mob { display: inline; }
+  }
+  @media (max-width: 699px) {
+    .ph__tabs a { font-size: 0.75rem; text-align: center; line-height: 1.35; }
+    /* Location, FAQ: single words, a bit larger */
+    .ph__tabs a:nth-child(n + 2) { font-size: 0.85rem; }
+    .ph__br { display: inline; }
   }
 
   /* ── Come funziona ── */

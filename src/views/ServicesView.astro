@@ -17,6 +17,7 @@ import iceCube   from '@/assets/images/ice/compact-cube.jpg';
 import iceNugget from '@/assets/images/ice/nugget.jpg';
 import iceCube5  from '@/assets/images/ice/cube-5cm.jpg';
 import iceLong   from '@/assets/images/ice/long-drink.jpg';
+import CarouselProgress from '@/components/CarouselProgress.astro';
 
 interface Props {
   lang: Lang;
@@ -24,11 +25,13 @@ interface Props {
 const { lang } = Astro.props;
 const it = lang === 'it';
 const tabLabels: Record<string, { it: string; en: string }> = {
-  essential: { it: 'Essential', en: 'Essential' },
-  premium:   { it: 'Premium',   en: 'Premium' },
-  aperitivo: { it: 'Aperitivo + Open Bar', en: 'Aperitivo + Open Bar' },
-  tower:     { it: 'Signature Tower', en: 'Signature Tower' },
-  bartender: { it: 'Bartender service', en: 'Bartender service' },
+  // "Experience" shows on the mobile cards only (svc-index__mob is hidden on desktop)
+  essential: { it: 'Essential<span class="svc-index__mob"> <br class="svc-index__br" />Experience</span>', en: 'Essential<span class="svc-index__mob"> <br class="svc-index__br" />Experience</span>' },
+  premium:   { it: 'Premium<span class="svc-index__mob"> <br class="svc-index__br" />Experience</span>',   en: 'Premium<span class="svc-index__mob"> <br class="svc-index__br" />Experience</span>' },
+  // <br> splits the label on the mobile cards only (hidden on desktop)
+  aperitivo: { it: 'Aperitivo + <br class="svc-index__br" />Open Bar', en: 'Aperitivo + <br class="svc-index__br" />Open Bar' },
+  tower:     { it: 'Signature <br class="svc-index__br" />Tower', en: 'Signature <br class="svc-index__br" />Tower' },
+  bartender: { it: 'Bartender <br class="svc-index__br" />service', en: 'Bartender <br class="svc-index__br" />service' },
 };
 const s = t(lang);
 const meta = it
@@ -39,12 +42,13 @@ const crumbs = [
   { name: it ? 'Servizi' : 'Services', href: url('services', lang) },
 ];
 const iceTypes = [
-  { src: iceCube,   labelIt: 'Cubo compatto', labelEn: 'Compact cube' },
-  { src: iceNugget, labelIt: 'Nugget',        labelEn: 'Nugget'       },
-  { src: iceCube5,  labelIt: 'Cubo 5×5',     labelEn: '5×5 cube'     },
-  { src: iceLong,   labelIt: 'Long drink',    labelEn: 'Long drink'   },
-  { src: iceSphere, labelIt: 'Sfera',         labelEn: 'Sphere'       },
-  { src: iceHoshi,  labelIt: 'Inciso',        labelEn: 'Engraved'     },
+  // short*: labels for the single-row mobile strip
+  { src: iceCube,   labelIt: 'Cubo compatto', labelEn: 'Compact cube', shortIt: 'Cubo',   shortEn: 'Cube'     },
+  { src: iceNugget, labelIt: 'Nugget',        labelEn: 'Nugget',       shortIt: 'Nugget', shortEn: 'Nugget'   },
+  { src: iceCube5,  labelIt: 'Cubo 5×5',     labelEn: '5×5 cube',     shortIt: '5×5',    shortEn: '5×5'      },
+  { src: iceLong,   labelIt: 'Long drink',    labelEn: 'Long drink',   shortIt: 'Long',   shortEn: 'Long'     },
+  { src: iceSphere, labelIt: 'Sfera',         labelEn: 'Sphere',       shortIt: 'Sfera',  shortEn: 'Sphere'   },
+  { src: iceHoshi,  labelIt: 'Inciso',        labelEn: 'Engraved',     shortIt: 'Inciso', shortEn: 'Engraved' },
 ];
 
 const schema = [
@@ -60,10 +64,19 @@ const schema = [
         ? 'Un servizio bar completo: metodo nel servizio, effetto scenico nell\'allestimento. Ogni proposta è costruita su misura.'
         : 'A complete bar service: method in delivery, scenic effect in the setup. Every proposal is built to measure.'}
     </p>
-    <nav slot="bottombar" class="svc-index" aria-label={it ? "Indice servizi" : "Services index"}>
-      {services.map((sv) => <a href={`#${sv.id}`}>{tabLabels[sv.id][lang]}</a>)}
-      <a href="#personalizzazioni">{it ? 'Personalizzazioni' : 'Bespoke add-ons'}</a>
-    </nav>
+    <div slot="bottombar" class="svc-index-wrap">
+      <nav class="svc-index" id="svc-index" aria-label={it ? "Indice servizi" : "Services index"}>
+        {[
+          ...services.map((sv) => ({ href: `#${sv.id}`, label: tabLabels[sv.id][lang] })),
+          { href: '#personalizzazioni', label: it ? 'Personalizzazioni' : 'Bespoke add-ons' },
+        ].map((item) => (
+          <a href={item.href}>
+            <span class="svc-index__label" set:html={item.label}></span>
+          </a>
+        ))}
+      </nav>
+      <CarouselProgress lang={lang} for="svc-index" variant="dark" />
+    </div>
   </PageHero>
 
   <section class="section section--tight">
@@ -147,7 +160,10 @@ const schema = [
             <div class="ice-lt__type-img">
               <Img src={tp.src} alt={it ? tp.labelIt : tp.labelEn} sizes="(min-width: 900px) 10vw, 30vw" widths={[180, 320]} />
             </div>
-            <p class="ice-lt__type-label">{it ? tp.labelIt : tp.labelEn}</p>
+            <p class="ice-lt__type-label">
+              <span class="ice-lt__type-long">{it ? tp.labelIt : tp.labelEn}</span>
+              <span class="ice-lt__type-short">{it ? tp.shortIt : tp.shortEn}</span>
+            </p>
           </div>
         ))}
       </div>
@@ -230,9 +246,11 @@ const schema = [
   <section class="svc-outro on-dark">
     <div class="container svc-outro__inner">
       <p class="svc-outro__text" data-reveal>
-        {it ? 'Avete in mente qualcosa di diverso? Raccontatecelo, lo realizziamo per voi.' : 'Have something different in mind? Tell us about it — we will make it happen.'}
+        {it ? 'Avete in mente qualcosa di diverso?' : 'Have something different in mind?'}
+        <br class="svc-outro__br" />
+        {it ? 'Raccontatecelo, lo realizziamo per voi.' : 'Tell us about it — we will make it happen.'}
       </p>
-      <a class="btn btn--ghost-light svc-outro__btn" href={url('contact', lang)} data-reveal style="--delay:.08s">
+      <a class="btn btn--ghost-light cta-pill cta-pill--block svc-outro__btn" href={url('contact', lang)} data-reveal style="--delay:.08s">
         {it ? 'Contattaci →' : 'Contact us →'}
       </a>
     </div>
@@ -242,6 +260,7 @@ const schema = [
 </BaseLayout>
 
 <style>
+  .svc-index-wrap { position: relative; }
   .svc-index {
     display: flex;
     width: 100%;
@@ -293,6 +312,74 @@ const schema = [
   @media (min-width: 900px) {
     .svc-index a {
       flex: 1;
+    }
+  }
+  @media (min-width: 700px) {
+    .svc-index :global(.svc-index__br),
+    .svc-index :global(.svc-index__mob) { display: none; }
+  }
+  /* Mobile: square cards in a solid black band below the hero image,
+     same as the home perks strip and the bars page */
+  @media (max-width: 699px) {
+    :global(.fhero.fhero--left .fhero__bottombar:has(.svc-index-wrap)) {
+      position: relative;
+      align-self: stretch;
+    }
+    /* hero text area sized like the bars page hero (the band now sits below it) */
+    :global(.fhero.fhero--left:has(.svc-index-wrap)) {
+      min-height: 0;
+    }
+    :global(.fhero.fhero--left:has(.fhero__bottombar .svc-index-wrap) .fhero__content) {
+      min-height: 68svh;
+      justify-content: flex-end;
+      padding: calc(var(--header-h, 4rem) + 1rem) var(--gutter) var(--space-l);
+    }
+    .svc-index-wrap {
+      background: rgb(8 5 3);
+      padding-top: var(--space-m);
+    }
+    .svc-index {
+      gap: 0.75rem;
+      padding-inline: var(--gutter);
+      scroll-padding-inline: var(--gutter);
+      scroll-snap-type: x mandatory;
+      background: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+    .svc-index a,
+    .svc-index a:last-child {
+      flex: 0 0 32%;
+      min-width: 0;
+      /* lower than square: 68% of the card width (32% of the track's inner width) */
+      height: calc((100vw - 2 * var(--gutter)) * 0.32 * 0.68);
+      scroll-snap-align: start;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.3rem 0.45rem 0.35rem;
+      border: 1px solid rgba(201, 183, 143, 0.4);
+      text-transform: none;
+      letter-spacing: 0;
+      white-space: normal;
+      color: var(--color-on-dark);
+    }
+    /* "Personalizzazioni": wider card so the label stays on one line */
+    .svc-index a:last-child {
+      flex: 0 0 auto;
+      padding-inline: 1rem;
+      white-space: nowrap;
+    }
+    .svc-index__label {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 4.8vw, 1.4rem);
+      font-weight: 300;
+      line-height: 1.1;
+      text-align: center;
+      hyphens: manual;
+    }
+    .svc-index-wrap :global(.cprog) {
+      margin-top: 0;
+      padding-block: 16px; /* 16px from the cards, 16px to the band's end */
     }
   }
   .svc {
@@ -559,17 +646,29 @@ const schema = [
   }
   .svc-outro__text {
     font-family: var(--font-display);
-    font-size: clamp(1.15rem, 1.45vw + 0.3rem, 1.6rem);
+    font-size: clamp(2rem, 3vw + 0.5rem, 4rem); /* same as the home CTA title */
     font-weight: 300;
     font-style: italic;
     color: #fff;
-    line-height: 1.3;
+    line-height: 1.05;
     margin: 0;
-    white-space: nowrap;
+    flex: 1 1 30rem; /* wraps beside the button at title size */
+  }
+  /* line break after the question on desktop only */
+  .svc-outro__br { display: none; }
+  @media (min-width: 768px) {
+    .svc-outro__br { display: inline; }
   }
   @media (max-width: 699px) {
-    .svc-outro__inner { flex-direction: column; align-items: flex-start; }
-    .svc-outro__text { white-space: normal; }
+    /* text on exactly two lines (shrinks with the screen), full-width pill below */
+    .svc-outro__inner { flex-direction: column; align-items: stretch; gap: var(--space-m); }
+    .svc-outro__text {
+      flex: none;
+      font-size: min(calc(5.8vw - 1px), 2rem);
+      white-space: nowrap;
+      text-align: center;
+    }
+    .svc-outro__br { display: inline; }
     /* Ice section: landscape ratio on mobile (prevents very tall portrait image) */
     .ice-lt__img { aspect-ratio: 16/9; }
   }
@@ -602,6 +701,56 @@ const schema = [
     color: rgba(255, 255, 255, 0.45);
     line-height: 1.3;
   }
+  .ice-lt__type-short { display: none; }
+
+  /* Mobile redesign: title + small framed photo side by side, text,
+     one-row strip of six ice types */
+  @media (max-width: 699px) {
+    /* bottom padding matches the top one */
+    .ice-lt { padding-bottom: clamp(1.6rem, 3vw, 2.5rem); }
+    .ice-lt__grid {
+      grid-template-columns: 1fr 30%;
+      grid-template-areas:
+        "eyebrow photo"
+        "title   photo"
+        "desc    desc"
+        "types   types";
+      gap: 0 var(--space-s);
+      align-items: start;
+    }
+    .ice-lt__text { display: contents; }
+    .ice-lt__eyebrow { grid-area: eyebrow; align-self: end; margin-bottom: var(--space-xs); }
+    .ice-lt__title {
+      grid-area: title;
+      font-size: clamp(1.75rem, 7.6vw, 2.1rem);
+      line-height: 1.1;
+      margin-bottom: 0;
+    }
+    .ice-lt__img-wrap {
+      grid-area: photo;
+      align-self: center;
+      padding: 4px;
+      border: 1px solid rgba(184, 158, 114, 0.6);
+    }
+    .ice-lt__img { aspect-ratio: 4 / 5; border: none; }
+    .ice-lt__desc {
+      grid-area: desc;
+      margin-top: var(--space-m);
+      margin-bottom: var(--space-m);
+      font-size: 0.98rem;
+    }
+    .ice-lt__types {
+      grid-area: types;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0.4rem;
+    }
+    .ice-lt__type { cursor: pointer; }
+    .ice-lt__type-img { aspect-ratio: 1 / 1; margin-bottom: 0.4rem; }
+    .ice-lt__type.is-active .ice-lt__type-img { border-color: #fff; }
+    .ice-lt__type-label { font-size: 0.62rem; text-align: center; }
+    .ice-lt__type-long { display: none; }
+    .ice-lt__type-short { display: inline; }
+  }
 
 </style>
 
@@ -617,6 +766,8 @@ const schema = [
     function show(idx: number) {
       current = idx;
       slides.forEach(s => s.classList.toggle('is-active', s.dataset.iceLtSlide === String(idx)));
+      // highlight the matching thumbnail (styled on mobile only)
+      items.forEach(item => item.classList.toggle('is-active', item.dataset.iceLtTarget === String(idx)));
     }
 
     function startAuto() {
@@ -628,6 +779,13 @@ const schema = [
       const target = Number(item.dataset.iceLtTarget);
       item.addEventListener('mouseenter', () => { clearInterval(timer); show(target); });
       item.addEventListener('mouseleave', () => startAuto());
+      // touch only (mobile): tap a thumbnail to show it, then keep cycling from there;
+      // mouse keeps the hover behaviour above
+      item.addEventListener('pointerup', (e) => {
+        if (e.pointerType === 'mouse') return;
+        show(target);
+        startAuto();
+      });
     });
 
     startAuto();

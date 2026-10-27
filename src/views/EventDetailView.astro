@@ -24,12 +24,12 @@ const crumbs = [
   { name: e.title[lang], href: href(lang) },
 ];
 const related = events.filter((x) => x !== e).slice(0, 2);
-const serviceLabel: Record<EventStory['relatedService'], string> = {
-  weddings: it ? 'Matrimoni' : 'Weddings',
-  corporate: it ? 'Eventi aziendali e privati' : 'Corporate & private events',
-  destination: 'Destination weddings',
-  bars: it ? 'I banchi' : 'The bars',
+// Only services that still have a page get a link (weddings/destination pages were removed).
+const serviceLinks: Partial<Record<EventStory['relatedService'], { key: 'corporate' | 'bars'; label: string }>> = {
+  corporate: { key: 'corporate', label: it ? 'Eventi aziendali e privati' : 'Corporate & private events' },
+  bars: { key: 'bars', label: it ? 'I banchi' : 'The bars' },
 };
+const serviceLink = serviceLinks[e.relatedService];
 ---
 
 <BaseLayout lang={lang} title={`${e.title[lang]} — ${e.type[lang]} | Meteora Events`} description={e.excerpt[lang]} alternates={{ it: href('it'), en: href('en') }} current="events" breadcrumbs={crumbs} noindex={e.draft} image={e.cover.src} ogType="article">
@@ -41,7 +41,7 @@ const serviceLabel: Record<EventStory['relatedService'], string> = {
   <PortfolioStory lang={lang} event={e} />
   <div class="container eh__links cta-row">
     <a class="btn" href={url('contact', lang)} data-track="cta_click" data-track-label={`event_${e.slug.en}`}>{s.quote}</a>
-    <a class="link" href={url(e.relatedService, lang)}>{serviceLabel[e.relatedService]}</a>
+    {serviceLink && <a class="link" href={url(serviceLink.key, lang)}>{serviceLink.label}</a>}
     <a class="link" href={url('events', lang)}>{s.backTo} {it ? 'eventi' : 'events'}</a>
   </div>
   <section class="section section--alt eh__more" aria-labelledby="eh-more">

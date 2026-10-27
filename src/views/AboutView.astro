@@ -230,6 +230,7 @@ const steps: { title: string; text: string }[] = it
         <p class="cim__sub" data-reveal style="--delay:.09s">
           <em>{it ? 'Noi pensiamo al resto.' : 'We handle the rest.'}</em>
         </p>
+        <!-- desktop CTA (original position); mobile uses the one below the card -->
         <a href={it ? '/it/servizi#pacchetti' : '/en/services#packages'} class="cim__cta btn btn--ghost-light" data-reveal style="--delay:.12s">
           {it ? 'Scopri i nostri pacchetti' : 'Discover our packages'}
           <svg class="cim__cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -237,7 +238,9 @@ const steps: { title: string; text: string }[] = it
           </svg>
         </a>
       </div>
-      <div class="cim__card" data-reveal style="--delay:.14s">
+      <!-- checklist card + CTA below it (same order as the home packages section) -->
+      <div class="cim__aside" data-reveal style="--delay:.14s">
+      <div class="cim__card">
         <ul class="cim__list" role="list">
           {included.map(item => (
             <li class="cim__item">
@@ -252,6 +255,10 @@ const steps: { title: string; text: string }[] = it
             </li>
           ))}
         </ul>
+      </div>
+      <a href={it ? '/it/servizi#pacchetti' : '/en/services#packages'} class="cim__cta-mob btn">
+        {it ? 'Scopri i nostri pacchetti →' : 'Discover our packages →'}
+      </a>
       </div>
     </div>
   </section>
@@ -366,7 +373,7 @@ const steps: { title: string; text: string }[] = it
       <h2 class="abt-cta__title" data-reveal>
         {it ? 'Dove sarà il vostro brindisi?' : 'Where will your toast be?'}
       </h2>
-      <a class="btn btn--ghost-light abt-cta__btn" href={url('contact', lang)} data-reveal style="--delay:.1s">
+      <a class="btn btn--ghost-light cta-pill cta-pill--block abt-cta__btn" href={url('contact', lang)} data-reveal style="--delay:.1s">
         {it ? 'Verifica disponibilità →' : 'Check availability →'}
       </a>
     </div>
@@ -652,9 +659,12 @@ const steps: { title: string; text: string }[] = it
     margin: 0;
     list-style: none;
   }
+  .cim__aside { display: flex; flex-direction: column; }
+  .cim__card { flex: 1; }
   .cim__cta { display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem; align-self: flex-start; line-height: 1; }
   .cim__cta-arrow { transition: transform 0.25s var(--ease-out); }
   .cim__cta:hover .cim__cta-arrow { transform: translateX(4px); }
+  .cim__cta-mob { display: none; }
   .cim__item {
     display: flex;
     align-items: flex-start;
@@ -690,7 +700,20 @@ const steps: { title: string; text: string }[] = it
   }
   @media (max-width: 759px) {
     .cim__card { padding: var(--space-m); }
-    .cim__inner { gap: var(--space-l); }
+    .cim__inner { gap: 0.75rem; }
+    /* mobile: two-line title like the home packages section, CTA below the card */
+    .cim__title {
+      font-size: clamp(1.76rem, 0.96rem + 2.8vw, 3.84rem);
+      line-height: 1.04;
+      margin-bottom: 0.1rem;
+    }
+    .cim__sub {
+      font-size: clamp(1.76rem, 0.96rem + 2.8vw, 3.84rem);
+      line-height: 1.04;
+      margin-bottom: var(--space-s);
+    }
+    .cim__cta { display: none; }
+    .cim__cta-mob { display: flex; margin-top: var(--space-s); text-transform: uppercase; }
   }
   @media (min-width: 760px) {
     .cim__inner {
@@ -699,7 +722,7 @@ const steps: { title: string; text: string }[] = it
     }
     .cim__text { flex: 1; display: flex; flex-direction: column; }
     .cim__cta { margin-top: auto; }
-    .cim__card {
+    .cim__aside {
       width: 38%;
       flex-shrink: 0;
     }
@@ -1008,7 +1031,8 @@ const steps: { title: string; text: string }[] = it
   }
   .abt-cta__btn { flex-shrink: 0; letter-spacing: 0.1em; }
   @media (max-width: 699px) {
-    .abt-cta__inner { flex-direction: column; align-items: flex-start; }
+    .abt-cta__inner { flex-direction: column; align-items: stretch; }
+    .abt-cta__title { text-align: center; }
   }
   /* Below 760px both columns stack; give cards an explicit aspect ratio */
   @media (max-width: 759px) {
@@ -1091,27 +1115,43 @@ const steps: { title: string; text: string }[] = it
     let srvCurrent = 0;
     let srvTimer = 0;
 
-    const srvGo = (i: number) => {
+    // Dots + arrows only; never scrolls
+    const srvSetActive = (i: number) => {
       srvCurrent = Math.max(0, Math.min(i, srvCount - 1));
-      srvGrid.scrollTo({ left: srvCurrent * srvGrid.offsetWidth, behavior: 'smooth' });
       srvDots.forEach((d, j) => d.classList.toggle('is-active', j === srvCurrent));
       if (srvPrev) srvPrev.style.opacity = srvCurrent === 0 ? '0.35' : '1';
       if (srvNext) srvNext.style.opacity = srvCurrent === srvCount - 1 ? '0.35' : '1';
+    };
+    const srvGo = (i: number) => {
+      srvSetActive(i);
+      srvGrid.scrollTo({ left: srvCurrent * srvGrid.offsetWidth, behavior: 'smooth' });
     };
 
     srvPrev?.addEventListener('click', () => srvGo(srvCurrent - 1));
     srvNext?.addEventListener('click', () => srvGo(srvCurrent + 1));
     srvDots.forEach((d, i) => d.addEventListener('click', () => srvGo(i)));
 
+    // After a swipe, scroll-snap places the card; just sync dots and arrows
+    // (re-scrolling here fought the finger on diagonal swipes)
     srvGrid.addEventListener('scroll', () => {
       clearTimeout(srvTimer);
       srvTimer = window.setTimeout(() => {
         const w = srvGrid.offsetWidth;
         if (!w) return;
         const idx = Math.round(srvGrid.scrollLeft / w);
-        if (idx !== srvCurrent) srvGo(idx);
+        if (idx !== srvCurrent) srvSetActive(idx);
       }, 60);
-    });
+    }, { passive: true });
+
+    // Reveal all cards together when the strip enters the viewport: on mobile
+    // the off-screen cards would otherwise rise and fade in while being swiped
+    const srvRevealIo = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) {
+        srvGrid.querySelectorAll<HTMLElement>('[data-reveal]').forEach((c) => c.classList.add('is-visible'));
+        srvRevealIo.disconnect();
+      }
+    }, { threshold: 0.08 });
+    srvRevealIo.observe(srvGrid);
 
     if (srvPrev) srvPrev.style.opacity = '0.35';
   }

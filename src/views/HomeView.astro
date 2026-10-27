@@ -6,6 +6,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
 import { bars } from '@/data/bars';
 import CocktailSlideshow from '@/components/CocktailSlideshow.astro';
+import CarouselProgress from '@/components/CarouselProgress.astro';
 import Img from '@/components/Img.astro';
 import { services } from '@/data/services';
 import { serviceSchema } from '@/lib/seo';
@@ -36,7 +37,7 @@ const steps = it
       { title: 'Raccontateci il vostro giorno',  text: 'Basta una email con data, location e numero di ospiti.' },
       { title: 'Costruiamo la vostra offerta',    text: 'Scegliete banco, formula e cocktail list, con le personalizzazioni che desiderate.' },
       { title: 'Tutto per iscritto',              text: 'Una proposta e un contratto con ogni dettaglio incluso.' },
-      { title: "Il giorno dell'evento",           text: "Quel giorno l'unica cosa a cui dovrete pensare sarete voi.<br>Al bar penseremo noi, esattamente come lo abbiamo costruito insieme." },
+      { title: "Il giorno <br class=\"hm-proc__br\" />dell'evento", text: "Quel giorno l'unica cosa a cui dovrete pensare sarete voi. <br>Al bar penseremo noi, esattamente come lo abbiamo costruito insieme." },
     ]
   : [
       { title: 'Tell us about your day',          text: 'All it takes is an email with the date, venue and guest count.' },
@@ -88,8 +89,9 @@ const eventTypes = [
 
 
 const svcDisplay = [
-  { kicker: it ? 'Open bar'              : 'Open bar',            line1: 'Open Bar —',              line2: 'Essential Experience'                   },
-  { kicker: it ? 'Open bar'             : 'Open bar',            line1: 'Open Bar —',              line2: 'Premium Experience'                     },
+  // `dash`: " —" after line1 on desktop only (mobile shows "Open Bar Essential Experience")
+  { kicker: it ? 'Open bar'              : 'Open bar',            line1: 'Open Bar', dash: true,    line2: 'Essential Experience'                   },
+  { kicker: it ? 'Open bar'             : 'Open bar',            line1: 'Open Bar', dash: true,    line2: 'Premium Experience'                     },
   { kicker: it ? 'Aperitivo + open bar' : 'Aperitivo + open bar', line1: it ? 'Aperitivo +' : 'Aperitivo +', line2: 'Open Bar'                    },
   { kicker: it ? 'Momento scenografico' : 'Scenographic moment', line1: 'Signature Tower',          line2: 'Experience'                             },
   { kicker: it ? 'Staff e metodo'       : 'Staff and method',    line1: 'Bartender',                        line2: 'Service'                        },
@@ -102,10 +104,10 @@ const perksIcons = {
   pin:      `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-6.2-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 14.8 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.3"/></svg>`,
 };
 const perks = [
-  { icon: perksIcons.infinity, title: it ? 'Drink illimitati'     : 'Unlimited drinks',   sub: it ? 'inclusi nel pacchetto acquistato' : 'included in the chosen package' },
-  { icon: perksIcons.award,   title: it ? '14 anni'              : '14+ years',           sub: it ? 'di esperienza nel settore eventi' : 'of operational experience'      },
-  { icon: perksIcons.cocktail,title: it ? 'Drink list su misura' : 'Bespoke drink list',  sub: it ? 'scegliete tra i nostri 40 drink'  : 'choose from our 40 drinks'      },
-  { icon: perksIcons.pin,     title: it ? 'Base in Toscana'      : 'Tuscany & Italy',     sub: it ? 'trasferte in tutta Italia'        : 'travel throughout Italy'        },
+  { icon: perksIcons.infinity, title: it ? 'Drink<br>illimitati' : 'Unlimited<br>drinks', sub: it ? 'inclusi nel<br>pacchetto acquistato' : 'included in the<br>chosen package' },
+  { icon: perksIcons.award,   title: it ? '14 anni<br><small>di esperienza</small>' : '14+ years<br><small>of experience</small>', sub: it ? 'nel settore eventi' : 'in the events sector' },
+  { icon: perksIcons.cocktail,title: it ? 'Drink list<br>su misura' : 'Bespoke<br>drink list', sub: it ? 'scegliete tra<br>i nostri 40 drink' : 'choose from<br>our 40 drinks' },
+  { icon: perksIcons.pin,     title: it ? 'Base in<br>Toscana'    : 'Tuscany<br>&amp; Italy', sub: it ? 'trasferte in<br>tutta Italia' : 'travel throughout<br>Italy' },
 ];
 ---
 
@@ -141,20 +143,16 @@ const perks = [
 
   <!-- 1b · PERKS (mobile only) -->
   <section class="hm-perks on-dark" aria-label={it ? 'I nostri punti di forza' : 'Our key strengths'}>
-    <div class="hm-perks__track" data-perks-track>
-      {perks.map((p, i) => (
-        <div class="hm-perks__card" data-perks-card={i}>
+    <div class="hm-perks__track" id="hm-perks-track">
+      {perks.map((p) => (
+        <div class="hm-perks__card">
           <div class="hm-perks__icon" set:html={p.icon}></div>
-          <p class="hm-perks__title">{p.title}</p>
-          <p class="hm-perks__sub">{p.sub}</p>
+          <p class="hm-perks__title" set:html={p.title}></p>
+          <p class="hm-perks__sub" set:html={p.sub}></p>
         </div>
       ))}
     </div>
-    <div class="hm-perks__dots" role="list">
-      {perks.map((_, i) => (
-        <button class:list={['hm-perks__dot', i === 0 && 'is-active']} type="button" data-perks-dot={i} aria-label={`Card ${i + 1}`}></button>
-      ))}
-    </div>
+    <CarouselProgress lang={lang} for="hm-perks-track" variant="dark" />
   </section>
 
   <!-- 2 · INTRO -->
@@ -189,7 +187,7 @@ const perks = [
               : 'Professionalism, method and scenographic experience, with special care for the aesthetics of the setup. We know the dynamics of your events from the inside.'}
           </p>
           <p class="hm-intro__types">
-            {it ? 'Matrimoni · Events aziendali · Events privati' : 'Weddings · Corporate events · Private events'}
+            {it ? 'Matrimoni · Eventi aziendali · Eventi privati' : 'Weddings · Corporate events · Private events'}
           </p>
           <a class="hm-intro__cta" href={url('about', lang)}>
             {it ? 'Chi siamo →' : 'About us →'}
@@ -375,18 +373,20 @@ const perks = [
           ? 'I drink sono illimitati per tutte le ore prenotate.'
           : 'Drinks are unlimited for all booked hours.'}
       </p>
+      <!-- Mobile: all six cards in one 2-column grid (rows become display: contents) -->
+      <div class="hm-svc__grid">
       <!-- Row 1: 3 cards -->
       <div class="hm-svc__row1">
         {svcDisplay.slice(0, 3).map((d, i) => (
           <a class="hm-svc__card" href={`${url('services', lang)}#${services[i].id}`} data-reveal style={`--delay:${i * 0.07}s`}>
             <div class="hm-svc__card-img">
-              <Img src={services[i].image} alt={services[i].imageAlt[lang]} sizes="(min-width: 900px) 30vw, 100vw" />
+              <Img src={services[i].image} alt={services[i].imageAlt[lang]} sizes="(max-width: 699px) 45vw, (min-width: 900px) 30vw, 100vw" />
             </div>
             <div class="hm-svc__card-body">
               <p class="hm-svc__card-kicker">
-                <span>{String(i + 1).padStart(2, '0')} · {d.kicker.toUpperCase()}</span>
+                <span><span class="hm-svc__card-num">{String(i + 1).padStart(2, '0')}</span><span class="hm-svc__card-cat"> · {d.kicker.toUpperCase()}</span></span>
               </p>
-              <h3 class="hm-svc__card-name">{d.line1}<em>{d.line2}</em></h3>
+              <h3 class="hm-svc__card-name">{d.line1}{d.dash && <span class="hm-svc__dash"> —</span>}{' '}<em>{d.line2}</em></h3>
               <p class="hm-svc__card-desc">{services[i].summary[lang]}</p>
               <span class="hm-svc__card-cta">{it ? 'SCOPRI →' : 'DISCOVER →'}</span>
             </div>
@@ -398,13 +398,13 @@ const perks = [
         {svcDisplay.slice(3).map((d, i) => (
           <a class="hm-svc__card hm-svc__card--wide" href={`${url('services', lang)}#${services[i + 3].id}`} data-reveal style={`--delay:${i * 0.07}s`}>
             <div class="hm-svc__card-img">
-              <Img src={services[i + 3].image} alt={services[i + 3].imageAlt[lang]} sizes="(min-width: 900px) 20vw, 50vw" />
+              <Img src={services[i + 3].image} alt={services[i + 3].imageAlt[lang]} sizes="(max-width: 699px) 45vw, (min-width: 900px) 20vw, 50vw" />
             </div>
             <div class="hm-svc__card-body">
               <p class="hm-svc__card-kicker">
-                <span>{String(i + 4).padStart(2, '0')} · {d.kicker.toUpperCase()}</span>
+                <span><span class="hm-svc__card-num">{String(i + 4).padStart(2, '0')}</span><span class="hm-svc__card-cat"> · {d.kicker.toUpperCase()}</span></span>
               </p>
-              <h3 class="hm-svc__card-name">{d.line1}<em>{d.line2}</em></h3>
+              <h3 class="hm-svc__card-name">{d.line1}{d.dash && <span class="hm-svc__dash"> —</span>}{' '}<em>{d.line2}</em></h3>
               <p class="hm-svc__card-desc">{services[i + 3].summary[lang]}</p>
               <span class="hm-svc__card-cta">{it ? 'SCOPRI →' : 'DISCOVER →'}</span>
             </div>
@@ -413,13 +413,16 @@ const perks = [
         <!-- 06 · Personalizzazioni su richiesta -->
         <a class="hm-svc__card hm-svc__card--wide" href={`${url('services', lang)}#personalizzazioni`} data-reveal style="--delay:0.14s">
           <div class="hm-svc__card-img">
-            <Img src={iceHoshi} alt={it ? 'Cocktail con rosmarino e lime su marmo chiaro' : 'Cocktail with rosemary and lime on light marble'} sizes="(min-width: 900px) 20vw, 50vw" />
+            <Img src={iceHoshi} alt={it ? 'Cocktail con rosmarino e lime su marmo chiaro' : 'Cocktail with rosemary and lime on light marble'} sizes="(max-width: 699px) 45vw, (min-width: 900px) 20vw, 50vw" />
           </div>
           <div class="hm-svc__card-body">
             <p class="hm-svc__card-kicker">
-              <span>06 · {it ? 'PERSONALIZZAZIONI SU RICHIESTA' : 'BESPOKE ADD-ONS'}</span>
+              <span><span class="hm-svc__card-num">06</span><span class="hm-svc__card-cat"> · {it ? 'PERSONALIZZAZIONI SU RICHIESTA' : 'BESPOKE ADD-ONS'}</span></span>
             </p>
-            <h3 class="hm-svc__card-name">{it ? <>Un bar <em>che parla di voi</em></> : <>A bar <em>that speaks of you</em></>}</h3>
+            <h3 class="hm-svc__card-name">
+              <span class="hm-svc__name-desk">{it ? <>Un bar <em>che parla di voi</em></> : <>A bar <em>that speaks of you</em></>}</span>
+              <em class="hm-svc__name-mob">{it ? 'Personalizzazioni' : 'Bespoke add-ons'}</em>
+            </h3>
             <p class="hm-svc__card-desc">
               {it
                 ? "Ogni evento diventa unico grazie a dettagli su misura, pensati attorno alla vostra storia o all'identità del vostro brand."
@@ -429,6 +432,11 @@ const perks = [
           </div>
         </a>
       </div>
+      </div>
+      <!-- Mobile only: single CTA under the grid -->
+      <a class="btn hm-svc__all" href={url('services', lang)}>
+        {it ? 'Scopri tutti i servizi →' : 'Discover all services →'}
+      </a>
     </div>
   </section>
 
@@ -444,9 +452,10 @@ const perks = [
         <p class="hm-pkg__eyebrow">{it ? 'Pacchetti All inclusive' : 'All-inclusive packages'}</p>
         <h2 id="hm-pkg-title" class="hm-pkg__title">
           {it
-            ? <>Voi scegliete<br/>il pacchetto!<em>Noi pensiamo al resto.</em></>
-            : <>You choose<br/>the package!<em>We handle the rest.</em></>}
+            ? <>Voi scegliete <br class="hm-pkg__br" />il pacchetto!<em>Noi pensiamo al resto.</em></>
+            : <>You choose <br class="hm-pkg__br" />the package!<em>We handle the rest.</em></>}
         </h2>
+        <!-- desktop CTA (original position); mobile uses the one below the panel -->
         <a href={it ? '/it/servizi#pacchetti' : '/en/services#packages'} class="hm-pkg__cta btn btn--ghost-light">
           {it ? 'Scopri i nostri pacchetti' : 'Discover our packages'}
           <svg class="hm-pkg__cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -454,8 +463,9 @@ const perks = [
           </svg>
         </a>
       </div>
-      <!-- Right: dark checklist panel -->
-      <div class="hm-pkg__panel" data-reveal style="--delay:.1s">
+      <!-- Right: dark checklist panel + CTA below it -->
+      <div class="hm-pkg__aside" data-reveal style="--delay:.1s">
+      <div class="hm-pkg__panel">
         <ul class="hm-pkg__list" role="list">
           {packageItems.map(item => (
             <li class="hm-pkg__item">
@@ -469,6 +479,10 @@ const perks = [
             </li>
           ))}
         </ul>
+      </div>
+      <a href={it ? '/it/servizi#pacchetti' : '/en/services#packages'} class="hm-pkg__cta-mob btn btn--ghost-light">
+        {it ? 'Scopri i nostri pacchetti →' : 'Discover our packages →'}
+      </a>
       </div>
     </div>
   </section>
@@ -496,8 +510,10 @@ const perks = [
           <li class:list={['hm-proc__step', i === steps.length - 1 && 'hm-proc__step--last']} data-reveal style={`--delay:${i * 0.07}s`}>
             <div class="hm-proc__step-dot"></div>
             <div class="hm-proc__step-body">
-              <p class="hm-proc__step-label"><span class="hm-proc__step-prefix">{it ? 'PASSO ' : 'STEP '}</span>{(['I','II','III','IV'])[i]}</p>
-              <h3 class="hm-proc__step-title">{step.title}</h3>
+              <div class="hm-proc__step-head">
+                <p class="hm-proc__step-label"><span class="hm-proc__step-prefix">{it ? 'PASSO ' : 'STEP '}</span>{i + 1}</p>
+                <h3 class="hm-proc__step-title" set:html={step.title} />
+              </div>
               <p class="hm-proc__step-text" set:html={step.text} />
             </div>
           </li>
@@ -620,7 +636,6 @@ const perks = [
   <section class="hm-cta on-dark">
     <div class="container hm-cta__inner">
       <div class="hm-cta__text" data-reveal>
-        <p class="hm-cta__eyebrow">{it ? 'PARLIAMONE' : "LET'S TALK"}</p>
         <h2 class="hm-cta__title">
           {it ? 'Brindiamo insieme?' : 'Shall we raise a glass?'}
         </h2>
@@ -633,9 +648,9 @@ const perks = [
       <a class="btn btn--ghost-light hm-cta__btn" href={url('contact', lang)} data-reveal style="--delay:.1s">
         {it ? 'Verifica disponibilità →' : 'Check availability →'}
       </a>
-      <a class="hm-cta__pill" href={url('contact', lang)}>
-        <em>{it ? 'Brindiamo insieme?' : 'Shall we raise a glass?'}</em>
-        <span aria-hidden="true"> →</span>
+      <a class="btn btn--ghost-light hm-cta__pill" href={url('contact', lang)}>
+        {it ? 'Brindiamo insieme?' : 'Shall we raise a glass?'}
+        <span aria-hidden="true">&nbsp;→</span>
       </a>
     </div>
   </section>
@@ -723,7 +738,8 @@ const perks = [
       display: block;
       background: rgb(8 5 3);
       overflow-x: hidden;
-      padding-block: var(--space-m) var(--space-l);
+      /* bottom = gap above the progress row (16px), so the row sits centred */
+      padding-block: var(--space-m) 16px;
     }
     .hm-perks__track {
       display: flex;
@@ -733,55 +749,46 @@ const perks = [
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       padding-inline: var(--gutter);
+      scroll-padding-inline: var(--gutter);
     }
     .hm-perks__track::-webkit-scrollbar { display: none; }
     .hm-perks__card {
-      flex: 0 0 44%;
+      flex: 0 0 36%;
+      min-width: 0;
+      aspect-ratio: 3 / 2;
       scroll-snap-align: start;
-      border: 1px solid rgba(255,255,255,0.1);
-      padding: 1.4rem 1.1rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.65rem;
+      border: 1px solid rgba(201, 183, 143, 0.4);
+      padding: 0.3rem 0.45rem 0.35rem;
+      /* icon and title side by side, subtitle full width at the bottom */
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto 1fr;
+      column-gap: 0.5rem;
+      row-gap: 0.25rem;
+      align-items: center;
     }
     .hm-perks__icon { color: rgba(207 182 138 / 0.65); }
     .hm-perks__icon :global(svg) { display: block; }
     .hm-perks__title {
       font-family: var(--font-display);
-      font-size: clamp(0.95rem, 4vw, 1.25rem);
+      font-size: clamp(1.1rem, 4.8vw, 1.4rem);
       font-weight: 300;
       color: var(--color-on-dark);
-      line-height: 1.25;
+      line-height: 1.1;
+      white-space: nowrap; /* two lines, set by the <br> in each title */
+      text-align: center;
     }
+    .hm-perks__title :global(small) { font-size: 0.72em; }
     .hm-perks__sub {
+      grid-column: 1 / -1;
+      align-self: end;
+      text-align: center;
+      white-space: nowrap; /* line breaks set by the <br> in each subtitle */
       font-family: var(--font-sans);
-      font-size: 0.62rem;
-      letter-spacing: 0.04em;
+      font-size: 0.78rem;
+      letter-spacing: 0.02em;
       color: rgba(255,255,255,0.38);
-      line-height: 1.55;
-      margin-top: auto;
-    }
-    .hm-perks__dots {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.45rem;
-      padding-top: var(--space-s);
-    }
-    .hm-perks__dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50px;
-      background: color-mix(in srgb, var(--color-accent-on-dark) 28%, transparent);
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      flex-shrink: 0;
-      transition: width 0.35s var(--ease), background 0.25s;
-    }
-    .hm-perks__dot.is-active {
-      width: 22px;
-      background: var(--color-accent-on-dark);
+      line-height: 1.35;
     }
   }
 
@@ -1138,6 +1145,63 @@ const perks = [
     transition: color 0.2s, border-color 0.2s;
   }
   .hm-svc__card:hover .hm-svc__card-cta { color: var(--color-accent-ink); border-color: var(--color-accent-ink); }
+  /* mobile-only bits, hidden on desktop */
+  .hm-svc__name-mob,
+  .hm-svc__all { display: none; }
+
+  /* Mobile redesign: 2-column grid of framed photos, number + name only,
+     one dark CTA under the grid */
+  @media (max-width: 699px) {
+    .hm-svc__intro { margin-bottom: var(--space-m); }
+    .hm-svc__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-m) 0.9rem;
+    }
+    .hm-svc__row1,
+    .hm-svc__row2 { display: contents; }
+    .hm-svc__card,
+    .hm-svc__card--wide {
+      flex-direction: column;
+      border: none;
+      background: none;
+    }
+    .hm-svc__card:hover { box-shadow: none; }
+    .hm-svc__row1 .hm-svc__card-img,
+    .hm-svc__card--wide .hm-svc__card-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      padding: 4px;
+      background: #fff;
+      border: 1px solid var(--color-border);
+    }
+    .hm-svc__card--wide .hm-svc__card-img :global(img) { object-position: center; }
+    .hm-svc__card-body {
+      padding: 0.75rem 0 0;
+      gap: 0.3rem;
+    }
+    .hm-svc__card-kicker {
+      font-size: 0.55rem;
+      letter-spacing: 0.14em;
+    }
+    .hm-svc__card-kicker::before,
+    .hm-svc__card-cat,
+    .hm-svc__dash,
+    .hm-svc__card-desc,
+    .hm-svc__card-cta,
+    .hm-svc__name-desk { display: none; }
+    .hm-svc__card-name {
+      font-size: clamp(1.1rem, 4.8vw, 1.25rem);
+      line-height: 1.2;
+    }
+    .hm-svc__card-name em { display: inline; }
+    .hm-svc__name-mob { display: inline; }
+    .hm-svc__all {
+      display: flex;
+      width: 100%;
+      margin-top: var(--space-l);
+    }
+  }
 
   /* ── Package ── */
   .hm-pkg {
@@ -1193,9 +1257,18 @@ const perks = [
     padding-block: clamp(0.6rem, 1vw, 1rem);
   }
   .hm-pkg__list { list-style: none; padding: 0; margin: 0; }
+  .hm-pkg__aside { display: flex; flex-direction: column; }
+  .hm-pkg__panel { flex: 1; }
   .hm-pkg__cta { margin-top: auto; display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem; align-self: flex-start; line-height: 1; }
   .hm-pkg__cta-arrow { transition: transform 0.25s var(--ease-out); }
   .hm-pkg__cta:hover .hm-pkg__cta-arrow { transform: translateX(4px); }
+  .hm-pkg__cta-mob { display: none; }
+  /* Mobile: two-line title, CTA full width below the panel */
+  @media (max-width: 699px) {
+    .hm-pkg__br,
+    .hm-pkg__cta { display: none; }
+    .hm-pkg__cta-mob { display: flex; margin-top: var(--space-s); text-transform: uppercase; }
+  }
   .hm-pkg__item {
     display: flex;
     align-items: flex-start;
@@ -1544,11 +1617,19 @@ const perks = [
     position: relative;
     border: 1px solid var(--color-border);
     background: #fff;
-    padding: 1.1rem 1rem 1.25rem;
+    padding: 0.8rem 1rem 0.9rem;
   }
   .hm-proc__step-dot { display: none; }
   .hm-proc__step-prefix { display: none; }
+  /* number and title side by side; the title wraps to two lines if long */
+  .hm-proc__step-head {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-bottom: 0.45rem;
+  }
   .hm-proc__step-label {
+    flex-shrink: 0;
     font-family: var(--font-display);
     font-style: italic;
     font-size: 1.6rem;
@@ -1556,22 +1637,34 @@ const perks = [
     letter-spacing: normal;
     text-transform: none;
     color: var(--color-accent-ink);
-    margin-bottom: 0.55rem;
     line-height: 1;
   }
   .hm-proc__step-title {
     font-family: var(--font-sans);
-    font-size: 0.72rem;
+    font-size: 0.85rem;
     font-weight: 600;
     color: var(--color-text);
     letter-spacing: 0.02em;
     line-height: 1.35;
-    margin-bottom: 0.45rem;
   }
   .hm-proc__step-text {
     font-size: 0.7rem;
     color: var(--color-text-muted);
     line-height: 1.6;
+  }
+  @media (max-width: 959px) {
+    /* description aligned left across the card width; hyphenation keeps the
+       right edge even without the word gaps of justified text */
+    .hm-proc__step-text {
+      text-align: left;
+      hyphens: auto;
+      -webkit-hyphens: auto;
+      text-wrap: pretty;
+    }
+    .hm-proc__step-text :global(br) { display: none; }
+    /* steps 1 and 3 have shorter descriptions: larger text */
+    .hm-proc__step:nth-child(1) .hm-proc__step-text { font-size: 0.95rem; }
+    .hm-proc__step:nth-child(3) .hm-proc__step-text { font-size: 1.05rem; }
   }
 
   /* Steps: desktop = vertical timeline */
@@ -1606,6 +1699,9 @@ const perks = [
       border-color: var(--color-accent-ink);
     }
     .hm-proc__step-prefix { display: inline; }
+    /* timeline: "PASSO 1" label above the title */
+    .hm-proc__step-head { display: block; margin-bottom: 0; }
+    .hm-proc__step-title :global(.hm-proc__br) { display: none; }
     .hm-proc__step-label {
       font-family: var(--font-sans);
       font-size: 0.55rem;
@@ -1829,7 +1925,6 @@ const perks = [
     flex-wrap: wrap;
   }
   .hm-cta__text { display: flex; flex-direction: column; gap: 0.6rem; }
-  .hm-cta__eyebrow { display: none; }
   .hm-cta__title {
     font-family: var(--font-display);
     font-size: clamp(2rem, 3vw + 0.5rem, 4rem);
@@ -1856,48 +1951,19 @@ const perks = [
       text-align: center;
       gap: var(--space-m);
     }
-    .hm-cta__eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 0.9rem;
-      font-family: var(--font-sans);
-      font-size: 0.58rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      color: rgba(255 255 255 / 0.45);
-      width: 100%;
-    }
-    .hm-cta__eyebrow::before,
-    .hm-cta__eyebrow::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: rgba(255 255 255 / 0.18);
-    }
     .hm-cta__title { display: none; }
     .hm-cta__sub {
       font-size: 0.92rem;
       color: rgba(255 255 255 / 0.75);
     }
     .hm-cta__btn { display: none; }
+    /* rectangular ghost button, same as "Scopri i nostri pacchetti" */
     .hm-cta__pill {
       display: flex;
-      align-items: center;
-      justify-content: center;
       width: 100%;
-      padding: 1.05rem 1.8rem;
-      border-radius: 50px;
-      background: var(--color-accent-on-dark);
-      color: var(--color-dark);
-      font-family: var(--font-display);
-      font-size: clamp(1.5rem, 5vw, 2rem);
-      font-weight: 300;
-      text-decoration: none;
-      gap: 0.3rem;
-      transition: filter 0.25s;
+      font-style: normal;
+      text-transform: uppercase;
     }
-    .hm-cta__pill:hover { filter: brightness(1.08); }
-    .hm-cta__pill em { font-style: italic; }
     /* Instagram CTA: remove desktop alignment offset */
     .hm-ig__cta { margin-top: 0; }
     /* Process CTA button: full width on desktop revert handled by justify-self: start */
@@ -1957,12 +2023,39 @@ const perks = [
     }
     /* Bar collection: reduce gap between title and carousel */
     .hm-bc__header { margin-bottom: var(--space-s); }
-    /* Intro section: tighter spacing between stacked columns */
-    .hm-intro__frame { margin-bottom: var(--space-m); }
-    .hm-intro__row { gap: var(--space-s); padding-top: var(--space-xs, 0.5rem); }
+    /* Intro section (mobile redesign): framed photo, eyebrow, two-line title,
+       description, event types, underlined CTA. No "years" block. */
+    .hm-intro__frame {
+      padding: 6px;
+      border: 1px solid var(--color-border);
+      margin-bottom: var(--space-l);
+    }
+    .hm-intro__frame :global(picture),
+    .hm-intro__frame :global(img) { aspect-ratio: 2 / 1; }
+    .hm-intro__row { gap: 0; padding-top: 0; }
+    .hm-intro__years { display: none; }
     .hm-intro__eyebrow { margin-bottom: var(--space-s); }
-    .hm-intro__desc { margin-bottom: 0.5rem; }
-    .hm-intro__types { margin-bottom: 0.5rem; }
+    .hm-intro__title {
+      font-size: clamp(1.85rem, 8vw, 2.2rem);
+      line-height: 1.12;
+      margin-bottom: var(--space-s);
+    }
+    .hm-intro__title em { display: block; }
+    .hm-intro__desc {
+      font-size: 0.98rem;
+      line-height: 1.75;
+      color: var(--color-text);
+      margin-bottom: var(--space-s);
+    }
+    .hm-intro__types { display: none; }
+    /* less space before the next section ("Per ogni occasione") */
+    .hm-intro { padding-bottom: var(--space-l); }
+    .hm-intro__cta {
+      display: table; /* keeps its own width, so margin-left: auto pushes it right */
+      margin-left: auto;
+      border-bottom-color: var(--color-accent-ink);
+      padding-bottom: 6px;
+    }
     /* Event types: scroll-snap carousel */
     .hm-ev__carousel { position: relative; }
     .hm-ev__grid {
@@ -2098,27 +2191,43 @@ const perks = [
     let evCurrent = 0;
     let evTimer = 0;
 
-    const evGo = (i: number) => {
+    // Dots + arrows only; never scrolls
+    const evSetActive = (i: number) => {
       evCurrent = Math.max(0, Math.min(i, evCount - 1));
-      evGrid.scrollTo({ left: evCurrent * evGrid.offsetWidth, behavior: 'smooth' });
       evDots.forEach((d, j) => d.classList.toggle('is-active', j === evCurrent));
       if (evPrev) evPrev.style.opacity = evCurrent === 0 ? '0.35' : '1';
       if (evNext) evNext.style.opacity = evCurrent === evCount - 1 ? '0.35' : '1';
+    };
+    const evGo = (i: number) => {
+      evSetActive(i);
+      evGrid.scrollTo({ left: evCurrent * evGrid.offsetWidth, behavior: 'smooth' });
     };
 
     evPrev?.addEventListener('click', () => evGo(evCurrent - 1));
     evNext?.addEventListener('click', () => evGo(evCurrent + 1));
     evDots.forEach((d, i) => d.addEventListener('click', () => evGo(i)));
 
+    // After a swipe, scroll-snap places the card; just sync dots and arrows
+    // (re-scrolling here fought the finger on diagonal swipes)
     evGrid.addEventListener('scroll', () => {
       clearTimeout(evTimer);
       evTimer = window.setTimeout(() => {
         const w = evGrid.offsetWidth;
         if (!w) return;
         const idx = Math.round(evGrid.scrollLeft / w);
-        if (idx !== evCurrent) evGo(idx);
+        if (idx !== evCurrent) evSetActive(idx);
       }, 60);
-    });
+    }, { passive: true });
+
+    // Reveal all cards together when the strip enters the viewport: on mobile
+    // the off-screen cards would otherwise rise and fade in while being swiped
+    const evRevealIo = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) {
+        evGrid.querySelectorAll<HTMLElement>('[data-reveal]').forEach((c) => c.classList.add('is-visible'));
+        evRevealIo.disconnect();
+      }
+    }, { threshold: 0.08 });
+    evRevealIo.observe(evGrid);
 
     // Initial arrow state (prev dimmed at slide 0)
     if (evPrev) evPrev.style.opacity = '0.35';
@@ -2148,34 +2257,6 @@ const perks = [
           if (dist < minDist) { minDist = dist; closest = i; }
         });
         mobActiveDot(closest);
-      }, 60);
-    }, { passive: true });
-  }
-
-  // ── Perks strip dots ───────────────────────────────────────────────────────
-  const perksTrack = document.querySelector<HTMLElement>('[data-perks-track]');
-  if (perksTrack) {
-    const perksDots = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-perks-dot]'));
-    const perksCards = Array.from(perksTrack.querySelectorAll<HTMLElement>('[data-perks-card]'));
-    let perksTimer = 0;
-
-    const perksActiveDot = (i: number) => perksDots.forEach((d, j) => d.classList.toggle('is-active', j === i));
-
-    perksDots.forEach((d, i) => d.addEventListener('click', () => {
-      const card = perksCards[i];
-      if (card) perksTrack.scrollTo({ left: card.offsetLeft - perksTrack.offsetLeft, behavior: 'smooth' });
-      perksActiveDot(i);
-    }));
-
-    perksTrack.addEventListener('scroll', () => {
-      clearTimeout(perksTimer);
-      perksTimer = window.setTimeout(() => {
-        let closest = 0, minDist = Infinity;
-        perksCards.forEach((c, i) => {
-          const dist = Math.abs(c.offsetLeft - perksTrack.offsetLeft - perksTrack.scrollLeft);
-          if (dist < minDist) { minDist = dist; closest = i; }
-        });
-        perksActiveDot(closest);
       }, 60);
     }, { passive: true });
   }

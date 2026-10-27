@@ -9,8 +9,6 @@ export const DEFAULT_LANG: Lang = 'it';
 
 export const routes = {
   home: { it: '/', en: '/en/' },
-  weddings: { it: '/matrimoni/', en: '/en/weddings/' },
-  destination: { it: '/destination-wedding-italia/', en: '/en/destination-weddings-italy/' },
   bars: { it: '/banchi-bar/', en: '/en/bars/' },
   services: { it: '/servizi/', en: '/en/services/' },
   corporate: { it: '/eventi-aziendali-privati/', en: '/en/corporate-private-events/' },

@@ -326,6 +326,13 @@ p {
 .btn--block {
   width: 100%;
 }
+/* Mobile closing-CTA buttons keep their rectangular .btn style (same as the
+   home CTAs); --block only makes them full width. */
+@media (max-width: 699px) {
+  a.btn.cta-pill--block {
+    width: 100%;
+  }
+}
 .link {
   display: inline-flex;
   align-items: center;
