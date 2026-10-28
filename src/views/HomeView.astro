@@ -590,6 +590,7 @@ const perks = [
           { src: pkgBg,    date: '27 SETTEMBRE 2026' },
           { src: privImg,  date: '20 SETTEMBRE 2026' },
           { src: introImg, date: '5 SETTEMBRE 2026'  },
+          { src: procBg,   date: '29 AGOSTO 2026'    },
         ].map(({ src, date }) => (
           <a class="hm-ig__item" href={site.instagram.url} target="_blank" rel="noopener" aria-label="Instagram">
             <Img src={src} alt="" sizes="(min-width: 900px) 17vw, 33vw" />
@@ -629,6 +630,40 @@ const perks = [
       };
       igPrev.addEventListener('click', () => scroll(-1));
       igNext.addEventListener('click', () => scroll(1));
+    }
+
+    // Live feed: swap the placeholder photos for the latest Instagram posts
+    // (api/instagram.php). If the endpoint isn't configured or fails, the
+    // static photos stay as they are.
+    if (igGrid) {
+      const lang = document.documentElement.lang.startsWith('en') ? 'en-GB' : 'it-IT';
+      fetch('/api/instagram.php', { headers: { Accept: 'application/json' } })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((data: { ok?: boolean; posts?: { img: string; url: string; date: string; alt: string }[] } | null) => {
+          const posts = data?.ok ? data.posts ?? [] : [];
+          if (!posts.length) return;
+          const items = igGrid.querySelectorAll<HTMLAnchorElement>('.hm-ig__item:not(.hm-ig__item--more)');
+          items.forEach((item, i) => {
+            const post = posts[i];
+            if (!post) { item.hidden = true; return; }
+            item.href = post.url;
+            item.setAttribute('aria-label', post.alt || 'Instagram');
+            const img = item.querySelector('img');
+            if (img) {
+              img.closest('picture')?.querySelectorAll('source').forEach((s) => s.remove());
+              img.removeAttribute('srcset');
+              img.removeAttribute('sizes');
+              img.src = post.img;
+              img.alt = post.alt;
+            }
+            const date = item.querySelector('.hm-ig__date');
+            const d = new Date(post.date);
+            if (date && !isNaN(d.getTime())) {
+              date.textContent = d.toLocaleDateString(lang, { day: 'numeric', month: 'long', year: 'numeric' }).toUpperCase();
+            }
+          });
+        })
+        .catch(() => { /* keep the static photos */ });
     }
   </script>
 
@@ -1823,6 +1858,10 @@ const perks = [
 
   /* ── Instagram ── */
   .hm-ig { padding-top: var(--space-m); }
+  /* desktop: less space between the Instagram strip and the closing CTA/footer */
+  @media (min-width: 700px) {
+    .hm-ig { padding-bottom: calc(var(--section) * 0.6); }
+  }
   .hm-ig__head {
     display: flex;
     flex-direction: column;
@@ -1887,7 +1926,7 @@ const perks = [
   /* Grid */
   .hm-ig__grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(7, 1fr); /* 6 posts + "Vedi di più" */
     grid-template-rows: 1fr;
     gap: 4px;
   }

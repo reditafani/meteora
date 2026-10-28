@@ -39,4 +39,14 @@ return [
     // Basic rate limit per IP.
     'rate_limit'       => 5,     // max submissions…
     'rate_window'      => 600,   // …per this many seconds
+
+    // Instagram feed on the home page (api/instagram.php). Leave the token '' to
+    // keep the static photos.
+    // · Facebook Login (Instagram linked to a Facebook Page): Page access token
+    //   from a long-lived user token (it never expires) + the Instagram
+    //   business account id (instagram_business_account.id of the Page).
+    // · Instagram Login: long-lived token from "API setup with Instagram login",
+    //   leave instagram_user_id '' — it is refreshed automatically.
+    'instagram_token'   => '',
+    'instagram_user_id' => '17841407045635016', // @meteoraevents (Page "Meteora Events")
 ];

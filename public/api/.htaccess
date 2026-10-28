@@ -2,4 +2,8 @@
 <FilesMatch "^(config|config\.sample|mailer)\.php$">
   Require all denied
 </FilesMatch>
+# Instagram feed cache and refreshed token (written by instagram.php)
+<FilesMatch "^ig-(cache|token)\.json$">
+  Require all denied
+</FilesMatch>
 Options -Indexes
