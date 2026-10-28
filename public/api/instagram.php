@@ -26,7 +26,21 @@ const IG_CACHE_FILE = __DIR__ . '/ig-cache.json';
 const IG_TOKEN_FILE = __DIR__ . '/ig-token.json';
 const IG_CACHE_TTL  = 3 * 3600;      // refetch posts every 3 hours
 const IG_REFRESH    = 7 * 86400;     // refresh the token once a week
-const IG_POSTS      = 6;             // the home grid shows 6 posts
+const IG_LATEST     = 7;             // latest posts shown (one desktop row + "Vedi di più")
+const IG_PAGE       = 50;            // posts per API page while looking for the selection
+const IG_MAX_PAGES  = 6;             // search the latest 300 posts at most
+
+/** Instagram shortcode from a post link (…/p/CODE/, …/reel/CODE/, …/tv/CODE/) or a bare code. */
+function shortcode(string $s): string
+{
+    $s = trim($s);
+    if (preg_match('#instagram\.com/(?:[^/]+/)?(?:p|reel|reels|tv)/([A-Za-z0-9_-]+)#', $s, $m)) return $m[1];
+    return preg_match('#^[A-Za-z0-9_-]{5,}$#', $s) ? $s : '';
+}
+
+// Posts chosen in config.php (in display order); empty = show the latest ones
+$wanted = array_values(array_filter(array_map('shortcode', (array) ($cfg['instagram_posts'] ?? []))));
+$cacheKey = md5(implode(',', $wanted));
 
 function respond(int $status, array $body, int $maxAge = 0): never
 {
@@ -73,8 +87,9 @@ function writeJsonFile(string $file, array $data): void
 }
 
 // ── Fresh cache: serve it straight away ──
+// (a changed selection in config.php invalidates it immediately)
 $cache = readJsonFile(IG_CACHE_FILE);
-if ($cache && (time() - (int) ($cache['fetched_at'] ?? 0)) < IG_CACHE_TTL) {
+if ($cache && ($cache['key'] ?? '') === $cacheKey && (time() - (int) ($cache['fetched_at'] ?? 0)) < IG_CACHE_TTL) {
     respond(200, ['ok' => true, 'posts' => $cache['posts']], 900);
 }
 
@@ -102,30 +117,39 @@ if (!$fbMode && time() - (int) ($stored['refreshed_at'] ?? 0) > IG_REFRESH) {
     }
 }
 
-// ── Latest posts ──
+// ── Posts: the selection from config.php, or the latest ones ──
 $fields = 'id,media_type,media_url,thumbnail_url,permalink,timestamp,caption';
 $endpoint = $fbMode ? FB_API . '/' . $userId . '/media' : IG_API . '/me/media';
-$res = getJson($endpoint . '?fields=' . $fields . '&limit=12&access_token=' . rawurlencode($token));
+$next = $endpoint . '?fields=' . $fields . '&limit=' . ($wanted ? IG_PAGE : IG_LATEST) . '&access_token=' . rawurlencode($token);
 
-if (!isset($res['data']) || !is_array($res['data'])) {
-    // Instagram unreachable or token invalid: keep showing the last good posts
-    $cache ? respond(200, ['ok' => true, 'posts' => $cache['posts'], 'stale' => true], 300)
-           : respond(502, ['ok' => false, 'error' => 'instagram_unavailable']);
+$found = [];   // shortcode => post, in feed order
+for ($page = 0; $next && $page < ($wanted ? IG_MAX_PAGES : 1); $page++) {
+    $res = getJson($next);
+    if (!isset($res['data']) || !is_array($res['data'])) {
+        if ($page > 0) break; // keep what the first pages gave us
+        // Instagram unreachable or token invalid: keep showing the last good posts
+        $cache ? respond(200, ['ok' => true, 'posts' => $cache['posts'], 'stale' => true], 300)
+               : respond(502, ['ok' => false, 'error' => 'instagram_unavailable']);
+    }
+    foreach ($res['data'] as $m) {
+        $img = ($m['media_type'] ?? '') === 'VIDEO' ? ($m['thumbnail_url'] ?? '') : ($m['media_url'] ?? '');
+        $code = shortcode((string) ($m['permalink'] ?? ''));
+        if ($img === '' || $code === '') continue;
+        $caption = trim((string) ($m['caption'] ?? ''));
+        $found[$code] = [
+            'img'  => $img,
+            'url'  => $m['permalink'],
+            'date' => $m['timestamp'] ?? '',
+            'alt'  => mb_substr(preg_replace('/\s+/', ' ', $caption), 0, 120),
+        ];
+    }
+    if ($wanted && !array_diff($wanted, array_keys($found))) break; // all chosen posts found
+    $next = $res['paging']['next'] ?? '';
 }
 
-$posts = [];
-foreach ($res['data'] as $m) {
-    $img = ($m['media_type'] ?? '') === 'VIDEO' ? ($m['thumbnail_url'] ?? '') : ($m['media_url'] ?? '');
-    if ($img === '' || empty($m['permalink'])) continue;
-    $caption = trim((string) ($m['caption'] ?? ''));
-    $posts[] = [
-        'img'  => $img,
-        'url'  => $m['permalink'],
-        'date' => $m['timestamp'] ?? '',
-        'alt'  => mb_substr(preg_replace('/\s+/', ' ', $caption), 0, 120),
-    ];
-    if (count($posts) >= IG_POSTS) break;
-}
+$posts = $wanted
+    ? array_values(array_filter(array_map(fn ($c) => $found[$c] ?? null, $wanted)))   // chosen order
+    : array_values($found);
 
-writeJsonFile(IG_CACHE_FILE, ['fetched_at' => time(), 'posts' => $posts]);
+writeJsonFile(IG_CACHE_FILE, ['key' => $cacheKey, 'fetched_at' => time(), 'posts' => $posts]);
 respond(200, ['ok' => true, 'posts' => $posts], 900);

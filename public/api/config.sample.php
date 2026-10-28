@@ -49,4 +49,11 @@ return [
     //   leave instagram_user_id '' — it is refreshed automatically.
     'instagram_token'   => '',
     'instagram_user_id' => '17841407045635016', // @meteoraevents (Page "Meteora Events")
+    // Posts shown on the home page, in this order: paste their links from
+    // Instagram ("Copy link"). As many as you like. Leave empty [] to show
+    // the 7 latest posts automatically. Changes apply without a rebuild.
+    'instagram_posts'   => [
+        // 'https://www.instagram.com/p/XXXXXXXXXXX/',
+        // 'https://www.instagram.com/reel/XXXXXXXXXXX/',
+    ],
 ];

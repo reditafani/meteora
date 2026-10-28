@@ -1,9 +1,10 @@
 ---
 /**
- * Privacy / Cookie policy shell.
- * TODO(client): replace the placeholder sections with the final legal texts
- * supplied by your consultant (GDPR, D.Lgs. 196/2003, Garante Privacy cookie guidelines).
- * Do not publish without the data controller's details.
+ * Privacy policy and cookie policy (IT/EN).
+ * Standard texts written for this site as it is: two contact forms sent by
+ * email (Keliweb), an Instagram feed with images served by Meta, optional
+ * analytics/marketing tools loaded only after consent (listed automatically
+ * when their IDs are configured). Have them reviewed by a consultant if needed.
  */
 import type { Lang } from '@/i18n/routes';
 import { url, alternatesFor } from '@/i18n/routes';
@@ -24,7 +25,16 @@ const crumbs = [
   { name: s.breadcrumbHome, href: url('home', lang) },
   { name: title, href: url(kind, lang) },
 ];
-const controller = site.legal.companyName || (it ? '[RAGIONE SOCIALE — da inserire]' : '[COMPANY NAME — to be supplied]');
+
+const { companyName, vatNumber, registeredOffice } = site.legal;
+const mail = site.email;
+const updated = it ? '29 ottobre 2026' : '29 October 2026';
+const privacyUrl = url('privacy', lang);
+const cookiesUrl = url('cookies', lang);
+
+// Analytics / marketing tools are listed only when configured (see .env)
+const hasGoogle = Boolean(site.analytics.ga4 || site.analytics.gtm);
+const hasPixel = Boolean(site.analytics.metaPixel);
 ---
 
 <BaseLayout lang={lang} title={`${title} | Meteora Events`} description={title} alternates={alternatesFor(kind)} breadcrumbs={crumbs} noindex>
@@ -32,61 +42,189 @@ const controller = site.legal.companyName || (it ? '[RAGIONE SOCIALE — da inse
     <div class="container container--narrow">
       <Breadcrumbs crumbs={crumbs} />
       <h1 class="legal__title">{title}</h1>
-      <p class="legal__draft micro">{it ? 'Bozza — testo legale definitivo da inserire a cura del cliente' : 'Draft — final legal text to be supplied by the client'}</p>
+      <p class="legal__updated micro">{it ? `Ultimo aggiornamento: ${updated}` : `Last updated: ${updated}`}</p>
       <div class="prose">
         {kind === 'privacy' ? (
           it ? (
             <>
-              <h2>Titolare del trattamento</h2>
-              <p>{controller}, {site.address.locality} ({site.address.province}). Email: <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
-              <h2>Dati trattati</h2>
-              <p>Dati forniti volontariamente tramite i moduli di contatto (nome, cognome, email, telefono, dettagli dell’evento, eventuali dati aziendali) e dati di navigazione tecnici.</p>
-              <h2>Finalità e base giuridica</h2>
-              <p>Rispondere alle richieste di informazioni e preventivo (misure precontrattuali, art. 6.1.b GDPR). Statistiche di utilizzo del sito solo previo consenso (art. 6.1.a GDPR).</p>
-              <h2>Conservazione</h2>
-              <p>[Da definire a cura del titolare.]</p>
-              <h2>Destinatari</h2>
-              <p>Fornitore di hosting ed email (Keliweb S.r.l.) e, solo se attivati con consenso, fornitori di servizi di analisi. [Da completare.]</p>
-              <h2>Diritti dell’interessato</h2>
-              <p>Accesso, rettifica, cancellazione, limitazione, opposizione, portabilità e reclamo al Garante per la protezione dei dati personali, scrivendo a {site.email}.</p>
+              <p>Questa informativa spiega come {companyName} tratta i dati personali di chi visita il sito {site.url.replace('https://', '')} e ci contatta, ai sensi del Regolamento (UE) 2016/679 (GDPR) e del D.Lgs. 196/2003.</p>
+
+              <h2>1. Titolare del trattamento</h2>
+              <p>{companyName}, sede legale in {registeredOffice}, P.IVA {vatNumber}. Email: <a href={`mailto:${mail}`}>{mail}</a>.</p>
+
+              <h2>2. Quali dati trattiamo</h2>
+              <ul>
+                <li><strong>Modulo di richiesta preventivo:</strong> nome, cognome, email, telefono/WhatsApp (facoltativo), tipo, data e luogo dell’evento, numero di ospiti, servizio di interesse ed eventuale messaggio.</li>
+                <li><strong>Modulo per professionisti (listino partner):</strong> nome, cognome, nome dell’attività, tipologia, area di lavoro, email, telefono, eventuali profilo Instagram, sito web e messaggio.</li>
+                <li><strong>Comunicazioni dirette:</strong> i dati che ci invii scrivendoci via email o WhatsApp.</li>
+                <li><strong>Dati tecnici di navigazione:</strong> indirizzo IP, tipo di browser, data e ora delle richieste, registrati automaticamente dal server per il funzionamento e la sicurezza del sito.</li>
+              </ul>
+              <p>Ti chiediamo di non inserire nei moduli dati particolari (per esempio relativi alla salute), che non sono necessari.</p>
+
+              <h2>3. Finalità e basi giuridiche</h2>
+              <ul>
+                <li><strong>Rispondere alle tue richieste</strong> di informazioni e preventivo, e inviarti una conferma automatica di ricezione: misure precontrattuali richieste da te (art. 6.1.b GDPR).</li>
+                <li><strong>Gestire i rapporti con i professionisti</strong> che chiedono il listino partner: misure precontrattuali (art. 6.1.b GDPR).</li>
+                <li><strong>Eseguire il servizio</strong> e adempiere agli obblighi fiscali e contabili, se la richiesta diventa un contratto: esecuzione del contratto e obbligo di legge (art. 6.1.b e 6.1.c GDPR).</li>
+                <li><strong>Proteggere il sito da abusi e spam</strong> (per esempio limitando gli invii ripetuti): legittimo interesse del titolare (art. 6.1.f GDPR).</li>
+              </ul>
+              <p>Non usiamo i tuoi dati per newsletter o comunicazioni promozionali senza un tuo consenso specifico, e non svolgiamo profilazione né decisioni automatizzate.</p>
+
+              <h2>4. Conferimento dei dati</h2>
+              <p>Il conferimento è facoltativo, ma i campi indicati come obbligatori nei moduli sono necessari per poterti rispondere: senza di essi non possiamo gestire la richiesta.</p>
+
+              <h2>5. Modalità del trattamento</h2>
+              <p>I dati sono trattati con strumenti elettronici, solo da personale autorizzato, con misure di sicurezza adeguate: connessione cifrata (HTTPS), accesso protetto alle caselle email e ai sistemi, file di configurazione non accessibili dal web.</p>
+
+              <h2>6. Conservazione</h2>
+              <ul>
+                <li><strong>Richieste non seguite da un contratto:</strong> fino a 24 mesi dall’ultimo contatto, per poter dare seguito a eventuali richieste successive; poi vengono cancellate.</li>
+                <li><strong>Richieste seguite da un contratto:</strong> per la durata del rapporto e, dopo la sua conclusione, per 10 anni per gli obblighi civilistici e fiscali.</li>
+                <li><strong>Dati tecnici di navigazione:</strong> per il tempo necessario alla sicurezza del servizio, secondo i tempi tecnici del fornitore di hosting.</li>
+              </ul>
+
+              <h2>7. Destinatari</h2>
+              <p>I dati non vengono diffusi né venduti. Possono essere trattati da:</p>
+              <ul>
+                <li><strong>Keliweb S.r.l.</strong>, fornitore di hosting e posta elettronica del sito, come responsabile del trattamento, su server situati nell’Unione Europea;</li>
+                <li><strong>consulenti</strong> (per esempio commercialista) e collaboratori del titolare, solo se necessario e vincolati alla riservatezza;</li>
+                <li><strong>Meta Platforms Ireland Ltd.</strong>: la sezione Instagram della home mostra immagini caricate dai server di Instagram, che per questo ricevono il tuo indirizzo IP e informazioni tecniche sul browser, come titolare autonomo del trattamento. Lo stesso vale se apri i nostri profili Instagram o ci scrivi su WhatsApp (WhatsApp Ireland Ltd.): si applicano le rispettive informative di Meta.</li>
+              </ul>
+
+              <h2>8. Trasferimenti fuori dall’Unione Europea</h2>
+              <p>Il titolare e il fornitore di hosting trattano i dati nell’Unione Europea. I servizi di Meta possono comportare trasferimenti verso gli Stati Uniti, che avvengono sulla base dell’EU-U.S. Data Privacy Framework o delle clausole contrattuali standard della Commissione Europea.</p>
+
+              <h2>9. I tuoi diritti</h2>
+              <p>Puoi chiedere in qualsiasi momento l’accesso ai tuoi dati, la rettifica, la cancellazione, la limitazione del trattamento, la portabilità e opporti al trattamento basato sul legittimo interesse (artt. 15–22 GDPR), scrivendo a <a href={`mailto:${mail}`}>{mail}</a>. Se hai dato un consenso, puoi revocarlo quando vuoi. Hai inoltre il diritto di proporre reclamo al Garante per la protezione dei dati personali (<a href="https://www.garanteprivacy.it" target="_blank" rel="noopener">www.garanteprivacy.it</a>).</p>
+
+              <h2>10. Cookie</h2>
+              <p>Per l’uso di cookie e tecnologie simili consulta la <a href={cookiesUrl}>Cookie policy</a>.</p>
+
+              <h2>11. Modifiche</h2>
+              <p>Questa informativa può essere aggiornata; la versione in vigore è sempre pubblicata in questa pagina, con la data dell’ultimo aggiornamento.</p>
             </>
           ) : (
             <>
-              <h2>Data controller</h2>
-              <p>{controller}, {site.address.locality} ({site.address.province}), Italy. Email: <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
-              <h2>Data we process</h2>
-              <p>Data you provide through our contact forms (name, surname, email, phone, event details, company details where relevant) and technical browsing data.</p>
-              <h2>Purposes and legal basis</h2>
-              <p>Replying to information and quote requests (pre-contractual measures, Art. 6.1.b GDPR). Website usage statistics only with your consent (Art. 6.1.a GDPR).</p>
-              <h2>Retention</h2>
-              <p>[To be defined by the data controller.]</p>
-              <h2>Recipients</h2>
-              <p>Hosting and email provider (Keliweb S.r.l.) and, only if enabled with consent, analytics providers. [To be completed.]</p>
-              <h2>Your rights</h2>
-              <p>Access, rectification, erasure, restriction, objection, portability, and the right to lodge a complaint with the Italian Data Protection Authority (Garante), by writing to {site.email}.</p>
+              <p>This notice explains how {companyName} processes the personal data of people who visit {site.url.replace('https://', '')} and contact us, under Regulation (EU) 2016/679 (GDPR) and Italian Legislative Decree 196/2003.</p>
+
+              <h2>1. Data controller</h2>
+              <p>{companyName}, registered office {registeredOffice}, Italy, VAT no. {vatNumber}. Email: <a href={`mailto:${mail}`}>{mail}</a>.</p>
+
+              <h2>2. Data we process</h2>
+              <ul>
+                <li><strong>Quote request form:</strong> first and last name, email, phone/WhatsApp (optional), type, date and location of the event, number of guests, service of interest and any message.</li>
+                <li><strong>Professional (partner pricing) form:</strong> first and last name, business name, type, area of work, email, phone and, optionally, Instagram profile, website and message.</li>
+                <li><strong>Direct communications:</strong> the data you send us by email or WhatsApp.</li>
+                <li><strong>Technical browsing data:</strong> IP address, browser type, date and time of requests, logged automatically by the server for the site to work securely.</li>
+              </ul>
+              <p>Please do not enter special categories of data (for example health data) in the forms: they are not needed.</p>
+
+              <h2>3. Purposes and legal bases</h2>
+              <ul>
+                <li><strong>Replying to your requests</strong> for information and quotes, and sending you an automatic confirmation of receipt: pre-contractual measures taken at your request (Art. 6(1)(b) GDPR).</li>
+                <li><strong>Managing relations with professionals</strong> who request partner pricing: pre-contractual measures (Art. 6(1)(b) GDPR).</li>
+                <li><strong>Providing the service</strong> and meeting tax and accounting obligations, if the request becomes a contract: performance of a contract and legal obligation (Art. 6(1)(b) and 6(1)(c) GDPR).</li>
+                <li><strong>Protecting the site from abuse and spam</strong> (for example by limiting repeated submissions): legitimate interest of the controller (Art. 6(1)(f) GDPR).</li>
+              </ul>
+              <p>We do not use your data for newsletters or promotional messages without your specific consent, and we do not carry out profiling or automated decision-making.</p>
+
+              <h2>4. Providing your data</h2>
+              <p>Providing your data is optional, but the fields marked as required in the forms are needed to reply to you: without them we cannot handle your request.</p>
+
+              <h2>5. How data is processed</h2>
+              <p>Data is processed electronically, only by authorised staff, with appropriate security measures: encrypted connection (HTTPS), protected access to mailboxes and systems, configuration files not reachable from the web.</p>
+
+              <h2>6. Retention</h2>
+              <ul>
+                <li><strong>Requests not followed by a contract:</strong> up to 24 months from the last contact, so we can follow up on later requests; then they are deleted.</li>
+                <li><strong>Requests followed by a contract:</strong> for the duration of the relationship and, after it ends, for 10 years to meet civil and tax obligations.</li>
+                <li><strong>Technical browsing data:</strong> for as long as needed to keep the service secure, according to the hosting provider’s technical retention times.</li>
+              </ul>
+
+              <h2>7. Recipients</h2>
+              <p>Your data is never published or sold. It may be processed by:</p>
+              <ul>
+                <li><strong>Keliweb S.r.l.</strong>, the site’s hosting and email provider, as data processor, on servers located in the European Union;</li>
+                <li><strong>advisers</strong> (for example our accountant) and collaborators of the controller, only when necessary and bound by confidentiality;</li>
+                <li><strong>Meta Platforms Ireland Ltd.</strong>: the Instagram section of the home page shows images loaded from Instagram’s servers, which therefore receive your IP address and technical browser information as an independent controller. The same applies if you open our Instagram profile or write to us on WhatsApp (WhatsApp Ireland Ltd.): Meta’s own privacy policies apply.</li>
+              </ul>
+
+              <h2>8. Transfers outside the European Union</h2>
+              <p>The controller and the hosting provider process data within the European Union. Meta’s services may involve transfers to the United States, made on the basis of the EU-U.S. Data Privacy Framework or the European Commission’s standard contractual clauses.</p>
+
+              <h2>9. Your rights</h2>
+              <p>You may at any time request access to your data, rectification, erasure, restriction of processing and portability, and object to processing based on legitimate interest (Arts. 15–22 GDPR), by writing to <a href={`mailto:${mail}`}>{mail}</a>. Where you have given consent, you can withdraw it at any time. You also have the right to lodge a complaint with the Italian Data Protection Authority (<a href="https://www.garanteprivacy.it" target="_blank" rel="noopener">www.garanteprivacy.it</a>).</p>
+
+              <h2>10. Cookies</h2>
+              <p>For the use of cookies and similar technologies, see the <a href={cookiesUrl}>Cookie policy</a>.</p>
+
+              <h2>11. Changes</h2>
+              <p>This notice may be updated; the current version is always published on this page, with the date of the last update.</p>
             </>
           )
         ) : it ? (
           <>
-            <h2>Cosa sono i cookie</h2>
-            <p>Piccoli file di testo che il sito salva sul dispositivo per funzionare o per raccogliere informazioni sull’utilizzo.</p>
-            <h2>Cookie tecnici (sempre attivi)</h2>
-            <p>Il sito salva nel browser (localStorage, chiave <code>meteora_consent</code>) le preferenze sui cookie. Non richiede consenso.</p>
-            <h2>Cookie di analisi e marketing (solo con consenso)</h2>
-            <p>Se configurati dal titolare, Google Analytics 4 / Google Tag Manager ed eventualmente Meta Pixel vengono caricati solo dopo il consenso esplicito. [Elenco dettagliato da completare.]</p>
-            <h2>Gestire le preferenze</h2>
-            <p>Puoi modificare le tue scelte in qualsiasi momento: <button type="button" class="link" data-cookie-open>{s.cookieSettings}</button>.</p>
+            <p>Questa pagina descrive come il sito {site.url.replace('https://', '')} di {companyName} usa cookie e tecnologie simili, secondo le Linee guida del Garante per la protezione dei dati personali (10 giugno 2021).</p>
+
+            <h2>1. Cosa sono i cookie</h2>
+            <p>Sono piccoli file di testo, o informazioni simili salvate nel browser (come il “localStorage”), che un sito usa per funzionare correttamente o per raccogliere informazioni su come viene utilizzato.</p>
+
+            <h2>2. Strumenti tecnici (sempre attivi)</h2>
+            <p>Il sito salva nel tuo browser solo le tue <strong>preferenze sui cookie</strong> (localStorage, chiave <code>meteora_consent</code>), per non chiedertele a ogni visita. Restano finché non le modifichi o non cancelli i dati del browser. Sono necessarie al funzionamento del sito e non richiedono il consenso. Il sito non usa cookie di accesso o di profilazione propri.</p>
+
+            <h2>3. Cookie di analisi e di marketing</h2>
+            {hasGoogle || hasPixel ? (
+              <>
+                <p>Questi strumenti vengono caricati <strong>solo dopo il tuo consenso</strong>, espresso tramite il banner:</p>
+                <ul>
+                  {hasGoogle && <li><strong>Google Analytics 4 / Google Tag Manager</strong> (Google Ireland Ltd.): statistiche anonime e aggregate sull’uso del sito.</li>}
+                  {hasPixel && <li><strong>Meta Pixel</strong> (Meta Platforms Ireland Ltd.): misurazione dell’efficacia delle nostre campagne pubblicitarie.</li>}
+                </ul>
+              </>
+            ) : (
+              <p>Al momento il sito <strong>non usa cookie di analisi né di marketing</strong>. Se in futuro verranno attivati, saranno caricati solo dopo il tuo consenso espresso tramite il banner, e questa pagina verrà aggiornata con l’elenco dei servizi.</p>
+            )}
+
+            <h2>4. Contenuti di terze parti</h2>
+            <p>La sezione Instagram della home mostra immagini caricate dai server di Meta, e i link verso Instagram e WhatsApp portano a servizi esterni. In questi casi i dati tecnici della tua connessione (come l’indirizzo IP) vengono ricevuti da Meta, che li tratta secondo la propria informativa privacy e cookie policy. Maggiori dettagli nella <a href={privacyUrl}>Privacy policy</a>.</p>
+
+            <h2>5. Gestire le preferenze</h2>
+            <p>Puoi modificare o revocare le tue scelte in qualsiasi momento: <button type="button" class="link" data-cookie-open>{s.cookieSettings}</button>. Puoi anche cancellare o bloccare cookie e dati dei siti dalle impostazioni del tuo browser.</p>
+
+            <h2>6. Titolare e contatti</h2>
+            <p>{companyName}, {registeredOffice}, P.IVA {vatNumber}. Email: <a href={`mailto:${mail}`}>{mail}</a>.</p>
           </>
         ) : (
           <>
-            <h2>What cookies are</h2>
-            <p>Small text files the site stores on your device to work or to gather information about how it is used.</p>
-            <h2>Technical cookies (always active)</h2>
-            <p>The site stores your cookie preferences in the browser (localStorage, key <code>meteora_consent</code>). No consent is required.</p>
-            <h2>Analytics and marketing cookies (consent only)</h2>
-            <p>If configured, Google Analytics 4 / Google Tag Manager and possibly Meta Pixel are loaded only after your explicit consent. [Detailed list to be completed.]</p>
-            <h2>Managing your preferences</h2>
-            <p>You can change your choices at any time: <button type="button" class="link" data-cookie-open>{s.cookieSettings}</button>.</p>
+            <p>This page describes how {companyName}’s website {site.url.replace('https://', '')} uses cookies and similar technologies, in line with the Italian Data Protection Authority’s cookie guidelines (10 June 2021).</p>
+
+            <h2>1. What cookies are</h2>
+            <p>Small text files, or similar information stored in the browser (such as “localStorage”), that a website uses to work properly or to gather information about how it is used.</p>
+
+            <h2>2. Technical tools (always active)</h2>
+            <p>The site only stores your <strong>cookie preferences</strong> in your browser (localStorage, key <code>meteora_consent</code>), so it doesn’t ask you again at every visit. They remain until you change them or clear your browser data. They are necessary for the site to work and do not require consent. The site does not use its own login or profiling cookies.</p>
+
+            <h2>3. Analytics and marketing cookies</h2>
+            {hasGoogle || hasPixel ? (
+              <>
+                <p>These tools are loaded <strong>only after your consent</strong>, given through the banner:</p>
+                <ul>
+                  {hasGoogle && <li><strong>Google Analytics 4 / Google Tag Manager</strong> (Google Ireland Ltd.): anonymous, aggregated statistics on site use.</li>}
+                  {hasPixel && <li><strong>Meta Pixel</strong> (Meta Platforms Ireland Ltd.): measuring the effectiveness of our advertising campaigns.</li>}
+                </ul>
+              </>
+            ) : (
+              <p>At present the site <strong>uses no analytics or marketing cookies</strong>. If they are enabled in the future, they will be loaded only after your consent through the banner, and this page will be updated with the list of services.</p>
+            )}
+
+            <h2>4. Third-party content</h2>
+            <p>The Instagram section of the home page shows images loaded from Meta’s servers, and links to Instagram and WhatsApp lead to external services. In these cases the technical data of your connection (such as your IP address) is received by Meta, which processes it under its own privacy and cookie policies. More details in the <a href={privacyUrl}>Privacy policy</a>.</p>
+
+            <h2>5. Managing your preferences</h2>
+            <p>You can change or withdraw your choices at any time: <button type="button" class="link" data-cookie-open>{s.cookieSettings}</button>. You can also delete or block cookies and site data in your browser settings.</p>
+
+            <h2>6. Controller and contacts</h2>
+            <p>{companyName}, {registeredOffice}, Italy, VAT no. {vatNumber}. Email: <a href={`mailto:${mail}`}>{mail}</a>.</p>
           </>
         )}
       </div>
@@ -99,8 +237,8 @@ const controller = site.legal.companyName || (it ? '[RAGIONE SOCIALE — da inse
     margin-top: var(--space-l);
     font-size: var(--fs-h2);
   }
-  .legal__draft {
-    margin-block: var(--space-m) var(--space-l);
-    color: var(--color-error);
+  .legal__updated {
+    margin-block: var(--space-s) var(--space-l);
+    color: var(--color-text-muted);
   }
 </style>

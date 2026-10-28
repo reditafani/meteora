@@ -1,23 +1,23 @@
 /**
- * Central route map. Every static page has an Italian (default, root) and an
- * English (/en/) URL. Navigation, the language switcher, hreflang tags and the
+ * Central route map. Every static page has an English (default, root) and an
+ * Italian (/it/) URL. Navigation, the language switcher, hreflang tags and the
  * sitemap are all generated from this single table.
  */
 export type Lang = 'it' | 'en';
-export const LANGS: Lang[] = ['it', 'en'];
-export const DEFAULT_LANG: Lang = 'it';
+export const LANGS: Lang[] = ['it', 'en']; // display order of the language switcher (IT / EN)
+export const DEFAULT_LANG: Lang = 'en';
 
 export const routes = {
-  home: { it: '/', en: '/en/' },
-  bars: { it: '/banchi-bar/', en: '/en/bars/' },
-  services: { it: '/servizi/', en: '/en/services/' },
-  partners: { it: '/wedding-planner-location/', en: '/en/wedding-planners-venues/' },
-  about: { it: '/chi-siamo/', en: '/en/about/' },
-  ice: { it: '/noleggio-ghiaccio/', en: '/en/ice-rental/' },
-  contact: { it: '/contatti/', en: '/en/contact/' },
-  thanks: { it: '/grazie/', en: '/en/thank-you/' },
-  privacy: { it: '/privacy-policy/', en: '/en/privacy-policy/' },
-  cookies: { it: '/cookie-policy/', en: '/en/cookie-policy/' },
+  home: { it: '/it/', en: '/' },
+  bars: { it: '/it/banchi-bar/', en: '/bars/' },
+  services: { it: '/it/servizi/', en: '/services/' },
+  partners: { it: '/it/wedding-planner-location/', en: '/wedding-planners-venues/' },
+  about: { it: '/it/chi-siamo/', en: '/about/' },
+  ice: { it: '/it/noleggio-ghiaccio/', en: '/ice-rental/' },
+  contact: { it: '/it/contatti/', en: '/contact/' },
+  thanks: { it: '/it/grazie/', en: '/thank-you/' },
+  privacy: { it: '/it/privacy-policy/', en: '/privacy-policy/' },
+  cookies: { it: '/it/cookie-policy/', en: '/cookie-policy/' },
 } as const satisfies Record<string, Record<Lang, string>>;
 
 export type RouteKey = keyof typeof routes;

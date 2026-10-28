@@ -22,7 +22,7 @@ export const GET: APIRoute = () => {
     <lastmod>${today}</lastmod>
     <xhtml:link rel="alternate" hreflang="it" href="${abs(g.it)}"/>
     <xhtml:link rel="alternate" hreflang="en" href="${abs(g.en)}"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="${abs(g.it)}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="${abs(g.en)}"/>
   </url>`,
       ),
     )

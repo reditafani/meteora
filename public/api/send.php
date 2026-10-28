@@ -48,7 +48,7 @@ if ($originHost && $allowed && !in_array(strtolower($originHost), array_map('str
 $lang = ($_POST['lang'] ?? 'it') === 'en' ? 'en' : 'it';
 $type = ($_POST['form_type'] ?? 'quote') === 'partner' ? 'partner' : 'quote';
 $redirectPath = (string) ($_POST['redirect'] ?? '');
-$redirect = preg_match('#^/[a-z0-9/_-]*$#i', $redirectPath) ? $redirectPath : ($lang === 'en' ? '/en/thank-you/' : '/grazie/');
+$redirect = preg_match('#^/[a-z0-9/_-]*$#i', $redirectPath) ? $redirectPath : ($lang === 'en' ? '/thank-you/' : '/it/grazie/');
 
 // Spam traps: honeypot and "filled in under 3 seconds" (silently accept to not tip off bots)
 $hp = trim((string) ($_POST['company_fax'] ?? ''));
@@ -99,10 +99,11 @@ if ($type === 'quote') {
         : ['first_name' => 'First name', 'last_name' => 'Last name', 'email' => 'Email', 'phone' => 'WhatsApp / Phone', 'event_type' => 'Event type', 'event_date' => 'Date', 'event_location' => 'Location', 'guests' => 'Guests', 'service' => 'Service', 'style' => 'Style / requirements', 'message' => 'Message'];
     $required = ['first_name', 'last_name', 'email', 'event_type', 'event_location'];
 } else {
+    // keys = field names sent by src/components/PartnerForm.astro
     $labels = $lang === 'it'
-        ? ['partner_type' => 'Tipologia', 'first_name' => 'Nome', 'last_name' => 'Cognome', 'company' => 'Azienda', 'role' => 'Ruolo', 'email' => 'Email', 'phone' => 'Telefono / WhatsApp', 'website' => 'Website / Instagram', 'event_location' => 'Zona abituale', 'volume' => 'Eventi / anno', 'message' => 'Messaggio']
-        : ['partner_type' => 'Type', 'first_name' => 'Name', 'last_name' => 'Surname', 'company' => 'Company', 'role' => 'Role', 'email' => 'Email', 'phone' => 'Phone / WhatsApp', 'website' => 'Website / Instagram', 'event_location' => 'Typical location', 'volume' => 'Events / year', 'message' => 'Message'];
-    $required = ['partner_type', 'first_name', 'last_name', 'company', 'email', 'phone', 'event_location'];
+        ? ['type' => 'Tipologia', 'first_name' => 'Nome', 'last_name' => 'Cognome', 'company' => 'Attività', 'email' => 'Email', 'phone' => 'Telefono / WhatsApp', 'area' => 'Area / città', 'instagram' => 'Instagram', 'website' => 'Sito web', 'message' => 'Messaggio']
+        : ['type' => 'Type', 'first_name' => 'First name', 'last_name' => 'Last name', 'company' => 'Business', 'email' => 'Email', 'phone' => 'Phone / WhatsApp', 'area' => 'Area / city', 'instagram' => 'Instagram', 'website' => 'Website', 'message' => 'Message'];
+    $required = ['type', 'first_name', 'last_name', 'company', 'email', 'phone', 'area'];
 }
 
 $data = [];
@@ -128,7 +129,7 @@ if ($errors) {
 // ---- Compose ----
 $isPartner = $type === 'partner';
 $subject = $isPartner
-    ? "Richiesta listino partner — {$data['company']} ({$data['partner_type']})"
+    ? "Richiesta listino partner — {$data['company']} ({$data['type']})"
     : "Richiesta preventivo — {$data['event_type']} — {$data['first_name']} {$data['last_name']}";
 
 $rowsText = '';

@@ -456,7 +456,7 @@ const perks = [
             : <>You choose <br class="hm-pkg__br" />the package!<em>We handle the rest.</em></>}
         </h2>
         <!-- desktop CTA (original position); mobile uses the one below the panel -->
-        <a href={it ? '/it/servizi#pacchetti' : '/en/services#packages'} class="hm-pkg__cta btn btn--ghost-light">
+        <a href={url('services', lang)} class="hm-pkg__cta btn btn--ghost-light">
           {it ? 'Scopri i nostri pacchetti' : 'Discover our packages'}
           <svg class="hm-pkg__cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -480,7 +480,7 @@ const perks = [
           ))}
         </ul>
       </div>
-      <a href={it ? '/it/servizi#pacchetti' : '/en/services#packages'} class="hm-pkg__cta-mob btn btn--ghost-light">
+      <a href={url('services', lang)} class="hm-pkg__cta-mob btn btn--ghost-light">
         {it ? 'Scopri i nostri pacchetti →' : 'Discover our packages →'}
       </a>
       </div>
@@ -590,7 +590,7 @@ const perks = [
           { src: pkgBg,    date: '27 SETTEMBRE 2026' },
           { src: privImg,  date: '20 SETTEMBRE 2026' },
           { src: introImg, date: '5 SETTEMBRE 2026'  },
-          { src: procBg,   date: '29 AGOSTO 2026'    },
+          { src: iceHoshi, date: '29 AGOSTO 2026'    },
         ].map(({ src, date }) => (
           <a class="hm-ig__item" href={site.instagram.url} target="_blank" rel="noopener" aria-label="Instagram">
             <Img src={src} alt="" sizes="(min-width: 900px) 17vw, 33vw" />
@@ -632,9 +632,10 @@ const perks = [
       igNext.addEventListener('click', () => scroll(1));
     }
 
-    // Live feed: swap the placeholder photos for the latest Instagram posts
-    // (api/instagram.php). If the endpoint isn't configured or fails, the
-    // static photos stay as they are.
+    // Live feed: swap the placeholder photos for the Instagram posts chosen in
+    // api/config.php (or the latest ones). Any number of posts: tiles are
+    // added or hidden to match. If the endpoint isn't configured or fails,
+    // the static photos stay as they are.
     if (igGrid) {
       const lang = document.documentElement.lang.startsWith('en') ? 'en-GB' : 'it-IT';
       fetch('/api/instagram.php', { headers: { Accept: 'application/json' } })
@@ -642,7 +643,16 @@ const perks = [
         .then((data: { ok?: boolean; posts?: { img: string; url: string; date: string; alt: string }[] } | null) => {
           const posts = data?.ok ? data.posts ?? [] : [];
           if (!posts.length) return;
-          const items = igGrid.querySelectorAll<HTMLAnchorElement>('.hm-ig__item:not(.hm-ig__item--more)');
+          let items = Array.from(igGrid.querySelectorAll<HTMLAnchorElement>('.hm-ig__item:not(.hm-ig__item--more)'));
+          // more posts than placeholder tiles: clone tiles before "Vedi di più"
+          const more = igGrid.querySelector('.hm-ig__item--more');
+          while (items.length < posts.length && items[0]) {
+            const clone = items[0].cloneNode(true) as HTMLAnchorElement;
+            igGrid.insertBefore(clone, more);
+            items.push(clone);
+          }
+          // desktop: one row of up to 7 posts + "Vedi di più", then wrap
+          igGrid.style.setProperty('--ig-cols', String(Math.min(posts.length + 1, 8)));
           items.forEach((item, i) => {
             const post = posts[i];
             if (!post) { item.hidden = true; return; }
@@ -1926,7 +1936,7 @@ const perks = [
   /* Grid */
   .hm-ig__grid {
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* 6 posts + "Vedi di più" */
+    grid-template-columns: repeat(var(--ig-cols, 7), 1fr); /* posts + "Vedi di più" (set by the live feed) */
     grid-template-rows: 1fr;
     gap: 4px;
   }
