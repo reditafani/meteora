@@ -29,7 +29,7 @@ const crumbs = [
   { name: it ? 'Fornitori consigliati' : 'Recommended suppliers', href: url('partners', lang) },
 ];
 
-const schema = [{
+const schema: Record<string, unknown>[] = [{
   '@context': 'https://schema.org',
   '@type': 'ContactPage',
   name: meta.title,
@@ -68,6 +68,17 @@ const faqItems = it
       { q: 'Until what time can we have outdoor music?', a: 'Limits vary by venue and municipality. Check them before signing the contract.' },
       { q: 'How to manage guests at the end of the evening?', a: 'Arrange the transfer in advance: it is the detail that makes the difference when the party ends.' },
     ];
+
+// The FAQ section, described for search engines and AI answers
+schema.push({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+});
 
 const allPros = [...weddingPlanners, ...locations];
 const prosData: Record<string, object> = {};
