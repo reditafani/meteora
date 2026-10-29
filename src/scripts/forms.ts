@@ -12,6 +12,7 @@ type Messages = {
   invalid: string;
   sending: string;
   error: string;
+  busy?: string; // too many requests sent from this connection (HTTP 429)
 };
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -115,7 +116,7 @@ export function initForm(form: HTMLFormElement) {
             if (el) setError(el, msg);
           }
         }
-        throw new Error('send_failed');
+        throw new Error(res.status === 429 ? 'rate_limited' : 'send_failed');
       }
       const event = form.dataset.event || 'quote_request';
       const type = (form.querySelector<HTMLInputElement | HTMLSelectElement>('[name="event_type"], [name="partner_type"]:checked')?.value) || undefined;
@@ -126,10 +127,11 @@ export function initForm(form: HTMLFormElement) {
         done.focus();
         done.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
-    } catch {
+    } catch (err) {
       if (status) {
         status.dataset.state = 'error';
-        status.innerHTML = `${m.error} <a href="mailto:info@meteoraevents.com">info@meteoraevents.com</a>.`;
+        const text = (err as Error).message === 'rate_limited' && m.busy ? m.busy : m.error;
+        status.innerHTML = `${text} <a href="mailto:info@meteoraevents.com">info@meteoraevents.com</a>.`;
       }
     } finally {
       submit?.removeAttribute('aria-busy');
