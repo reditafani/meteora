@@ -28,7 +28,7 @@ export const site = {
   analytics: {
     ga4: import.meta.env.PUBLIC_GA4_ID || 'G-GT80PLTR3M', // GA4 property "meteoraevents.com" (public id)
     gtm: import.meta.env.PUBLIC_GTM_ID || '',
-    metaPixel: import.meta.env.PUBLIC_META_PIXEL_ID || '',
+    metaPixel: import.meta.env.PUBLIC_META_PIXEL_ID || '3749814138516489', // dataset "Meteora Events Sito" (public id)
   },
   /**
    * TODO(client): legal entity details for the footer and legal pages

@@ -90,6 +90,7 @@ const hasPixel = Boolean(site.analytics.metaPixel);
                 <li><strong>consulenti</strong> (per esempio commercialista) e collaboratori del titolare, solo se necessario e vincolati alla riservatezza;</li>
                 <li><strong>Meta Platforms Ireland Ltd.</strong>: la sezione Instagram della home mostra immagini caricate dai server di Instagram, che per questo ricevono il tuo indirizzo IP e informazioni tecniche sul browser, come titolare autonomo del trattamento. Lo stesso vale se apri i nostri profili Instagram o ci scrivi su WhatsApp (WhatsApp Ireland Ltd.): si applicano le rispettive informative di Meta.</li>
                 {hasGoogle && <li><strong>Google Ireland Ltd.</strong>: solo se accetti i cookie di analisi, Google Analytics raccoglie statistiche aggregate sull’uso del sito (pagine visitate, dispositivo, provenienza approssimativa, richieste inviate), come responsabile del trattamento. Base giuridica: il tuo consenso, che puoi revocare in ogni momento dalle preferenze cookie. Dettagli nella <a href={cookiesUrl}>Cookie policy</a>.</li>}
+                {hasPixel && <li><strong>Meta Platforms Ireland Ltd.</strong>: solo se accetti i cookie di marketing, il Meta Pixel misura le visite e le richieste nate dalle nostre campagne su Facebook e Instagram, come contitolare del trattamento. Quando invii un modulo, i dati di contatto che hai inserito (email, telefono, nome) vengono trasmessi a Meta in forma cifrata (hash), per riconoscere le richieste nate dalle campagne e mostrare i nostri annunci alle persone giuste. Base giuridica: il tuo consenso, revocabile in ogni momento dalle preferenze cookie. Dettagli nella <a href={cookiesUrl}>Cookie policy</a>.</li>}
               </ul>
 
               <h2>8. Trasferimenti fuori dall’Unione Europea</h2>
@@ -149,6 +150,7 @@ const hasPixel = Boolean(site.analytics.metaPixel);
                 <li><strong>advisers</strong> (for example our accountant) and collaborators of the controller, only when necessary and bound by confidentiality;</li>
                 <li><strong>Meta Platforms Ireland Ltd.</strong>: the Instagram section of the home page shows images loaded from Instagram’s servers, which therefore receive your IP address and technical browser information as an independent controller. The same applies if you open our Instagram profile or write to us on WhatsApp (WhatsApp Ireland Ltd.): Meta’s own privacy policies apply.</li>
                 {hasGoogle && <li><strong>Google Ireland Ltd.</strong>: only if you accept analytics cookies, Google Analytics collects aggregated statistics on how the site is used (pages viewed, device, approximate origin, requests sent), as data processor. Legal basis: your consent, which you can withdraw at any time from the cookie preferences. Details in the <a href={cookiesUrl}>Cookie policy</a>.</li>}
+                {hasPixel && <li><strong>Meta Platforms Ireland Ltd.</strong>: only if you accept marketing cookies, the Meta Pixel measures visits and requests coming from our Facebook and Instagram campaigns, as joint controller. When you submit a form, the contact details you entered (email, phone, name) are sent to Meta in encrypted (hashed) form, to recognise requests coming from our campaigns and show our ads to the right people. Legal basis: your consent, which you can withdraw at any time from the cookie preferences. Details in the <a href={cookiesUrl}>Cookie policy</a>.</li>}
               </ul>
 
               <h2>8. Transfers outside the European Union</h2>
@@ -180,7 +182,7 @@ const hasPixel = Boolean(site.analytics.metaPixel);
                 <p>Questi strumenti vengono caricati <strong>solo dopo il tuo consenso</strong>, espresso tramite il banner:</p>
                 <ul>
                   {hasGoogle && <li><strong>Google Analytics 4 / Google Tag Manager</strong> (Google Ireland Ltd.): statistiche anonime e aggregate sull’uso del sito.</li>}
-                  {hasPixel && <li><strong>Meta Pixel</strong> (Meta Platforms Ireland Ltd.): misurazione dell’efficacia delle nostre campagne pubblicitarie.</li>}
+                  {hasPixel && <li><strong>Meta Pixel</strong> (Meta Platforms Ireland Ltd.): misurazione dell’efficacia delle nostre campagne pubblicitarie e remarketing, cioè mostrare i nostri annunci su Facebook e Instagram a chi ha già visitato il sito. Cookie <code>_fbp</code>, durata fino a 3 mesi.</li>}
                 </ul>
               </>
             ) : (
@@ -212,7 +214,7 @@ const hasPixel = Boolean(site.analytics.metaPixel);
                 <p>These tools are loaded <strong>only after your consent</strong>, given through the banner:</p>
                 <ul>
                   {hasGoogle && <li><strong>Google Analytics 4 / Google Tag Manager</strong> (Google Ireland Ltd.): anonymous, aggregated statistics on site use.</li>}
-                  {hasPixel && <li><strong>Meta Pixel</strong> (Meta Platforms Ireland Ltd.): measuring the effectiveness of our advertising campaigns.</li>}
+                  {hasPixel && <li><strong>Meta Pixel</strong> (Meta Platforms Ireland Ltd.): measuring the effectiveness of our advertising campaigns and remarketing, i.e. showing our ads on Facebook and Instagram to people who have already visited the site. Cookie <code>_fbp</code>, lasting up to 3 months.</li>}
                 </ul>
               </>
             ) : (
