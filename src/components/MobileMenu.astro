@@ -153,9 +153,9 @@ const enUrl = alternates.en ?? url('home', 'en');
       </p>
       <div class="mm__foot-bar">
         <div class="mm__lang">
-          <a href={itUrl} class:list={['mm__lang-opt', lang === 'it' && 'is-active']}>IT</a>
+          <a href={itUrl} hreflang="it" lang="it" data-lang-choice="it" class:list={['mm__lang-opt', lang === 'it' && 'is-active']}>IT</a>
           <span class="mm__lang-sep">/</span>
-          <a href={enUrl} class:list={['mm__lang-opt', lang === 'en' && 'is-active']}>EN</a>
+          <a href={enUrl} hreflang="en" lang="en" data-lang-choice="en" class:list={['mm__lang-opt', lang === 'en' && 'is-active']}>EN</a>
         </div>
         <div class="mm__socials">
           <a class="mm__social-btn" href={url('contact', lang)} aria-label="Email" data-track="email_click">

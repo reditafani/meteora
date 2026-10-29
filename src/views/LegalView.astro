@@ -89,6 +89,7 @@ const hasPixel = Boolean(site.analytics.metaPixel);
                 <li><strong>Keliweb S.r.l.</strong>, fornitore di hosting e posta elettronica del sito, come responsabile del trattamento, su server situati nell’Unione Europea;</li>
                 <li><strong>consulenti</strong> (per esempio commercialista) e collaboratori del titolare, solo se necessario e vincolati alla riservatezza;</li>
                 <li><strong>Meta Platforms Ireland Ltd.</strong>: la sezione Instagram della home mostra immagini caricate dai server di Instagram, che per questo ricevono il tuo indirizzo IP e informazioni tecniche sul browser, come titolare autonomo del trattamento. Lo stesso vale se apri i nostri profili Instagram o ci scrivi su WhatsApp (WhatsApp Ireland Ltd.): si applicano le rispettive informative di Meta.</li>
+                {hasGoogle && <li><strong>Google Ireland Ltd.</strong>: solo se accetti i cookie di analisi, Google Analytics raccoglie statistiche aggregate sull’uso del sito (pagine visitate, dispositivo, provenienza approssimativa, richieste inviate), come responsabile del trattamento. Base giuridica: il tuo consenso, che puoi revocare in ogni momento dalle preferenze cookie. Dettagli nella <a href={cookiesUrl}>Cookie policy</a>.</li>}
               </ul>
 
               <h2>8. Trasferimenti fuori dall’Unione Europea</h2>
@@ -147,6 +148,7 @@ const hasPixel = Boolean(site.analytics.metaPixel);
                 <li><strong>Keliweb S.r.l.</strong>, the site’s hosting and email provider, as data processor, on servers located in the European Union;</li>
                 <li><strong>advisers</strong> (for example our accountant) and collaborators of the controller, only when necessary and bound by confidentiality;</li>
                 <li><strong>Meta Platforms Ireland Ltd.</strong>: the Instagram section of the home page shows images loaded from Instagram’s servers, which therefore receive your IP address and technical browser information as an independent controller. The same applies if you open our Instagram profile or write to us on WhatsApp (WhatsApp Ireland Ltd.): Meta’s own privacy policies apply.</li>
+                {hasGoogle && <li><strong>Google Ireland Ltd.</strong>: only if you accept analytics cookies, Google Analytics collects aggregated statistics on how the site is used (pages viewed, device, approximate origin, requests sent), as data processor. Legal basis: your consent, which you can withdraw at any time from the cookie preferences. Details in the <a href={cookiesUrl}>Cookie policy</a>.</li>}
               </ul>
 
               <h2>8. Transfers outside the European Union</h2>
@@ -170,7 +172,7 @@ const hasPixel = Boolean(site.analytics.metaPixel);
             <p>Sono piccoli file di testo, o informazioni simili salvate nel browser (come il “localStorage”), che un sito usa per funzionare correttamente o per raccogliere informazioni su come viene utilizzato.</p>
 
             <h2>2. Strumenti tecnici (sempre attivi)</h2>
-            <p>Il sito salva nel tuo browser solo le tue <strong>preferenze sui cookie</strong> (localStorage, chiave <code>meteora_consent</code>), per non chiedertele a ogni visita. Restano finché non le modifichi o non cancelli i dati del browser. Sono necessarie al funzionamento del sito e non richiedono il consenso. Il sito non usa cookie di accesso o di profilazione propri.</p>
+            <p>Il sito salva nel tuo browser solo due informazioni tecniche: le tue <strong>preferenze sui cookie</strong> (localStorage, chiave <code>meteora_consent</code>), per non chiedertele a ogni visita, che restano finché non le modifichi o non cancelli i dati del browser; e la <strong>lingua che scegli</strong> con i pulsanti IT / EN (cookie <code>meteora_lang</code>, durata 12 mesi), per mostrarti il sito nella tua lingua alle visite successive. Alla prima visita la lingua viene proposta in base alla lingua impostata nel tuo browser, senza salvare nulla. Sono necessarie al funzionamento del sito e non richiedono il consenso. Il sito non usa cookie di accesso o di profilazione propri.</p>
 
             <h2>3. Cookie di analisi e di marketing</h2>
             {hasGoogle || hasPixel ? (
@@ -202,7 +204,7 @@ const hasPixel = Boolean(site.analytics.metaPixel);
             <p>Small text files, or similar information stored in the browser (such as “localStorage”), that a website uses to work properly or to gather information about how it is used.</p>
 
             <h2>2. Technical tools (always active)</h2>
-            <p>The site only stores your <strong>cookie preferences</strong> in your browser (localStorage, key <code>meteora_consent</code>), so it doesn’t ask you again at every visit. They remain until you change them or clear your browser data. They are necessary for the site to work and do not require consent. The site does not use its own login or profiling cookies.</p>
+            <p>The site only stores two technical items in your browser: your <strong>cookie preferences</strong> (localStorage, key <code>meteora_consent</code>), so it doesn’t ask you again at every visit, kept until you change them or clear your browser data; and the <strong>language you choose</strong> with the IT / EN buttons (cookie <code>meteora_lang</code>, 12 months), so the site opens in your language on later visits. On your first visit the language is suggested from your browser’s language setting, without storing anything. They are necessary for the site to work and do not require consent. The site does not use its own login or profiling cookies.</p>
 
             <h2>3. Analytics and marketing cookies</h2>
             {hasGoogle || hasPixel ? (

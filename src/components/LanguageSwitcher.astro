@@ -24,7 +24,7 @@ const names: Record<Lang, string> = { it: 'Italiano', en: 'English' };
               <span class="visually-hidden"> — {names[l]}</span>
             </span>
           ) : (
-            <a href={href} hreflang={l} lang={l} data-track="language_switch" data-track-label={l} title={names[l]}>
+            <a href={href} hreflang={l} lang={l} data-lang-choice={l} data-track="language_switch" data-track-label={l} title={names[l]}>
               {l.toUpperCase()}
               <span class="visually-hidden"> — {names[l]}</span>
             </a>

@@ -27,7 +27,22 @@ ErrorDocument 404 /404.html
   RewriteCond %{REQUEST_URI} !/$
   RewriteRule ^(.*)$ /$1/ [L,R=301]
 
-  # 4) Legacy URLs from the previous website — add 301s here, e.g.:
+  # 4) Language: the home page (/) sends Italian-speaking visitors to /it/.
+  #    - an explicit choice wins: cookie meteora_lang (set by the IT / EN links)
+  #      "it" -> /it/, "en" -> stay on English
+  #    - no choice yet: the browser's FIRST preferred language is Italian -> /it/
+  #    - search engines and link previews (WhatsApp, Facebook…) always get English,
+  #      the canonical x-default page; every other URL is never redirected.
+  #    302 = temporary, so neither browsers nor Google remember it.
+  RewriteCond %{HTTP_COOKIE} (^|;\s*)meteora_lang=it(;|$)
+  RewriteRule ^$ /it/ [L,R=302]
+
+  RewriteCond %{HTTP_COOKIE} !(^|;\s*)meteora_lang=
+  RewriteCond %{HTTP_USER_AGENT} !(bot|crawl|spider|slurp|facebookexternalhit|whatsapp|telegram|preview|lighthouse) [NC]
+  RewriteCond %{HTTP:Accept-Language} ^\s*it(-|_|;|,|\s|$) [NC]
+  RewriteRule ^$ /it/ [L,R=302]
+
+  # 5) Legacy URLs from the previous website — add 301s here, e.g.:
   # RewriteRule ^old-page/?$ /matrimoni/ [L,R=301]
 </IfModule>
 
@@ -71,6 +86,10 @@ ErrorDocument 404 /404.html
   <FilesMatch "\.html$">
     Header set Cache-Control "no-cache"
   </FilesMatch>
+  # The home page depends on the browser language and the language cookie
+  <If "%{REQUEST_URI} == '/' || %{REQUEST_URI} == '/index.html'">
+    Header merge Vary "Accept-Language, Cookie"
+  </If>
 </IfModule>
 
 AddType image/avif .avif

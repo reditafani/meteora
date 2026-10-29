@@ -107,6 +107,16 @@ const s = t(lang);
       initReveal();
     </script>
     <script>
+      // Remember an explicit language choice (IT / EN links), so the home page
+      // stops redirecting by browser language (see "Language" in public/.htaccess).
+      document.addEventListener('click', (e) => {
+        const link = (e.target as Element | null)?.closest<HTMLElement>('[data-lang-choice]');
+        if (!link) return;
+        const secure = location.protocol === 'https:' ? '; Secure' : '';
+        document.cookie = `meteora_lang=${link.dataset.langChoice}; Max-Age=31536000; Path=/; SameSite=Lax${secure}`;
+      });
+    </script>
+    <script>
       const btt = document.getElementById('btt');
       if (btt) {
         // Desktop: keep the button above the footer's bottom bar so it never covers IT / EN.
