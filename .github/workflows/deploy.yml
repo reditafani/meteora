@@ -80,8 +80,11 @@ jobs:
             api/ig-cache.json
             api/ig-token.json
 
+      # Informative only: the host may answer GitHub's servers differently
+      # (firewall), so a failure here doesn't mark the deploy as failed.
       - name: Check the live site
         if: env.FTP_READY == 'true'
+        continue-on-error: true
         run: |
           sleep 5
           for path in / /it/ /contact/ /it/contatti/; do
