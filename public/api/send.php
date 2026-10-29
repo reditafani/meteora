@@ -98,7 +98,7 @@ if ($type === 'quote') {
     $labels = $lang === 'it'
         ? ['full_name' => 'Nome e cognome', 'email' => 'Email', 'phone' => 'Telefono / WhatsApp', 'event_date' => 'Data', 'guests' => 'Ospiti', 'event_location' => 'Location', 'message' => 'Messaggio']
         : ['full_name' => 'Full name', 'email' => 'Email', 'phone' => 'Phone / WhatsApp', 'event_date' => 'Date', 'guests' => 'Guests', 'event_location' => 'Location', 'message' => 'Message'];
-    $required = ['full_name', 'email', 'event_date', 'guests', 'event_location', 'message'];
+    $required = ['full_name', 'email', 'message'];
 } else {
     $labels = $lang === 'it'
         ? ['full_name' => 'Nome e cognome', 'pro_type' => 'Tipo di professionista', 'email' => 'Email', 'phone' => 'WhatsApp / Telefono', 'instagram' => 'Sito o Instagram', 'zones' => 'Zone in cui lavora', 'message' => 'Messaggio']
@@ -132,9 +132,11 @@ $proTypes = ['wedding-planner' => 'Wedding planner', 'location' => 'Location / V
 if ($isPartner) {
     $data['pro_type'] = $proTypes[$data['pro_type']] ?? $data['pro_type'];
 }
+// date and venue are optional: add them to the subject only when given
+$eventInfo = implode(', ', array_filter([$data['event_date'], $data['event_location']], 'strlen'));
 $subject = $isPartner
     ? "Richiesta professionista — {$data['pro_type']} — {$data['full_name']}"
-    : "Richiesta preventivo — {$data['full_name']} — {$data['event_date']}, {$data['event_location']}";
+    : "Richiesta preventivo — {$data['full_name']}" . ($eventInfo !== '' ? " — {$eventInfo}" : '');
 
 $rowsText = '';
 $rowsHtml = '';

@@ -190,9 +190,9 @@ const privacyShort = privacyFull.replace(' per ricevere una risposta', '').repla
             <Field lang={lang} name="phone"          label={it ? 'Telefono / WhatsApp'   : 'Phone / WhatsApp'}        span="full" autocomplete="tel" inputmode="tel" placeholder="+39 …" />
 
             <div class="form__section form__full">{it ? 'IL VOSTRO EVENTO' : 'YOUR EVENT'}</div>
-            <Field lang={lang} name="event_date"     label={it ? 'Data'                  : 'Date'}                    required placeholder={it ? 'gg/mm/aaaa' : 'dd/mm/yyyy'} />
-            <Field lang={lang} name="guests"         label={it ? 'Numero di ospiti'      : 'Number of guests'}        type="number" inputmode="numeric" min={10} max={5000} required placeholder="es. 120" />
-            <Field lang={lang} name="event_location" label="Location"                     span="full"  required        placeholder={it ? 'Villa, borgo, città o zona' : 'Villa, town or area'} />
+            <Field lang={lang} name="event_date"     label={it ? 'Data'                  : 'Date'}                    placeholder={it ? 'gg/mm/aaaa' : 'dd/mm/yyyy'} />
+            <Field lang={lang} name="guests"         label={it ? 'Numero di ospiti'      : 'Number of guests'}        type="number" inputmode="numeric" min={10} max={5000} placeholder="es. 120" />
+            <Field lang={lang} name="event_location" label="Location"                     span="full"  placeholder={it ? 'Villa, borgo, città o zona' : 'Villa, town or area'} />
 
             <div class="form__section form__full">{it ? 'IL VOSTRO MESSAGGIO' : 'YOUR MESSAGE'}</div>
             <Field lang={lang} name="message"        label={it ? 'Parla con noi'         : 'Tell us more'}            type="textarea" span="full" rows={4} required placeholder={it ? 'Una breve descrizione della richiesta...' : 'A brief description of your request...'} />
