@@ -1,0 +1,85 @@
+# Publishes the site to meteoraevents.com (Keliweb) on every push to main.
+#
+# Builds the static site and uploads only the changed files over FTPS.
+# Server-only files are never touched: api/config.php (mail password,
+# Instagram token) and the Instagram cache/token files.
+#
+# One-time setup (GitHub › Settings › Secrets and variables › Actions):
+#   Secrets:   FTP_SERVER, FTP_USERNAME, FTP_PASSWORD
+#   Variable:  FTP_SERVER_DIR  (optional) — folder of the site as seen by the
+#              FTP account: "./" when the account opens straight into
+#              public_html (default), "public_html/" for the main cPanel account.
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://meteoraevents.com
+    env:
+      # until the FTP secrets are set, the workflow only checks that the site builds
+      FTP_READY: ${{ secrets.FTP_SERVER != '' && secrets.FTP_USERNAME != '' && secrets.FTP_PASSWORD != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Check and build
+        run: pnpm run build
+
+      - name: Make sure no secrets are in the build
+        run: test ! -e dist/api/config.php
+
+      - name: Upload to Keliweb (FTPS, changed files only)
+        if: env.FTP_READY == 'true'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: ./dist/
+          server-dir: ${{ vars.FTP_SERVER_DIR || './' }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            api/config.php
+            api/ig-cache.json
+            api/ig-token.json
+
+      - name: Check the live site
+        if: env.FTP_READY == 'true'
+        run: |
+          sleep 5
+          for path in / /it/ /contact/ /it/contatti/; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://meteoraevents.com$path")
+            echo "$path -> $code"
+            test "$code" = 200
+          done
+          code=$(curl -s -o /dev/null -w '%{http_code}' https://meteoraevents.com/api/config.php)
+          echo "/api/config.php -> $code (must be 403)"
+          test "$code" = 403
