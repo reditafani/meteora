@@ -51,7 +51,7 @@ $redirectPath = (string) ($_POST['redirect'] ?? '');
 $redirect = preg_match('#^/[a-z0-9/_-]*$#i', $redirectPath) ? $redirectPath : ($lang === 'en' ? '/thank-you/' : '/it/grazie/');
 
 // Spam traps: honeypot and "filled in under 3 seconds" (silently accept to not tip off bots)
-$hp = trim((string) ($_POST['company_fax'] ?? ''));
+$hp = trim((string) ($_POST['company_fax'] ?? '') . ($_POST['company_fax2'] ?? ''));
 $t = (int) ($_POST['_t'] ?? 0);
 if ($hp !== '' || ($t > 0 && (microtime(true) * 1000 - $t) < 3000)) {
     respond(true, 200, [], $redirect);
@@ -93,17 +93,17 @@ $msg = [
     'en' => ['required' => 'This field is required.', 'email' => 'Invalid email address.', 'consent' => 'Consent is required.'],
 ][$lang];
 
+// keys = field names sent by the two forms in src/views/ContactView.astro
 if ($type === 'quote') {
     $labels = $lang === 'it'
-        ? ['first_name' => 'Nome', 'last_name' => 'Cognome', 'email' => 'Email', 'phone' => 'WhatsApp / Telefono', 'event_type' => 'Tipo di evento', 'event_date' => 'Data', 'event_location' => 'Luogo', 'guests' => 'Ospiti', 'service' => 'Servizio', 'style' => 'Stile / esigenze', 'message' => 'Messaggio']
-        : ['first_name' => 'First name', 'last_name' => 'Last name', 'email' => 'Email', 'phone' => 'WhatsApp / Phone', 'event_type' => 'Event type', 'event_date' => 'Date', 'event_location' => 'Location', 'guests' => 'Guests', 'service' => 'Service', 'style' => 'Style / requirements', 'message' => 'Message'];
-    $required = ['first_name', 'last_name', 'email', 'event_type', 'event_location'];
+        ? ['full_name' => 'Nome e cognome', 'email' => 'Email', 'phone' => 'Telefono / WhatsApp', 'event_date' => 'Data', 'guests' => 'Ospiti', 'event_location' => 'Location', 'message' => 'Messaggio']
+        : ['full_name' => 'Full name', 'email' => 'Email', 'phone' => 'Phone / WhatsApp', 'event_date' => 'Date', 'guests' => 'Guests', 'event_location' => 'Location', 'message' => 'Message'];
+    $required = ['full_name', 'email', 'event_date', 'guests', 'event_location', 'message'];
 } else {
-    // keys = field names sent by src/components/PartnerForm.astro
     $labels = $lang === 'it'
-        ? ['type' => 'Tipologia', 'first_name' => 'Nome', 'last_name' => 'Cognome', 'company' => 'Attività', 'email' => 'Email', 'phone' => 'Telefono / WhatsApp', 'area' => 'Area / città', 'instagram' => 'Instagram', 'website' => 'Sito web', 'message' => 'Messaggio']
-        : ['type' => 'Type', 'first_name' => 'First name', 'last_name' => 'Last name', 'company' => 'Business', 'email' => 'Email', 'phone' => 'Phone / WhatsApp', 'area' => 'Area / city', 'instagram' => 'Instagram', 'website' => 'Website', 'message' => 'Message'];
-    $required = ['type', 'first_name', 'last_name', 'company', 'email', 'phone', 'area'];
+        ? ['full_name' => 'Nome e cognome', 'pro_type' => 'Tipo di professionista', 'email' => 'Email', 'phone' => 'WhatsApp / Telefono', 'instagram' => 'Sito o Instagram', 'zones' => 'Zone in cui lavora', 'message' => 'Messaggio']
+        : ['full_name' => 'Full name', 'pro_type' => 'Professional type', 'email' => 'Email', 'phone' => 'WhatsApp / Phone', 'instagram' => 'Website or Instagram', 'zones' => 'Areas of work', 'message' => 'Message'];
+    $required = ['full_name', 'pro_type', 'email', 'message'];
 }
 
 $data = [];
@@ -128,9 +128,13 @@ if ($errors) {
 
 // ---- Compose ----
 $isPartner = $type === 'partner';
+$proTypes = ['wedding-planner' => 'Wedding planner', 'location' => 'Location / Villa'];
+if ($isPartner) {
+    $data['pro_type'] = $proTypes[$data['pro_type']] ?? $data['pro_type'];
+}
 $subject = $isPartner
-    ? "Richiesta listino partner — {$data['company']} ({$data['type']})"
-    : "Richiesta preventivo — {$data['event_type']} — {$data['first_name']} {$data['last_name']}";
+    ? "Richiesta professionista — {$data['pro_type']} — {$data['full_name']}"
+    : "Richiesta preventivo — {$data['full_name']} — {$data['event_date']}, {$data['event_location']}";
 
 $rowsText = '';
 $rowsHtml = '';
@@ -144,15 +148,15 @@ foreach ($labels as $key => $label) {
         . htmlspecialchars($label, ENT_QUOTES, 'UTF-8') . '</td><td style="padding:8px 0;font:15px/1.5 Georgia,serif;color:#1c1614">' . $val . '</td></tr>';
 }
 $meta = 'Lingua: ' . strtoupper($lang) . ' · ' . date('d/m/Y H:i') . ' · IP ' . $ip;
-$text = ($isPartner ? "Nuova richiesta listino partner\n\n" : "Nuova richiesta di preventivo\n\n") . $rowsText . "\n" . $meta;
+$text = ($isPartner ? "Nuova richiesta da professionista\n\n" : "Nuova richiesta di preventivo\n\n") . $rowsText . "\n" . $meta;
 $html = '<div style="background:#f9f2e8;padding:32px"><div style="max-width:640px;margin:auto;background:#fffaf3;padding:32px;border:1px solid #ddd0bc">'
     . '<p style="font:12px Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#7a5f37;margin:0 0 16px">Meteora Events</p>'
-    . '<h1 style="font:400 26px Georgia,serif;margin:0 0 24px;color:#1c1614">' . ($isPartner ? 'Richiesta listino partner' : 'Richiesta di preventivo') . '</h1>'
+    . '<h1 style="font:400 26px Georgia,serif;margin:0 0 24px;color:#1c1614">' . ($isPartner ? 'Richiesta da professionista' : 'Richiesta di preventivo') . '</h1>'
     . '<table role="presentation" style="border-collapse:collapse;width:100%">' . $rowsHtml . '</table>'
     . '<p style="font:12px Arial,sans-serif;color:#675d53;margin-top:24px">' . htmlspecialchars($meta, ENT_QUOTES, 'UTF-8') . '</p></div></div>';
 
 $to = $isPartner && !empty($cfg['partner_recipient']) ? (string) $cfg['partner_recipient'] : (string) $cfg['recipient'];
-$replyTo = oneLine($data['first_name'] . ' ' . $data['last_name']);
+$replyTo = $data['full_name'];
 $replyTo = '=?UTF-8?B?' . base64_encode($replyTo) . "?= <{$data['email']}>";
 
 $mailer = new MeteoraMailer($cfg);
