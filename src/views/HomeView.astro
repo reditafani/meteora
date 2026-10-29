@@ -27,8 +27,8 @@ const it = lang === 'it';
 const s = t(lang);
 
 const meta = it
-  ? { title: 'Meteora Events | Open Bar Catering di lusso in Toscana e in Italia', description: 'Luxury open bar catering per matrimoni, destination wedding, eventi aziendali e privati. Banchi scenografici, cocktail, ghiaccio e bicchieri professionali. Base in Toscana, in tutta Italia.' }
-  : { title: 'Meteora Events | Luxury Open Bar Catering in Tuscany & Italy', description: 'Luxury open bar catering for weddings, destination weddings, corporate and private events. Scenographic bars, cocktails, premium ice and professional glassware. Based in Tuscany, serving all of Italy.' };
+  ? { title: 'Servizio Bar e Open Bar per Matrimoni ed Eventi in Toscana e Italia', description: 'Servizio bar catering e open bar per matrimoni ed eventi privati in Toscana e Italia: banchi bar scenografici e 14 anni di esperienza. Preventivo gratuito.' }
+  : { title: 'Destination Wedding Open Bar in Tuscany & Italy | Meteora', description: 'Luxury open bar for destination weddings in Tuscany and Italy: welcome drinks, cocktail hour, signature cocktails and champagne tower. 14+ years of service.' };
 
 const schema = [serviceSchema({ name: it ? 'Open bar catering per eventi' : 'Open bar catering for events', serviceType: 'Bar catering', description: meta.description, url: url('home', lang), lang, area: it ? ['Toscana', 'Italia'] : ['Tuscany', 'Italy'] })];
 
@@ -219,7 +219,6 @@ const perks = [
                 <Img src={ev.img} alt={ev.alt} sizes="(min-width: 900px) 33vw, 90vw" />
               </div>
               <div class="hm-ev__card-overlay">
-                <span class="hm-ev__card-num">0{i + 1}</span>
                 <h3 class="hm-ev__card-name">{ev.label}</h3>
                 <p class="hm-ev__card-sub">{ev.sub}</p>
                 <span class="hm-ev__card-cta">{it ? 'SCOPRI →' : 'DISCOVER →'}</span>
@@ -247,7 +246,7 @@ const perks = [
     <div class="container">
       <div class="hm-bc__header" data-reveal>
         <div>
-          <p class="hm-bc__eyebrow">{it ? 'La collezione' : 'The collection'}</p>
+          <p class="hm-bc__eyebrow">{it ? 'La nostra collezione di banchi bar' : 'Our bar collection'}</p>
           <h2 id="hm-bc-title" class="hm-bc__title">
             {it ? <>Il bar, <em>come scenografia.</em></> : <>The bar, <em>as scenography.</em></>}
           </h2>
@@ -384,7 +383,7 @@ const perks = [
             </div>
             <div class="hm-svc__card-body">
               <p class="hm-svc__card-kicker">
-                <span><span class="hm-svc__card-num">{String(i + 1).padStart(2, '0')}</span><span class="hm-svc__card-cat"> · {d.kicker.toUpperCase()}</span></span>
+                <span><span class="hm-svc__card-cat">· {d.kicker.toUpperCase()}</span></span>
               </p>
               <h3 class="hm-svc__card-name">{d.line1}{d.dash && <span class="hm-svc__dash"> —</span>}{' '}<em>{d.line2}</em></h3>
               <p class="hm-svc__card-desc">{services[i].summary[lang]}</p>
@@ -402,7 +401,7 @@ const perks = [
             </div>
             <div class="hm-svc__card-body">
               <p class="hm-svc__card-kicker">
-                <span><span class="hm-svc__card-num">{String(i + 4).padStart(2, '0')}</span><span class="hm-svc__card-cat"> · {d.kicker.toUpperCase()}</span></span>
+                <span><span class="hm-svc__card-cat">· {d.kicker.toUpperCase()}</span></span>
               </p>
               <h3 class="hm-svc__card-name">{d.line1}{d.dash && <span class="hm-svc__dash"> —</span>}{' '}<em>{d.line2}</em></h3>
               <p class="hm-svc__card-desc">{services[i + 3].summary[lang]}</p>
@@ -410,14 +409,14 @@ const perks = [
             </div>
           </a>
         ))}
-        <!-- 06 · Personalizzazioni su richiesta -->
+        <!-- Personalizzazioni su richiesta -->
         <a class="hm-svc__card hm-svc__card--wide" href={`${url('services', lang)}#personalizzazioni`} data-reveal style="--delay:0.14s">
           <div class="hm-svc__card-img">
             <Img src={iceHoshi} alt={it ? 'Cocktail con rosmarino e lime su marmo chiaro' : 'Cocktail with rosemary and lime on light marble'} sizes="(max-width: 699px) 45vw, (min-width: 900px) 20vw, 50vw" />
           </div>
           <div class="hm-svc__card-body">
             <p class="hm-svc__card-kicker">
-              <span><span class="hm-svc__card-num">06</span><span class="hm-svc__card-cat"> · {it ? 'PERSONALIZZAZIONI SU RICHIESTA' : 'BESPOKE ADD-ONS'}</span></span>
+              <span><span class="hm-svc__card-cat">· {it ? 'PERSONALIZZAZIONI SU RICHIESTA' : 'BESPOKE ADD-ONS'}</span></span>
             </p>
             <h3 class="hm-svc__card-name">
               <span class="hm-svc__name-desk">{it ? <>Un bar <em>che parla di voi</em></> : <>A bar <em>that speaks of you</em></>}</span>
@@ -791,7 +790,13 @@ const perks = [
       background: rgba(207 182 138 / 0.55);
       margin: 0 auto var(--space-s);
     }
-    .home-hero__cta { margin-top: var(--space-l); display: block; }
+    /* the button is moved down to near the bottom of the hero (into the
+       hero's bottom padding, see Hero.astro), title and text stay put */
+    .home-hero__cta {
+      margin-top: var(--space-l);
+      display: block;
+      transform: translateY(calc(var(--hero-content-pb, clamp(7rem, 11vh, 10rem)) - var(--space-m)));
+    }
     .home-hero__cta .btn { display: block; width: 100%; text-align: center; padding-block: 1.15rem; }
   }
 
@@ -1125,13 +1130,6 @@ const perks = [
     flex-direction: column;
     gap: 0.4rem;
   }
-  .hm-ev__card-num {
-    font-family: var(--font-sans);
-    font-size: 0.55rem;
-    letter-spacing: 0.18em;
-    color: rgba(255,255,255,0.35);
-    margin-bottom: 0.2rem;
-  }
   .hm-ev__card-name {
     font-family: var(--font-display);
     font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.4rem);
@@ -1330,12 +1328,8 @@ const perks = [
       padding: 0.75rem 0 0;
       gap: 0.3rem;
     }
-    .hm-svc__card-kicker {
-      font-size: 0.55rem;
-      letter-spacing: 0.14em;
-    }
-    .hm-svc__card-kicker::before,
-    .hm-svc__card-cat,
+    /* mobile cards showed only the number here: no number, no label */
+    .hm-svc__card-kicker,
     .hm-svc__dash,
     .hm-svc__card-desc,
     .hm-svc__card-cta,
@@ -1479,8 +1473,7 @@ const perks = [
     width: 2rem; height: 1px;
     background: var(--color-accent-ink);
     flex-shrink: 0;
-  }
-  .hm-bc__title {
+  }  .hm-bc__title {
     font-family: var(--font-display);
     font-size: clamp(2.2rem, 1rem + 4vw, 5rem);
     font-weight: 300;
@@ -1566,6 +1559,17 @@ const perks = [
   }
   .hm-bc__item-btn:hover { background: rgba(0,0,0,0.025); }
   .hm-bc__item.is-active .hm-bc__item-btn { background: rgba(0,0,0,0.018); }
+  /* Desktop: the list is exactly as tall as the photo (top and bottom lines
+     aligned with it at any width): the rows share the height, so their
+     padding shrinks or grows instead of overflowing the photo. */
+  @media (min-width: 900px) {
+    .hm-bc__stage { align-items: stretch; }
+    .hm-bc__list { display: flex; flex-direction: column; }
+    .hm-bc__item { flex: 1 1 0; min-height: 0; display: flex; }
+    .hm-bc__item-btn { padding-block: 0.4rem; }
+    /* on narrower desktops the thumbnail shrinks with the row */
+    .hm-bc__item-thumb { width: auto; height: 100%; max-height: 64px; aspect-ratio: 1; }
+  }
   .hm-bc__item-thumb {
     width: 64px; height: 64px; flex-shrink: 0;
     overflow: hidden; background: var(--color-background-secondary);

@@ -10,7 +10,7 @@ interface Props {
   index: number;
   sizes?: string;
 }
-const { bar, lang, index, sizes = '(min-width: 1024px) 50vw, 85vw' } = Astro.props;
+const { bar, lang, sizes = '(min-width: 1024px) 50vw, 85vw' } = Astro.props;
 const s = t(lang);
 const hasSlider = bar.images.length > 1;
 ---
@@ -53,7 +53,7 @@ const hasSlider = bar.images.length > 1;
     }
   </div>
   <div class="barcard__body">
-    <p class="micro barcard__n">{String(index + 1).padStart(2, '0')}{bar.status === 'coming-soon' && <> · {s.comingSoon}</>}</p>
+    {bar.status === 'coming-soon' && <p class="micro barcard__n">{s.comingSoon}</p>}
     <h3 class="barcard__name">{bar.name}</h3>
     <p class="barcard__mood">{bar.mood[lang]}</p>
     <p class="barcard__desc muted">{bar.description[lang]}</p>

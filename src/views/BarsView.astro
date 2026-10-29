@@ -17,8 +17,8 @@ const { lang } = Astro.props;
 const it = lang === 'it';
 const s = t(lang);
 const meta = it
-  ? { title: 'Banchi Bar Scenografici per Eventi e Matrimoni | Meteora Events', description: 'La collezione di banchi bar Meteora Events: Golden Mirror, Silver Reflection, Pure White e nuovi modelli in arrivo. Modulari, in tre misure, per matrimoni ed eventi.' }
-  : { title: 'Luxury Mobile Bar Setups for Weddings & Events | Meteora Events', description: 'The Meteora Events bar collection: Golden Mirror, Silver Reflection, Pure White and new models coming soon. Modular, in three sizes, for weddings and events in Italy.' };
+  ? { title: 'Banchi Bar Scenografici per Matrimoni ed Eventi | Meteora', description: 'Banchi bar scenografici e modulari, con servizio completo o a noleggio, per matrimoni ed eventi in Toscana e in Italia. Scegli il modello per il tuo evento.' }
+  : { title: 'Mobile Bars for Weddings in Tuscany & Italy | Meteora Events', description: 'Choose the bar for your wedding: scenographic, modular mobile bars for luxury weddings and private events in Tuscany & Italy.' };
 const crumbs = [
   { name: s.breadcrumbHome, href: url('home', lang) },
   { name: it ? 'Banchi bar' : 'Bars', href: url('bars', lang) },

@@ -66,7 +66,7 @@ const rows = [
 
   <!-- RIGHT: text + expandable rows -->
   <div class="tw__text">
-    <p class="micro svc__kicker" data-reveal>04 · {sv.kicker[lang]}</p>
+    <p class="micro svc__kicker" data-reveal>· {sv.kicker[lang]}</p>
     <h2 id="tower-t" class="h3 svc__title" data-reveal>Signature Tower <em>Experience</em></h2>
     <p class="lead muted" data-reveal>{it ? `Il momento che tutti aspettano di fotografare. Coppe disposte a cascata, riempite dal vivo dal nostro staff o da voi, per il brindisi, il taglio della torta o l'inizio della festa.` : sv.summary['en']}</p>
     <ul class="tw__list" role="list" data-reveal>
@@ -74,7 +74,10 @@ const rows = [
         <li class="tw__row" data-tower={row.key}>
           <div class="tw__row-hd">
             <span class="tw__row-name">{row.name}</span>
-            <span class="tw__row-icon" aria-hidden="true">+</span>
+            <span class="tw__row-icon" aria-hidden="true">
+              <svg class="tw__row-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              <span class="tw__row-close">+</span>
+            </span>
           </div>
           <p class="tw__row-desc">{row.desc}</p>
         </li>
@@ -88,11 +91,36 @@ const rows = [
   const article  = document.getElementById('tower');
   if (article) {
     const listRows = article.querySelectorAll<HTMLElement>('.tw__row');
-    const slideEls = article.querySelectorAll<HTMLElement>('.tw__slide');
+    const slideEls = Array.from(article.querySelectorAll<HTMLElement>('.tw__slide'));
+    const frame    = article.querySelector<HTMLElement>('.tw__frame');
+    let cur = 0;
 
-    function showSlide(key: string) {
-      slideEls.forEach(s => s.classList.toggle('is-active', s.dataset.slide === key));
+    function goTo(n: number) {
+      cur = ((n % slideEls.length) + slideEls.length) % slideEls.length;
+      slideEls.forEach((s, i) => s.classList.toggle('is-active', i === cur));
     }
+    function showSlide(key: string) {
+      const i = slideEls.findIndex(s => s.dataset.slide === key);
+      if (i >= 0) goTo(i);
+    }
+
+    // ── Autoplay, same timing as the "Dove lavoriamo" gallery (About page).
+    //    It pauses while a row is hovered or the pointer is on the photo, and
+    //    stops for good once the visitor clicks/taps a row: the photo then
+    //    stays on the tower they chose. ──
+    const AUTOPLAY_MS = 3000;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let timer = 0;
+    let paused = false;
+    let chosen = '';   // tower the visitor clicked: autoplay is over
+    const stop = () => { clearInterval(timer); timer = 0; };
+    const start = () => {
+      stop();
+      if (chosen || reduceMotion.matches || paused || document.hidden || slideEls.length < 2) return;
+      timer = window.setInterval(() => goTo(cur + 1), AUTOPLAY_MS);
+    };
+    const pause = (on: boolean) => { paused = on; start(); };
+    const choose = (key: string) => { chosen = key; showSlide(key); stop(); };
 
     const isTouch = window.matchMedia('(hover: none)').matches;
 
@@ -101,24 +129,62 @@ const rows = [
         row.addEventListener('click', () => {
           const open = row.classList.contains('is-active');
           listRows.forEach(r => r.classList.remove('is-active'));
-          if (!open) {
-            row.classList.add('is-active');
-            showSlide(row.dataset.tower!);
-          } else {
-            showSlide('default');
-          }
+          if (!open) row.classList.add('is-active');
+          choose(row.dataset.tower!); // closing the row keeps its photo too
         });
       } else {
         row.addEventListener('mouseenter', () => {
           listRows.forEach(r => r.classList.toggle('is-active', r === row));
           showSlide(row.dataset.tower!);
+          pause(true);
         });
         row.addEventListener('mouseleave', () => {
-          row.classList.remove('is-active');
-          showSlide('default');
+          // the row stays open: on desktop one row is always open
+          if (chosen) showSlide(chosen); // back to the tower they clicked
+          pause(false);
         });
+        row.addEventListener('click', () => choose(row.dataset.tower!));
       }
     });
+
+    // ── Desktop: one row is always open (the first one to start with), so
+    //    the room for a description is already there. The photo is stretched
+    //    to the white text box, which keeps room for the longest description:
+    //    switching rows never resizes the box or the photo. ──
+    if (!isTouch) listRows[0]?.classList.add('is-active');
+    const text = article.querySelector<HTMLElement>('.tw__text');
+    const desktop = window.matchMedia('(min-width: 960px)');
+    const reserveRoom = () => {
+      if (!text) return;
+      text.style.minHeight = '';
+      if (!desktop.matches) return;
+      const open = article.querySelector('.tw__row.is-active');
+      open?.classList.remove('is-active');
+      const closed = text.offsetHeight;
+      let extra = 0;
+      article.querySelectorAll<HTMLElement>('.tw__row-desc').forEach(d => {
+        extra = Math.max(extra, Math.min(d.scrollHeight, 120)); // 120px = open max-height in CSS
+      });
+      open?.classList.add('is-active');
+      const gap = parseFloat(getComputedStyle(document.documentElement).fontSize) * 0.45; // row gap above an open description (CSS)
+      text.style.minHeight = `${Math.ceil(closed + extra + gap)}px`;
+    };
+    // recompute whenever the box width changes (text wraps differently)
+    let lastWidth = 0;
+    new ResizeObserver(() => {
+      if (!text || text.offsetWidth === lastWidth) return;
+      lastWidth = text.offsetWidth;
+      reserveRoom();
+    }).observe(article);
+    window.addEventListener('resize', () => { lastWidth = 0; reserveRoom(); });
+    document.fonts?.ready.then(reserveRoom);
+
+    if (!isTouch) {
+      frame?.addEventListener('mouseenter', () => pause(true));
+      frame?.addEventListener('mouseleave', () => pause(false));
+    }
+    document.addEventListener('visibilitychange', start);
+    start();
   }
 </script>
 
@@ -148,14 +214,24 @@ const rows = [
     aspect-ratio: 4 / 3;
     overflow: hidden;
   }
+  /* Soft cross-fade: the new photo fades in on top of the old one, which
+     stays visible underneath until the fade is over (no dip to the frame),
+     with a gentle settle from a slight zoom */
   .tw__slide {
     position: absolute;
     inset: 0;
     opacity: 0;
-    transition: opacity 0.55s ease;
+    transform: scale(1.04);
+    transition: opacity 0s linear 1.4s, transform 0s linear 1.4s;
   }
   .tw__slide.is-active {
     opacity: 1;
+    transform: scale(1);
+    z-index: 1;
+    transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1), transform 3.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tw__slide, .tw__slide.is-active { transform: none; transition: opacity 0.3s ease; }
   }
   .tw__slide :global(picture),
   .tw__slide :global(img) {
@@ -170,6 +246,16 @@ const rows = [
     margin-top: var(--space-m);
   }
 
+  /* Mobile: kicker, title and description before the slideshow, as in the
+     other services (see .svc__item in ServicesView) */
+  @media (max-width: 699px) {
+    .tw { gap: 0; }
+    .tw__text { display: contents; }
+    .tw__text > * { order: 2; }
+    .tw__text > .svc__kicker, .tw__text > .svc__title, .tw__text > .lead { order: 0; }
+    .tw__frame { order: 1; margin-top: var(--space-m); }
+  }
+
   /* ── Expandable rows ── */
   .tw__list {
     list-style: none;
@@ -180,7 +266,7 @@ const rows = [
   .tw__row {
     border-bottom: 1px solid var(--color-border);
     padding-block: 0.75rem;
-    cursor: default;
+    cursor: pointer; /* a click fixes the photo on that tower */
   }
   .tw__row-hd {
     display: flex;
@@ -195,16 +281,29 @@ const rows = [
   .tw__row.is-active .tw__row-name {
     color: var(--color-accent-ink);
   }
+  /* Closed rows: a down arrow says the row opens; the open row: a cross */
   .tw__row-icon {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 1rem; height: 1rem;
     font-size: 1rem;
     font-weight: 300;
     line-height: 1;
     color: var(--color-accent-ink);
-    opacity: 0;
-    transition: opacity 0.2s, transform 0.3s ease;
     flex-shrink: 0;
   }
-  .tw__row.is-active .tw__row-icon {
+  .tw__row-arrow,
+  .tw__row-close {
+    grid-area: 1 / 1;
+    transition: opacity 0.2s, transform 0.3s ease;
+  }
+  .tw__row-close { opacity: 0; }
+  .tw__row.is-active .tw__row-arrow {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  .tw__row.is-active .tw__row-close {
     opacity: 1;
     transform: rotate(45deg);
   }
@@ -221,6 +320,28 @@ const rows = [
     max-height: 120px;
     opacity: 1;
     margin-top: 0.45rem;
+  }
+  /* Desktop: the closing and the opening description animate their real
+     height in step (grid 0fr ↔ 1fr, same timing), so together they never
+     take more room than the longest one: the box and the photo stay still. */
+  @media (min-width: 700px) {
+    .tw__row {
+      display: grid;
+      grid-template-rows: auto 0fr;
+      row-gap: 0;
+      transition: grid-template-rows 0.35s ease, row-gap 0.35s ease;
+    }
+    .tw__row.is-active {
+      grid-template-rows: auto 1fr;
+      row-gap: 0.45rem;
+    }
+    .tw__row-desc,
+    .tw__row.is-active .tw__row-desc {
+      min-height: 0;
+      max-height: none;
+      margin-top: 0;
+      transition: opacity 0.25s ease;
+    }
   }
 
   /* ── Desktop: white-box layout (same as svc__item) ── */

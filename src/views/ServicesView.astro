@@ -35,8 +35,8 @@ const tabLabels: Record<string, { it: string; en: string }> = {
 };
 const s = t(lang);
 const meta = it
-  ? { title: 'Servizi di Open Bar e Bar Catering | Meteora Events', description: 'Open Bar Essential e Premium, Aperitivo + Open Bar, Signature Tower Experience e servizio solo barman. Preventivi su misura per matrimoni ed eventi in tutta Italia.' }
-  : { title: 'Open Bar & Bar Catering Services | Meteora Events', description: 'Essential and Premium Open Bar, Aperitivo + Open Bar, Signature Tower Experience and bartender-only service. Tailored quotes for weddings and events across Italy.' };
+  ? { title: 'Formule Bar per Matrimoni ed Eventi: Open Bar, Aperitivo e Altro', description: 'Le nostre formule di servizio bar: open bar, aperitivo, champagne tower, barman professionali e allestimento scenografico per matrimoni ed eventi in Toscana.' }
+  : { title: 'Wedding Bar Packages in Tuscany & Italy: Open Bar & More', description: 'Open bar, cocktail hour, champagne tower and professional bartenders with scenographic set-ups for your destination wedding in Tuscany and Italy.' };
 const crumbs = [
   { name: s.breadcrumbHome, href: url('home', lang) },
   { name: it ? 'Servizi' : 'Services', href: url('services', lang) },
@@ -89,7 +89,7 @@ const schema = [
             </div>
           </div>
           <div class="svc__text">
-            <p class="micro svc__kicker" data-reveal>{String(i + 1).padStart(2, '0')} · {sv.kicker[lang]}</p>
+            <p class="micro svc__kicker" data-reveal>· {sv.kicker[lang]}</p>
             <h2 id={`${sv.id}-t`} class="h3 svc__title" data-reveal>
               {sv.id === 'aperitivo'
                 ? <>{it ? 'Aperitivo + ' : 'Aperitivo + '}<em>{it ? 'Open Bar' : 'Open Bar'}</em></>
@@ -182,7 +182,7 @@ const schema = [
             </div>
           </div>
           <div class="svc__text">
-            <p class="micro svc__kicker" data-reveal>{String(i + 5).padStart(2, '0')} · {sv.kicker[lang]}</p>
+            <p class="micro svc__kicker" data-reveal>· {sv.kicker[lang]}</p>
             <h2 id={`${sv.id}-t`} class="h3 svc__title" data-reveal>
               {sv.id === 'bartender'
                 ? <>Bartender <em>Service</em></>
@@ -203,7 +203,7 @@ const schema = [
         </article>
       ))}
 
-      <!-- 06 · Personalizzazioni su richiesta -->
+      <!-- Personalizzazioni su richiesta -->
       <article class="svc__item" id="personalizzazioni" aria-labelledby="personalizzazioni-t">
         <div class="svc__frame" data-reveal="image">
           <div class="media svc__media">
@@ -211,7 +211,7 @@ const schema = [
           </div>
         </div>
         <div class="svc__text">
-          <p class="micro svc__kicker" data-reveal>06 · {it ? 'Personalizzazioni su richiesta' : 'Bespoke add-ons'}</p>
+          <p class="micro svc__kicker" data-reveal>· {it ? 'Personalizzazioni su richiesta' : 'Bespoke add-ons'}</p>
           <h2 id="personalizzazioni-t" class="h3 svc__title" data-reveal>
             {it ? <>Un bar <em>che parla di voi</em></> : <>A bar <em>that speaks of you</em></>}
           </h2>
@@ -466,6 +466,15 @@ const schema = [
   .svc__textcta:hover {
     color: var(--color-accent-ink);
     border-color: var(--color-accent-ink);
+  }
+  /* Mobile: kicker, title and description come before the photo, then the
+     rest of the text (the text box is flattened into the item's grid) */
+  @media (max-width: 699px) {
+    .svc__item { gap: 0; }
+    .svc__text { display: contents; }
+    .svc__text > * { order: 2; }
+    .svc__text > .svc__kicker, .svc__text > .svc__title, .svc__text > .lead { order: 0; }
+    .svc__frame { order: 1; margin-top: var(--space-m); }
   }
   .svc__note {
     max-width: 44rem;

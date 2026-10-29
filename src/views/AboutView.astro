@@ -27,12 +27,12 @@ const it = lang === 'it';
 const s = t(lang);
 const meta = it
   ? {
-      title: `Chi Siamo | Meteora Events — Oltre ${site.yearsExperience} Anni di Esperienza`,
-      description: `Meteora Events è il partner specializzato nel servizio beverage per eventi di alto livello. Nasciamo da oltre ${site.yearsExperience} anni di esperienza operativa tra matrimoni, eventi corporate e privati. Base a Montecatini Terme, Toscana.`,
+      title: 'Chi Siamo | Meteora Events, servizio bar in Toscana e Italia',
+      description: `Da oltre ${site.yearsExperience} anni curiamo il servizio bar di matrimoni, eventi privati e aziendali in Toscana e in tutta Italia. La nostra storia, il metodo, il team.`,
     }
   : {
-      title: `About Us | Meteora Events — ${site.yearsExperience}+ Years of Experience`,
-      description: `Meteora Events is the specialist partner for beverage services at high-level events. Built on ${site.yearsExperience}+ years of operational experience across weddings, corporate and private events. Based in Montecatini Terme, Tuscany.`,
+      title: 'About Meteora | Luxury Wedding Bar Catering, Tuscany & Italy',
+      description: `Based in Tuscany, we have spent ${site.yearsExperience}+ years creating the bar for destination weddings and private events across Italy. Meet the team behind every drink.`,
     };
 const crumbs = [
   { name: s.breadcrumbHome, href: url('home', lang) },
@@ -337,7 +337,6 @@ const steps: { title: string; text: string }[] = it
               <Img src={serveImgs[i]} alt={serveAlts[i]} sizes="(min-width: 700px) 33vw, 90vw" />
             </div>
             <div class="srv-card__body">
-              <span class="srv-card__n">{card.n}</span>
               <h3 class="srv-card__title">{card.title}</h3>
               <p class="srv-card__sub">{card.subtitle}</p>
               <hr class="srv-card__rule" />
@@ -958,13 +957,6 @@ const steps: { title: string; text: string }[] = it
     flex-direction: column;
     padding: var(--space-l) var(--space-m) var(--space-m);
     background: rgba(255 255 255 / 0.05);
-  }
-  .srv-card__n {
-    display: block;
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
-    color: rgba(255 255 255 / 0.3);
-    margin-bottom: 0.55rem;
   }
   .srv-card__title {
     font-family: var(--font-display);

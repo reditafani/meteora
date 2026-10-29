@@ -21,8 +21,8 @@ const it = lang === 'it';
 const s = t(lang);
 
 const meta = it
-  ? { title: 'Wedding Planner e Location in Italia | Meteora Events', description: 'Una selezione curata di wedding planner e location in Italia. I professionisti che consigliamo alle coppie che scelgono Meteora Events per il bar del loro matrimonio.' }
-  : { title: 'Wedding Planners & Venues in Italy | Meteora Events', description: 'A curated selection of wedding planners and venues in Italy. The professionals we recommend to couples choosing Meteora Events for their wedding bar.' };
+  ? { title: 'Fornitori Consigliati per Matrimoni in Toscana e Italia | Meteora', description: 'Cerchi una location o un wedding planner? Scopri i fornitori di fiducia che consigliamo per il tuo matrimonio in Toscana e in Italia, selezionati da noi.' }
+  : { title: 'Wedding Planners & Venues We Recommend in Tuscany & Italy', description: 'Looking for a venue or a wedding planner? Discover the trusted wedding vendors we recommend for your wedding in Tuscany and Italy, hand-picked by our team.' };
 
 const crumbs = [
   { name: s.breadcrumbHome, href: url('home', lang) },
@@ -240,7 +240,6 @@ for (const p of allPros) {
       <div class="pf-faq__grid">
         {faqItems.map((item, i) => (
           <div class="pf-faq__item" data-reveal style={`--delay:${i * 0.06}s`}>
-            <span class="pf-faq__n">0{i + 1}</span>
             <h3 class="pf-faq__q">{item.q}</h3>
             <p class="pf-faq__a">{item.a}</p>
           </div>
@@ -834,13 +833,13 @@ for (const p of allPros) {
   @media (min-width: 600px) {
     .pf-faq__grid {
       grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(3, auto);
+      grid-template-rows: repeat(2, auto);
       gap: var(--space-m) var(--space-l);
     }
     .pf-faq__item {
       display: grid;
       grid-template-rows: subgrid;
-      grid-row: span 3;
+      grid-row: span 2;
     }
   }
   @media (min-width: 1000px) {
@@ -848,15 +847,6 @@ for (const p of allPros) {
       grid-template-columns: repeat(5, 1fr);
       gap: var(--space-m);
     }
-  }
-  .pf-faq__n {
-    display: block;
-    font-family: var(--font-sans);
-    font-size: 0.55rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    color: var(--color-accent-ink);
-    align-self: start;
   }
   .pf-faq__q {
     font-family: var(--font-display);
@@ -1010,11 +1000,6 @@ for (const p of allPros) {
     .pf-faq__item {
       display: flex;
       flex-direction: column;
-    }
-    .pf-faq__n {
-      min-height: 1.8rem;
-      display: flex;
-      align-items: flex-start;
     }
     .pf-faq__q {
       margin-top: auto;
