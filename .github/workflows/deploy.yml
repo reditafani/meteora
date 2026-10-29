@@ -47,6 +47,15 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
 
+      # Optimised images (~800 sizes/formats) are cached: a cold build takes
+      # 20+ minutes, an incremental one a couple of minutes.
+      - name: Image cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules/.astro
+          key: astro-images-${{ hashFiles('src/assets/**', 'public/images/**') }}
+          restore-keys: astro-images-
+
       - name: Check and build
         run: pnpm run build
 
