@@ -72,8 +72,8 @@ if (is_file($rlFile)) {
 if (count($hits) >= (int) $cfg['rate_limit']) {
     respond(false, 429, ['error' => 'rate_limited']);
 }
-$hits[] = $now;
-@file_put_contents($rlFile, implode(',', $hits), LOCK_EX);
+// (a hit is recorded only once a request is actually sent, so visitors who
+// fix a missing field are never locked out)
 
 // ---- Input ----
 function field(string $name, int $max = 200): string
@@ -165,6 +165,8 @@ $sent = $mailer->send($to, $subject, $text, $html, $replyTo);
 if (!$sent) {
     respond(false, 500, ['error' => 'send_failed'], $redirect . '?error=1');
 }
+$hits[] = $now;
+@file_put_contents($rlFile, implode(',', $hits), LOCK_EX);
 
 // Optional auto-reply to the sender
 if (!empty($cfg['send_autoreply'])) {
