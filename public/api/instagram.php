@@ -26,7 +26,7 @@ const IG_CACHE_FILE = __DIR__ . '/ig-cache.json';
 const IG_TOKEN_FILE = __DIR__ . '/ig-token.json';
 const IG_CACHE_TTL  = 3 * 3600;      // refetch posts every 3 hours
 const IG_REFRESH    = 7 * 86400;     // refresh the token once a week
-const IG_LATEST     = 7;             // latest posts shown (one desktop row + "Vedi di più")
+const IG_LATEST     = 24;            // latest posts sent; the page shows as many as fit one row
 const IG_PAGE       = 50;            // posts per API page while looking for the selection
 const IG_MAX_PAGES  = 6;             // search the latest 300 posts at most
 
@@ -40,7 +40,7 @@ function shortcode(string $s): string
 
 // Posts chosen in config.php (in display order); empty = show the latest ones
 $wanted = array_values(array_filter(array_map('shortcode', (array) ($cfg['instagram_posts'] ?? []))));
-$cacheKey = md5(implode(',', $wanted));
+$cacheKey = md5(implode(',', $wanted) . '|' . IG_LATEST);
 
 function respond(int $status, array $body, int $maxAge = 0): never
 {

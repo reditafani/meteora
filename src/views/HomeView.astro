@@ -601,7 +601,7 @@ const perks = [
           </a>
         ))}
 
-        <!-- Cell 9: VEDI DI PIÙ -->
+        <!-- Last cell: VEDI DI PIÙ -->
         <a class="hm-ig__item hm-ig__item--more" href={site.instagram.url} target="_blank" rel="noopener" aria-label={it ? 'Vedi di più su Instagram' : 'See more on Instagram'}>
           <Img src={procBg} alt="" sizes="(min-width: 900px) 17vw, 33vw" />
           <div class="hm-ig__item-inner hm-ig__item-inner--more">
@@ -632,10 +632,29 @@ const perks = [
       igNext.addEventListener('click', () => scroll(1));
     }
 
-    // Live feed: swap the placeholder photos for the Instagram posts chosen in
-    // api/config.php (or the latest ones). Any number of posts: tiles are
-    // added or hidden to match. If the endpoint isn't configured or fails,
-    // the static photos stay as they are.
+    // Desktop: a single row, as many posts as fit the width (min IG_TILE px each)
+    // followed by "Vedi di più"; the other posts are hidden. Mobile: the carousel
+    // shows every post.
+    const IG_TILE = 210; // ≈ 217px tiles at 1440px wide (6 per row), as in the original design
+    const fitIgRow = () => {
+      if (!igGrid) return;
+      const items = Array.from(igGrid.querySelectorAll<HTMLElement>('.hm-ig__item:not(.hm-ig__item--more)'));
+      if (window.matchMedia('(max-width: 699px)').matches) {
+        igGrid.style.removeProperty('--ig-cols');
+        items.forEach((item) => { item.style.display = ''; });
+        return;
+      }
+      const fit = Math.max(2, Math.floor((igGrid.clientWidth + 4) / (IG_TILE + 4)));
+      const shown = Math.min(items.length, fit - 1);
+      igGrid.style.setProperty('--ig-cols', String(shown + 1));
+      items.forEach((item, i) => { item.style.display = i < shown ? '' : 'none'; });
+    };
+    fitIgRow();
+    window.addEventListener('resize', fitIgRow);
+
+    // Live feed: swap the placeholder photos for the latest Instagram posts
+    // (or those chosen in api/config.php). Tiles are added or removed to match.
+    // If the endpoint isn't configured or fails, the static photos stay as they are.
     if (igGrid) {
       const lang = document.documentElement.lang.startsWith('en') ? 'en-GB' : 'it-IT';
       fetch('/api/instagram.php', { headers: { Accept: 'application/json' } })
@@ -651,11 +670,9 @@ const perks = [
             igGrid.insertBefore(clone, more);
             items.push(clone);
           }
-          // desktop: one row of up to 7 posts + "Vedi di più", then wrap
-          igGrid.style.setProperty('--ig-cols', String(Math.min(posts.length + 1, 8)));
           items.forEach((item, i) => {
             const post = posts[i];
-            if (!post) { item.hidden = true; return; }
+            if (!post) { item.remove(); return; }
             item.href = post.url;
             item.setAttribute('aria-label', post.alt || 'Instagram');
             const img = item.querySelector('img');
@@ -672,6 +689,7 @@ const perks = [
               date.textContent = d.toLocaleDateString(lang, { day: 'numeric', month: 'long', year: 'numeric' }).toUpperCase();
             }
           });
+          fitIgRow();
         })
         .catch(() => { /* keep the static photos */ });
     }
@@ -1936,7 +1954,7 @@ const perks = [
   /* Grid */
   .hm-ig__grid {
     display: grid;
-    grid-template-columns: repeat(var(--ig-cols, 7), 1fr); /* posts + "Vedi di più" (set by the live feed) */
+    grid-template-columns: repeat(var(--ig-cols, 7), 1fr); /* one row: as many posts as fit + "Vedi di più" (set by fitIgRow) */
     grid-template-rows: 1fr;
     gap: 4px;
   }
