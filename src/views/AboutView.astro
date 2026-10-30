@@ -1106,6 +1106,33 @@ const steps: { title: string; text: string }[] = it
 <script>
   const srvGrid = document.querySelector<HTMLElement>('[data-srv-grid]');
   if (srvGrid) {
+    // Title, subtitle and each bullet (by position) take the height of the
+    // tallest one across the three cards, so every line starts at the same
+    // height in every card.
+    const srvCards = Array.from(srvGrid.querySelectorAll<HTMLElement>('.srv-card'));
+    const srvBullets = srvCards.map((c) => Array.from(c.querySelectorAll<HTMLElement>('.srv-card__bullets li')));
+    const srvRows = [
+      ...['.srv-card__title', '.srv-card__sub'].map((sel) => Array.from(srvGrid.querySelectorAll<HTMLElement>(sel))),
+      ...Array.from({ length: Math.max(...srvBullets.map((b) => b.length)) }, (_, i) =>
+        srvBullets.map((b) => b[i]).filter((li): li is HTMLElement => Boolean(li))),
+    ];
+    const alignSrvCards = () => {
+      for (const row of srvRows) {
+        row.forEach((el) => { el.style.minHeight = ''; });
+        const tallest = Math.max(...row.map((el) => el.offsetHeight));
+        row.forEach((el) => { el.style.minHeight = `${tallest}px`; });
+      }
+    };
+    alignSrvCards();
+    let srvGridWidth = srvGrid.offsetWidth; // re-align only when the width changes (text re-wraps)
+    new ResizeObserver(() => {
+      if (srvGrid.offsetWidth === srvGridWidth) return;
+      srvGridWidth = srvGrid.offsetWidth;
+      alignSrvCards();
+    }).observe(srvGrid);
+    window.addEventListener('resize', alignSrvCards);
+    document.fonts?.ready.then(alignSrvCards);
+
     const srvPrev = document.querySelector<HTMLButtonElement>('[data-srv-prev]');
     const srvNext = document.querySelector<HTMLButtonElement>('[data-srv-next]');
     const srvDots = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-srv-dot]'));

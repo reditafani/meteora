@@ -2348,6 +2348,25 @@ const perks = [
   // ── Event types carousel (mobile) ──────────────────────────────────────
   const evGrid = document.querySelector<HTMLElement>('[data-ev-grid]');
   if (evGrid) {
+    // Card titles sit above their subtitle: when the subtitles wrap to a
+    // different number of lines the titles end up at different heights.
+    // Every subtitle takes the height of the tallest one, so the titles line up.
+    const evSubs = Array.from(evGrid.querySelectorAll<HTMLElement>('.hm-ev__card-sub'));
+    const alignEvTitles = () => {
+      evSubs.forEach((s) => { s.style.minHeight = ''; });
+      const tallest = Math.max(...evSubs.map((s) => s.offsetHeight));
+      evSubs.forEach((s) => { s.style.minHeight = `${tallest}px`; });
+    };
+    alignEvTitles();
+    let evGridWidth = evGrid.offsetWidth; // re-align only when the width changes (text re-wraps)
+    new ResizeObserver(() => {
+      if (evGrid.offsetWidth === evGridWidth) return;
+      evGridWidth = evGrid.offsetWidth;
+      alignEvTitles();
+    }).observe(evGrid);
+    window.addEventListener('resize', alignEvTitles);
+    document.fonts?.ready.then(alignEvTitles);
+
     const evPrev = document.querySelector<HTMLButtonElement>('[data-ev-prev]');
     const evNext = document.querySelector<HTMLButtonElement>('[data-ev-next]');
     const evDots = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-ev-dot]'));
