@@ -20,6 +20,8 @@ import privImg from '@/assets/images/bars/private-bar-night.jpg';
 import procBg  from '@/assets/images/bars/bartender-event.jpg';
 import pkgBg   from '@/assets/images/venues/tuscany-window-view.jpg';
 import iceHoshi from '@/assets/images/cocktails/rosemary-cocktail.jpg';
+import weddCardImg from '@/assets/images/weddings/open-bar-matrimonio-villa-toscana.jpg';
+import corpCardImg from '@/assets/images/corporate/bar-catering-evento-aziendale.webp';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -70,13 +72,13 @@ const eventTypes = [
   {
     label: it ? 'Matrimoni'         : 'Weddings',
     sub:   it ? 'Il giorno più fotografato della vostra vita merita un bar all\'altezza.' : 'The most photographed day of your life deserves a bar to match.',
-    img: weddImg, alt: it ? 'Sposi che versano champagne su una tower di coppe' : 'Couple pouring champagne over a coupe tower',
+    img: weddCardImg, quality: 90, alt: it ? 'Sposa con velo e bouquet sulla terrazza di una villa per matrimoni in Italia' : 'Bride with veil and bouquet on the terrace of an Italian wedding villa',
     href: url('services', lang),
   },
   {
     label: it ? 'Eventi aziendali' : 'Corporate events',
     sub:   it ? 'La cura di un matrimonio, per l\'immagine della vostra azienda.' : 'Wedding-level care, for your company\'s image.',
-    img: corpImg, alt: it ? 'Tavolo elegante per un evento aziendale' : 'Elegant table at a corporate event',
+    img: corpCardImg, quality: 90, alt: it ? 'Convention aziendale in una grande sala con pubblico, palco e maxischermi' : 'Corporate convention in a large hall with audience, stage and big screens',
     href: url('services', lang),
   },
   {
@@ -216,7 +218,7 @@ const perks = [
           {eventTypes.map((ev, i) => (
             <a class="hm-ev__card" href={ev.href} data-reveal style={`--delay:${i * 0.07}s`}>
               <div class="hm-ev__card-img">
-                <Img src={ev.img} alt={ev.alt} sizes="(min-width: 900px) 33vw, 90vw" />
+                <Img src={ev.img} alt={ev.alt} quality={ev.quality} sizes="(min-width: 900px) 33vw, 90vw" />
               </div>
               <div class="hm-ev__card-overlay">
                 <h3 class="hm-ev__card-name">{ev.label}</h3>

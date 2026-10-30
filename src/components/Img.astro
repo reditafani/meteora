@@ -14,9 +14,11 @@ interface Props {
   class?: string;
   position?: string;
   widths?: number[];
+  /** compression quality (default 78); raise it for showcase photos */
+  quality?: number;
 }
 
-const { src, alt, sizes = '100vw', priority = false, class: cls, position, widths } = Astro.props;
+const { src, alt, sizes = '100vw', priority = false, class: cls, position, widths, quality = 78 } = Astro.props;
 const base = widths ?? [480, 720, 960, 1280, 1600, 2000];
 const w = base.filter((x) => x < src.width).concat(src.width);
 ---
@@ -28,7 +30,7 @@ const w = base.filter((x) => x < src.width).concat(src.width);
   sizes={sizes}
   formats={['avif', 'webp']}
   fallbackFormat="jpg"
-  quality={78}
+  quality={quality}
   loading={priority ? 'eager' : 'lazy'}
   decoding={priority ? 'sync' : 'async'}
   fetchpriority={priority ? 'high' : 'auto'}
