@@ -9,3 +9,6 @@ dist/
 meteora-events-dist.zip
 public/api/config.php
 __pycache__/
+
+# local email previews (never published)
+public/_email-preview/

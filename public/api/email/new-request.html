@@ -1,0 +1,67 @@
+{{head}}
+<body id="body" class="em-body" style="margin:0;padding:0;background-color:#e6dfd5;">
+<!-- Internal email: a new request from the site, sent to info@ (filled by public/api/emails.php) -->
+<div style="display:none;font-size:1px;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;">{{preheader}}&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;</div>
+
+<table role="presentation" class="em-page" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#e6dfd5;">
+<tr><td align="center" style="padding:24px 12px;">
+
+  <!--[if mso]><table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->
+  <table role="presentation" class="em-shell em-bg" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;background-color:#f8f3ec;">
+
+    <!-- HEAD -->
+    <tr><td class="em-hero-pad" align="center" style="padding:40px 40px 28px;">
+      <!-- logo: when images are not loaded, the "Meteora Events" alt text takes its place -->
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center"><tr>
+        <td class="em-gold" align="center" style="font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:24px;letter-spacing:1px;color:#a8874f;">
+          <img src="{{logo_url}}" width="160" alt="Meteora Events" style="display:block;width:160px;height:auto;max-width:160px;border:0;margin:0 auto;font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:24px;letter-spacing:1px;text-align:center;color:#a8874f;">
+        </td>
+      </tr></table>
+      <p class="em-gold" style="margin:26px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:16px;letter-spacing:4px;text-transform:uppercase;color:#a8874f;">{{eyebrow}}</p>
+      <h1 class="em-serif em-headline em-text" style="margin:12px 0 0;font-family:Georgia,'Times New Roman',serif;font-size:34px;line-height:40px;font-weight:400;color:#1c1614;">{{headline_html}}</h1>
+      <p class="em-muted" style="margin:12px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:22px;color:#6b6058;">{{received}}</p>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:24px auto 0;"><tr><td class="em-rule" width="48" height="1" style="width:48px;height:1px;font-size:0;line-height:0;background-color:#c7ad80;">&nbsp;</td></tr></table>
+    </td></tr>
+
+    <!-- CLIENT DETAILS -->
+    <tr><td class="em-pad" style="padding:0 40px 28px;">
+      <table role="presentation" class="em-box" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#efe6da;">
+        <tr><td class="em-summary-pad" style="padding:20px 22px 8px;">
+          <p class="em-gold em-line" style="margin:0;padding-bottom:10px;border-bottom:1px solid #ddd0bc;font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:16px;letter-spacing:3px;text-transform:uppercase;color:#a8874f;">{{details_title}}</p>
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+            {{rows}}
+          </table>
+        </td></tr>
+      </table>
+    </td></tr>
+
+    <!-- MESSAGE -->
+    {{message_block}}
+
+    <!-- FOOTER -->
+    <tr><td class="em-foot em-pad" align="center" style="padding:22px 40px 24px;background-color:#efe7dc;">
+      <p class="em-soft" style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:18px;color:#8a7f74;">{{meta}}</p>
+    </td></tr>
+
+  </table>
+  <!--[if mso]></td></tr></table><![endif]-->
+
+</td></tr>
+</table>
+</body>
+</html>
+<!--BLOCK:row-->
+            <tr>
+              <td class="em-label em-gold em-line" valign="top" width="108" style="width:108px;padding:13px 10px 13px 0;border-bottom:1px solid #ddd0bc;font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:20px;letter-spacing:2px;text-transform:uppercase;color:#a8874f;">{{label}}</td>
+              <td class="em-text em-line" valign="top" style="padding:12px 0;border-bottom:1px solid #ddd0bc;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:22px;color:#1c1614;word-break:break-word;">{{value_html}}</td>
+            </tr>
+<!--/BLOCK:row-->
+<!--BLOCK:message-->
+    <tr><td class="em-pad" style="padding:0 40px 36px;">
+      <p class="em-gold" style="margin:0 0 10px;font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:16px;letter-spacing:3px;text-transform:uppercase;color:#a8874f;">{{message_title}}</p>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td class="em-line" width="2" style="width:2px;background-color:#c7ad80;font-size:0;line-height:0;">&nbsp;</td>
+        <td class="em-serif em-text" style="padding:2px 0 2px 18px;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:17px;line-height:27px;color:#3a322c;word-break:break-word;">{{message_html}}</td>
+      </tr></table>
+    </td></tr>
+<!--/BLOCK:message-->

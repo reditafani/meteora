@@ -129,11 +129,12 @@ if ($errors) {
 // ---- Compose ----
 $isPartner = $type === 'partner';
 $proTypes = ['wedding-planner' => 'Wedding planner', 'location' => 'Location / Villa'];
+$proTypeRaw = $data['pro_type'] ?? ''; // the confirmation email translates it itself
 if ($isPartner) {
     $data['pro_type'] = $proTypes[$data['pro_type']] ?? $data['pro_type'];
 }
 // date and venue are optional: add them to the subject only when given
-$eventInfo = implode(', ', array_filter([$data['event_date'], $data['event_location']], 'strlen'));
+$eventInfo = implode(', ', array_filter([$data['event_date'] ?? '', $data['event_location'] ?? ''], 'strlen'));
 $subject = $isPartner
     ? "Richiesta professionista — {$data['pro_type']} — {$data['full_name']}"
     : "Richiesta preventivo — {$data['full_name']}" . ($eventInfo !== '' ? " — {$eventInfo}" : '');
@@ -157,7 +158,17 @@ $html = '<div style="background:#f9f2e8;padding:32px"><div style="max-width:640p
     . '<table role="presentation" style="border-collapse:collapse;width:100%">' . $rowsHtml . '</table>'
     . '<p style="font:12px Arial,sans-serif;color:#675d53;margin-top:24px">' . htmlspecialchars($meta, ENT_QUOTES, 'UTF-8') . '</p></div></div>';
 
-$to = $isPartner && !empty($cfg['partner_recipient']) ? (string) $cfg['partner_recipient'] : (string) $cfg['recipient'];
+// Designed version of the same email (emails.php + email/new-request.html). The
+// simple one above stays as a fallback: if anything goes wrong in the designed
+// template, the request is still sent.
+try {
+    require_once __DIR__ . '/emails.php';
+    $html = meteora_notification($type, $lang, $data, $ip);
+} catch (Throwable $e) {
+    error_log('meteora notification template: ' . $e->getMessage());
+}
+
+$to =$isPartner && !empty($cfg['partner_recipient']) ? (string) $cfg['partner_recipient'] : (string) $cfg['recipient'];
 $replyTo = $data['full_name'];
 $replyTo = '=?UTF-8?B?' . base64_encode($replyTo) . "?= <{$data['email']}>";
 
@@ -170,23 +181,20 @@ if (!$sent) {
 $hits[] = $now;
 @file_put_contents($rlFile, implode(',', $hits), LOCK_EX);
 
-// Optional auto-reply to the sender
+// Confirmation email to the sender, in the language of the page they wrote from
+// (template: email/request-received.html, copy and safety rules: emails.php).
+// The request has already reached us at this point: whatever goes wrong here
+// (even a broken template or emails.php) must never fail the submission.
 if (!empty($cfg['send_autoreply'])) {
-    // Deliberately generic: no user-supplied text is echoed back, so the
-    // auto-reply cannot be abused to relay content to third parties.
-    if ($lang === 'it') {
-        $arSubject = 'Abbiamo ricevuto la vostra richiesta — Meteora Events';
-        $arText = "Buongiorno,\n\ngrazie per averci scritto. Abbiamo ricevuto la vostra richiesta e vi risponderemo al più presto.\n\nMeteora Events\nLuxury Open Bar Catering & Hospitality Services\ninfo@meteoraevents.com · meteoraevents.com";
-        $arBody = "<p>Buongiorno,</p><p>grazie per averci scritto. Abbiamo ricevuto la vostra richiesta e vi risponderemo al più presto.</p>";
-    } else {
-        $arSubject = 'We have received your request — Meteora Events';
-        $arText = "Hello,\n\nthank you for getting in touch. We have received your request and will reply as soon as possible.\n\nMeteora Events\nLuxury Open Bar Catering & Hospitality Services\ninfo@meteoraevents.com · meteoraevents.com";
-        $arBody = "<p>Hello,</p><p>thank you for getting in touch. We have received your request and will reply as soon as possible.</p>";
+    try {
+        require_once __DIR__ . '/emails.php';
+        [$arSubject, $arText, $arHtml] = meteora_autoreply($type, $lang, ['pro_type_raw' => $proTypeRaw] + $data);
+        if (!$mailer->send($data['email'], $arSubject, $arText, $arHtml, (string) $cfg['recipient'])) {
+            error_log('meteora autoreply: not sent to ' . $data['email']);
+        }
+    } catch (Throwable $e) {
+        error_log('meteora autoreply: ' . $e->getMessage());
     }
-    $arHtml = '<div style="background:#f9f2e8;padding:32px"><div style="max-width:560px;margin:auto;background:#fffaf3;padding:32px;border:1px solid #ddd0bc;font:16px/1.6 Georgia,serif;color:#1c1614">'
-        . '<p style="font:12px Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#7a5f37">Meteora Events</p>'
-        . $arBody . '<p style="font:13px Arial,sans-serif;color:#675d53">Meteora Events · Luxury Open Bar Catering &amp; Hospitality Services<br>info@meteoraevents.com · meteoraevents.com</p></div></div>';
-    $mailer->send($data['email'], $arSubject, $arText, $arHtml, (string) $cfg['recipient']);
 }
 
 respond(true, 200, [], $redirect);
