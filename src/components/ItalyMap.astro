@@ -131,7 +131,7 @@ const slides = [
           {slides.map((slide, i) => (
             <div class:list={['map-slide', i === 0 && 'is-active']} data-slide={i}>
               <Img src={slide.img} alt={slide.alt} sizes="(min-width: 900px) 38vw, 80vw" widths={[480, 800, 1200]} />
-              <p class="map-credit">{slide.place} · {it ? 'Foto' : 'Photo'} {slide.photo}</p>
+              <p class="map-credit">{slide.place} · {it ? 'Foto di' : 'Photo by'} {slide.photo}</p>
             </div>
           ))}
           <button class="map-arrow map-prev" aria-label={it ? 'Precedente' : 'Previous'}>

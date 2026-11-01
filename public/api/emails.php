@@ -17,6 +17,9 @@ declare(strict_types=1);
 
 const METEORA_SITE_URL = 'https://meteoraevents.com';
 const METEORA_LOGO_URL = 'https://meteoraevents.com/images/email/logo-meteora-gold.png';
+// the same logo on the server: the mailer puts it inside the email (see MeteoraMailer::send)
+const METEORA_LOGO_FILE = __DIR__ . '/../images/email/logo-meteora-gold.png';
+const METEORA_INLINE_IMAGES = [METEORA_LOGO_URL => METEORA_LOGO_FILE];
 const METEORA_WHATSAPP = 'https://wa.me/393280642479';
 
 /** One-line value safe to echo to a third party: no links or addresses, limited length. */

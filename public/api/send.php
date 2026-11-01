@@ -173,7 +173,7 @@ $replyTo = $data['full_name'];
 $replyTo = '=?UTF-8?B?' . base64_encode($replyTo) . "?= <{$data['email']}>";
 
 $mailer = new MeteoraMailer($cfg);
-$sent = $mailer->send($to, $subject, $text, $html, $replyTo);
+$sent = $mailer->send($to, $subject, $text, $html, $replyTo, defined('METEORA_INLINE_IMAGES') ? METEORA_INLINE_IMAGES : []);
 
 if (!$sent) {
     respond(false, 500, ['error' => 'send_failed'], $redirect . '?error=1');
@@ -189,7 +189,7 @@ if (!empty($cfg['send_autoreply'])) {
     try {
         require_once __DIR__ . '/emails.php';
         [$arSubject, $arText, $arHtml] = meteora_autoreply($type, $lang, ['pro_type_raw' => $proTypeRaw] + $data);
-        if (!$mailer->send($data['email'], $arSubject, $arText, $arHtml, (string) $cfg['recipient'])) {
+        if (!$mailer->send($data['email'], $arSubject, $arText, $arHtml, (string) $cfg['recipient'], METEORA_INLINE_IMAGES)) {
             error_log('meteora autoreply: not sent to ' . $data['email']);
         }
     } catch (Throwable $e) {

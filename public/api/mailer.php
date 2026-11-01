@@ -10,9 +10,24 @@ final class MeteoraMailer
     /** @param array<string,mixed> $cfg */
     public function __construct(private array $cfg) {}
 
-    public function send(string $to, string $subject, string $text, string $html, ?string $replyTo = null): bool
+    /**
+     * @param array<string,string> $inline image URL used in $html => local file. Each URL
+     *   found in $html is swapped for an image carried inside the email itself (cid:), so
+     *   it shows even when the mail program does not download images from the web.
+     */
+    public function send(string $to, string $subject, string $text, string $html, ?string $replyTo = null, array $inline = []): bool
     {
         $boundary = 'b_' . bin2hex(random_bytes(12));
+        $parts = [];
+        foreach ($inline as $url => $file) {
+            $data = str_contains($html, $url) && is_file($file) ? @file_get_contents($file) : false;
+            if ($data === false) {
+                continue;
+            }
+            $cid = 'img' . count($parts) . '.' . bin2hex(random_bytes(6)) . '@meteoraevents.com';
+            $html = str_replace($url, 'cid:' . $cid, $html);
+            $parts[] = ['cid' => $cid, 'name' => basename($file), 'data' => $data];
+        }
         $fromEmail = (string) $this->cfg['from_email'];
         $fromName = (string) $this->cfg['from_name'];
         $headers = [
@@ -26,12 +41,28 @@ final class MeteoraMailer
         if ($replyTo) {
             $headers['Reply-To'] = $replyTo;
         }
+        $htmlPart = "Content-Type: text/html; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n"
+            . chunk_split(base64_encode($html));
+        if ($parts) {
+            // multipart/alternative { text, multipart/related { html, images } }
+            $rel = 'r_' . bin2hex(random_bytes(12));
+            $related = "--{$rel}\r\n" . $htmlPart;
+            foreach ($parts as $p) {
+                $related .= "--{$rel}\r\n"
+                    . "Content-Type: image/png; name=\"{$p['name']}\"\r\n"
+                    . "Content-Transfer-Encoding: base64\r\n"
+                    . "Content-ID: <{$p['cid']}>\r\n"
+                    . "Content-Disposition: inline; filename=\"{$p['name']}\"\r\n\r\n"
+                    . chunk_split(base64_encode($p['data']));
+            }
+            $htmlPart = "Content-Type: multipart/related; type=\"text/html\"; boundary=\"{$rel}\"\r\n\r\n"
+                . $related . "--{$rel}--\r\n";
+        }
         $body = "--{$boundary}\r\n"
             . "Content-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n"
             . chunk_split(base64_encode($text))
             . "--{$boundary}\r\n"
-            . "Content-Type: text/html; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n"
-            . chunk_split(base64_encode($html))
+            . $htmlPart
             . "--{$boundary}--\r\n";
         $encSubject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
 
