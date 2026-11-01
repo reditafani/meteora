@@ -8,10 +8,10 @@ import PageHero from '@/components/PageHero.astro';
 import Img from '@/components/Img.astro';
 import Field from '@/components/Field.astro';
 import { site } from '@/data/site';
-import tableMain  from '@/assets/images/details/table-setting-gold.jpg';
-import mintOver   from '@/assets/images/details/mint-coupes.jpg';
-import venueMain  from '@/assets/images/venues/wedding-table-flowers.jpg';
-import barOver    from '@/assets/images/bars/golden-marble-night.jpg';
+import cocktailMain from '@/assets/images/bars/wedding-bar-cocktail-pouring.jpg';
+import tableOver  from '@/assets/images/details/wedding-table-setting-flowers-menu.jpg';
+import venueMain  from '@/assets/images/venues/wedding-venue-villa-entrance.jpg';
+import plannerOver from '@/assets/images/weddings/wedding-planner-planning-calendar.jpg';
 import aerial     from '@/assets/images/weddings/wedding-aerial.jpg';
 
 interface Props { lang: Lang }
@@ -109,11 +109,11 @@ const privacyShort = privacyFull.replace(' per ricevere una risposta', '').repla
             <div class="ct__imgs">
               <div class="ct__img-a-wrap">
                 <div class="ct__img-a">
-                  <Img src={tableMain} alt={it ? 'Tavola elegante con piatti dorati e fiori bianchi' : 'Elegant table with gold plates and white flowers'} sizes="(min-width: 960px) 20vw, 45vw" widths={[300, 500, 700]} />
+                  <Img src={cocktailMain} alt={it ? 'Bartender che versa un cocktail al bar di un matrimonio' : 'Bartender pouring a cocktail at a wedding bar'} sizes="(min-width: 960px) 20vw, 45vw" widths={[300, 500, 700]} quality={82} />
                 </div>
               </div>
               <div class="ct__img-b">
-                <Img src={mintOver} alt={it ? 'Coppe con menta fresca' : 'Coupes with fresh mint'} sizes="(min-width: 960px) 13vw, 30vw" widths={[250, 450]} />
+                <Img src={tableOver} alt={it ? 'Mise en place di matrimonio con fiori colorati, menu e posate dorate' : 'Wedding table setting with colourful flowers, menu and gold cutlery'} sizes="(min-width: 960px) 13vw, 30vw" widths={[250, 450]} quality={82} />
               </div>
             </div>
             <p class="ct__quote"><em>{it ? 'Ogni dettaglio, al suo posto.' : 'Every detail, in its place.'}</em></p>
@@ -131,11 +131,11 @@ const privacyShort = privacyFull.replace(' per ricevere una risposta', '').repla
             <div class="ct__imgs">
               <div class="ct__img-a-wrap">
                 <div class="ct__img-a">
-                  <Img src={venueMain} alt={it ? 'Tavola matrimoniale con fiori bianchi' : 'Wedding table with white flowers'} sizes="(min-width: 960px) 20vw, 45vw" widths={[300, 500, 700]} />
+                  <Img src={venueMain} alt={it ? 'Ingresso affrescato di una villa per matrimoni con il portone aperto sul giardino' : 'Frescoed entrance of a wedding villa with the door open onto the garden'} sizes="(min-width: 960px) 20vw, 45vw" widths={[300, 500, 700]} quality={82} />
                 </div>
               </div>
               <div class="ct__img-b">
-                <Img src={barOver} alt={it ? 'Banco bar dorato di notte' : 'Golden bar at night'} sizes="(min-width: 960px) 13vw, 30vw" widths={[250, 450]} />
+                <Img src={plannerOver} alt={it ? 'Wedding planner che pianifica le date dei matrimoni sull\'agenda' : 'Wedding planner planning wedding dates in a diary'} sizes="(min-width: 960px) 13vw, 30vw" widths={[250, 450]} quality={82} />
               </div>
             </div>
             <div class="ct__benefits">
