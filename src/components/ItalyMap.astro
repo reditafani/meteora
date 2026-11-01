@@ -1,12 +1,23 @@
 ---
 import type { Lang } from '@/i18n/routes';
 import Img from '@/components/Img.astro';
-import banquetHall     from '@/assets/images/venues/banquet-hall.jpg';
-import florencePanorama from '@/assets/images/destinations/florence-panorama.jpg';
-import amalfiCoast     from '@/assets/images/destinations/amalfi-coast.jpg';
-import tuscanyHills    from '@/assets/images/destinations/tuscany-hills.jpg';
-import lakeComo        from '@/assets/images/destinations/lake-como.jpg';
-import tuscanyVilla    from '@/assets/images/destinations/tuscany-villa-aerial.jpg';
+import wFlorenceDuomo from '@/assets/images/destinations/weddings/wedding-florence-duomo.jpg';
+import wChiantiVineyards from '@/assets/images/destinations/weddings/wedding-chianti-vineyards.jpg';
+import wValDOrciaCypresses from '@/assets/images/destinations/weddings/wedding-val-d-orcia-cypresses.jpg';
+import wSienaHillsSunset from '@/assets/images/destinations/weddings/wedding-siena-hills-sunset.jpg';
+import wLuccaOldTown from '@/assets/images/destinations/weddings/wedding-lucca-old-town.jpg';
+import wVersiliaBeachPier from '@/assets/images/destinations/weddings/wedding-versilia-beach-pier.jpg';
+import wMaremmaPoppyFields from '@/assets/images/destinations/weddings/wedding-maremma-poppy-fields.jpg';
+import wLakeComoVilla from '@/assets/images/destinations/weddings/wedding-lake-como-villa.jpg';
+import wAmalfiCoastPositano from '@/assets/images/destinations/weddings/wedding-amalfi-coast-positano.jpg';
+import wPugliaTrulli from '@/assets/images/destinations/weddings/wedding-puglia-trulli.jpg';
+import wRomeColosseum from '@/assets/images/destinations/weddings/wedding-rome-colosseum.jpg';
+import wLakeGardaLimone from '@/assets/images/destinations/weddings/wedding-lake-garda-limone.jpg';
+import wUmbriaAssisi from '@/assets/images/destinations/weddings/wedding-umbria-assisi.jpg';
+import wVeniceCanal from '@/assets/images/destinations/weddings/wedding-venice-canal.jpg';
+import wLanghePiedmont from '@/assets/images/destinations/weddings/wedding-langhe-piedmont.jpg';
+import wPortofinoHarbour from '@/assets/images/destinations/weddings/wedding-portofino-harbour.jpg';
+import wCapriFaraglioni from '@/assets/images/destinations/weddings/wedding-capri-faraglioni.jpg';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -20,13 +31,43 @@ const weddingItems = it
   ? ['Lago di Como', 'Costiera Amalfitana', 'Puglia', 'Roma', 'Lago di Garda', 'Umbria', 'Venezia']
   : ['Lake Como', 'Amalfi Coast', 'Puglia', 'Rome', 'Lake Garda', 'Umbria', 'Venice'];
 
+// Gallery: one photo per destination listed on the left (same order), each
+// credited with the place and the photographer in the caption
 const slides = [
-  { img: florencePanorama, alt: it ? 'Panorama di Firenze con il Duomo' : 'Florence panorama with the Duomo' },
-  { img: amalfiCoast,      alt: it ? 'Costiera Amalfitana vista dal mare' : 'Amalfi Coast seen from the sea' },
-  { img: tuscanyHills,     alt: it ? 'Colline toscane al tramonto' : 'Tuscany hills at sunset' },
-  { img: lakeComo,         alt: it ? 'Lago di Como con fiori in primo piano' : 'Lake Como with flowers in the foreground' },
-  { img: tuscanyVilla,     alt: it ? 'Villa toscana vista dall\'alto con piscina' : 'Aerial view of Tuscan villa with pool' },
-  { img: banquetHall,      alt: it ? 'Sala da banchetto con soffitto affrescato' : 'Banquet hall with frescoed ceiling' },
+  { img: wFlorenceDuomo, place: it ? "Firenze" : "Florence", photo: 'Spencer Davis',
+    alt: it ? 'Matrimonio a Firenze: il Duomo sopra i tetti della città' : 'Wedding in Florence: the Duomo above the city rooftops' },
+  { img: wChiantiVineyards, place: it ? "Chianti" : "Chianti", photo: 'Johny Goerend',
+    alt: it ? 'Matrimonio nel Chianti tra vigneti e colline' : 'Wedding in Chianti among vineyards and hills' },
+  { img: wValDOrciaCypresses, place: it ? "Val d'Orcia" : "Val d'Orcia", photo: 'Doozydoom',
+    alt: it ? 'Matrimonio in Val d’Orcia: viale di cipressi tra le colline' : 'Wedding in Val d’Orcia: cypress avenue across the hills' },
+  { img: wSienaHillsSunset, place: it ? "Siena" : "Siena", photo: 'Wolfgang Hasselmann',
+    alt: it ? 'Matrimonio a Siena: colline senesi al tramonto' : 'Wedding in Siena: Sienese hills at sunset' },
+  { img: wLuccaOldTown, place: it ? "Lucca" : "Lucca", photo: 'Kateryna Senkevyich',
+    alt: it ? 'Matrimonio a Lucca: torri e tetti del centro storico' : 'Wedding in Lucca: towers and rooftops of the old town' },
+  { img: wVersiliaBeachPier, place: it ? "Versilia" : "Versilia", photo: 'Samuele Bertoli',
+    alt: it ? 'Matrimonio in Versilia: pontile sul mare al tramonto' : 'Wedding in Versilia: seaside pier at sunset' },
+  { img: wMaremmaPoppyFields, place: it ? "Maremma" : "Maremma", photo: 'Daniele Levis Pelusi',
+    alt: it ? 'Matrimonio in Maremma tra campi di papaveri' : 'Wedding in Maremma among poppy fields' },
+  { img: wLakeComoVilla, place: it ? "Lago di Como" : "Lake Como", photo: 'Lewis J Goetz',
+    alt: it ? 'Matrimonio sul Lago di Como: villa affacciata sull’acqua' : 'Wedding on Lake Como: villa overlooking the water' },
+  { img: wAmalfiCoastPositano, place: it ? "Costiera Amalfitana" : "Amalfi Coast", photo: 'Alessio Bachetti',
+    alt: it ? 'Matrimonio in Costiera Amalfitana: scogliere e mare turchese' : 'Wedding on the Amalfi Coast: cliffs and turquoise sea' },
+  { img: wPugliaTrulli, place: it ? "Puglia" : "Puglia", photo: 'Tania Lyahnovich',
+    alt: it ? 'Matrimonio in Puglia tra trulli e bouganville' : 'Wedding in Puglia among trulli and bougainvillea' },
+  { img: wRomeColosseum, place: it ? "Roma" : "Rome", photo: 'Spencer Davis',
+    alt: it ? 'Matrimonio a Roma: il Colosseo visto dall’alto' : 'Wedding in Rome: aerial view of the Colosseum' },
+  { img: wLakeGardaLimone, place: it ? "Lago di Garda" : "Lake Garda", photo: 'Patrick Federi',
+    alt: it ? 'Matrimonio sul Lago di Garda: borgo tra montagne e lago' : 'Wedding on Lake Garda: village between mountains and lake' },
+  { img: wUmbriaAssisi, place: it ? "Umbria" : "Umbria", photo: 'Achim Ruhnau',
+    alt: it ? 'Matrimonio in Umbria: la rocca di Assisi' : 'Wedding in Umbria: the fortress of Assisi' },
+  { img: wVeniceCanal, place: it ? "Venezia" : "Venice", photo: 'Thomas Haas',
+    alt: it ? 'Matrimonio a Venezia: canale al tramonto' : 'Wedding in Venice: canal at sunset' },
+  { img: wLanghePiedmont, place: it ? "Langhe" : "Langhe", photo: 'David Salamanca',
+    alt: it ? 'Matrimonio nelle Langhe: campanile e colline del Piemonte' : 'Wedding in the Langhe: bell tower and Piedmont hills' },
+  { img: wPortofinoHarbour, place: it ? "Portofino" : "Portofino", photo: 'Indrek Gutmann',
+    alt: it ? 'Matrimonio a Portofino: il porticciolo e le case colorate' : 'Wedding in Portofino: the harbour and its colourful houses' },
+  { img: wCapriFaraglioni, place: it ? "Capri" : "Capri", photo: 'Andy Holmes',
+    alt: it ? 'Matrimonio a Capri: i Faraglioni e il mare' : 'Wedding in Capri: the Faraglioni and the sea' },
 ];
 ---
 
@@ -90,6 +131,7 @@ const slides = [
           {slides.map((slide, i) => (
             <div class:list={['map-slide', i === 0 && 'is-active']} data-slide={i}>
               <Img src={slide.img} alt={slide.alt} sizes="(min-width: 900px) 38vw, 80vw" widths={[480, 800, 1200]} />
+              <p class="map-credit">{slide.place} · {it ? 'Foto' : 'Photo'} {slide.photo}</p>
             </div>
           ))}
           <button class="map-arrow map-prev" aria-label={it ? 'Precedente' : 'Previous'}>
@@ -272,6 +314,23 @@ const slides = [
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  /* place + photographer, small and neutral at the bottom of the photo */
+  .map-credit {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 1.6rem 0.9rem 0.55rem;
+    background: linear-gradient(to top, rgba(0 0 0 / 0.42), transparent);
+    color: rgba(255 255 255 / 0.88);
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    line-height: 1.3;
+    text-align: right;
+    pointer-events: none;
   }
 
   /* ── Arrows ── */
