@@ -138,15 +138,7 @@ const privacyShort = privacyFull.replace(' per ricevere una risposta', '').repla
                 <Img src={plannerOver} alt={it ? 'Wedding planner che pianifica le date dei matrimoni sull\'agenda' : 'Wedding planner planning wedding dates in a diary'} sizes="(min-width: 960px) 13vw, 30vw" widths={[250, 450]} quality={82} />
               </div>
             </div>
-            <div class="ct__benefits">
-              <p class="ct__benefits-hd">{it ? 'PER I PROFESSIONISTI' : 'FOR PROFESSIONALS'}</p>
-              <ul role="list">
-                <li>{it ? 'Listino partner riservato'                      : 'Reserved partner pricing'}</li>
-                <li>{it ? 'Un referente unico per ogni evento'             : 'A single point of contact for every event'}</li>
-                <li>{it ? 'Brochure Trade Edition per i vostri clienti'    : 'Trade Edition brochure for your clients'}</li>
-                <li>{it ? 'Priorità sulle date di alta stagione'           : 'Priority on peak season dates'}</li>
-              </ul>
-            </div>
+            <p class="ct__quote"><em>{it ? 'Il vostro partner affidabile, evento dopo evento.' : 'Your reliable partner, event after event.'}</em></p>
             <div class="ct__direct">
               <p class="ct__direct-lbl">{it ? 'Preferite scriverci direttamente?' : 'Prefer to write to us directly?'}</p>
               <a class="ct__direct-email" href={`mailto:${site.email}`}>{site.email}</a>
@@ -477,40 +469,6 @@ const privacyShort = privacyFull.replace(' per ricevere una risposta', '').repla
     font-size: 0.96rem;
     color: var(--color-text-muted);
     line-height: 1.6;
-  }
-
-  /* ── Pro benefits ── */
-  .ct__benefits {
-    margin-top: 0.5rem;
-  }
-  .ct__benefits-hd {
-    font-family: var(--font-sans);
-    font-size: 0.6rem;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    color: var(--color-text-muted);
-    margin-bottom: var(--space-s);
-  }
-  .ct__benefits ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    gap: 0.65rem;
-  }
-  .ct__benefits li {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.65rem;
-    font-size: 0.96rem;
-    line-height: 1.45;
-  }
-  .ct__benefits li::before {
-    content: '✓';
-    color: var(--color-accent-ink);
-    flex-shrink: 0;
-    font-size: 0.8rem;
-    margin-top: 0.1em;
   }
 
   /* ── Form section headers ── */
