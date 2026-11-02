@@ -218,12 +218,11 @@ p {
 .container--narrow {
   max-width: 62rem;
 }
+/* Spacing rule: every section gets the Large space (--pad-l) above and below;
+   two sections with the same background share one (see below). */
 .section {
-  padding-block: var(--section);
+  padding-block: var(--pad-l);
   position: relative;
-}
-.section--tight {
-  padding-block: var(--space-xl);
 }
 .section--alt {
   background: var(--color-background-secondary);
@@ -233,8 +232,11 @@ p {
   background: var(--color-dark);
   color: var(--color-on-dark);
 }
-.section:not(.section--alt, .section--dark) + .section:not(.section--alt, .section--dark),
-.section--alt + .section--alt {
+/* (a page <script> rendered between two sections must not break the pairing) */
+.section:not(.section--alt, .section--dark, .on-dark) + .section:not(.section--alt, .section--dark, .on-dark),
+.section:not(.section--alt, .section--dark, .on-dark) + script + .section:not(.section--alt, .section--dark, .on-dark),
+.section--alt + .section--alt,
+.section--alt + script + .section--alt {
   padding-top: 0;
 }
 .stack > * + * {

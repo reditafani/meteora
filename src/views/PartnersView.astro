@@ -474,7 +474,6 @@ for (const p of allPros) {
   }
 
   /* ── Come funziona ── */
-  .pf-how { padding-top: var(--space-l); padding-bottom: var(--space-l); }
   .pf-how__eyebrow {
     text-align: center;
     margin-bottom: var(--space-l);
@@ -606,8 +605,8 @@ for (const p of allPros) {
   .pf-section__grid {
     display: grid;
     gap: var(--space-m);
-    padding-top: var(--space-l);
-    padding-bottom: var(--space-xl);
+    padding-top: var(--pad-s);
+    padding-bottom: var(--pad-l);
     align-items: stretch;
   }
   .pf-section__grid > div { display: flex; }
@@ -809,10 +808,6 @@ for (const p of allPros) {
   }
 
   /* ── FAQ ── */
-  .pf-faq {
-    padding-top: var(--space-l);
-    padding-bottom: var(--space-l);
-  }
   .pf-faq__title {
     font-family: var(--font-display);
     font-size: clamp(1.8rem, 1.2rem + 2.5vw, 3.5rem);
@@ -904,7 +899,7 @@ for (const p of allPros) {
   .pf-cta {
     position: relative;
     overflow: hidden;
-    padding: clamp(3.2rem, 6.4vw, 5.6rem) 0;
+    padding: var(--pad-m) 0;
   }
   .pf-cta__bg {
     position: absolute;

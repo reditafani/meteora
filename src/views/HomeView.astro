@@ -983,7 +983,6 @@ const perks = [
 
   /* Desktop redesign: framed panel, years | divider | title | text */
   @media (min-width: 960px) {
-    .hm-intro { padding-block: calc(var(--section) * 0.5); }
     .hm-intro__row {
       grid-template-columns: 255fr 648fr 397fr;
       gap: 0;
@@ -1057,7 +1056,6 @@ const perks = [
   }
 
   /* ── Event types (dark) ── */
-  .hm-ev { padding-top: var(--space-l); }
   .hm-ev__head {
     margin-bottom: var(--space-s);
   }
@@ -1162,7 +1160,6 @@ const perks = [
   .hm-ev__dots  { display: none; }
 
   /* ── Services ── */
-  .hm-svc { padding-top: var(--space-l); }
   .hm-svc__header {
     margin-bottom: var(--space-s);
   }
@@ -1450,7 +1447,6 @@ const perks = [
   }
 
   /* ── Bar Collection ── */
-  .hm-bc { padding-top: var(--space-l); }
   .hm-bc__header {
     display: flex;
     justify-content: space-between;
@@ -1678,7 +1674,7 @@ const perks = [
   .hm-bc__stat-cta:hover { background: var(--color-accent-ink); }
 
   /* ── Process ── */
-  .hm-proc { padding-top: var(--space-l); padding-bottom: var(--space-m); background: var(--color-background); }
+  .hm-proc { background: var(--color-background); }
   .hm-proc__inner {
     display: grid;
     gap: var(--space-m);
@@ -1891,11 +1887,8 @@ const perks = [
   }
 
   /* ── Instagram ── */
-  .hm-ig { padding-top: var(--space-m); }
-  /* desktop: less space between the Instagram strip and the closing CTA/footer */
-  @media (min-width: 700px) {
-    .hm-ig { padding-bottom: calc(var(--section) * 0.6); }
-  }
+  /* the section above has a different background (plain), so its own top space */
+  .hm-ig { padding-top: var(--pad-l); }
   .hm-ig__head {
     display: flex;
     flex-direction: column;
@@ -2080,7 +2073,7 @@ const perks = [
   /* ── Home CTA ── */
   .hm-cta {
     background: var(--color-dark);
-    padding: clamp(2.5rem, 5vw, 4rem) 0;
+    padding: var(--pad-m) 0;
   }
   .hm-cta__inner {
     display: flex;
@@ -2213,8 +2206,6 @@ const perks = [
       margin-bottom: var(--space-s);
     }
     .hm-intro__types { display: none; }
-    /* less space before the next section ("Per ogni occasione") */
-    .hm-intro { padding-bottom: var(--space-l); }
     .hm-intro__cta {
       display: flex;
       width: fit-content; /* keeps its own width, so margin-left: auto pushes it right */

@@ -84,7 +84,7 @@ const sizes = [
   </section>
 
   <!-- ── Bar collection ── -->
-  <section class="section" style="padding-top: var(--space-l)">
+  <section class="section">
     <div class="container">
       <SectionHeading eyebrow={it ? 'La nostra collezione' : 'Our collection'} class="bars-collection-head">{it ? <>Il banco giusto <em>per ogni evento.</em></> : <>The right bar <em>for every event.</em></>}</SectionHeading>
       <ul class="bars" role="list">
@@ -368,7 +368,7 @@ const sizes = [
   /* ── CTA Band ── */
   .bars-cta {
     background: var(--color-dark);
-    padding: clamp(2.5rem, 5vw, 4rem) 0;
+    padding: var(--pad-m) 0;
   }
   .bars-cta__inner {
     display: flex;

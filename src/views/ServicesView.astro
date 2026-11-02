@@ -545,8 +545,6 @@ const schema = [
 
   /* ── Ice light section ── */
   .ice-lt {
-    padding-top: clamp(1.6rem, 3vw, 2.5rem);
-    padding-bottom: clamp(2.55rem, 5.1vw, 4.25rem);
     border-top: 1px solid rgba(207, 182, 138, 0.4);
   }
   .ice-lt__grid {
@@ -687,7 +685,7 @@ const schema = [
   /* ── svc-outro dark closer ── */
   .svc-outro {
     background: var(--color-dark);
-    padding: clamp(1.8rem, 3.5vw, 3rem) 0;
+    padding: var(--pad-m) 0;
   }
   .svc-outro__inner {
     display: flex;
@@ -758,8 +756,6 @@ const schema = [
   /* Mobile redesign: title + small framed photo side by side, text,
      one-row strip of six ice types */
   @media (max-width: 699px) {
-    /* bottom padding matches the top one */
-    .ice-lt { padding-bottom: clamp(1.6rem, 3vw, 2.5rem); }
     .ice-lt__grid {
       grid-template-columns: 1fr 30%;
       grid-template-areas:
