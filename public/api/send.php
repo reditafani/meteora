@@ -89,9 +89,36 @@ function oneLine(string $v): string
 }
 
 $msg = [
-    'it' => ['required' => 'Campo obbligatorio.', 'email' => 'Indirizzo email non valido.', 'consent' => 'Consenso obbligatorio.'],
-    'en' => ['required' => 'This field is required.', 'email' => 'Invalid email address.', 'consent' => 'Consent is required.'],
+    'it' => ['required' => 'Campo obbligatorio.', 'email' => 'Indirizzo email non valido.', 'email_domain' => 'Questo indirizzo email non sembra valido: controllalo.', 'consent' => 'Consenso obbligatorio.'],
+    'en' => ['required' => 'This field is required.', 'email' => 'Invalid email address.', 'email_domain' => "This email address doesn't look valid: please check it.", 'consent' => 'Consent is required.'],
 ][$lang];
+
+/**
+ * Can the domain of this address receive mail? Asks the DNS for its MX records.
+ * Only a clear "no" counts: if the lookup itself fails (network, timeout) the
+ * address is accepted, so a real visitor is never blocked by a problem of ours.
+ */
+function emailDomainReceivesMail(string $email): bool
+{
+    $domain = strtolower(substr((string) strrchr($email, '@'), 1));
+    if ($domain === '' || !function_exists('dns_get_record')) {
+        return true;
+    }
+    if (function_exists('idn_to_ascii')) {
+        $domain = idn_to_ascii($domain, IDNA_DEFAULT, INTL_IDNA_VARIANT_UTS46) ?: $domain;
+    }
+    $mx = @dns_get_record($domain . '.', DNS_MX);
+    if ($mx === false) {
+        return true; // lookup failed: don't block
+    }
+    // a "null MX" (target ".") means the domain declares it accepts no mail
+    foreach ($mx as $r) {
+        if (trim((string) ($r['target'] ?? ''), '.') !== '') {
+            return true;
+        }
+    }
+    return false;
+}
 
 // keys = field names sent by the two forms in src/views/ContactView.astro
 if ($type === 'quote') {
@@ -118,6 +145,8 @@ foreach ($required as $key) {
 }
 if ($data['email'] !== '' && !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
     $errors['email'] = $msg['email'];
+} elseif ($data['email'] !== '' && !emailDomainReceivesMail($data['email'])) {
+    $errors['email'] = $msg['email_domain'];
 }
 if (empty($_POST['privacy'])) {
     $errors['privacy'] = $msg['consent'];

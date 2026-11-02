@@ -110,11 +110,25 @@ export function initForm(form: HTMLFormElement) {
       });
       const data = (await res.json().catch(() => ({}))) as { ok?: boolean; errors?: Record<string, string> };
       if (!res.ok || !data.ok) {
+        // field errors from the server (e.g. an email domain that cannot receive
+        // mail): mark the fields and let the visitor fix them, like local checks
+        let firstBad: HTMLElement | null = null;
         if (data.errors) {
           for (const [name, msg] of Object.entries(data.errors)) {
             const el = form.querySelector<HTMLElement>(`[name="${name}"]`);
-            if (el) setError(el, msg);
+            if (el) {
+              setError(el, msg);
+              firstBad ??= el;
+            }
           }
+        }
+        if (res.status === 422 && firstBad) {
+          if (status) {
+            status.dataset.state = 'error';
+            status.textContent = m.invalid;
+          }
+          firstBad.focus();
+          return;
         }
         throw new Error(res.status === 429 ? 'rate_limited' : 'send_failed');
       }
