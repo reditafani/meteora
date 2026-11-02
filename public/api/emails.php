@@ -150,29 +150,23 @@ function ar_copy(string $type, string $lang): array
         'subject_plain' => "Thank you for getting in touch: we've received your request",
     ];
 
+    // preheader, steps and note are optional: empty = left out of the email.
+    // 'signature' set = one line "Redi <signature>" instead of "Redi" + role.
     if ($type === 'partner') {
         return $common + ($it ? [
-            'preheader' => 'Valuteremo la collaborazione e risponderemo entro 48 ore con il listino partner.',
+            'preheader' => '',
             'eyebrow'   => 'Richiesta partner ricevuta',
-            'intro'     => 'Abbiamo ricevuto la richiesta del listino partner e risponderemo <strong>entro 48 ore</strong>.',
-            'steps'     => [
-                ['Richiesta ricevuta', 'today', true],
-                ['Conosciamo la vostra attività', 'within', false],
-                ['Vi inviamo il listino partner', '', false],
-                ['Iniziamo a collaborare', 'dal primo matrimonio insieme', false],
-            ],
-            'note'      => 'Collaboriamo con un numero selezionato di wedding planner e location, per garantire a ogni coppia lo stesso livello di servizio.',
+            'intro'     => 'Abbiamo ricevuto la richiesta e risponderemo <strong>entro 48 ore</strong>.',
+            'steps'     => [],
+            'note'      => '',
+            'signature' => 'di Meteora Events',
         ] : [
-            'preheader' => "We'll review the partnership and get back to you within 48 hours with our partner price list.",
+            'preheader' => '',
             'eyebrow'   => 'Partner request received',
-            'intro'     => "We've received your partner pricing request and will get back to you <strong>within 48 hours</strong>.",
-            'steps'     => [
-                ['Request received', 'today', true],
-                ['Getting to know your business', 'within', false],
-                ['We send you our partner price list', '', false],
-                ['We start working together', 'from our first wedding together', false],
-            ],
-            'note'      => 'We work with a select number of wedding planners and venues, to guarantee every couple the same level of service.',
+            'intro'     => "We've received your request and will get back to you <strong>within 48 hours</strong>.",
+            'steps'     => [],
+            'note'      => '',
+            'signature' => 'from Meteora Events',
         ]);
     }
 
@@ -231,7 +225,8 @@ function meteora_autoreply(string $type, string $lang, array $data): array
     $c = ar_copy($type, $lang);
     $name = ar_first_name((string) ($data['full_name'] ?? ''));
     $rows = ar_rows($type, $lang, $data);
-    [$page, $b] = ar_template('request-received.html', ['summary', 'row', 'step', 'step_sub']);
+    [$page, $b] = ar_template('request-received.html', ['preheader', 'summary', 'row', 'steps', 'step', 'step_sub', 'note', 'signature_role', 'signature_inline']);
+    $sign = $c['signature'] ?? '';
 
     $subject = $name !== '' ? sprintf($c['subject_name'], $name) : $c['subject_plain'];
 
@@ -262,21 +257,27 @@ function meteora_autoreply(string $type, string $lang, array $data): array
     }
 
     $html = ar_fill($page, [
-        'lang'          => $lang,
-        'subject'       => ar_esc($subject),
-        'preheader'     => ar_esc($c['preheader']),
-        'site_url'      => METEORA_SITE_URL . ($lang === 'it' ? '/it/' : '/'),
-        'logo_url'      => METEORA_LOGO_URL,
-        'whatsapp_url'  => METEORA_WHATSAPP,
-        'headline_html' => $headline,
-        'eyebrow'       => ar_esc($c['eyebrow']),
-        'intro_html'    => $c['intro'], // trusted copy with <strong>
-        'summary_block' => $summary,
-        'steps_title'   => ar_esc($c['steps_title']),
-        'steps'         => $stepsHtml,
-        'note'          => ar_esc($c['note']),
-        'regards'       => ar_esc($c['regards']),
-        'role'          => ar_esc($c['role']),
+        'lang'            => $lang,
+        'subject'         => ar_esc($subject),
+        'preheader_block' => $c['preheader'] !== '' ? ar_fill($b['preheader'], ['preheader' => ar_esc($c['preheader'])]) : '',
+        'site_url'        => METEORA_SITE_URL . ($lang === 'it' ? '/it/' : '/'),
+        'logo_url'        => METEORA_LOGO_URL,
+        'whatsapp_url'    => METEORA_WHATSAPP,
+        'headline_html'   => $headline,
+        'eyebrow'         => ar_esc($c['eyebrow']),
+        'intro_html'      => $c['intro'], // trusted copy with <strong>
+        'summary_block'   => $summary,
+        'steps_block'     => $stepsHtml !== ''
+            ? ar_fill($b['steps'], ['steps_title' => ar_esc($c['steps_title']), 'steps' => $stepsHtml])
+            : '',
+        // without steps the summary box already leaves room above the sign-off
+        'signoff_pad'     => $stepsHtml !== '' ? '24px' : '0',
+        'note_block'      => $c['note'] !== '' ? ar_fill($b['note'], ['note' => ar_esc($c['note'])]) : '',
+        'regards_margin'  => $c['note'] !== '' ? '28px' : '0',
+        'signature_block' => $sign !== ''
+            ? ar_fill($b['signature_inline'], ['signature_tail' => ar_esc($sign)])
+            : ar_fill($b['signature_role'], ['role' => ar_esc($c['role'])]),
+        'regards'         => ar_esc($c['regards']),
         'reply_line'    => ar_esc($c['reply_line']),
         'whatsapp_line' => ar_esc($c['whatsapp_line']),
         'follow'        => ar_esc($c['follow']),
@@ -293,12 +294,18 @@ function meteora_autoreply(string $type, string $lang, array $data): array
         }
         $t .= "\n";
     }
-    $t .= mb_strtoupper($c['steps_title']) . "\n";
-    foreach ($c['steps'] as $i => [$title, $sub, $done]) {
-        $sub = $c[$sub] ?? $sub;
-        $t .= sprintf('%02d', $i + 1) . " {$title}" . ($sub !== '' ? " ({$sub})" : '') . ($done ? ' ✓' : '') . "\n";
+    if ($c['steps']) {
+        $t .= mb_strtoupper($c['steps_title']) . "\n";
+        foreach ($c['steps'] as $i => [$title, $sub, $done]) {
+            $sub = $c[$sub] ?? $sub;
+            $t .= sprintf('%02d', $i + 1) . " {$title}" . ($sub !== '' ? " ({$sub})" : '') . ($done ? ' ✓' : '') . "\n";
+        }
+        $t .= "\n";
     }
-    $t .= "\n{$c['note']}\n\n{$c['regards']}\nRedi\n{$c['role']}\n\n"
+    if ($c['note'] !== '') {
+        $t .= "{$c['note']}\n\n";
+    }
+    $t .= "{$c['regards']}\n" . ($sign !== '' ? "Redi {$sign}" : "Redi\n{$c['role']}") . "\n\n"
         . "{$c['reply_line']}\n{$c['whatsapp_line']} +39 328 064 2479.\n\n"
         . "{$c['follow']}\n{$c['legal']}\n";
 

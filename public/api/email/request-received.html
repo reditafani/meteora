@@ -1,7 +1,7 @@
 {{head}}
 <body id="body" class="em-body" style="margin:0;padding:0;background-color:#e6dfd5;">
-<!-- preheader: the grey line shown under the subject in the inbox -->
-<div style="display:none;font-size:1px;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;">{{preheader}}&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;</div>
+<!-- preheader: the grey line shown under the subject in the inbox (optional) -->
+{{preheader_block}}
 
 <table role="presentation" class="em-page" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#e6dfd5;">
 <tr><td align="center" style="padding:24px 12px;">
@@ -33,21 +33,14 @@
     <!-- SUMMARY -->
     {{summary_block}}
 
-    <!-- NEXT STEPS -->
-    <tr><td class="em-pad" style="padding:0 40px 8px;">
-      <p class="em-gold" style="margin:0 0 4px;font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:16px;letter-spacing:3px;text-transform:uppercase;color:#a8874f;">{{steps_title}}</p>
-      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-        {{steps}}
-        <tr><td colspan="3" class="em-line" height="1" style="height:1px;border-top:1px solid #ddd0bc;font-size:0;line-height:0;">&nbsp;</td></tr>
-      </table>
-    </td></tr>
+    <!-- NEXT STEPS (optional) -->
+    {{steps_block}}
 
-    <!-- NOTE + SIGN-OFF -->
-    <tr><td class="em-pad" style="padding:24px 40px 0;">
-      <p class="em-serif em-muted" style="margin:0;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:16px;line-height:26px;color:#5c524a;">{{note}}</p>
-      <p class="em-text" style="margin:28px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#3a322c;">{{regards}}</p>
-      <p class="em-serif em-text" style="margin:2px 0 0;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:28px;line-height:36px;color:#1c1614;">Redi</p>
-      <p class="em-gold" style="margin:4px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:16px;letter-spacing:3px;text-transform:uppercase;color:#a8874f;">{{role}}</p>
+    <!-- NOTE (optional) + SIGN-OFF -->
+    <tr><td class="em-pad" style="padding:{{signoff_pad}} 40px 0;">
+      {{note_block}}
+      <p class="em-text" style="margin:{{regards_margin}} 0 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#3a322c;">{{regards}}</p>
+      {{signature_block}}
       <p class="em-muted" style="margin:26px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:24px;color:#6b6058;">{{reply_line}}</p>
       <p class="em-muted" style="margin:12px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:24px;color:#6b6058;">{{whatsapp_line}} <a class="em-link" href="{{whatsapp_url}}" target="_blank" style="color:#7a5f37;text-decoration:none;border-bottom:1px solid #c7ad80;">+39&nbsp;328&nbsp;064&nbsp;2479</a>.</p>
     </td></tr>
@@ -68,6 +61,28 @@
 </table>
 </body>
 </html>
+<!--BLOCK:preheader-->
+<div style="display:none;font-size:1px;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;">{{preheader}}&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;</div>
+<!--/BLOCK:preheader-->
+<!--BLOCK:steps-->
+    <tr><td class="em-pad" style="padding:0 40px 8px;">
+      <p class="em-gold" style="margin:0 0 4px;font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:16px;letter-spacing:3px;text-transform:uppercase;color:#a8874f;">{{steps_title}}</p>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+        {{steps}}
+        <tr><td colspan="3" class="em-line" height="1" style="height:1px;border-top:1px solid #ddd0bc;font-size:0;line-height:0;">&nbsp;</td></tr>
+      </table>
+    </td></tr>
+<!--/BLOCK:steps-->
+<!--BLOCK:note-->
+      <p class="em-serif em-muted" style="margin:0;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:16px;line-height:26px;color:#5c524a;">{{note}}</p>
+<!--/BLOCK:note-->
+<!--BLOCK:signature_role-->
+      <p class="em-serif em-text" style="margin:2px 0 0;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:28px;line-height:36px;color:#1c1614;">Redi</p>
+      <p class="em-gold" style="margin:4px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:16px;letter-spacing:3px;text-transform:uppercase;color:#a8874f;">{{role}}</p>
+<!--/BLOCK:signature_role-->
+<!--BLOCK:signature_inline-->
+      <p class="em-serif em-text" style="margin:2px 0 0;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:28px;line-height:36px;color:#1c1614;">Redi <span class="em-muted" style="font-size:18px;color:#5c524a;">{{signature_tail}}</span></p>
+<!--/BLOCK:signature_inline-->
 <!--BLOCK:summary-->
     <tr><td class="em-pad" style="padding:0 40px 32px;">
       <table role="presentation" class="em-box" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#efe6da;">
