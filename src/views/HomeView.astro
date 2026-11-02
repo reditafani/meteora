@@ -594,7 +594,7 @@ const perks = [
           { src: iceHoshi, date: '29 AGOSTO 2026',    alt: it ? 'Cocktail al rosmarino con ghiaccio cristallino' : 'Rosemary cocktail with crystal-clear ice' },
         ].map(({ src, date, alt }) => (
           <a class="hm-ig__item" href={site.instagram.url} target="_blank" rel="noopener" aria-label="Instagram">
-            <Img src={src} alt={alt} sizes="(min-width: 900px) 17vw, 33vw" />
+            <Img src={src} alt={alt} sizes="(min-width: 900px) 12vw, 24vw" />
             <div class="hm-ig__item-inner">
               <span class="hm-ig__ig-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/></svg></span>
               <span class="hm-ig__date">{date}</span>
@@ -604,7 +604,7 @@ const perks = [
 
         <!-- Last cell: VEDI DI PIÙ -->
         <a class="hm-ig__item hm-ig__item--more" href={site.instagram.url} target="_blank" rel="noopener" aria-label={it ? 'Vedi di più su Instagram' : 'See more on Instagram'}>
-          <Img src={procBg} alt={it ? 'Barman al lavoro durante un evento' : 'Bartender at work during an event'} sizes="(min-width: 900px) 17vw, 33vw" />
+          <Img src={procBg} alt={it ? 'Barman al lavoro durante un evento' : 'Bartender at work during an event'} sizes="(min-width: 900px) 12vw, 24vw" />
           <div class="hm-ig__item-inner hm-ig__item-inner--more">
             <span class="hm-ig__ig-icon hm-ig__ig-icon--lg" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.65" fill="currentColor" stroke="none"/></svg></span>
             <span class="hm-ig__more-label">{it ? 'VEDI DI PIÙ' : 'SEE MORE'}</span>
@@ -636,7 +636,7 @@ const perks = [
     // Desktop: a single row, as many posts as fit the width (min IG_TILE px each)
     // followed by "Vedi di più"; the other posts are hidden. Mobile: the carousel
     // shows every post.
-    const IG_TILE = 210; // ≈ 217px tiles at 1440px wide (6 per row), as in the original design
+    const IG_TILE = 147; // 30% smaller than the original 210 (≈ 162px tiles at 1440px wide, 8 per row)
     const fitIgRow = () => {
       if (!igGrid) return;
       const items = Array.from(igGrid.querySelectorAll<HTMLElement>('.hm-ig__item:not(.hm-ig__item--more)'));
@@ -2050,7 +2050,7 @@ const perks = [
     }
     .hm-ig__grid::-webkit-scrollbar { display: none; }
     .hm-ig__item {
-      flex: 0 0 calc(33.333vw - 2.67px);
+      flex: 0 0 calc(23.333vw - 2.67px); /* 30% smaller than a third of the screen */
       scroll-snap-align: start;
     }
 
