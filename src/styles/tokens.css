@@ -55,6 +55,14 @@
   --space-2xl: clamp(4.5rem, 3rem + 7vw, 10rem);
   --section: clamp(3.5rem, 2rem + 4vw, 7rem);
 
+  /* Spacing rule (being applied page by page): three sizes only.
+     Large = above/below every section · Medium = closing dark bands, short
+     strips · Small = section header to its content.
+     Values: 375px wide → 1440px wide, scaling smoothly in between. */
+  --pad-l: clamp(3.5rem, 2.62rem + 3.76vw, 6rem);  /* 56 → 96px */
+  --pad-m: clamp(2.5rem, 1.97rem + 2.25vw, 4rem);  /* 40 → 64px */
+  --pad-s: clamp(1.5rem, 1.32rem + 0.75vw, 2rem);  /* 24 → 32px */
+
   --gutter: clamp(1rem, 0.4rem + 3.2vw, 3.5rem);
   --max: 1440px;
   --measure: 36rem;
