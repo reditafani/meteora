@@ -181,6 +181,7 @@ function ar_copy(string $type, string $lang): array
             ['La perfezioniamo insieme', "fino all'ultimo dettaglio", false],
         ],
         'note'      => 'Le date tra maggio e settembre si riempiono in fretta: confermeremo la disponibilità il prima possibile.',
+        'signature' => 'di Meteora Events',
     ] : [
         'preheader' => "We'll get back to you within 48 hours with a tailored proposal.",
         'eyebrow'   => 'Request received',
@@ -192,6 +193,7 @@ function ar_copy(string $type, string $lang): array
             ['We refine it together', 'down to the last detail', false],
         ],
         'note'      => 'Dates between May and September fill up quickly: we\'ll confirm availability as soon as possible.',
+        'signature' => 'from Meteora Events',
     ]);
 }
 
