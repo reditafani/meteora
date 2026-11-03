@@ -353,7 +353,7 @@ const perks = [
   </section>
 
   <!-- 5 · COCKTAIL LIST -->
-  <CocktailSlideshow lang={lang} />
+  <CocktailSlideshow lang={lang} classic />
 
   <!-- 6 · SERVICES -->
   <section class="section section--alt hm-svc" aria-labelledby="hm-svc-title">
@@ -724,7 +724,7 @@ const perks = [
 <style>
   /* ── Hero ── */
   .home-hero__title {
-    font-size: clamp(2.75rem, 1.1rem + 4.6vw, 6.75rem);
+    font-size: clamp(2.75rem, 1.1rem + 4.6vw, 6.75rem); /* desktop hero: original size (request) */
     line-height: 0.96;
     font-weight: 300;
     max-width: 14ch;
@@ -767,14 +767,14 @@ const perks = [
   }
   .home-hero__stat-s {
     font-family: var(--font-sans);
-    font-size: 0.6rem;
+    font-size: 0.6rem; /* desktop hero: original size (request) */
     letter-spacing: 0.08em;
     color: rgba(255,255,255,0.4);
   }
   @media (max-width: 699px) {
     .home-hero__stats { display: none; }
     .home-hero__title {
-      font-size: clamp(3.2rem, 9vw, 4.5rem);
+      font-size: var(--fs-h1);
       text-align: center;
       max-width: none;
     }
@@ -842,21 +842,21 @@ const perks = [
     .hm-perks__icon :global(svg) { display: block; }
     .hm-perks__title {
       font-family: var(--font-display);
-      font-size: clamp(1.1rem, 4.8vw, 1.4rem);
+      font-size: var(--fs-lead);
       font-weight: 300;
       color: var(--color-on-dark);
       line-height: 1.1;
       white-space: nowrap; /* two lines, set by the <br> in each title */
       text-align: center;
     }
-    .hm-perks__title :global(small) { font-size: 0.72em; }
+    .hm-perks__title :global(small) { font-size: var(--fs-micro); }
     .hm-perks__sub {
       grid-column: 1 / -1;
       align-self: end;
       text-align: center;
       white-space: nowrap; /* line breaks set by the <br> in each subtitle */
       font-family: var(--font-sans);
-      font-size: 0.78rem;
+      font-size: var(--fs-micro);
       letter-spacing: 0.02em;
       color: rgba(255,255,255,0.38);
       line-height: 1.35;
@@ -889,7 +889,7 @@ const perks = [
   .hm-intro__da {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 1rem;
+    font-size: var(--fs-body);
     color: var(--color-text-muted);
     margin-bottom: 0.1rem;
   }
@@ -903,7 +903,7 @@ const perks = [
   }
   .hm-intro__lbl {
     font-family: var(--font-sans);
-    font-size: 0.55rem;
+    font-size: var(--fs-micro);
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--color-text-muted);
@@ -916,7 +916,7 @@ const perks = [
     align-items: center;
     gap: 0.75rem;
     font-family: var(--font-sans);
-    font-size: 0.6rem;
+    font-size: var(--fs-micro);
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--color-accent-ink);
@@ -932,7 +932,7 @@ const perks = [
   }
   .hm-intro__title {
     font-family: var(--font-display);
-    font-size: clamp(1.6rem, 0.8rem + 2.5vw, 2.8rem);
+    font-size: var(--fs-h2);
     font-weight: 300;
     line-height: 1.2;
     color: var(--color-text);
@@ -943,7 +943,7 @@ const perks = [
   }
   /* Right: desc + cta */
   .hm-intro__desc {
-    font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.2rem);
+    font-size: var(--fs-lead);
     color: var(--color-text-muted);
     line-height: 1.7;
     margin-bottom: var(--space-m);
@@ -951,7 +951,7 @@ const perks = [
   .hm-intro__types {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 0.9rem;
+    font-size: var(--fs-small);
     color: var(--color-accent-ink);
     margin-bottom: var(--space-m);
   }
@@ -967,7 +967,7 @@ const perks = [
     color: var(--color-background);
     border: 1px solid var(--color-text);
     font-family: var(--font-sans);
-    font-size: 0.62rem;
+    font-size: var(--fs-micro);
     font-weight: 500;
     letter-spacing: 0.2em;
     line-height: 1.2;
@@ -1000,7 +1000,7 @@ const perks = [
       border-right: 1px solid var(--color-border);
     }
     .hm-intro__da {
-      font-size: 1.1rem;
+      font-size: var(--fs-lead);
       color: var(--color-accent-ink);
       margin-bottom: 0.4rem;
     }
@@ -1012,14 +1012,14 @@ const perks = [
       margin-bottom: 1.2rem;
     }
     .hm-intro__lbl {
-      font-size: 0.7rem;
+      font-size: var(--fs-micro);
       letter-spacing: 0.2em;
       line-height: 1.75;
     }
     /* Centre: eyebrow + title */
     .hm-intro__center { padding-left: clamp(2rem, 4vw, 3.6rem); padding-right: clamp(1.5rem, 3vw, 2.8rem); }
     .hm-intro__eyebrow {
-      font-size: 0.72rem;
+      font-size: var(--fs-micro);
       line-height: 1.5;
       letter-spacing: 0.22em;
       gap: 0.9rem;
@@ -1032,19 +1032,19 @@ const perks = [
     .hm-intro__right { padding-top: calc(0.72rem * 1.5 + 1.25rem); }
     .hm-intro__eyebrow::before { width: 2.75rem; }
     .hm-intro__title {
-      font-size: clamp(2.6rem, 1.4rem + 2.2vw, 3.4rem);
+      font-size: var(--fs-h2);
       font-weight: 400;
       line-height: 1.06;
     }
     .hm-intro__title em { font-weight: 400; }
     /* Right: description, event types, link */
     .hm-intro__desc {
-      font-size: 1rem;
+      font-size: var(--fs-body);
       line-height: 1.85;
       margin-bottom: 0.9rem;
     }
     .hm-intro__types {
-      font-size: 1.05rem;
+      font-size: var(--fs-body);
       margin-bottom: 1.9rem;
     }
     /* button aligned to the right edge of the text column */
@@ -1064,7 +1064,7 @@ const perks = [
     align-items: center;
     gap: 0.75rem;
     font-family: var(--font-sans);
-    font-size: 0.6rem;
+    font-size: var(--fs-micro);
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--color-accent-on-dark);
@@ -1079,14 +1079,14 @@ const perks = [
   }
   .hm-ev__title {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 1rem + 3vw, 4rem);
+    font-size: var(--fs-h2);
     font-weight: 300;
     line-height: 1.04;
     color: #fff;
   }
   .hm-ev__title em { font-style: italic; color: var(--color-accent-on-dark); }
   .hm-ev__lead {
-    font-size: clamp(0.95rem, 1.5vw + 0.4rem, 1.45rem);
+    font-size: var(--fs-lead);
     color: rgba(255,255,255,0.5);
     line-height: 1.65;
     margin-bottom: var(--space-l);
@@ -1132,7 +1132,7 @@ const perks = [
   }
   .hm-ev__card-name {
     font-family: var(--font-display);
-    font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.4rem);
+    font-size: var(--fs-h3);
     font-weight: 300;
     color: #fff;
     line-height: 1.1;
@@ -1140,14 +1140,14 @@ const perks = [
   .hm-ev__card-sub {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: clamp(0.82rem, 0.72rem + 0.3vw, 0.95rem);
+    font-size: var(--fs-small);
     color: var(--color-accent-on-dark);
     line-height: 1.4;
     margin-bottom: 0.5rem;
   }
   .hm-ev__card-cta {
     font-family: var(--font-sans);
-    font-size: 0.6rem;
+    font-size: var(--fs-micro);
     font-weight: 500;
     letter-spacing: 0.16em;
     color: rgba(255,255,255,0.65);
@@ -1166,7 +1166,7 @@ const perks = [
   .hm-svc__eyebrow {
     display: flex; align-items: center; gap: 0.75rem;
     font-family: var(--font-sans);
-    font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+    font-size: var(--fs-micro); letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--color-accent-ink);
     margin-bottom: var(--space-s);
   }
@@ -1177,14 +1177,14 @@ const perks = [
   }
   .hm-svc__title {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 1rem + 3vw, 4rem);
+    font-size: var(--fs-h2);
     font-weight: 300;
     line-height: 1.08;
     color: var(--color-text);
   }
   .hm-svc__title em { font-style: italic; color: var(--color-accent-ink); }
   .hm-svc__intro {
-    font-size: clamp(0.95rem, 1.5vw + 0.4rem, 1.45rem);
+    font-size: var(--fs-lead);
     color: var(--color-text-muted);
     line-height: 1.65;
     margin-bottom: var(--space-l);
@@ -1257,7 +1257,7 @@ const perks = [
   .hm-svc__card-kicker {
     display: flex; align-items: center; gap: 0.6rem;
     font-family: var(--font-sans);
-    font-size: 0.52rem; font-weight: 500;
+    font-size: var(--fs-micro); font-weight: 500;
     letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--color-accent-ink);
   }
@@ -1268,7 +1268,7 @@ const perks = [
   }
   .hm-svc__card-name {
     font-family: var(--font-display);
-    font-size: clamp(1.3rem, 1rem + 1vw, 1.9rem);
+    font-size: var(--fs-h3);
     font-weight: 300;
     line-height: 1.2;
     color: var(--color-text);
@@ -1283,7 +1283,7 @@ const perks = [
   .hm-svc__card-cta {
     display: inline-block;
     font-family: var(--font-sans);
-    font-size: 0.58rem; font-weight: 500; letter-spacing: 0.12em;
+    font-size: var(--fs-micro); font-weight: 500; letter-spacing: 0.12em;
     color: var(--color-text);
     border-bottom: 1px solid var(--color-border);
     padding-bottom: 2px;
@@ -1334,7 +1334,7 @@ const perks = [
     .hm-svc__card-cta,
     .hm-svc__name-desk { display: none; }
     .hm-svc__card-name {
-      font-size: clamp(1.1rem, 4.8vw, 1.25rem);
+      font-size: var(--fs-h3);
       line-height: 1.2;
     }
     .hm-svc__card-name em { display: inline; }
@@ -1376,7 +1376,7 @@ const perks = [
   .hm-pkg__eyebrow {
     display: flex; align-items: center; gap: 0.75rem;
     font-family: var(--font-sans);
-    font-size: 0.58rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+    font-size: var(--fs-micro); font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--color-accent-on-dark);
     margin-bottom: var(--space-s);
   }
@@ -1387,7 +1387,7 @@ const perks = [
   }
   .hm-pkg__title {
     font-family: var(--font-display);
-    font-size: clamp(1.76rem, 0.96rem + 2.8vw, 3.84rem);
+    font-size: var(--fs-h2);
     font-weight: 300;
     line-height: 1.04;
     color: #fff;
@@ -1428,22 +1428,22 @@ const perks = [
   .hm-pkg__item-body { display: flex; flex-direction: column; gap: 0.25rem; }
   .hm-pkg__item-title {
     font-family: var(--font-display);
-    font-size: clamp(1rem, 0.88rem + 0.5vw, 1.2rem);
+    font-size: var(--fs-lead);
     font-weight: 300;
     color: rgba(255,255,255,0.9);
     line-height: 1.3;
   }
   .hm-pkg__item-sub {
     font-family: var(--font-sans);
-    font-size: 0.68rem;
+    font-size: var(--fs-micro);
     color: rgba(255,255,255,0.42);
     line-height: 1.4;
     letter-spacing: 0.01em;
   }
   /* desktop: larger list items and descriptions */
   @media (min-width: 700px) {
-    .hm-pkg__item-title { font-size: clamp(1.2rem, 1rem + 0.6vw, 1.5rem); }
-    .hm-pkg__item-sub   { font-size: 0.82rem; }
+    .hm-pkg__item-title { font-size: var(--fs-lead); }
+    .hm-pkg__item-sub   { font-size: var(--fs-small); }
   }
 
   /* ── Bar Collection ── */
@@ -1459,7 +1459,7 @@ const perks = [
     align-items: center;
     gap: 0.75rem;
     font-family: var(--font-sans);
-    font-size: 0.6rem;
+    font-size: var(--fs-micro);
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--color-accent-ink);
@@ -1536,14 +1536,14 @@ const perks = [
   }
   .hm-bc__main-name {
     font-family: var(--font-display);
-    font-size: clamp(1.4rem, 1rem + 1.5vw, 2rem);
+    font-size: var(--fs-h3);
     font-weight: 300; font-style: italic;
     color: #fff; line-height: 1.1;
   }
   .hm-bc__main-mood {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 0.85rem;
+    font-size: var(--fs-small);
     color: var(--color-accent-on-dark);
     margin-top: 0.25rem;
   }
@@ -1577,17 +1577,17 @@ const perks = [
   .hm-bc__item-info { flex: 1; min-width: 0; }
   .hm-bc__item-name {
     font-family: var(--font-display);
-    font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.15rem);
+    font-size: var(--fs-lead);
     font-weight: 400; color: var(--color-accent-ink);
     line-height: 1.2; margin-bottom: 0.2rem;
   }
-  .hm-bc__item-mood { font-size: 0.7rem; color: var(--color-text-muted); line-height: 1.4; }
-  .hm-bc__item-soon { font-size: 0.7rem; font-style: italic; color: var(--color-text-muted); }
+  .hm-bc__item-mood { font-size: var(--fs-micro); color: var(--color-text-muted); line-height: 1.4; }
+  .hm-bc__item-soon { font-size: var(--fs-micro); font-style: italic; color: var(--color-text-muted); }
   /* ── Mobile carousel (hidden on desktop) ── */
   .hm-bc__mob-carousel { display: none; }
   .hm-bc__mob-name {
     font-family: var(--font-display);
-    font-size: clamp(1.35rem, 4.5vw, 1.7rem);
+    font-size: var(--fs-h3);
     font-weight: 300;
     color: var(--color-text);
     line-height: 1.15;
@@ -1597,7 +1597,7 @@ const perks = [
   .hm-bc__mob-mood {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 0.88rem;
+    font-size: var(--fs-small);
     color: var(--color-text-muted);
   }
   .hm-bc__mob-soon { color: var(--color-accent-ink); }
@@ -1637,7 +1637,7 @@ const perks = [
   .hm-bc__stat:last-of-type { border-right: 1px solid var(--color-border); }
   .hm-bc__stat-label {
     font-family: var(--font-sans);
-    font-size: 0.5rem;
+    font-size: var(--fs-micro);
     font-weight: 600;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -1651,7 +1651,7 @@ const perks = [
     line-height: 1;
   }
   .hm-bc__stat-note {
-    font-size: 0.58rem;
+    font-size: var(--fs-micro);
     color: var(--color-text-muted);
     margin-top: 0.1rem;
   }
@@ -1661,7 +1661,7 @@ const perks = [
     justify-content: center;
     padding: 0.9rem clamp(1.2rem, 2.5vw, 2.5rem);
     font-family: var(--font-sans);
-    font-size: 0.6rem;
+    font-size: var(--fs-micro);
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -1697,7 +1697,7 @@ const perks = [
     align-items: center;
     gap: 0.75rem;
     font-family: var(--font-sans);
-    font-size: 0.6rem; font-weight: 500;
+    font-size: var(--fs-micro); font-weight: 500;
     letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--color-accent-ink);
     margin-bottom: var(--space-m);
@@ -1709,7 +1709,7 @@ const perks = [
   }
   .hm-proc__title {
     font-family: var(--font-display);
-    font-size: clamp(1.8rem, 1rem + 2.5vw, 3.5rem);
+    font-size: var(--fs-h2);
     font-weight: 300;
     line-height: 1.06;
     color: var(--color-text);
@@ -1729,7 +1729,7 @@ const perks = [
   }
   .hm-proc__always-label {
     font-family: var(--font-sans);
-    font-size: 0.55rem; font-weight: 500;
+    font-size: var(--fs-micro); font-weight: 500;
     letter-spacing: 0.16em; text-transform: uppercase;
     color: var(--color-text-muted);
     margin-bottom: var(--space-s);
@@ -1739,7 +1739,7 @@ const perks = [
     display: flex;
     align-items: flex-start;
     gap: 0.65rem;
-    font-size: 0.96rem;
+    font-size: var(--fs-small);
     color: var(--color-text-muted);
     line-height: 1.5;
   }
@@ -1747,7 +1747,7 @@ const perks = [
   .hm-proc__cta {
     display: block;
     font-family: var(--font-sans);
-    font-size: 0.62rem; font-weight: 500;
+    font-size: var(--fs-micro); font-weight: 500;
     letter-spacing: 0.14em; text-transform: uppercase;
     text-decoration: none;
     padding: 0.85rem 1.5rem;
@@ -1789,7 +1789,7 @@ const perks = [
     flex-shrink: 0;
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 1.6rem;
+    font-size: var(--fs-h3);
     font-weight: 300;
     letter-spacing: normal;
     text-transform: none;
@@ -1798,14 +1798,14 @@ const perks = [
   }
   .hm-proc__step-title {
     font-family: var(--font-sans);
-    font-size: 0.85rem;
+    font-size: var(--fs-small); /* phone/tablet: two steps per row */
     font-weight: 600;
     color: var(--color-text);
     letter-spacing: 0.02em;
     line-height: 1.35;
   }
   .hm-proc__step-text {
-    font-size: 0.7rem;
+    font-size: var(--fs-micro);
     color: var(--color-text-muted);
     line-height: 1.6;
   }
@@ -1820,8 +1820,8 @@ const perks = [
     }
     .hm-proc__step-text :global(br) { display: none; }
     /* steps 1 and 3 have shorter descriptions: larger text */
-    .hm-proc__step:nth-child(1) .hm-proc__step-text { font-size: 0.95rem; }
-    .hm-proc__step:nth-child(3) .hm-proc__step-text { font-size: 1.05rem; }
+    .hm-proc__step:nth-child(1) .hm-proc__step-text { font-size: var(--fs-small); }
+    .hm-proc__step:nth-child(3) .hm-proc__step-text { font-size: var(--fs-body); }
   }
 
   /* Steps: desktop = vertical timeline */
@@ -1861,7 +1861,7 @@ const perks = [
     .hm-proc__step-title :global(.hm-proc__br) { display: none; }
     .hm-proc__step-label {
       font-family: var(--font-sans);
-      font-size: 0.55rem;
+      font-size: var(--fs-micro); /* small "PASSO 1" label */
       font-weight: 500;
       font-style: normal;
       letter-spacing: 0.18em;
@@ -1872,7 +1872,7 @@ const perks = [
     }
     .hm-proc__step-title {
       font-family: var(--font-display);
-      font-size: clamp(1.1rem, 0.85rem + 0.8vw, 1.5rem);
+      font-size: var(--fs-lead);
       font-weight: 300;
       color: var(--color-text);
       letter-spacing: normal;
@@ -1904,7 +1904,7 @@ const perks = [
   .hm-ig__eyebrow {
     display: flex; align-items: center; gap: 0.75rem;
     font-family: var(--font-sans);
-    font-size: 0.6rem; font-weight: 500;
+    font-size: var(--fs-micro); font-weight: 500;
     letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--color-accent-ink);
     margin-bottom: calc(var(--space-s) * 0.7);
@@ -1916,7 +1916,7 @@ const perks = [
   }
   .hm-ig__title {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 1rem + 3vw, 4rem);
+    font-size: var(--fs-h2);
     font-weight: 300;
     line-height: 1.05;
     color: var(--color-text);
@@ -1925,7 +1925,7 @@ const perks = [
   .hm-ig__handle {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 0.7rem;
+    font-size: var(--fs-micro);
     color: var(--color-text-muted);
     margin-top: 0.28rem;
   }
@@ -1934,7 +1934,7 @@ const perks = [
     align-items: center;
     gap: 0.65rem;
     font-family: var(--font-sans);
-    font-size: 0.62rem; font-weight: 500;
+    font-size: var(--fs-micro); font-weight: 500;
     letter-spacing: 0.14em; text-transform: uppercase;
     text-decoration: none;
     padding: 0.63rem 1.05rem;
@@ -1991,9 +1991,13 @@ const perks = [
   }
   .hm-ig__date {
     font-family: var(--font-sans);
-    font-size: 0.5rem; font-weight: 400;
-    letter-spacing: 0.1em; text-transform: uppercase;
+    font-size: var(--fs-micro); font-weight: 400;
+    letter-spacing: 0.06em; text-transform: uppercase;
     color: rgba(255,255,255,0.72);
+  }
+  /* phone tiles are too small for a readable date */
+  @media (max-width: 699px) {
+    .hm-ig__date { display: none; }
   }
 
   /* "VEDI DI PIÙ" cell */
@@ -2009,7 +2013,7 @@ const perks = [
   .hm-ig__ig-icon--lg { position: static; }
   .hm-ig__more-label {
     font-family: var(--font-sans);
-    font-size: 0.62rem; font-weight: 500;
+    font-size: var(--fs-micro); font-weight: 500;
     letter-spacing: 0.2em; text-transform: uppercase;
     color: #fff;
   }
@@ -2023,7 +2027,7 @@ const perks = [
     .hm-ig { overflow-x: hidden; }
 
     /* Head */
-    .hm-ig__title { font-size: clamp(1.65rem, 6vw, 2rem); }
+    .hm-ig__title { font-size: var(--fs-h2); }
     .hm-ig__cta { white-space: nowrap; }
     .hm-ig__cta-full { display: none; }
     .hm-ig__cta-short { display: inline; }
@@ -2085,20 +2089,29 @@ const perks = [
   .hm-cta__text { display: flex; flex-direction: column; gap: 0.6rem; }
   .hm-cta__title {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 3vw + 0.5rem, 4rem);
+    font-size: var(--fs-h2);
     font-weight: 300;
     font-style: italic;
     color: #fff;
     line-height: 1.05;
   }
   .hm-cta__sub {
-    font-size: clamp(0.8rem, 1vw, 0.95rem);
+    font-size: var(--fs-small);
     color: rgba(255, 255, 255, 0.5);
     max-width: 52rem;
     line-height: 1.6;
   }
   @media (min-width: 1180px) {
-    .hm-cta__sub { font-size: clamp(1rem, 1.15vw, 1.15rem); }
+    .hm-cta__sub { font-size: var(--fs-body); }
+  }
+  /* desktop: the description on one line beside the button, a little smaller
+     only when the screen needs it (≈ 55 × the font size wide) */
+  @media (min-width: 1100px) {
+    .hm-cta__sub {
+      font-size: min(var(--fs-body), calc((100vw - 2 * var(--gutter) - 20rem) / 55));
+      white-space: nowrap;
+      max-width: none;
+    }
   }
   .hm-cta__btn { flex-shrink: 0; letter-spacing: 0.1em; }
   .hm-cta__pill { display: none; }
@@ -2111,7 +2124,7 @@ const perks = [
     }
     .hm-cta__title { display: none; }
     .hm-cta__sub {
-      font-size: 0.92rem;
+      font-size: var(--fs-small);
       color: rgba(255 255 255 / 0.75);
     }
     .hm-cta__btn { display: none; }
@@ -2194,13 +2207,13 @@ const perks = [
     .hm-intro__years { display: none; }
     .hm-intro__eyebrow { margin-bottom: var(--space-s); }
     .hm-intro__title {
-      font-size: clamp(1.85rem, 8vw, 2.2rem);
+      font-size: var(--fs-h2);
       line-height: 1.12;
       margin-bottom: var(--space-s);
     }
     .hm-intro__title em { display: block; }
     .hm-intro__desc {
-      font-size: 0.98rem;
+      font-size: var(--fs-body);
       line-height: 1.75;
       color: var(--color-text);
       margin-bottom: var(--space-s);

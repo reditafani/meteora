@@ -85,9 +85,14 @@ const it = lang === 'it';
     background: none;
     color: var(--cprog-accent);
     font-family: var(--font-sans);
-    font-size: 10px;
+    font-size: var(--fs-micro);
     font-weight: 500;
     letter-spacing: 0.22em;
+  }
+  @media (min-width: 700px) {
+    .cprog__next { font-size: 10px; } /* desktop/tablet heroes: original size (request) */
+  }
+  .cprog__next {
     text-transform: uppercase;
     line-height: 1;
     cursor: pointer;

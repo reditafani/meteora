@@ -120,7 +120,7 @@ const schema = [
     </div>
   </section>
 
-  <CocktailSlideshow lang={lang} />
+  <CocktailSlideshow lang={lang} classic />
 
   <!-- ── Ice section (dark) ── -->
   <section class="section section--dark ice-lt" aria-labelledby="ice-lt-title">
@@ -248,7 +248,7 @@ const schema = [
       <p class="svc-outro__text" data-reveal>
         {it ? 'Avete in mente qualcosa di diverso?' : 'Have something different in mind?'}
         <br class="svc-outro__br" />
-        {it ? 'Raccontatecelo, lo realizziamo per voi.' : 'Tell us about it — we will make it happen.'}
+        {it ? 'Raccontatecelo, lo realizziamo per voi!' : 'Tell us about it — we will make it happen!'}
       </p>
       <a class="btn btn--ghost-light cta-pill cta-pill--block svc-outro__btn" href={url('contact', lang)} data-reveal style="--delay:.08s">
         {it ? 'Contattaci →' : 'Contact us →'}
@@ -290,6 +290,9 @@ const schema = [
     border-right: 1px solid rgba(255, 255, 255, 0.1);
     transition: color 0.2s, background 0.2s;
     white-space: nowrap;
+  }
+  @media (min-width: 700px) {
+    .svc-index a { font-size: 0.72rem; } /* desktop hero: original size (request) */
   }
   .svc-index a::after {
     content: '';
@@ -371,7 +374,7 @@ const schema = [
     }
     .svc-index__label {
       font-family: var(--font-display);
-      font-size: clamp(1.1rem, 4.8vw, 1.4rem);
+      font-size: var(--fs-lead);
       font-weight: 300;
       line-height: 1.1;
       text-align: center;
@@ -408,7 +411,7 @@ const schema = [
     color: var(--color-accent-ink);
   }
   .svc__title {
-    font-size: clamp(1.9rem, 1.4rem + 1.8vw, 3rem);
+    font-size: var(--fs-h2);
   }
   .svc__title em {
     font-style: italic;
@@ -434,7 +437,7 @@ const schema = [
     gap: 0.6rem;
     padding-block: 0.75rem;
     border-bottom: 1px solid var(--color-border);
-    font-size: 0.96rem;
+    font-size: var(--fs-small);
   }
   .svc__inc li::before {
     content: '·';
@@ -445,7 +448,7 @@ const schema = [
   }
   .svc__tagline {
     font-family: var(--font-display);
-    font-size: clamp(1rem, 0.85rem + 0.5vw, 1.2rem);
+    font-size: var(--fs-lead);
     font-style: italic;
     color: var(--color-accent-ink);
     line-height: 1.5;
@@ -453,7 +456,7 @@ const schema = [
   .svc__textcta {
     display: inline-block;
     font-family: var(--font-sans);
-    font-size: 0.62rem;
+    font-size: var(--fs-micro);
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -544,7 +547,11 @@ const schema = [
   }
 
   /* ── Ice light section ── */
+  /* "Il dettaglio invisibile": kept with its own spacing and text sizes (outside the site-wide rules) */
   .ice-lt {
+    /* same spacing as the "Cocktail · Experience" strip (.cs--classic) */
+    padding-top: calc(var(--space-l) * 0.81);
+    padding-bottom: calc(var(--space-l) * 0.7);
     border-top: 1px solid rgba(207, 182, 138, 0.4);
   }
   .ice-lt__grid {
@@ -632,7 +639,7 @@ const schema = [
   /* Centre text */
   .ice-lt__eyebrow {
     font-family: var(--font-sans);
-    font-size: 0.6rem;
+    font-size: 0.72rem; /* as the "Cocktail · Experience" label */
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -696,7 +703,7 @@ const schema = [
   }
   .svc-outro__text {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 3vw + 0.5rem, 4rem); /* same as the home CTA title */
+    font-size: clamp(2rem, 3vw + 0.5rem, 4rem); /* original size (request), outside the text rule */
     font-weight: 300;
     font-style: italic;
     color: #fff;
@@ -714,6 +721,7 @@ const schema = [
     .svc-outro__inner { flex-direction: column; align-items: stretch; gap: var(--space-m); }
     .svc-outro__text {
       flex: none;
+      /* phone: exactly two lines, sized to fit the screen */
       font-size: min(calc(5.8vw - 1px), 2rem);
       white-space: nowrap;
       text-align: center;

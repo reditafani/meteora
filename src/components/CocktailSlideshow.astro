@@ -4,13 +4,17 @@ import { t } from '@/i18n/ui';
 import { featuredCocktails } from '@/data/cocktails';
 import Img from './Img.astro';
 
-interface Props { lang: Lang }
-const { lang } = Astro.props;
+interface Props {
+  lang: Lang;
+  /** keep the strip's original spacing and text sizes (outside the site-wide rules) */
+  classic?: boolean;
+}
+const { lang, classic = false } = Astro.props;
 const s = t(lang);
 const it = lang === 'it';
 ---
 
-<section class="section section--dark cs" aria-labelledby="cs-title">
+<section class:list={['section section--dark cs', classic && 'cs--classic']} aria-labelledby="cs-title">
   <div class="container cs__head">
     <div>
       <p class="eyebrow" data-reveal>Cocktail · Experience</p>
@@ -69,6 +73,15 @@ const it = lang === 'it';
     padding-inline: 0;
     padding-block: var(--pad-m);
   }
+  /* original look (Servizi page): spacing and text sizes from before the rules */
+  .cs--classic {
+    padding-top: calc(var(--space-l) * 0.81);
+    padding-bottom: calc(var(--space-l) * 0.7);
+  }
+  .cs--classic .eyebrow { font-size: 0.72rem; }
+  .cs--classic .cs__title { font-size: clamp(1.22rem, 0.88rem + 1.22vw, 1.87rem); }
+  .cs--classic .cs__name { font-size: clamp(0.65rem, 0.54rem + 0.34vw, 0.82rem); }
+  .cs--classic .cs__ind-lbl { font-size: 0.45rem; }
 
   /* ── Header row ── */
   .cs__head {
@@ -80,7 +93,7 @@ const it = lang === 'it';
   }
   .cs__title {
     font-family: var(--font-display);
-    font-size: clamp(1.22rem, 0.88rem + 1.22vw, 1.87rem);
+    font-size: var(--fs-h2);
     font-weight: 300;
     line-height: 1.1;
     margin-top: var(--space-s);
@@ -183,7 +196,7 @@ const it = lang === 'it';
   }
   .cs__name {
     font-family: var(--font-display);
-    font-size: clamp(0.65rem, 0.54rem + 0.34vw, 0.82rem);
+    font-size: var(--fs-small);
     font-weight: 400;
     line-height: 1.25;
     color: #fff;
@@ -203,7 +216,7 @@ const it = lang === 'it';
   }
   .cs__ind-lbl {
     font-family: var(--font-sans);
-    font-size: 0.45rem;
+    font-size: var(--fs-micro);
     font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;

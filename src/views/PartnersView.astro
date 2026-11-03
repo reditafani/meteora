@@ -119,7 +119,7 @@ for (const p of allPros) {
   <!-- ── Hero ── -->
   <section class="ph on-dark" aria-labelledby="ph-title">
     <div class="ph__bg">
-      <Img src={hero} alt={it ? 'Matrimonio in un giardino fiorito' : 'Wedding in a flower garden'} priority sizes="100vw" widths={[800, 1280, 1920]} />
+      <Img src={ctaBg} alt={it ? 'Salone nuziale con lampadari' : 'Wedding hall with chandeliers'} priority sizes="100vw" widths={[800, 1280, 1920]} />
     </div>
     <div class="ph__overlay" aria-hidden="true"></div>
     <div class="ph__content">
@@ -272,22 +272,24 @@ for (const p of allPros) {
   <!-- ── CTA ── -->
   <section class="pf-cta on-dark" aria-labelledby="pf-cta-title">
     <div class="pf-cta__bg">
-      <Img src={ctaBg} alt={it ? 'Salone nuziale' : 'Wedding hall'} sizes="100vw" widths={[800, 1440]} />
+      <Img src={hero} alt={it ? 'Matrimonio in un giardino fiorito' : 'Wedding in a flower garden'} sizes="100vw" widths={[800, 1440]} />
     </div>
     <div class="pf-cta__overlay" aria-hidden="true"></div>
     <div class="container pf-cta__inner">
+      <div class="pf-cta__text">
       <h2 id="pf-cta-title" class="pf-cta__title" data-reveal>
         {it
-          ? <>Non sapete da dove iniziare? <em>Lasciatevi consigliare.</em></>
-          : <>Not sure where to start? <em>Let us guide you.</em></>}
+          ? 'Non sapete da dove iniziare?'
+          : 'Not sure where to start?'}
       </h2>
       <p class="pf-cta__sub" data-reveal style="--delay:.08s">
         {it
           ? 'Raccontateci la vostra idea: vi guidiamo tra planner, location e tutto il resto, con o senza il nostro bar.'
           : "Tell us your idea: we'll guide you through planners, venues and everything else, with or without our bar."}
       </p>
+      </div>
       <a class="btn btn--ghost-light pf-cta__btn" href={contactUrl} data-reveal style="--delay:.14s">
-        {it ? 'CONTATTACI PER CONOSCERCI' : 'GET IN TOUCH WITH US'}
+        {it ? 'Lasciatevi consigliare!' : 'Let us guide you!'}
       </a>
     </div>
   </section>
@@ -350,6 +352,7 @@ for (const p of allPros) {
     padding: calc(var(--header-h, 5rem) + var(--space-l)) clamp(2rem, 6vw, 7rem) 5rem;
     max-width: 52rem;
   }
+  /* hero texts keep their original sizes (request), outside the text rule */
   .ph__content :global(h1) {
     font-family: var(--font-display);
     font-size: clamp(2.8rem, 4vw + 0.5rem, 6rem);
@@ -376,6 +379,8 @@ for (const p of allPros) {
     max-width: 32rem;
     margin-bottom: var(--space-m);
   }
+  /* phone: the earlier standard lead size */
+  .ph__lead { font-size: clamp(1.125rem, 1.05rem + 0.4vw, 1.3125rem); }
   @media (min-width: 700px) {
     /* desktop: slightly smaller than the standard lead */
     .ph__lead { font-size: clamp(1.02rem, 0.95rem + 0.36vw, 1.18rem); }
@@ -522,7 +527,7 @@ for (const p of allPros) {
   }
   .pf-how__title {
     font-family: var(--font-display);
-    font-size: clamp(1.3rem, 1rem + 1vw, 1.8rem);
+    font-size: var(--fs-h3);
     font-weight: 300;
     line-height: 1.2;
     color: var(--color-text);
@@ -538,7 +543,7 @@ for (const p of allPros) {
     display: inline-block;
     margin-top: auto;
     font-family: var(--font-sans);
-    font-size: 0.6rem;
+    font-size: var(--fs-micro);
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -591,13 +596,13 @@ for (const p of allPros) {
   }
   .pf-section__title {
     font-family: var(--font-display);
-    font-size: clamp(2.8rem, 1.6rem + 4vw, 5.5rem);
+    font-size: var(--fs-h2);
     font-weight: 300;
     line-height: 1.0;
     color: #fff;
   }
   .pf-section__desc {
-    font-size: clamp(0.9rem, 0.8rem + 0.35vw, 1.05rem);
+    font-size: var(--fs-body);
     line-height: 1.65;
     color: rgba(255 255 255 / 0.72);
     max-width: 44rem;
@@ -696,7 +701,7 @@ for (const p of allPros) {
   .pd__close:hover { color: var(--color-text); border-color: var(--color-text); }
   .pd__eyebrow {
     font-family: var(--font-sans);
-    font-size: 0.6rem;
+    font-size: var(--fs-micro);
     font-weight: 500;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -704,19 +709,19 @@ for (const p of allPros) {
   }
   .pd__name {
     font-family: var(--font-display);
-    font-size: clamp(1.8rem, 1.4rem + 1.5vw, 2.8rem);
+    font-size: var(--fs-h3);
     font-weight: 300;
     line-height: 1.1;
     color: var(--color-text);
   }
   .pd__tagline {
     font-family: var(--font-display);
-    font-size: clamp(1rem, 0.85rem + 0.6vw, 1.3rem);
+    font-size: var(--fs-lead);
     color: var(--color-accent-ink);
     font-style: italic;
   }
   .pd__desc {
-    font-size: 0.9rem;
+    font-size: var(--fs-small);
     color: var(--color-text-muted);
     line-height: 1.7;
     margin-bottom: var(--space-s);
@@ -733,7 +738,7 @@ for (const p of allPros) {
   .pd__info-label {
     display: block;
     font-family: var(--font-sans);
-    font-size: 0.55rem;
+    font-size: var(--fs-micro);
     font-weight: 500;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -742,7 +747,7 @@ for (const p of allPros) {
   }
   .pd__info-val {
     font-family: var(--font-sans);
-    font-size: 0.85rem;
+    font-size: var(--fs-small);
     font-weight: 400;
     color: var(--color-text);
   }
@@ -754,7 +759,7 @@ for (const p of allPros) {
   }
   .pd__tag {
     font-family: var(--font-sans);
-    font-size: 0.6rem;
+    font-size: var(--fs-micro);
     font-weight: 500;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -770,7 +775,7 @@ for (const p of allPros) {
   }
   .pd__advice-label {
     font-family: var(--font-sans);
-    font-size: 0.55rem;
+    font-size: var(--fs-micro);
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -779,7 +784,7 @@ for (const p of allPros) {
   }
   .pd__advice-quote {
     font-family: var(--font-display);
-    font-size: 0.95rem;
+    font-size: var(--fs-small);
     font-style: italic;
     color: var(--color-text);
     line-height: 1.6;
@@ -793,7 +798,7 @@ for (const p of allPros) {
   }
   .pd__link {
     font-family: var(--font-sans);
-    font-size: 0.65rem;
+    font-size: var(--fs-micro);
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -810,7 +815,7 @@ for (const p of allPros) {
   /* ── FAQ ── */
   .pf-faq__title {
     font-family: var(--font-display);
-    font-size: clamp(1.8rem, 1.2rem + 2.5vw, 3.5rem);
+    font-size: var(--fs-h2);
     font-weight: 300;
     line-height: 1.1;
     color: var(--color-text);
@@ -825,7 +830,8 @@ for (const p of allPros) {
   /* desktop: "Le domande giuste prima di firmare un contratto:" on one line */
   @media (min-width: 700px) {
     .pf-faq__title {
-      font-size: min(clamp(1.8rem, 1.2rem + 2.5vw, 3.5rem), 4.4vw);
+      /* section-title size, shrunk only as much as needed to stay on one line */
+      font-size: min(var(--fs-h2), 4.4vw);
       white-space: nowrap;
     }
     .pf-faq__title em { display: inline; }
@@ -856,7 +862,7 @@ for (const p of allPros) {
   }
   .pf-faq__q {
     font-family: var(--font-display);
-    font-size: clamp(0.95rem, 0.85rem + 0.3vw, 1.1rem);
+    font-size: var(--fs-lead);
     font-weight: 300;
     color: var(--color-text);
     line-height: 1.3;
@@ -885,7 +891,7 @@ for (const p of allPros) {
   }
   .pf-faq__dl-btn {
     flex-shrink: 0;
-    font-size: 0.62rem;
+    font-size: var(--fs-micro);
     letter-spacing: 0.12em;
   }
   /* desktop: "...prima di firmare un contratto →" pointing at the button on its right */
@@ -928,7 +934,10 @@ for (const p of allPros) {
   }
   .pf-cta__title {
     font-family: var(--font-display);
-    font-size: clamp(1.6rem, 1.12rem + 2.4vw, 3.6rem);
+    /* "Non sapete da dove iniziare?" always on one line (≈ 11.2 × the font size
+       wide): section-title size, smaller only when the screen needs it */
+    font-size: min(var(--fs-h2), calc((100vw - 2 * var(--gutter)) / 11.2));
+    white-space: nowrap;
     font-weight: 300;
     line-height: 1.06;
     color: #fff;
@@ -948,7 +957,21 @@ for (const p of allPros) {
   }
   .pf-cta__btn {
     letter-spacing: 0.1em;
-    font-size: 0.65rem;
+    font-size: var(--fs-micro);
+  }
+  /* desktop: text on the left, button on the right, centred on the text block */
+  @media (min-width: 900px) {
+    .pf-cta__inner {
+      max-width: var(--max);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      column-gap: var(--space-xl);
+    }
+    .pf-cta__title { font-size: min(var(--fs-h2), calc((100vw - 2 * var(--gutter) - 22rem) / 11.2)); }
+    .pf-cta__sub { margin-bottom: 0; }
+    .pf-cta__btn { text-align: center; }
   }
 
   /* ── Footer bar ── */
@@ -964,14 +987,14 @@ for (const p of allPros) {
   }
   .pf-bar__msg {
     font-family: var(--font-sans);
-    font-size: 0.82rem;
+    font-size: var(--fs-small);
     font-weight: 500;
     letter-spacing: 0.06em;
     color: var(--color-text);
   }
   .pf-bar__link {
     font-family: var(--font-sans);
-    font-size: 0.82rem;
+    font-size: var(--fs-small);
     font-weight: 500;
     letter-spacing: 0.06em;
     color: var(--color-accent-ink);
@@ -994,14 +1017,16 @@ for (const p of allPros) {
       padding: 0.75rem var(--gutter);
     }
     .pf-bar__msg {
-      font-size: 0.72rem;
+      font-size: var(--fs-micro);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       max-width: 100%;
     }
     .pf-bar__link {
-      font-size: 0.72rem;
+      font-size: var(--fs-micro);
+      letter-spacing: 0.02em; /* 12px link still fits a 360px phone on one line */
+      max-width: 100%;
     }
     .pf-faq__item {
       display: flex;

@@ -239,7 +239,10 @@ const hasPixel = Boolean(site.analytics.metaPixel);
 <style>
   .legal__title {
     margin-top: var(--space-l);
-    font-size: var(--fs-h2);
+    font-size: var(--fs-h1);
+  }
+  @media (min-width: 700px) {
+    .legal__title { font-size: clamp(2.25rem, 1.6rem + 2.8vw, 4.25rem); } /* desktop hero: original size (request) */
   }
   .legal__updated {
     margin-block: var(--space-s) var(--space-l);

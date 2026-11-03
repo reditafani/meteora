@@ -26,8 +26,11 @@ const { crumbs, label = 'Breadcrumb', tone = 'light' } = Astro.props;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.2rem;
-    font-size: 0.9rem;
+    font-size: var(--fs-small);
     font-weight: 400;
+  }
+  @media (min-width: 700px) {
+    .crumbs ol { font-size: 0.9rem; } /* desktop hero: original size (request) */
   }
   .crumbs li + li::before {
     content: '›';

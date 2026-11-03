@@ -108,7 +108,7 @@ const { eyebrow, image, imageAlt = '', position, crumbs, tone = 'light', variant
     letter-spacing: 0.14em;
   }
   .fhero__title :global(h1) {
-    font-size: clamp(2.8rem, 5vw + 1rem, 6.5rem);
+    font-size: var(--fs-h1);
     line-height: 1.05;
     color: #fff;
     max-width: 18ch;
@@ -119,8 +119,13 @@ const { eyebrow, image, imageAlt = '', position, crumbs, tone = 'light', variant
   }
   .fhero__lead :global(p) {
     color: rgba(255 255 255 / 0.78);
-    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    font-size: var(--fs-lead);
     max-width: 38rem;
+  }
+  @media (min-width: 700px) {
+    /* desktop hero: original size (request) */
+    .fhero__title :global(h1) { font-size: clamp(2.8rem, 5vw + 1rem, 6.5rem); }
+    .fhero__lead :global(p) { font-size: clamp(1rem, 1.4vw, 1.2rem); }
     line-height: 1.65;
   }
   .fhero__cta:not(:empty) {

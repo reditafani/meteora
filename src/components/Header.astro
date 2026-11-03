@@ -206,7 +206,7 @@ const desktopNav: NavItem[] = [
     display: none;
     min-height: 2.75rem;
     padding: 0.7rem 1.25rem;
-    font-size: 0.62rem;
+    font-size: var(--fs-micro);
   }
   .site-header[data-theme='overlay']:not([data-scrolled]) .site-header__cta {
     --btn-bg: transparent;
@@ -268,7 +268,7 @@ const desktopNav: NavItem[] = [
   }
   .site-header__nav-link {
     font-family: var(--font-sans);
-    font-size: 0.72rem;
+    font-size: 0.72rem; /* original size: at 12px the links sat too close */
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -345,7 +345,7 @@ const desktopNav: NavItem[] = [
     display: block;
     padding: 0.62rem 1.2rem;
     font-family: var(--font-sans);
-    font-size: 0.62rem;
+    font-size: var(--fs-micro);
     font-weight: 400;
     letter-spacing: 0.09em;
     text-transform: uppercase;
@@ -373,7 +373,8 @@ const desktopNav: NavItem[] = [
       justify-content: space-between;
       gap: 0.75rem;
       flex: 1;
-      padding-inline: clamp(var(--space-m), 3vw, var(--space-l));
+      /* slimmer side padding = a little more space between the links */
+      padding-inline: var(--space-m);
     }
     .site-header__toggle {
       display: none;

@@ -29,13 +29,15 @@
   --font-display: 'Cormorant Garamond Variable', 'Cormorant Garamond', 'Times New Roman', serif;
   --font-sans: 'Jost Variable', 'Jost', 'Helvetica Neue', Arial, sans-serif;
 
-  --fs-micro: 0.72rem;
-  --fs-small: 0.875rem;
-  --fs-body: clamp(1rem, 0.96rem + 0.18vw, 1.0625rem);
-  --fs-lead: clamp(1.125rem, 1.05rem + 0.4vw, 1.3125rem);
-  --fs-h3: clamp(1.5rem, 1.3rem + 0.9vw, 2.125rem);
-  --fs-h2: clamp(2.25rem, 1.6rem + 2.8vw, 4.25rem);
-  --fs-h1: clamp(2.75rem, 1.6rem + 5vw, 6.75rem);
+  /* Text rule: 7 sizes only, ~1.4 step between levels (phone → 1440px).
+     No text below 12px. Every font-size in the pages uses one of these. */
+  --fs-micro: 0.75rem;                                   /* 12 — uppercase labels, eyebrows, buttons */
+  --fs-small: 0.875rem;                                  /* 14 — captions, card descriptions, footer */
+  --fs-body: clamp(1rem, 0.96rem + 0.18vw, 1.0625rem);   /* 16 → 17 */
+  --fs-lead: clamp(1.125rem, 1.06rem + 0.28vw, 1.3125rem); /* 18 → 21 — intros, list item titles */
+  --fs-h3: clamp(1.5rem, 1.32rem + 0.75vw, 2rem);        /* 24 → 32 — card / block titles */
+  --fs-h2: clamp(2.25rem, 1.63rem + 2.63vw, 4rem);       /* 36 → 64 — section titles */
+  --fs-h1: clamp(2.75rem, 1.78rem + 4.13vw, 5.5rem);     /* 44 → 88 — page (hero) titles */
   --fs-display: clamp(3.25rem, 1.5rem + 8vw, 10.5rem);
 
   --lh-tight: 0.98;

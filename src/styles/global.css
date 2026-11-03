@@ -189,7 +189,7 @@ p {
   margin-top: 2.2em;
 }
 .prose h3 {
-  font-size: 1.35rem;
+  font-size: var(--fs-lead);
   margin-top: 1.8em;
 }
 .prose ul {
@@ -238,6 +238,13 @@ p {
 .section--alt + .section--alt,
 .section--alt + script + .section--alt {
   padding-top: 0;
+}
+/* Heroes on desktop keep their original text sizes (request): eyebrow labels
+   and intro text use the earlier values instead of the text rule */
+@media (min-width: 700px) {
+  .hero .eyebrow, .fhero .eyebrow, .bh .eyebrow, .ph .eyebrow, .ice-box .eyebrow, .legal__updated,
+  .hero .btn, .ice-box .btn, .ice-box .link { font-size: 0.72rem; }
+  .hero .lead, .fhero .lead, .bh .lead, .ph .lead, .ice-box .lead { font-size: clamp(1.125rem, 1.05rem + 0.4vw, 1.3125rem); }
 }
 .stack > * + * {
   margin-top: var(--stack, var(--space-m));
