@@ -12,7 +12,7 @@ import cocktailMain from '@/assets/images/bars/wedding-bar-cocktail-pouring.jpg'
 import tableOver  from '@/assets/images/details/wedding-table-setting-flowers-menu.jpg';
 import venueMain  from '@/assets/images/venues/wedding-venue-villa-entrance.jpg';
 import plannerOver from '@/assets/images/weddings/wedding-planner-planning-calendar.jpg';
-import aerial     from '@/assets/images/weddings/wedding-aerial.jpg';
+import heroToast  from '@/assets/images/weddings/wedding-guests-champagne-toast.jpg';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -58,7 +58,7 @@ const privacyShort = privacyFull.replace(' per ricevere una risposta', '').repla
 
 <BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('contact')} current="contact" breadcrumbs={crumbs} schema={[contactSchema]} showQuoteBar={false} headerTheme="overlay">
 
-  <PageHero variant="fullscreen" align="left" image={aerial} imageAlt={it ? 'Sposi visti dall\'alto su un prato verde' : 'Couple seen from above on green grass'} crumbs={crumbs}>
+  <PageHero variant="fullscreen" align="left" image={heroToast} position="50% 45%" imageAlt={it ? 'Sposi e invitati alzano i calici di champagne per il brindisi' : 'Bride, groom and guests raising champagne glasses in a toast'} crumbs={crumbs}>
     <h1>{it ? <>Contattaci.</> : <>Contact us.</>}</h1>
     <p slot="lead" class="lead muted contact-lead">
       {it
