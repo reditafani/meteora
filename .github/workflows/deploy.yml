@@ -79,6 +79,7 @@ jobs:
             api/config.php
             api/ig-cache.json
             api/ig-token.json
+            api/ig-img/**
 
       # Informative only: the host may answer GitHub's servers differently
       # (firewall), so a failure here doesn't mark the deploy as failed.

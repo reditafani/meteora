@@ -12,3 +12,8 @@ __pycache__/
 
 # local email previews (never published)
 public/_email-preview/
+
+# Instagram feed files written by api/instagram.php (local tests)
+public/api/ig-cache.json
+public/api/ig-token.json
+public/api/ig-img/

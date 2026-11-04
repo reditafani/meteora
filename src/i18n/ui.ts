@@ -62,8 +62,8 @@ export const ui = {
     errConsent: 'È necessario il consenso per inviare la richiesta.',
     // Cookie banner
     cookieTitle: 'La tua privacy',
-    cookieText:
-      'Usiamo cookie tecnici necessari al funzionamento del sito. Con il tuo consenso useremo anche cookie di analisi per capire come migliorare il sito. Nessun cookie non necessario viene attivato senza la tua scelta.',
+    cookieText: 'Usiamo cookie tecnici e, con il tuo consenso, di analisi e marketing.',
+    cookieClose: 'Chiudi: solo cookie necessari',
     cookieAccept: 'Accetta tutti',
     cookieReject: 'Solo necessari',
     cookieCustomize: 'Personalizza',
@@ -131,8 +131,8 @@ export const ui = {
     errDate: 'Please enter a future date.',
     errConsent: 'Your consent is required to send the request.',
     cookieTitle: 'Your privacy',
-    cookieText:
-      'We use technical cookies that the site needs to work. With your consent we will also use analytics cookies to understand how to improve it. No non-essential cookie is set until you choose.',
+    cookieText: 'We use technical cookies and, with your consent, analytics and marketing ones.',
+    cookieClose: 'Close: necessary cookies only',
     cookieAccept: 'Accept all',
     cookieReject: 'Necessary only',
     cookieCustomize: 'Customise',

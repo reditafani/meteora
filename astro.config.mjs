@@ -1,7 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
-import react from '@astrojs/react';
 
 // Canonical origin. Change PUBLIC_SITE_URL in .env if the canonical host changes
 // (e.g. to https://www.meteoraevents.com) — every canonical, hreflang and sitemap URL follows it.
@@ -34,5 +33,4 @@ export default defineConfig({
     },
   },
 
-  integrations: [react()],
 });

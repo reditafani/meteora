@@ -1,0 +1,27 @@
+---
+// Italian "page not found": served by .htaccess for missing pages under /it/
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout lang="it" title="Pagina non trovata | Meteora Events" description="Pagina non trovata." alternates={{ it: '/it/', en: '/' }} noindex>
+  <section class="section">
+    <div class="container container--narrow nf">
+      <p class="eyebrow">404</p>
+      <h1>Pagina <em>non trovata.</em></h1>
+      <p class="lead muted">La pagina che cercate non esiste o è stata spostata.</p>
+      <div class="cta-row">
+        <a class="btn" href="/it/">Home</a>
+        <a class="link" href="/it/contatti/">Richiedi un preventivo</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .nf {
+    display: grid;
+    gap: var(--space-m);
+    min-height: 50svh;
+    align-content: center;
+  }
+</style>

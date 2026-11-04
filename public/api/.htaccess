@@ -1,5 +1,5 @@
 # Protect configuration and internal files from direct access.
-<FilesMatch "^(config|config\.sample|mailer)\.php$">
+<FilesMatch "^(config|config\.sample|mailer|emails)\.php$">
   Require all denied
 </FilesMatch>
 # Instagram feed cache and refreshed token (written by instagram.php)

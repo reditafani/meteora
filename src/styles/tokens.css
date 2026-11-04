@@ -61,10 +61,10 @@
      Large = above/below every section · Medium = closing dark bands, short
      strips · Small = section header to its content.
      Values: 375px wide → 1440px wide, scaling smoothly in between. */
-  /* desktop values 10% below the first version (96/64/32); phone unchanged */
-  --pad-l: clamp(3.5rem, 2.83rem + 2.85vw, 5.4rem);  /* 56 → 86px */
-  --pad-m: clamp(2.5rem, 2.11rem + 1.65vw, 3.6rem);  /* 40 → 58px */
-  --pad-s: clamp(1.5rem, 1.39rem + 0.45vw, 1.8rem);  /* 24 → 29px */
+  /* 04/11: everything 10% smaller again (was 56→86 / 40→58 / 24→29) */
+  --pad-l: clamp(3.15rem, 2.55rem + 2.57vw, 4.86rem); /* 50 → 78px */
+  --pad-m: clamp(2.25rem, 1.9rem + 1.49vw, 3.24rem);  /* 36 → 52px */
+  --pad-s: clamp(1.35rem, 1.26rem + 0.41vw, 1.62rem); /* 22 → 26px */
 
   --gutter: clamp(1rem, 0.4rem + 3.2vw, 3.5rem);
   --max: 1440px;

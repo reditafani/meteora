@@ -20,13 +20,23 @@ interface Props {
 
 const { src, alt, sizes = '100vw', priority = false, class: cls, position, widths, quality = 78 } = Astro.props;
 const base = widths ?? [480, 720, 960, 1280, 1600, 2000];
-const w = base.filter((x) => x < src.width).concat(src.width);
+// Largest file generated: twice the largest requested width (sharp on retina
+// screens), never above 2880px (a full-width photo on a 1440px retina screen)
+// nor above the original. Without this cap the full original (up to 7000px,
+// several MB) was offered and retina phones and Macs downloaded it.
+const MAX_W = 2880;
+// (for portrait photos the long side, the height, is what stays within 2880)
+const cap = Math.min(src.width, Math.max(...base) * 2, MAX_W, Math.floor((MAX_W * src.width) / src.height));
+const w = base.filter((x) => x < cap).concat(cap);
+const capH = Math.round((cap * src.height) / src.width);
 ---
 
 <Picture
   src={src}
   alt={alt}
   widths={w}
+  width={cap}
+  height={capH}
   sizes={sizes}
   formats={['avif', 'webp']}
   fallbackFormat="jpg"
