@@ -13,12 +13,12 @@ import terrace from '@/assets/images/bars/terrace-panorama.jpg';
 import mint from '@/assets/images/details/mint-coupes.jpg';
 import sunset from '@/assets/images/cocktails/old-fashioned-pour.jpg';
 import shaker from '@/assets/images/details/woman-coupe.jpg';
-import strain from '@/assets/images/venues/wedding-table-flowers.jpg';
 import weddCardImg from '@/assets/images/weddings/open-bar-matrimonio-villa-toscana.jpg';
 import corpCardImg from '@/assets/images/corporate/bar-catering-evento-aziendale.webp';
 import loungeImg from '@/assets/images/bars/private-bar-night.jpg';
 import cimBg from '@/assets/images/venues/wedding-table-candles.jpg';
 import bartenderStrain from '@/assets/images/team/bartender-strain.jpg';
+import heroBartender from '@/assets/images/team/bartender-serving-cocktail.jpg';
 import processBg from '@/assets/images/bars/bartender-pour-night.jpg';
 
 interface Props { lang: Lang }
@@ -114,10 +114,10 @@ const steps: { title: string; text: string }[] = it
       { title: "Il giorno dell'evento",              text: 'Quel giorno l\'unica cosa a cui dovrete pensare sarete voi. Al bar penseremo noi, esattamente come lo abbiamo costruito insieme.' },
     ]
   : [
-      { title: 'Tell us about your day',   text: 'Just send us an email with your date, venue and number of guests.' },
-      { title: 'We build your offer',      text: 'Choose your bar, package and cocktail list, with any customisations you want.' },
+      { title: 'Tell us about your day',   text: 'Just send us an email with the date, venue, and number of guests.' },
+      { title: 'We build your offer',      text: 'Choose your bar, package and cocktail list, with any customisations you wish.' },
       { title: 'Everything in writing',    text: 'A proposal and a contract with every detail included.' },
-      { title: 'The day of your event',    text: 'That day, the only thing you need to think about is each other. We\'ll take care of the bar, exactly as we built it together.' },
+      { title: 'The day of your event',    text: 'On that day, the only thing you need to think about is yourselves. We\'ll take care of the bar, exactly as we built it together.' },
     ];
 
 ---
@@ -129,8 +129,9 @@ const steps: { title: string; text: string }[] = it
     variant="fullscreen"
     align="left"
 
-    image={strain}
-    imageAlt={it ? 'Tavola matrimoniale apparecchiata con fiori freschi e tovaglioli a quadretti' : 'Wedding table set with fresh flowers and gingham napkins'}
+    image={heroBartender}
+    position="50% 93%"
+    imageAlt={it ? 'Bartender sorridente che serve un cocktail al banco bar di un evento' : 'Smiling bartender serving a cocktail at an event bar'}
     crumbs={crumbs}
   >
     <h1>Meteora <em>Events</em></h1>
@@ -298,7 +299,7 @@ const steps: { title: string; text: string }[] = it
           <li class="proc__step">
             <div class="proc__step-dot" aria-hidden="true"></div>
             <div class="proc__step-body">
-              <p class="proc__step-label">{`PASSO ${['I','II','III','IV'][i]}`}</p>
+              <p class="proc__step-label">{it ? `PASSO ${['I','II','III','IV'][i]}` : `STEP ${i + 1}`}</p>
               <h3 class="proc__step-title">{step.title}</h3>
               <p class="proc__step-text muted">{step.text}</p>
             </div>
@@ -322,11 +323,11 @@ const steps: { title: string; text: string }[] = it
         <p class="serves-hd__lead muted" data-reveal>
           {it
             ? 'Dal grande giorno alla festa in piscina, dalla cena di gala al compleanno: siamo il bar di ogni vostra occasione.'
-            : 'From the big day to the pool party, from the gala dinner to the birthday: we are the bar for every occasion.'}
+            : 'From the big day to a pool party, from a gala dinner to a birthday: we are the bar for every occasion.'}
           <br class="serves-hd__br" />
           {it
             ? 'Dal benvenuto a fine serata, pensiamo noi a tutto il servizio, perché voi possiate pensare solo a festeggiare.'
-            : 'From the welcome drink to the last round, we handle the full service so you can focus on celebrating.'}
+            : 'From the welcome drink to the last round, we handle the full service, so you can focus on enjoying the celebration.'}
         </p>
       </div>
     </div>

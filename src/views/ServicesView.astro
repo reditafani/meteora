@@ -57,12 +57,12 @@ const schema = [
 ---
 
 <BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('services')} current="services" breadcrumbs={crumbs} schema={schema} headerTheme="overlay">
-  <PageHero variant="fullscreen" align="left" image={hero} imageAlt={it ? 'Bartender al lavoro dietro il banco durante un evento' : 'Bartender working behind the bar at an event'} crumbs={crumbs}>
-    <h1>{it ? <>Dall'aperitivo <em>all'ultimo drink.</em></> : <>From aperitivo <em>to the last drink.</em></>}</h1>
+  <PageHero variant="fullscreen" align="left" image={hero} position="50% 12%" imageAlt={it ? 'Bartender al lavoro dietro il banco durante un evento' : 'Bartender working behind the bar at an event'} crumbs={crumbs}>
+    <h1>{it ? <>Dall'aperitivo <em>all'ultimo drink.</em></> : <>From happy hour <em>to the last drink.</em></>}</h1>
     <p slot="lead" class="lead muted">
       {it
         ? 'Un servizio bar completo: metodo nel servizio, effetto scenico nell\'allestimento. Ogni proposta è costruita su misura.'
-        : 'A complete bar service: method in delivery, scenic effect in the setup. Every proposal is built to measure.'}
+        : <>A complete bar service: methodical service, scenic setup.<br />Every proposal is tailored.</>}
     </p>
     <div slot="bottombar" class="svc-index-wrap">
       <nav class="svc-index" id="svc-index" aria-label={it ? "Indice servizi" : "Services index"}>
