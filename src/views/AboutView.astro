@@ -17,7 +17,7 @@ import weddCardImg from '@/assets/images/weddings/open-bar-matrimonio-villa-tosc
 import corpCardImg from '@/assets/images/corporate/bar-catering-evento-aziendale.webp';
 import privateVillaImg from '@/assets/images/venues/private-event-tuscan-villa-pool.jpg';
 import cimBg from '@/assets/images/venues/wedding-table-candles.jpg';
-import bartenderStrain from '@/assets/images/team/bartender-strain.jpg';
+import bartenderShake from '@/assets/images/team/bartender-shaking-cocktail.jpg';
 import heroBartender from '@/assets/images/team/bartender-serving-cocktail.jpg';
 import processBg from '@/assets/images/bars/bartender-pour-night.jpg';
 
@@ -171,7 +171,7 @@ const steps: { title: string; text: string }[] = it
 
         <!-- Photo card -->
         <div class="story__card" data-reveal>
-          <Img src={bartenderStrain} alt={it ? 'Barman che filtra un cocktail in coppa' : 'Bartender straining a cocktail into a coupe'} sizes="(min-width: 760px) 45vw, 90vw" />
+          <Img src={bartenderShake} alt={it ? 'Bartender sorridente che agita lo shaker al banco durante un evento' : 'Smiling bartender shaking a cocktail at the bar during an event'} position="50% 86%" sizes="(min-width: 760px) 45vw, 90vw" />
           <div class="story__card-overlay">
             <p class="story__card-exp">
               {it
@@ -446,6 +446,8 @@ const steps: { title: string; text: string }[] = it
   .story__card {
     position: relative;
     overflow: hidden;
+    /* same shape as before the vertical photo (1509x1172), so the box keeps its size */
+    aspect-ratio: 1509 / 1172;
   }
   .story__card :global(picture) { display: contents; }
   .story__card :global(img) {
