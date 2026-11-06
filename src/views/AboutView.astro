@@ -15,7 +15,7 @@ import sunset from '@/assets/images/cocktails/old-fashioned-pour.jpg';
 import shaker from '@/assets/images/details/woman-coupe.jpg';
 import weddCardImg from '@/assets/images/weddings/open-bar-matrimonio-villa-toscana.jpg';
 import corpCardImg from '@/assets/images/corporate/bar-catering-evento-aziendale.webp';
-import loungeImg from '@/assets/images/bars/private-bar-night.jpg';
+import privateVillaImg from '@/assets/images/venues/private-event-tuscan-villa-pool.jpg';
 import cimBg from '@/assets/images/venues/wedding-table-candles.jpg';
 import bartenderStrain from '@/assets/images/team/bartender-strain.jpg';
 import heroBartender from '@/assets/images/team/bartender-serving-cocktail.jpg';
@@ -80,11 +80,11 @@ const serveCards = it
         href: url('services', lang), cta: 'Discover our services',
       },
     ];
-const serveImgs = [weddCardImg, corpCardImg, loungeImg];
+const serveImgs = [weddCardImg, corpCardImg, privateVillaImg];
 // the wedding photo is portrait in a 16:10 box: frame it on the bride's face and bouquet (see position below)
 const serveAlts = it
-  ? ['Sposa con velo e bouquet sulla terrazza di una villa per matrimoni in Italia', 'Convention aziendale in una grande sala con pubblico, palco e maxischermi', 'Lounge notturno con luci soffuse']
-  : ['Bride with veil and bouquet on the terrace of an Italian wedding villa', 'Corporate convention in a large hall with audience, stage and big screens', 'Night lounge with soft lighting'];
+  ? ['Sposa con velo e bouquet sulla terrazza di una villa per matrimoni in Italia', 'Convention aziendale in una grande sala con pubblico, palco e maxischermi', 'Villa toscana con piscina e cipressi per una festa privata']
+  : ['Bride with veil and bouquet on the terrace of an Italian wedding villa', 'Corporate convention in a large hall with audience, stage and big screens', 'Tuscan villa with pool and cypress trees for a private party'];
 
 const included: { title: string; sub: string }[] = it
   ? [
