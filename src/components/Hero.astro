@@ -21,7 +21,7 @@ const { image, imageAlt, position = 'center', video, eyebrow, size = 'full', sty
 
 <section class:list={['hero on-dark', `hero--${size}`]} style={style}>
   <div class="hero__media">
-    <Img src={image} alt={imageAlt} priority sizes="100vw" position={position} class="hero__img" />
+    <Img src={image} alt={imageAlt} priority sizes="(max-width: 767px) 1360px, 100vw" position={position} class="hero__img" />
     {
       video && (video.mp4 || video.webm) && (
         <video class="hero__video" muted loop playsinline preload="none" aria-hidden="true" data-hero-video>

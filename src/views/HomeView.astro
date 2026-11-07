@@ -12,7 +12,7 @@ import { services } from '@/data/services';
 import { serviceSchema } from '@/lib/seo';
 import { site } from '@/data/site';
 
-import hero    from '@/assets/images/weddings/sumatra-weddings-hero.jpg';
+import hero    from '@/assets/images/bars/wedding-bar-marble-champagne-night.jpg';
 import introImg from '@/assets/images/bars/pure-white-villa.jpg';
 import weddImg from '@/assets/images/towers/couple-pour.jpg';
 import corpImg from '@/assets/images/corporate/corporate-table.jpg';
@@ -20,6 +20,7 @@ import privImg from '@/assets/images/bars/private-bar-night.jpg';
 import privateVillaImg from '@/assets/images/venues/private-event-tuscan-villa-pool.jpg';
 import procBg  from '@/assets/images/bars/bartender-event.jpg';
 import pkgBg   from '@/assets/images/venues/tuscany-window-view.jpg';
+import pkgSectionBg from '@/assets/images/venues/tuscany-cypress-road-wedding-countryside.jpg';
 import iceHoshi from '@/assets/images/cocktails/rosemary-cocktail.jpg';
 import weddCardImg from '@/assets/images/weddings/open-bar-matrimonio-villa-toscana.jpg';
 import corpCardImg from '@/assets/images/corporate/bar-catering-evento-aziendale.webp';
@@ -117,7 +118,7 @@ const perks = [
 <BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('home')} headerTheme="overlay" current="home" schema={schema}>
 
   <!-- 1 · HERO -->
-  <Hero image={hero} imageAlt={it ? 'Cerimonia nuziale serale con fiori e luci' : 'Evening wedding ceremony with flowers and lights'} position="50% 50%" eyebrow={it ? 'Matrimoni · Eventi aziendali · Eventi privati' : 'Weddings · Corporate events · Private events'}>
+  <Hero image={hero} imageAlt={it ? 'Banco bar in marmo e oro con secchiello di champagne per un matrimonio serale' : 'Marble and gold bar counter with a champagne bucket at an evening wedding'} position="50% 50%" eyebrow={it ? 'Matrimoni · Eventi aziendali · Eventi privati' : 'Weddings · Corporate events · Private events'}>
     <h1 class="home-hero__title">
       {it ? <>Ogni occasione<em>merita il suo brindisi.</em></> : <>Every occasion<em>deserves a toast.</em></>}
     </h1>
@@ -445,7 +446,7 @@ const perks = [
   <!-- 5 · PACKAGE -->
   <section class="section hm-pkg on-dark" aria-labelledby="hm-pkg-title">
     <div class="hm-pkg__bg">
-      <Img src={pkgBg} alt={it ? 'Vista sulle colline toscane da una villa' : 'View over the Tuscan hills from a villa'} sizes="100vw" widths={[800, 1400, 1920]} priority={false} />
+      <Img src={pkgSectionBg} alt={it ? 'Viale di cipressi tra le colline toscane, scenario ideale per un matrimonio' : 'Cypress-lined road through the Tuscan hills, an ideal setting for a wedding'} sizes="(max-width: 767px) 600px, 100vw" widths={[800, 1400, 1920]} position="50% 45%" priority={false} />
     </div>
     <div class="hm-pkg__overlay" aria-hidden="true"></div>
     <div class="container hm-pkg__inner">

@@ -9,14 +9,14 @@ import SectionHeading from '@/components/SectionHeading.astro';
 import Img from '@/components/Img.astro';
 import { site } from '@/data/site';
 import ItalyMap from '@/components/ItalyMap.astro';
-import terrace from '@/assets/images/bars/terrace-panorama.jpg';
-import mint from '@/assets/images/details/mint-coupes.jpg';
-import sunset from '@/assets/images/cocktails/old-fashioned-pour.jpg';
+import storyPour from '@/assets/images/team/bartender-pouring-cocktail-jigger.jpg';
+import storyToast from '@/assets/images/weddings/wedding-guests-cocktail-toast.jpg';
+import storyBar from '@/assets/images/bars/wedding-bar-chevron-night-view.jpg';
 import shaker from '@/assets/images/details/woman-coupe.jpg';
 import weddCardImg from '@/assets/images/weddings/open-bar-matrimonio-villa-toscana.jpg';
 import corpCardImg from '@/assets/images/corporate/bar-catering-evento-aziendale.webp';
 import privateVillaImg from '@/assets/images/venues/private-event-tuscan-villa-pool.jpg';
-import cimBg from '@/assets/images/venues/wedding-table-candles.jpg';
+import cimBg from '@/assets/images/weddings/wedding-couple-kiss-guests-celebrating.jpg';
 import bartenderShake from '@/assets/images/team/bartender-shaking-cocktail.jpg';
 import heroBartender from '@/assets/images/team/bartender-serving-cocktail.jpg';
 import processBg from '@/assets/images/bars/bartender-pour-night.jpg';
@@ -155,13 +155,13 @@ const steps: { title: string; text: string }[] = it
       </div>
       <div class="story__media">
         <div class="media story__img" data-reveal="image">
-          <Img src={terrace} alt={it ? 'Banco bar davanti a una vetrata panoramica' : 'Bar in front of a panoramic window'} sizes="(min-width: 900px) 25vw, 50vw" />
+          <Img src={storyPour} alt={it ? 'Bartender che versa un cocktail nel jigger al banco bar' : 'Bartender pouring a cocktail into a jigger at the bar'} sizes="(min-width: 900px) 25vw, 50vw" />
         </div>
         <div class="media story__img" data-reveal="image" style="--delay:.06s">
-          <Img src={mint} alt={it ? 'Coppe con menta e frutti rossi' : 'Coupes with mint and red berries'} sizes="(min-width: 900px) 25vw, 50vw" />
+          <Img src={storyToast} alt={it ? 'Ospiti di un matrimonio brindano con i cocktail' : 'Wedding guests toasting with cocktails'} sizes="(min-width: 900px) 25vw, 50vw" />
         </div>
         <div class="media story__img" data-reveal="image" style="--delay:.12s">
-          <Img src={sunset} alt={it ? 'Old Fashioned versato attraverso uno strainer su ghiaccio' : 'Old Fashioned being strained over ice'} sizes="(min-width: 900px) 25vw, 50vw" />
+          <Img src={storyBar} alt={it ? 'Banco bar bianco su pavimento a chevron con vista panoramica serale' : 'White bar on a chevron floor with an evening panoramic view'} sizes="(min-width: 900px) 25vw, 50vw" />
         </div>
         <div class="media story__img" data-reveal="image" style="--delay:.18s">
           <Img src={shaker} alt={it ? 'Donna con cappello che assaggia un cocktail rosa in una coppa' : 'Woman in a hat sipping a pink cocktail in a coupe glass'} sizes="(min-width: 900px) 25vw, 50vw" />
@@ -217,7 +217,7 @@ const steps: { title: string; text: string }[] = it
   <!-- CHIAVI IN MANO -->
   <section class="cim" id="a-included" aria-labelledby="cim-title">
     <div class="cim__bg">
-      <Img src={cimBg} alt={it ? 'Tavola imperiale apparecchiata con candele e fiori per un matrimonio' : 'Long wedding table set with candles and flowers'} sizes="100vw" widths={[800, 1280, 1920]} />
+      <Img src={cimBg} alt={it ? 'Sposi che si baciano tra gli invitati in festa a un matrimonio in Toscana' : 'Bride and groom kissing among celebrating guests at a wedding in Tuscany'} sizes="(max-width: 767px) 1440px, 100vw" widths={[800, 1280, 1920]} position="52% 65%" />
     </div>
     <div class="cim__overlay" aria-hidden="true"></div>
     <div class="cim__inner container">
