@@ -26,7 +26,7 @@ const meta = it
 
 const crumbs = [
   { name: s.breadcrumbHome, href: url('home', lang) },
-  { name: it ? 'Fornitori consigliati' : 'Recommended suppliers', href: url('partners', lang) },
+  { name: it ? 'Fornitori consigliati' : 'Recommended vendors', href: url('partners', lang) },
 ];
 
 const schema: Record<string, unknown>[] = [{
@@ -131,7 +131,7 @@ for (const p of allPros) {
       <p class="lead ph__lead" data-reveal style="--delay:.1s">
         {it
           ? `Wedding planner e location selezionati, per aiutarvi a organizzare il vostro matrimonio in Italia con chi sa davvero farlo. Li abbiamo scelti per la loro professionalità, serietà e affidabilità.`
-          : `Selected wedding planners and venues, to help you plan your wedding in Italy with people who truly know how. We chose them for their professionalism, seriousness and reliability.`}
+          : `Selected wedding planners and venues, to help you plan your wedding in Italy with people who truly know how. We choose them for their professionalism, seriousness and reliability.`}
       </p>
       <div class="ph__badge" data-reveal style="--delay:.18s">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
@@ -302,7 +302,7 @@ for (const p of allPros) {
         : 'Couples trust us because we know the industry from the inside.'}
     </span>
     <a class="pf-bar__link" href={`${contactUrl}?tab=pro#contact-form`}>
-      {it ? 'Siete wedding planner o location? Entriamo in contatto →' : "Are you a wedding planner or venue? Let's connect →"}
+      {it ? 'Siete wedding planner o location? Entriamo in contatto →' : "Are you a wedding planner or a venue? Let's connect →"}
     </a>
   </div>
 

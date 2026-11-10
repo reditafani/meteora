@@ -53,6 +53,11 @@ ErrorDocument 404 /404.html
 
   # 5) Legacy URLs from the previous website — add 301s here, e.g.:
   # RewriteRule ^old-page/?$ /matrimoni/ [L,R=301]
+
+  # English partners page renamed (Nov 2026): keep old links and Google ranking
+  RewriteRule ^wedding-planners-venues/?$ /recommended-vendors/ [L,R=301]
+  # English about page renamed (Nov 2026)
+  RewriteRule ^about/?$ /about-us/ [L,R=301]
 </IfModule>
 
 # ---- Security headers ----

@@ -12,7 +12,7 @@ import { services } from '@/data/services';
 import { serviceSchema } from '@/lib/seo';
 import { site } from '@/data/site';
 
-import hero    from '@/assets/images/bars/wedding-bar-marble-champagne-night.jpg';
+import hero    from '@/assets/images/bars/wedding-bar-mixers-mint-champagne-detail.jpg';
 import introImg from '@/assets/images/bars/pure-white-villa.jpg';
 import weddImg from '@/assets/images/towers/couple-pour.jpg';
 import corpImg from '@/assets/images/corporate/corporate-table.jpg';
@@ -44,10 +44,10 @@ const steps = it
       { title: "Il giorno <br class=\"hm-proc__br\" />dell'evento", text: "Quel giorno l'unica cosa a cui dovrete pensare sarete voi. <br>Al bar penseremo noi, esattamente come lo abbiamo costruito insieme." },
     ]
   : [
-      { title: 'Tell us about your day',          text: 'All it takes is an email with the date, venue and guest count.' },
-      { title: 'We build your offer',             text: 'Choose your bar, package and cocktail list, with whatever customisations you want.' },
-      { title: 'Everything in writing',           text: 'A proposal and a contract with every detail included. Confirmed with a deposit.' },
-      { title: 'The day of the event',            text: "That day, the only thing you'll need to think about is each other. We'll handle the bar, exactly as we built it together." },
+      { title: 'Tell us about your day',          text: 'Just send us an email with the date, venue, and number of guests.' },
+      { title: 'We build your offer',             text: 'Choose your bar, package and cocktail list, with any customisations you wish.' },
+      { title: 'Everything in writing',           text: 'A proposal and a contract with every detail included.' },
+      { title: 'The day of your event',           text: "On that day, the only thing you need to think about is yourselves. We'll take care of the bar, exactly as we built it together." },
     ];
 
 const packageItems = it
@@ -61,8 +61,8 @@ const packageItems = it
       { title: 'Allestimento e smontaggio',                    sub: 'pensiamo noi a tutto'                       },
     ]
   : [
-      { title: 'Scenographic bar counter',                     sub: 'your choice from our collection'            },
-      { title: 'Professional bartenders',                      sub: 'qualified staff, in elegant uniform'        },
+      { title: 'Scenic bar counter',                           sub: 'chosen from our collection'            },
+      { title: 'Professional bartenders',                      sub: 'qualified staff, in elegant uniforms'        },
       { title: 'Your drink list',                              sub: 'choose your favourite drinks, we handle the rest.' },
       { title: 'Selected spirits and fresh ingredients',       sub: 'fresh fruit, dried fruit, herbs and spices' },
       { title: 'Professional ice',                             sub: 'chosen for each type of cocktail'           },
@@ -118,7 +118,7 @@ const perks = [
 <BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('home')} headerTheme="overlay" current="home" schema={schema}>
 
   <!-- 1 · HERO -->
-  <Hero image={hero} imageAlt={it ? 'Banco bar in marmo e oro con secchiello di champagne per un matrimonio serale' : 'Marble and gold bar counter with a champagne bucket at an evening wedding'} position="50% 50%" eyebrow={it ? 'Matrimoni · Eventi aziendali · Eventi privati' : 'Weddings · Corporate events · Private events'}>
+  <Hero image={hero} imageAlt={it ? 'Dettaglio del banco bar di un matrimonio con mixer, coppe alla menta e secchiello di champagne' : 'Wedding bar counter detail with mixers, mint coupes and a champagne bucket'} position="62% 60%" eyebrow={it ? 'Matrimoni · Eventi aziendali · Eventi privati' : 'Weddings · Corporate events · Private events'}>
     <h1 class="home-hero__title">
       {it ? <>Ogni occasione<em>merita il suo brindisi.</em></> : <>Every occasion<em>deserves a toast.</em></>}
     </h1>
@@ -503,7 +503,7 @@ const perks = [
         <p class="hm-proc__desc">
           {it
             ? 'Organizzare da lontano non è mai stato così semplice: quattro passaggi chiari, nessuna incertezza.'
-            : 'Organising from a distance has never been this simple: four clear steps, no uncertainty.'}
+            : 'Organising from afar has never been this simple: four clear steps, no uncertainty.'}
         </p>
       </div>
 

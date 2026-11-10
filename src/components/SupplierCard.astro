@@ -13,6 +13,16 @@ const { pro, lang, contactUrl } = Astro.props;
 const it = lang === 'it';
 const isWP = pro.type === 'wedding-planner';
 const isLoc = pro.type === 'location';
+// English wording for the location details (the data is written in Italian)
+const capacityText = (v: string) => it ? v : v.replace(/^Fino a (\d+)$/, 'Up to $1 guests');
+const roomsText = (v: string) => it ? v : v.replace(/^(\d+) camere$/, '$1 rooms').replace(/^Nessuna$/, 'Not available').replace(/^(\d+) suite$/, '$1 suites');
+const ceremonyEn: Record<string, string> = {
+  'Civile e simbolica': 'Civil and Symbolic',
+  'Simbolica': 'Symbolic only',
+  'Solo simbolica': 'Symbolic only',
+  'Civile': 'Civil only',
+};
+const ceremonyText = (v: string) => it ? v : (ceremonyEn[v] ?? v);
 ---
 
 <article class="sc" data-pro-id={pro.id} data-tags={pro.tags?.join(',') ?? ''}>
@@ -37,7 +47,7 @@ const isLoc = pro.type === 'location';
         {pro.tags && pro.tags.length > 0 && (
           <div class="sc__meta-row">
             <span class="sc__meta-label">{it ? 'Specialità' : 'Speciality'}</span>
-            <span class="sc__meta-value">{pro.tags.join(' · ')}</span>
+            <span class="sc__meta-value">{(!it && pro.tagsEn ? pro.tagsEn : pro.tags).join(' · ')}</span>
           </div>
         )}
         {pro.languages && pro.languages.length > 0 && (
@@ -54,19 +64,19 @@ const isLoc = pro.type === 'location';
         {pro.locationDetails.capacity && (
           <div class="sc__meta-row">
             <span class="sc__meta-label">{it ? 'Capienza' : 'Capacity'}</span>
-            <span class="sc__meta-value">{pro.locationDetails.capacity}</span>
+            <span class="sc__meta-value">{capacityText(pro.locationDetails.capacity)}</span>
           </div>
         )}
         {pro.locationDetails.rooms && (
           <div class="sc__meta-row">
             <span class="sc__meta-label">{it ? 'Camere' : 'Rooms'}</span>
-            <span class="sc__meta-value">{pro.locationDetails.rooms}</span>
+            <span class="sc__meta-value">{roomsText(pro.locationDetails.rooms)}</span>
           </div>
         )}
         {pro.locationDetails.ceremony && (
           <div class="sc__meta-row">
             <span class="sc__meta-label">{it ? 'Cerimonia' : 'Ceremony'}</span>
-            <span class="sc__meta-value">{pro.locationDetails.ceremony}</span>
+            <span class="sc__meta-value">{ceremonyText(pro.locationDetails.ceremony)}</span>
           </div>
         )}
       </div>

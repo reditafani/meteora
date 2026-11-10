@@ -8,7 +8,7 @@ import BarCard from '@/components/BarCard.astro';
 import Img from '@/components/Img.astro';
 import CarouselProgress from '@/components/CarouselProgress.astro';
 import { bars } from '@/data/bars';
-import hero from '@/assets/images/bars/wedding-bar-panoramic-terrace.jpg';
+import hero from '@/assets/images/bars/wedding-bar-white-chevron-terrace-city-view.jpg';
 
 interface Props {
   lang: Lang;
@@ -44,7 +44,7 @@ const sizes = [
 
     <!-- Background image (full width) -->
     <div class="bh__bg">
-      <Img src={hero} alt={it ? 'Banco bar bianco per matrimoni allestito su una terrazza panoramica al tramonto' : 'White wedding bar counter set up on a panoramic terrace at sunset'} priority sizes="100vw" widths={[800, 1280, 1920]} />
+      <Img src={hero} alt={it ? 'Banco bar bianco a spina di pesce per matrimoni su una terrazza con vista sulla città' : 'White chevron wedding bar counter on a terrace overlooking the city'} priority sizes="(max-width: 767px) 1360px, 100vw" widths={[800, 1280, 1920]} />
     </div>
     <!-- Gradient overlay: dark left → transparent right -->
     <div class="bh__overlay" aria-hidden="true"></div>

@@ -107,7 +107,7 @@ const schema = [
                     : sv.summary[lang]}
             </p>
             {(sv.id === 'essential' || sv.id === 'premium' || sv.id === 'aperitivo') && (
-              <p class="svc__inc-label" data-reveal>{it ? 'Il servizio include:' : 'The service includes:'}</p>
+              <p class="svc__inc-label" data-reveal>{it ? 'Il servizio include:' : 'This service includes:'}</p>
             )}
             <ul class="svc__inc" role="list" data-reveal>
               {sv.includes[lang].map((x, idx) => (
@@ -149,7 +149,7 @@ const schema = [
         <p class="ice-lt__desc muted" data-reveal>
           {it
             ? "Il ghiaccio non serve solo a raffreddare: controlla la diluizione e definisce l'equilibrio di ogni drink. Per noi è un ingrediente."
-            : "Ice doesn't just chill — it controls dilution and defines the balance of every drink. For us it's an ingredient."}
+            : "Ice doesn't just chill: it controls dilution and defines the balance of every drink. For us, it is an ingredient."}
         </p>
       </div>
 
@@ -195,7 +195,7 @@ const schema = [
                 ? 'Il nostro metodo, anche senza il nostro bar. Una soluzione per chi cerca bartender qualificati, con i nostri standard di servizio e la nostra consulenza.'
                 : sv.summary[lang]}
             </p>
-            <p class="svc__inc-label" data-reveal>{it ? 'Il servizio include:' : 'The service includes:'}</p>
+            <p class="svc__inc-label" data-reveal>{it ? 'Il servizio include:' : 'This service includes:'}</p>
             <ul class="svc__inc" role="list" data-reveal>
               {sv.includes[lang].map((x) => <li>{x}</li>)}
             </ul>
@@ -220,6 +220,7 @@ const schema = [
               ? "Dettagli su misura che raccontano la vostra storia o l'identità del vostro brand, e rendono il bar inconfondibilmente vostro."
               : 'Bespoke details that tell your story or your brand identity, making the bar unmistakably yours.'}
           </p>
+          <p class="svc__inc-label" data-reveal>{it ? 'Il servizio include:' : 'This service includes:'}</p>
           <ul class="svc__inc" role="list" data-reveal>
             {(it ? [
               'Cocktail creati e nominati per voi',
@@ -230,10 +231,10 @@ const schema = [
               'Divise brandizzate per gli eventi aziendali',
             ] : [
               'Cocktails created and named for you',
-              'Your initials engraved in the ice',
+              'Your initials stamped into the ice cubes',
               'Bar front with your names or logo',
               'Personalised napkins',
-              'Decorative engraved fruit',
+              'Decorative carved fruit',
               'Branded uniforms for corporate events',
             ]).map(item => <li>{item}</li>)}
           </ul>
@@ -246,7 +247,7 @@ const schema = [
   <section class="svc-outro on-dark">
     <div class="container svc-outro__inner">
       <p class="svc-outro__text" data-reveal>
-        {it ? 'Avete in mente qualcosa di diverso?' : 'Have something different in mind?'}
+        {it ? 'Avete in mente qualcosa di diverso?' : 'Do you have something different in mind?'}
         <br class="svc-outro__br" />
         {it ? 'Raccontatecelo, lo realizziamo per voi!' : 'Tell us about it — we will make it happen!'}
       </p>

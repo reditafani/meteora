@@ -13,6 +13,8 @@ export interface Professional {
   tagline: { it: string; en: string };
   description: { it: string; en: string };
   tags?: string[];
+  /** English labels for the tags (same order); the Italian ones are used when missing */
+  tagsEn?: string[];
   budget?: string;
   image?: ImageMetadata;
   imageAlt?: { it: string; en: string };
@@ -49,6 +51,7 @@ export const professionals: Professional[] = [
     tagline: { it: 'Matrimoni italiani e destination wedding.', en: 'Italian weddings and destination weddings.' },
     description: { it: 'Organizzazione completa per coppie italiane e internazionali, con profonda conoscenza del territorio toscano e delle sue ville storiche.', en: 'Full-service planning for Italian and international couples, with deep knowledge of Tuscany and its historic villas.' },
     tags: ['Destination wedding', 'Ville storiche'],
+    tagsEn: ['Destination weddings', 'Historic Venues'],
     budget: '€€€',
     featured: true,
     languages: ['IT', 'EN', 'FR'],
@@ -64,6 +67,7 @@ export const professionals: Professional[] = [
     tagline: { it: 'Relazione, eleganza, ogni dettaglio al suo posto.', en: 'Relationship, elegance, every detail in its place.' },
     description: { it: 'Studio milanese specializzato in matrimoni di lusso per coppie internazionali. Coordinamento completo con rete di fornitori selezionati.', en: 'Milan-based studio specialised in luxury weddings for international couples. Full coordination with a curated supplier network.' },
     tags: ['Luxury', 'Grandi eventi'],
+    tagsEn: ['Luxury', 'Large events'],
     budget: '€€€€',
     languages: ['IT', 'EN', 'DE'],
     bookingLead: { it: '14 mesi prima', en: '14 months ahead' },
@@ -92,6 +96,7 @@ export const professionals: Professional[] = [
     tagline: { it: 'Spontanei, precisi, appassionati.', en: 'Spontaneous, precise, passionate.' },
     description: { it: 'Organizzazione completa e matrimoni elopement in Toscana, con vocazione per i dettagli artigianali e la scenografia naturale dei borghi.', en: 'Full planning and elopement weddings in Tuscany, with a focus on artisan details and the natural scenography of Tuscan villages.' },
     tags: ['Destination wedding', 'Matrimoni in campagna'],
+    tagsEn: ['Destination weddings', 'Matrimoni in campagna'],
     budget: '€€',
     languages: ['IT', 'EN'],
     bookingLead: { it: '8–10 mesi prima', en: '8–10 months ahead' },
@@ -106,6 +111,7 @@ export const professionals: Professional[] = [
     tagline: { it: 'Standard internazionale, cuore italiano.', en: 'International standards, Italian heart.' },
     description: { it: 'Luxury wedding planning per ospiti internazionali che scelgono l\'Italia. Esperienze su misura, coordinamento dal Nord al Sud.', en: 'Luxury wedding planning for international guests choosing Italy. Tailored experiences, coordination from North to South.' },
     tags: ['Luxury', 'Lago di Como'],
+    tagsEn: ['Luxury', 'Como Lake'],
     budget: '€€€€',
     languages: ['IT', 'EN', 'DE', 'FR'],
     bookingLead: { it: '18 mesi prima', en: '18 months ahead' },
@@ -120,6 +126,7 @@ export const professionals: Professional[] = [
     tagline: { it: 'Il Sud Italia come non lo avete mai visto.', en: 'Southern Italy as you\'ve never seen it.' },
     description: { it: 'Specializzate in matrimoni in Puglia, Sicilia e Calabria. Reti locali solide, conoscenza profonda delle tradizioni e dei luoghi più esclusivi del meridione.', en: 'Specialised in weddings in Puglia, Sicily and Calabria. Strong local networks and deep knowledge of the South\'s most exclusive venues.' },
     tags: ['Tradizioni del Sud', 'Matrimoni sul mare'],
+    tagsEn: ['Southern Italian Traditions', 'Seaside weddings'],
     budget: '€€€',
     languages: ['IT', 'EN'],
     bookingLead: { it: '10–12 mesi prima', en: '10–12 months ahead' },
@@ -162,7 +169,7 @@ export const professionals: Professional[] = [
     area: { it: 'Treviso', en: 'Treviso' },
     name: 'Tenuta dei Fiori',
     tagline: { it: 'Colline venete, vigneti, silenzio.', en: 'Venetian hills, vineyards, silence.' },
-    description: { it: 'Agriturismo di lusso tra i vigneti del Prosecco. Atmosfera autentica, vocazione gastronomica e location fotografica per eccellenza.', en: 'Luxury farm stay among Prosecco vineyards. Authentic atmosphere, culinary vocation and a naturally photogenic setting.' },
+    description: { it: 'Agriturismo di lusso tra i vigneti del Prosecco. Atmosfera autentica, vocazione gastronomica e location fotografica per eccellenza.', en: 'Luxury farm stay amid Prosecco vineyards. Authentic atmosphere, culinary vocation and a naturally photogenic setting.' },
     tags: ['Veneto', 'Rustico'],
     budget: '€€',
     bookingLead: { it: '8–10 mesi prima', en: '8–10 months ahead' },

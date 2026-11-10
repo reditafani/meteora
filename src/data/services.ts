@@ -29,7 +29,7 @@ export const services: Service[] = [
     kicker: { it: 'Open bar', en: 'Open bar' },
     summary: {
       it: `L'esperienza Meteora, completa: una selezione di cocktail e distillati, un banco della collezione e i nostri cristalli.`,
-      en: 'Three hours of open bar run entirely by our team, independently and in step with the catering.',
+      en: 'Three hours of open bar service entirely hosted by our team, independently and in step with the catering.',
     },
     includes: {
       it: [
@@ -44,8 +44,8 @@ export const services: Service[] = [
         'Bar counter of your choice from our collection',
         'Cocktails prepared on the spot, crafted to the last detail',
         'Dedicated professional staff',
-        'Glassware chosen for each drink',
-        'Selection of spirits and products from the Essential line',
+        'Glassware of your choice for each drink',
+        'Selection of spirits and ingredients from the Essential line',
         'A fully autonomous service, from start to finish',
       ],
     },
@@ -59,7 +59,7 @@ export const services: Service[] = [
     kicker: { it: 'Open bar', en: 'Open bar' },
     summary: {
       it: `Tutto l'Essential, con distillati premium dalla nostra selezione stagionale e mixer premium in bottiglie di vetro.`,
-      en: 'The same standard of service, with a premium label selection and mixers served from glass bottles.',
+      en: 'The same standard of service, with a premium brand selection and mixers served from glass bottles.',
     },
     includes: {
       it: [
@@ -74,7 +74,7 @@ export const services: Service[] = [
         'Bar counter of your choice from our collection',
         'Cocktails prepared on the spot, crafted to the last detail',
         'Dedicated professional staff',
-        'Glassware chosen for each drink',
+        'Glassware of your choice for each drink',
         'Selection of premium spirits and products',
         'A fully autonomous service, from start to finish',
       ],
@@ -89,7 +89,7 @@ export const services: Service[] = [
     kicker: { it: 'Aperitivo + Open bar', en: 'Aperitivo + Open bar' },
     summary: {
       it: `La nostra formula combinata: aperitivo e open bar, per accompagnare tutta la serata, dal primo brindisi all'ultimo drink.`,
-      en: 'A turnkey service, from the aperitivo to the after-dinner open bar. If both happen in the same area the aperitivo is integrated into the bar counter; otherwise it is set up on draped tables.',
+      en: 'A turnkey service, from the aperitivo to the after-dinner open bar. If both take place in the same area, the aperitivo is integrated into the bar counter; otherwise, it is set up on draped tables.',
     },
     includes: {
       it: [
@@ -117,7 +117,7 @@ export const services: Service[] = [
     kicker: { it: 'Un momento scenografico', en: 'A scenographic moment' },
     summary: {
       it: `Il momento che tutti fotografano: una torre di coppe riempita dal vivo con bollicine, Spritz o Espresso Martini. Per il brindisi, il taglio della torta o l'apertura della festa.`,
-      en: 'Coupes or glasses arranged in a cascade and filled live by our staff or by the couple. For toasts, cake cutting or opening the party.',
+      en: 'Coupes or glasses arranged in a cascading display and filled on the spot by our staff or by the couple. For toasts, cake cutting, or kicking off the party.',
     },
     includes: {
       it: ['Sparkling towers', 'Spritz tower', 'Espresso Martini tower'],
@@ -133,7 +133,7 @@ export const services: Service[] = [
     kicker: { it: 'Staff e metodo Meteora', en: 'Meteora staff and method' },
     summary: {
       it: `Il nostro metodo, anche senza il nostro bar. Per chi dispone già di banco, bicchieri, ghiaccio e attrezzatura, e cerca bartender qualificati con i nostri standard di servizio.`,
-      en: 'For clients who already have products and equipment — bar counter, glassware, ice, tools — and need qualified staff working to our method.',
+      en: 'For clients who already have products and equipment — bar counter, glassware, ice, tools — and need qualified staff trained to our standards.',
     },
     includes: {
       it: [

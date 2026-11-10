@@ -25,14 +25,14 @@ const rows = [
     name: 'Sparkling towers',
     desc: it
       ? 'Prosecco, Franciacorta o Champagne disposti in una cascata di coppe riempite dal vivo. Il momento più scenografico e fotografato del vostro evento.'
-      : 'Prosecco, Franciacorta or Champagne in a live-filled cascade of coupes. The most scenic and photographed moment of your event.',
+      : 'Prosecco, Franciacorta or Champagne in a tower of coupes filled on the spot. The most scenic and photographed moment of your event.',
   },
   {
     key: 'spritz',
     name: 'Spritz tower',
     desc: it
       ? 'Aperol o Campari Spritz disposti a cascata per un aperitivo dal grande impatto visivo, con i colori intensi che conquistano la scena.'
-      : 'Aperol or Campari Spritz in a cascading tower — a visually striking aperitivo moment full of colour and spectacle.',
+      : 'Aperol or Campari Spritz in a cascading tower — a visually striking aperitivo moment, full of colour and spectacle.',
   },
   {
     key: 'espresso',
@@ -46,7 +46,7 @@ const rows = [
     name: it ? 'Personalizzata' : 'Bespoke',
     desc: it
       ? `Avete in mente un'altra tower? Raccontatecela, la creiamo per voi.`
-      : 'Have another tower in mind? Tell us about it — we will create it for you.',
+      : 'Do you have another tower in mind? Tell us about it — we will create it for you.',
   },
 ];
 ---
@@ -69,6 +69,7 @@ const rows = [
     <p class="micro svc__kicker" data-reveal>· {sv.kicker[lang]}</p>
     <h2 id="tower-t" class="h3 svc__title" data-reveal>Signature Tower <em>Experience</em></h2>
     <p class="lead muted" data-reveal>{it ? `Il momento che tutti aspettano di fotografare. Coppe disposte a cascata, riempite dal vivo dal nostro staff o da voi, per il brindisi, il taglio della torta o l'inizio della festa.` : sv.summary['en']}</p>
+    <p class="svc__inc-label" data-reveal>{it ? 'Il servizio include:' : 'This service includes:'}</p>
     <ul class="tw__list" role="list" data-reveal>
       {rows.map(row => (
         <li class="tw__row" data-tower={row.key}>
@@ -254,6 +255,14 @@ const rows = [
     .tw__text > * { order: 2; }
     .tw__text > .svc__kicker, .tw__text > .svc__title, .tw__text > .lead { order: 0; }
     .tw__frame { order: 1; margin-top: var(--space-m); }
+  }
+
+  /* "This service includes:" label, same look as in ServicesView */
+  .svc__inc-label {
+    font-size: var(--fs-small);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.25rem;
   }
 
   /* ── Expandable rows ── */

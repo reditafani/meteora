@@ -27,7 +27,7 @@ type NavItem  = { key: 'about' | 'services' | 'bars' | 'partners' | 'ice' | 'con
 const desktopNav: NavItem[] = [
   {
     key: 'about',
-    label: it ? 'Chi siamo' : 'About',
+    label: it ? 'Chi siamo' : 'About us',
     children: [
       { label: it ? 'La nostra filosofia' : 'Our philosophy',       href: `${aboutUrl}#a-story`    },
       { label: it ? 'Pacchetti all inclusive' : 'All-inclusive packages', href: `${aboutUrl}#a-included` },
@@ -49,7 +49,7 @@ const desktopNav: NavItem[] = [
     ],
   },
   { key: 'bars',     label: it ? 'Banchi bar' : 'Bar Collection' },
-  { key: 'partners', label: it ? 'Fornitori consigliati' : 'Recommended Suppliers' },
+  { key: 'partners', label: it ? 'Fornitori consigliati' : 'Recommended vendors' },
   { key: 'ice',      label: it ? 'Noleggio ghiaccio' : 'Ice Rental' },
   { key: 'contact',  label: it ? 'Contatti'   : 'Contact'        },
 ];
