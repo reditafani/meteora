@@ -95,23 +95,24 @@ const hasMarketing = Boolean(site.analytics.metaPixel);
 </script>
 
 <style>
-  /* compact card: bottom left on computers, a slim strip on phones */
+  /* bar attached to the bottom edge, full width (phones and computers);
+     on computers text and buttons sit on one row */
   .cookie {
     position: fixed;
-    left: max(0.5rem, env(safe-area-inset-left));
-    right: max(0.5rem, env(safe-area-inset-right));
-    bottom: calc(0.5rem + env(safe-area-inset-bottom));
+    left: 0;
+    right: 0;
+    bottom: 0;
     z-index: 90;
     display: grid;
     grid-template-columns: 1fr;
     align-items: center;
     gap: 0.45rem;
-    padding: 0.7rem 2.6rem 0.7rem 0.9rem;
+    padding: 0.7rem 2.6rem calc(0.7rem + env(safe-area-inset-bottom)) max(0.9rem, env(safe-area-inset-left));
     max-height: 80svh;
     overflow-y: auto;
     background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    box-shadow: 0 18px 50px -24px rgb(20 14 10 / 0.5);
+    border-top: 1px solid var(--color-border);
+    box-shadow: 0 -8px 24px -18px rgb(20 14 10 / 0.35);
   }
   .cookie[hidden] {
     display: none;
@@ -186,11 +187,23 @@ const hasMarketing = Boolean(site.analytics.metaPixel);
   }
   @media (min-width: 768px) {
     .cookie {
-      left: 1.25rem;
-      right: auto;
-      bottom: 1.25rem;
-      width: 21.5rem; /* ≈ 344px */
-      padding: 0.9rem 2.6rem 0.9rem 1rem;
+      grid-template-columns: 1fr auto;
+      column-gap: 2rem;
+      row-gap: 0.75rem;
+      padding: 0.85rem calc(var(--gutter) + 2.5rem) calc(0.85rem + env(safe-area-inset-bottom)) var(--gutter);
+    }
+    .cookie__text { grid-column: 1; grid-row: 1; }
+    .cookie__actions { grid-column: 2; grid-row: 1; gap: 1.5rem; }
+    .cookie__prefs { grid-row: 2; }
+    .cookie__close {
+      top: 50%;
+      right: calc(var(--gutter) - 0.6rem);
+      transform: translateY(-50%);
+    }
+    /* with the preferences open the bar is taller: keep the X at the top */
+    .cookie:has(.cookie__prefs:not([hidden])) .cookie__close {
+      top: 0.4rem;
+      transform: none;
     }
   }
 </style>
