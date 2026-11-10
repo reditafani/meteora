@@ -11,7 +11,7 @@ import { services } from '@/data/services';
 import { serviceSchema } from '@/lib/seo';
 import hero      from '@/assets/images/bars/bartender-event.jpg';
 import iceHoshi  from '@/assets/images/ice/hoshizaki.jpg';
-import personalizImg from '@/assets/images/cocktails/rosemary-cocktail.jpg';
+import personalizImg from '@/assets/images/details/personalised-wedding-napkins-monogram-cocktail.jpg';
 import iceSphere from '@/assets/images/ice/sphere.jpg';
 import iceCube   from '@/assets/images/ice/compact-cube.jpg';
 import iceNugget from '@/assets/images/ice/nugget.jpg';
@@ -58,7 +58,7 @@ const schema = [
 
 <BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('services')} current="services" breadcrumbs={crumbs} schema={schema} headerTheme="overlay">
   <PageHero variant="fullscreen" align="left" image={hero} position="50% 12%" imageAlt={it ? 'Bartender al lavoro dietro il banco durante un evento' : 'Bartender working behind the bar at an event'} crumbs={crumbs}>
-    <h1>{it ? <>Dall'aperitivo <em>all'ultimo drink.</em></> : <>From happy hour <em>to the last drink.</em></>}</h1>
+    <h1>{it ? <>Dall'aperitivo <em>all'ultimo drink.</em></> : <>From aperitivo <em>to the last drink.</em></>}</h1>
     <p slot="lead" class="lead muted">
       {it
         ? 'Un servizio bar completo: metodo nel servizio, effetto scenico nell\'allestimento. Ogni proposta è costruita su misura.'
@@ -207,7 +207,7 @@ const schema = [
       <article class="svc__item" id="personalizzazioni" aria-labelledby="personalizzazioni-t">
         <div class="svc__frame" data-reveal="image">
           <div class="media svc__media">
-            <Img src={personalizImg} alt={it ? 'Cocktail con rosmarino e lime su marmo chiaro' : 'Cocktail with rosemary and lime on light marble'} sizes="(min-width: 960px) 34vw, 100vw" />
+            <Img src={personalizImg} alt={it ? 'Tovaglioli personalizzati con le iniziali degli sposi accanto a un cocktail e alle fedi nuziali' : 'Personalised wedding napkins with the couple’s monogram beside a cocktail and wedding rings'} sizes="(min-width: 960px) 34vw, 100vw" />
           </div>
         </div>
         <div class="svc__text">
