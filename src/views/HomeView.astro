@@ -798,11 +798,16 @@ const perks = [
     /* the button is moved down to near the bottom of the hero (into the
        hero's bottom padding, see Hero.astro), title and text stay put */
     .home-hero__cta {
-      margin-top: var(--space-l);
+      margin-top: 20px; /* 20px between the text and the button (request) */
       display: block;
       transform: translateY(calc(var(--hero-content-pb, clamp(7rem, 11vh, 10rem)) - var(--space-m)));
     }
     .home-hero__cta .btn { display: block; width: 100%; text-align: center; padding-block: 1.15rem; }
+    /* phones: title and text sit low, just above the button (the button
+       keeps its place: with this padding its shift above becomes 0) */
+    :global(.hero:has(.home-hero__title)) { --hero-content-pb: var(--space-m); }
+    /* phones: framing moved left (more of the bouquet) */
+    :global(.hero:has(.home-hero__title) .hero__media img) { object-position: 54% 40% !important; }
   }
 
   /* ── Perks strip (mobile only) ── */
