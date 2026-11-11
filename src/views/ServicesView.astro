@@ -43,10 +43,10 @@ const crumbs = [
 ];
 const iceTypes = [
   // short*: labels for the single-row mobile strip
-  { src: iceCube,   labelIt: 'Cubo compatto', labelEn: 'Compact cube', shortIt: 'Cubo',   shortEn: 'Cube'     },
+  { src: iceCube,   labelIt: 'Cubo compatto', labelEn: 'Compact cube', shortIt: 'Cubo',   shortEn: 'Compact cube' },
   { src: iceNugget, labelIt: 'Nugget',        labelEn: 'Nugget',       shortIt: 'Nugget', shortEn: 'Nugget'   },
-  { src: iceCube5,  labelIt: 'Cubo 5×5',     labelEn: '5×5 cube',     shortIt: '5×5',    shortEn: '5×5'      },
-  { src: iceLong,   labelIt: 'Long drink',    labelEn: 'Long drink',   shortIt: 'Long',   shortEn: 'Long'     },
+  { src: iceCube5,  labelIt: 'Cubo 5×5',     labelEn: '5×5 cube',     shortIt: '5×5',    shortEn: '5×5 cube' },
+  { src: iceLong,   labelIt: 'Long drink',    labelEn: 'Long drink',   shortIt: 'Long',   shortEn: 'Long drink' },
   { src: iceSphere, labelIt: 'Sfera',         labelEn: 'Sphere',       shortIt: 'Sfera',  shortEn: 'Sphere'   },
   { src: iceHoshi,  labelIt: 'Inciso',        labelEn: 'Engraved',     shortIt: 'Inciso', shortEn: 'Engraved' },
 ];
@@ -807,6 +807,9 @@ const schema = [
     .ice-lt__type-label { font-size: 0.62rem; text-align: center; }
     .ice-lt__type-long { display: none; }
     .ice-lt__type-short { display: inline; }
+    /* English: full names as on desktop, a bit smaller so they stay on one line */
+    :global(html[lang='en']) .ice-lt__type { min-width: 0; }
+    :global(html[lang='en']) .ice-lt__type-label { font-size: 0.55rem; white-space: nowrap; }
   }
 
 </style>

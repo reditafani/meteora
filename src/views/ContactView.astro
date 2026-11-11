@@ -266,6 +266,9 @@ const privacyShort = privacyFull.replace(' per ricevere una risposta', '').repla
             <h3>{it ? <>Grazie. <em>Vi ricontatteremo al più presto.</em></> : <>Thank you. <em>We will be in touch shortly.</em></>}</h3>
           </div>
 
+          <!-- phones and tablets: the left column (with this promise) is hidden -->
+          <p class="ct__resp muted">{it ? 'Rispondiamo a ogni richiesta entro 48 ore.' : 'We respond to every request within 48 hours.'}</p>
+
         </div><!-- /ct__right -->
       </div><!-- /ct__grid -->
     </div><!-- /container -->
@@ -530,6 +533,17 @@ const privacyShort = privacyFull.replace(' per ricevere una risposta', '').repla
   .form--boxed .field textarea {
     min-height: 6rem;
     resize: vertical;
+  }
+
+  /* "We respond within 48 hours": only where the left column is hidden */
+  .ct__resp {
+    display: none;
+    margin-top: var(--space-m);
+    font-size: var(--fs-small);
+    text-align: center;
+  }
+  @media (max-width: 959px) {
+    .ct__resp { display: block; }
   }
 
   /* ── Mobile tweaks ── */

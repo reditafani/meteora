@@ -12,7 +12,7 @@ import { services } from '@/data/services';
 import { serviceSchema } from '@/lib/seo';
 import { site } from '@/data/site';
 
-import hero    from '@/assets/images/bars/wedding-bar-mixers-mint-champagne-detail.jpg';
+import hero    from '@/assets/images/weddings/wedding-couple-toast-cocktails-bouquet.jpg';
 import introImg from '@/assets/images/bars/pure-white-villa.jpg';
 import weddImg from '@/assets/images/towers/couple-pour.jpg';
 import corpImg from '@/assets/images/corporate/corporate-table.jpg';
@@ -119,7 +119,7 @@ const perks = [
 <BaseLayout lang={lang} title={meta.title} description={meta.description} alternates={alternatesFor('home')} headerTheme="overlay" current="home" schema={schema}>
 
   <!-- 1 · HERO -->
-  <Hero image={hero} imageAlt={it ? 'Dettaglio del banco bar di un matrimonio con mixer, coppe alla menta e secchiello di champagne' : 'Wedding bar counter detail with mixers, mint coupes and a champagne bucket'} position="62% 60%" eyebrow={it ? 'Matrimoni · Eventi aziendali · Eventi privati' : 'Weddings · Corporate events · Private events'}>
+  <Hero image={hero} imageAlt={it ? 'Sposi seduti in una villa a lume di candela brindano con due cocktail, bouquet di rose bianche in grembo' : 'Bride and groom toasting with two cocktails in a candlelit villa, white rose bouquet in her lap'} position="61% 40%" eyebrow={it ? 'Matrimoni · Eventi aziendali · Eventi privati' : 'Weddings · Corporate events · Private events'}>
     <h1 class="home-hero__title">
       {it ? <>Ogni occasione<em>merita il suo brindisi.</em></> : <>Every occasion<em>deserves a toast.</em></>}
     </h1>
@@ -134,7 +134,7 @@ const perks = [
     <div slot="after" class="home-hero__stats">
       {[
         { n: it ? 'Drink illimitati'      : 'Unlimited drinks',        sub: it ? 'inclusi nel pacchetto acquistato': 'included in the chosen package'  },
-        { n: it ? '14 anni di esperienza'  : '14+ years',              sub: it ? 'nel settore eventi'              : 'of operational experience'      },
+        { n: it ? '14 anni di esperienza'  : '14+ years',              sub: it ? 'nel settore eventi'              : 'of experience in the events industry' },
         { n: it ? 'Drink list su misura'  : 'Bespoke drink list',     sub: it ? 'scegliete tra i nostri 40 drink' : 'choose from our 40 drinks'        },
         { n: it ? 'Base in Toscana'       : 'Tuscany & Italy',        sub: it ? 'trasferte in tutta Italia'       : 'travel throughout Italy'           },
       ].map(item => (
